@@ -208,7 +208,6 @@ small {
 }
 
 .mobile-logo-block,
-.quick-grid,
 .daily-cloud,
 .play-header,
 .mobile-mascot-row {
@@ -286,7 +285,7 @@ small {
   position: relative;
 }
 
-.kid-portrait {
+.profile-image {
   position: absolute;
   top: 26px;
   right: 26px;
@@ -295,50 +294,9 @@ small {
   border: 5px solid rgba(255, 255, 255, 0.86);
   border-radius: 32px;
   box-shadow: 0 12px 28px rgba(74, 58, 84, 0.14);
-  background:
-    radial-gradient(circle at 38% 44%, #2f2425 0 5px, transparent 6px),
-    radial-gradient(circle at 62% 44%, #2f2425 0 5px, transparent 6px),
-    radial-gradient(circle at 36% 52%, #ffb3b7 0 7px, transparent 8px),
-    radial-gradient(circle at 64% 52%, #ffb3b7 0 7px, transparent 8px),
-    radial-gradient(ellipse at 50% 39%, #ffe0cc 0 34%, transparent 35%),
-    radial-gradient(ellipse at 50% 27%, #76462e 0 37%, transparent 38%),
-    radial-gradient(ellipse at 50% 77%, #ff8bae 0 30%, transparent 31%),
-    linear-gradient(145deg, #fff7fb, #f5ddff);
-}
-
-.anna-portrait::before,
-.sarah-portrait::before {
-  content: "";
-  position: absolute;
-  left: 18%;
-  top: 16%;
-  width: 24px;
-  height: 18px;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 25% 50%, #ff6fa0 0 8px, transparent 9px),
-    radial-gradient(circle at 75% 50%, #ff6fa0 0 8px, transparent 9px),
-    radial-gradient(circle at 50% 50%, #fff 0 3px, transparent 4px);
-  transform: rotate(-18deg);
-}
-
-.sarah-portrait {
-  background:
-    radial-gradient(circle at 38% 44%, #2f2425 0 5px, transparent 6px),
-    radial-gradient(circle at 62% 44%, #2f2425 0 5px, transparent 6px),
-    radial-gradient(circle at 36% 52%, #ffb3b7 0 7px, transparent 8px),
-    radial-gradient(circle at 64% 52%, #ffb3b7 0 7px, transparent 8px),
-    radial-gradient(ellipse at 50% 39%, #ffe0cc 0 34%, transparent 35%),
-    radial-gradient(ellipse at 50% 27%, #76462e 0 37%, transparent 38%),
-    radial-gradient(ellipse at 50% 77%, #b998ff 0 30%, transparent 31%),
-    linear-gradient(145deg, #fff7fb, #efe5ff);
-}
-
-.sarah-portrait::before {
-  background:
-    radial-gradient(circle at 25% 50%, #9b72e7 0 8px, transparent 9px),
-    radial-gradient(circle at 75% 50%, #9b72e7 0 8px, transparent 9px),
-    radial-gradient(circle at 50% 50%, #fff 0 3px, transparent 4px);
+  object-fit: cover;
+  object-position: center top;
+  background: linear-gradient(145deg, #fff7fb, #f5ddff);
 }
 
 .path-card::before {
@@ -640,8 +598,7 @@ small {
   border-left: 17px solid currentColor;
 }
 
-.picture-frame,
-.mouth-frame {
+.picture-frame {
   min-height: 210px;
   display: grid;
   place-items: center;
@@ -651,13 +608,7 @@ small {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(207, 238, 254, 0.28));
 }
 
-.mouth-frame {
-  min-height: 210px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(230, 221, 255, 0.46));
-}
-
-.picture-frame img,
-.mouth-frame img {
+.picture-frame img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -689,79 +640,6 @@ small {
   font-size: 1.5rem;
 }
 
-.mouth-fallback {
-  width: min(260px, 90%);
-  aspect-ratio: 1.2;
-  position: relative;
-  display: grid;
-  place-items: center;
-  border-radius: 42% 58% 46% 54%;
-  background: #ffe7db;
-  box-shadow: inset 0 -12px 0 rgba(255, 152, 111, 0.16);
-}
-
-.face-eye,
-.mouth-shape {
-  position: absolute;
-  display: block;
-}
-
-.face-eye {
-  top: 35%;
-  width: 14px;
-  height: 14px;
-  border-radius: 999px;
-  background: #4d3142;
-}
-
-.face-eye.left {
-  left: 31%;
-}
-
-.face-eye.right {
-  right: 31%;
-}
-
-.mouth-shape {
-  top: 54%;
-  left: 50%;
-  width: 72px;
-  height: 34px;
-  transform: translateX(-50%);
-  border-radius: 12px 12px 42px 42px;
-  background: #7b3651;
-}
-
-.mouth-closed .mouth-shape {
-  height: 10px;
-  border-radius: 999px;
-}
-
-.mouth-teeth .mouth-shape {
-  height: 30px;
-  background:
-    linear-gradient(180deg, #fff 0 42%, #7b3651 43% 100%);
-}
-
-.mouth-round .mouth-shape {
-  width: 50px;
-  height: 50px;
-  border-radius: 999px;
-}
-
-.mouth-smile .mouth-shape {
-  height: 16px;
-  background: transparent;
-  border-bottom: 8px solid #7b3651;
-}
-
-.mouth-fallback small {
-  position: absolute;
-  bottom: 14px;
-  color: #7b3651;
-  font-weight: 950;
-}
-
 .choice-prompt {
   display: grid;
   align-content: start;
@@ -780,6 +658,32 @@ small {
 
 .prompt-art {
   min-height: 230px;
+}
+
+.question-cue {
+  min-height: 230px;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.95) 0 26px, transparent 27px),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 230, 241, 0.46));
+  text-align: center;
+}
+
+.question-cue strong {
+  color: var(--purple-pop);
+  font-size: clamp(4rem, 13vw, 8rem);
+  line-height: 0.9;
+}
+
+.question-cue small {
+  color: var(--berry);
+  font-size: clamp(1.25rem, 4vw, 2.2rem);
+  font-weight: 950;
 }
 
 .prompt-big {
@@ -913,7 +817,7 @@ small {
 
 .card-controls {
   display: grid;
-  grid-template-columns: minmax(110px, 0.5fr) auto minmax(110px, 0.5fr);
+  grid-template-columns: auto minmax(140px, 1fr);
   gap: 12px;
   align-items: center;
 }
@@ -1117,83 +1021,10 @@ small {
     display: none;
   }
 
-  .kid-portrait {
+  .profile-image {
     position: static;
     width: 88px;
     border-radius: 24px;
-  }
-
-  .quick-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    width: 100%;
-    justify-self: stretch;
-  }
-
-  .quick-tile {
-    width: 100%;
-    min-height: 146px;
-    display: grid;
-    place-items: center;
-    gap: 8px;
-    border-width: 3px;
-    border-radius: 26px;
-    text-align: center;
-  }
-
-  .quick-tile span:not(.headphone-icon, .book-icon) {
-    font-size: 2.7rem;
-    font-weight: 950;
-    letter-spacing: 0;
-  }
-
-  .letters-tile {
-    background: linear-gradient(135deg, #fff7b4, #ffe6f1);
-    color: var(--purple-pop);
-  }
-
-  .letters-tile span {
-    color: #ff6798;
-    text-shadow:
-      2px 2px 0 white,
-      -2px 2px 0 white,
-      2px -2px 0 white,
-      -2px -2px 0 white;
-  }
-
-  .sounds-tile {
-    background: linear-gradient(135deg, #d8ffd7, #e7f2ff);
-    color: var(--purple-pop);
-  }
-
-  .words-tile {
-    grid-column: 1 / -1;
-    min-height: 104px;
-    grid-template-columns: auto 1fr;
-    background: linear-gradient(135deg, #c7efff, #d9f4ff);
-    color: #145397;
-  }
-
-  .headphone-icon,
-  .book-icon {
-    width: 78px;
-    aspect-ratio: 1;
-    display: block;
-    border-radius: 24px;
-    background:
-      radial-gradient(circle at 30% 52%, #9c72e9 0 15%, transparent 16%),
-      radial-gradient(circle at 70% 52%, #9c72e9 0 15%, transparent 16%),
-      radial-gradient(ellipse at 50% 40%, transparent 0 31%, #69c2ff 32% 38%, transparent 39%),
-      radial-gradient(circle at 50% 50%, #95ec82 0 8%, transparent 9%),
-      #eefbff;
-  }
-
-  .book-icon {
-    background:
-      linear-gradient(90deg, #fff8ed 0 48%, #ffe8f2 49% 100%);
-    border: 5px solid white;
-    box-shadow: inset 0 -8px 0 rgba(93, 100, 150, 0.12);
   }
 
   .daily-cloud {
@@ -1376,8 +1207,7 @@ small {
     font-size: clamp(4.4rem, 23vw, 6.4rem);
   }
 
-  .picture-frame,
-  .mouth-frame {
+  .picture-frame {
     min-height: 166px;
     border-radius: 24px;
   }
@@ -1404,6 +1234,11 @@ small {
 
   .prompt-art {
     min-height: 132px;
+  }
+
+  .question-cue {
+    min-height: 132px;
+    border-radius: 24px;
   }
 
   .choice-main {
@@ -1441,7 +1276,7 @@ small {
   }
 
   .card-controls {
-    grid-template-columns: minmax(0, 0.7fr) minmax(50px, auto) minmax(0, 1.1fr);
+    grid-template-columns: auto minmax(0, 1fr);
     position: sticky;
     bottom: 8px;
     z-index: 3;

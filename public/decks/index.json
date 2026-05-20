@@ -12,7 +12,7 @@
   {
     "id": "sarah-letters-level-1",
     "title": "Sarah Level 1: Letters",
-    "description": "See each letter, hear one simple starter sound, and look at the mouth shape.",
+    "description": "See each letter, hear one simple starter sound, and try a tiny question.",
     "type": "letters",
     "profile": "sarah",
     "format": "json",

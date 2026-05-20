@@ -5,5 +5,12 @@
     "description": "Simple English reading words with MP3 word audio. Add images beside this clip pack as images/<word>.png.",
     "baseUrl": "clip-packs/annas-reading-deck",
     "language": "en-US"
+  },
+  {
+    "id": "chunky-reader-audio",
+    "name": "Chunky Reader Audio Pack",
+    "description": "Generated Azure TTS clips and SSML for Sarah's letter and reading-sound decks.",
+    "baseUrl": "clip-packs/chunky-reader-audio",
+    "language": "en-US"
   }
 ]

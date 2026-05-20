@@ -55,10 +55,8 @@ export interface LearningCard {
 
   // Asset paths are deck-relative by default. For example:
   // public/decks/sarah-levels/images/apple.png
-  // public/decks/sarah-levels/mouths/a.png
   // public/clip-packs/annas-reading-deck/audio/words/cat.mp3
   image?: string
-  mouthImage?: string
   audio?: string
   exampleAudio?: string
   letterNameAudio?: string
