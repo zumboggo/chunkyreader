@@ -1,0 +1,19 @@
+{
+  "id": "annas-reading-deck",
+  "title": "Anna's Reading Deck",
+  "description": "A first English reading deck. The app reads vocab.csv and clips_manifest.json, and it will use optional images from images/<word>.png when present.",
+  "type": "reading-words",
+  "format": "chunky-clip-pack",
+  "vocabCsvPath": "vocab.csv",
+  "clipsManifestPath": "clips_manifest.json",
+  "assetBaseUrl": "clip-packs/annas-reading-deck",
+  "imagePathPattern": "images/{word-slug}.png",
+  "audioPathPattern": "audio/words/{word}.mp3",
+  "optionalCardFields": [
+    "image",
+    "audio",
+    "exampleSentence",
+    "category",
+    "difficulty"
+  ]
+}

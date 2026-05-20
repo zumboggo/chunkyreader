@@ -1,0 +1,21 @@
+{
+  "id": ".",
+  "name": "Chunky Reader",
+  "short_name": "Chunky Reader",
+  "description": "Cute English reading, letter, and phonics practice for young children.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fffaf3",
+  "theme_color": "#ffdfe8",
+  "categories": ["education", "kids"],
+  "icons": [
+    {
+      "src": "assets/mascots/mascot-reading.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
