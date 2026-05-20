@@ -1,18 +1,11 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { loadDeckLibrary, resolveAssetUrl } from './decks'
 import type { LearningCard, LearningDeck, LearningMode, ProfileId } from './types'
 
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious'
+type LessonPhase = 'learn' | 'question'
 
-const modeDetails: Array<{
-  id: LearningMode
-  label: string
-  helper: string
-}> = [
-  { id: 'listeningMode', label: 'Explore', helper: 'Tap, listen, peek' },
-  { id: 'activeRecall', label: 'Practice', helper: 'Match and try' },
-  { id: 'readerMode', label: 'Quiz', helper: 'Choose the answer' },
-]
+const LESSON_SIZE = 5
 
 const encouragement = [
   'Great job!',
@@ -28,7 +21,7 @@ function App() {
   const [activeDeckId, setActiveDeckId] = useState('')
   const [mode, setMode] = useState<LearningMode>('listeningMode')
   const [cardIndex, setCardIndex] = useState(0)
-  const [showBack, setShowBack] = useState(false)
+  const [phase, setPhase] = useState<LessonPhase>('learn')
   const [loadError, setLoadError] = useState('')
   const [loading, setLoading] = useState(true)
 
@@ -79,13 +72,22 @@ function App() {
     setActiveDeckId(firstDeck?.id ?? '')
     setMode('listeningMode')
     setCardIndex(0)
-    setShowBack(false)
+    setPhase('learn')
   }
 
-  function moveCard(delta: number) {
+  function moveCard(delta = 1) {
     if (!activeDeck?.cards.length) return
     setCardIndex((index) => (index + delta + activeDeck.cards.length) % activeDeck.cards.length)
-    setShowBack(false)
+    setPhase('learn')
+  }
+
+  function moveWithinLesson() {
+    if (!activeDeck?.cards.length) return
+    if (phase === 'learn') {
+      setPhase('question')
+      return
+    }
+    moveCard(1)
   }
 
   return (
@@ -98,17 +100,6 @@ function App() {
             <small>{activeDeck ? activeDeck.title : 'Ready to read?'}</small>
           </span>
         </button>
-        <nav className="top-actions" aria-label="Learning paths">
-          <button className={profile === 'anna' ? 'active' : ''} type="button" onClick={() => chooseProfile('anna')}>
-            Anna
-          </button>
-          <button className={profile === 'sarah' ? 'active' : ''} type="button" onClick={() => chooseProfile('sarah')}>
-            Sarah
-          </button>
-          <button className={profile === 'library' ? 'active' : ''} type="button" onClick={() => chooseProfile('library')}>
-            Decks
-          </button>
-        </nav>
       </header>
 
       {loading ? (
@@ -132,20 +123,13 @@ function App() {
           card={currentCard}
           cardIndex={cardIndex}
           mode={mode}
-          showBack={showBack}
+          phase={phase}
           onDeckChange={(deckId) => {
             setActiveDeckId(deckId)
             setCardIndex(0)
-            setShowBack(false)
+            setPhase('learn')
           }}
-          onModeChange={(nextMode) => {
-            setMode(nextMode)
-            setCardIndex(0)
-            setShowBack(false)
-          }}
-          onToggleBack={() => setShowBack((value) => !value)}
-          onNext={() => moveCard(1)}
-          onPrevious={() => moveCard(-1)}
+          onNext={moveWithinLesson}
         />
       ) : (
         <section className="empty-screen">
@@ -183,30 +167,16 @@ function HomeScreen({
       </div>
       <div className="path-grid" aria-label="Choose a learning path">
         <button type="button" className="path-card anna-path" onClick={() => onChoose('anna')}>
-          <span className="kid-portrait anna-portrait" aria-hidden="true" />
+          <img className="profile-image" src={`${import.meta.env.BASE_URL}assets/profiles/anna-red-shirt.png`} alt="" />
           <span className="path-badge">Words</span>
           <strong>Anna</strong>
           <small>{annaCount} reading cards</small>
         </button>
         <button type="button" className="path-card sarah-path" onClick={() => onChoose('sarah')}>
-          <span className="kid-portrait sarah-portrait" aria-hidden="true" />
+          <img className="profile-image" src={`${import.meta.env.BASE_URL}assets/profiles/sarah-reading.png`} alt="" />
           <span className="path-badge">Sounds</span>
           <strong>Sarah</strong>
           <small>{sarahCount} letter and sound cards</small>
-        </button>
-      </div>
-      <div className="quick-grid" aria-label="Quick learning choices">
-        <button type="button" className="quick-tile letters-tile" onClick={() => onChoose('sarah')}>
-          <span>ABC</span>
-          <strong>Letters</strong>
-        </button>
-        <button type="button" className="quick-tile sounds-tile" onClick={() => onChoose('sarah')}>
-          <span className="headphone-icon" aria-hidden="true" />
-          <strong>Sounds</strong>
-        </button>
-        <button type="button" className="quick-tile words-tile" onClick={() => onChoose('anna')}>
-          <span className="book-icon" aria-hidden="true" />
-          <strong>Words</strong>
         </button>
       </div>
       <div className="daily-cloud" aria-label="Daily goal">
@@ -226,12 +196,9 @@ function LearningScreen({
   card,
   cardIndex,
   mode,
-  showBack,
+  phase,
   onDeckChange,
-  onModeChange,
-  onToggleBack,
   onNext,
-  onPrevious,
 }: {
   decks: LearningDeck[]
   activeDeck: LearningDeck
@@ -239,14 +206,15 @@ function LearningScreen({
   card: LearningCard
   cardIndex: number
   mode: LearningMode
-  showBack: boolean
+  phase: LessonPhase
   onDeckChange: (deckId: string) => void
-  onModeChange: (mode: LearningMode) => void
-  onToggleBack: () => void
   onNext: () => void
-  onPrevious: () => void
 }) {
-  const progress = activeDeck.cards.length ? cardIndex + 1 : 0
+  const lessonStart = Math.floor(cardIndex / LESSON_SIZE) * LESSON_SIZE
+  const lessonCards = activeDeck.cards.slice(lessonStart, lessonStart + LESSON_SIZE)
+  const lessonIndex = cardIndex - lessonStart
+  const progress = lessonIndex + 1
+  const lessonNumber = Math.floor(cardIndex / LESSON_SIZE) + 1
   return (
     <section className="learning-screen">
       <div className="play-header">
@@ -268,10 +236,9 @@ function LearningScreen({
         </div>
       </div>
       <div className="lesson-progress" aria-label="Lesson progress">
-        <span>★ Level {activeDeck.level ?? Math.max(1, card.difficulty ?? 1)}</span>
-        <div><span style={{ width: `${Math.max(6, (progress / activeDeck.cards.length) * 100)}%` }} /></div>
-        <strong>{progress} / {activeDeck.cards.length}</strong>
-        <span className="gift-icon" aria-hidden="true">🎁</span>
+        <span>★ Lesson {lessonNumber}</span>
+        <div><span style={{ width: `${Math.max(6, (progress / lessonCards.length) * 100)}%` }} /></div>
+        <strong>{progress} / {lessonCards.length}</strong>
       </div>
 
       {decks.length > 1 && (
@@ -289,39 +256,23 @@ function LearningScreen({
         </div>
       )}
 
-      <div className="mode-tabs" aria-label="Choose learning mode">
-        {modeDetails.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            className={mode === item.id ? 'active' : ''}
-            onClick={() => onModeChange(item.id)}
-          >
-            <strong>{item.label}</strong>
-            <small>{item.helper}</small>
-          </button>
-        ))}
-      </div>
-
-      {mode === 'listeningMode' ? (
+      {phase === 'learn' ? (
         <ExploreMode
           deck={activeDeck}
           card={card}
-          cardIndex={cardIndex}
-          showBack={showBack}
-          onToggleBack={onToggleBack}
+          cardIndex={lessonIndex}
+          total={lessonCards.length}
           onNext={onNext}
-          onPrevious={onPrevious}
         />
       ) : (
         <ChoiceMode
-          key={`${activeDeck.id}:${mode}:${card.id}`}
+          key={`${activeDeck.id}:${mode}:${phase}:${card.id}`}
           deck={activeDeck}
+          lessonCards={lessonCards}
           card={card}
-          cardIndex={cardIndex}
+          cardIndex={lessonIndex}
           mode={mode}
           onNext={onNext}
-          onPrevious={onPrevious}
         />
       )}
     </section>
@@ -332,20 +283,17 @@ function ExploreMode({
   deck,
   card,
   cardIndex,
-  showBack,
-  onToggleBack,
+  total,
   onNext,
-  onPrevious,
 }: {
   deck: LearningDeck
   card: LearningCard
   cardIndex: number
-  showBack: boolean
-  onToggleBack: () => void
+  total: number
   onNext: () => void
-  onPrevious: () => void
 }) {
-  const showDetails = showBack || card.type !== 'word'
+  useAutoplayCard(deck, card, `learn:${deck.id}:${card.id}`)
+  const showDetails = true
   const mood: MascotMood = showDetails ? 'happy' : card.type === 'word' ? 'curious' : 'reading'
   return (
     <section className="study-layout">
@@ -357,7 +305,7 @@ function ExploreMode({
         </button>
       </div>
 
-      <article className="reader-card" onClick={onToggleBack}>
+      <article className="reader-card">
         <CardHeader deck={deck} card={card} />
         <div className="main-card-content">
           <CardPrimary card={card} />
@@ -375,8 +323,7 @@ function ExploreMode({
 
       <CardControls
         cardIndex={cardIndex}
-        total={deck.cards.length}
-        onPrevious={onPrevious}
+        total={total}
         onNext={onNext}
       />
     </section>
@@ -385,21 +332,22 @@ function ExploreMode({
 
 function ChoiceMode({
   deck,
+  lessonCards,
   card,
   cardIndex,
   mode,
   onNext,
-  onPrevious,
 }: {
   deck: LearningDeck
+  lessonCards: LearningCard[]
   card: LearningCard
   cardIndex: number
   mode: LearningMode
   onNext: () => void
-  onPrevious: () => void
 }) {
   const [selected, setSelected] = useState('')
-  const options = useMemo(() => buildOptions(deck.cards, card), [card, deck.cards])
+  useAutoplayCard(deck, card, `question:${deck.id}:${card.id}`)
+  const options = useMemo(() => buildOptions(lessonCards, card), [card, lessonCards])
   const correct = selected === card.id
   const mood: MascotMood = selected ? (correct ? 'happy' : 'sad') : 'curious'
   const prompt = getChoicePrompt(deck, card, mode)
@@ -407,6 +355,7 @@ function ChoiceMode({
 
   function choose(cardId: string) {
     setSelected(cardId)
+    if (cardId === card.id) void playCardAudio(deck, card)
     if (cardId === card.id) window.setTimeout(onNext, 900)
   }
 
@@ -419,11 +368,7 @@ function ChoiceMode({
           <PlayIcon /> Tap to listen
         </button>
         <div className="prompt-art">
-          {card.type === 'word' || mode === 'readerMode' ? (
-            <Picture deck={deck} card={card} />
-          ) : (
-            <MouthCue deck={deck} card={card} />
-          )}
+          {card.type === 'word' || mode === 'readerMode' ? <Picture deck={deck} card={card} /> : <QuestionCue card={card} />}
         </div>
         {promptShowsWord && <strong className="prompt-big">{card.displayText}</strong>}
       </aside>
@@ -475,8 +420,7 @@ function ChoiceMode({
 
         <CardControls
           cardIndex={cardIndex}
-          total={deck.cards.length}
-          onPrevious={onPrevious}
+          total={lessonCards.length}
           onNext={onNext}
         />
       </div>
@@ -506,11 +450,9 @@ function CardPrimary({ card }: { card: LearningCard }) {
 }
 
 function CardBack({ deck, card }: { deck: LearningDeck; card: LearningCard }) {
-  const hasMouthCue = Boolean(card.mouthImage || card.type !== 'word')
   return (
-    <div className={`card-back ${hasMouthCue ? 'with-mouth' : 'single-visual'}`}>
+    <div className="card-back single-visual">
       <Picture deck={deck} card={card} />
-      {hasMouthCue ? <MouthCue deck={deck} card={card} /> : null}
       <div className="card-copy">
         {card.exampleWord && <strong>{card.exampleWord}</strong>}
         {card.meaning && card.meaning !== card.word && <strong>{card.meaning}</strong>}
@@ -523,7 +465,7 @@ function CardBack({ deck, card }: { deck: LearningDeck; card: LearningCard }) {
 function PeekHint({ card }: { card: LearningCard }) {
   return (
     <div className="peek-hint">
-      <span>{card.type === 'word' ? 'Tap to see the picture' : 'Tap to see the mouth'}</span>
+      <span>{card.type === 'word' ? 'Look at the picture' : 'Listen to the sound'}</span>
     </div>
   )
 }
@@ -536,17 +478,6 @@ function Picture({ deck, card }: { deck: LearningDeck; card: LearningCard }) {
       label={label}
       className="picture-frame"
       fallback={<PictureFallback label={label} />}
-    />
-  )
-}
-
-function MouthCue({ deck, card }: { deck: LearningDeck; card: LearningCard }) {
-  return (
-    <AssetImage
-      src={resolveAssetUrl(deck, card.mouthImage)}
-      label={`Mouth for ${card.sound || card.phoneme || card.displayText}`}
-      className="mouth-frame"
-      fallback={<MouthFallback card={card} />}
     />
   )
 }
@@ -583,14 +514,11 @@ function PictureFallback({ label }: { label: string }) {
   )
 }
 
-function MouthFallback({ card }: { card: LearningCard }) {
-  const group = mouthGroup(card)
+function QuestionCue({ card }: { card: LearningCard }) {
   return (
-    <div className={`mouth-fallback mouth-${group}`} aria-label="Mouth shape placeholder">
-      <span className="face-eye left" />
-      <span className="face-eye right" />
-      <span className="mouth-shape" />
-      <small>{card.sound || card.phoneme || card.displayText}</small>
+    <div className="question-cue" aria-label="Current answer">
+      <strong>{optionLabel(card)}</strong>
+      <small>{optionSmallLabel(card)}</small>
     </div>
   )
 }
@@ -635,24 +563,19 @@ function ChunkyLogo({ compact = false }: { compact?: boolean }) {
 function CardControls({
   cardIndex,
   total,
-  onPrevious,
   onNext,
 }: {
   cardIndex: number
   total: number
-  onPrevious: () => void
   onNext: () => void
 }) {
   return (
     <div className="card-controls">
-      <button type="button" onClick={onPrevious} aria-label="Previous card">
-        Back
-      </button>
       <span>
         {cardIndex + 1} / {total}
       </span>
       <button type="button" className="primary" onClick={onNext} aria-label="Next card">
-        Next
+        {cardIndex + 1 >= total ? 'Again' : 'Next'}
       </button>
     </div>
   )
@@ -660,6 +583,19 @@ function CardControls({
 
 function PlayIcon() {
   return <span className="play-icon" aria-hidden="true" />
+}
+
+function useAutoplayCard(deck: LearningDeck, card: LearningCard, key: string) {
+  const lastKey = useRef('')
+
+  useEffect(() => {
+    if (lastKey.current === key) return
+    lastKey.current = key
+    const timer = window.setTimeout(() => {
+      void playCardAudio(deck, card)
+    }, 220)
+    return () => window.clearTimeout(timer)
+  }, [card, deck, key])
 }
 
 async function playCardAudio(deck: LearningDeck, card: LearningCard) {
@@ -698,7 +634,7 @@ function buildOptions(cards: LearningCard[], card: LearningCard): LearningCard[]
   const distractors = cards
     .filter((candidate) => candidate.id !== card.id)
     .sort((a, b) => stableSort(`${seed}:${a.id}`) - stableSort(`${seed}:${b.id}`))
-    .slice(0, 3)
+    .slice(0, 1)
   return [card, ...distractors].sort(
     (a, b) => stableSort(`order:${seed}:${a.id}`) - stableSort(`order:${seed}:${b.id}`),
   )
@@ -719,15 +655,6 @@ function getChoicePrompt(deck: LearningDeck, card: LearningCard, mode: LearningM
   if (deck.type === 'letters') return mode === 'readerMode' ? 'Which letter makes this sound?' : 'Tap the matching letter.'
   if (card.grapheme) return mode === 'readerMode' ? 'Which spelling matches this sound?' : 'Tap the matching sound.'
   return 'Choose the match.'
-}
-
-function mouthGroup(card: LearningCard): 'closed' | 'open' | 'teeth' | 'round' | 'smile' {
-  const key = `${card.sound ?? ''} ${card.phoneme ?? ''} ${card.grapheme ?? ''}`.toLocaleLowerCase()
-  if (/m|b|p/u.test(key)) return 'closed'
-  if (/f|v|th|θ|ð/u.test(key)) return 'teeth'
-  if (/oo|w|u|ʊ|oʊ|ɔ/u.test(key)) return 'round'
-  if (/ee|i|y|j/u.test(key)) return 'smile'
-  return 'open'
 }
 
 function stableSort(value: string): number {

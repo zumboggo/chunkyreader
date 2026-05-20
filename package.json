@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "verify:decks": "node scripts/verify-decks.mjs"
+    "verify:decks": "node scripts/verify-decks.mjs",
+    "generate:audio": "node scripts/generate-azure-reading-clips.mjs"
   },
   "dependencies": {
     "react": "^19.2.6",

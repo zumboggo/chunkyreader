@@ -10,9 +10,10 @@ Suggested future files:
 - `mascot-listening.png`
 - `mascot-celebrate.png`
 
-Deck pictures, mouth images, and audio should usually live beside the deck:
+Deck pictures, profile art, and audio should usually live beside the deck:
 
 - Anna images: `public/clip-packs/annas-reading-deck/images/<word>.png`
 - Sarah example images: `public/decks/sarah-levels/images/<word>.png`
-- Sarah mouth images: `public/decks/sarah-levels/mouths/<sound-id>.png`
-- Sarah audio: `public/decks/sarah-levels/audio/<sound-id>.mp3`
+- Sarah audio: `public/decks/sarah-levels/audio/<type>/<clip>.mp3`
+- Sarah SSML: `public/decks/sarah-levels/ssml/audio/<type>/<clip>.ssml`
+- Profile art: `public/assets/profiles/`

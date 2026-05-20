@@ -2,6 +2,8 @@
 
 Chunky Reader is a cute, low-friction reading and pre-reading app for young children. It was built from the Chunky Chinese Vite/React app shape: a static web app, bundled deck assets under `public/`, CSV/manifest-based clip packs, and three simple learning flows.
 
+The app follows the Chunky Chinese pocket-lesson rhythm: 4-minute lessons, 5 cards at a time, audio-first introductions, and no more than two answer choices on screen.
+
 ## What Was Reused From Chunky Chinese
 
 - React + Vite build setup.
@@ -70,7 +72,6 @@ Letter card shape:
   "sound": "/b/",
   "exampleWord": "ball",
   "image": "images/ball.png",
-  "mouthImage": "mouths/b.png",
   "audio": "audio/letters/b-sound.mp3",
   "letterNameAudio": "audio/letters/b-name.mp3",
   "speechCue": "b, ball",
@@ -83,8 +84,8 @@ Sarah Level 1 assets default to:
 
 ```text
 public/decks/sarah-levels/images/
-public/decks/sarah-levels/mouths/
 public/decks/sarah-levels/audio/letters/
+public/decks/sarah-levels/ssml/audio/letters/
 ```
 
 ## Adding Sarah Phoneme Cards
@@ -102,7 +103,6 @@ Phoneme card shape:
   "grapheme": "sh",
   "exampleWord": "shoe",
   "image": "images/shoe.png",
-  "mouthImage": "mouths/sh.png",
   "audio": "audio/phonemes/sh.mp3",
   "exampleAudio": "audio/words/shoe.mp3",
   "speechCue": "sh, shoe",
@@ -115,10 +115,21 @@ Sarah Level 2 assets default to:
 
 ```text
 public/decks/sarah-levels/images/
-public/decks/sarah-levels/mouths/
 public/decks/sarah-levels/audio/phonemes/
 public/decks/sarah-levels/audio/words/
+public/decks/sarah-levels/ssml/audio/phonemes/
+public/decks/sarah-levels/ssml/audio/words/
 ```
+
+## Generating Sarah Audio
+
+Sarah's decks are set up for Azure TTS MP3 clips plus matching SSML files.
+
+```bash
+npm run generate:audio
+```
+
+The generator reads `AZURE_SPEECH_KEY` and `AZURE_SPEECH_REGION`, or the local Azure config file at `C:\Users\LENOVO\Documents\azure-tts-ssml\config.json`. Do not commit or paste Azure credentials. Generated clips go under `public/decks/sarah-levels/audio/`, SSML goes under `public/decks/sarah-levels/ssml/`, and a downloadable audio-pack manifest is written to `public/clip-packs/chunky-reader-audio/clips_manifest.json`.
 
 ## Adding Another Deck
 
@@ -159,6 +170,7 @@ For an existing Chunky Chinese-style pack:
 ```bash
 npm install
 npm run verify:decks
+npm run generate:audio
 npm run build
 npm run dev
 ```
@@ -169,7 +181,7 @@ On this Windows machine, use `npm.cmd` from PowerShell if script execution polic
 
 Chunky Reader includes a small service worker at `public/sw.js` and registers it from `src/registerServiceWorker.ts` in production builds. The PWA manifest lives at `public/manifest.webmanifest`.
 
-The service worker pre-caches the app shell, mascot assets, deck registry, Sarah JSON decks, and Anna's core clip-pack files. Images, mouth illustrations, and audio are cached as the child uses them, so the app becomes more offline-friendly over time.
+The service worker pre-caches the app shell, mascot/profile assets, deck registry, Sarah JSON decks, and Anna's core clip-pack files. Images and audio are cached as the child uses them, so the app becomes more offline-friendly over time.
 
 The expressive panda sheet lives at `public/assets/mascots/mascot-expressions.png`. The app uses it for curious, reading, happy, and try-again states.
 

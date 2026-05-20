@@ -29,9 +29,6 @@ for (const entry of index) {
       if (!card.id || !card.type || !card.displayText) {
         errors.push(`${entry.id}: card is missing id, type, or displayText`)
       }
-      if ((deck.type === 'letters' || deck.type === 'phonemes') && !card.mouthImage) {
-        errors.push(`${entry.id}: ${card.id} is missing mouthImage`)
-      }
     }
   }
 
