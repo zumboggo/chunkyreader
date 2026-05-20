@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { loadDeckLibrary, resolveAssetUrl } from './decks'
 import type { LearningCard, LearningDeck, LearningMode, ProfileId } from './types'
 
+type MascotMood = 'happy' | 'reading' | 'sad' | 'curious'
+
 const modeDetails: Array<{
   id: LearningMode
   label: string
@@ -36,8 +38,19 @@ function App() {
       try {
         const nextDecks = await loadDeckLibrary()
         if (cancelled) return
+        const params = new URLSearchParams(window.location.search)
+        const initialProfile = params.get('profile') as ProfileId | null
+        const initialMode = params.get('mode') as LearningMode | null
+        const profileDeck =
+          initialProfile && ['anna', 'sarah', 'library'].includes(initialProfile)
+            ? nextDecks.find((deck) => deck.profile === initialProfile) ?? nextDecks[0]
+            : nextDecks[0]
         setDecks(nextDecks)
-        setActiveDeckId(nextDecks[0]?.id ?? '')
+        setProfile(initialProfile && ['anna', 'sarah', 'library'].includes(initialProfile) ? initialProfile : null)
+        setActiveDeckId(profileDeck?.id ?? '')
+        if (initialMode && ['listeningMode', 'activeRecall', 'readerMode'].includes(initialMode)) {
+          setMode(initialMode)
+        }
       } catch (error) {
         if (!cancelled) setLoadError(error instanceof Error ? error.message : 'Could not load decks.')
       } finally {
@@ -79,7 +92,7 @@ function App() {
     <main className="app-shell">
       <header className="topbar">
         <button className="brand-button" type="button" onClick={() => setProfile(null)}>
-          <Mascot size="small" />
+          <Mascot size="small" mood="reading" />
           <span>
             <strong>Chunky Reader</strong>
             <small>{activeDeck ? activeDeck.title : 'Ready to read?'}</small>
@@ -100,12 +113,12 @@ function App() {
 
       {loading ? (
         <section className="loading-screen">
-          <Mascot />
+          <Mascot mood="curious" />
           <h1>Getting the cards ready</h1>
         </section>
       ) : loadError ? (
         <section className="error-screen">
-          <Mascot />
+          <Mascot mood="sad" />
           <h1>Decks need a little help</h1>
           <p>{loadError}</p>
         </section>
@@ -136,7 +149,7 @@ function App() {
         />
       ) : (
         <section className="empty-screen">
-          <Mascot />
+          <Mascot mood="curious" />
           <h1>No cards yet</h1>
           <p>Add cards to this deck and Chunky Reader will pick them up.</p>
         </section>
@@ -157,8 +170,12 @@ function HomeScreen({
 
   return (
     <section className="home-screen">
+      <div className="mobile-logo-block" aria-hidden="true">
+        <ChunkyLogo />
+        <span>Let's read together!</span>
+      </div>
       <div className="home-copy">
-        <Mascot />
+        <Mascot mood="happy" />
         <div>
           <h1>Who is learning today?</h1>
           <p>Fast, happy reading practice with words, sounds, pictures, and big friendly buttons.</p>
@@ -166,15 +183,37 @@ function HomeScreen({
       </div>
       <div className="path-grid" aria-label="Choose a learning path">
         <button type="button" className="path-card anna-path" onClick={() => onChoose('anna')}>
+          <span className="kid-portrait anna-portrait" aria-hidden="true" />
           <span className="path-badge">Words</span>
           <strong>Anna</strong>
           <small>{annaCount} reading cards</small>
         </button>
         <button type="button" className="path-card sarah-path" onClick={() => onChoose('sarah')}>
+          <span className="kid-portrait sarah-portrait" aria-hidden="true" />
           <span className="path-badge">Sounds</span>
           <strong>Sarah</strong>
           <small>{sarahCount} letter and sound cards</small>
         </button>
+      </div>
+      <div className="quick-grid" aria-label="Quick learning choices">
+        <button type="button" className="quick-tile letters-tile" onClick={() => onChoose('sarah')}>
+          <span>ABC</span>
+          <strong>Letters</strong>
+        </button>
+        <button type="button" className="quick-tile sounds-tile" onClick={() => onChoose('sarah')}>
+          <span className="headphone-icon" aria-hidden="true" />
+          <strong>Sounds</strong>
+        </button>
+        <button type="button" className="quick-tile words-tile" onClick={() => onChoose('anna')}>
+          <span className="book-icon" aria-hidden="true" />
+          <strong>Words</strong>
+        </button>
+      </div>
+      <div className="daily-cloud" aria-label="Daily goal">
+        <span className="star-badge" aria-hidden="true">★</span>
+        <strong>Daily Goal</strong>
+        <span>15 / 20 min</span>
+        <div className="daily-progress"><span /></div>
       </div>
     </section>
   )
@@ -207,8 +246,17 @@ function LearningScreen({
   onNext: () => void
   onPrevious: () => void
 }) {
+  const progress = activeDeck.cards.length ? cardIndex + 1 : 0
   return (
     <section className="learning-screen">
+      <div className="play-header">
+        <button type="button" className="round-icon" aria-label="Open menu">☰</button>
+        <ChunkyLogo compact />
+        <div className="star-counter" aria-label="Stars earned">
+          <span>★</span>
+          <strong>{Math.min(999, progress + 127)}</strong>
+        </div>
+      </div>
       <div className="screen-heading">
         <div>
           <h1>{activeDeck.profile === 'anna' ? 'Reading Words' : activeDeck.level === 1 ? 'Letters' : 'Reading Sounds'}</h1>
@@ -218,6 +266,12 @@ function LearningScreen({
           <strong>{activeDeck.cards.length}</strong>
           <span>cards</span>
         </div>
+      </div>
+      <div className="lesson-progress" aria-label="Lesson progress">
+        <span>★ Level {activeDeck.level ?? Math.max(1, card.difficulty ?? 1)}</span>
+        <div><span style={{ width: `${Math.max(6, (progress / activeDeck.cards.length) * 100)}%` }} /></div>
+        <strong>{progress} / {activeDeck.cards.length}</strong>
+        <span className="gift-icon" aria-hidden="true">🎁</span>
       </div>
 
       {decks.length > 1 && (
@@ -292,10 +346,11 @@ function ExploreMode({
   onPrevious: () => void
 }) {
   const showDetails = showBack || card.type !== 'word'
+  const mood: MascotMood = showDetails ? 'happy' : card.type === 'word' ? 'curious' : 'reading'
   return (
     <section className="study-layout">
       <div className="helper-panel">
-        <Mascot />
+        <Mascot mood={mood} />
         <strong>{card.type === 'word' ? 'Ready to read?' : 'Let us hear the sound!'}</strong>
         <button type="button" className="sound-button" onClick={() => playCardAudio(deck, card)}>
           <PlayIcon /> Tap to listen
@@ -309,6 +364,14 @@ function ExploreMode({
           {showDetails ? <CardBack deck={deck} card={card} /> : <PeekHint card={card} />}
         </div>
       </article>
+
+      <div className="mobile-mascot-row">
+        <Mascot mood={mood} />
+        <div>
+          <strong>{showDetails ? 'Yay!' : "I'm here to help!"}</strong>
+          <span>{showDetails ? 'Great job!' : card.type === 'word' ? 'Tap the card!' : 'Tap to listen!'}</span>
+        </div>
+      </div>
 
       <CardControls
         cardIndex={cardIndex}
@@ -338,6 +401,7 @@ function ChoiceMode({
   const [selected, setSelected] = useState('')
   const options = useMemo(() => buildOptions(deck.cards, card), [card, deck.cards])
   const correct = selected === card.id
+  const mood: MascotMood = selected ? (correct ? 'happy' : 'sad') : 'curious'
   const prompt = getChoicePrompt(deck, card, mode)
   const promptShowsWord = deck.type === 'letters' && mode === 'activeRecall'
 
@@ -400,6 +464,13 @@ function ChoiceMode({
           ) : (
             'Choose one'
           )}
+        </div>
+        <div className={`mood-callout ${selected ? (correct ? 'happy' : 'try-again') : 'thinking'}`}>
+          <Mascot mood={mood} />
+          <div>
+            <strong>{selected ? (correct ? 'Yay!' : 'Oops!') : 'Hmm...'}</strong>
+            <span>{selected ? (correct ? 'Great job!' : 'Try again!') : "What's that?"}</span>
+          </div>
         </div>
 
         <CardControls
@@ -524,9 +595,16 @@ function MouthFallback({ card }: { card: LearningCard }) {
   )
 }
 
-function Mascot({ size = 'large' }: { size?: 'small' | 'large' }) {
+function Mascot({ size = 'large', mood = 'reading' }: { size?: 'small' | 'large'; mood?: MascotMood }) {
   const [failed, setFailed] = useState(false)
-  const src = `${import.meta.env.BASE_URL}assets/mascots/mascot-reading.png`
+  const src = `${import.meta.env.BASE_URL}assets/mascots/mascot-expressions.png`
+
+  useEffect(() => {
+    const image = new Image()
+    image.onerror = () => setFailed(true)
+    image.src = src
+  }, [src])
+
   return failed ? (
     <span className={`panda-fallback ${size}`} aria-label="Chunky Reader panda mascot">
       <span className="panda-ear left" />
@@ -536,7 +614,21 @@ function Mascot({ size = 'large' }: { size?: 'small' | 'large' }) {
       <span className="panda-nose" />
     </span>
   ) : (
-    <img className={`mascot ${size}`} src={src} alt="Chunky Reader panda mascot" onError={() => setFailed(true)} />
+    <span
+      className={`mascot-sprite ${size} mood-${mood}`}
+      role="img"
+      aria-label={`Chunky Reader panda mascot feeling ${mood}`}
+      style={{ backgroundImage: `url(${src})` }}
+    />
+  )
+}
+
+function ChunkyLogo({ compact = false }: { compact?: boolean }) {
+  return (
+    <div className={`chunky-logo ${compact ? 'compact' : ''}`} aria-label="Chunky Reader">
+      <span>Chunky</span>
+      <strong>Reading</strong>
+    </div>
   )
 }
 

@@ -169,7 +169,16 @@ On this Windows machine, use `npm.cmd` from PowerShell if script execution polic
 
 Chunky Reader includes a small service worker at `public/sw.js` and registers it from `src/registerServiceWorker.ts` in production builds. The PWA manifest lives at `public/manifest.webmanifest`.
 
-The service worker pre-caches the app shell, mascot, deck registry, Sarah JSON decks, and Anna's core clip-pack files. Images, mouth illustrations, and audio are cached as the child uses them, so the app becomes more offline-friendly over time.
+The service worker pre-caches the app shell, mascot assets, deck registry, Sarah JSON decks, and Anna's core clip-pack files. Images, mouth illustrations, and audio are cached as the child uses them, so the app becomes more offline-friendly over time.
+
+The expressive panda sheet lives at `public/assets/mascots/mascot-expressions.png`. The app uses it for curious, reading, happy, and try-again states.
+
+For quick QA or sharing a direct path, Chunky Reader supports simple query parameters:
+
+```text
+/?profile=anna
+/?profile=sarah&mode=activeRecall
+```
 
 For GitHub Pages builds, run:
 
