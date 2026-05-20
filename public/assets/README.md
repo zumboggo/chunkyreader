@@ -6,6 +6,7 @@ Suggested future files:
 
 - `mascot-happy.png`
 - `mascot-reading.png`
+- `mascot-expressions.png` - a 2x2 expression sheet used by the app for happy, reading, try-again, and curious states.
 - `mascot-listening.png`
 - `mascot-celebrate.png`
 

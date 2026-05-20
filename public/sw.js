@@ -6,6 +6,7 @@ const CORE_ASSETS = [
   './',
   'manifest.webmanifest',
   'assets/mascots/mascot-reading.png',
+  'assets/mascots/mascot-expressions.png',
   'decks/index.json',
   'decks/sarah-letters-level-1.json',
   'decks/sarah-phonemes-level-2.json',
