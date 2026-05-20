@@ -1,0 +1,9 @@
+[
+  {
+    "id": "annas-reading-deck",
+    "name": "Anna's Reading Deck",
+    "description": "Simple English reading words with MP3 word audio. Add images beside this clip pack as images/<word>.png.",
+    "baseUrl": "clip-packs/annas-reading-deck",
+    "language": "en-US"
+  }
+]
