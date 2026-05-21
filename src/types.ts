@@ -38,9 +38,10 @@ export interface LearningDeck {
 export interface LearningCard {
   id: string
   deckId: string
-  type: 'word' | 'letter' | 'phoneme'
+  type: 'word' | 'letter' | 'phoneme' | 'sentence'
   displayText: string
   word?: string
+  sentence?: string
   meaning?: string
   uppercase?: string
   lowercase?: string

@@ -58,9 +58,10 @@ async function loadChunkyClipPack(entry: DeckIndexEntry): Promise<LearningDeck> 
   const vocabResponse = await fetch(withBase(`${baseUrl}/${vocabPath}`))
   if (!vocabResponse.ok) throw new Error(`Could not load ${baseUrl}/${vocabPath}`)
   const rows = parseCsv(await vocabResponse.text())
-  const audioByWord = audioLookup(manifest.clips ?? [])
+  const clips = manifest.clips ?? []
+  const audioByWord = audioLookup(clips)
 
-  const cards = rows
+  const wordCards = rows
     .map((row, index): LearningCard | undefined => {
       const word = readColumn(row, ['word', 'Hanzi', 'Front'])
       if (!word) return undefined
@@ -88,6 +89,7 @@ async function loadChunkyClipPack(entry: DeckIndexEntry): Promise<LearningDeck> 
       }
     })
     .filter((card): card is LearningCard => Boolean(card))
+  const sentenceCards = await loadSentenceCards(entry, baseUrl, manifest, clips)
 
   return {
     id: entry.id,
@@ -100,8 +102,47 @@ async function loadChunkyClipPack(entry: DeckIndexEntry): Promise<LearningDeck> 
     accentModel: entry.accentModel,
     baseUrl,
     assetBaseUrl: entry.assetBaseUrl ?? baseUrl,
-    cards,
+    cards: [...wordCards, ...sentenceCards],
   }
+}
+
+async function loadSentenceCards(
+  entry: DeckIndexEntry,
+  baseUrl: string,
+  manifest: ClipPackManifest,
+  clips: ClipManifestEntry[],
+): Promise<LearningCard[]> {
+  if (!manifest.sentencesCsvPath) return []
+  const response = await fetch(withBase(`${baseUrl}/${manifest.sentencesCsvPath}`))
+  if (!response.ok) return []
+  const rows = parseCsv(await response.text())
+  const audioByText = sentenceAudioLookup(clips)
+
+  return rows
+    .map((row, index): LearningCard | undefined => {
+      const sentence = readColumn(row, ['sentence', 'chinese', 'text', 'front'])
+      if (!sentence) return undefined
+      const meaning = readColumn(row, ['meaning', 'english', 'translation', 'back'])
+      const sentenceAudio = readColumn(row, ['audio', 'audioSentenceFilename']) || audioByText.get(`sentence:${sentence}`)?.path
+      const meaningAudio = readColumn(row, ['audioMeaning', 'audioEnglishFilename']) || audioByText.get(`sentenceMeaning:${sentence}`)?.path
+      const id = `sentence:${stableId(sentence)}`
+
+      return {
+        id,
+        deckId: entry.id,
+        type: 'sentence',
+        displayText: sentence,
+        sentence,
+        meaning,
+        audio: sentenceAudio,
+        exampleAudio: meaningAudio,
+        category: 'sentences',
+        difficulty: parseNumber(readColumn(row, ['difficulty', 'lessonNumber'])) ?? Math.ceil((index + 1) / 5),
+        tags: parseList(readColumn(row, ['tags'])),
+        speechCue: sentence,
+      }
+    })
+    .filter((card): card is LearningCard => Boolean(card))
 }
 
 function audioLookup(clips: ClipManifestEntry[]): Map<string, ClipManifestEntry> {
@@ -111,6 +152,15 @@ function audioLookup(clips: ClipManifestEntry[]): Map<string, ClipManifestEntry>
     for (const id of clip.linkedWordIds ?? []) byWord.set(id, clip)
   }
   return byWord
+}
+
+function sentenceAudioLookup(clips: ClipManifestEntry[]): Map<string, ClipManifestEntry> {
+  const byText = new Map<string, ClipManifestEntry>()
+  for (const clip of clips) {
+    if (clip.type !== 'sentence' && clip.type !== 'sentenceMeaning') continue
+    byText.set(`${clip.type}:${clip.text}`, clip)
+  }
+  return byText
 }
 
 function parentPath(path: string): string {
