@@ -3050,6 +3050,11 @@ body.lesson-active {
     gap: 6px;
   }
 
+  .focus-main {
+    overflow-y: auto;
+    align-items: start;
+  }
+
   .focus-intro,
   .focus-question {
     gap: 10px;
