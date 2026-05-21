@@ -32,3 +32,4 @@ Chunky Reader is a small, joyful reading app for young children. Keep it close t
 - The opening page uses Anna and Sarah profile art in `public/assets/profiles/`.
 - Preserve the cute, kawaii, pastel, phone-first direction.
 - The panda mascot should feel expressive and respond to learning state: happy for success, sad for retry, curious for questions, reading/listening for guidance.
+- Prefer Replicate FLUX Schnell for new generated deck images before trying another image source. Use `npm run generate:letter-images` with `REPLICATE_API_TOKEN` set in the environment. Never commit or print Replicate API tokens.
