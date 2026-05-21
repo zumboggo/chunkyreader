@@ -7,6 +7,7 @@ const defaultOutDir = path.join(root, 'public', 'decks', 'sarah-levels', 'images
 const model = process.env.REPLICATE_MODEL || 'black-forest-labs/flux-schnell'
 const token = process.env.REPLICATE_API_TOKEN
 const count = Number(process.env.LETTER_IMAGE_COUNT || process.argv.find((arg) => arg.startsWith('--count='))?.split('=')[1] || 10)
+const force = process.argv.includes('--force') || process.env.FORCE_IMAGE_GENERATION === 'true'
 
 if (!token) {
   console.error('Set REPLICATE_API_TOKEN before running this script.')
@@ -28,11 +29,15 @@ for (const card of cards) {
     'No text anywhere, no words, no captions, no labels, no alphabet letters, no spelling, no watermark, no poster, no flashcard border.',
   ].join(' ')
 
-  console.log(`Generating ${word}...`)
-  const imageUrl = await createPrediction(prompt)
-  const image = await fetch(imageUrl)
-  if (!image.ok) throw new Error(`Could not download ${word}: ${image.status}`)
-  await fs.writeFile(outputFile, Buffer.from(await image.arrayBuffer()))
+  if (force || !(await exists(outputFile))) {
+    console.log(`Generating ${word}...`)
+    const imageUrl = await createPrediction(prompt)
+    const image = await fetch(imageUrl)
+    if (!image.ok) throw new Error(`Could not download ${word}: ${image.status}`)
+    await fs.writeFile(outputFile, Buffer.from(await image.arrayBuffer()))
+  } else {
+    console.log(`Keeping ${word}...`)
+  }
   results.push({
     id: card.id,
     word,
@@ -105,5 +110,19 @@ function article(value) {
 function subjectFor(word) {
   if (word === 'jam') return 'an open glass jar filled with red strawberry jam, completely blank jar with no label'
   if (word === 'hat') return 'a soft winter hat'
+  if (word === 'queen') return 'a smiling queen character with a tiny crown and a plain dress with no writing'
+  if (word === 'umbrella') return 'a cheerful open umbrella with a smiling face'
+  if (word === 'van') return 'a small rounded toy van with blank sides and no markings'
+  if (word === 'fox') return 'a friendly orange fox'
+  if (word === 'yak') return 'a cute fluffy yak'
   return `${article(word)} ${word}`
+}
+
+async function exists(filePath) {
+  try {
+    await fs.access(filePath)
+    return true
+  } catch {
+    return false
+  }
 }

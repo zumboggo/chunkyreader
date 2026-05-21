@@ -207,6 +207,41 @@ small {
   gap: clamp(22px, 4vw, 38px);
 }
 
+.home-screen {
+  position: relative;
+}
+
+.home-screen::before,
+.home-screen::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 999px;
+  filter: blur(1px);
+  opacity: 0.72;
+}
+
+.home-screen::before {
+  width: min(34vw, 280px);
+  aspect-ratio: 1.2;
+  right: 4%;
+  top: 6%;
+  background:
+    radial-gradient(circle at 22% 42%, white 0 24%, transparent 25%),
+    radial-gradient(circle at 48% 28%, white 0 28%, transparent 29%),
+    radial-gradient(circle at 72% 45%, white 0 25%, transparent 26%);
+}
+
+.home-screen::after {
+  width: min(28vw, 230px);
+  aspect-ratio: 1;
+  left: -4%;
+  bottom: 10%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 214, 92, 0.28) 0 28%, transparent 29%),
+    radial-gradient(circle at 20% 70%, rgba(242, 109, 157, 0.18) 0 18%, transparent 19%);
+}
+
 .mobile-logo-block,
 .daily-cloud,
 .play-header,
@@ -246,6 +281,7 @@ small {
 }
 
 .home-copy {
+  position: relative;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
@@ -257,6 +293,20 @@ small {
     linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 243, 246, 0.78)),
     linear-gradient(90deg, rgba(201, 244, 223, 0.44), rgba(207, 238, 254, 0.38));
   box-shadow: var(--shadow);
+}
+
+.home-copy::after {
+  content: "5 sounds at a time";
+  position: absolute;
+  right: clamp(16px, 3vw, 30px);
+  top: clamp(14px, 3vw, 24px);
+  border-radius: 999px;
+  padding: 8px 13px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--purple-pop);
+  font-size: 0.92rem;
+  font-weight: 950;
+  box-shadow: var(--soft-shadow);
 }
 
 .home-copy p {
@@ -283,6 +333,12 @@ small {
   text-align: left;
   border-radius: 30px;
   position: relative;
+  isolation: isolate;
+  transform-origin: center bottom;
+}
+
+.path-card:hover {
+  transform: translateY(-4px) scale(1.01);
 }
 
 .profile-image {
@@ -309,6 +365,16 @@ small {
   border-radius: 32% 68% 45% 55%;
   background: rgba(255, 255, 255, 0.5);
   transform: rotate(18deg);
+}
+
+.path-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 18px 18px 18px;
+  z-index: -1;
+  height: 48%;
+  border-radius: 26px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.45));
 }
 
 .anna-path {
@@ -342,8 +408,24 @@ small {
 }
 
 .learning-screen {
+  position: relative;
   display: grid;
   gap: 16px;
+}
+
+.learning-screen::before {
+  content: "";
+  position: absolute;
+  inset: 82px 4% auto auto;
+  width: 120px;
+  aspect-ratio: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 8%, rgba(255, 214, 92, 0.9) 0 9%, transparent 10%),
+    radial-gradient(circle at 50% 92%, rgba(255, 214, 92, 0.9) 0 9%, transparent 10%),
+    radial-gradient(circle at 8% 50%, rgba(255, 214, 92, 0.9) 0 9%, transparent 10%),
+    radial-gradient(circle at 92% 50%, rgba(255, 214, 92, 0.9) 0 9%, transparent 10%);
+  opacity: 0.24;
 }
 
 .lesson-progress {
@@ -829,6 +911,269 @@ small {
   font-weight: 950;
 }
 
+.sarah-lesson {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr);
+  gap: clamp(14px, 2.4vw, 24px);
+  align-items: stretch;
+}
+
+.sarah-stage,
+.sarah-helper,
+.sarah-complete {
+  border: 1px solid rgba(255, 255, 255, 0.84);
+  border-radius: 34px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 252, 246, 0.86)),
+    var(--card);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.sarah-stage {
+  min-height: 520px;
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  padding: clamp(18px, 3vw, 30px);
+  position: relative;
+  overflow: hidden;
+}
+
+.sarah-stage::before {
+  content: "";
+  position: absolute;
+  width: 180px;
+  aspect-ratio: 1;
+  right: -58px;
+  top: -70px;
+  border-radius: 50%;
+  background: rgba(207, 238, 254, 0.56);
+}
+
+.sarah-card-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.sound-button.compact {
+  min-height: 50px;
+  border-radius: 18px;
+  padding: 10px 14px;
+}
+
+.sarah-stage h2 {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.sarah-intro-visual,
+.sarah-picture-prompt {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+
+.letter-orb {
+  width: min(100%, 440px);
+  min-height: 190px;
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.95) 0 34px, transparent 35px),
+    linear-gradient(135deg, #fff1f6, #e7f6ff);
+  box-shadow: inset 0 -10px 0 rgba(117, 81, 199, 0.06);
+}
+
+.letter-orb strong,
+.case-prompt {
+  color: var(--purple-pop);
+  font-size: clamp(5rem, 18vw, 10rem);
+  line-height: 0.86;
+  font-weight: 950;
+}
+
+.letter-orb span {
+  color: var(--berry);
+  font-size: clamp(1.4rem, 4vw, 2.6rem);
+  font-weight: 950;
+}
+
+.sarah-intro-visual .picture-frame,
+.sarah-picture-prompt .picture-frame {
+  width: min(100%, 430px);
+  min-height: 260px;
+  background: white;
+}
+
+.example-word,
+.sarah-picture-prompt > strong {
+  color: var(--ink);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1;
+}
+
+.case-prompt {
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 80% 18%, rgba(255, 214, 92, 0.36) 0 38px, transparent 39px),
+    linear-gradient(135deg, #fff, #fff0f7);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.sarah-cue {
+  min-height: 320px;
+}
+
+.sarah-helper {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 14px;
+  padding: clamp(18px, 3vw, 26px);
+  text-align: center;
+}
+
+.sarah-helper strong {
+  color: var(--pink-pop);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  line-height: 1;
+}
+
+.sarah-helper span {
+  display: block;
+  margin-top: 4px;
+  color: var(--purple-pop);
+  font-size: 1.08rem;
+  font-weight: 950;
+}
+
+.sarah-options {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.sarah-options button {
+  min-height: clamp(116px, 16vw, 170px);
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  border: 3px solid rgba(255, 255, 255, 0.78);
+  border-radius: 30px;
+  background: linear-gradient(180deg, white, #f7fbff);
+}
+
+.sarah-options strong {
+  font-size: clamp(2.8rem, 8vw, 5.8rem);
+  line-height: 0.9;
+}
+
+.sarah-options small {
+  color: var(--muted);
+  font-size: clamp(1rem, 3vw, 1.35rem);
+  font-weight: 950;
+}
+
+.sarah-options .correct {
+  animation: happy-pop 520ms ease;
+  background: linear-gradient(135deg, #bdf4d0, #62d994);
+  color: #123d27;
+}
+
+.sarah-options .wrong {
+  background: linear-gradient(135deg, #ffe2df, #ffb1c0);
+  color: #7b2b3b;
+}
+
+.sarah-intro-actions,
+.completion-actions {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 14px;
+}
+
+.secondary-listen {
+  background: linear-gradient(135deg, #ffffff, #f3efff);
+  color: var(--purple-pop);
+}
+
+.sarah-complete {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  justify-items: center;
+  gap: 22px;
+  padding: clamp(24px, 5vw, 46px);
+  text-align: center;
+}
+
+.sarah-complete .mascot-sprite {
+  width: clamp(150px, 26vw, 240px);
+}
+
+.sarah-complete h2 {
+  margin: 12px 0 18px;
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+}
+
+.letter-review-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.letter-review-row strong {
+  min-width: 68px;
+  border-radius: 20px;
+  padding: 10px 12px;
+  background: linear-gradient(135deg, #fff, #eef9ff);
+  color: var(--purple-pop);
+  box-shadow: var(--soft-shadow);
+  font-size: 1.5rem;
+}
+
+.celebration-burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 18% 22%, rgba(255, 214, 92, 0.78) 0 7px, transparent 8px),
+    radial-gradient(circle at 82% 28%, rgba(242, 109, 157, 0.42) 0 8px, transparent 9px),
+    radial-gradient(circle at 28% 78%, rgba(117, 81, 199, 0.26) 0 7px, transparent 8px),
+    radial-gradient(circle at 76% 76%, rgba(201, 244, 223, 0.9) 0 10px, transparent 11px);
+}
+
+@keyframes happy-pop {
+  0% {
+    transform: scale(1);
+  }
+  48% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .mascot,
 .mascot-sprite {
   width: clamp(128px, 18vw, 220px);
@@ -1089,6 +1434,10 @@ small {
     box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.72), 0 20px 60px rgba(58, 86, 115, 0.24);
   }
 
+  .learning-screen::before {
+    display: none;
+  }
+
   .play-header {
     display: grid;
     grid-template-columns: 54px 1fr auto;
@@ -1128,9 +1477,9 @@ small {
   }
 
   .lesson-progress {
-    grid-template-columns: auto minmax(74px, 1fr) auto auto;
+    grid-template-columns: auto minmax(54px, 1fr) auto;
     padding: 10px 12px;
-    font-size: 0.95rem;
+    font-size: 0.82rem;
   }
 
   .lesson-progress > div {
@@ -1177,6 +1526,106 @@ small {
 
   .mode-tabs small {
     display: none;
+  }
+
+  .sarah-lesson {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .sarah-stage {
+    min-height: 0;
+    gap: 12px;
+    padding: 14px;
+    border: 4px solid rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+  }
+
+  .sarah-card-top {
+    gap: 8px;
+  }
+
+  .sarah-stage h2 {
+    font-size: clamp(1.7rem, 9vw, 2.5rem);
+  }
+
+  .sound-button.compact {
+    min-height: 44px;
+    padding: 8px 10px;
+  }
+
+  .letter-orb {
+    min-height: 132px;
+    border-radius: 26px;
+  }
+
+  .letter-orb strong,
+  .case-prompt {
+    font-size: clamp(4.4rem, 25vw, 7rem);
+  }
+
+  .sarah-intro-visual .picture-frame,
+  .sarah-picture-prompt .picture-frame {
+    min-height: 176px;
+    border-radius: 24px;
+  }
+
+  .case-prompt,
+  .sarah-cue {
+    min-height: 190px;
+    border-radius: 26px;
+  }
+
+  .sarah-helper {
+    grid-template-columns: auto minmax(0, 1fr);
+    justify-items: start;
+    gap: 10px;
+    padding: 8px 12px 8px 8px;
+    border-radius: 999px;
+    text-align: left;
+  }
+
+  .sarah-helper .mascot-sprite,
+  .sarah-helper .panda-fallback {
+    width: 78px;
+  }
+
+  .sarah-helper strong {
+    font-size: 1.35rem;
+  }
+
+  .sarah-helper span {
+    font-size: 0.95rem;
+  }
+
+  .sarah-options {
+    gap: 10px;
+  }
+
+  .sarah-options button {
+    min-height: 104px;
+    border-radius: 24px;
+  }
+
+  .sarah-options strong {
+    font-size: clamp(2.5rem, 15vw, 4.2rem);
+  }
+
+  .sarah-intro-actions,
+  .completion-actions {
+    position: sticky;
+    bottom: 8px;
+    z-index: 3;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    padding: 8px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(14px);
+  }
+
+  .sarah-complete {
+    padding: 18px 14px;
+    border-radius: 30px;
   }
 
   .helper-panel {

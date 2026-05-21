@@ -4,6 +4,8 @@ Chunky Reader is a cute, low-friction reading and pre-reading app for young chil
 
 The app follows the Chunky Chinese pocket-lesson rhythm: 4-minute lessons, 5 cards at a time, audio-first introductions, and no more than two answer choices on screen.
 
+Sarah Level 1 turns each 5-letter group into a richer activity sequence: 5 listen-and-look intros, 5 sound-to-letter questions, 5 uppercase/lowercase matches, 5 beginning-sound picture questions, and 5 mixed review questions.
+
 ## What Was Reused From Chunky Chinese
 
 - React + Vite build setup.
@@ -140,7 +142,7 @@ $env:REPLICATE_API_TOKEN='your-token'
 npm run generate:letter-images
 ```
 
-By default this creates the first 10 Sarah letter-word images in `public/decks/sarah-levels/images/` and writes `replicate-flux-schnell-test-manifest.json` beside them. Set `LETTER_IMAGE_COUNT=26` to generate the whole alphabet. Do not commit or paste Replicate credentials.
+By default this creates the first 10 Sarah letter-word images in `public/decks/sarah-levels/images/` and writes `replicate-flux-schnell-test-manifest.json` beside them. Set `LETTER_IMAGE_COUNT=26` to generate the whole alphabet; existing images are kept unless you pass `--force`. Do not commit or paste Replicate credentials.
 
 ## Adding Another Deck
 
