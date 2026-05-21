@@ -6,7 +6,14 @@ import type { LearningCard, LearningDeck, LearningMode, ProfileId, Story, StoryP
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious'
 type LessonPhase = 'learn' | 'question'
 type GrowingReaderView = 'home' | 'words' | 'stories'
-type SarahQuestionKind = 'soundToLetter' | 'letterToSound' | 'upperLowerMatch' | 'beginningSound'
+type FlashcardChoice = 'again' | 'good'
+type SarahQuestionKind =
+  | 'soundToLetter'
+  | 'letterToSound'
+  | 'upperLowerMatch'
+  | 'beginningSound'
+  | 'wordToBeginningSound'
+  | 'soundToWord'
 type SarahActivityKind = 'intro' | SarahQuestionKind | 'review'
 type SarahActivityStatus = 'idle' | 'try-again' | 'correct' | 'revealed'
 
@@ -21,13 +28,14 @@ interface SarahActivity {
 }
 
 const LESSON_SIZE = 5
+const ONE_DAY_MS = 24 * 60 * 60 * 1000
 const SARAH_FINAL_REVIEW_SIZE = 6
 const SARAH_REVIEW_VARIANTS: SarahQuestionKind[] = [
-  'letterToSound',
-  'soundToLetter',
-  'upperLowerMatch',
+  'wordToBeginningSound',
+  'soundToWord',
   'beginningSound',
-  'letterToSound',
+  'upperLowerMatch',
+  'wordToBeginningSound',
 ]
 const CONFUSABLES: Record<string, string[]> = {
   b: ['d', 'p', 'q'],
@@ -146,11 +154,36 @@ function App() {
 
   function moveWithinLesson() {
     if (!activeDeck?.cards.length) return
-    if (phase === 'learn') {
-      setPhase('question')
-      return
-    }
     moveCard(1)
+  }
+
+  function changeMode(nextMode: LearningMode) {
+    setMode(nextMode)
+    setPhase(nextMode === 'listeningMode' ? 'learn' : 'question')
+    setCardIndex(0)
+    setSarahActivityIndex(0)
+    setMenuOpen(false)
+  }
+
+  function moveNextLessonFromCurrent() {
+    if (!activeDeck?.cards.length) return
+    const orderedCards = orderCardsForMode(activeDeck, mode)
+    const lessonStart = lessonStartForIndex(cardIndex, orderedCards.length)
+    const lessonCards = orderedCards.slice(lessonStart, lessonStart + LESSON_SIZE)
+    if (mode === 'listeningMode') markCardsListened(activeDeck.id, lessonCards)
+    setCardIndex((lessonStart + LESSON_SIZE) % orderedCards.length)
+    setPhase(mode === 'listeningMode' ? 'learn' : 'question')
+    setSarahActivityIndex(0)
+    setMenuOpen(false)
+  }
+
+  function finishCurrentPath() {
+    if (profile === 'anna') {
+      setGrowingView('home')
+    } else {
+      setProfile(null)
+    }
+    setMenuOpen(false)
   }
 
   function moveSarahLesson(deltaLessons: number) {
@@ -242,6 +275,9 @@ function App() {
           onSarahLessonChange={moveSarahLesson}
           onBackToPath={profile === 'anna' ? () => setGrowingView('home') : undefined}
           onRestartLesson={restartLesson}
+          onModeChange={changeMode}
+          onNextLesson={moveNextLessonFromCurrent}
+          onDone={finishCurrentPath}
           onGoHome={() => {
             setProfile(null)
             setGrowingView('home')
@@ -552,6 +588,9 @@ function LearningScreen({
   onSarahLessonChange,
   onBackToPath,
   onRestartLesson,
+  onModeChange,
+  onNextLesson,
+  onDone,
   onGoHome,
   onToggleAdultDetails,
 }: {
@@ -572,15 +611,20 @@ function LearningScreen({
   onSarahLessonChange: (deltaLessons: number) => void
   onBackToPath?: () => void
   onRestartLesson: () => void
+  onModeChange: (mode: LearningMode) => void
+  onNextLesson: () => void
+  onDone: () => void
   onGoHome: () => void
   onToggleAdultDetails: () => void
 }) {
   const isSarahLetters = activeDeck.profile === 'sarah' && activeDeck.type === 'letters'
+  const lessonDeckCards = isSarahLetters ? activeDeck.cards : orderCardsForMode(activeDeck, mode)
+  const activeCard = lessonDeckCards[cardIndex % Math.max(1, lessonDeckCards.length)] ?? card
   const lessonStart = isSarahLetters
-    ? sarahLetterLessonStartForIndex(cardIndex, activeDeck.cards.length)
-    : lessonStartForIndex(cardIndex, activeDeck.cards.length)
-  const lessonLength = isSarahLetters ? sarahLetterLessonSizeForStart(lessonStart, activeDeck.cards.length) : LESSON_SIZE
-  const lessonCards = activeDeck.cards.slice(lessonStart, lessonStart + lessonLength)
+    ? sarahLetterLessonStartForIndex(cardIndex, lessonDeckCards.length)
+    : lessonStartForIndex(cardIndex, lessonDeckCards.length)
+  const lessonLength = isSarahLetters ? sarahLetterLessonSizeForStart(lessonStart, lessonDeckCards.length) : LESSON_SIZE
+  const lessonCards = lessonDeckCards.slice(lessonStart, lessonStart + lessonLength)
   const lessonIndex = cardIndex - lessonStart
   const sarahActivities = useMemo(
     () => (isSarahLetters ? buildSarahActivities(lessonCards) : []),
@@ -589,8 +633,8 @@ function LearningScreen({
   const progress = isSarahLetters ? Math.min(sarahActivityIndex + 1, sarahActivities.length) : lessonIndex + 1
   const progressTotal = isSarahLetters ? sarahActivities.length : lessonCards.length
   const lessonNumber = isSarahLetters
-    ? sarahLetterLessonNumberForIndex(cardIndex, activeDeck.cards.length)
-    : lessonNumberForIndex(cardIndex, activeDeck.cards.length)
+    ? sarahLetterLessonNumberForIndex(cardIndex, lessonDeckCards.length)
+    : lessonNumberForIndex(cardIndex, lessonDeckCards.length)
 
   return (
     <section className="learning-screen lesson-focus">
@@ -603,6 +647,8 @@ function LearningScreen({
         onRestartLesson={onRestartLesson}
         onGoHome={onGoHome}
         onBackToPath={onBackToPath}
+        mode={mode}
+        onModeChange={onModeChange}
         showAdultDetails={showAdultDetails}
         onToggleAdultDetails={onToggleAdultDetails}
       />
@@ -625,18 +671,28 @@ function LearningScreen({
           onLessonChange={onSarahLessonChange}
           showAdultDetails={showAdultDetails}
         />
-      ) : phase === 'learn' ? (
+      ) : mode === 'listeningMode' ? (
         <ExploreMode
           deck={activeDeck}
-          card={card}
+          card={activeCard}
+          isLessonEnd={lessonIndex + 1 >= lessonCards.length}
+          onNext={onNext}
+          onNextLesson={onNextLesson}
+          onDone={onDone}
+        />
+      ) : mode === 'readerMode' ? (
+        <FlashcardMode
+          key={`${activeDeck.id}:${mode}:${activeCard.id}`}
+          deck={activeDeck}
+          card={activeCard}
           onNext={onNext}
         />
       ) : (
         <ChoiceMode
-          key={`${activeDeck.id}:${mode}:${phase}:${card.id}`}
+          key={`${activeDeck.id}:${mode}:${phase}:${activeCard.id}`}
           deck={activeDeck}
           lessonCards={lessonCards}
-          card={card}
+          card={activeCard}
           cardIndex={lessonIndex}
           mode={mode}
           onNext={onNext}
@@ -655,6 +711,8 @@ function LessonMenu({
   onRestartLesson,
   onGoHome,
   onBackToPath,
+  mode,
+  onModeChange,
   showAdultDetails,
   onToggleAdultDetails,
 }: {
@@ -666,6 +724,8 @@ function LessonMenu({
   onRestartLesson: () => void
   onGoHome: () => void
   onBackToPath?: () => void
+  mode: LearningMode
+  onModeChange: (mode: LearningMode) => void
   showAdultDetails: boolean
   onToggleAdultDetails: () => void
 }) {
@@ -741,6 +801,30 @@ function LessonMenu({
                 ))}
               </div>
             )}
+            <div className="menu-section">
+              <strong>Study Mode</strong>
+              <button
+                type="button"
+                className={`menu-item ${mode === 'listeningMode' ? 'active' : ''}`}
+                onClick={() => onModeChange('listeningMode')}
+              >
+                Listen
+              </button>
+              <button
+                type="button"
+                className={`menu-item ${mode === 'activeRecall' ? 'active' : ''}`}
+                onClick={() => onModeChange('activeRecall')}
+              >
+                Active Recall
+              </button>
+              <button
+                type="button"
+                className={`menu-item ${mode === 'readerMode' ? 'active' : ''}`}
+                onClick={() => onModeChange('readerMode')}
+              >
+                Flash Cards
+              </button>
+            </div>
             <div className="menu-section">
               <strong>Options</strong>
               <button type="button" className="menu-item" onClick={onToggleAdultDetails}>
@@ -1025,11 +1109,30 @@ function SarahQuestionView({
         {questionKind === 'beginningSound' && (
           <>
             <span className="stage-label">Starting sound</span>
-            <h2>What starts with {activity.card.exampleWord}?</h2>
+            <h2>This word starts with which sound?</h2>
             <div className="focus-visual compact">
               <Picture deck={deck} card={activity.card} />
+              <span className="example-word">{activity.card.exampleWord}</span>
               <AudioPromptButton onClick={handleAudioClick} label="Hear the word" />
             </div>
+          </>
+        )}
+        {questionKind === 'wordToBeginningSound' && (
+          <>
+            <span className="stage-label">Starting sound</span>
+            <h2>This word starts with which sound?</h2>
+            <div className="focus-visual compact">
+              <Picture deck={deck} card={activity.card} />
+              <span className="example-word">{activity.card.exampleWord}</span>
+            </div>
+          </>
+        )}
+        {questionKind === 'soundToWord' && (
+          <>
+            <span className="stage-label">Find the word</span>
+            <h2>Which word starts with this sound?</h2>
+            <AudioPromptButton onClick={handleAudioClick} label="Hear the sound" />
+            {showAdultDetails && <span className="phonetic-detail">{activity.card.sound}</span>}
           </>
         )}
       </div>
@@ -1051,18 +1154,25 @@ function SarahQuestionView({
           (activity.options ?? []).map((option) => {
             const answer = option.id
             const isSoundQuestion = questionKind === 'letterToSound'
+            const showPictureOption = questionKind === 'soundToWord'
+            const showSoundLabel =
+              questionKind === 'letterToSound' ||
+              questionKind === 'beginningSound' ||
+              questionKind === 'wordToBeginningSound'
             return (
               <button
                 key={option.id}
                 type="button"
-                className={`focus-option ${choiceState(answer, correctAnswer, wrongChoice, status)}`}
+                className={`focus-option ${showPictureOption ? 'picture-choice' : ''} ${choiceState(answer, correctAnswer, wrongChoice, status)}`}
                 disabled={disabled}
                 onClick={() => onChoose(answer, option)}
               >
-                <strong>{isSoundQuestion ? option.displayText : option.displayText}</strong>
-                {!isSoundQuestion && !showAdultDetails && option.exampleWord && (
+                {showPictureOption && <Picture deck={deck} card={option} />}
+                <strong>{showSoundLabel ? option.displayText : option.displayText}</strong>
+                {!isSoundQuestion && !showAdultDetails && option.exampleWord && !showPictureOption && (
                   <small className="friendly-hint">{option.exampleWord}</small>
                 )}
+                {showPictureOption && <small className="friendly-hint">{option.exampleWord}</small>}
                 {showAdultDetails && (
                   <small className="phonetic-hint">{option.sound}</small>
                 )}
@@ -1078,14 +1188,36 @@ function SarahQuestionView({
 function ExploreMode({
   deck,
   card,
+  isLessonEnd,
   onNext,
+  onNextLesson,
+  onDone,
 }: {
   deck: LearningDeck
   card: LearningCard
+  isLessonEnd: boolean
   onNext: () => void
+  onNextLesson: () => void
+  onDone: () => void
 }) {
   useAutoplayCard(deck, card, `learn:${deck.id}:${card.id}`)
   const mood: MascotMood = card.type === 'word' ? 'curious' : 'reading'
+  const [showSentenceMeaning, setShowSentenceMeaning] = useState(false)
+
+  if (card.type === 'sentence') {
+    return (
+      <SentenceExploreMode
+        deck={deck}
+        card={card}
+        showMeaning={showSentenceMeaning}
+        isLessonEnd={isLessonEnd}
+        onToggleMeaning={() => setShowSentenceMeaning((value) => !value)}
+        onNext={onNext}
+        onNextLesson={onNextLesson}
+        onDone={onDone}
+      />
+    )
+  }
 
   return (
     <section className="focus-lesson">
@@ -1114,6 +1246,7 @@ function ExploreMode({
           <div className="focus-actions">
             <AudioPromptButton onClick={() => playCardAudio(deck, card)} label="Listen" />
             <button type="button" className="primary" onClick={onNext}>Next</button>
+            <button type="button" className="secondary-action full-row" onClick={onNextLesson}>Next Lesson</button>
           </div>
         </div>
       </div>
@@ -1122,6 +1255,126 @@ function ExploreMode({
         <div className="feedback-text">
           <strong>{card.type === 'word' ? 'Read it!' : 'Say it!'}</strong>
           <span>Tap the button to hear</span>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function SentenceExploreMode({
+  deck,
+  card,
+  showMeaning,
+  isLessonEnd,
+  onToggleMeaning,
+  onNext,
+  onNextLesson,
+  onDone,
+}: {
+  deck: LearningDeck
+  card: LearningCard
+  showMeaning: boolean
+  isLessonEnd: boolean
+  onToggleMeaning: () => void
+  onNext: () => void
+  onNextLesson: () => void
+  onDone: () => void
+}) {
+  return (
+    <section className="focus-lesson">
+      <div className="focus-main">
+        <div className="focus-intro sentence-section">
+          <div className="focus-prompt">
+            <span className="stage-label">Sentence</span>
+            <h2>Read the sentence.</h2>
+          </div>
+          <div className="sentence-card">
+            <p>{card.sentence || card.displayText}</p>
+            {showMeaning && card.meaning && <strong>{card.meaning}</strong>}
+          </div>
+          <div className="focus-actions">
+            <button type="button" className="primary choice-action" onClick={isLessonEnd ? onNextLesson : onNext}>
+              <span>A</span>
+              {isLessonEnd ? 'Next Lesson' : 'Sentence Forward'}
+            </button>
+            <button type="button" className="choice-action" onClick={isLessonEnd ? onDone : onToggleMeaning}>
+              <span>B</span>
+              {isLessonEnd ? 'Done' : showMeaning ? 'Hide English' : 'Show English'}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="focus-feedback">
+        <Mascot mood="reading" size="small" />
+        <div className="feedback-text">
+          <strong>Sentence time</strong>
+          <span>Use A and B</span>
+        </div>
+        <AudioPromptButton onClick={() => playCardAudio(deck, card)} label="Listen" />
+      </div>
+    </section>
+  )
+}
+
+function FlashcardMode({
+  deck,
+  card,
+  onNext,
+}: {
+  deck: LearningDeck
+  card: LearningCard
+  onNext: () => void
+}) {
+  const [choice, setChoice] = useState<FlashcardChoice | ''>('')
+  useAutoplayCard(deck, card, `flash:${deck.id}:${card.id}`)
+
+  function choose(nextChoice: FlashcardChoice) {
+    if (choice) return
+    setChoice(nextChoice)
+    saveFlashcardChoice(deck.id, card.id, nextChoice)
+    window.setTimeout(onNext, 520)
+  }
+
+  return (
+    <section className="focus-lesson">
+      <div className="focus-main">
+        <div className="focus-intro flashcard-section">
+          <div className="focus-prompt">
+            <span className="stage-label">Flash Cards</span>
+            <h2>How did it feel?</h2>
+          </div>
+          <div className="flashcard-card">
+            {card.type === 'word' ? <Picture deck={deck} card={card} /> : <div className="sentence-card"><p>{card.displayText}</p></div>}
+            <div className="word-display">{optionLabel(card)}</div>
+            {card.meaning && card.meaning !== optionLabel(card) && <strong className="flashcard-meaning">{card.meaning}</strong>}
+          </div>
+          <div className="focus-actions">
+            <button
+              type="button"
+              className={`choice-action ${choice === 'again' ? 'chosen-good' : ''}`}
+              disabled={Boolean(choice)}
+              onClick={() => choose('again')}
+            >
+              <span>A</span>
+              Again
+            </button>
+            <button
+              type="button"
+              className={`choice-action ${choice === 'good' ? 'chosen-good' : ''}`}
+              disabled={Boolean(choice)}
+              onClick={() => choose('good')}
+            >
+              <span>B</span>
+              Good
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className={`focus-feedback ${choice ? 'happy' : ''}`}>
+        <Mascot mood={choice ? 'happy' : 'curious'} size="small" />
+        <div className="feedback-text">
+          <strong>{choice ? 'Got it!' : 'Pick one'}</strong>
+          <span>{choice ? 'Nice flash card work.' : 'A again, B good'}</span>
         </div>
       </div>
     </section>
@@ -1151,8 +1404,11 @@ function ChoiceMode({
 
   function choose(cardId: string) {
     setSelected(cardId)
-    if (cardId === card.id) void playCardAudio(deck, card)
-    if (cardId === card.id) window.setTimeout(onNext, 900)
+    if (cardId === card.id) {
+      markCardRecalled(deck.id, card.id)
+      void playCardAudio(deck, card)
+      window.setTimeout(onNext, 900)
+    }
   }
 
   return (
@@ -1374,10 +1630,12 @@ function optionLabel(card: LearningCard): string {
 function optionSmallLabel(card: LearningCard): string {
   if (card.type === 'phoneme') return card.exampleWord || ''
   if (card.type === 'letter') return card.exampleWord || ''
+  if (card.type === 'sentence') return card.meaning || ''
   return card.category || ''
 }
 
 function getChoicePrompt(deck: LearningDeck, card: LearningCard, mode: LearningMode): string {
+  if (card.type === 'sentence') return mode === 'readerMode' ? 'Read this sentence.' : 'Find this sentence.'
   if (deck.type === 'reading-words') return mode === 'readerMode' ? 'What word matches the picture?' : 'Find this word.'
   if (deck.type === 'letters') return mode === 'readerMode' ? 'Which letter makes this sound?' : 'Tap the matching letter.'
   if (card.grapheme) return mode === 'readerMode' ? 'Which spelling matches this sound?' : 'Tap the matching sound.'
@@ -1386,8 +1644,13 @@ function getChoicePrompt(deck: LearningDeck, card: LearningCard, mode: LearningM
 
 function buildSarahActivities(lessonCards: LearningCard[]): SarahActivity[] {
   const intros = lessonCards.map((card): SarahActivity => ({ kind: 'intro', card }))
-  const soundToLetter = lessonCards.map((card): SarahActivity => ({
-    kind: 'soundToLetter',
+  const wordToBeginningSound = lessonCards.map((card): SarahActivity => ({
+    kind: 'wordToBeginningSound',
+    card,
+    options: buildSarahOptions(lessonCards, card),
+  }))
+  const soundToWord = lessonCards.map((card): SarahActivity => ({
+    kind: 'soundToWord',
     card,
     options: buildSarahOptions(lessonCards, card),
   }))
@@ -1407,7 +1670,7 @@ function buildSarahActivities(lessonCards: LearningCard[]): SarahActivity[] {
     options: buildSarahOptions(lessonCards, card),
   }))
   const review = lessonCards.map((card, index): SarahActivity => buildSarahReviewActivity(lessonCards, card, index))
-  return [...intros, ...soundToLetter, ...upperLower, ...beginningSound, ...review]
+  return [...intros, ...wordToBeginningSound, ...soundToWord, ...upperLower, ...beginningSound, ...review]
 }
 
 function buildSarahReviewActivity(lessonCards: LearningCard[], card: LearningCard, index: number): SarahActivity {
@@ -1567,6 +1830,86 @@ function saveStoryProgress(storyId: string, pageIndex: number) {
 
 function storyProgressKey(storyId: string): string {
   return `chunky-reader:story:${storyId}:page`
+}
+
+function orderCardsForMode(deck: LearningDeck, mode: LearningMode): LearningCard[] {
+  if (deck.profile !== 'anna') return deck.cards
+  const now = Date.now()
+  return deck.cards
+    .map((card, index) => ({ card, index, progress: readCardProgress(deck.id, card.id) }))
+    .sort((a, b) => {
+      const aPriority = cardPriority(a.progress, mode, now)
+      const bPriority = cardPriority(b.progress, mode, now)
+      if (aPriority !== bPriority) return aPriority - bPriority
+      const aDifficulty = a.card.difficulty ?? Number.MAX_SAFE_INTEGER
+      const bDifficulty = b.card.difficulty ?? Number.MAX_SAFE_INTEGER
+      if (aDifficulty !== bDifficulty) return aDifficulty - bDifficulty
+      return a.index - b.index
+    })
+    .map((entry) => entry.card)
+}
+
+function cardPriority(progress: CardProgress, mode: LearningMode, now: number): number {
+  const deferred = (progress.reviewAfter ?? 0) > now
+  if (mode === 'listeningMode') {
+    if (!progress.listenedAt) return 0
+    return deferred ? 2 : 1
+  }
+  if (mode === 'activeRecall') {
+    if (deferred) return 2
+    if (!progress.recalledAt) return 0
+    return 1
+  }
+  if (!progress.flashGoodAt) return 0
+  return progress.flashAgainAt && progress.flashAgainAt > progress.flashGoodAt ? 0 : 1
+}
+
+interface CardProgress {
+  listenedAt?: number
+  reviewAfter?: number
+  recalledAt?: number
+  flashAgainAt?: number
+  flashGoodAt?: number
+}
+
+function markCardsListened(deckId: string, cards: LearningCard[]) {
+  const listenedAt = Date.now()
+  for (const card of cards) {
+    updateCardProgress(deckId, card.id, {
+      listenedAt,
+      reviewAfter: listenedAt + ONE_DAY_MS,
+    })
+  }
+}
+
+function markCardRecalled(deckId: string, cardId: string) {
+  updateCardProgress(deckId, cardId, { recalledAt: Date.now() })
+}
+
+function saveFlashcardChoice(deckId: string, cardId: string, choice: FlashcardChoice) {
+  updateCardProgress(deckId, cardId, choice === 'again' ? { flashAgainAt: Date.now() } : { flashGoodAt: Date.now() })
+}
+
+function readCardProgress(deckId: string, cardId: string): CardProgress {
+  try {
+    const raw = window.localStorage.getItem(cardProgressKey(deckId, cardId))
+    return raw ? JSON.parse(raw) as CardProgress : {}
+  } catch {
+    return {}
+  }
+}
+
+function updateCardProgress(deckId: string, cardId: string, patch: CardProgress) {
+  try {
+    const next = { ...readCardProgress(deckId, cardId), ...patch }
+    window.localStorage.setItem(cardProgressKey(deckId, cardId), JSON.stringify(next))
+  } catch {
+    // Review scheduling is helpful, but the lesson must keep working without storage.
+  }
+}
+
+function cardProgressKey(deckId: string, cardId: string): string {
+  return `chunky-reader:card-progress:${deckId}:${cardId}`
 }
 
 function lessonStartForIndex(index: number, totalCards: number): number {
