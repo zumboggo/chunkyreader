@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { loadDeckLibrary, resolveAssetUrl } from './decks'
 import { loadAnneStories, resolveStoryAssetUrl } from './stories'
 import type { LearningCard, LearningDeck, LearningMode, ProfileId, Story, StoryPage } from './types'
@@ -61,6 +61,17 @@ const encouragement = [
   'You did it!',
   'One more!',
 ]
+
+function shouldIgnoreControllerKey(event: KeyboardEvent) {
+  if (event.defaultPrevented || event.repeat) return true
+  const target = event.target
+  if (!(target instanceof HTMLElement)) return false
+  return target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)
+}
+
+function choiceKeyLabel(index: number) {
+  return index === 0 ? 'A' : index === 1 ? 'B' : String(index + 1)
+}
 
 function App() {
   const [decks, setDecks] = useState<LearningDeck[]>([])
@@ -487,13 +498,38 @@ function StoryReader({
 }) {
   const page = story.pages[Math.min(pageIndex, story.pages.length - 1)]
 
-  function nextPage() {
+  const nextPage = useCallback(() => {
     if (pageIndex >= story.pages.length - 1) {
       onComplete()
       return
     }
     onPageIndexChange(pageIndex + 1)
-  }
+  }, [onComplete, onPageIndexChange, pageIndex, story.pages.length])
+
+  const previousPage = useCallback(() => {
+    if (pageIndex > 0) {
+      onPageIndexChange(pageIndex - 1)
+    }
+  }, [onPageIndexChange, pageIndex])
+
+  useEffect(() => {
+    if (complete) return undefined
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (shouldIgnoreControllerKey(event)) return
+      if (event.key === '3') {
+        event.preventDefault()
+        nextPage()
+      }
+      if (event.key === '4') {
+        event.preventDefault()
+        previousPage()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [complete, nextPage, previousPage])
 
   if (complete) {
     return (
@@ -538,11 +574,11 @@ function StoryReader({
         </div>
       </article>
       <div className="story-nav">
-        <button type="button" disabled={pageIndex === 0} onClick={() => onPageIndexChange(Math.max(0, pageIndex - 1))}>
-          Previous Page
+        <button type="button" disabled={pageIndex === 0} onClick={previousPage}>
+          Back
         </button>
         <button type="button" className="primary" onClick={nextPage}>
-          {pageIndex >= story.pages.length - 1 ? 'Finish Story' : 'Next Page'}
+          {pageIndex >= story.pages.length - 1 ? 'Finish' : 'Next'}
         </button>
       </div>
     </section>
@@ -1075,6 +1111,34 @@ function SarahQuestionView({
     }
   }
 
+  const chooseByIndex = useCallback((index: number) => {
+    if (disabled) return
+    if (activity.textOptions) {
+      const answer = activity.textOptions[index]
+      if (answer) onChoose(answer)
+      return
+    }
+    const option = activity.options?.[index]
+    if (option) onChoose(option.id, option)
+  }, [activity.options, activity.textOptions, disabled, onChoose])
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (shouldIgnoreControllerKey(event) || disabled) return
+      if (event.key === '3') {
+        event.preventDefault()
+        chooseByIndex(0)
+      }
+      if (event.key === '4') {
+        event.preventDefault()
+        chooseByIndex(1)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [chooseByIndex, disabled])
+
   return (
     <div className="focus-question">
       <div className="focus-prompt">
@@ -1139,19 +1203,21 @@ function SarahQuestionView({
 
       <div className="focus-options" aria-label="Answer choices">
         {activity.textOptions ? (
-          activity.textOptions.map((option) => (
+          activity.textOptions.map((option, index) => (
             <button
               key={option}
               type="button"
+              aria-label={`Choice ${choiceKeyLabel(index)}: ${option}`}
               className={`focus-option ${choiceState(option, correctAnswer, wrongChoice, status)}`}
               disabled={disabled}
               onClick={() => onChoose(option)}
             >
+              <span className="choice-key" aria-hidden="true">{choiceKeyLabel(index)}</span>
               <strong>{option}</strong>
             </button>
           ))
         ) : (
-          (activity.options ?? []).map((option) => {
+          (activity.options ?? []).map((option, index) => {
             const answer = option.id
             const isSoundQuestion = questionKind === 'letterToSound'
             const showPictureOption = questionKind === 'soundToWord'
@@ -1163,10 +1229,12 @@ function SarahQuestionView({
               <button
                 key={option.id}
                 type="button"
+                aria-label={`Choice ${choiceKeyLabel(index)}: ${option.displayText}`}
                 className={`focus-option ${showPictureOption ? 'picture-choice' : ''} ${choiceState(answer, correctAnswer, wrongChoice, status)}`}
                 disabled={disabled}
                 onClick={() => onChoose(answer, option)}
               >
+                <span className="choice-key" aria-hidden="true">{choiceKeyLabel(index)}</span>
                 {showPictureOption && <Picture deck={deck} card={option} />}
                 <strong>{showSoundLabel ? option.displayText : option.displayText}</strong>
                 {!isSoundQuestion && !showAdultDetails && option.exampleWord && !showPictureOption && (
