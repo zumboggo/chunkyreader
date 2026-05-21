@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-reader-v1'
+const CACHE_VERSION = 'chunky-reader-v2'
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`
 

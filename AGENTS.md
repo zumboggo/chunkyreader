@@ -10,6 +10,7 @@ Chunky Reader is a small, joyful reading app for young children. Keep it close t
 - Always let the child hear and see the answer before any question.
 - Autoplay audio every time a new word, letter, or sound is introduced.
 - Sarah Level 1 letter lessons derive about 25 tiny activities from each 5-letter chunk: intro, sound-to-letter, uppercase/lowercase matching, beginning-sound, and mixed review.
+- Sarah Level 1 uses phonics-first ordering: `m s a t p`, `c r n d i`, `f b h g o`, `l k e u w`, then final tricky-sounds review `j y v z q x`.
 - Questions should reinforce what was just shown, not ask the child to hold a lot in memory.
 - Keep navigation obvious and child-sized. Avoid settings-heavy or LMS-style screens.
 
