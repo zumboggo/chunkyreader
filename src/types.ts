@@ -51,6 +51,7 @@ export interface LearningCard {
   exampleSentence?: string
   category?: string
   difficulty?: number
+  lessonGroup?: number
   tags?: string[]
 
   // Asset paths are deck-relative by default. For example:

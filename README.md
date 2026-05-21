@@ -4,7 +4,7 @@ Chunky Reader is a cute, low-friction reading and pre-reading app for young chil
 
 The app follows the Chunky Chinese pocket-lesson rhythm: 4-minute lessons, 5 cards at a time, audio-first introductions, and no more than two answer choices on screen.
 
-Sarah Level 1 turns each 5-letter group into a richer activity sequence: 5 listen-and-look intros, 5 sound-to-letter questions, 5 uppercase/lowercase matches, 5 beginning-sound picture questions, and 5 mixed review questions.
+Sarah Level 1 uses a phonics-first order instead of alphabetical order: `m s a t p`, `c r n d i`, `f b h g o`, `l k e u w`, then a final tricky-sounds review with `j y v z q x`. Each group turns into a richer activity sequence with listen-and-look intros, sound-to-letter questions, uppercase/lowercase matches, beginning-sound picture questions, and mixed review questions.
 
 ## What Was Reused From Chunky Chinese
 

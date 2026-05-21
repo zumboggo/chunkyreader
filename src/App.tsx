@@ -19,6 +19,7 @@ interface SarahActivity {
 }
 
 const LESSON_SIZE = 5
+const SARAH_FINAL_REVIEW_SIZE = 6
 const SARAH_REVIEW_VARIANTS: SarahQuestionKind[] = [
   'letterToSound',
   'soundToLetter',
@@ -131,10 +132,10 @@ function App() {
 
   function moveSarahLesson(deltaLessons: number) {
     if (!activeDeck?.cards.length) return
-    const totalLessons = Math.ceil(activeDeck.cards.length / LESSON_SIZE)
-    const currentLesson = lessonNumberForIndex(cardIndex, activeDeck.cards.length) - 1
+    const totalLessons = sarahLetterLessonCount(activeDeck.cards.length)
+    const currentLesson = sarahLetterLessonNumberForIndex(cardIndex, activeDeck.cards.length) - 1
     const nextLesson = (currentLesson + deltaLessons + totalLessons) % totalLessons
-    setCardIndex(lessonStartForNumber(nextLesson, activeDeck.cards.length))
+    setCardIndex(sarahLetterLessonStartForNumber(nextLesson, activeDeck.cards.length))
     setPhase('learn')
     setSarahActivityIndex(0)
   }
@@ -269,17 +270,22 @@ function LearningScreen({
   onSarahActivityChange: (index: number) => void
   onSarahLessonChange: (deltaLessons: number) => void
 }) {
-  const lessonStart = lessonStartForIndex(cardIndex, activeDeck.cards.length)
-  const lessonCards = activeDeck.cards.slice(lessonStart, lessonStart + LESSON_SIZE)
-  const lessonIndex = cardIndex - lessonStart
   const isSarahLetters = activeDeck.profile === 'sarah' && activeDeck.type === 'letters'
+  const lessonStart = isSarahLetters
+    ? sarahLetterLessonStartForIndex(cardIndex, activeDeck.cards.length)
+    : lessonStartForIndex(cardIndex, activeDeck.cards.length)
+  const lessonLength = isSarahLetters ? sarahLetterLessonSizeForStart(lessonStart, activeDeck.cards.length) : LESSON_SIZE
+  const lessonCards = activeDeck.cards.slice(lessonStart, lessonStart + lessonLength)
+  const lessonIndex = cardIndex - lessonStart
   const sarahActivities = useMemo(
     () => (isSarahLetters ? buildSarahActivities(lessonCards) : []),
     [isSarahLetters, lessonCards],
   )
   const progress = isSarahLetters ? Math.min(sarahActivityIndex + 1, sarahActivities.length) : lessonIndex + 1
   const progressTotal = isSarahLetters ? sarahActivities.length : lessonCards.length
-  const lessonNumber = lessonNumberForIndex(cardIndex, activeDeck.cards.length)
+  const lessonNumber = isSarahLetters
+    ? sarahLetterLessonNumberForIndex(cardIndex, activeDeck.cards.length)
+    : lessonNumberForIndex(cardIndex, activeDeck.cards.length)
   const progressLabel = isSarahLetters
     ? sarahActivityIndex < lessonCards.length
       ? `Sound ${Math.min(sarahActivityIndex + 1, lessonCards.length)} of ${lessonCards.length}`
@@ -1147,16 +1153,44 @@ function lessonStartForIndex(index: number, totalCards: number): number {
   return Math.min(Math.floor(index / LESSON_SIZE) * LESSON_SIZE, lastFullStart)
 }
 
-function lessonStartForNumber(lessonIndex: number, totalCards: number): number {
-  const lastFullStart = Math.max(0, totalCards - LESSON_SIZE)
-  return Math.min(lessonIndex * LESSON_SIZE, lastFullStart)
-}
-
 function lessonNumberForIndex(index: number, totalCards: number): number {
   const totalLessons = Math.max(1, Math.ceil(totalCards / LESSON_SIZE))
   const lastFullStart = Math.max(0, totalCards - LESSON_SIZE)
   if (index >= lastFullStart && index % LESSON_SIZE !== 0) return totalLessons
   return Math.min(totalLessons, Math.floor(index / LESSON_SIZE) + 1)
+}
+
+function sarahLetterLessonCount(totalCards: number): number {
+  if (totalCards <= LESSON_SIZE) return 1
+  if (totalCards <= LESSON_SIZE + SARAH_FINAL_REVIEW_SIZE) return Math.ceil(totalCards / LESSON_SIZE)
+  return Math.ceil((totalCards - SARAH_FINAL_REVIEW_SIZE) / LESSON_SIZE) + 1
+}
+
+function sarahFinalLessonStart(totalCards: number): number {
+  return Math.max(0, totalCards - SARAH_FINAL_REVIEW_SIZE)
+}
+
+function sarahLetterLessonStartForIndex(index: number, totalCards: number): number {
+  const finalStart = sarahFinalLessonStart(totalCards)
+  if (index >= finalStart) return finalStart
+  return Math.floor(index / LESSON_SIZE) * LESSON_SIZE
+}
+
+function sarahLetterLessonStartForNumber(lessonIndex: number, totalCards: number): number {
+  const finalLessonIndex = sarahLetterLessonCount(totalCards) - 1
+  if (lessonIndex >= finalLessonIndex) return sarahFinalLessonStart(totalCards)
+  return lessonIndex * LESSON_SIZE
+}
+
+function sarahLetterLessonNumberForIndex(index: number, totalCards: number): number {
+  const finalStart = sarahFinalLessonStart(totalCards)
+  if (index >= finalStart) return sarahLetterLessonCount(totalCards)
+  return Math.floor(index / LESSON_SIZE) + 1
+}
+
+function sarahLetterLessonSizeForStart(start: number, totalCards: number): number {
+  if (start >= sarahFinalLessonStart(totalCards)) return Math.min(SARAH_FINAL_REVIEW_SIZE, totalCards - start)
+  return Math.min(LESSON_SIZE, totalCards - start)
 }
 
 function stableSort(value: string): number {
