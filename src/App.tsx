@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { loadDeckLibrary, resolveAssetUrl } from './decks'
-import type { LearningCard, LearningDeck, LearningMode, ProfileId } from './types'
+import { loadAnneStories, resolveStoryAssetUrl } from './stories'
+import type { LearningCard, LearningDeck, LearningMode, ProfileId, Story, StoryPage } from './types'
 
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious'
 type LessonPhase = 'learn' | 'question'
+type GrowingReaderView = 'home' | 'words' | 'stories'
 type SarahQuestionKind = 'soundToLetter' | 'letterToSound' | 'upperLowerMatch' | 'beginningSound'
 type SarahActivityKind = 'intro' | SarahQuestionKind | 'review'
 type SarahActivityStatus = 'idle' | 'try-again' | 'correct' | 'revealed'
@@ -54,7 +56,9 @@ const encouragement = [
 
 function App() {
   const [decks, setDecks] = useState<LearningDeck[]>([])
+  const [stories, setStories] = useState<Story[]>([])
   const [profile, setProfile] = useState<ProfileId | null>(null)
+  const [growingView, setGrowingView] = useState<GrowingReaderView>('home')
   const [activeDeckId, setActiveDeckId] = useState('')
   const [mode, setMode] = useState<LearningMode>('listeningMode')
   const [cardIndex, setCardIndex] = useState(0)
@@ -68,16 +72,20 @@ function App() {
     async function load() {
       try {
         const nextDecks = await loadDeckLibrary()
+        const nextStories = await loadAnneStories().catch(() => [])
         if (cancelled) return
         const params = new URLSearchParams(window.location.search)
         const initialProfile = params.get('profile') as ProfileId | null
         const initialMode = params.get('mode') as LearningMode | null
+        const wantsStories = params.get('stories') === 'true'
         const profileDeck =
           initialProfile && ['anna', 'sarah', 'library'].includes(initialProfile)
             ? nextDecks.find((deck) => deck.profile === initialProfile) ?? nextDecks[0]
             : nextDecks[0]
         setDecks(nextDecks)
+        setStories(nextStories)
         setProfile(initialProfile && ['anna', 'sarah', 'library'].includes(initialProfile) ? initialProfile : null)
+        setGrowingView(initialProfile === 'anna' ? (wantsStories ? 'stories' : 'home') : 'home')
         setActiveDeckId(profileDeck?.id ?? '')
         if (initialMode && ['listeningMode', 'activeRecall', 'readerMode'].includes(initialMode)) {
           setMode(initialMode)
@@ -107,8 +115,18 @@ function App() {
   function chooseProfile(nextProfile: ProfileId) {
     const firstDeck = decks.find((deck) => deck.profile === nextProfile) ?? decks[0]
     setProfile(nextProfile)
+    setGrowingView('home')
     setActiveDeckId(firstDeck?.id ?? '')
     setMode('listeningMode')
+    setCardIndex(0)
+    setPhase('learn')
+    setSarahActivityIndex(0)
+  }
+
+  function openGrowingWords() {
+    const firstDeck = decks.find((deck) => deck.profile === 'anna') ?? decks[0]
+    setGrowingView('words')
+    setActiveDeckId(firstDeck?.id ?? '')
     setCardIndex(0)
     setPhase('learn')
     setSarahActivityIndex(0)
@@ -143,7 +161,14 @@ function App() {
   return (
     <main className="app-shell">
       <header className="topbar">
-        <button className="brand-button" type="button" onClick={() => setProfile(null)}>
+        <button
+          className="brand-button"
+          type="button"
+          onClick={() => {
+            setProfile(null)
+            setGrowingView('home')
+          }}
+        >
           <Mascot size="small" mood="reading" />
           <span>
             <strong>Chunky Reader</strong>
@@ -165,6 +190,15 @@ function App() {
         </section>
       ) : !profile ? (
         <HomeScreen onChoose={chooseProfile} decks={decks} />
+      ) : profile === 'anna' && growingView === 'home' ? (
+        <GrowingReaderHome
+          decks={visibleDecks}
+          stories={stories}
+          onWords={openGrowingWords}
+          onStories={() => setGrowingView('stories')}
+        />
+      ) : profile === 'anna' && growingView === 'stories' ? (
+        <StorySection stories={stories} onBack={() => setGrowingView('home')} />
       ) : activeDeck && currentCard ? (
         <LearningScreen
           decks={visibleDecks}
@@ -184,6 +218,7 @@ function App() {
           onNext={moveWithinLesson}
           onSarahActivityChange={setSarahActivityIndex}
           onSarahLessonChange={moveSarahLesson}
+          onBackToPath={profile === 'anna' ? () => setGrowingView('home') : undefined}
         />
       ) : (
         <section className="empty-screen">
@@ -222,14 +257,14 @@ function HomeScreen({
       <div className="path-grid" aria-label="Choose a learning path">
         <button type="button" className="path-card anna-path" onClick={() => onChoose('anna')}>
           <img className="profile-image" src={`${import.meta.env.BASE_URL}assets/profiles/anna-red-shirt.png`} alt="" />
-          <span className="path-badge">Words</span>
-          <strong>Anna</strong>
+          <span className="path-badge">Words + Stories</span>
+          <strong>Growing Reader</strong>
           <small>{annaCount} reading cards</small>
         </button>
         <button type="button" className="path-card sarah-path" onClick={() => onChoose('sarah')}>
           <img className="profile-image" src={`${import.meta.env.BASE_URL}assets/profiles/sarah-reading.png`} alt="" />
           <span className="path-badge">Sounds</span>
-          <strong>Sarah</strong>
+          <strong>Earliest Reader</strong>
           <small>{sarahCount} letter and sound cards</small>
         </button>
       </div>
@@ -240,6 +275,233 @@ function HomeScreen({
         <div className="daily-progress"><span /></div>
       </div>
     </section>
+  )
+}
+
+function GrowingReaderHome({
+  decks,
+  stories,
+  onWords,
+  onStories,
+}: {
+  decks: LearningDeck[]
+  stories: Story[]
+  onWords: () => void
+  onStories: () => void
+}) {
+  const wordCount = decks.reduce((sum, deck) => sum + deck.cards.length, 0)
+  const pageCount = stories.reduce((sum, story) => sum + story.pages.length, 0)
+
+  return (
+    <section className="growing-reader-home">
+      <div className="reader-hero">
+        <img className="reader-hero-child" src={`${import.meta.env.BASE_URL}assets/profiles/anna-red-shirt.png`} alt="" />
+        <div>
+          <ChunkyLogo compact />
+          <h1>Growing Reader</h1>
+          <p>Choose one happy reading pocket.</p>
+        </div>
+        <Mascot mood="reading" />
+      </div>
+      <div className="reader-choice-grid" aria-label="Choose a Growing Reader activity">
+        <button type="button" className="reader-choice word-choice" onClick={onWords}>
+          <span className="choice-sticker" aria-hidden="true">ABC</span>
+          <strong>Read Words</strong>
+          <small>{wordCount} picture words</small>
+        </button>
+        <button type="button" className="reader-choice story-choice" onClick={onStories}>
+          <span className="choice-sticker book-sticker" aria-hidden="true" />
+          <strong>Read a Story</strong>
+          <small>{stories.length} stories, {pageCount} pages</small>
+        </button>
+      </div>
+    </section>
+  )
+}
+
+function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => void }) {
+  const [selectedStoryId, setSelectedStoryId] = useState('')
+  const [pageIndex, setPageIndex] = useState(0)
+  const [complete, setComplete] = useState(false)
+  const selectedStory = stories.find((story) => story.id === selectedStoryId)
+
+  function openStory(story: Story) {
+    setSelectedStoryId(story.id)
+    setPageIndex(readStoryProgress(story.id, story.pages.length))
+    setComplete(false)
+  }
+
+  function restartStory(story: Story) {
+    saveStoryProgress(story.id, 0)
+    setPageIndex(0)
+    setComplete(false)
+  }
+
+  if (selectedStory) {
+    return (
+      <StoryReader
+        story={selectedStory}
+        pageIndex={pageIndex}
+        complete={complete}
+        onBack={() => {
+          setSelectedStoryId('')
+          setComplete(false)
+        }}
+        onRestart={() => restartStory(selectedStory)}
+        onPageIndexChange={(index) => {
+          setPageIndex(index)
+          saveStoryProgress(selectedStory.id, index)
+        }}
+        onComplete={() => {
+          setComplete(true)
+          saveStoryProgress(selectedStory.id, selectedStory.pages.length - 1)
+        }}
+      />
+    )
+  }
+
+  return (
+    <section className="story-library">
+      <div className="story-library-header">
+        <button type="button" className="soft-back" onClick={onBack}>Back</button>
+        <div>
+          <span className="prompt-topline">Growing Reader</span>
+          <h1>Read a Story</h1>
+          <p>Pick one tiny story. Each one has three gentle pages.</p>
+        </div>
+        <Mascot mood="happy" />
+      </div>
+
+      {stories.length === 0 ? (
+        <section className="empty-screen story-empty">
+          <Mascot mood="curious" />
+          <h2>Stories are coming soon</h2>
+          <p>Add stories to <strong>public/stories/anne-stories.json</strong>.</p>
+        </section>
+      ) : (
+        <div className="story-grid" aria-label="Anne story library">
+          {stories.map((story, index) => {
+            const cover = story.coverImage || story.pages[0]?.image
+            return (
+              <button key={story.id} type="button" className="story-card" onClick={() => openStory(story)}>
+                <AssetImage
+                  src={resolveStoryAssetUrl(cover)}
+                  label={story.pages[0]?.altText || story.title}
+                  className="story-cover"
+                  fallback={<StoryImageFallback title={story.title} pageNumber={1} />}
+                />
+                <span className="story-number">Story {index + 1}</span>
+                <strong>{story.title}</strong>
+                <small>{story.description}</small>
+                <span className="story-meta">{story.pages.length} pages - {story.readingLevel}</span>
+              </button>
+            )
+          })}
+        </div>
+      )}
+    </section>
+  )
+}
+
+function StoryReader({
+  story,
+  pageIndex,
+  complete,
+  onBack,
+  onRestart,
+  onPageIndexChange,
+  onComplete,
+}: {
+  story: Story
+  pageIndex: number
+  complete: boolean
+  onBack: () => void
+  onRestart: () => void
+  onPageIndexChange: (index: number) => void
+  onComplete: () => void
+}) {
+  const page = story.pages[Math.min(pageIndex, story.pages.length - 1)]
+
+  function nextPage() {
+    if (pageIndex >= story.pages.length - 1) {
+      onComplete()
+      return
+    }
+    onPageIndexChange(pageIndex + 1)
+  }
+
+  if (complete) {
+    return (
+      <section className="story-complete">
+        <div className="celebration-burst" aria-hidden="true" />
+        <Mascot mood="happy" />
+        <span className="prompt-topline">{story.title}</span>
+        <h1>The End</h1>
+        <p>You finished the story!</p>
+        <div className="completion-actions story-actions">
+          <button type="button" onClick={onRestart}>Read Again</button>
+          <button type="button" className="primary" onClick={onBack}>Back to Stories</button>
+        </div>
+      </section>
+    )
+  }
+
+  return (
+    <section className="story-reader">
+      <div className="story-reader-top">
+        <button type="button" className="soft-back" onClick={onBack}>Back to Stories</button>
+        <div>
+          <span>{story.title}</span>
+          <strong>Page {page.pageNumber} of {story.pages.length}</strong>
+        </div>
+      </div>
+      <div className="story-page-progress" aria-label="Story page progress">
+        {story.pages.map((storyPage, index) => (
+          <span key={storyPage.pageNumber} className={index <= pageIndex ? 'active' : ''} />
+        ))}
+      </div>
+      <article key={`${story.id}:${page.pageNumber}`} className="story-page-card">
+        <StoryPageImage page={page} story={story} />
+        <div className="story-text-panel">
+          <div className="story-page-label">Page {page.pageNumber}</div>
+          <div className="story-lines">
+            {page.text.split('\n').map((line, index) => <p key={`${page.pageNumber}:${index}`}>{line}</p>)}
+          </div>
+          <button type="button" className="sound-button read-to-me" onClick={() => speakPlainText(page.text)}>
+            <PlayIcon /> Read to Me
+          </button>
+        </div>
+      </article>
+      <div className="story-nav">
+        <button type="button" disabled={pageIndex === 0} onClick={() => onPageIndexChange(Math.max(0, pageIndex - 1))}>
+          Previous Page
+        </button>
+        <button type="button" className="primary" onClick={nextPage}>
+          {pageIndex >= story.pages.length - 1 ? 'Finish Story' : 'Next Page'}
+        </button>
+      </div>
+    </section>
+  )
+}
+
+function StoryPageImage({ page, story }: { page: StoryPage; story: Story }) {
+  return (
+    <AssetImage
+      src={resolveStoryAssetUrl(page.image)}
+      label={page.altText || `${story.title} page ${page.pageNumber}`}
+      className="story-page-image"
+      fallback={<StoryImageFallback title={story.title} pageNumber={page.pageNumber} />}
+    />
+  )
+}
+
+function StoryImageFallback({ title, pageNumber }: { title: string; pageNumber: number }) {
+  return (
+    <div className="story-image-fallback" aria-label={`${title} page ${pageNumber} illustration placeholder`}>
+      <span aria-hidden="true" />
+      <strong>{title}</strong>
+      <small>Page {pageNumber} picture soon</small>
+    </div>
   )
 }
 
@@ -256,6 +518,7 @@ function LearningScreen({
   onNext,
   onSarahActivityChange,
   onSarahLessonChange,
+  onBackToPath,
 }: {
   decks: LearningDeck[]
   activeDeck: LearningDeck
@@ -269,6 +532,7 @@ function LearningScreen({
   onNext: () => void
   onSarahActivityChange: (index: number) => void
   onSarahLessonChange: (deltaLessons: number) => void
+  onBackToPath?: () => void
 }) {
   const isSarahLetters = activeDeck.profile === 'sarah' && activeDeck.type === 'letters'
   const lessonStart = isSarahLetters
@@ -303,7 +567,7 @@ function LearningScreen({
       </div>
       <div className="screen-heading">
         <div>
-          <h1>{activeDeck.profile === 'anna' ? 'Reading Words' : activeDeck.level === 1 ? 'Letters' : 'Reading Sounds'}</h1>
+          <h1>{activeDeck.profile === 'anna' ? 'Growing Reader Words' : activeDeck.level === 1 ? 'Earliest Reader Letters' : 'Reading Sounds'}</h1>
           <p>{activeDeck.description}</p>
         </div>
         <div className="deck-meta">
@@ -311,6 +575,7 @@ function LearningScreen({
           <span>cards</span>
         </div>
       </div>
+      {onBackToPath && <button type="button" className="soft-back learning-back" onClick={onBackToPath}>Back to Growing Reader</button>}
       <div className="lesson-progress" aria-label="Lesson progress">
         <span>★ Lesson {lessonNumber}</span>
         <div><span style={{ width: `${Math.max(6, (progress / Math.max(1, progressTotal)) * 100)}%` }} /></div>
@@ -1142,6 +1407,42 @@ function speakText(deck: LearningDeck, text?: string) {
   utterance.lang = deck.language || 'en-US'
   utterance.rate = deck.profile === 'sarah' ? 0.72 : 0.86
   window.speechSynthesis.speak(utterance)
+}
+
+function speakPlainText(text?: string) {
+  if (!text || !('speechSynthesis' in window)) return
+  if (activeAudio) {
+    activeAudio.pause()
+    activeAudio.currentTime = 0
+    activeAudio = null
+  }
+  window.speechSynthesis.cancel()
+  const utterance = new SpeechSynthesisUtterance(text.replace(/\s+/gu, ' ').trim())
+  utterance.lang = 'en-US'
+  utterance.rate = 0.82
+  window.speechSynthesis.speak(utterance)
+}
+
+function readStoryProgress(storyId: string, pageCount: number): number {
+  try {
+    const stored = window.localStorage.getItem(storyProgressKey(storyId))
+    const index = stored ? Number(stored) : 0
+    return Number.isFinite(index) ? Math.max(0, Math.min(pageCount - 1, index)) : 0
+  } catch {
+    return 0
+  }
+}
+
+function saveStoryProgress(storyId: string, pageIndex: number) {
+  try {
+    window.localStorage.setItem(storyProgressKey(storyId), String(pageIndex))
+  } catch {
+    // Reading should never depend on storage support.
+  }
+}
+
+function storyProgressKey(storyId: string): string {
+  return `chunky-reader:story:${storyId}:page`
 }
 
 function titleCase(value: string): string {

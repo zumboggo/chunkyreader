@@ -1,7 +1,7 @@
 [
   {
     "id": "annas-reading-deck",
-    "title": "Anna's Reading Deck",
+    "title": "Growing Reader Word Deck",
     "description": "A first reading deck with simple English words, optional pictures, and word audio.",
     "type": "reading-words",
     "profile": "anna",
@@ -11,7 +11,7 @@
   },
   {
     "id": "sarah-letters-level-1",
-    "title": "Sarah Level 1: Letters",
+    "title": "Earliest Reader Level 1: Letters",
     "description": "See each letter, hear one simple starter sound, and try a tiny question.",
     "type": "letters",
     "profile": "sarah",
@@ -23,7 +23,7 @@
   },
   {
     "id": "sarah-phonemes-level-2",
-    "title": "Sarah Level 2: Sounds",
+    "title": "Earliest Reader Level 2: Sounds",
     "description": "Explore common English speech sounds with one friendly spelling and word each.",
     "type": "phonemes",
     "profile": "sarah",
