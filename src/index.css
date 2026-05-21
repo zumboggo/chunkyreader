@@ -409,7 +409,14 @@ small {
 }
 
 .growing-reader-home,
-.story-library,
+.story-library {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3vw, 26px);
+  max-height: calc(100dvh - 80px);
+  overflow: hidden;
+}
+
 .story-reader,
 .story-complete {
   display: grid;
@@ -483,11 +490,13 @@ small {
   box-shadow: var(--soft-shadow);
 }
 
-.reader-choice-grid,
 .story-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(14px, 2.5vw, 24px);
+  overflow-y: auto;
+  padding-bottom: 16px;
+  scroll-behavior: smooth;
 }
 
 .reader-choice {
@@ -1872,10 +1881,12 @@ small {
     font-size: 1rem;
   }
 
-  .reader-choice-grid,
   .story-grid {
     grid-template-columns: 1fr;
     gap: 12px;
+    overflow-y: auto;
+    padding-bottom: 16px;
+    scroll-behavior: smooth;
   }
 
   .reader-choice {
