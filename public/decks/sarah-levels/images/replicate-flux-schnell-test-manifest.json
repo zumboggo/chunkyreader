@@ -1,0 +1,68 @@
+{
+  "model": "black-forest-labs/flux-schnell",
+  "createdAt": "2026-05-21T01:29:05.751Z",
+  "count": 10,
+  "style": "cute kawaii chibi toddler reading app flashcard",
+  "images": [
+    {
+      "id": "letter-a",
+      "word": "apple",
+      "prompt": "A cute kawaii chibi sticker illustration of an apple. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no alphabet letters, no spelling, no watermark, no poster, no flashcard border.",
+      "image": "decks/sarah-levels/images/apple.png"
+    },
+    {
+      "id": "letter-b",
+      "word": "ball",
+      "prompt": "A cute kawaii chibi sticker illustration of a ball. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no alphabet letters, no spelling, no watermark, no poster, no flashcard border.",
+      "image": "decks/sarah-levels/images/ball.png"
+    },
+    {
+      "id": "letter-c",
+      "word": "cat",
+      "prompt": "A cute kawaii chibi sticker illustration of a cat. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no alphabet letters, no spelling, no watermark, no poster, no flashcard border.",
+      "image": "decks/sarah-levels/images/cat.png"
+    },
+    {
+      "id": "letter-d",
+      "word": "dog",
+      "prompt": "A cute kawaii chibi sticker illustration of a dog. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no alphabet letters, no spelling, no watermark, no poster, no flashcard border.",
+      "image": "decks/sarah-levels/images/dog.png"
+    },
+    {
+      "id": "letter-e",
+      "word": "egg",
+      "prompt": "A cute kawaii chibi sticker illustration of an egg. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no alphabet letters, no spelling, no watermark, no poster, no flashcard border.",
+      "image": "decks/sarah-levels/images/egg.png"
+    },
+    {
+      "id": "letter-f",
+      "word": "fish",
+      "prompt": "A cute kawaii chibi sticker illustration of a fish. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no alphabet letters, no spelling, no watermark, no poster, no flashcard border.",
+      "image": "decks/sarah-levels/images/fish.png"
+    },
+    {
+      "id": "letter-g",
+      "word": "goat",
+      "prompt": "A cute kawaii chibi sticker illustration of a goat. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no alphabet letters, no spelling, no watermark, no poster, no flashcard border.",
+      "image": "decks/sarah-levels/images/goat.png"
+    },
+    {
+      "id": "letter-h",
+      "word": "hat",
+      "prompt": "A cute kawaii chibi sticker illustration of a soft winter hat. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no alphabet letters, no spelling, no watermark, no poster, no flashcard border.",
+      "image": "decks/sarah-levels/images/hat.png"
+    },
+    {
+      "id": "letter-i",
+      "word": "igloo",
+      "prompt": "A cute kawaii chibi sticker illustration of an igloo. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no alphabet letters, no spelling, no watermark, no poster, no flashcard border.",
+      "image": "decks/sarah-levels/images/igloo.png"
+    },
+    {
+      "id": "letter-j",
+      "word": "jam",
+      "prompt": "A cute kawaii chibi sticker illustration of an open glass jar filled with red strawberry jam, completely blank jar with no label. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no alphabet letters, no spelling, no watermark, no poster, no flashcard border.",
+      "image": "decks/sarah-levels/images/jam.png"
+    }
+  ]
+}

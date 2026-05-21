@@ -131,6 +131,17 @@ npm run generate:audio
 
 The generator reads `AZURE_SPEECH_KEY` and `AZURE_SPEECH_REGION`, or the local Azure config file at `C:\Users\LENOVO\Documents\azure-tts-ssml\config.json`. Do not commit or paste Azure credentials. Generated clips go under `public/decks/sarah-levels/audio/`, SSML goes under `public/decks/sarah-levels/ssml/`, and a downloadable audio-pack manifest is written to `public/clip-packs/chunky-reader-audio/clips_manifest.json`.
 
+## Generating Sarah Images
+
+New generated deck images should go through Replicate FLUX Schnell first.
+
+```bash
+$env:REPLICATE_API_TOKEN='your-token'
+npm run generate:letter-images
+```
+
+By default this creates the first 10 Sarah letter-word images in `public/decks/sarah-levels/images/` and writes `replicate-flux-schnell-test-manifest.json` beside them. Set `LETTER_IMAGE_COUNT=26` to generate the whole alphabet. Do not commit or paste Replicate credentials.
+
 ## Adding Another Deck
 
 Add an entry to `public/decks/index.json`.
