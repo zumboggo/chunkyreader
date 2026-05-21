@@ -66,6 +66,8 @@ function App() {
   const [sarahActivityIndex, setSarahActivityIndex] = useState(0)
   const [loadError, setLoadError] = useState('')
   const [loading, setLoading] = useState(true)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [showAdultDetails, setShowAdultDetails] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -111,6 +113,7 @@ function App() {
     [activeDeckId, visibleDecks],
   )
   const currentCard = activeDeck?.cards[cardIndex % Math.max(1, activeDeck.cards.length)]
+  const isLessonActive = Boolean(profile && activeDeck && currentCard)
 
   function chooseProfile(nextProfile: ProfileId) {
     const firstDeck = decks.find((deck) => deck.profile === nextProfile) ?? decks[0]
@@ -121,6 +124,7 @@ function App() {
     setCardIndex(0)
     setPhase('learn')
     setSarahActivityIndex(0)
+    setMenuOpen(false)
   }
 
   function openGrowingWords() {
@@ -130,6 +134,7 @@ function App() {
     setCardIndex(0)
     setPhase('learn')
     setSarahActivityIndex(0)
+    setMenuOpen(false)
   }
 
   function moveCard(delta = 1) {
@@ -158,8 +163,20 @@ function App() {
     setSarahActivityIndex(0)
   }
 
+  function restartLesson() {
+    setCardIndex((index) => {
+      const lessonStart = activeDeck?.profile === 'sarah' && activeDeck?.type === 'letters'
+        ? sarahLetterLessonStartForIndex(index, activeDeck.cards.length)
+        : lessonStartForIndex(index, activeDeck?.cards.length ?? 0)
+      return lessonStart
+    })
+    setPhase('learn')
+    setSarahActivityIndex(0)
+    setMenuOpen(false)
+  }
+
   return (
-    <main className="app-shell">
+    <main className={`app-shell ${isLessonActive ? 'lesson-active' : ''}`}>
       <header className="topbar">
         <button
           className="brand-button"
@@ -167,6 +184,7 @@ function App() {
           onClick={() => {
             setProfile(null)
             setGrowingView('home')
+            setMenuOpen(false)
           }}
         >
           <Mascot size="small" mood="reading" />
@@ -209,16 +227,27 @@ function App() {
           mode={mode}
           phase={phase}
           sarahActivityIndex={sarahActivityIndex}
+          showAdultDetails={showAdultDetails}
+          menuOpen={menuOpen}
+          onMenuToggle={() => setMenuOpen((v) => !v)}
           onDeckChange={(deckId) => {
             setActiveDeckId(deckId)
             setCardIndex(0)
             setPhase('learn')
             setSarahActivityIndex(0)
+            setMenuOpen(false)
           }}
           onNext={moveWithinLesson}
           onSarahActivityChange={setSarahActivityIndex}
           onSarahLessonChange={moveSarahLesson}
           onBackToPath={profile === 'anna' ? () => setGrowingView('home') : undefined}
+          onRestartLesson={restartLesson}
+          onGoHome={() => {
+            setProfile(null)
+            setGrowingView('home')
+            setMenuOpen(false)
+          }}
+          onToggleAdultDetails={() => setShowAdultDetails((v) => !v)}
         />
       ) : (
         <section className="empty-screen">
@@ -514,11 +543,17 @@ function LearningScreen({
   mode,
   phase,
   sarahActivityIndex,
+  showAdultDetails,
+  menuOpen,
+  onMenuToggle,
   onDeckChange,
   onNext,
   onSarahActivityChange,
   onSarahLessonChange,
   onBackToPath,
+  onRestartLesson,
+  onGoHome,
+  onToggleAdultDetails,
 }: {
   decks: LearningDeck[]
   activeDeck: LearningDeck
@@ -528,11 +563,17 @@ function LearningScreen({
   mode: LearningMode
   phase: LessonPhase
   sarahActivityIndex: number
+  showAdultDetails: boolean
+  menuOpen: boolean
+  onMenuToggle: () => void
   onDeckChange: (deckId: string) => void
   onNext: () => void
   onSarahActivityChange: (index: number) => void
   onSarahLessonChange: (deltaLessons: number) => void
   onBackToPath?: () => void
+  onRestartLesson: () => void
+  onGoHome: () => void
+  onToggleAdultDetails: () => void
 }) {
   const isSarahLetters = activeDeck.profile === 'sarah' && activeDeck.type === 'letters'
   const lessonStart = isSarahLetters
@@ -550,52 +591,28 @@ function LearningScreen({
   const lessonNumber = isSarahLetters
     ? sarahLetterLessonNumberForIndex(cardIndex, activeDeck.cards.length)
     : lessonNumberForIndex(cardIndex, activeDeck.cards.length)
-  const progressLabel = isSarahLetters
-    ? sarahActivityIndex < lessonCards.length
-      ? `Sound ${Math.min(sarahActivityIndex + 1, lessonCards.length)} of ${lessonCards.length}`
-      : `Practice ${Math.min(sarahActivityIndex + 1, sarahActivities.length)} of ${sarahActivities.length}`
-    : `${progress} / ${lessonCards.length}`
-  return (
-    <section className="learning-screen">
-      <div className="play-header">
-        <button type="button" className="round-icon" aria-label="Open menu">☰</button>
-        <ChunkyLogo compact />
-        <div className="star-counter" aria-label="Stars earned">
-          <span>★</span>
-          <strong>{Math.min(999, progress + 127)}</strong>
-        </div>
-      </div>
-      <div className="screen-heading">
-        <div>
-          <h1>{activeDeck.profile === 'anna' ? 'Growing Reader Words' : activeDeck.level === 1 ? 'Earliest Reader Letters' : 'Reading Sounds'}</h1>
-          <p>{activeDeck.description}</p>
-        </div>
-        <div className="deck-meta">
-          <strong>{activeDeck.cards.length}</strong>
-          <span>cards</span>
-        </div>
-      </div>
-      {onBackToPath && <button type="button" className="soft-back learning-back" onClick={onBackToPath}>Back to Growing Reader</button>}
-      <div className="lesson-progress" aria-label="Lesson progress">
-        <span>★ Lesson {lessonNumber}</span>
-        <div><span style={{ width: `${Math.max(6, (progress / Math.max(1, progressTotal)) * 100)}%` }} /></div>
-        <strong>{progressLabel}</strong>
-      </div>
 
-      {decks.length > 1 && (
-        <div className="deck-tabs" aria-label="Choose deck">
-          {decks.map((deck) => (
-            <button
-              key={deck.id}
-              className={deck.id === activeDeckId ? 'active' : ''}
-              type="button"
-              onClick={() => onDeckChange(deck.id)}
-            >
-              {deck.level ? `Level ${deck.level}` : deck.title}
-            </button>
-          ))}
-        </div>
-      )}
+  return (
+    <section className="learning-screen lesson-focus">
+      <LessonMenu
+        isOpen={menuOpen}
+        onToggle={onMenuToggle}
+        decks={decks}
+        activeDeckId={activeDeckId}
+        onDeckChange={onDeckChange}
+        onRestartLesson={onRestartLesson}
+        onGoHome={onGoHome}
+        onBackToPath={onBackToPath}
+        showAdultDetails={showAdultDetails}
+        onToggleAdultDetails={onToggleAdultDetails}
+      />
+
+      <FocusLessonTopBar
+        lessonNumber={lessonNumber}
+        progress={progress}
+        total={progressTotal}
+        onMenuToggle={onMenuToggle}
+      />
 
       {isSarahLetters ? (
         <SarahLetterLesson
@@ -606,13 +623,12 @@ function LearningScreen({
           activityIndex={sarahActivityIndex}
           onActivityChange={onSarahActivityChange}
           onLessonChange={onSarahLessonChange}
+          showAdultDetails={showAdultDetails}
         />
       ) : phase === 'learn' ? (
         <ExploreMode
           deck={activeDeck}
           card={card}
-          cardIndex={lessonIndex}
-          total={lessonCards.length}
           onNext={onNext}
         />
       ) : (
@@ -630,6 +646,172 @@ function LearningScreen({
   )
 }
 
+function LessonMenu({
+  isOpen,
+  onToggle,
+  decks,
+  activeDeckId,
+  onDeckChange,
+  onRestartLesson,
+  onGoHome,
+  onBackToPath,
+  showAdultDetails,
+  onToggleAdultDetails,
+}: {
+  isOpen: boolean
+  onToggle: () => void
+  decks: LearningDeck[]
+  activeDeckId: string
+  onDeckChange: (deckId: string) => void
+  onRestartLesson: () => void
+  onGoHome: () => void
+  onBackToPath?: () => void
+  showAdultDetails: boolean
+  onToggleAdultDetails: () => void
+}) {
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape' && isOpen) {
+        onToggle()
+      }
+    }
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node) && isOpen) {
+        onToggle()
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isOpen, onToggle])
+
+  return (
+    <>
+      <button
+        type="button"
+        className="menu-button"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-controls="lesson-menu"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+      {isOpen && (
+        <div
+          id="lesson-menu"
+          ref={menuRef}
+          className="lesson-menu"
+          role="dialog"
+          aria-label="Lesson menu"
+        >
+          <div className="lesson-menu-header">
+            <strong>Menu</strong>
+            <button type="button" className="menu-close" onClick={onToggle} aria-label="Close menu">
+              ✕
+            </button>
+          </div>
+          <div className="lesson-menu-content">
+            {onBackToPath && (
+              <button type="button" className="menu-item" onClick={onBackToPath}>
+                ← Back to Growing Reader
+              </button>
+            )}
+            <button type="button" className="menu-item" onClick={onRestartLesson}>
+              ↻ Restart Lesson
+            </button>
+            {decks.length > 1 && (
+              <div className="menu-section">
+                <strong>Choose Deck</strong>
+                {decks.map((deck) => (
+                  <button
+                    key={deck.id}
+                    type="button"
+                    className={`menu-item ${deck.id === activeDeckId ? 'active' : ''}`}
+                    onClick={() => onDeckChange(deck.id)}
+                  >
+                    {deck.level ? `Level ${deck.level}` : deck.title}
+                    {deck.id === activeDeckId && ' ✓'}
+                  </button>
+                ))}
+              </div>
+            )}
+            <div className="menu-section">
+              <strong>Options</strong>
+              <button type="button" className="menu-item" onClick={onToggleAdultDetails}>
+                {showAdultDetails ? '✓ ' : ''}Adult Details
+              </button>
+            </div>
+            <button type="button" className="menu-item menu-home" onClick={onGoHome}>
+              ⌂ Home
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
+
+function FocusLessonTopBar({
+  lessonNumber,
+  progress,
+  total,
+  onMenuToggle,
+}: {
+  lessonNumber: number
+  progress: number
+  total: number
+  onMenuToggle: () => void
+}) {
+  const dots = Math.min(5, total)
+  const filledDots = Math.ceil((progress / total) * dots)
+
+  return (
+    <div className="focus-topbar">
+      <button
+        type="button"
+        className="menu-button-compact"
+        onClick={onMenuToggle}
+        aria-label="Menu"
+      >
+        ☰
+      </button>
+      <div className="focus-progress">
+        <span className="lesson-label">Lesson {lessonNumber}</span>
+        <div className="progress-dots" aria-label={`Progress ${progress} of ${total}`}>
+          {Array.from({ length: dots }).map((_, i) => (
+            <span key={i} className={i < filledDots ? 'filled' : ''} />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function AudioPromptButton({
+  onClick,
+  label = 'Listen',
+}: {
+  onClick: () => void
+  label?: string
+}) {
+  return (
+    <button type="button" className="audio-prompt-button" onClick={onClick}>
+      <span className="audio-icon" aria-hidden="true">
+        <span className="audio-wave" />
+        <span className="audio-wave" />
+        <span className="audio-wave" />
+      </span>
+      <span className="audio-label">{label}</span>
+    </button>
+  )
+}
+
 function SarahLetterLesson({
   deck,
   lessonCards,
@@ -637,6 +819,7 @@ function SarahLetterLesson({
   activityIndex,
   onActivityChange,
   onLessonChange,
+  showAdultDetails,
 }: {
   deck: LearningDeck
   lessonCards: LearningCard[]
@@ -644,6 +827,7 @@ function SarahLetterLesson({
   activityIndex: number
   onActivityChange: (index: number) => void
   onLessonChange: (deltaLessons: number) => void
+  showAdultDetails: boolean
 }) {
   const activities = useMemo(() => buildSarahActivities(lessonCards), [lessonCards])
   const activity = activities[Math.min(activityIndex, Math.max(0, activities.length - 1))]
@@ -685,7 +869,7 @@ function SarahLetterLesson({
 
   if (!activity || completed) {
     return (
-      <section className="sarah-complete">
+      <section className="sarah-complete focus-complete">
         <div className="celebration-burst" aria-hidden="true" />
         <Mascot mood="happy" />
         <div>
@@ -709,132 +893,184 @@ function SarahLetterLesson({
   const feedback = getSarahFeedback(status, activity)
 
   return (
-    <section className={`sarah-lesson ${isIntro ? 'intro' : 'question'} ${status}`}>
-      <article className="sarah-stage">
-        <div className="sarah-card-top">
-          <span className="prompt-topline">{getSarahStageLabel(activity, activityIndex)}</span>
-          <button type="button" className="sound-button compact" onClick={() => playSarahActivityAudio(deck, activity)}>
-            <PlayIcon /> Listen
-          </button>
-        </div>
-        <h2>{getSarahPrompt(activity)}</h2>
-        <SarahActivityVisual deck={deck} activity={activity} />
-      </article>
+    <section className={`focus-lesson ${isIntro ? 'intro' : 'question'} ${status}`}>
+      <div className="focus-main">
+        {isIntro ? (
+          <SarahIntroView
+            deck={deck}
+            activity={activity}
+            activityIndex={activityIndex}
+            onNext={nextActivity}
+            showAdultDetails={showAdultDetails}
+          />
+        ) : (
+          <SarahQuestionView
+            deck={deck}
+            activity={activity}
+            status={status}
+            wrongChoice={wrongChoice}
+            onChoose={choose}
+            showAdultDetails={showAdultDetails}
+          />
+        )}
+      </div>
 
-      <aside className="sarah-helper">
-        <Mascot mood={mood} />
-        <div>
+      <div className={`focus-feedback ${status ? (status === 'correct' ? 'happy' : 'try') : ''}`}>
+        <Mascot mood={mood} size="small" />
+        <div className="feedback-text">
           <strong>{feedback.title}</strong>
           <span>{feedback.detail}</span>
         </div>
-      </aside>
-
-      {isIntro ? (
-        <div className="sarah-intro-actions">
-          <button type="button" className="secondary-listen" onClick={() => playSarahActivityAudio(deck, activity)}>
-            <PlayIcon /> Listen again
-          </button>
-          <button type="button" className="primary" onClick={nextActivity}>Next</button>
-        </div>
-      ) : (
-        <SarahAnswerChoices
-          activity={activity}
-          status={status}
-          wrongChoice={wrongChoice}
-          onChoose={choose}
-        />
-      )}
+      </div>
     </section>
   )
 }
 
-function SarahActivityVisual({ deck, activity }: { deck: LearningDeck; activity: SarahActivity }) {
-  const questionKind = getSarahQuestionKind(activity)
-  if (activity.kind === 'intro') {
-    return (
-      <div className="sarah-intro-visual">
-        <div className="letter-orb">
+function SarahIntroView({
+  deck,
+  activity,
+  activityIndex,
+  onNext,
+  showAdultDetails,
+}: {
+  deck: LearningDeck
+  activity: SarahActivity
+  activityIndex: number
+  onNext: () => void
+  showAdultDetails: boolean
+}) {
+  return (
+    <div className="focus-intro">
+      <div className="focus-prompt">
+        <span className="stage-label">Sound {Math.min(activityIndex + 1, 5)} of 5</span>
+        <h2>This is {activity.card.displayText}.</h2>
+      </div>
+      <div className="focus-visual">
+        <div className="letter-display">
           <strong>{activity.card.displayText}</strong>
-          <span>{activity.card.sound}</span>
+          {showAdultDetails && <span className="phonetic-detail">{activity.card.sound}</span>}
         </div>
         <Picture deck={deck} card={activity.card} />
-        <strong className="example-word">{activity.card.exampleWord}</strong>
+        <span className="example-word">{activity.card.exampleWord}</span>
       </div>
-    )
-  }
-
-  if (questionKind === 'beginningSound') {
-    return (
-      <div className="sarah-picture-prompt">
-        <Picture deck={deck} card={activity.card} />
-        <strong>{activity.card.exampleWord}</strong>
+      <div className="focus-actions">
+        <AudioPromptButton
+          onClick={() => playSarahActivityAudio(deck, activity)}
+          label="Listen"
+        />
+        <button type="button" className="primary" onClick={onNext}>Next</button>
       </div>
-    )
-  }
-
-  if (questionKind === 'upperLowerMatch') {
-    const promptText = activity.promptCase === 'upper' ? activity.card.uppercase : activity.card.lowercase
-    return <div className="case-prompt">{promptText}</div>
-  }
-
-  return (
-    <div className="question-cue sarah-cue" aria-label="Current sound">
-      <strong>{questionKind === 'letterToSound' ? activity.card.displayText : activity.card.sound}</strong>
-      <small>{questionKind === 'letterToSound' ? 'Tap the sound' : 'Tap the letter'}</small>
     </div>
   )
 }
 
-function SarahAnswerChoices({
+function SarahQuestionView({
+  deck,
   activity,
   status,
   wrongChoice,
   onChoose,
+  showAdultDetails,
 }: {
+  deck: LearningDeck
   activity: SarahActivity
   status: SarahActivityStatus
   wrongChoice: string
   onChoose: (answer: string, option?: LearningCard) => void
+  showAdultDetails: boolean
 }) {
+  const questionKind = getSarahQuestionKind(activity)
   const correctAnswer = getSarahCorrectAnswer(activity)
   const disabled = status === 'correct' || status === 'revealed'
-  const questionKind = getSarahQuestionKind(activity)
 
-  if (activity.textOptions) {
-    return (
-      <div className="sarah-options text-options" aria-label="Answer choices">
-        {activity.textOptions.map((option) => (
-          <button
-            key={option}
-            type="button"
-            className={choiceState(option, correctAnswer, wrongChoice, status)}
-            disabled={disabled}
-            onClick={() => onChoose(option)}
-          >
-            <strong>{option}</strong>
-          </button>
-        ))}
-      </div>
-    )
+  function handleAudioClick() {
+    if (questionKind === 'upperLowerMatch') {
+      void playSpecificCardAudio(deck, activity.card, activity.card.letterNameAudio, activity.card.displayText)
+    } else {
+      void playCardAudio(deck, activity.card)
+    }
   }
 
   return (
-    <div className="sarah-options" aria-label="Answer choices">
-      {(activity.options ?? []).map((option) => {
-        const answer = option.id
-        return (
-          <button
-            key={option.id}
-            type="button"
-            className={choiceState(answer, correctAnswer, wrongChoice, status)}
-            disabled={disabled}
-            onClick={() => onChoose(answer, option)}
-          >
-            <strong>{sarahOptionLabel(option, questionKind)}</strong>
-            <small>{sarahOptionSmall(option, questionKind)}</small>
-          </button>
-        )
-      })}
+    <div className="focus-question">
+      <div className="focus-prompt">
+        {questionKind === 'soundToLetter' && (
+          <>
+            <span className="stage-label">Hear the sound</span>
+            <h2>Which letter makes this sound?</h2>
+            <AudioPromptButton onClick={handleAudioClick} label="Tap to hear" />
+            {showAdultDetails && <span className="phonetic-detail">{activity.card.sound}</span>}
+          </>
+        )}
+        {questionKind === 'letterToSound' && (
+          <>
+            <span className="stage-label">Say the sound</span>
+            <h2>What sound does this letter make?</h2>
+            <div className="prompt-letter">{activity.card.displayText}</div>
+          </>
+        )}
+        {questionKind === 'upperLowerMatch' && (
+          <>
+            <span className="stage-label">Match big and little</span>
+            <h2>
+              {activity.promptCase === 'upper'
+                ? `Find little ${activity.card.lowercase}.`
+                : `Find big ${activity.card.uppercase}.`}
+            </h2>
+            <div className="prompt-letter case-prompt-display">
+              {activity.promptCase === 'upper' ? activity.card.uppercase : activity.card.lowercase}
+            </div>
+          </>
+        )}
+        {questionKind === 'beginningSound' && (
+          <>
+            <span className="stage-label">Starting sound</span>
+            <h2>What starts with {activity.card.exampleWord}?</h2>
+            <div className="focus-visual compact">
+              <Picture deck={deck} card={activity.card} />
+              <AudioPromptButton onClick={handleAudioClick} label="Hear the word" />
+            </div>
+          </>
+        )}
+      </div>
+
+      <div className="focus-options" aria-label="Answer choices">
+        {activity.textOptions ? (
+          activity.textOptions.map((option) => (
+            <button
+              key={option}
+              type="button"
+              className={`focus-option ${choiceState(option, correctAnswer, wrongChoice, status)}`}
+              disabled={disabled}
+              onClick={() => onChoose(option)}
+            >
+              <strong>{option}</strong>
+            </button>
+          ))
+        ) : (
+          (activity.options ?? []).map((option) => {
+            const answer = option.id
+            const isSoundQuestion = questionKind === 'letterToSound'
+            return (
+              <button
+                key={option.id}
+                type="button"
+                className={`focus-option ${choiceState(answer, correctAnswer, wrongChoice, status)}`}
+                disabled={disabled}
+                onClick={() => onChoose(answer, option)}
+              >
+                <strong>{isSoundQuestion ? option.displayText : option.displayText}</strong>
+                {!isSoundQuestion && !showAdultDetails && option.exampleWord && (
+                  <small className="friendly-hint">{option.exampleWord}</small>
+                )}
+                {showAdultDetails && (
+                  <small className="phonetic-hint">{option.sound}</small>
+                )}
+              </button>
+            )
+          })
+        )}
+      </div>
     </div>
   )
 }
@@ -842,50 +1078,52 @@ function SarahAnswerChoices({
 function ExploreMode({
   deck,
   card,
-  cardIndex,
-  total,
   onNext,
 }: {
   deck: LearningDeck
   card: LearningCard
-  cardIndex: number
-  total: number
   onNext: () => void
 }) {
   useAutoplayCard(deck, card, `learn:${deck.id}:${card.id}`)
-  const showDetails = true
-  const mood: MascotMood = showDetails ? 'happy' : card.type === 'word' ? 'curious' : 'reading'
+  const mood: MascotMood = card.type === 'word' ? 'curious' : 'reading'
+
   return (
-    <section className="study-layout">
-      <div className="helper-panel">
-        <Mascot mood={mood} />
-        <strong>{card.type === 'word' ? 'Ready to read?' : 'Let us hear the sound!'}</strong>
-        <button type="button" className="sound-button" onClick={() => playCardAudio(deck, card)}>
-          <PlayIcon /> Tap to listen
-        </button>
-      </div>
-
-      <article className="reader-card">
-        <CardHeader deck={deck} card={card} />
-        <div className="main-card-content">
-          <CardPrimary card={card} />
-          {showDetails ? <CardBack deck={deck} card={card} /> : <PeekHint card={card} />}
+    <section className="focus-lesson">
+      <div className="focus-main">
+        <div className="focus-intro">
+          <div className="focus-prompt">
+            <span className="stage-label">Listen and learn</span>
+            <h2>{card.type === 'word' ? 'This word is...' : 'This letter is...'}</h2>
+          </div>
+          <div className="focus-visual">
+            {card.type === 'word' ? (
+              <>
+                <Picture deck={deck} card={card} />
+                <div className="word-display">{card.word}</div>
+              </>
+            ) : (
+              <>
+                <div className="letter-display">
+                  <strong>{card.displayText}</strong>
+                </div>
+                <Picture deck={deck} card={card} />
+                <span className="example-word">{card.exampleWord}</span>
+              </>
+            )}
+          </div>
+          <div className="focus-actions">
+            <AudioPromptButton onClick={() => playCardAudio(deck, card)} label="Listen" />
+            <button type="button" className="primary" onClick={onNext}>Next</button>
+          </div>
         </div>
-      </article>
-
-      <div className="mobile-mascot-row">
-        <Mascot mood={mood} />
-        <div>
-          <strong>{showDetails ? 'Yay!' : "I'm here to help!"}</strong>
-          <span>{showDetails ? 'Great job!' : card.type === 'word' ? 'Tap the card!' : 'Tap to listen!'}</span>
+      </div>
+      <div className="focus-feedback">
+        <Mascot mood={mood} size="small" />
+        <div className="feedback-text">
+          <strong>{card.type === 'word' ? 'Read it!' : 'Say it!'}</strong>
+          <span>Tap the button to hear</span>
         </div>
       </div>
-
-      <CardControls
-        cardIndex={cardIndex}
-        total={total}
-        onNext={onNext}
-      />
     </section>
   )
 }
@@ -910,8 +1148,6 @@ function ChoiceMode({
   const options = useMemo(() => buildOptions(lessonCards, card), [card, lessonCards])
   const correct = selected === card.id
   const mood: MascotMood = selected ? (correct ? 'happy' : 'sad') : 'curious'
-  const prompt = getChoicePrompt(deck, card, mode)
-  const promptShowsWord = deck.type === 'letters' && mode === 'activeRecall'
 
   function choose(cardId: string) {
     setSelected(cardId)
@@ -920,113 +1156,66 @@ function ChoiceMode({
   }
 
   return (
-    <section className="choice-layout">
-      <aside className="choice-prompt">
-        <div className="prompt-topline">{mode === 'readerMode' ? 'Quiz time' : 'Practice time'}</div>
-        <h2>{prompt}</h2>
-        <button type="button" className="sound-button" onClick={() => playCardAudio(deck, card)}>
-          <PlayIcon /> Tap to listen
-        </button>
-        <div className="prompt-art">
-          {card.type === 'word' || mode === 'readerMode' ? <Picture deck={deck} card={card} /> : <QuestionCue card={card} />}
+    <section className="focus-lesson">
+      <div className="focus-main">
+        <div className="focus-question">
+          <div className="focus-prompt">
+            <span className="stage-label">{mode === 'readerMode' ? 'Quiz' : 'Practice'}</span>
+            <h2>{getChoicePrompt(deck, card, mode)}</h2>
+            {deck.type === 'letters' && mode === 'activeRecall' && (
+              <div className="prompt-cue">
+                <AudioPromptButton onClick={() => playCardAudio(deck, card)} label="Hear it" />
+              </div>
+            )}
+          </div>
+          <div className="focus-options" aria-label="Answer choices">
+            {options.map((option) => {
+              const state =
+                selected && option.id === card.id
+                  ? 'correct'
+                  : selected === option.id
+                    ? 'wrong'
+                    : ''
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  className={`focus-option ${state}`}
+                  disabled={Boolean(selected)}
+                  onClick={() => choose(option.id)}
+                >
+                  <strong>{optionLabel(option)}</strong>
+                  <small>{optionSmallLabel(option)}</small>
+                </button>
+              )
+            })}
+          </div>
         </div>
-        {promptShowsWord && <strong className="prompt-big">{card.displayText}</strong>}
-      </aside>
-
-      <div className="choice-main">
-        <div className="choice-options" aria-label="Answer choices">
-          {options.map((option) => {
-            const state =
-              selected && option.id === card.id
-                ? 'correct'
-                : selected === option.id
-                  ? 'wrong'
-                  : ''
-            return (
-              <button
-                key={option.id}
-                type="button"
-                className={state}
-                disabled={Boolean(selected)}
-                onClick={() => choose(option.id)}
-              >
-                <strong>{optionLabel(option)}</strong>
-                <small>{optionSmallLabel(option)}</small>
-              </button>
-            )
-          })}
-        </div>
-
-        <div className={`feedback ${selected ? (correct ? 'happy' : 'try-again') : ''}`}>
+      </div>
+      <div className={`focus-feedback ${selected ? (correct ? 'happy' : 'try') : ''}`}>
+        <Mascot mood={mood} size="small" />
+        <div className="feedback-text">
           {selected ? (
             correct ? (
-              encouragement[(cardIndex + card.id.length) % encouragement.length]
+              <>
+                <strong>Great!</strong>
+                <span>{encouragement[(cardIndex + card.id.length) % encouragement.length]}</span>
+              </>
             ) : (
               <>
-                Try this one: <strong>{optionLabel(card)}</strong>
+                <strong>Try again</strong>
+                <span>That was {optionLabel(card)}</span>
               </>
             )
           ) : (
-            'Choose one'
+            <>
+              <strong>Choose one</strong>
+              <span>Tap the answer</span>
+            </>
           )}
         </div>
-        <div className={`mood-callout ${selected ? (correct ? 'happy' : 'try-again') : 'thinking'}`}>
-          <Mascot mood={mood} />
-          <div>
-            <strong>{selected ? (correct ? 'Yay!' : 'Oops!') : 'Hmm...'}</strong>
-            <span>{selected ? (correct ? 'Great job!' : 'Try again!') : "What's that?"}</span>
-          </div>
-        </div>
-
-        <CardControls
-          cardIndex={cardIndex}
-          total={lessonCards.length}
-          onNext={onNext}
-        />
       </div>
     </section>
-  )
-}
-
-function CardHeader({ deck, card }: { deck: LearningDeck; card: LearningCard }) {
-  return (
-    <div className="card-header">
-      <span>{deck.type === 'phonemes' ? 'Speech sound' : deck.type === 'letters' ? 'Letter sound' : 'Word card'}</span>
-      <small>{card.category || (card.difficulty ? `Level ${card.difficulty}` : deck.title)}</small>
-    </div>
-  )
-}
-
-function CardPrimary({ card }: { card: LearningCard }) {
-  if (card.type === 'word') {
-    return <h2 className="word-display">{card.word}</h2>
-  }
-  return (
-    <div className="sound-display">
-      <strong>{card.displayText}</strong>
-      <span>{card.sound || card.phoneme}</span>
-    </div>
-  )
-}
-
-function CardBack({ deck, card }: { deck: LearningDeck; card: LearningCard }) {
-  return (
-    <div className="card-back single-visual">
-      <Picture deck={deck} card={card} />
-      <div className="card-copy">
-        {card.exampleWord && <strong>{card.exampleWord}</strong>}
-        {card.meaning && card.meaning !== card.word && <strong>{card.meaning}</strong>}
-        {card.exampleSentence && <p>{card.exampleSentence}</p>}
-      </div>
-    </div>
-  )
-}
-
-function PeekHint({ card }: { card: LearningCard }) {
-  return (
-    <div className="peek-hint">
-      <span>{card.type === 'word' ? 'Look at the picture' : 'Listen to the sound'}</span>
-    </div>
   )
 }
 
@@ -1074,15 +1263,6 @@ function PictureFallback({ label }: { label: string }) {
   )
 }
 
-function QuestionCue({ card }: { card: LearningCard }) {
-  return (
-    <div className="question-cue" aria-label="Current answer">
-      <strong>{optionLabel(card)}</strong>
-      <small>{optionSmallLabel(card)}</small>
-    </div>
-  )
-}
-
 function Mascot({ size = 'large', mood = 'reading' }: { size?: 'small' | 'large'; mood?: MascotMood }) {
   const [failed, setFailed] = useState(false)
   const src = `${import.meta.env.BASE_URL}assets/mascots/mascot-expressions.png`
@@ -1120,27 +1300,6 @@ function ChunkyLogo({ compact = false }: { compact?: boolean }) {
   )
 }
 
-function CardControls({
-  cardIndex,
-  total,
-  onNext,
-}: {
-  cardIndex: number
-  total: number
-  onNext: () => void
-}) {
-  return (
-    <div className="card-controls">
-      <span>
-        {cardIndex + 1} / {total}
-      </span>
-      <button type="button" className="primary" onClick={onNext} aria-label="Next card">
-        {cardIndex + 1 >= total ? 'Again' : 'Next'}
-      </button>
-    </div>
-  )
-}
-
 function PlayIcon() {
   return <span className="play-icon" aria-hidden="true" />
 }
@@ -1172,7 +1331,7 @@ async function playCardAudio(deck: LearningDeck, card: LearningCard) {
     }
   }
 
-  const text = card.speechCue || card.sound || card.phoneme || card.exampleWord || card.word || card.displayText
+  const text = card.speechCue || card.exampleWord || card.word || card.displayText
   speakText(deck, text)
 }
 
@@ -1213,8 +1372,8 @@ function optionLabel(card: LearningCard): string {
 }
 
 function optionSmallLabel(card: LearningCard): string {
-  if (card.type === 'phoneme') return card.exampleWord || card.phoneme || ''
-  if (card.type === 'letter') return card.sound || card.exampleWord || ''
+  if (card.type === 'phoneme') return card.exampleWord || ''
+  if (card.type === 'letter') return card.exampleWord || ''
   return card.category || ''
 }
 
@@ -1304,37 +1463,14 @@ function getSarahQuestionKind(activity: SarahActivity): SarahQuestionKind | 'int
   return activity.kind === 'review' ? activity.reviewVariant ?? 'soundToLetter' : activity.kind
 }
 
-function getSarahPrompt(activity: SarahActivity): string {
-  const kind = getSarahQuestionKind(activity)
-  const word = titleCase(activity.card.exampleWord ?? '')
-  if (kind === 'intro') return `This is ${activity.card.displayText}.`
-  if (kind === 'soundToLetter') return `Which letter says ${activity.card.sound}?`
-  if (kind === 'letterToSound') return `What sound does ${activity.card.displayText} make?`
-  if (kind === 'upperLowerMatch') {
-    return activity.promptCase === 'upper'
-      ? `Find little ${activity.card.lowercase}.`
-      : `Find big ${activity.card.uppercase}.`
-  }
-  return `${word} starts with what sound?`
-}
-
 function getSarahCorrectAnswer(activity: SarahActivity): string {
   if (activity.textOptions) return activity.correctText ?? ''
   return activity.card.id
 }
 
-function getSarahStageLabel(activity: SarahActivity, index: number): string {
-  if (activity.kind === 'intro') return `Listen ${index + 1} of 5`
-  if (activity.kind === 'review') return 'Quick review'
-  if (activity.kind === 'soundToLetter') return 'Hear it'
-  if (activity.kind === 'letterToSound') return 'Say it'
-  if (activity.kind === 'upperLowerMatch') return 'Match it'
-  return 'Start sound'
-}
-
 function getSarahFeedback(status: SarahActivityStatus, activity: SarahActivity): { title: string; detail: string } {
   if (activity.kind === 'intro') {
-    return { title: 'Listen with Chunky!', detail: `${activity.card.displayText} says ${activity.card.sound}.` }
+    return { title: 'Listen with Chunky!', detail: `${activity.card.displayText} as in ${activity.card.exampleWord}.` }
   }
   if (status === 'correct') return { title: 'Yay!', detail: 'Great job!' }
   if (status === 'try-again') return { title: 'Almost!', detail: 'Try one more time.' }
@@ -1344,19 +1480,7 @@ function getSarahFeedback(status: SarahActivityStatus, activity: SarahActivity):
 
 function sarahAnswerText(activity: SarahActivity): string {
   if (activity.textOptions) return activity.correctText ?? ''
-  const kind = getSarahQuestionKind(activity)
-  return sarahOptionLabel(activity.card, kind)
-}
-
-function sarahOptionLabel(card: LearningCard, kind: SarahQuestionKind | 'intro'): string {
-  if (kind === 'letterToSound') return card.sound || ''
-  return card.displayText
-}
-
-function sarahOptionSmall(card: LearningCard, kind: SarahQuestionKind | 'intro'): string {
-  if (kind === 'letterToSound') return card.displayText
-  if (kind === 'beginningSound') return card.sound || ''
-  return card.exampleWord || card.sound || ''
+  return activity.card.displayText
 }
 
 function choiceState(answer: string, correctAnswer: string, wrongChoice: string, status: SarahActivityStatus): string {
@@ -1443,10 +1567,6 @@ function saveStoryProgress(storyId: string, pageIndex: number) {
 
 function storyProgressKey(storyId: string): string {
   return `chunky-reader:story:${storyId}:page`
-}
-
-function titleCase(value: string): string {
-  return value ? `${value[0].toUpperCase()}${value.slice(1)}` : value
 }
 
 function lessonStartForIndex(index: number, totalCards: number): number {
