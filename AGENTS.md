@@ -16,8 +16,10 @@ Chunky Reader is a small, joyful reading app for young children. Keep it close t
 
 ## Content Rules
 
-- Anna uses image-backed word reading cards.
-- Sarah uses Level 1 letters and Level 2 reading sounds.
+- The child-facing labels are Growing Reader for Anna and Earliest Reader for Sarah. Keep the internal profile ids unless there is a very strong reason to migrate stored content.
+- Growing Reader uses image-backed word reading cards and tiny story-reading pages.
+- Earliest Reader uses Level 1 letters and Level 2 reading sounds.
+- Growing Reader stories live in `public/stories/anne-stories.json`; illustrations are generated into `public/stories/anne/images/` and must keep public-relative paths that work under `/chunkyreader/`.
 - Do not add mouth-shape or articulation-vector UI. It was removed because the vector cues were not useful enough for this app.
 - Missing images or audio must fall back gracefully.
 - Future decks should stay reusable across English reading decks, phonics decks, audio-assisted decks, and the original Chinese vocabulary style.

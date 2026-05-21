@@ -9,8 +9,12 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "verify:decks": "node scripts/verify-decks.mjs",
+    "verify:stories": "node scripts/verify-stories.mjs",
     "generate:audio": "node scripts/generate-azure-reading-clips.mjs",
-    "generate:letter-images": "node scripts/generate-replicate-letter-images.mjs"
+    "generate:letter-images": "node scripts/generate-replicate-letter-images.mjs",
+    "generate:story-images": "node scripts/generate-story-images.mjs",
+    "generate:story-images:dry": "node scripts/generate-story-images.mjs --dry-run",
+    "generate:story-images:test": "node scripts/generate-story-images.mjs --limit 2"
   },
   "dependencies": {
     "react": "^19.2.6",

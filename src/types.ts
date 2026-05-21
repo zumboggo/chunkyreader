@@ -66,6 +66,27 @@ export interface LearningCard {
   speechCue?: string
 }
 
+export interface StoryPage {
+  pageNumber: number
+  text: string
+  image: string
+  imagePrompt?: string
+  negativePrompt?: string
+  altText?: string
+  audio?: string
+}
+
+export interface Story {
+  id: string
+  title: string
+  series?: string
+  readingLevel?: string
+  description?: string
+  coverImage?: string
+  coverPrompt?: string
+  pages: StoryPage[]
+}
+
 export interface ClipPackManifest {
   packName: string
   createdAt?: string

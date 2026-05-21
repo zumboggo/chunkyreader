@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-reader-v2'
+const CACHE_VERSION = 'chunky-reader-v3'
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`
 
@@ -12,6 +12,7 @@ const CORE_ASSETS = [
   'decks/index.json',
   'decks/sarah-letters-level-1.json',
   'decks/sarah-phonemes-level-2.json',
+  'stories/anne-stories.json',
   'clip-packs/index.json',
   'clip-packs/chunky-reader-audio/clips_manifest.json',
   'clip-packs/annas-reading-deck/clips_manifest.json',
