@@ -69,7 +69,7 @@ async function main() {
         title: 'Chunky Reader Audio Pack',
         description: 'Azure TTS clips for kid-facing Chunky Reader text, including sound decks, story pages, prompts, and feedback.',
         provider: synthesize && credentials ? 'azure-tts' : 'ssml-only',
-        version: '2026-05-kid-facing-audio-v2',
+        version: '2026-05-kid-facing-audio-v3',
         voices: TTS_VOICES,
         voiceVersions: TTS_VOICE_VERSIONS,
         outputFormat,

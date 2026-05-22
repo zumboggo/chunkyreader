@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
   <voice name="en-US-JennyNeural">
-    <prosody rate="-12%" pitch="+6%">
-      Anne got a bit of milk.
-The cat had the milk.
-Now the cat was not sad.
-Anne was glad.
+    <prosody rate="-8%" pitch="+2%">
+      John gave it back.<break time="350ms"/>Robin gave a big grin.<break time="350ms"/>The red feather was for both of them.
     </prosody>
   </voice>
 </speak>

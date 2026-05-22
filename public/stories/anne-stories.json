@@ -13,7 +13,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne in a red hat running toward a wooden gate in the countryside. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne runs toward a country gate while wearing a red hat.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-red-hat-page-1.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-red-hat-page-1.mp3"
       },
       {
         "pageNumber": 2,
@@ -22,7 +22,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne proudly smiling and showing off her red hat with one hand near the brim. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, modest old-fashioned dress, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne smiles proudly while wearing her red hat.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-red-hat-page-2.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-red-hat-page-2.mp3"
       },
       {
         "pageNumber": 3,
@@ -31,7 +31,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne and Diana standing together by a country lane while Diana admires Anne's red hat. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, dark-haired Diana as a kind cheerful young girl, old-fashioned dresses, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Diana smiles at Anne's red hat while Anne smiles back.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-red-hat-page-3.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-red-hat-page-3.mp3"
       }
     ]
   },
@@ -49,7 +49,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne kneeling beside a sad cat sitting on a woven mat near a farmhouse porch. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne sits beside a sad cat on a mat.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-sad-cat-page-1.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-sad-cat-page-1.mp3"
       },
       {
         "pageNumber": 2,
@@ -58,7 +58,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne gently talking to a sad cat on a mat, with a caring expression. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, modest old-fashioned dress, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne gently speaks to the quiet sad cat.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-sad-cat-page-2.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-sad-cat-page-2.mp3"
       },
       {
         "pageNumber": 3,
@@ -67,7 +67,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne giving a small bowl of milk to a happy cat, with Anne smiling warmly. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne smiles while the cat drinks milk and looks happy.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-sad-cat-page-3.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-sad-cat-page-3.mp3"
       }
     ]
   },
@@ -85,7 +85,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne and Diana running to a still pond beside fields and trees. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, dark-haired Diana as a kind cheerful young girl, old-fashioned dresses, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne and Diana run toward a still pond.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-at-pond-page-1.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-at-pond-page-1.mp3"
       },
       {
         "pageNumber": 2,
@@ -94,7 +94,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne and Diana leaning safely near a still pond and smiling at their reflections in the water. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, dark-haired Diana as a kind cheerful young girl, old-fashioned dresses, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne and Diana look at their reflections in the pond.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-at-pond-page-2.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-at-pond-page-2.mp3"
       },
       {
         "pageNumber": 3,
@@ -103,7 +103,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne touching pond water with one hand and laughing as the reflection ripples away, with Diana nearby. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, dark-haired Diana as a kind cheerful young girl, old-fashioned dresses, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne laughs as ripples spread across the pond.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-at-pond-page-3.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-at-pond-page-3.mp3"
       }
     ]
   },
@@ -121,7 +121,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne sitting safely on a low branch in a big old tree near a farmhouse. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, modest old-fashioned dress, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne sits in a big old tree.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-big-tree-page-1.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-big-tree-page-1.mp3"
       },
       {
         "pageNumber": 2,
@@ -130,7 +130,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne happily admiring a big old tree, one hand resting on the trunk. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, modest old-fashioned dress, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne smiles while admiring the old tree.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-big-tree-page-2.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-big-tree-page-2.mp3"
       },
       {
         "pageNumber": 3,
@@ -139,7 +139,7 @@
         "imagePrompt": "Original children's storybook illustration of Marilla standing below a big tree with a firm but caring expression while Anne climbs down cheerfully. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, Marilla as an older woman in a plain old-fashioned dress, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Marilla watches kindly while Anne climbs down from the tree.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-big-tree-page-3.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-big-tree-page-3.mp3"
       }
     ]
   },
@@ -157,7 +157,7 @@
         "imagePrompt": "Original children's storybook illustration of Matthew in a soft hat sitting outside with Anne nearby looking eager to talk. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, Matthew as a gentle older man with a quiet kind expression and old-fashioned rural clothing, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Matthew sits in a soft hat while Anne looks ready to talk.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-and-matthew-page-1.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-and-matthew-page-1.mp3"
       },
       {
         "pageNumber": 2,
@@ -166,7 +166,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne talking animatedly outdoors while pointing toward trees and a sunny sky. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, modest old-fashioned dress, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne talks happily outside near trees in the sun.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-and-matthew-page-2.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-and-matthew-page-2.mp3"
       },
       {
         "pageNumber": 3,
@@ -175,7 +175,187 @@
         "imagePrompt": "Original children's storybook illustration of Matthew smiling gently while Anne looks happy and fond of him beside a rural farmhouse path. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, Matthew as a gentle older man with a soft hat, quiet and kind expression, old-fashioned rural clothing, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Matthew smiles kindly while Anne stands happily beside him.",
-        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-and-matthew-page-3.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-and-matthew-page-3.mp3"
+      }
+    ]
+  },
+  {
+    "id": "green-wood-red-feather",
+    "title": "Robin and the Red Feather",
+    "series": "Green Wood Stories",
+    "readingLevel": "early reader",
+    "description": "Robin finds a red feather and shares it with a friend.",
+    "pages": [
+      {
+        "pageNumber": 1,
+        "text": "Robin had a red feather.\nThe red feather was soft.\nRobin put it in his cap.",
+        "image": "stories/anne/images/green-wood-red-feather-page-1.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of Robin, a kind young forest helper, holding a soft red feather beside a sunny forest path. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "Robin smiles while holding a red feather in the green wood.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-red-feather-page-1.mp3"
+      },
+      {
+        "pageNumber": 2,
+        "text": "Little John saw the red feather.\n?Can I see it?? said John.\n?Yes,? said Robin.",
+        "image": "stories/anne/images/green-wood-red-feather-page-2.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of Robin showing the red feather to Little John, a friendly tall forest companion, under leafy trees. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "Robin lets Little John see the red feather.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-red-feather-page-2.mp3"
+      },
+      {
+        "pageNumber": 3,
+        "text": "John gave it back.\nRobin gave a big grin.\nThe red feather was for both of them.",
+        "image": "stories/anne/images/green-wood-red-feather-page-3.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of Robin and Little John smiling together with the red feather between them in the forest. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "Robin and Little John share the red feather happily.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-red-feather-page-3.mp3"
+      }
+    ]
+  },
+  {
+    "id": "green-wood-bun",
+    "title": "Robin and the Bun",
+    "series": "Green Wood Stories",
+    "readingLevel": "early reader",
+    "description": "Robin shares one small bun in the green wood.",
+    "pages": [
+      {
+        "pageNumber": 1,
+        "text": "Robin had one bun.\nThe bun was warm.\nThe bun was good.",
+        "image": "stories/anne/images/green-wood-bun-page-1.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of Robin holding one warm round bun near a forest picnic cloth. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "Robin holds one warm bun in the forest.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-bun-page-1.mp3"
+      },
+      {
+        "pageNumber": 2,
+        "text": "A small child came by.\nThe child had no bun.\nRobin saw the child.",
+        "image": "stories/anne/images/green-wood-bun-page-2.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of Robin noticing a hungry child on a gentle forest path, with a warm bun in his hand. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "Robin sees a child who has no bun.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-bun-page-2.mp3"
+      },
+      {
+        "pageNumber": 3,
+        "text": "Robin cut the bun in two.\n?Some for you,? said Robin.\n?Some for me.?",
+        "image": "stories/anne/images/green-wood-bun-page-3.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of Robin sharing a bun with a smiling child in a cozy green forest clearing. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "Robin shares the bun with the child.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-bun-page-3.mp3"
+      }
+    ]
+  },
+  {
+    "id": "green-wood-lost-goat",
+    "title": "Robin and the Lost Goat",
+    "series": "Green Wood Stories",
+    "readingLevel": "early reader",
+    "description": "Robin helps a little goat get home.",
+    "pages": [
+      {
+        "pageNumber": 1,
+        "text": "Robin saw a little goat.\nThe goat was by a log.\nThe goat said, ?Maa.?",
+        "image": "stories/anne/images/green-wood-lost-goat-page-1.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of Robin finding a cute little goat beside a mossy log in the green forest. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "Robin finds a little goat by a log.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-lost-goat-page-1.mp3"
+      },
+      {
+        "pageNumber": 2,
+        "text": "?Are you lost?? said Robin.\nThe goat went maa, maa.\nRobin went tap, tap.",
+        "image": "stories/anne/images/green-wood-lost-goat-page-2.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of Robin gently walking beside a little goat on a forest path. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "Robin walks with the little goat.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-lost-goat-page-2.mp3"
+      },
+      {
+        "pageNumber": 3,
+        "text": "The goat ran to the gate.\nThe goat was home.\nRobin was glad.",
+        "image": "stories/anne/images/green-wood-lost-goat-page-3.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of The little goat running to a small farm gate while Robin smiles nearby. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "The goat gets home and Robin smiles.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-lost-goat-page-3.mp3"
+      }
+    ]
+  },
+  {
+    "id": "green-wood-rain",
+    "title": "Robin in the Rain",
+    "series": "Green Wood Stories",
+    "readingLevel": "early reader",
+    "description": "Robin and Marian wait under a tree when soft rain falls.",
+    "pages": [
+      {
+        "pageNumber": 1,
+        "text": "Rain fell in the wood.\nTap, tap, tap.\nRobin ran to a tree.",
+        "image": "stories/anne/images/green-wood-rain-page-1.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of Robin running under a large leafy tree as gentle rain falls in the forest. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "Robin runs under a tree in soft rain.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-rain-page-1.mp3"
+      },
+      {
+        "pageNumber": 2,
+        "text": "Marian ran to the tree too.\n?Rain, rain,? said Marian.\n?Tap, tap,? said Robin.",
+        "image": "stories/anne/images/green-wood-rain-page-2.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of Robin and Marian smiling under a big tree while gentle rain taps leaves. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "Robin and Marian stand together under the tree.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-rain-page-2.mp3"
+      },
+      {
+        "pageNumber": 3,
+        "text": "The rain went away.\nThe sun came out.\nRobin and Marian ran home.",
+        "image": "stories/anne/images/green-wood-rain-page-3.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of Robin and Marian running happily on a sunlit forest path after rain. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "Robin and Marian run home after the rain.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-rain-page-3.mp3"
+      }
+    ]
+  },
+  {
+    "id": "green-wood-hat",
+    "title": "Robin and the Green Hat",
+    "series": "Green Wood Stories",
+    "readingLevel": "early reader",
+    "description": "Robin loses his green hat and finds it again.",
+    "pages": [
+      {
+        "pageNumber": 1,
+        "text": "Robin had a green hat.\nThe hat sat on Robin.\nThe wind went whoosh.",
+        "image": "stories/anne/images/green-wood-hat-page-1.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of Robin wearing a green hat as a playful wind blows through the forest. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "Robin wears a green hat in the wind.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-hat-page-1.mp3"
+      },
+      {
+        "pageNumber": 2,
+        "text": "The hat went up.\nThe hat went down.\nThe hat sat on a bush.",
+        "image": "stories/anne/images/green-wood-hat-page-2.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of Robin watching his green hat fly through the air and land on a berry bush. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "The green hat lands on a bush.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-hat-page-2.mp3"
+      },
+      {
+        "pageNumber": 3,
+        "text": "Robin got the hat.\n?Good hat,? said Robin.\nThe hat sat on Robin again.",
+        "image": "stories/anne/images/green-wood-hat-page-3.webp",
+        "imagePrompt": "Original kawaii children's storybook illustration of Robin happily putting the green hat back on his head beside the bush. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark.",
+        "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of Disney Robin Hood, imitation of any Disney film, imitation of any movie adaptation, imitation of any cartoon adaptation, Pixar, Ghibli, Bluey, Peppa Pig",
+        "altText": "Robin puts the green hat back on.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-hat-page-3.mp3"
       }
     ]
   }

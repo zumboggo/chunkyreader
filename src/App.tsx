@@ -480,7 +480,7 @@ function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => voi
           <p>Add stories to <strong>public/stories/anne-stories.json</strong>.</p>
         </section>
       ) : (
-        <div className="story-grid" aria-label="Anne story library">
+        <div className="story-grid" aria-label="Story library">
           {stories.map((story, index) => {
             const cover = story.coverImage || story.pages[0]?.image
             return (
@@ -526,6 +526,7 @@ function StoryReader({
     complete ? 'ui:story:complete' : `story:${story.id}:page:${page.pageNumber}`,
     complete ? 'The End. You finished the story!' : page.text,
     `${story.id}:${complete ? 'complete' : page.pageNumber}`,
+    complete ? undefined : page.audio,
   )
 
   const nextPage = useCallback(() => {
