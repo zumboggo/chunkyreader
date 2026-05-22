@@ -2793,6 +2793,41 @@ body.lesson-active {
   min-height: clamp(92px, 18dvh, 150px);
 }
 
+.older-reader-question .focus-prompt {
+  gap: 8px;
+}
+
+.prompt-word,
+.word-chunk {
+  margin-inline: auto;
+  padding: 8px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: var(--soft-shadow);
+}
+
+.word-chunk {
+  color: var(--purple-pop);
+  font-size: clamp(2rem, 8vw, 3.4rem);
+  font-weight: 950;
+}
+
+.lesson-word-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.lesson-word-strip span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--purple-pop);
+  font-weight: 900;
+  box-shadow: inset 0 0 0 1px rgba(117, 81, 199, 0.12);
+}
+
 @keyframes chosen-green {
   0% {
     transform: scale(1);
