@@ -2000,17 +2000,19 @@ function buildOptions(cards: LearningCard[], card: LearningCard): LearningCard[]
 function buildOlderReaderActivities(lessonCards: LearningCard[]): OlderReaderActivity[] {
   const wordCards = lessonCards.filter((card) => card.type === 'word')
   if (!wordCards.length) return []
-  const kinds: OlderReaderQuestionKind[] = [
+  const firstHalfKinds: OlderReaderQuestionKind[] = [
     'pictureToWord',
+    'audioToWord',
     'wordToPicture',
     'startsWithSound',
     'audioToWord',
     'review',
   ]
+  const audioOnlyStart = Math.floor(OLDER_READER_ACTIVITY_COUNT / 2)
 
   return Array.from({ length: OLDER_READER_ACTIVITY_COUNT }, (_, index): OlderReaderActivity => {
     const card = wordCards[index % wordCards.length]
-    const kind = kinds[index % kinds.length]
+    const kind = index >= audioOnlyStart ? 'audioToWord' : firstHalfKinds[index % firstHalfKinds.length]
     return {
       kind,
       card,
