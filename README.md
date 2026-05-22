@@ -148,15 +148,33 @@ public/decks/sarah-levels/ssml/audio/phonemes/
 public/decks/sarah-levels/ssml/audio/words/
 ```
 
-## Generating Earliest Reader Audio
+## Generating And Installing Audio
 
-Earliest Reader decks are set up for Azure TTS MP3 clips plus matching SSML files.
+Earliest Reader sounds, Older Reader story narration, and short kid-facing UI prompts are generated through Azure TTS. Each logical text unit gets a stable clip id in `public/clip-packs/chunky-reader-audio/clips_manifest.json`; story pages use ids like `story:anne-red-hat:page:1`, and reusable prompts use ids like `older-reader:prompt:pictureToWord`.
 
 ```bash
 npm run generate:audio
 ```
 
-The generator reads `AZURE_SPEECH_KEY` and `AZURE_SPEECH_REGION`, or the local Azure config file at `C:\Users\LENOVO\Documents\azure-tts-ssml\config.json`. Do not commit or paste Azure credentials. Generated clips go under `public/decks/sarah-levels/audio/`, SSML goes under `public/decks/sarah-levels/ssml/`, and a downloadable audio-pack manifest is written to `public/clip-packs/chunky-reader-audio/clips_manifest.json`.
+The generator reads `AZURE_SPEECH_KEY` and `AZURE_SPEECH_REGION`, or the local Azure config file at `C:\Users\LENOVO\Documents\azure-tts-ssml\config.json`. Do not commit or paste Azure credentials.
+
+Generated files are written to:
+
+```text
+public/decks/sarah-levels/audio/
+public/decks/sarah-levels/ssml/
+public/clip-packs/chunky-reader-audio/audio/narration/
+public/clip-packs/chunky-reader-audio/ssml/audio/narration/
+public/clip-packs/chunky-reader-audio/clips_manifest.json
+```
+
+In the PWA, tap **Save Audio** from the story screen or lesson menu to install the clip pack. The app reads the manifest, downloads each MP3 once, and stores the responses in Cache Storage under `chunky-audio-pack-v1`. That cache is intentionally separate from the service worker's app-shell caches, so normal PWA updates should not remove installed narration. If a clip is missing, the app keeps working and falls back to text/browser speech where possible.
+
+To update audio after text changes, run `npm run generate:audio` again. Existing MP3 files are skipped unless you pass `--force`:
+
+```bash
+node scripts/generate-azure-reading-clips.mjs --force
+```
 
 ## Generating Earliest Reader Images
 
