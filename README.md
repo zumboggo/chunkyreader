@@ -281,4 +281,8 @@ $env:GITHUB_PAGES='true'; npm.cmd run build
 
 That uses the `/chunkyreader/` base path configured in `vite.config.ts`.
 
+## Layout QA
+
+Before deploying layout changes, use `LAYOUT_CHECKLIST.md`. The short version: keep body scrolling available, prefer `min-height: 100dvh` over fixed viewport heights, add `min-height: 0` to shrinking flex/grid children, and test 390x844, 360x740, 412x915, 768x1024, 1366x768, and 1920x1080.
+
 The repository also includes `.github/workflows/pages.yml`, which verifies decks and builds the app for GitHub Pages on pushes to `main`. The deploy job runs when the repository is public; private-repo Pages requires a GitHub plan that supports it. In GitHub, set Pages to use GitHub Actions if you want the hosted PWA URL.
