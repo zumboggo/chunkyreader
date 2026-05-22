@@ -23,7 +23,7 @@ The original Chunky Chinese project was not modified. This app is in `C:\Users\L
 Decks are registered in `public/decks/index.json`.
 
 - Growing Reader words: `public/clip-packs/annas-reading-deck`
-- Growing Reader Anne stories: `public/stories/anne-stories.json`
+- Growing Reader stories: `public/stories/anne-stories.json`
 - Earliest Reader Level 1: `public/decks/sarah-letters-level-1.json`
 - Earliest Reader Level 2: `public/decks/sarah-phonemes-level-2.json`
 
@@ -61,7 +61,7 @@ If an image or audio file is missing, the app shows a friendly placeholder and f
 
 ## Adding Growing Reader Stories
 
-Anne story content lives in `public/stories/anne-stories.json`. Each story has exactly three pages with text, image path, image prompt, negative prompt, and alt text.
+Growing Reader story content lives in `public/stories/anne-stories.json`. Each story has exactly three pages with text, image path, image prompt, negative prompt, and alt text.
 
 Story page images should go in:
 
@@ -177,7 +177,7 @@ public/clip-packs/chunky-reader-audio/ssml/audio/narration/
 public/clip-packs/chunky-reader-audio/clips_manifest.json
 ```
 
-In the PWA, tap **Save Audio** from the story screen or lesson menu to install the clip pack. The app reads the manifest, downloads each MP3 once, and stores the responses in Cache Storage under `chunky-audio-pack-v1`. That cache is intentionally separate from the service worker's app-shell caches, so normal PWA updates should not remove installed narration. If a clip is missing, the app keeps working and falls back to text/browser speech where possible.
+In the PWA, tap **Save Audio** from the story screen or lesson menu to install the clip pack. The app reads the manifest, downloads each MP3 once, and stores the responses in Cache Storage under `chunky-audio-pack-v2`. That cache is intentionally separate from the service worker's app-shell caches, so normal PWA updates should not remove installed narration. If a clip is missing, the app keeps working and falls back to text/browser speech where possible.
 
 To update audio after text changes, run `npm run generate:audio` again. Existing MP3 files are skipped unless you pass `--force`:
 

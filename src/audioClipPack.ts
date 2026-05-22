@@ -36,8 +36,8 @@ export interface AudioPackInstallProgress {
 type NarrationStatus = 'idle' | 'playing' | 'blocked' | 'missing'
 
 const manifestPath = 'clip-packs/chunky-reader-audio/clips_manifest.json'
-const installedAudioCache = 'chunky-audio-pack-v1'
-const installedManifestKey = 'chunky-reader:audio-pack:manifest'
+const installedAudioCache = 'chunky-audio-pack-v2'
+const installedManifestKey = 'chunky-reader:audio-pack:manifest:v2'
 const autoplayUnlockedKey = 'chunky-reader:audio-pack:autoplay-unlocked'
 
 let manifestPromise: Promise<AudioClipPackManifest | undefined> | undefined
@@ -62,7 +62,26 @@ export async function findAudioClip(id: string): Promise<AudioClipEntry | undefi
   return manifest?.clips.find((clip) => clip.id === id)
 }
 
-export async function playNarrationClip(id: string, fallbackText?: string): Promise<NarrationStatus> {
+export async function playNarrationClip(
+  id: string,
+  fallbackText?: string,
+  directAudioPath?: string,
+): Promise<NarrationStatus> {
+  if (directAudioPath) {
+    try {
+      await playAudioUrl(await resolveInstalledOrNetworkUrl(directAudioPath))
+      autoplayUnlocked = true
+      try {
+        localStorage.setItem(autoplayUnlockedKey, 'true')
+      } catch {
+        // Autoplay unlock memory is a convenience only.
+      }
+      return 'playing'
+    } catch {
+      // Fall through to the manifest lookup and, if needed, browser speech.
+    }
+  }
+
   const clip = await findAudioClip(id)
   if (!clip?.audioPath) {
     if (fallbackText) speakFallback(fallbackText)
@@ -83,7 +102,12 @@ export async function playNarrationClip(id: string, fallbackText?: string): Prom
   }
 }
 
-export function useNarration(clipId: string | undefined, fallbackText: string | undefined, key: string) {
+export function useNarration(
+  clipId: string | undefined,
+  fallbackText: string | undefined,
+  key: string,
+  directAudioPath?: string,
+) {
   const lastKey = useRef('')
   const [status, setStatus] = useState<NarrationStatus>('idle')
 
@@ -92,15 +116,15 @@ export function useNarration(clipId: string | undefined, fallbackText: string | 
     lastKey.current = key
     setStatus('idle')
     const timer = window.setTimeout(() => {
-      void playNarrationClip(clipId, fallbackText).then(setStatus)
+      void playNarrationClip(clipId, fallbackText, directAudioPath).then(setStatus)
     }, autoplayUnlocked ? 220 : 360)
     return () => window.clearTimeout(timer)
-  }, [clipId, fallbackText, key])
+  }, [clipId, directAudioPath, fallbackText, key])
 
   async function replay() {
     if (!clipId) return
     setStatus('idle')
-    const nextStatus = await playNarrationClip(clipId, fallbackText)
+    const nextStatus = await playNarrationClip(clipId, fallbackText, directAudioPath)
     setStatus(nextStatus)
   }
 

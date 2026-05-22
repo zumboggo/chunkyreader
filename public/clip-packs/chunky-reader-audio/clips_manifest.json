@@ -3,7 +3,7 @@
   "title": "Chunky Reader Audio Pack",
   "description": "Azure TTS clips for kid-facing Chunky Reader text, including sound decks, story pages, prompts, and feedback.",
   "provider": "azure-tts",
-  "version": "2026-05-kid-facing-audio-v2",
+  "version": "2026-05-kid-facing-audio-v3",
   "voices": {
     "anneNarrator": "en-US-JennyNeural",
     "childInstructions": "en-US-AvaNeural",
@@ -15,7 +15,7 @@
     "phonicsTeacher": "phonics-sounds-v2"
   },
   "outputFormat": "audio-24khz-48kbitrate-mono-mp3",
-  "createdAt": "2026-05-22T05:55:32.767Z",
+  "createdAt": "2026-05-22T22:03:03.224Z",
   "clips": [
     {
       "id": "letter-m:sound",
@@ -1390,6 +1390,156 @@
       "voiceVersion": "anne-soft-female-v2",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-and-matthew-page-3.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-and-matthew-page-3.ssml"
+    },
+    {
+      "id": "story:green-wood-red-feather:page:1",
+      "type": "story-page",
+      "text": "Robin had a red feather.\nThe red feather was soft.\nRobin put it in his cap.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-red-feather-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-red-feather-page-1.ssml"
+    },
+    {
+      "id": "story:green-wood-red-feather:page:2",
+      "type": "story-page",
+      "text": "Little John saw the red feather.\n?Can I see it?? said John.\n?Yes,? said Robin.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-red-feather-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-red-feather-page-2.ssml"
+    },
+    {
+      "id": "story:green-wood-red-feather:page:3",
+      "type": "story-page",
+      "text": "John gave it back.\nRobin gave a big grin.\nThe red feather was for both of them.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-red-feather-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-red-feather-page-3.ssml"
+    },
+    {
+      "id": "story:green-wood-bun:page:1",
+      "type": "story-page",
+      "text": "Robin had one bun.\nThe bun was warm.\nThe bun was good.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-bun-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-bun-page-1.ssml"
+    },
+    {
+      "id": "story:green-wood-bun:page:2",
+      "type": "story-page",
+      "text": "A small child came by.\nThe child had no bun.\nRobin saw the child.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-bun-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-bun-page-2.ssml"
+    },
+    {
+      "id": "story:green-wood-bun:page:3",
+      "type": "story-page",
+      "text": "Robin cut the bun in two.\n?Some for you,? said Robin.\n?Some for me.?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-bun-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-bun-page-3.ssml"
+    },
+    {
+      "id": "story:green-wood-lost-goat:page:1",
+      "type": "story-page",
+      "text": "Robin saw a little goat.\nThe goat was by a log.\nThe goat said, ?Maa.?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-lost-goat-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-lost-goat-page-1.ssml"
+    },
+    {
+      "id": "story:green-wood-lost-goat:page:2",
+      "type": "story-page",
+      "text": "?Are you lost?? said Robin.\nThe goat went maa, maa.\nRobin went tap, tap.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-lost-goat-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-lost-goat-page-2.ssml"
+    },
+    {
+      "id": "story:green-wood-lost-goat:page:3",
+      "type": "story-page",
+      "text": "The goat ran to the gate.\nThe goat was home.\nRobin was glad.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-lost-goat-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-lost-goat-page-3.ssml"
+    },
+    {
+      "id": "story:green-wood-rain:page:1",
+      "type": "story-page",
+      "text": "Rain fell in the wood.\nTap, tap, tap.\nRobin ran to a tree.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-rain-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-rain-page-1.ssml"
+    },
+    {
+      "id": "story:green-wood-rain:page:2",
+      "type": "story-page",
+      "text": "Marian ran to the tree too.\n?Rain, rain,? said Marian.\n?Tap, tap,? said Robin.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-rain-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-rain-page-2.ssml"
+    },
+    {
+      "id": "story:green-wood-rain:page:3",
+      "type": "story-page",
+      "text": "The rain went away.\nThe sun came out.\nRobin and Marian ran home.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-rain-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-rain-page-3.ssml"
+    },
+    {
+      "id": "story:green-wood-hat:page:1",
+      "type": "story-page",
+      "text": "Robin had a green hat.\nThe hat sat on Robin.\nThe wind went whoosh.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-hat-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-hat-page-1.ssml"
+    },
+    {
+      "id": "story:green-wood-hat:page:2",
+      "type": "story-page",
+      "text": "The hat went up.\nThe hat went down.\nThe hat sat on a bush.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-hat-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-hat-page-2.ssml"
+    },
+    {
+      "id": "story:green-wood-hat:page:3",
+      "type": "story-page",
+      "text": "Robin got the hat.\n?Good hat,? said Robin.\nThe hat sat on Robin again.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-hat-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-hat-page-3.ssml"
     },
     {
       "id": "ui:story:complete",
