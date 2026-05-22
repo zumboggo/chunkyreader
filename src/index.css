@@ -3143,3 +3143,347 @@ body.lesson-active {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* ============================================
+   LAYOUT RELIABILITY PASS
+   The app should never trap child controls below a fixed viewport.
+   Keep normal page scrolling available, and only use scrollable children
+   when their parent has min-height: 0.
+   ============================================ */
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body.lesson-active {
+  overflow-y: auto;
+}
+
+.app-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  padding-bottom: max(clamp(12px, 3vw, 30px), env(safe-area-inset-bottom));
+}
+
+.app-shell.lesson-active {
+  height: auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: visible;
+  padding-top: clamp(6px, 1.8vw, 14px);
+}
+
+.topbar {
+  flex: 0 0 auto;
+}
+
+.app-shell > section {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.app-shell.lesson-active .topbar {
+  margin-bottom: clamp(6px, 1.2dvh, 10px);
+  padding: 6px 8px;
+  border-radius: 18px;
+}
+
+.app-shell.lesson-active .brand-button {
+  min-height: 42px;
+  padding: 4px 8px;
+}
+
+.app-shell.lesson-active .brand-button .mascot-sprite,
+.app-shell.lesson-active .brand-button .panda-fallback {
+  width: 42px;
+  height: 42px;
+}
+
+.app-shell.lesson-active .brand-button strong {
+  font-size: clamp(1.1rem, 4vw, 1.45rem);
+}
+
+.app-shell.lesson-active .brand-button small {
+  font-size: 0.72rem;
+}
+
+.growing-reader-home,
+.story-library {
+  max-height: none;
+  overflow: visible;
+}
+
+.story-grid {
+  overflow: visible;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+.story-reader {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: visible;
+}
+
+.story-page-card {
+  max-height: none;
+  overflow: visible;
+  min-height: 0;
+}
+
+.story-page-image {
+  height: auto;
+  min-height: clamp(180px, 38dvh, 420px);
+}
+
+.story-nav,
+.focus-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 6;
+  padding-top: 8px;
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(180deg, rgba(255, 250, 243, 0.6), rgba(255, 250, 243, 0.96));
+  backdrop-filter: blur(12px);
+}
+
+.story-nav button,
+.focus-actions button {
+  min-height: 52px;
+  white-space: normal;
+}
+
+.lesson-focus {
+  height: auto;
+  max-height: none;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+}
+
+.focus-topbar {
+  flex: 0 0 auto;
+}
+
+.menu-button-compact {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.focus-lesson {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+
+.focus-main {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: visible;
+  align-items: stretch;
+}
+
+.focus-intro,
+.focus-question {
+  align-content: start;
+  min-height: 0;
+}
+
+.focus-options {
+  min-height: 0;
+  overflow: visible;
+  align-items: stretch;
+}
+
+.focus-option {
+  height: auto;
+  min-height: 56px;
+  padding: 9px;
+  overflow: visible;
+  white-space: normal;
+}
+
+.focus-option strong {
+  overflow-wrap: anywhere;
+  line-height: 1.02;
+}
+
+.focus-option.picture-choice {
+  min-height: 116px;
+}
+
+.focus-option.picture-choice .picture-frame {
+  min-height: 58px;
+}
+
+.focus-visual .picture-frame {
+  max-height: none;
+}
+
+.focus-feedback {
+  flex: 0 0 auto;
+  margin-bottom: max(0px, env(safe-area-inset-bottom));
+}
+
+.lesson-menu {
+  max-height: calc(100dvh - 24px);
+}
+
+@media (max-width: 850px) {
+  .app-shell {
+    padding: 8px 8px max(10px, env(safe-area-inset-bottom));
+  }
+
+  .topbar {
+    margin-bottom: 8px;
+  }
+
+  .story-library-header,
+  .reader-hero {
+    padding: 12px;
+    border-radius: 22px;
+  }
+
+  .story-reader {
+    gap: 8px;
+  }
+
+  .story-page-card {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 22px;
+  }
+
+  .story-page-image {
+    min-height: clamp(170px, 32dvh, 300px);
+  }
+
+  .story-lines p {
+    font-size: clamp(1.12rem, 5.3vw, 1.55rem);
+    line-height: 1.2;
+  }
+
+  .lesson-focus {
+    padding: 4px 2px max(8px, env(safe-area-inset-bottom));
+  }
+
+  .focus-lesson {
+    gap: 6px;
+  }
+
+  .focus-intro,
+  .focus-question {
+    gap: 8px;
+    padding: 6px;
+  }
+
+  .focus-prompt {
+    gap: 5px;
+  }
+
+  .focus-prompt h2 {
+    font-size: clamp(0.98rem, 4.8vw, 1.36rem);
+    line-height: 1.12;
+  }
+
+  .stage-label {
+    padding: 3px 8px;
+  }
+
+  .focus-options {
+    gap: 8px;
+  }
+
+  .focus-option {
+    min-height: 54px;
+    padding: 8px;
+  }
+
+  .focus-option strong {
+    font-size: clamp(1.15rem, 6.4vw, 1.85rem);
+  }
+
+  .focus-option.picture-choice {
+    min-height: 108px;
+  }
+
+  .focus-option.picture-choice .picture-frame {
+    min-height: 56px;
+  }
+
+  .focus-visual .picture-frame {
+    min-height: clamp(72px, 13dvh, 112px);
+  }
+
+  .focus-actions {
+    gap: 8px;
+  }
+
+  .focus-feedback {
+    justify-self: stretch;
+    width: 100%;
+  }
+}
+
+@media (max-height: 760px) {
+  .reader-hero-child {
+    width: clamp(78px, 14vw, 126px);
+  }
+
+  .reader-hero h1,
+  .story-library-header h1 {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+  }
+
+  .story-card {
+    grid-template-rows: minmax(126px, 150px) auto auto 1fr auto;
+  }
+
+  .story-cover {
+    height: 150px;
+  }
+
+  .letter-display strong,
+  .prompt-letter {
+    font-size: clamp(2rem, 12vw, 3.5rem);
+  }
+
+  .letter-display,
+  .case-prompt-display {
+    padding: 8px 22px;
+  }
+
+  .word-display {
+    font-size: clamp(1.55rem, 6vw, 2.35rem);
+  }
+
+  .focus-visual .picture-frame {
+    min-height: clamp(64px, 12dvh, 100px);
+  }
+
+  .audio-prompt-button {
+    min-height: 44px;
+  }
+
+  .audio-icon {
+    height: 16px;
+  }
+}
