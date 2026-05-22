@@ -8,7 +8,7 @@
   "clipsManifestPath": "clips_manifest.json",
   "assetBaseUrl": "clip-packs/annas-reading-deck",
   "imagePathPattern": "images/{word-slug}.png",
-  "audioPathPattern": "audio/words/{word}.mp3",
+  "audioPathPattern": "audio/words/anne-soft-female-v2/{word}.mp3",
   "optionalCardFields": [
     "image",
     "audio",

@@ -42,7 +42,7 @@ Recommended CSV columns:
 
 ```csv
 word,meaning,status,lessonNumber,tags,partOfSpeech,audioWordFilename,audioMeaningFilename,pinyin,source,notes,image,exampleSentence,category,difficulty
-cat,cat,new,1,reading;Anna,,audio/words/cat.mp3,audio/words/cat.mp3,,Anna's Reading Deck,,images/cat.png,The cat is sleeping.,animals,1
+cat,cat,new,1,reading;Anna,,audio/words/anne-soft-female-v2/cat.mp3,audio/words/anne-soft-female-v2/cat.mp3,,Anna's Reading Deck,,images/cat.png,The cat is sleeping.,animals,1
 ```
 
 Images should go in:
@@ -54,7 +54,13 @@ public/clip-packs/annas-reading-deck/images/<word-slug>.png
 Audio should go in:
 
 ```text
-public/clip-packs/annas-reading-deck/audio/words/<word>.mp3
+public/clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/<word-slug>.mp3
+```
+
+Growing Reader word clips use the same soft Jenny Neural voice as the Anne stories. Regenerate the word MP3s and update `vocab.csv`/`clips_manifest.json` with:
+
+```bash
+npm run generate:word-audio -- --force
 ```
 
 If an image or audio file is missing, the app shows a friendly placeholder and falls back to browser speech where possible.

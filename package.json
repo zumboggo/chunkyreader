@@ -12,6 +12,8 @@
     "verify:stories": "node scripts/verify-stories.mjs",
     "generate:audio": "node scripts/generate-azure-reading-clips.mjs",
     "generate:audio:ssml": "node scripts/generate-azure-reading-clips.mjs --ssml-only",
+    "generate:word-audio": "node scripts/generate-anna-word-clips.mjs",
+    "generate:word-audio:ssml": "node scripts/generate-anna-word-clips.mjs --ssml-only",
     "validate:phonics-audio": "node scripts/validate-phonics-audio.mjs",
     "generate:letter-images": "node scripts/generate-replicate-letter-images.mjs",
     "generate:word-images": "node scripts/generate-replicate-word-images.mjs",
