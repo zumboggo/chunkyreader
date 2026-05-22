@@ -97,22 +97,29 @@ Letter card shape:
   "uppercase": "B",
   "lowercase": "b",
   "sound": "/b/",
+  "primarySoundLabel": "/b/",
+  "ipa": "b",
   "exampleWord": "ball",
   "image": "images/ball.png",
-  "audio": "audio/letters/b-sound.mp3",
-  "letterNameAudio": "audio/letters/b-name.mp3",
-  "speechCue": "b, ball",
+  "audio": "audio/letters/phonics-v2/b-sound.mp3",
+  "speechCue": "b like ball",
+  "ttsText": "This is the b sound, as in ball.",
+  "ssmlSound": "<phoneme alphabet=\"ipa\" ph=\"b\">b</phoneme>",
+  "mouthCue": "Lips together, then pop them open.",
+  "avoidTtsLetterName": true,
   "category": "consonants",
   "difficulty": 1
 }
 ```
 
+Level 1 is phonics-first: the app teaches the sound before the letter name. Do not send bare letters such as `A` or `B` to TTS for Level 1 sound clips; use the centralized phonics data in `scripts/phonics-level-1.mjs` and regenerate with `npm run generate:audio -- --force`.
+
 Earliest Reader Level 1 assets default to:
 
 ```text
 public/decks/sarah-levels/images/
-public/decks/sarah-levels/audio/letters/
-public/decks/sarah-levels/ssml/audio/letters/
+public/decks/sarah-levels/audio/letters/phonics-v2/
+public/decks/sarah-levels/ssml/audio/letters/phonics-v2/
 ```
 
 ## Adding Earliest Reader Phoneme Cards
@@ -152,6 +159,8 @@ public/decks/sarah-levels/ssml/audio/words/
 
 Earliest Reader sounds, Older Reader story narration, and short kid-facing UI prompts are generated through Azure TTS. Each logical text unit gets a stable clip id in `public/clip-packs/chunky-reader-audio/clips_manifest.json`; story pages use ids like `story:anne-red-hat:page:1`, and reusable prompts use ids like `older-reader:prompt:pictureToWord`.
 
+Voice settings are centralized in `scripts/tts-config.mjs`. Anne story narration currently uses `en-US-JennyNeural` with the `anne-soft-female-v2` voice version, so story MP3s are written under `audio/narration/stories/anne-soft-female-v2/` and do not reuse older narrator URLs.
+
 ```bash
 npm run generate:audio
 ```
@@ -174,6 +183,13 @@ To update audio after text changes, run `npm run generate:audio` again. Existing
 
 ```bash
 node scripts/generate-azure-reading-clips.mjs --force
+```
+
+For SSML-only inspection and phonics validation:
+
+```bash
+npm run generate:audio:ssml
+npm run validate:phonics-audio
 ```
 
 ## Generating Earliest Reader Images

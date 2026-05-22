@@ -1,5 +1,12 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import {
+  TTS_OUTPUT_FORMAT,
+  TTS_VOICE_VERSIONS,
+  TTS_VOICES,
+  createAzureSsml,
+  escapeXml,
+} from './tts-config.mjs'
 
 const root = process.cwd()
 const decksDir = path.join(root, 'public', 'decks')
@@ -9,8 +16,7 @@ const azureConfigPath =
   process.env.AZURE_TTS_CONFIG_PATH ||
   path.join(process.env.USERPROFILE || process.env.HOME || '', 'Documents', 'azure-tts-ssml', 'config.json')
 
-const voice = process.env.AZURE_SPEECH_VOICE || 'en-US-JennyNeural'
-const outputFormat = 'audio-24khz-48kbitrate-mono-mp3'
+const outputFormat = TTS_OUTPUT_FORMAT
 const synthesize = !process.argv.includes('--ssml-only')
 const force = process.argv.includes('--force')
 
@@ -30,7 +36,7 @@ async function main() {
 
   const written = []
   for (const clip of clips) {
-    const ssml = createSsml(clip.text, clip.language)
+    const ssml = createSsml(clip)
     await fs.mkdir(path.dirname(clip.ssmlPath), { recursive: true })
     await fs.writeFile(clip.ssmlPath, ssml)
 
@@ -47,7 +53,8 @@ async function main() {
       type: clip.type,
       text: clip.text,
       language: clip.language,
-      voice,
+      voice: clip.voice,
+      voiceVersion: clip.voiceVersion,
       audioPath: toPublicPath(clip.audioPath),
       ssmlPath: toPublicPath(clip.ssmlPath),
     })
@@ -62,8 +69,9 @@ async function main() {
         title: 'Chunky Reader Audio Pack',
         description: 'Azure TTS clips for kid-facing Chunky Reader text, including sound decks, story pages, prompts, and feedback.',
         provider: synthesize && credentials ? 'azure-tts' : 'ssml-only',
-        version: '2026-05-kid-facing-audio-v1',
-        voice,
+        version: '2026-05-kid-facing-audio-v2',
+        voices: TTS_VOICES,
+        voiceVersions: TTS_VOICE_VERSIONS,
         outputFormat,
         createdAt: new Date().toISOString(),
         clips: written,
@@ -116,18 +124,18 @@ function cardClips(deck, card) {
   const language = deck.language || 'en-US'
   const clips = []
   if (card.audio) {
-    clips.push(makeClip(deck, card, 'sound', card.audio, introText(deck, card), language))
+    clips.push(makeClip(deck, card, 'sound', card.audio, introText(deck, card), language, soundSsmlBody(deck, card)))
   }
-  if (card.letterNameAudio && card.uppercase) {
-    clips.push(makeClip(deck, card, 'letter-name', card.letterNameAudio, `This is ${card.uppercase}.`, language))
-  }
+  // Level 1 letter lessons are phonics-first. We intentionally do not generate
+  // letter-name clips here, because Azure will read "M" as "em"; letter names can
+  // be introduced later with a separate, explicit deck.
   if (card.exampleAudio && card.exampleWord) {
     clips.push(makeClip(deck, card, 'example-word', card.exampleAudio, card.exampleWord, language))
   }
   return clips
 }
 
-function makeClip(deck, card, type, relativeAudioPath, text, language) {
+function makeClip(deck, card, type, relativeAudioPath, text, language, ssmlBody) {
   const assetBase = deck.assetBaseUrl || `decks/${deck.id}`
   const audioPath = path.join(root, 'public', assetBase, relativeAudioPath)
   const ssmlPath = path.join(
@@ -144,6 +152,11 @@ function makeClip(deck, card, type, relativeAudioPath, text, language) {
     type,
     text,
     language,
+    voice: deck.type === 'letters' || deck.type === 'phonemes' ? TTS_VOICES.phonicsTeacher : TTS_VOICES.childInstructions,
+    voiceVersion: deck.type === 'letters' || deck.type === 'phonemes'
+      ? TTS_VOICE_VERSIONS.phonicsTeacher
+      : TTS_VOICE_VERSIONS.childInstructions,
+    ssmlBody,
     audioPath,
     ssmlPath,
   }
@@ -159,7 +172,11 @@ function storyClips(stories) {
         type: 'story-page',
         text: page.text,
         language: 'en-US',
-        relativeAudioPath: `audio/narration/stories/${slug}.mp3`,
+        relativeAudioPath: `audio/narration/stories/${TTS_VOICE_VERSIONS.anneNarrator}/${slug}.mp3`,
+        voice: TTS_VOICES.anneNarrator,
+        voiceVersion: TTS_VOICE_VERSIONS.anneNarrator,
+        rate: '-8%',
+        pitch: '+2%',
       }))
     }
   }
@@ -190,10 +207,22 @@ function uiNarrationClips() {
     text,
     language: 'en-US',
     relativeAudioPath: `audio/narration/ui/${safeFileName(id)}.mp3`,
+    voice: TTS_VOICES.childInstructions,
+    voiceVersion: TTS_VOICE_VERSIONS.childInstructions,
   }))
 }
 
-function makeNarrationClip({ id, type, text, language, relativeAudioPath }) {
+function makeNarrationClip({
+  id,
+  type,
+  text,
+  language,
+  relativeAudioPath,
+  voice = TTS_VOICES.childInstructions,
+  voiceVersion = TTS_VOICE_VERSIONS.childInstructions,
+  rate = '-10%',
+  pitch = '+3%',
+}) {
   const audioPath = path.join(clipPackDir, relativeAudioPath)
   const ssmlPath = path.join(clipPackDir, 'ssml', relativeAudioPath.replace(/\.mp3$/i, '.ssml'))
   return {
@@ -201,6 +230,10 @@ function makeNarrationClip({ id, type, text, language, relativeAudioPath }) {
     type,
     text,
     language,
+    voice,
+    voiceVersion,
+    rate,
+    pitch,
     audioPath,
     ssmlPath,
   }
@@ -208,8 +241,7 @@ function makeNarrationClip({ id, type, text, language, relativeAudioPath }) {
 
 function introText(deck, card) {
   if (deck.type === 'letters') {
-    const letter = card.uppercase || card.displayText
-    return `${letter}. ${card.speechCue || card.exampleWord || card.sound || card.displayText}.`
+    return card.ttsText || `This is the ${card.sound || ''} sound, as in ${card.exampleWord}.`
   }
   if (deck.type === 'phonemes') {
     return `${card.displayText}. ${card.speechCue || card.exampleWord || card.grapheme || card.phoneme}.`
@@ -217,16 +249,23 @@ function introText(deck, card) {
   return card.speechCue || card.exampleWord || card.word || card.displayText
 }
 
-function createSsml(text, language) {
-  return `<?xml version="1.0" encoding="utf-8"?>
-<speak version="1.0" xml:lang="${escapeXml(language)}" xmlns="http://www.w3.org/2001/10/synthesis">
-  <voice name="${escapeXml(voice)}">
-    <prosody rate="-12%" pitch="+6%">
-      ${escapeXml(text)}
-    </prosody>
-  </voice>
-</speak>
-`
+function soundSsmlBody(deck, card) {
+  if (deck.type !== 'letters' || !card.ssmlSound) return undefined
+  const example = escapeXml(card.exampleWord || '')
+  const soundText = card.ssmlSound
+  const cue = card.mouthCue ? ` <break time="250ms"/> ${escapeXml(card.mouthCue)}` : ''
+  return `Listen. ${soundText}. <break time="250ms"/> ${example} starts with ${soundText}.${cue}`
+}
+
+function createSsml(clip) {
+  const body = clip.ssmlBody || escapeXml(clip.text).replaceAll('\n', '<break time="350ms"/>')
+  return createAzureSsml({
+    language: clip.language,
+    voice: clip.voice,
+    rate: clip.rate || (clip.type === 'sound' ? '-12%' : '-8%'),
+    pitch: clip.pitch || (clip.type === 'sound' ? '+4%' : '+2%'),
+    body,
+  })
 }
 
 async function synthesizeClip(credentials, ssml, outputPath) {
@@ -261,15 +300,6 @@ async function exists(filePath) {
 
 function toPublicPath(filePath) {
   return path.relative(path.join(root, 'public'), filePath).replaceAll(path.sep, '/')
-}
-
-function escapeXml(value) {
-  return String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&apos;')
 }
 
 function safeFileName(value) {

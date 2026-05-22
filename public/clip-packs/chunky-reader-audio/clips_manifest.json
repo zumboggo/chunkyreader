@@ -3,582 +3,331 @@
   "title": "Chunky Reader Audio Pack",
   "description": "Azure TTS clips for kid-facing Chunky Reader text, including sound decks, story pages, prompts, and feedback.",
   "provider": "azure-tts",
-  "version": "2026-05-kid-facing-audio-v1",
-  "voice": "en-US-JennyNeural",
+  "version": "2026-05-kid-facing-audio-v2",
+  "voices": {
+    "anneNarrator": "en-US-JennyNeural",
+    "childInstructions": "en-US-AvaNeural",
+    "phonicsTeacher": "en-US-JennyNeural"
+  },
+  "voiceVersions": {
+    "anneNarrator": "anne-soft-female-v2",
+    "childInstructions": "child-instructions-v1",
+    "phonicsTeacher": "phonics-sounds-v2"
+  },
   "outputFormat": "audio-24khz-48kbitrate-mono-mp3",
-  "createdAt": "2026-05-22T03:58:11.185Z",
+  "createdAt": "2026-05-22T05:55:32.767Z",
   "clips": [
     {
       "id": "letter-m:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-m",
       "type": "sound",
-      "text": "M. mmm, moon.",
+      "text": "This is the mmm sound, as in moon.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/m-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/m-sound.ssml"
-    },
-    {
-      "id": "letter-m:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-m",
-      "type": "letter-name",
-      "text": "This is M.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/m-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/m-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/m-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/m-sound.ssml"
     },
     {
       "id": "letter-s:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-s",
       "type": "sound",
-      "text": "S. sss, sun.",
+      "text": "This is the sss sound, as in sun.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/s-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/s-sound.ssml"
-    },
-    {
-      "id": "letter-s:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-s",
-      "type": "letter-name",
-      "text": "This is S.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/s-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/s-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/s-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/s-sound.ssml"
     },
     {
       "id": "letter-a:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-a",
       "type": "sound",
-      "text": "A. a as in apple.",
+      "text": "This is the short a sound, as in apple.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/a-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/a-sound.ssml"
-    },
-    {
-      "id": "letter-a:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-a",
-      "type": "letter-name",
-      "text": "This is A.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/a-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/a-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/a-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/a-sound.ssml"
     },
     {
       "id": "letter-t:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-t",
       "type": "sound",
-      "text": "T. t, turtle.",
+      "text": "This is the t sound, as in turtle.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/t-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/t-sound.ssml"
-    },
-    {
-      "id": "letter-t:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-t",
-      "type": "letter-name",
-      "text": "This is T.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/t-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/t-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/t-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/t-sound.ssml"
     },
     {
       "id": "letter-p:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-p",
       "type": "sound",
-      "text": "P. p, pig.",
+      "text": "This is the p sound, as in pig.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/p-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/p-sound.ssml"
-    },
-    {
-      "id": "letter-p:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-p",
-      "type": "letter-name",
-      "text": "This is P.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/p-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/p-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/p-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/p-sound.ssml"
     },
     {
       "id": "letter-c:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-c",
       "type": "sound",
-      "text": "C. c, cat.",
+      "text": "This is the k sound, as in cat.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/c-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/c-sound.ssml"
-    },
-    {
-      "id": "letter-c:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-c",
-      "type": "letter-name",
-      "text": "This is C.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/c-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/c-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/c-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/c-sound.ssml"
     },
     {
       "id": "letter-r:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-r",
       "type": "sound",
-      "text": "R. r, rainbow.",
+      "text": "This is the rrr sound, as in rainbow.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/r-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/r-sound.ssml"
-    },
-    {
-      "id": "letter-r:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-r",
-      "type": "letter-name",
-      "text": "This is R.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/r-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/r-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/r-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/r-sound.ssml"
     },
     {
       "id": "letter-n:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-n",
       "type": "sound",
-      "text": "N. n, nose.",
+      "text": "This is the nnn sound, as in nose.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/n-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/n-sound.ssml"
-    },
-    {
-      "id": "letter-n:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-n",
-      "type": "letter-name",
-      "text": "This is N.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/n-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/n-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/n-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/n-sound.ssml"
     },
     {
       "id": "letter-d:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-d",
       "type": "sound",
-      "text": "D. d, dog.",
+      "text": "This is the d sound, as in dog.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/d-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/d-sound.ssml"
-    },
-    {
-      "id": "letter-d:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-d",
-      "type": "letter-name",
-      "text": "This is D.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/d-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/d-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/d-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/d-sound.ssml"
     },
     {
       "id": "letter-i:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-i",
       "type": "sound",
-      "text": "I. i as in igloo.",
+      "text": "This is the short i sound, as in igloo.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/i-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/i-sound.ssml"
-    },
-    {
-      "id": "letter-i:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-i",
-      "type": "letter-name",
-      "text": "This is I.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/i-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/i-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/i-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/i-sound.ssml"
     },
     {
       "id": "letter-f:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-f",
       "type": "sound",
-      "text": "F. f, fish.",
+      "text": "This is the fff sound, as in fish.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/f-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/f-sound.ssml"
-    },
-    {
-      "id": "letter-f:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-f",
-      "type": "letter-name",
-      "text": "This is F.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/f-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/f-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/f-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/f-sound.ssml"
     },
     {
       "id": "letter-b:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-b",
       "type": "sound",
-      "text": "B. b, ball.",
+      "text": "This is the b sound, as in ball.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/b-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/b-sound.ssml"
-    },
-    {
-      "id": "letter-b:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-b",
-      "type": "letter-name",
-      "text": "This is B.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/b-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/b-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/b-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/b-sound.ssml"
     },
     {
       "id": "letter-h:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-h",
       "type": "sound",
-      "text": "H. h, hat.",
+      "text": "This is the h sound, as in hat.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/h-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/h-sound.ssml"
-    },
-    {
-      "id": "letter-h:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-h",
-      "type": "letter-name",
-      "text": "This is H.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/h-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/h-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/h-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/h-sound.ssml"
     },
     {
       "id": "letter-g:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-g",
       "type": "sound",
-      "text": "G. g, goat.",
+      "text": "This is the g sound, as in goat.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/g-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/g-sound.ssml"
-    },
-    {
-      "id": "letter-g:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-g",
-      "type": "letter-name",
-      "text": "This is G.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/g-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/g-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/g-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/g-sound.ssml"
     },
     {
       "id": "letter-o:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-o",
       "type": "sound",
-      "text": "O. o as in octopus.",
+      "text": "This is the short o sound, as in octopus.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/o-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/o-sound.ssml"
-    },
-    {
-      "id": "letter-o:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-o",
-      "type": "letter-name",
-      "text": "This is O.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/o-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/o-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/o-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/o-sound.ssml"
     },
     {
       "id": "letter-l:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-l",
       "type": "sound",
-      "text": "L. l, leaf.",
+      "text": "This is the lll sound, as in leaf.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/l-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/l-sound.ssml"
-    },
-    {
-      "id": "letter-l:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-l",
-      "type": "letter-name",
-      "text": "This is L.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/l-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/l-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/l-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/l-sound.ssml"
     },
     {
       "id": "letter-k:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-k",
       "type": "sound",
-      "text": "K. k, kite.",
+      "text": "This is the k sound, as in kite.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/k-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/k-sound.ssml"
-    },
-    {
-      "id": "letter-k:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-k",
-      "type": "letter-name",
-      "text": "This is K.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/k-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/k-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/k-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/k-sound.ssml"
     },
     {
       "id": "letter-e:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-e",
       "type": "sound",
-      "text": "E. e as in egg.",
+      "text": "This is the short e sound, as in egg.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/e-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/e-sound.ssml"
-    },
-    {
-      "id": "letter-e:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-e",
-      "type": "letter-name",
-      "text": "This is E.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/e-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/e-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/e-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/e-sound.ssml"
     },
     {
       "id": "letter-u:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-u",
       "type": "sound",
-      "text": "U. u as in umbrella.",
+      "text": "This is the short u sound, as in umbrella.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/u-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/u-sound.ssml"
-    },
-    {
-      "id": "letter-u:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-u",
-      "type": "letter-name",
-      "text": "This is U.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/u-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/u-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/u-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/u-sound.ssml"
     },
     {
       "id": "letter-w:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-w",
       "type": "sound",
-      "text": "W. w, whale.",
+      "text": "This is the www sound, as in whale.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/w-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/w-sound.ssml"
-    },
-    {
-      "id": "letter-w:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-w",
-      "type": "letter-name",
-      "text": "This is W.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/w-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/w-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/w-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/w-sound.ssml"
     },
     {
       "id": "letter-j:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-j",
       "type": "sound",
-      "text": "J. j, jam.",
+      "text": "This is the j sound, as in jam.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/j-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/j-sound.ssml"
-    },
-    {
-      "id": "letter-j:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-j",
-      "type": "letter-name",
-      "text": "This is J.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/j-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/j-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/j-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/j-sound.ssml"
     },
     {
       "id": "letter-y:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-y",
       "type": "sound",
-      "text": "Y. y, yak.",
+      "text": "This is the yyy sound, as in yak.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/y-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/y-sound.ssml"
-    },
-    {
-      "id": "letter-y:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-y",
-      "type": "letter-name",
-      "text": "This is Y.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/y-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/y-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/y-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/y-sound.ssml"
     },
     {
       "id": "letter-v:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-v",
       "type": "sound",
-      "text": "V. v, van.",
+      "text": "This is the vvv sound, as in van.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/v-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/v-sound.ssml"
-    },
-    {
-      "id": "letter-v:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-v",
-      "type": "letter-name",
-      "text": "This is V.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/v-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/v-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/v-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/v-sound.ssml"
     },
     {
       "id": "letter-z:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-z",
       "type": "sound",
-      "text": "Z. z, zebra.",
+      "text": "This is the zzz sound, as in zebra.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/z-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/z-sound.ssml"
-    },
-    {
-      "id": "letter-z:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-z",
-      "type": "letter-name",
-      "text": "This is Z.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/z-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/z-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/z-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/z-sound.ssml"
     },
     {
       "id": "letter-q:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-q",
       "type": "sound",
-      "text": "Q. kw, queen.",
+      "text": "This is the qu sound, as in queen.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/q-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/q-sound.ssml"
-    },
-    {
-      "id": "letter-q:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-q",
-      "type": "letter-name",
-      "text": "This is Q.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/q-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/q-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/q-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/q-sound.ssml"
     },
     {
       "id": "letter-x:sound",
       "deckId": "sarah-letters-level-1",
       "cardId": "letter-x",
       "type": "sound",
-      "text": "X. x, fox.",
+      "text": "This is the ks sound, as in fox.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/x-sound.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/x-sound.ssml"
-    },
-    {
-      "id": "letter-x:letter-name",
-      "deckId": "sarah-letters-level-1",
-      "cardId": "letter-x",
-      "type": "letter-name",
-      "text": "This is X.",
-      "language": "en-US",
-      "voice": "en-US-JennyNeural",
-      "audioPath": "decks/sarah-levels/audio/letters/x-name.mp3",
-      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/x-name.ssml"
+      "voiceVersion": "phonics-sounds-v2",
+      "audioPath": "decks/sarah-levels/audio/letters/phonics-v2/x-sound.mp3",
+      "ssmlPath": "decks/sarah-levels/ssml/audio/letters/phonics-v2/x-sound.ssml"
     },
     {
       "id": "phoneme-m:sound",
@@ -588,6 +337,7 @@
       "text": "m. mmm, moon.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/m.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/m.ssml"
     },
@@ -599,6 +349,7 @@
       "text": "moon",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/moon.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/moon.ssml"
     },
@@ -610,6 +361,7 @@
       "text": "p. p, pig.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/p.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/p.ssml"
     },
@@ -621,6 +373,7 @@
       "text": "pig",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/pig.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/pig.ssml"
     },
@@ -632,6 +385,7 @@
       "text": "b. b, ball.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/b.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/b.ssml"
     },
@@ -643,6 +397,7 @@
       "text": "ball",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/ball.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/ball.ssml"
     },
@@ -654,6 +409,7 @@
       "text": "t. t, turtle.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/t.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/t.ssml"
     },
@@ -665,6 +421,7 @@
       "text": "turtle",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/turtle.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/turtle.ssml"
     },
@@ -676,6 +433,7 @@
       "text": "d. d, dog.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/d.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/d.ssml"
     },
@@ -687,6 +445,7 @@
       "text": "dog",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/dog.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/dog.ssml"
     },
@@ -698,6 +457,7 @@
       "text": "c. k, cat.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/k.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/k.ssml"
     },
@@ -709,6 +469,7 @@
       "text": "cat",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/cat.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/cat.ssml"
     },
@@ -720,6 +481,7 @@
       "text": "g. g, goat.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/g.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/g.ssml"
     },
@@ -731,6 +493,7 @@
       "text": "goat",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/goat.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/goat.ssml"
     },
@@ -742,6 +505,7 @@
       "text": "f. f, fish.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/f.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/f.ssml"
     },
@@ -753,6 +517,7 @@
       "text": "fish",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/fish.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/fish.ssml"
     },
@@ -764,6 +529,7 @@
       "text": "v. v, van.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/v.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/v.ssml"
     },
@@ -775,6 +541,7 @@
       "text": "van",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/van.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/van.ssml"
     },
@@ -786,6 +553,7 @@
       "text": "s. sss, sun.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/s.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/s.ssml"
     },
@@ -797,6 +565,7 @@
       "text": "sun",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/sun.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/sun.ssml"
     },
@@ -808,6 +577,7 @@
       "text": "z. z, zebra.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/z.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/z.ssml"
     },
@@ -819,6 +589,7 @@
       "text": "zebra",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/zebra.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/zebra.ssml"
     },
@@ -830,6 +601,7 @@
       "text": "sh. sh, shoe.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/sh.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/sh.ssml"
     },
@@ -841,6 +613,7 @@
       "text": "shoe",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/shoe.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/shoe.ssml"
     },
@@ -852,6 +625,7 @@
       "text": "ch. ch, chair.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/ch.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/ch.ssml"
     },
@@ -863,6 +637,7 @@
       "text": "chair",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/chair.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/chair.ssml"
     },
@@ -874,6 +649,7 @@
       "text": "j. j, jam.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/j.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/j.ssml"
     },
@@ -885,6 +661,7 @@
       "text": "jam",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/jam.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/jam.ssml"
     },
@@ -896,6 +673,7 @@
       "text": "h. h, hat.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/h.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/h.ssml"
     },
@@ -907,6 +685,7 @@
       "text": "hat",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/hat.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/hat.ssml"
     },
@@ -918,6 +697,7 @@
       "text": "n. n, nose.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/n.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/n.ssml"
     },
@@ -929,6 +709,7 @@
       "text": "nose",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/nose.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/nose.ssml"
     },
@@ -940,6 +721,7 @@
       "text": "ng. ng, ring.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/ng.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/ng.ssml"
     },
@@ -951,6 +733,7 @@
       "text": "ring",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/ring.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/ring.ssml"
     },
@@ -962,6 +745,7 @@
       "text": "l. l, leaf.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/l.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/l.ssml"
     },
@@ -973,6 +757,7 @@
       "text": "leaf",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/leaf.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/leaf.ssml"
     },
@@ -984,6 +769,7 @@
       "text": "r. r, rainbow.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/r.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/r.ssml"
     },
@@ -995,6 +781,7 @@
       "text": "rainbow",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/rainbow.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/rainbow.ssml"
     },
@@ -1006,6 +793,7 @@
       "text": "w. w, whale.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/w.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/w.ssml"
     },
@@ -1017,6 +805,7 @@
       "text": "whale",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/whale.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/whale.ssml"
     },
@@ -1028,6 +817,7 @@
       "text": "y. y, yes.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/y.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/y.ssml"
     },
@@ -1039,6 +829,7 @@
       "text": "yes",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/yes.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/yes.ssml"
     },
@@ -1050,6 +841,7 @@
       "text": "th. th, thin.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/th-voiceless.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/th-voiceless.ssml"
     },
@@ -1061,6 +853,7 @@
       "text": "thin",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/thin.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/thin.ssml"
     },
@@ -1072,6 +865,7 @@
       "text": "th. th, this.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/th-voiced.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/th-voiced.ssml"
     },
@@ -1083,6 +877,7 @@
       "text": "this",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/this.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/this.ssml"
     },
@@ -1094,6 +889,7 @@
       "text": "a. a as in apple.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/short-a.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/short-a.ssml"
     },
@@ -1105,6 +901,7 @@
       "text": "apple",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/apple.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/apple.ssml"
     },
@@ -1116,6 +913,7 @@
       "text": "e. e as in egg.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/short-e.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/short-e.ssml"
     },
@@ -1127,6 +925,7 @@
       "text": "egg",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/egg.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/egg.ssml"
     },
@@ -1138,6 +937,7 @@
       "text": "i. i as in igloo.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/short-i.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/short-i.ssml"
     },
@@ -1149,6 +949,7 @@
       "text": "igloo",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/igloo.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/igloo.ssml"
     },
@@ -1160,6 +961,7 @@
       "text": "o. o as in octopus.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/short-o.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/short-o.ssml"
     },
@@ -1171,6 +973,7 @@
       "text": "octopus",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/octopus.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/octopus.ssml"
     },
@@ -1182,6 +985,7 @@
       "text": "u. u as in up.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/short-u.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/short-u.ssml"
     },
@@ -1193,6 +997,7 @@
       "text": "up",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/up.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/up.ssml"
     },
@@ -1204,6 +1009,7 @@
       "text": "ee. ee, bee.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/ee.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/ee.ssml"
     },
@@ -1215,6 +1021,7 @@
       "text": "bee",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/bee.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/bee.ssml"
     },
@@ -1226,6 +1033,7 @@
       "text": "ai. ay, rain.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/ay.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/ay.ssml"
     },
@@ -1237,6 +1045,7 @@
       "text": "rain",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/rain.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/rain.ssml"
     },
@@ -1248,6 +1057,7 @@
       "text": "ie. eye, pie.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/ie.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/ie.ssml"
     },
@@ -1259,6 +1069,7 @@
       "text": "pie",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/pie.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/pie.ssml"
     },
@@ -1270,6 +1081,7 @@
       "text": "oa. oh, boat.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/oa.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/oa.ssml"
     },
@@ -1281,6 +1093,7 @@
       "text": "boat",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/boat.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/boat.ssml"
     },
@@ -1292,6 +1105,7 @@
       "text": "oo. oo, moon.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/oo-long.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/oo-long.ssml"
     },
@@ -1303,6 +1117,7 @@
       "text": "moon",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/moon.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/moon.ssml"
     },
@@ -1314,6 +1129,7 @@
       "text": "oo. oo, book.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/oo-short.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/oo-short.ssml"
     },
@@ -1325,6 +1141,7 @@
       "text": "book",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/book.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/book.ssml"
     },
@@ -1336,6 +1153,7 @@
       "text": "ow. ow, cow.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/ow.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/ow.ssml"
     },
@@ -1347,6 +1165,7 @@
       "text": "cow",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/cow.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/cow.ssml"
     },
@@ -1358,6 +1177,7 @@
       "text": "oy. oy, toy.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/oy.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/oy.ssml"
     },
@@ -1369,6 +1189,7 @@
       "text": "toy",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/toy.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/toy.ssml"
     },
@@ -1380,6 +1201,7 @@
       "text": "er. er, bird.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/er.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/er.ssml"
     },
@@ -1391,6 +1213,7 @@
       "text": "bird",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/bird.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/bird.ssml"
     },
@@ -1402,6 +1225,7 @@
       "text": "aw. aw, saw.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/phonemes/aw.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/phonemes/aw.ssml"
     },
@@ -1413,6 +1237,7 @@
       "text": "saw",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
+      "voiceVersion": "phonics-sounds-v2",
       "audioPath": "decks/sarah-levels/audio/words/saw.mp3",
       "ssmlPath": "decks/sarah-levels/ssml/audio/words/saw.ssml"
     },
@@ -1422,8 +1247,9 @@
       "text": "Anne had a red hat.\nThe red hat sat on Anne.\nAnne ran to the gate.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-red-hat-page-1.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-red-hat-page-1.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-red-hat-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-red-hat-page-1.ssml"
     },
     {
       "id": "story:anne-red-hat:page:2",
@@ -1431,8 +1257,9 @@
       "text": "\"I am in my red hat,\" said Anne.\n\"I am glad in my red hat.\"",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-red-hat-page-2.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-red-hat-page-2.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-red-hat-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-red-hat-page-2.ssml"
     },
     {
       "id": "story:anne-red-hat:page:3",
@@ -1440,8 +1267,9 @@
       "text": "Diana ran to Anne.\nDiana said, \"I like the red hat.\"\nAnne said, \"I like it too.\"",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-red-hat-page-3.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-red-hat-page-3.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-red-hat-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-red-hat-page-3.ssml"
     },
     {
       "id": "story:anne-sad-cat:page:1",
@@ -1449,8 +1277,9 @@
       "text": "Anne saw a sad cat.\nThe cat sat on a mat.\nAnne sat by the cat.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-sad-cat-page-1.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-sad-cat-page-1.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-sad-cat-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-sad-cat-page-1.ssml"
     },
     {
       "id": "story:anne-sad-cat:page:2",
@@ -1458,8 +1287,9 @@
       "text": "\"Are you sad?\" Anne said.\nThe cat did not say.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-sad-cat-page-2.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-sad-cat-page-2.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-sad-cat-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-sad-cat-page-2.ssml"
     },
     {
       "id": "story:anne-sad-cat:page:3",
@@ -1467,8 +1297,9 @@
       "text": "Anne got a bit of milk.\nThe cat had the milk.\nNow the cat was not sad.\nAnne was glad.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-sad-cat-page-3.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-sad-cat-page-3.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-sad-cat-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-sad-cat-page-3.ssml"
     },
     {
       "id": "story:anne-at-pond:page:1",
@@ -1476,8 +1307,9 @@
       "text": "Anne ran to the pond.\nDiana ran to the pond.\nThe pond was still.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-at-pond-page-1.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-at-pond-page-1.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-at-pond-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-at-pond-page-1.ssml"
     },
     {
       "id": "story:anne-at-pond:page:2",
@@ -1485,8 +1317,9 @@
       "text": "\"I can see me,\" said Anne.\n\"I can see you,\" said Diana.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-at-pond-page-2.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-at-pond-page-2.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-at-pond-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-at-pond-page-2.ssml"
     },
     {
       "id": "story:anne-at-pond:page:3",
@@ -1494,8 +1327,9 @@
       "text": "Anne put a hand in the pond.\nThe pond did not stay still.\n\"Oh!\" said Anne.\n\"Now I can not see me!\"",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-at-pond-page-3.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-at-pond-page-3.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-at-pond-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-at-pond-page-3.ssml"
     },
     {
       "id": "story:anne-big-tree:page:1",
@@ -1503,8 +1337,9 @@
       "text": "Anne sat in a big tree.\nThe tree was old.\nThe tree was tall.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-big-tree-page-1.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-big-tree-page-1.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-big-tree-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-big-tree-page-1.ssml"
     },
     {
       "id": "story:anne-big-tree:page:2",
@@ -1512,8 +1347,9 @@
       "text": "\"I like this old tree,\" said Anne.\n\"It is a good tree.\"",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-big-tree-page-2.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-big-tree-page-2.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-big-tree-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-big-tree-page-2.ssml"
     },
     {
       "id": "story:anne-big-tree:page:3",
@@ -1521,8 +1357,9 @@
       "text": "Marilla said, \"Anne, get down.\"\nAnne got down.\nThen Anne said, \"I still like that tree.\"",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-big-tree-page-3.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-big-tree-page-3.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-big-tree-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-big-tree-page-3.ssml"
     },
     {
       "id": "story:anne-and-matthew:page:1",
@@ -1530,8 +1367,9 @@
       "text": "Matthew had a soft hat.\nAnne had a lot to say.",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-and-matthew-page-1.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-and-matthew-page-1.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-and-matthew-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-and-matthew-page-1.ssml"
     },
     {
       "id": "story:anne-and-matthew:page:2",
@@ -1539,8 +1377,9 @@
       "text": "Anne said, \"I like red.\"\nAnne said, \"I like trees.\"\nAnne said, \"I like the sun.\"",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-and-matthew-page-2.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-and-matthew-page-2.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-and-matthew-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-and-matthew-page-2.ssml"
     },
     {
       "id": "story:anne-and-matthew:page:3",
@@ -1548,15 +1387,17 @@
       "text": "Matthew did not say a lot.\nMatthew just sat.\nThen Matthew said, \"I like that.\"\nAnne said, \"I like you, Matthew.\"",
       "language": "en-US",
       "voice": "en-US-JennyNeural",
-      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-and-matthew-page-3.mp3",
-      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-and-matthew-page-3.ssml"
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-and-matthew-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/anne-and-matthew-page-3.ssml"
     },
     {
       "id": "ui:story:complete",
       "type": "story-ui",
       "text": "The End. You finished the story!",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/ui-story-complete.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/ui-story-complete.ssml"
     },
@@ -1565,7 +1406,8 @@
       "type": "older-reader-ui",
       "text": "You practiced five words. Great job!",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/older-reader-complete.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/older-reader-complete.ssml"
     },
@@ -1574,7 +1416,8 @@
       "type": "older-reader-prompt",
       "text": "What word matches the picture?",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/older-reader-prompt-picturetoword.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/older-reader-prompt-picturetoword.ssml"
     },
@@ -1583,7 +1426,8 @@
       "type": "older-reader-prompt",
       "text": "Which picture matches this word?",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/older-reader-prompt-wordtopicture.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/older-reader-prompt-wordtopicture.ssml"
     },
@@ -1592,7 +1436,8 @@
       "type": "older-reader-prompt",
       "text": "Which word did you hear?",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/older-reader-prompt-audiotoword.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/older-reader-prompt-audiotoword.ssml"
     },
@@ -1601,7 +1446,8 @@
       "type": "older-reader-prompt",
       "text": "This word starts with which sound?",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/older-reader-prompt-startswithsound.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/older-reader-prompt-startswithsound.ssml"
     },
@@ -1610,7 +1456,8 @@
       "type": "older-reader-prompt",
       "text": "Which word has this chunk?",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/older-reader-prompt-wordfamily.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/older-reader-prompt-wordfamily.ssml"
     },
@@ -1619,7 +1466,8 @@
       "type": "older-reader-prompt",
       "text": "What word matches the picture?",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/older-reader-prompt-review.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/older-reader-prompt-review.ssml"
     },
@@ -1628,7 +1476,8 @@
       "type": "feedback",
       "text": "Great job!",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/feedback-great.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/feedback-great.ssml"
     },
@@ -1637,7 +1486,8 @@
       "type": "feedback",
       "text": "Try again.",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/feedback-try-again.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/feedback-try-again.ssml"
     },
@@ -1646,7 +1496,8 @@
       "type": "feedback",
       "text": "Choose one.",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/feedback-choose-one.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/feedback-choose-one.ssml"
     },
@@ -1655,7 +1506,8 @@
       "type": "feedback",
       "text": "One more!",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/feedback-one-more.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/feedback-one-more.ssml"
     },
@@ -1664,7 +1516,8 @@
       "type": "ui",
       "text": "Save audio.",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/ui-save-audio.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/ui-save-audio.ssml"
     },
@@ -1673,7 +1526,8 @@
       "type": "ui",
       "text": "Tap to hear.",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/ui-tap-to-hear.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/ui-tap-to-hear.ssml"
     },
@@ -1682,7 +1536,8 @@
       "type": "ui",
       "text": "Read to me.",
       "language": "en-US",
-      "voice": "en-US-JennyNeural",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/ui-read-to-me.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/ui-read-to-me.ssml"
     }
