@@ -718,6 +718,7 @@ function LearningScreen({
         isOpen={menuOpen}
         onToggle={onMenuToggle}
         decks={decks}
+        activeDeck={activeDeck}
         activeDeckId={activeDeckId}
         onDeckChange={onDeckChange}
         onRestartLesson={onRestartLesson}
@@ -794,6 +795,7 @@ function LessonMenu({
   isOpen,
   onToggle,
   decks,
+  activeDeck,
   activeDeckId,
   onDeckChange,
   onRestartLesson,
@@ -807,6 +809,7 @@ function LessonMenu({
   isOpen: boolean
   onToggle: () => void
   decks: LearningDeck[]
+  activeDeck: LearningDeck
   activeDeckId: string
   onDeckChange: (deckId: string) => void
   onRestartLesson: () => void
@@ -927,6 +930,11 @@ function LessonMenu({
                 {showAdultDetails ? '✓ ' : ''}Adult Details
               </button>
             </div>
+              {activeDeck.type === 'letters' && (
+                <div className="menu-note parent-note">
+                  This section teaches letter sounds before letter names. The goal is hearing, saying, and matching sounds.
+                </div>
+              )}
             <button type="button" className="menu-item menu-home" onClick={onGoHome}>
               ⌂ Home
             </button>
@@ -1040,6 +1048,7 @@ function SarahLetterLesson({
     if (tries === 0) {
       setTries(1)
       setStatus('try-again')
+      void playSarahActivityAudio(deck, activity)
       return
     }
     setStatus('revealed')
@@ -1123,7 +1132,7 @@ function SarahIntroView({
     <div className="focus-intro">
       <div className="focus-prompt">
         <span className="stage-label">Sound {Math.min(activityIndex + 1, 5)} of 5</span>
-        <h2>This is {activity.card.displayText}.</h2>
+        <h2>{activity.card.sound} like {activity.card.exampleWord}</h2>
       </div>
       <div className="focus-visual">
         <div className="letter-display">
@@ -1132,6 +1141,7 @@ function SarahIntroView({
         </div>
         <Picture deck={deck} card={activity.card} />
         <span className="example-word">{activity.card.exampleWord}</span>
+        {activity.card.mouthCue && <span className="mouth-cue">{activity.card.mouthCue}</span>}
       </div>
       <div className="focus-actions">
         <AudioPromptButton
@@ -1165,7 +1175,7 @@ function SarahQuestionView({
 
   function handleAudioClick() {
     if (questionKind === 'upperLowerMatch') {
-      void playSpecificCardAudio(deck, activity.card, activity.card.letterNameAudio, activity.card.displayText)
+      void playCardAudio(deck, activity.card)
     } else {
       void playCardAudio(deck, activity.card)
     }
@@ -1205,7 +1215,7 @@ function SarahQuestionView({
         {questionKind === 'soundToLetter' && (
           <>
             <span className="stage-label">Hear the sound</span>
-            <h2>Which letter makes this sound?</h2>
+            <h2>Find {activity.card.sound}.</h2>
             <AudioPromptButton onClick={handleAudioClick} label="Tap to hear" />
             {showAdultDetails && <span className="phonetic-detail">{activity.card.sound}</span>}
           </>
@@ -1213,7 +1223,7 @@ function SarahQuestionView({
         {questionKind === 'letterToSound' && (
           <>
             <span className="stage-label">Say the sound</span>
-            <h2>What sound does this letter make?</h2>
+            <h2>Which sound starts {activity.card.exampleWord}?</h2>
             <div className="prompt-letter">{activity.card.displayText}</div>
           </>
         )}
@@ -1233,7 +1243,7 @@ function SarahQuestionView({
         {questionKind === 'beginningSound' && (
           <>
             <span className="stage-label">Starting sound</span>
-            <h2>This word starts with which sound?</h2>
+            <h2>{activity.card.exampleWord} starts with which sound?</h2>
             <div className="focus-visual compact">
               <Picture deck={deck} card={activity.card} />
               <span className="example-word">{activity.card.exampleWord}</span>
@@ -1244,7 +1254,7 @@ function SarahQuestionView({
         {questionKind === 'wordToBeginningSound' && (
           <>
             <span className="stage-label">Starting sound</span>
-            <h2>This word starts with which sound?</h2>
+            <h2>{activity.card.exampleWord} starts with which sound?</h2>
             <div className="focus-visual compact">
               <Picture deck={deck} card={activity.card} />
               <span className="example-word">{activity.card.exampleWord}</span>
@@ -1254,7 +1264,7 @@ function SarahQuestionView({
         {questionKind === 'soundToWord' && (
           <>
             <span className="stage-label">Find the word</span>
-            <h2>Which word starts with this sound?</h2>
+            <h2>Which word starts with {activity.card.sound}?</h2>
             <AudioPromptButton onClick={handleAudioClick} label="Hear the sound" />
             {showAdultDetails && <span className="phonetic-detail">{activity.card.sound}</span>}
           </>
@@ -2160,7 +2170,7 @@ function getSarahCorrectAnswer(activity: SarahActivity): string {
 
 function getSarahFeedback(status: SarahActivityStatus, activity: SarahActivity): { title: string; detail: string } {
   if (activity.kind === 'intro') {
-    return { title: 'Listen with Chunky!', detail: `${activity.card.displayText} as in ${activity.card.exampleWord}.` }
+    return { title: 'Listen with Chunky!', detail: `${activity.card.sound} like ${activity.card.exampleWord}.` }
   }
   if (status === 'correct') return { title: 'Yay!', detail: 'Great job!' }
   if (status === 'try-again') return { title: 'Almost!', detail: 'Try one more time.' }
@@ -2195,23 +2205,10 @@ function useAutoplaySarahActivity(deck: LearningDeck, activity: SarahActivity | 
 async function playSarahActivityAudio(deck: LearningDeck, activity: SarahActivity) {
   const kind = getSarahQuestionKind(activity)
   if (kind === 'upperLowerMatch') {
-    await playSpecificCardAudio(deck, activity.card, activity.card.letterNameAudio, activity.card.displayText)
+    await playCardAudio(deck, activity.card)
     return
   }
   await playCardAudio(deck, activity.card)
-}
-
-async function playSpecificCardAudio(deck: LearningDeck, card: LearningCard, audioPath?: string, fallbackText?: string) {
-  const audioUrl = resolveAssetUrl(deck, audioPath)
-  if (audioUrl) {
-    try {
-      await playAudioUrl(audioUrl)
-      return
-    } catch {
-      // Browser speech will cover missing optional audio.
-    }
-  }
-  speakText(deck, fallbackText || card.speechCue || card.displayText)
 }
 
 function speakText(deck: LearningDeck, text?: string) {

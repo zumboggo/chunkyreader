@@ -2656,6 +2656,19 @@ body.lesson-active {
   opacity: 0.7;
 }
 
+.mouth-cue,
+.parent-note {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.mouth-cue {
+  max-width: 32ch;
+  text-align: center;
+}
+
 .focus-visual {
   display: grid;
   justify-items: center;

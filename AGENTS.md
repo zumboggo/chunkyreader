@@ -11,6 +11,7 @@ Chunky Reader is a small, joyful reading app for young children. Keep it close t
 - Autoplay audio every time a new word, letter, or sound is introduced.
 - Sarah Level 1 letter lessons derive about 25 tiny activities from each 5-letter chunk: intro, sound-to-letter, uppercase/lowercase matching, beginning-sound, and mixed review.
 - Sarah Level 1 uses phonics-first ordering: `m s a t p`, `c r n d i`, `f b h g o`, `l k e u w`, then final tricky-sounds review `j y v z q x`.
+- Sarah Level 1 teaches phonetic sounds before letter names. Do not send bare letters to TTS; use SSML phoneme tags from `scripts/phonics-level-1.mjs`.
 - Questions should reinforce what was just shown, not ask the child to hold a lot in memory.
 - Keep navigation obvious and child-sized. Avoid settings-heavy or LMS-style screens.
 
@@ -28,6 +29,8 @@ Chunky Reader is a small, joyful reading app for young children. Keep it close t
 
 - Prefer downloadable clip-pack style audio over relying on browser speech.
 - Generate Sarah audio with Azure TTS SSML using `npm run generate:audio`.
+- Azure voices and voice-version cache keys live in `scripts/tts-config.mjs`; Anne narration uses the `anne-soft-female-v2` path/version.
+- Run `npm run validate:phonics-audio` after changing Level 1 sound data.
 - The generator reads credentials from environment variables or the local Azure config file, but credentials must never be committed, logged, copied into docs, or exposed in output.
 - Keep SSML files with the generated audio so clips can be regenerated later.
 

@@ -11,6 +11,8 @@
     "verify:decks": "node scripts/verify-decks.mjs",
     "verify:stories": "node scripts/verify-stories.mjs",
     "generate:audio": "node scripts/generate-azure-reading-clips.mjs",
+    "generate:audio:ssml": "node scripts/generate-azure-reading-clips.mjs --ssml-only",
+    "validate:phonics-audio": "node scripts/validate-phonics-audio.mjs",
     "generate:letter-images": "node scripts/generate-replicate-letter-images.mjs",
     "generate:word-images": "node scripts/generate-replicate-word-images.mjs",
     "generate:word-images:dry": "node scripts/generate-replicate-word-images.mjs --dry-run",

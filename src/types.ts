@@ -46,6 +46,8 @@ export interface LearningCard {
   uppercase?: string
   lowercase?: string
   sound?: string
+  primarySoundLabel?: string
+  ipa?: string
   phoneme?: string
   grapheme?: string
   exampleWord?: string
@@ -65,6 +67,10 @@ export interface LearningCard {
 
   // Optional browser-TTS fallback for sound-only cards when MP3 files are not ready yet.
   speechCue?: string
+  ttsText?: string
+  ssmlSound?: string
+  mouthCue?: string
+  avoidTtsLetterName?: boolean
 }
 
 export interface StoryPage {
