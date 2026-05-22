@@ -12,6 +12,9 @@
     "verify:stories": "node scripts/verify-stories.mjs",
     "generate:audio": "node scripts/generate-azure-reading-clips.mjs",
     "generate:letter-images": "node scripts/generate-replicate-letter-images.mjs",
+    "generate:word-images": "node scripts/generate-replicate-word-images.mjs",
+    "generate:word-images:dry": "node scripts/generate-replicate-word-images.mjs --dry-run",
+    "generate:word-images:test": "node scripts/generate-replicate-word-images.mjs --limit=5",
     "generate:story-images": "node scripts/generate-story-images.mjs",
     "generate:story-images:dry": "node scripts/generate-story-images.mjs --dry-run",
     "generate:story-images:test": "node scripts/generate-story-images.mjs --limit 2"
