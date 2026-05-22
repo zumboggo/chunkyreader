@@ -2522,6 +2522,24 @@ body.lesson-active {
   color: var(--purple-pop);
 }
 
+.audio-pack-button {
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fff1f6, #e7f6ff);
+  color: var(--purple-pop);
+  font-size: 0.9rem;
+  font-weight: 950;
+  box-shadow: var(--soft-shadow);
+}
+
+.audio-pack-button.compact {
+  width: 100%;
+  justify-content: flex-start;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
 /* Audio Prompt Button */
 .audio-prompt-button {
   min-height: clamp(48px, 9dvh, 72px);

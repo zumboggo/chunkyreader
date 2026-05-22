@@ -3,6 +3,7 @@ import path from 'node:path'
 
 const root = process.cwd()
 const decksDir = path.join(root, 'public', 'decks')
+const storiesPath = path.join(root, 'public', 'stories', 'anne-stories.json')
 const clipPackDir = path.join(root, 'public', 'clip-packs', 'chunky-reader-audio')
 const azureConfigPath =
   process.env.AZURE_TTS_CONFIG_PATH ||
@@ -15,6 +16,7 @@ const force = process.argv.includes('--force')
 
 async function main() {
   const decks = await loadSarahDecks()
+  const stories = await loadStories()
   const credentials = synthesize ? await loadCredentials() : null
   const clips = []
 
@@ -23,6 +25,8 @@ async function main() {
       clips.push(...cardClips(deck, card))
     }
   }
+  clips.push(...storyClips(stories))
+  clips.push(...uiNarrationClips())
 
   const written = []
   for (const clip of clips) {
@@ -56,8 +60,9 @@ async function main() {
       {
         id: 'chunky-reader-audio',
         title: 'Chunky Reader Audio Pack',
-        description: 'Azure TTS clips for Sarah letter and reading-sound decks. Anna audio lives in annas-reading-deck.',
+        description: 'Azure TTS clips for kid-facing Chunky Reader text, including sound decks, story pages, prompts, and feedback.',
         provider: synthesize && credentials ? 'azure-tts' : 'ssml-only',
+        version: '2026-05-kid-facing-audio-v1',
         voice,
         outputFormat,
         createdAt: new Date().toISOString(),
@@ -76,6 +81,14 @@ async function main() {
 async function loadSarahDecks() {
   const files = ['sarah-letters-level-1.json', 'sarah-phonemes-level-2.json']
   return Promise.all(files.map(async (file) => JSON.parse(await fs.readFile(path.join(decksDir, file), 'utf8'))))
+}
+
+async function loadStories() {
+  try {
+    return JSON.parse(await fs.readFile(storiesPath, 'utf8'))
+  } catch {
+    return []
+  }
 }
 
 async function loadCredentials() {
@@ -128,6 +141,63 @@ function makeClip(deck, card, type, relativeAudioPath, text, language) {
     id: `${card.id}:${type}`,
     deckId: deck.id,
     cardId: card.id,
+    type,
+    text,
+    language,
+    audioPath,
+    ssmlPath,
+  }
+}
+
+function storyClips(stories) {
+  const clips = []
+  for (const story of stories) {
+    for (const page of story.pages ?? []) {
+      const slug = `${story.id}-page-${page.pageNumber}`
+      clips.push(makeNarrationClip({
+        id: `story:${story.id}:page:${page.pageNumber}`,
+        type: 'story-page',
+        text: page.text,
+        language: 'en-US',
+        relativeAudioPath: `audio/narration/stories/${slug}.mp3`,
+      }))
+    }
+  }
+  return clips
+}
+
+function uiNarrationClips() {
+  const entries = [
+    ['ui:story:complete', 'story-ui', 'The End. You finished the story!'],
+    ['older-reader:complete', 'older-reader-ui', 'You practiced five words. Great job!'],
+    ['older-reader:prompt:pictureToWord', 'older-reader-prompt', 'What word matches the picture?'],
+    ['older-reader:prompt:wordToPicture', 'older-reader-prompt', 'Which picture matches this word?'],
+    ['older-reader:prompt:audioToWord', 'older-reader-prompt', 'Which word did you hear?'],
+    ['older-reader:prompt:startsWithSound', 'older-reader-prompt', 'This word starts with which sound?'],
+    ['older-reader:prompt:wordFamily', 'older-reader-prompt', 'Which word has this chunk?'],
+    ['older-reader:prompt:review', 'older-reader-prompt', 'What word matches the picture?'],
+    ['feedback:great', 'feedback', 'Great job!'],
+    ['feedback:try-again', 'feedback', 'Try again.'],
+    ['feedback:choose-one', 'feedback', 'Choose one.'],
+    ['feedback:one-more', 'feedback', 'One more!'],
+    ['ui:save-audio', 'ui', 'Save audio.'],
+    ['ui:tap-to-hear', 'ui', 'Tap to hear.'],
+    ['ui:read-to-me', 'ui', 'Read to me.'],
+  ]
+  return entries.map(([id, type, text]) => makeNarrationClip({
+    id,
+    type,
+    text,
+    language: 'en-US',
+    relativeAudioPath: `audio/narration/ui/${safeFileName(id)}.mp3`,
+  }))
+}
+
+function makeNarrationClip({ id, type, text, language, relativeAudioPath }) {
+  const audioPath = path.join(clipPackDir, relativeAudioPath)
+  const ssmlPath = path.join(clipPackDir, 'ssml', relativeAudioPath.replace(/\.mp3$/i, '.ssml'))
+  return {
+    id,
     type,
     text,
     language,
@@ -200,6 +270,10 @@ function escapeXml(value) {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&apos;')
+}
+
+function safeFileName(value) {
+  return String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
 
 main().catch((error) => {

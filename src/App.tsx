@@ -1,4 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import {
+  getInstalledAudioPackSummary,
+  installAudioClipPack,
+  loadAudioClipPackManifest,
+  playAudioUrl,
+  stopAudioPlayback,
+  useNarration,
+  type AudioPackInstallProgress,
+} from './audioClipPack'
 import { loadDeckLibrary, resolveAssetUrl } from './decks'
 import { loadAnneStories, resolveStoryAssetUrl } from './stories'
 import type { LearningCard, LearningDeck, LearningMode, ProfileId, Story, StoryPage } from './types'
@@ -460,6 +469,7 @@ function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => voi
           <h1>Read a Story</h1>
           <p>Pick one tiny story. Each one has three gentle pages.</p>
         </div>
+        <AudioPackButton />
         <Mascot mood="happy" />
       </div>
 
@@ -512,6 +522,11 @@ function StoryReader({
   onComplete: () => void
 }) {
   const page = story.pages[Math.min(pageIndex, story.pages.length - 1)]
+  const narration = useNarration(
+    complete ? 'ui:story:complete' : `story:${story.id}:page:${page.pageNumber}`,
+    complete ? 'The End. You finished the story!' : page.text,
+    `${story.id}:${complete ? 'complete' : page.pageNumber}`,
+  )
 
   const nextPage = useCallback(() => {
     if (pageIndex >= story.pages.length - 1) {
@@ -555,6 +570,9 @@ function StoryReader({
         <h1>The End</h1>
         <p>You finished the story!</p>
         <div className="completion-actions story-actions">
+          <button type="button" className="sound-button read-to-me" onClick={narration.replay}>
+            <PlayIcon /> Play Again
+          </button>
           <button type="button" onClick={onRestart}>Read Again</button>
           <button type="button" className="primary" onClick={onBack}>Back to Stories</button>
         </div>
@@ -583,8 +601,8 @@ function StoryReader({
           <div className="story-lines">
             {page.text.split('\n').map((line, index) => <p key={`${page.pageNumber}:${index}`}>{line}</p>)}
           </div>
-          <button type="button" className="sound-button read-to-me" onClick={() => speakPlainText(page.text)}>
-            <PlayIcon /> Read to Me
+          <button type="button" className="sound-button read-to-me" onClick={narration.replay}>
+            <PlayIcon /> {narration.shouldShowPlayButton ? 'Tap to Hear' : 'Read to Me'}
           </button>
         </div>
       </article>
@@ -904,6 +922,7 @@ function LessonMenu({
             )}
             <div className="menu-section">
               <strong>Options</strong>
+              <AudioPackButton compact />
               <button type="button" className="menu-item" onClick={onToggleAdultDetails}>
                 {showAdultDetails ? '✓ ' : ''}Adult Details
               </button>
@@ -1319,6 +1338,18 @@ function OlderReaderLesson({
   const [complete, setComplete] = useState(false)
   const correct = selected === activity?.card.id
   const showCompletion = complete || activityIndex >= activities.length
+  const prompt = activity ? getOlderReaderPrompt(activity) : ''
+  const promptNarration = useNarration(
+    showCompletion
+      ? 'older-reader:complete'
+      : activity?.kind === 'audioToWord'
+        ? undefined
+        : activity
+          ? `older-reader:prompt:${activity.kind}`
+          : undefined,
+    showCompletion ? 'You practiced five words. Great job!' : prompt,
+    `${deck.id}:${lessonNumber}:${showCompletion ? 'complete' : activityIndex}`,
+  )
 
   useEffect(() => {
     if (!activity || showCompletion) return
@@ -1391,6 +1422,10 @@ function OlderReaderLesson({
               ))}
             </div>
             <div className="focus-actions">
+              <button type="button" className="choice-action" onClick={promptNarration.replay}>
+                <PlayIcon />
+                Play
+              </button>
               <button type="button" className="primary choice-action" onClick={onNextLesson}>
                 <span>A</span>
                 Next Lesson
@@ -1413,7 +1448,6 @@ function OlderReaderLesson({
     )
   }
 
-  const prompt = getOlderReaderPrompt(activity)
   const showPromptPicture = ['pictureToWord', 'startsWithSound', 'review'].includes(activity.kind)
   const showOptionPictures = activity.kind === 'wordToPicture'
   const mood: MascotMood = selected ? (correct ? 'happy' : 'sad') : activity.kind === 'audioToWord' ? 'reading' : 'curious'
@@ -1425,6 +1459,9 @@ function OlderReaderLesson({
           <div className="focus-prompt">
             <span className="stage-label">Lesson {lessonNumber} - Practice {activityIndex + 1} of {activities.length}</span>
             <h2>{prompt}</h2>
+            {promptNarration.shouldShowPlayButton && (
+              <AudioPromptButton onClick={promptNarration.replay} label="Hear question" />
+            )}
             {activity.kind === 'audioToWord' && <AudioPromptButton onClick={() => playCardAudio(deck, activity.card)} label="Hear it" />}
             {activity.kind === 'wordToPicture' && <div className="word-display prompt-word">{optionLabel(activity.card)}</div>}
             {activity.kind === 'wordFamily' && <div className="word-chunk">{wordChunk(activity.card)}</div>}
@@ -1863,7 +1900,51 @@ function PlayIcon() {
   return <span className="play-icon" aria-hidden="true" />
 }
 
-let activeAudio: HTMLAudioElement | null = null
+function AudioPackButton({ compact = false }: { compact?: boolean }) {
+  const [installing, setInstalling] = useState(false)
+  const [progress, setProgress] = useState<AudioPackInstallProgress | undefined>()
+  const [installed, setInstalled] = useState(() => getInstalledAudioPackSummary())
+  const [availableVersion, setAvailableVersion] = useState('')
+  useEffect(() => {
+    let cancelled = false
+    void loadAudioClipPackManifest().then((manifest) => {
+      if (!cancelled) setAvailableVersion(manifest?.version || manifest?.createdAt || '')
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+  const needsUpdate = Boolean(installed && availableVersion && installed.version !== availableVersion)
+  const label = installing
+    ? `Saving ${progress?.done ?? 0}/${progress?.total ?? 0}`
+    : needsUpdate
+      ? 'Update Audio'
+      : installed
+      ? `Audio saved (${installed.clipCount ?? '?'})`
+      : 'Save Audio'
+
+  async function install() {
+    if (installing) return
+    setInstalling(true)
+    try {
+      await installAudioClipPack(setProgress)
+      setInstalled(getInstalledAudioPackSummary())
+    } finally {
+      setInstalling(false)
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      className={compact ? 'menu-item audio-pack-button compact' : 'audio-pack-button'}
+      disabled={installing}
+      onClick={install}
+    >
+      {label}
+    </button>
+  )
+}
 
 function useAutoplayCard(deck: LearningDeck, card: LearningCard, key: string) {
   const lastKey = useRef('')
@@ -1892,27 +1973,6 @@ async function playCardAudio(deck: LearningDeck, card: LearningCard) {
 
   const text = card.speechCue || card.exampleWord || card.word || card.displayText
   speakText(deck, text)
-}
-
-function playAudioUrl(url: string): Promise<void> {
-  return new Promise((resolve, reject) => {
-    if ('speechSynthesis' in window) window.speechSynthesis.cancel()
-    if (activeAudio) {
-      activeAudio.pause()
-      activeAudio.currentTime = 0
-    }
-    const audio = new Audio(url)
-    activeAudio = audio
-    audio.addEventListener('ended', () => {
-      if (activeAudio === audio) activeAudio = null
-      resolve()
-    }, { once: true })
-    audio.addEventListener('error', () => {
-      if (activeAudio === audio) activeAudio = null
-      reject(new Error('Audio failed'))
-    }, { once: true })
-    audio.play().catch(reject)
-  })
 }
 
 function buildOptions(cards: LearningCard[], card: LearningCard): LearningCard[] {
@@ -2156,24 +2216,10 @@ async function playSpecificCardAudio(deck: LearningDeck, card: LearningCard, aud
 
 function speakText(deck: LearningDeck, text?: string) {
   if (!text || !('speechSynthesis' in window)) return
-  window.speechSynthesis.cancel()
+  stopAudioPlayback()
   const utterance = new SpeechSynthesisUtterance(text.replaceAll('/', ''))
   utterance.lang = deck.language || 'en-US'
   utterance.rate = deck.profile === 'sarah' ? 0.72 : 0.86
-  window.speechSynthesis.speak(utterance)
-}
-
-function speakPlainText(text?: string) {
-  if (!text || !('speechSynthesis' in window)) return
-  if (activeAudio) {
-    activeAudio.pause()
-    activeAudio.currentTime = 0
-    activeAudio = null
-  }
-  window.speechSynthesis.cancel()
-  const utterance = new SpeechSynthesisUtterance(text.replace(/\s+/gu, ' ').trim())
-  utterance.lang = 'en-US'
-  utterance.rate = 0.82
   window.speechSynthesis.speak(utterance)
 }
 

@@ -13,7 +13,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne in a red hat running toward a wooden gate in the countryside. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne runs toward a country gate while wearing a red hat.",
-        "audio": "stories/anne/audio/anne-red-hat-page-1.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-red-hat-page-1.mp3"
       },
       {
         "pageNumber": 2,
@@ -22,7 +22,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne proudly smiling and showing off her red hat with one hand near the brim. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, modest old-fashioned dress, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne smiles proudly while wearing her red hat.",
-        "audio": "stories/anne/audio/anne-red-hat-page-2.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-red-hat-page-2.mp3"
       },
       {
         "pageNumber": 3,
@@ -31,7 +31,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne and Diana standing together by a country lane while Diana admires Anne's red hat. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, dark-haired Diana as a kind cheerful young girl, old-fashioned dresses, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Diana smiles at Anne's red hat while Anne smiles back.",
-        "audio": "stories/anne/audio/anne-red-hat-page-3.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-red-hat-page-3.mp3"
       }
     ]
   },
@@ -49,7 +49,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne kneeling beside a sad cat sitting on a woven mat near a farmhouse porch. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne sits beside a sad cat on a mat.",
-        "audio": "stories/anne/audio/anne-sad-cat-page-1.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-sad-cat-page-1.mp3"
       },
       {
         "pageNumber": 2,
@@ -58,7 +58,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne gently talking to a sad cat on a mat, with a caring expression. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, modest old-fashioned dress, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne gently speaks to the quiet sad cat.",
-        "audio": "stories/anne/audio/anne-sad-cat-page-2.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-sad-cat-page-2.mp3"
       },
       {
         "pageNumber": 3,
@@ -67,7 +67,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne giving a small bowl of milk to a happy cat, with Anne smiling warmly. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne smiles while the cat drinks milk and looks happy.",
-        "audio": "stories/anne/audio/anne-sad-cat-page-3.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-sad-cat-page-3.mp3"
       }
     ]
   },
@@ -85,7 +85,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne and Diana running to a still pond beside fields and trees. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, dark-haired Diana as a kind cheerful young girl, old-fashioned dresses, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne and Diana run toward a still pond.",
-        "audio": "stories/anne/audio/anne-at-pond-page-1.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-at-pond-page-1.mp3"
       },
       {
         "pageNumber": 2,
@@ -94,7 +94,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne and Diana leaning safely near a still pond and smiling at their reflections in the water. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, dark-haired Diana as a kind cheerful young girl, old-fashioned dresses, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne and Diana look at their reflections in the pond.",
-        "audio": "stories/anne/audio/anne-at-pond-page-2.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-at-pond-page-2.mp3"
       },
       {
         "pageNumber": 3,
@@ -103,7 +103,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne touching pond water with one hand and laughing as the reflection ripples away, with Diana nearby. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, dark-haired Diana as a kind cheerful young girl, old-fashioned dresses, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne laughs as ripples spread across the pond.",
-        "audio": "stories/anne/audio/anne-at-pond-page-3.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-at-pond-page-3.mp3"
       }
     ]
   },
@@ -121,7 +121,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne sitting safely on a low branch in a big old tree near a farmhouse. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, modest old-fashioned dress, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne sits in a big old tree.",
-        "audio": "stories/anne/audio/anne-big-tree-page-1.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-big-tree-page-1.mp3"
       },
       {
         "pageNumber": 2,
@@ -130,7 +130,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne happily admiring a big old tree, one hand resting on the trunk. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, modest old-fashioned dress, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne smiles while admiring the old tree.",
-        "audio": "stories/anne/audio/anne-big-tree-page-2.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-big-tree-page-2.mp3"
       },
       {
         "pageNumber": 3,
@@ -139,7 +139,7 @@
         "imagePrompt": "Original children's storybook illustration of Marilla standing below a big tree with a firm but caring expression while Anne climbs down cheerfully. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, Marilla as an older woman in a plain old-fashioned dress, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Marilla watches kindly while Anne climbs down from the tree.",
-        "audio": "stories/anne/audio/anne-big-tree-page-3.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-big-tree-page-3.mp3"
       }
     ]
   },
@@ -157,7 +157,7 @@
         "imagePrompt": "Original children's storybook illustration of Matthew in a soft hat sitting outside with Anne nearby looking eager to talk. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, Matthew as a gentle older man with a quiet kind expression and old-fashioned rural clothing, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Matthew sits in a soft hat while Anne looks ready to talk.",
-        "audio": "stories/anne/audio/anne-and-matthew-page-1.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-and-matthew-page-1.mp3"
       },
       {
         "pageNumber": 2,
@@ -166,7 +166,7 @@
         "imagePrompt": "Original children's storybook illustration of Anne talking animatedly outdoors while pointing toward trees and a sunny sky. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, modest old-fashioned dress, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Anne talks happily outside near trees in the sun.",
-        "audio": "stories/anne/audio/anne-and-matthew-page-2.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-and-matthew-page-2.mp3"
       },
       {
         "pageNumber": 3,
@@ -175,7 +175,7 @@
         "imagePrompt": "Original children's storybook illustration of Matthew smiling gently while Anne looks happy and fond of him beside a rural farmhouse path. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, Matthew as a gentle older man with a soft hat, quiet and kind expression, old-fashioned rural clothing, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
         "negativePrompt": "text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey, Peppa Pig",
         "altText": "Matthew smiles kindly while Anne stands happily beside him.",
-        "audio": "stories/anne/audio/anne-and-matthew-page-3.mp3"
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-and-matthew-page-3.mp3"
       }
     ]
   }
