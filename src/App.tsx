@@ -11,6 +11,9 @@ import {
 import { loadDeckLibrary, resolveAssetUrl } from './decks'
 import { loadAnneStories, resolveStoryAssetUrl } from './stories'
 import type { LearningCard, LearningDeck, LearningMode, ProfileId, Story, StoryPage } from './types'
+import confetti from 'canvas-confetti'
+import { playSfx } from './audioEffects'
+import { playNarrationClip } from './audioClipPack'
 
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious'
 type LessonPhase = 'learn' | 'question'
@@ -111,6 +114,7 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
   const [showAdultDetails, setShowAdultDetails] = useState(false)
+  const [showStickers, setShowStickers] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -275,7 +279,10 @@ function App() {
             <small>{activeDeck ? activeDeck.title : 'Ready to read?'}</small>
           </span>
         </button>
+        {!isLessonActive && <button className="sticker-nav-button squish" onClick={() => setShowStickers(true)}>🏆 Stickers</button>}
       </header>
+
+      {showStickers && <StickerBook onClose={() => setShowStickers(false)} />}
 
       {loading ? (
         <section className="loading-screen">
@@ -1060,14 +1067,18 @@ function SarahLetterLesson({
     const correctAnswer = getSarahCorrectAnswer(activity)
     if (answer === correctAnswer) {
       setStatus('correct')
+      playSfx('correct')
+      void playNarrationClip('feedback:great')
       void playSarahActivityAudio(deck, activity)
       window.setTimeout(nextActivity, 850)
       return
     }
     setWrongChoice(answer)
+    playSfx('wrong')
     if (tries === 0) {
       setTries(1)
       setStatus('try-again')
+      void playNarrationClip('feedback:try-again')
       void playSarahActivityAudio(deck, activity)
       return
     }
@@ -1075,6 +1086,15 @@ function SarahLetterLesson({
     void playSarahActivityAudio(deck, activity)
     window.setTimeout(nextActivity, 1450)
   }
+
+  useEffect(() => {
+    if (completed) {
+      playSfx('celebrate')
+      confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } })
+      const currentProgress = parseInt(localStorage.getItem('completed-lessons') || '0', 10)
+      localStorage.setItem('completed-lessons', (currentProgress + 1).toString())
+    }
+  }, [completed])
 
   if (!activity || completed) {
     return (
@@ -1298,7 +1318,7 @@ function SarahQuestionView({
               key={option}
               type="button"
               aria-label={`Choice ${choiceKeyLabel(index)}: ${option}`}
-              className={`focus-option ${choiceState(option, correctAnswer, wrongChoice, status)}`}
+              className={`focus-option squish ${choiceState(option, correctAnswer, wrongChoice, status)}`}
               disabled={disabled}
               onClick={() => onChoose(option)}
             >
@@ -1320,7 +1340,7 @@ function SarahQuestionView({
                 key={option.id}
                 type="button"
                 aria-label={`Choice ${choiceKeyLabel(index)}: ${option.displayText}`}
-                className={`focus-option ${showPictureOption ? 'picture-choice' : ''} ${choiceState(answer, correctAnswer, wrongChoice, status)}`}
+                className={`focus-option squish ${showPictureOption ? 'picture-choice' : ''} ${choiceState(answer, correctAnswer, wrongChoice, status)}`}
                 disabled={disabled}
                 onClick={() => onChoose(answer, option)}
               >
@@ -1405,15 +1425,19 @@ function OlderReaderLesson({
     if (!option) return
     setSelected(option.id)
     if (option.id === activity.card.id) {
+      playSfx('correct')
+      void playNarrationClip('feedback:great')
       void playCardAudio(deck, activity.card)
       window.setTimeout(finishActivity, 650)
       return
     }
+    playSfx('wrong')
     const nextAttempts = attempts + 1
     setAttempts(nextAttempts)
     if (nextAttempts >= 2) {
       window.setTimeout(finishActivity, 900)
     } else {
+      void playNarrationClip('feedback:try-again')
       window.setTimeout(() => setSelected(''), 620)
     }
   }, [activity, attempts, deck, finishActivity, selected, showCompletion])
@@ -1436,6 +1460,15 @@ function OlderReaderLesson({
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [chooseByIndex, onDone, onNextLesson, showCompletion])
+
+  useEffect(() => {
+    if (showCompletion) {
+      playSfx('celebrate')
+      confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } })
+      const currentProgress = parseInt(localStorage.getItem('completed-lessons') || '0', 10)
+      localStorage.setItem('completed-lessons', (currentProgress + 1).toString())
+    }
+  }, [showCompletion])
 
   if (!activity || showCompletion) {
     return (
@@ -1514,7 +1547,7 @@ function OlderReaderLesson({
                   key={option.id}
                   type="button"
                   aria-label={`Choice ${choiceKeyLabel(index)}: ${optionLabel(option)}`}
-                  className={`focus-option ${showOptionPictures ? 'picture-choice' : ''} ${state}`}
+                  className={`focus-option squish ${showOptionPictures ? 'picture-choice' : ''} ${state === 'correct' ? 'correct pulse' : state === 'wrong' ? 'wrong shake' : ''}`}
                   disabled={Boolean(selected)}
                   onClick={() => chooseByIndex(index)}
                 >
@@ -2206,8 +2239,8 @@ function sarahAnswerText(activity: SarahActivity): string {
 }
 
 function choiceState(answer: string, correctAnswer: string, wrongChoice: string, status: SarahActivityStatus): string {
-  if ((status === 'correct' || status === 'revealed') && answer === correctAnswer) return 'correct'
-  if (wrongChoice === answer && (status === 'try-again' || status === 'revealed')) return 'wrong'
+  if ((status === 'correct' || status === 'revealed') && answer === correctAnswer) return 'correct pulse'
+  if (wrongChoice === answer && (status === 'try-again' || status === 'revealed')) return 'wrong shake'
   return ''
 }
 
@@ -2407,6 +2440,40 @@ function stableSort(value: string): number {
     hash = Math.imul(hash, 16777619)
   }
   return hash >>> 0
+}
+
+function StickerBook({ onClose }: { onClose: () => void }) {
+  const [lessons, setLessons] = useState(0)
+
+  useEffect(() => {
+    setLessons(parseInt(localStorage.getItem('completed-lessons') || '0', 10))
+  }, [])
+
+  const stickers = []
+  const totalSlots = Math.max(12, lessons + (3 - (lessons % 3 || 3)))
+  for (let i = 0; i < totalSlots; i++) {
+    const emojis = ['🌟', '🐼', '🍎', '🎈', '🚀', '🌈']
+    stickers.push(i < lessons ? emojis[i % emojis.length] : '')
+  }
+
+  return (
+    <section className="sticker-book-overlay">
+      <div className="sticker-book-content">
+        <div className="sticker-book-header">
+          <h2>My Stickers</h2>
+          <button type="button" onClick={onClose} className="squish">Close</button>
+        </div>
+        <p>You have earned {lessons} sticker{lessons !== 1 ? 's' : ''}!</p>
+        <div className="sticker-grid">
+          {stickers.map((s, i) => (
+            <div key={i} className={`sticker-slot ${s ? 'earned pulse' : ''}`}>
+              {s}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 }
 
 export default App
