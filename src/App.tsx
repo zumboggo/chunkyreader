@@ -52,6 +52,7 @@ interface OlderReaderActivity {
 const LESSON_SIZE = 5
 const ONE_DAY_MS = 24 * 60 * 60 * 1000
 const SARAH_FINAL_REVIEW_SIZE = 6
+const SARAH_LESSON_ADVANCE = 2
 const OLDER_READER_ACTIVITY_COUNT = 25
 const SARAH_REVIEW_VARIANTS: SarahQuestionKind[] = [
   'wordToBeginningSound',
@@ -163,7 +164,12 @@ function App() {
     setGrowingView('home')
     setActiveDeckId(firstDeck?.id ?? '')
     setMode(nextProfile === 'anna' ? 'activeRecall' : 'listeningMode')
-    setCardIndex(0)
+    if (nextProfile === 'sarah' && firstDeck) {
+      const saved = localStorage.getItem(`sarah-progress-${firstDeck.id}`)
+      setCardIndex(saved ? parseInt(saved, 10) : 0)
+    } else {
+      setCardIndex(0)
+    }
     setPhase('learn')
     setSarahActivityIndex(0)
     setMenuOpen(false)
@@ -202,6 +208,10 @@ function App() {
 
   function moveNextLessonFromCurrent() {
     if (!activeDeck?.cards.length) return
+    if (activeDeck.profile === 'sarah' && activeDeck.type === 'letters') {
+      moveSarahLesson(1)
+      return
+    }
     const orderedCards = orderCardsForMode(activeDeck, mode)
     const lessonStart = lessonStartForIndex(cardIndex, orderedCards.length)
     const lessonCards = orderedCards.slice(lessonStart, lessonStart + LESSON_SIZE)
@@ -226,7 +236,11 @@ function App() {
     const totalLessons = sarahLetterLessonCount(activeDeck.cards.length)
     const currentLesson = sarahLetterLessonNumberForIndex(cardIndex, activeDeck.cards.length) - 1
     const nextLesson = (currentLesson + deltaLessons + totalLessons) % totalLessons
-    setCardIndex(sarahLetterLessonStartForNumber(nextLesson, activeDeck.cards.length))
+    const nextIndex = sarahLetterLessonStartForNumber(nextLesson, activeDeck.cards.length)
+    setCardIndex(nextIndex)
+    if (activeDeck.profile === 'sarah') {
+      localStorage.setItem(`sarah-progress-${activeDeck.id}`, String(nextIndex))
+    }
     setPhase('learn')
     setSarahActivityIndex(0)
   }
@@ -300,7 +314,12 @@ function App() {
           onMenuToggle={() => setMenuOpen((v) => !v)}
           onDeckChange={(deckId) => {
             setActiveDeckId(deckId)
-            setCardIndex(0)
+            if (profile === 'sarah') {
+              const saved = localStorage.getItem(`sarah-progress-${deckId}`)
+              setCardIndex(saved ? parseInt(saved, 10) : 0)
+            } else {
+              setCardIndex(0)
+            }
             setPhase('learn')
             setSarahActivityIndex(0)
             setMenuOpen(false)
@@ -2349,8 +2368,9 @@ function lessonNumberForIndex(index: number, totalCards: number): number {
 
 function sarahLetterLessonCount(totalCards: number): number {
   if (totalCards <= LESSON_SIZE) return 1
-  if (totalCards <= LESSON_SIZE + SARAH_FINAL_REVIEW_SIZE) return Math.ceil(totalCards / LESSON_SIZE)
-  return Math.ceil((totalCards - SARAH_FINAL_REVIEW_SIZE) / LESSON_SIZE) + 1
+  const normalCards = totalCards - SARAH_FINAL_REVIEW_SIZE
+  if (normalCards <= LESSON_SIZE) return 2
+  return Math.ceil((normalCards - LESSON_SIZE) / SARAH_LESSON_ADVANCE) + 2
 }
 
 function sarahFinalLessonStart(totalCards: number): number {
@@ -2360,19 +2380,19 @@ function sarahFinalLessonStart(totalCards: number): number {
 function sarahLetterLessonStartForIndex(index: number, totalCards: number): number {
   const finalStart = sarahFinalLessonStart(totalCards)
   if (index >= finalStart) return finalStart
-  return Math.floor(index / LESSON_SIZE) * LESSON_SIZE
+  return Math.floor(index / SARAH_LESSON_ADVANCE) * SARAH_LESSON_ADVANCE
 }
 
 function sarahLetterLessonStartForNumber(lessonIndex: number, totalCards: number): number {
   const finalLessonIndex = sarahLetterLessonCount(totalCards) - 1
   if (lessonIndex >= finalLessonIndex) return sarahFinalLessonStart(totalCards)
-  return lessonIndex * LESSON_SIZE
+  return lessonIndex * SARAH_LESSON_ADVANCE
 }
 
 function sarahLetterLessonNumberForIndex(index: number, totalCards: number): number {
   const finalStart = sarahFinalLessonStart(totalCards)
   if (index >= finalStart) return sarahLetterLessonCount(totalCards)
-  return Math.floor(index / LESSON_SIZE) + 1
+  return Math.floor(index / SARAH_LESSON_ADVANCE) + 1
 }
 
 function sarahLetterLessonSizeForStart(start: number, totalCards: number): number {
