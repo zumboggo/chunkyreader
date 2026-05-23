@@ -15,6 +15,13 @@
   --pink-pop: #ff5f91;
   --purple-pop: #7551c7;
   --yellow-pop: #ffd65c;
+  --space-2xs: clamp(4px, 1vw, 8px);
+  --space-xs: clamp(8px, 1.5vw, 12px);
+  --space-sm: clamp(12px, 2vw, 16px);
+  --space-md: clamp(16px, 3vw, 24px);
+  --space-lg: clamp(24px, 4vw, 32px);
+  --space-xl: clamp(32px, 5vw, 48px);
+  --space-2xl: clamp(48px, 7vw, 64px);
   font-family:
     "Baloo 2", Nunito, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
@@ -135,16 +142,16 @@ small {
   width: min(1180px, 100%);
   min-height: 100svh;
   margin: 0 auto;
-  padding: clamp(12px, 3vw, 30px);
+  padding: var(--space-lg);
 }
 
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 18px;
-  margin-bottom: clamp(16px, 3vw, 28px);
-  padding: 12px;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  padding: var(--space-sm);
   border: 1px solid rgba(255, 255, 255, 0.78);
   border-radius: 26px;
   background: rgba(255, 255, 255, 0.68);
@@ -156,7 +163,7 @@ small {
   min-width: 0;
   display: flex;
   justify-content: flex-start;
-  gap: 12px;
+  gap: var(--space-sm);
   border: 0;
   background: transparent;
   box-shadow: none;
@@ -187,9 +194,9 @@ small {
 
 .top-actions button,
 .deck-tabs button {
-  min-height: 46px;
+  min-height: 48px;
   border-radius: 16px;
-  padding: 10px 16px;
+  padding: var(--space-xs) var(--space-md);
 }
 
 .active,
@@ -204,7 +211,7 @@ small {
 .error-screen,
 .empty-screen {
   display: grid;
-  gap: clamp(22px, 4vw, 38px);
+  gap: var(--space-xl);
 }
 
 .home-screen {
@@ -285,8 +292,8 @@ small {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
-  gap: clamp(18px, 3vw, 32px);
-  padding: clamp(20px, 4vw, 42px);
+  gap: var(--space-lg);
+  padding: var(--space-xl);
   border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: 30px;
   background:
@@ -319,7 +326,7 @@ small {
 .path-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(14px, 2.5vw, 24px);
+  gap: var(--space-md);
 }
 
 .path-card {
@@ -327,8 +334,8 @@ small {
   display: grid;
   align-content: end;
   justify-items: start;
-  gap: 10px;
-  padding: clamp(22px, 4vw, 36px);
+  gap: var(--space-sm);
+  padding: var(--space-xl);
   overflow: hidden;
   text-align: left;
   border-radius: 30px;
@@ -412,7 +419,7 @@ small {
 .story-library {
   display: flex;
   flex-direction: column;
-  gap: clamp(16px, 3vw, 26px);
+  gap: var(--space-md);
   max-height: calc(100dvh - 80px);
   overflow: hidden;
 }
@@ -420,7 +427,7 @@ small {
 .story-reader,
 .story-complete {
   display: grid;
-  gap: clamp(16px, 3vw, 26px);
+  gap: var(--space-md);
 }
 
 .story-reader {
@@ -435,8 +442,8 @@ small {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: clamp(14px, 3vw, 28px);
-  padding: clamp(18px, 4vw, 34px);
+  gap: var(--space-md);
+  padding: var(--space-lg);
   border: 1px solid rgba(255, 255, 255, 0.82);
   border-radius: 34px;
   background:
@@ -493,9 +500,9 @@ small {
 .story-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(14px, 2.5vw, 24px);
+  gap: var(--space-md);
   overflow-y: auto;
-  padding-bottom: 16px;
+  padding-bottom: var(--space-md);
   scroll-behavior: smooth;
 }
 
@@ -504,8 +511,8 @@ small {
   display: grid;
   align-content: end;
   justify-items: start;
-  gap: 10px;
-  padding: clamp(20px, 4vw, 34px);
+  gap: var(--space-sm);
+  padding: var(--space-xl);
   overflow: hidden;
   position: relative;
   text-align: left;
@@ -544,8 +551,8 @@ small {
 
 .choice-sticker {
   position: absolute;
-  right: clamp(22px, 5vw, 52px);
-  top: clamp(22px, 4vw, 42px);
+  right: var(--space-xl);
+  top: var(--space-lg);
   z-index: 1;
   color: var(--pink-pop);
   font-size: clamp(2.2rem, 8vw, 5rem);
@@ -590,8 +597,8 @@ small {
   min-height: 100%;
   display: grid;
   grid-template-rows: 180px auto auto 1fr auto;
-  gap: 10px;
-  padding: 14px;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
   text-align: left;
   border-radius: 28px;
   background:
@@ -652,7 +659,7 @@ small {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 14px;
+  gap: var(--space-sm);
 }
 
 .story-reader-top div {
@@ -688,10 +695,10 @@ small {
   overflow: auto;
   display: grid;
   grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1fr);
-  gap: clamp(12px, 2vw, 20px);
+  gap: var(--space-md);
   align-items: stretch;
   max-height: calc(100dvh - 270px);
-  padding: clamp(12px, 2vw, 20px);
+  padding: var(--space-md);
   border: 1px solid rgba(255, 255, 255, 0.84);
   border-radius: 28px;
   background:
@@ -711,7 +718,7 @@ small {
 .story-text-panel {
   display: grid;
   align-content: start;
-  gap: clamp(10px, 2vw, 16px);
+  gap: var(--space-sm);
   min-height: 0;
 }
 
@@ -742,7 +749,7 @@ small {
   position: relative;
   overflow: hidden;
   justify-items: center;
-  padding: clamp(26px, 6vw, 54px);
+  padding: var(--space-2xl);
   border: 1px solid rgba(255, 255, 255, 0.86);
   border-radius: 36px;
   background:
@@ -805,7 +812,7 @@ small {
 .learning-screen {
   position: relative;
   display: grid;
-  gap: 16px;
+  gap: var(--space-md);
 }
 
 .learning-screen::before {
@@ -827,8 +834,8 @@ small {
   display: grid;
   grid-template-columns: auto minmax(120px, 1fr) auto auto;
   align-items: center;
-  gap: 12px;
-  padding: 12px 18px;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
   border: 1px solid rgba(255, 255, 255, 0.78);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.76);
@@ -860,8 +867,8 @@ small {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
-  gap: 18px;
-  padding: clamp(18px, 3vw, 30px);
+  gap: var(--space-md);
+  padding: var(--space-lg);
   border: 1px solid rgba(255, 255, 255, 0.78);
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.72);
@@ -934,7 +941,7 @@ small {
 .choice-layout {
   display: grid;
   grid-template-columns: minmax(220px, 0.34fr) minmax(0, 1fr);
-  gap: clamp(14px, 2.4vw, 24px);
+  gap: var(--space-md);
   align-items: stretch;
 }
 
@@ -967,8 +974,8 @@ small {
 .reader-card {
   min-height: 540px;
   display: grid;
-  gap: 18px;
-  padding: clamp(18px, 3.5vw, 34px);
+  gap: var(--space-md);
+  padding: var(--space-lg);
   cursor: pointer;
 }
 
@@ -1120,8 +1127,8 @@ small {
 .choice-prompt {
   display: grid;
   align-content: start;
-  gap: 16px;
-  padding: clamp(18px, 3vw, 28px);
+  gap: var(--space-md);
+  padding: var(--space-lg);
 }
 
 .prompt-topline {
@@ -1171,14 +1178,14 @@ small {
 
 .choice-main {
   display: grid;
-  gap: 16px;
-  padding: clamp(18px, 3vw, 28px);
+  gap: var(--space-md);
+  padding: var(--space-lg);
 }
 
 .choice-options {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: var(--space-md);
 }
 
 .choice-options button {
@@ -1244,9 +1251,9 @@ small {
 
 .mobile-mascot-row {
   align-items: center;
-  gap: 10px;
+  gap: var(--space-sm);
   margin-top: -20px;
-  padding: 8px 12px 8px 8px;
+  padding: var(--space-xs) var(--space-sm) var(--space-xs) var(--space-xs);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.72);
   box-shadow: var(--soft-shadow);
@@ -1309,7 +1316,7 @@ small {
 .sarah-lesson {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr);
-  gap: clamp(14px, 2.4vw, 24px);
+  gap: var(--space-md);
   align-items: stretch;
 }
 
@@ -1329,8 +1336,8 @@ small {
   min-height: 520px;
   display: grid;
   align-content: start;
-  gap: 18px;
-  padding: clamp(18px, 3vw, 30px);
+  gap: var(--space-lg);
+  padding: var(--space-lg);
   position: relative;
   overflow: hidden;
 }
@@ -1439,8 +1446,8 @@ small {
   display: grid;
   align-content: center;
   justify-items: center;
-  gap: 14px;
-  padding: clamp(18px, 3vw, 26px);
+  gap: var(--space-md);
+  padding: var(--space-lg);
   text-align: center;
 }
 
@@ -1462,7 +1469,7 @@ small {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: var(--space-md);
 }
 
 .sarah-options button {
@@ -1515,8 +1522,8 @@ small {
   overflow: hidden;
   display: grid;
   justify-items: center;
-  gap: 22px;
-  padding: clamp(24px, 5vw, 46px);
+  gap: var(--space-xl);
+  padding: var(--space-2xl);
   text-align: center;
 }
 
