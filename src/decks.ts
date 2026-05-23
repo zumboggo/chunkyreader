@@ -14,6 +14,38 @@ export async function loadDeckLibrary(): Promise<LearningDeck[]> {
   if (!response.ok) throw new Error(`Could not load decks/index.json (${response.status})`)
   const entries = (await response.json()) as DeckIndexEntry[]
   const decks = await Promise.all(entries.map((entry) => loadDeck(entry)))
+
+  const annaDeck = decks.find((d) => d.profile === 'anna' && d.type === 'reading-words')
+  if (annaDeck) {
+    try {
+      const storiesResponse = await fetch(withBase('stories/anne-stories.json'))
+      if (storiesResponse.ok) {
+        const stories = (await storiesResponse.json()) as { pages: { text: string }[] }[]
+        const names = ['anne', 'diana', 'matthew', 'marilla', 'robin', 'marian', 'john']
+        const storyWords = new Set<string>()
+        for (const story of stories) {
+          for (const page of story.pages) {
+            const words = page.text.toLowerCase().match(/[a-z]+/g) || []
+            for (const w of words) {
+              if (!names.includes(w)) storyWords.add(w)
+            }
+          }
+        }
+        const storyCards = annaDeck.cards.filter((c) => c.type === 'word' && storyWords.has(c.word?.toLowerCase() || ''))
+        decks.push({
+          ...annaDeck,
+          id: 'story-vocab',
+          title: 'Story Vocab',
+          description: 'Words specifically from the 10 stories.',
+          level: (annaDeck.level ?? 0) + 0.1,
+          cards: storyCards.map((c) => ({ ...c, deckId: 'story-vocab' })),
+        })
+      }
+    } catch (e) {
+      console.error('Could not load story vocab', e)
+    }
+  }
+
   return decks.sort((a, b) => (a.level ?? 0) - (b.level ?? 0) || a.title.localeCompare(b.title))
 }
 
