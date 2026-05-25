@@ -3608,7 +3608,31 @@ body.lesson-active {
   box-shadow: 0 4px 12px rgba(255, 214, 92, 0.3);
 }
 
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
 }
+
+/* =========================================
+   Distar Activity Styles
+   ========================================= */
+
+.distar-canvas { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; }
+.distar-activity { width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+.discovery-nodes, .bridge-words { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+.node-container, .bridge-word-container { display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: transform 0.2s; }
+.node-container:active, .bridge-word-container:active { transform: scale(0.95); }
+.sound-node, .bridge-word { font-size: 4rem; padding: 1rem 2rem; border-radius: 1rem; border: 4px solid #eee; background: white; font-weight: bold; }
+.node-container.discovered .sound-node, .bridge-word-container.active .bridge-word { border-color: #4CAF50; box-shadow: 0 0 15px rgba(76, 175, 80, 0.4); }
+.tracing-arrow, .blending-arrow { width: 40px; height: 10px; background: #ccc; margin-bottom: 10px; border-radius: 5px; }
+.node-container.discovered .tracing-arrow, .bridge-word-container.active .blending-arrow { background: #4CAF50; }
+.rhyme-container { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; cursor: pointer; padding: 2rem; background: #f9f9f9; border-radius: 1rem; border: 2px dashed #ccc; }
+.rhyme-piece { font-size: 3rem; padding: 1rem 2rem; background: white; border-radius: 0.5rem; border: 2px solid #ddd; transition: all 0.3s; }
+.rhyme-piece.solved { background: #E8F5E9; border-color: #4CAF50; transform: translateY(-5px); }
+.story-image-container { width: 100%; max-width: 500px; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+.story-image { width: 100%; height: auto; display: block; }
+.story-text-container { width: 100%; padding: 2rem; background: white; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); cursor: pointer; text-align: center; }
+.story-sentence { font-size: 2.5rem; margin: 1rem 0; transition: all 0.3s; }
+.pass-1-style { letter-spacing: 0.2rem; }
+.pass-2-style { font-weight: bold; color: #333; }
+.pass-3-style { font-style: italic; color: #1565C0; }
+.pass-indicator { font-size: 1.2rem; color: #666; text-transform: uppercase; letter-spacing: 0.1rem; }
+.story-hint, .rhyme-hint { font-size: 1rem; color: #999; margin-top: 1rem; }
+

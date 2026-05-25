@@ -7,9 +7,12 @@ export type DeckType = 'reading-words' | 'letters' | 'phonemes' | 'chinese-vocab
 export type LearningMode = 'listeningMode' | 'activeRecall' | 'readerMode'
 
 export interface HundredLessonChunk {
-  type: 'sounds-words' | 'story'
+  type: 'sounds-words' | 'story' | 'sound-discovery' | 'blending-bridge' | 'rhyme-puzzle' | 'story-gauntlet'
   items: string[]
   audioPaths?: string[]
+  wordAudioPaths?: string[][]
+  imagePath?: string
+  imagePrompt?: string
 }
 
 export interface HundredLesson {

@@ -3,112 +3,189 @@
   "lessonNumber": 55,
   "chunks": [
     {
-      "type": "sounds-words",
+      "type": "sound-discovery",
       "items": [
         "ch",
         "b",
-        "v"
-      ],
-      "audioPaths": [
-        "audio/lesson-55_c0_i0_ch.mp3",
-        "audio/lesson-55_c0_i1_b.mp3",
-        "audio/lesson-55_c0_i2_v.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "v",
         "p",
         "k",
         "o"
       ],
       "audioPaths": [
-        "audio/lesson-55_c1_i0_p.mp3",
-        "audio/lesson-55_c1_i1_k.mp3",
-        "audio/lesson-55_c1_i2_o.mp3"
+        "audio/lesson-55_c0_i0_ch.mp3",
+        "audio/lesson-55_c0_i1_b.mp3",
+        "audio/lesson-55_c0_i2_v.mp3",
+        "audio/lesson-55_c0_i3_p.mp3",
+        "audio/lesson-55_c0_i4_k.mp3",
+        "audio/lesson-55_c0_i5_o.mp3"
       ]
     },
     {
-      "type": "sounds-words",
+      "type": "blending-bridge",
       "items": [
         "go",
         "no"
       ],
       "audioPaths": [
-        "audio/lesson-55_c2_i0_go.mp3",
-        "audio/lesson-55_c2_i1_no.mp3"
+        "audio/lesson-55_c1_i0_go.mp3",
+        "audio/lesson-55_c1_i1_no.mp3"
       ]
     },
     {
-      "type": "story",
+      "type": "rhyme-puzzle",
       "items": [
-        "The old man did not hear well."
+        "cat",
+        "bat",
+        "rat",
+        "mat"
       ],
       "audioPaths": [
-        "audio/lesson-55_c3_i0_the-old-man-did-not-.mp3"
+        "audio/lesson-55_c2_i0_cat.mp3",
+        "audio/lesson-55_c2_i1_bat.mp3",
+        "audio/lesson-55_c2_i2_rat.mp3",
+        "audio/lesson-55_c2_i3_mat.mp3"
       ]
     },
     {
-      "type": "story",
+      "type": "story-gauntlet",
       "items": [
-        "An old man lived with a little girl. the old man did not hear well."
-      ],
-      "audioPaths": [
-        "audio/lesson-55_c4_i0_an-old-man-lived-wit.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The little girl said to that man, 'I will see you soon.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-55_c5_i0_the-little-girl-said.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The man did not hear her. he said, 'no, I do not see the moon.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-55_c6_i0_the-man-did-not-hear.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The girl said, 'I did not say that. I told you when we will meet.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-55_c7_i0_the-girl-said-i-did-.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The man said, 'no, I am not on my seat.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-55_c8_i0_the-man-said-no-i-am.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The girl said, 'if you can read, I will make a note.' and she did."
-      ],
-      "audioPaths": [
-        "audio/lesson-55_c9_i0_the-girl-said-if-you.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
+        "The old man did not hear well.",
+        "An old man lived with a little girl. the old man did not hear well.",
+        "The little girl said to that man, 'I will see you soon.'",
+        "The man did not hear her. he said, 'no, I do not see the moon.'",
+        "The girl said, 'I did not say that. I told you when we will meet.'",
+        "The man said, 'no, I am not on my seat.'",
+        "The girl said, 'if you can read, I will make a note.' and she did.",
         "Here is that note: 'I will see you soon.'"
       ],
+      "imagePath": "images/lesson-55-story.webp",
+      "imagePrompt": "Manhwa webcomic style illustration with extra emotional expressiveness. Cute and vibrant, kawaii pastel style. A scene showing: The old man did not hear well. An old man lived with a little girl. the old man did not hear well.",
       "audioPaths": [
-        "audio/lesson-55_c10_i0_here-is-that-note-i-.mp3"
+        "audio/lesson-55_c3_i0_the-old-man-did-not-.mp3",
+        "audio/lesson-55_c3_i1_an-old-man-lived-wit.mp3",
+        "audio/lesson-55_c3_i2_the-little-girl-said.mp3",
+        "audio/lesson-55_c3_i3_the-man-did-not-hear.mp3",
+        "audio/lesson-55_c3_i4_the-girl-said-i-did-.mp3",
+        "audio/lesson-55_c3_i5_the-man-said-no-i-am.mp3",
+        "audio/lesson-55_c3_i6_the-girl-said-if-you.mp3",
+        "audio/lesson-55_c3_i7_here-is-that-note-i-.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-55_c3_i0_w0_the.mp3",
+          "audio/lesson-55_c3_i0_w1_old.mp3",
+          "audio/lesson-55_c3_i0_w2_man.mp3",
+          "audio/lesson-55_c3_i0_w3_did.mp3",
+          "audio/lesson-55_c3_i0_w4_not.mp3",
+          "audio/lesson-55_c3_i0_w5_hear.mp3",
+          "audio/lesson-55_c3_i0_w6_well.mp3"
+        ],
+        [
+          "audio/lesson-55_c3_i1_w0_an.mp3",
+          "audio/lesson-55_c3_i1_w1_old.mp3",
+          "audio/lesson-55_c3_i1_w2_man.mp3",
+          "audio/lesson-55_c3_i1_w3_lived.mp3",
+          "audio/lesson-55_c3_i1_w4_with.mp3",
+          "audio/lesson-55_c3_i1_w5_a.mp3",
+          "audio/lesson-55_c3_i1_w6_little.mp3",
+          "audio/lesson-55_c3_i1_w7_girl.mp3",
+          "audio/lesson-55_c3_i1_w8_the.mp3",
+          "audio/lesson-55_c3_i1_w9_old.mp3",
+          "audio/lesson-55_c3_i1_w10_man.mp3",
+          "audio/lesson-55_c3_i1_w11_did.mp3",
+          "audio/lesson-55_c3_i1_w12_not.mp3",
+          "audio/lesson-55_c3_i1_w13_hear.mp3",
+          "audio/lesson-55_c3_i1_w14_well.mp3"
+        ],
+        [
+          "audio/lesson-55_c3_i2_w0_the.mp3",
+          "audio/lesson-55_c3_i2_w1_little.mp3",
+          "audio/lesson-55_c3_i2_w2_girl.mp3",
+          "audio/lesson-55_c3_i2_w3_said.mp3",
+          "audio/lesson-55_c3_i2_w4_to.mp3",
+          "audio/lesson-55_c3_i2_w5_that.mp3",
+          "audio/lesson-55_c3_i2_w6_man.mp3",
+          "audio/lesson-55_c3_i2_w7_i.mp3",
+          "audio/lesson-55_c3_i2_w8_will.mp3",
+          "audio/lesson-55_c3_i2_w9_see.mp3",
+          "audio/lesson-55_c3_i2_w10_you.mp3",
+          "audio/lesson-55_c3_i2_w11_soon.mp3"
+        ],
+        [
+          "audio/lesson-55_c3_i3_w0_the.mp3",
+          "audio/lesson-55_c3_i3_w1_man.mp3",
+          "audio/lesson-55_c3_i3_w2_did.mp3",
+          "audio/lesson-55_c3_i3_w3_not.mp3",
+          "audio/lesson-55_c3_i3_w4_hear.mp3",
+          "audio/lesson-55_c3_i3_w5_her.mp3",
+          "audio/lesson-55_c3_i3_w6_he.mp3",
+          "audio/lesson-55_c3_i3_w7_said.mp3",
+          "audio/lesson-55_c3_i3_w8_no.mp3",
+          "audio/lesson-55_c3_i3_w9_i.mp3",
+          "audio/lesson-55_c3_i3_w10_do.mp3",
+          "audio/lesson-55_c3_i3_w11_not.mp3",
+          "audio/lesson-55_c3_i3_w12_see.mp3",
+          "audio/lesson-55_c3_i3_w13_the.mp3",
+          "audio/lesson-55_c3_i3_w14_moon.mp3"
+        ],
+        [
+          "audio/lesson-55_c3_i4_w0_the.mp3",
+          "audio/lesson-55_c3_i4_w1_girl.mp3",
+          "audio/lesson-55_c3_i4_w2_said.mp3",
+          "audio/lesson-55_c3_i4_w3_i.mp3",
+          "audio/lesson-55_c3_i4_w4_did.mp3",
+          "audio/lesson-55_c3_i4_w5_not.mp3",
+          "audio/lesson-55_c3_i4_w6_say.mp3",
+          "audio/lesson-55_c3_i4_w7_that.mp3",
+          "audio/lesson-55_c3_i4_w8_i.mp3",
+          "audio/lesson-55_c3_i4_w9_told.mp3",
+          "audio/lesson-55_c3_i4_w10_you.mp3",
+          "audio/lesson-55_c3_i4_w11_when.mp3",
+          "audio/lesson-55_c3_i4_w12_we.mp3",
+          "audio/lesson-55_c3_i4_w13_will.mp3",
+          "audio/lesson-55_c3_i4_w14_meet.mp3"
+        ],
+        [
+          "audio/lesson-55_c3_i5_w0_the.mp3",
+          "audio/lesson-55_c3_i5_w1_man.mp3",
+          "audio/lesson-55_c3_i5_w2_said.mp3",
+          "audio/lesson-55_c3_i5_w3_no.mp3",
+          "audio/lesson-55_c3_i5_w4_i.mp3",
+          "audio/lesson-55_c3_i5_w5_am.mp3",
+          "audio/lesson-55_c3_i5_w6_not.mp3",
+          "audio/lesson-55_c3_i5_w7_on.mp3",
+          "audio/lesson-55_c3_i5_w8_my.mp3",
+          "audio/lesson-55_c3_i5_w9_seat.mp3"
+        ],
+        [
+          "audio/lesson-55_c3_i6_w0_the.mp3",
+          "audio/lesson-55_c3_i6_w1_girl.mp3",
+          "audio/lesson-55_c3_i6_w2_said.mp3",
+          "audio/lesson-55_c3_i6_w3_if.mp3",
+          "audio/lesson-55_c3_i6_w4_you.mp3",
+          "audio/lesson-55_c3_i6_w5_can.mp3",
+          "audio/lesson-55_c3_i6_w6_read.mp3",
+          "audio/lesson-55_c3_i6_w7_i.mp3",
+          "audio/lesson-55_c3_i6_w8_will.mp3",
+          "audio/lesson-55_c3_i6_w9_make.mp3",
+          "audio/lesson-55_c3_i6_w10_a.mp3",
+          "audio/lesson-55_c3_i6_w11_note.mp3",
+          "audio/lesson-55_c3_i6_w12_and.mp3",
+          "audio/lesson-55_c3_i6_w13_she.mp3",
+          "audio/lesson-55_c3_i6_w14_did.mp3"
+        ],
+        [
+          "audio/lesson-55_c3_i7_w0_here.mp3",
+          "audio/lesson-55_c3_i7_w1_is.mp3",
+          "audio/lesson-55_c3_i7_w2_that.mp3",
+          "audio/lesson-55_c3_i7_w3_note.mp3",
+          "audio/lesson-55_c3_i7_w4_i.mp3",
+          "audio/lesson-55_c3_i7_w5_will.mp3",
+          "audio/lesson-55_c3_i7_w6_see.mp3",
+          "audio/lesson-55_c3_i7_w7_you.mp3",
+          "audio/lesson-55_c3_i7_w8_soon.mp3"
+        ]
       ]
     }
   ]

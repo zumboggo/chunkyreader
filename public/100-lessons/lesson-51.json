@@ -3,78 +3,98 @@
   "lessonNumber": 51,
   "chunks": [
     {
-      "type": "sounds-words",
+      "type": "sound-discovery",
       "items": [
         "ch",
         "sh",
-        "p"
-      ],
-      "audioPaths": [
-        "audio/lesson-51_c0_i0_ch.mp3",
-        "audio/lesson-51_c0_i1_sh.mp3",
-        "audio/lesson-51_c0_i2_p.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "p",
         "th",
         "v",
         "k"
       ],
       "audioPaths": [
-        "audio/lesson-51_c1_i0_th.mp3",
-        "audio/lesson-51_c1_i1_v.mp3",
-        "audio/lesson-51_c1_i2_k.mp3"
+        "audio/lesson-51_c0_i0_ch.mp3",
+        "audio/lesson-51_c0_i1_sh.mp3",
+        "audio/lesson-51_c0_i2_p.mp3",
+        "audio/lesson-51_c0_i3_th.mp3",
+        "audio/lesson-51_c0_i4_v.mp3",
+        "audio/lesson-51_c0_i5_k.mp3"
       ]
     },
     {
-      "type": "sounds-words",
+      "type": "blending-bridge",
       "items": [
         "to",
         "fog",
         "log"
       ],
       "audioPaths": [
+        "audio/lesson-51_c1_i0_to.mp3",
+        "audio/lesson-51_c1_i1_fog.mp3",
+        "audio/lesson-51_c1_i2_log.mp3"
+      ]
+    },
+    {
+      "type": "rhyme-puzzle",
+      "items": [
+        "to",
+        "do",
+        "zoo",
+        "moo"
+      ],
+      "audioPaths": [
         "audio/lesson-51_c2_i0_to.mp3",
-        "audio/lesson-51_c2_i1_fog.mp3",
-        "audio/lesson-51_c2_i2_log.mp3"
+        "audio/lesson-51_c2_i1_do.mp3",
+        "audio/lesson-51_c2_i2_zoo.mp3",
+        "audio/lesson-51_c2_i3_moo.mp3"
       ]
     },
     {
-      "type": "story",
+      "type": "story-gauntlet",
       "items": [
-        "I am a log."
-      ],
-      "audioPaths": [
-        "audio/lesson-51_c3_i0_i-am-a-log.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "I can not run."
-      ],
-      "audioPaths": [
-        "audio/lesson-51_c4_i0_i-can-not-run.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "I can not sit on an ant."
-      ],
-      "audioPaths": [
-        "audio/lesson-51_c5_i0_i-can-not-sit-on-an-.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
+        "I am a log.",
+        "I can not run.",
+        "I can not sit on an ant.",
         "An ant will sit on me."
       ],
+      "imagePath": "images/lesson-51-story.webp",
+      "imagePrompt": "Manhwa webcomic style illustration with extra emotional expressiveness. Cute and vibrant, kawaii pastel style. A scene showing: I am a log. I can not run.",
       "audioPaths": [
-        "audio/lesson-51_c6_i0_an-ant-will-sit-on-m.mp3"
+        "audio/lesson-51_c3_i0_i-am-a-log.mp3",
+        "audio/lesson-51_c3_i1_i-can-not-run.mp3",
+        "audio/lesson-51_c3_i2_i-can-not-sit-on-an-.mp3",
+        "audio/lesson-51_c3_i3_an-ant-will-sit-on-m.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-51_c3_i0_w0_i.mp3",
+          "audio/lesson-51_c3_i0_w1_am.mp3",
+          "audio/lesson-51_c3_i0_w2_a.mp3",
+          "audio/lesson-51_c3_i0_w3_log.mp3"
+        ],
+        [
+          "audio/lesson-51_c3_i1_w0_i.mp3",
+          "audio/lesson-51_c3_i1_w1_can.mp3",
+          "audio/lesson-51_c3_i1_w2_not.mp3",
+          "audio/lesson-51_c3_i1_w3_run.mp3"
+        ],
+        [
+          "audio/lesson-51_c3_i2_w0_i.mp3",
+          "audio/lesson-51_c3_i2_w1_can.mp3",
+          "audio/lesson-51_c3_i2_w2_not.mp3",
+          "audio/lesson-51_c3_i2_w3_sit.mp3",
+          "audio/lesson-51_c3_i2_w4_on.mp3",
+          "audio/lesson-51_c3_i2_w5_an.mp3",
+          "audio/lesson-51_c3_i2_w6_ant.mp3"
+        ],
+        [
+          "audio/lesson-51_c3_i3_w0_an.mp3",
+          "audio/lesson-51_c3_i3_w1_ant.mp3",
+          "audio/lesson-51_c3_i3_w2_will.mp3",
+          "audio/lesson-51_c3_i3_w3_sit.mp3",
+          "audio/lesson-51_c3_i3_w4_on.mp3",
+          "audio/lesson-51_c3_i3_w5_me.mp3"
+        ]
       ]
     }
   ]
