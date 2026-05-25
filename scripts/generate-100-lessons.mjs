@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 
-// Raw data for Lessons 50-59
+// Raw data for Lessons 50-70. Each lesson uses the same repeatable
+// interaction structure rendered by InteractiveHundredLesson.tsx.
 const rawLessons = [
   {
     number: 50,
@@ -165,6 +166,204 @@ const rawLessons = [
       "A bug came near the mouse. that bug said, 'if we are bed bugs, we must live in beds. we are not grass bugs, so we can not live in the grass. we are not barn bugs, so we can not live in a barn.'",
       "Stop."
     ]
+  },
+  {
+    number: 60,
+    sounds: ['m', 's', 'a', 't', 'p'],
+    words: ['mat', 'sat', 'tap', 'pat', 'map', 'sap', 'Sam'],
+    imageScene: 'Sam sitting on a cozy mat with a paper map while a sleepy cat naps beside the mat',
+    story: [
+      "Sam sat on a mat.",
+      "Sam had a map.",
+      "Sam saw a path on the map.",
+      "Sam said, 'I can tap, tap, tap on the path.'",
+      "A cat sat by Sam.",
+      "Sam said, 'This map is for us.'",
+      "The cat did not tap.",
+      "The cat sat and had a nap.",
+      "Sam said, 'That cat likes my mat.'",
+      "The end."
+    ]
+  },
+  {
+    number: 61,
+    sounds: ['n', 'r', 'i', 'd', 'c'],
+    words: ['ran', 'rid', 'did', 'can', 'cat', 'din', 'in'],
+    imageScene: 'Nick sitting calmly near a cute cat wearing a red cap under a small cot',
+    story: [
+      "A cat ran in.",
+      "Nick ran in too.",
+      "The cat had a red cap.",
+      "Nick said, 'Can I see it?'",
+      "The cat ran under a cot.",
+      "Nick did not get mad.",
+      "Nick sat and said, 'I can wait.'",
+      "The cat came back.",
+      "Nick said, 'That is a nice red cap.'",
+      "The end."
+    ]
+  },
+  {
+    number: 62,
+    sounds: ['f', 'b', 'h', 'g', 'o'],
+    words: ['fog', 'hog', 'big', 'bag', 'hot', 'hop', 'Bob'],
+    imageScene: 'Bob holding a big bag while a friendly hog peeks out from soft fog without wearing a hat',
+    story: [
+      "Bob had a big bag.",
+      "The bag had a hat.",
+      "The hat was hot.",
+      "Bob put the hat on a hog.",
+      "The hog did not like the hot hat.",
+      "The hog ran into fog.",
+      "Bob said, 'I can not see that hog.'",
+      "The hog came back with no hat.",
+      "Bob said, 'Good hog.'",
+      "The end."
+    ]
+  },
+  {
+    number: 63,
+    sounds: ['l', 'k', 'e', 'u', 'w'],
+    words: ['leg', 'let', 'wet', 'web', 'cup', 'cut', 'Ken'],
+    imageScene: 'Ken gently helping a tiny bug climb from a wet cup onto a green leaf',
+    story: [
+      "Ken had a cup.",
+      "The cup was wet.",
+      "Ken set the cup on a log.",
+      "A bug ran up the log.",
+      "The bug went in the cup.",
+      "Ken said, 'Let that bug out.'",
+      "Ken put a leaf by the cup.",
+      "The bug went up the leaf.",
+      "Ken said, 'Run, little bug.'",
+      "The end."
+    ]
+  },
+  {
+    number: 64,
+    sounds: ['j', 'y', 'v', 'z', 'q'],
+    words: ['jam', 'yes', 'van', 'zip', 'quiz', 'quack', 'yak'],
+    imageScene: 'Jill smiling beside a small toy van while a fluffy yak happily looks at a jar of jam',
+    story: [
+      "Jill had jam.",
+      "A yak saw the jam.",
+      "The yak said, 'Yes, yes.'",
+      "Jill put the jam in a van.",
+      "The yak ran to the van.",
+      "Zip went the bag.",
+      "Jill said, 'This is a quiz.'",
+      "The yak said, 'Quack?'",
+      "Jill laughed and gave the yak a bit of jam.",
+      "The end."
+    ]
+  },
+  {
+    number: 65,
+    sounds: ['sh', 'ch', 'th', 'ng', 'oo'],
+    words: ['ship', 'shop', 'chin', 'thin', 'ring', 'moon', 'soon'],
+    imageScene: 'Chip finding a tiny shiny ring on a dish near a moon-shaped lamp in a cozy shop with blank walls',
+    story: [
+      "The ship was at the shop.",
+      "Chip had a thin ring.",
+      "The ring went ping.",
+      "Chip said, 'Where did my ring go?'",
+      "The ring was on a dish.",
+      "The dish was by the moon lamp.",
+      "Chip said, 'I will get it soon.'",
+      "Then the ring went ping again.",
+      "Chip said, 'This ring can sing.'",
+      "The end."
+    ]
+  },
+  {
+    number: 66,
+    sounds: ['ar', 'or', 'er', 'ay', 'ee'],
+    words: ['car', 'star', 'corn', 'her', 'day', 'see', 'tree'],
+    imageScene: 'May standing by a friendly little car decorated with a simple star shape near a tree and corn plants',
+    story: [
+      "May saw a car.",
+      "The car had a star on it.",
+      "The car went by a tree.",
+      "May said, 'I see corn.'",
+      "Her dad said, 'It is a good day.'",
+      "May ran to the tree.",
+      "A bird sat in the tree.",
+      "The bird did not get in the car.",
+      "May said, 'The bird likes the tree.'",
+      "The end."
+    ]
+  },
+  {
+    number: 67,
+    sounds: ['ai', 'oa', 'ow', 'oy', 'igh'],
+    words: ['rain', 'boat', 'cow', 'toy', 'light', 'night', 'road'],
+    imageScene: 'a child rescuing a toy boat from a rainy road while a gentle cow watches under a warm light',
+    story: [
+      "It was night.",
+      "Rain fell on the road.",
+      "A toy boat sat by the road.",
+      "A cow saw the toy boat.",
+      "The cow said, 'Moo.'",
+      "A light came on.",
+      "The boy ran out.",
+      "The boy got the toy boat.",
+      "The cow went back to bed.",
+      "The end."
+    ]
+  },
+  {
+    number: 68,
+    sounds: ['ck', 'wh', 'ph', 'ea', 'oi'],
+    words: ['back', 'duck', 'when', 'whip', 'phone', 'leaf', 'coin'],
+    imageScene: 'a duck sitting beside a pond while a child picks up a shiny coin from a leaf',
+    story: [
+      "A duck went back to the pond.",
+      "When the duck got there, it saw a coin.",
+      "The coin was on a leaf.",
+      "A boy had a phone.",
+      "The boy said, 'That coin is not for a duck.'",
+      "The duck did not pick up the coin.",
+      "The duck sat by the leaf.",
+      "The boy took the coin back.",
+      "The duck said, 'Quack.'",
+      "The end."
+    ]
+  },
+  {
+    number: 69,
+    sounds: ['ir', 'ur', 'aw', 'au', 'ou'],
+    words: ['bird', 'turn', 'saw', 'paw', 'haul', 'out', 'loud'],
+    imageScene: 'a small bird and a child helping a gentle puppy with a soft bandage on one paw',
+    story: [
+      "A bird saw a paw print.",
+      "The print was by the barn.",
+      "The bird said, 'Turn back.'",
+      "A pup came out.",
+      "The pup was not loud.",
+      "The pup had a sore paw.",
+      "The bird sat by the pup.",
+      "A girl came to help.",
+      "The pup got a soft band on its paw.",
+      "The end."
+    ]
+  },
+  {
+    number: 70,
+    sounds: ['tion', 'sion', 'le', 'ed', 'all'],
+    words: ['action', 'mission', 'little', 'jumped', 'called', 'ball', 'fall'],
+    imageScene: 'a little dog and a smiling child working together to get a colorful ball by a low wall',
+    story: [
+      "The little dog had a mission.",
+      "The mission was to get the ball.",
+      "The ball rolled by the wall.",
+      "The dog jumped.",
+      "The dog missed the ball.",
+      "A little girl called, 'Come here.'",
+      "The dog ran back.",
+      "Then the girl and the dog got the ball together.",
+      "That was good action.",
+      "The end."
+    ]
   }
 ];
 
@@ -201,6 +400,17 @@ const lessons = rawLessons.map(lesson => {
   else if (allWords.includes('car')) rhymes = ['car', 'star', 'far', 'jar'];
   else if (allWords.includes('boy')) rhymes = ['boy', 'toy', 'joy'];
   else if (allWords.includes('cow')) rhymes = ['cow', 'how', 'now', 'bow'];
+  else if (allWords.includes('mat')) rhymes = ['mat', 'sat', 'pat', 'cat'];
+  else if (allWords.includes('ran')) rhymes = ['ran', 'can', 'man', 'pan'];
+  else if (allWords.includes('fog')) rhymes = ['fog', 'hog', 'log', 'dog'];
+  else if (allWords.includes('wet')) rhymes = ['wet', 'let', 'pet', 'net'];
+  else if (allWords.includes('jam')) rhymes = ['jam', 'Sam', 'ram', 'ham'];
+  else if (allWords.includes('ship')) rhymes = ['ship', 'chip', 'lip', 'dip'];
+  else if (allWords.includes('car')) rhymes = ['car', 'star', 'far', 'jar'];
+  else if (allWords.includes('boat')) rhymes = ['boat', 'coat', 'goat', 'float'];
+  else if (allWords.includes('duck')) rhymes = ['duck', 'luck', 'truck', 'stuck'];
+  else if (allWords.includes('bird')) rhymes = ['bird', 'word', 'heard'];
+  else if (allWords.includes('ball')) rhymes = ['ball', 'fall', 'wall', 'call'];
   else rhymes = ['cat', 'bat', 'rat', 'mat']; // Default fallback
 
   // Add rhyme puzzle chunk
@@ -214,7 +424,7 @@ const lessons = rawLessons.map(lesson => {
     type: 'story-gauntlet',
     items: lesson.story,
     imagePath: `images/lesson-${lesson.number}-story.webp`,
-    imagePrompt: `Manhwa webcomic style illustration with extra emotional expressiveness. Cute and vibrant, kawaii pastel style. A scene showing: ${lesson.story[0]} ${lesson.story[1] || ''}`
+    imagePrompt: `Original cute kawaii children's storybook illustration with warm pastel colors and expressive child-friendly characters. Simple clean composition, blank background areas only, no text, no letters, no signs, no captions, no watermark. Scene: ${lesson.imageScene || `${lesson.story[0]} ${lesson.story[1] || ''}`}`
   });
 
   return {

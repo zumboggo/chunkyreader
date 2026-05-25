@@ -13,12 +13,12 @@
         "o"
       ],
       "audioPaths": [
-        "audio/lesson-55_c0_i0_ch.mp3",
-        "audio/lesson-55_c0_i1_b.mp3",
-        "audio/lesson-55_c0_i2_v.mp3",
-        "audio/lesson-55_c0_i3_p.mp3",
-        "audio/lesson-55_c0_i4_k.mp3",
-        "audio/lesson-55_c0_i5_o.mp3"
+        "audio/lesson-55_c0_i0_ch-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-55_c0_i1_b-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-55_c0_i2_v-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-55_c0_i3_p-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-55_c0_i4_k-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-55_c0_i5_o-phoneme-phonics-sounds-v2.mp3"
       ]
     },
     {
@@ -60,7 +60,7 @@
         "Here is that note: 'I will see you soon.'"
       ],
       "imagePath": "images/lesson-55-story.webp",
-      "imagePrompt": "Manhwa webcomic style illustration with extra emotional expressiveness. Cute and vibrant, kawaii pastel style. A scene showing: The old man did not hear well. An old man lived with a little girl. the old man did not hear well.",
+      "imagePrompt": "Original cute kawaii children's storybook illustration with warm pastel colors and expressive child-friendly characters. Simple clean composition, blank background areas only, no text, no letters, no signs, no captions, no watermark. Scene: The old man did not hear well. An old man lived with a little girl. the old man did not hear well.",
       "audioPaths": [
         "audio/lesson-55_c3_i0_the-old-man-did-not-.mp3",
         "audio/lesson-55_c3_i1_an-old-man-lived-wit.mp3",

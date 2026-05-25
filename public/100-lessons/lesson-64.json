@@ -1,0 +1,162 @@
+{
+  "id": "lesson-64",
+  "lessonNumber": 64,
+  "chunks": [
+    {
+      "type": "sound-discovery",
+      "items": [
+        "j",
+        "y",
+        "v",
+        "z",
+        "q"
+      ],
+      "audioPaths": [
+        "audio/lesson-64_c0_i0_j-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-64_c0_i1_y-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-64_c0_i2_v-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-64_c0_i3_z-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-64_c0_i4_q-phoneme-phonics-sounds-v2.mp3"
+      ]
+    },
+    {
+      "type": "blending-bridge",
+      "items": [
+        "jam",
+        "yes",
+        "van",
+        "zip",
+        "quiz",
+        "quack",
+        "yak"
+      ],
+      "audioPaths": [
+        "audio/lesson-64_c1_i0_jam.mp3",
+        "audio/lesson-64_c1_i1_yes.mp3",
+        "audio/lesson-64_c1_i2_van.mp3",
+        "audio/lesson-64_c1_i3_zip.mp3",
+        "audio/lesson-64_c1_i4_quiz.mp3",
+        "audio/lesson-64_c1_i5_quack.mp3",
+        "audio/lesson-64_c1_i6_yak.mp3"
+      ]
+    },
+    {
+      "type": "rhyme-puzzle",
+      "items": [
+        "jam",
+        "Sam",
+        "ram",
+        "ham"
+      ],
+      "audioPaths": [
+        "audio/lesson-64_c2_i0_jam.mp3",
+        "audio/lesson-64_c2_i1_sam.mp3",
+        "audio/lesson-64_c2_i2_ram.mp3",
+        "audio/lesson-64_c2_i3_ham.mp3"
+      ]
+    },
+    {
+      "type": "story-gauntlet",
+      "items": [
+        "Jill had jam.",
+        "A yak saw the jam.",
+        "The yak said, 'Yes, yes.'",
+        "Jill put the jam in a van.",
+        "The yak ran to the van.",
+        "Zip went the bag.",
+        "Jill said, 'This is a quiz.'",
+        "The yak said, 'Quack?'",
+        "Jill laughed and gave the yak a bit of jam.",
+        "The end."
+      ],
+      "imagePath": "images/lesson-64-story.webp",
+      "imagePrompt": "Original cute kawaii children's storybook illustration with warm pastel colors and expressive child-friendly characters. Simple clean composition, blank background areas only, no text, no letters, no signs, no captions, no watermark. Scene: Jill smiling beside a small toy van while a fluffy yak happily looks at a jar of jam",
+      "audioPaths": [
+        "audio/lesson-64_c3_i0_jill-had-jam.mp3",
+        "audio/lesson-64_c3_i1_a-yak-saw-the-jam.mp3",
+        "audio/lesson-64_c3_i2_the-yak-said-yes-yes.mp3",
+        "audio/lesson-64_c3_i3_jill-put-the-jam-in-.mp3",
+        "audio/lesson-64_c3_i4_the-yak-ran-to-the-v.mp3",
+        "audio/lesson-64_c3_i5_zip-went-the-bag.mp3",
+        "audio/lesson-64_c3_i6_jill-said-this-is-a-.mp3",
+        "audio/lesson-64_c3_i7_the-yak-said-quack.mp3",
+        "audio/lesson-64_c3_i8_jill-laughed-and-gav.mp3",
+        "audio/lesson-64_c3_i9_the-end.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-64_c3_i0_w0_jill.mp3",
+          "audio/lesson-64_c3_i0_w1_had.mp3",
+          "audio/lesson-64_c3_i0_w2_jam.mp3"
+        ],
+        [
+          "audio/lesson-64_c3_i1_w0_a.mp3",
+          "audio/lesson-64_c3_i1_w1_yak.mp3",
+          "audio/lesson-64_c3_i1_w2_saw.mp3",
+          "audio/lesson-64_c3_i1_w3_the.mp3",
+          "audio/lesson-64_c3_i1_w4_jam.mp3"
+        ],
+        [
+          "audio/lesson-64_c3_i2_w0_the.mp3",
+          "audio/lesson-64_c3_i2_w1_yak.mp3",
+          "audio/lesson-64_c3_i2_w2_said.mp3",
+          "audio/lesson-64_c3_i2_w3_yes.mp3",
+          "audio/lesson-64_c3_i2_w4_yes.mp3"
+        ],
+        [
+          "audio/lesson-64_c3_i3_w0_jill.mp3",
+          "audio/lesson-64_c3_i3_w1_put.mp3",
+          "audio/lesson-64_c3_i3_w2_the.mp3",
+          "audio/lesson-64_c3_i3_w3_jam.mp3",
+          "audio/lesson-64_c3_i3_w4_in.mp3",
+          "audio/lesson-64_c3_i3_w5_a.mp3",
+          "audio/lesson-64_c3_i3_w6_van.mp3"
+        ],
+        [
+          "audio/lesson-64_c3_i4_w0_the.mp3",
+          "audio/lesson-64_c3_i4_w1_yak.mp3",
+          "audio/lesson-64_c3_i4_w2_ran.mp3",
+          "audio/lesson-64_c3_i4_w3_to.mp3",
+          "audio/lesson-64_c3_i4_w4_the.mp3",
+          "audio/lesson-64_c3_i4_w5_van.mp3"
+        ],
+        [
+          "audio/lesson-64_c3_i5_w0_zip.mp3",
+          "audio/lesson-64_c3_i5_w1_went.mp3",
+          "audio/lesson-64_c3_i5_w2_the.mp3",
+          "audio/lesson-64_c3_i5_w3_bag.mp3"
+        ],
+        [
+          "audio/lesson-64_c3_i6_w0_jill.mp3",
+          "audio/lesson-64_c3_i6_w1_said.mp3",
+          "audio/lesson-64_c3_i6_w2_this.mp3",
+          "audio/lesson-64_c3_i6_w3_is.mp3",
+          "audio/lesson-64_c3_i6_w4_a.mp3",
+          "audio/lesson-64_c3_i6_w5_quiz.mp3"
+        ],
+        [
+          "audio/lesson-64_c3_i7_w0_the.mp3",
+          "audio/lesson-64_c3_i7_w1_yak.mp3",
+          "audio/lesson-64_c3_i7_w2_said.mp3",
+          "audio/lesson-64_c3_i7_w3_quack.mp3"
+        ],
+        [
+          "audio/lesson-64_c3_i8_w0_jill.mp3",
+          "audio/lesson-64_c3_i8_w1_laughed.mp3",
+          "audio/lesson-64_c3_i8_w2_and.mp3",
+          "audio/lesson-64_c3_i8_w3_gave.mp3",
+          "audio/lesson-64_c3_i8_w4_the.mp3",
+          "audio/lesson-64_c3_i8_w5_yak.mp3",
+          "audio/lesson-64_c3_i8_w6_a.mp3",
+          "audio/lesson-64_c3_i8_w7_bit.mp3",
+          "audio/lesson-64_c3_i8_w8_of.mp3",
+          "audio/lesson-64_c3_i8_w9_jam.mp3"
+        ],
+        [
+          "audio/lesson-64_c3_i9_w0_the.mp3",
+          "audio/lesson-64_c3_i9_w1_end.mp3"
+        ]
+      ]
+    }
+  ]
+}

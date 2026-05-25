@@ -1,0 +1,163 @@
+{
+  "id": "lesson-63",
+  "lessonNumber": 63,
+  "chunks": [
+    {
+      "type": "sound-discovery",
+      "items": [
+        "l",
+        "k",
+        "e",
+        "u",
+        "w"
+      ],
+      "audioPaths": [
+        "audio/lesson-63_c0_i0_l-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-63_c0_i1_k-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-63_c0_i2_e-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-63_c0_i3_u-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-63_c0_i4_w-phoneme-phonics-sounds-v2.mp3"
+      ]
+    },
+    {
+      "type": "blending-bridge",
+      "items": [
+        "leg",
+        "let",
+        "wet",
+        "web",
+        "cup",
+        "cut",
+        "Ken"
+      ],
+      "audioPaths": [
+        "audio/lesson-63_c1_i0_leg.mp3",
+        "audio/lesson-63_c1_i1_let.mp3",
+        "audio/lesson-63_c1_i2_wet.mp3",
+        "audio/lesson-63_c1_i3_web.mp3",
+        "audio/lesson-63_c1_i4_cup.mp3",
+        "audio/lesson-63_c1_i5_cut.mp3",
+        "audio/lesson-63_c1_i6_ken.mp3"
+      ]
+    },
+    {
+      "type": "rhyme-puzzle",
+      "items": [
+        "wet",
+        "let",
+        "pet",
+        "net"
+      ],
+      "audioPaths": [
+        "audio/lesson-63_c2_i0_wet.mp3",
+        "audio/lesson-63_c2_i1_let.mp3",
+        "audio/lesson-63_c2_i2_pet.mp3",
+        "audio/lesson-63_c2_i3_net.mp3"
+      ]
+    },
+    {
+      "type": "story-gauntlet",
+      "items": [
+        "Ken had a cup.",
+        "The cup was wet.",
+        "Ken set the cup on a log.",
+        "A bug ran up the log.",
+        "The bug went in the cup.",
+        "Ken said, 'Let that bug out.'",
+        "Ken put a leaf by the cup.",
+        "The bug went up the leaf.",
+        "Ken said, 'Run, little bug.'",
+        "The end."
+      ],
+      "imagePath": "images/lesson-63-story.webp",
+      "imagePrompt": "Original cute kawaii children's storybook illustration with warm pastel colors and expressive child-friendly characters. Simple clean composition, blank background areas only, no text, no letters, no signs, no captions, no watermark. Scene: Ken gently helping a tiny bug climb from a wet cup onto a green leaf",
+      "audioPaths": [
+        "audio/lesson-63_c3_i0_ken-had-a-cup.mp3",
+        "audio/lesson-63_c3_i1_the-cup-was-wet.mp3",
+        "audio/lesson-63_c3_i2_ken-set-the-cup-on-a.mp3",
+        "audio/lesson-63_c3_i3_a-bug-ran-up-the-log.mp3",
+        "audio/lesson-63_c3_i4_the-bug-went-in-the-.mp3",
+        "audio/lesson-63_c3_i5_ken-said-let-that-bu.mp3",
+        "audio/lesson-63_c3_i6_ken-put-a-leaf-by-th.mp3",
+        "audio/lesson-63_c3_i7_the-bug-went-up-the-.mp3",
+        "audio/lesson-63_c3_i8_ken-said-run-little-.mp3",
+        "audio/lesson-63_c3_i9_the-end.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-63_c3_i0_w0_ken.mp3",
+          "audio/lesson-63_c3_i0_w1_had.mp3",
+          "audio/lesson-63_c3_i0_w2_a.mp3",
+          "audio/lesson-63_c3_i0_w3_cup.mp3"
+        ],
+        [
+          "audio/lesson-63_c3_i1_w0_the.mp3",
+          "audio/lesson-63_c3_i1_w1_cup.mp3",
+          "audio/lesson-63_c3_i1_w2_was.mp3",
+          "audio/lesson-63_c3_i1_w3_wet.mp3"
+        ],
+        [
+          "audio/lesson-63_c3_i2_w0_ken.mp3",
+          "audio/lesson-63_c3_i2_w1_set.mp3",
+          "audio/lesson-63_c3_i2_w2_the.mp3",
+          "audio/lesson-63_c3_i2_w3_cup.mp3",
+          "audio/lesson-63_c3_i2_w4_on.mp3",
+          "audio/lesson-63_c3_i2_w5_a.mp3",
+          "audio/lesson-63_c3_i2_w6_log.mp3"
+        ],
+        [
+          "audio/lesson-63_c3_i3_w0_a.mp3",
+          "audio/lesson-63_c3_i3_w1_bug.mp3",
+          "audio/lesson-63_c3_i3_w2_ran.mp3",
+          "audio/lesson-63_c3_i3_w3_up.mp3",
+          "audio/lesson-63_c3_i3_w4_the.mp3",
+          "audio/lesson-63_c3_i3_w5_log.mp3"
+        ],
+        [
+          "audio/lesson-63_c3_i4_w0_the.mp3",
+          "audio/lesson-63_c3_i4_w1_bug.mp3",
+          "audio/lesson-63_c3_i4_w2_went.mp3",
+          "audio/lesson-63_c3_i4_w3_in.mp3",
+          "audio/lesson-63_c3_i4_w4_the.mp3",
+          "audio/lesson-63_c3_i4_w5_cup.mp3"
+        ],
+        [
+          "audio/lesson-63_c3_i5_w0_ken.mp3",
+          "audio/lesson-63_c3_i5_w1_said.mp3",
+          "audio/lesson-63_c3_i5_w2_let.mp3",
+          "audio/lesson-63_c3_i5_w3_that.mp3",
+          "audio/lesson-63_c3_i5_w4_bug.mp3",
+          "audio/lesson-63_c3_i5_w5_out.mp3"
+        ],
+        [
+          "audio/lesson-63_c3_i6_w0_ken.mp3",
+          "audio/lesson-63_c3_i6_w1_put.mp3",
+          "audio/lesson-63_c3_i6_w2_a.mp3",
+          "audio/lesson-63_c3_i6_w3_leaf.mp3",
+          "audio/lesson-63_c3_i6_w4_by.mp3",
+          "audio/lesson-63_c3_i6_w5_the.mp3",
+          "audio/lesson-63_c3_i6_w6_cup.mp3"
+        ],
+        [
+          "audio/lesson-63_c3_i7_w0_the.mp3",
+          "audio/lesson-63_c3_i7_w1_bug.mp3",
+          "audio/lesson-63_c3_i7_w2_went.mp3",
+          "audio/lesson-63_c3_i7_w3_up.mp3",
+          "audio/lesson-63_c3_i7_w4_the.mp3",
+          "audio/lesson-63_c3_i7_w5_leaf.mp3"
+        ],
+        [
+          "audio/lesson-63_c3_i8_w0_ken.mp3",
+          "audio/lesson-63_c3_i8_w1_said.mp3",
+          "audio/lesson-63_c3_i8_w2_run.mp3",
+          "audio/lesson-63_c3_i8_w3_little.mp3",
+          "audio/lesson-63_c3_i8_w4_bug.mp3"
+        ],
+        [
+          "audio/lesson-63_c3_i9_w0_the.mp3",
+          "audio/lesson-63_c3_i9_w1_end.mp3"
+        ]
+      ]
+    }
+  ]
+}

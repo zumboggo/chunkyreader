@@ -1,0 +1,166 @@
+{
+  "id": "lesson-65",
+  "lessonNumber": 65,
+  "chunks": [
+    {
+      "type": "sound-discovery",
+      "items": [
+        "sh",
+        "ch",
+        "th",
+        "ng",
+        "oo"
+      ],
+      "audioPaths": [
+        "audio/lesson-65_c0_i0_sh-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-65_c0_i1_ch-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-65_c0_i2_th-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-65_c0_i3_ng-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-65_c0_i4_oo-phoneme-phonics-sounds-v2.mp3"
+      ]
+    },
+    {
+      "type": "blending-bridge",
+      "items": [
+        "ship",
+        "shop",
+        "chin",
+        "thin",
+        "ring",
+        "moon",
+        "soon"
+      ],
+      "audioPaths": [
+        "audio/lesson-65_c1_i0_ship.mp3",
+        "audio/lesson-65_c1_i1_shop.mp3",
+        "audio/lesson-65_c1_i2_chin.mp3",
+        "audio/lesson-65_c1_i3_thin.mp3",
+        "audio/lesson-65_c1_i4_ring.mp3",
+        "audio/lesson-65_c1_i5_moon.mp3",
+        "audio/lesson-65_c1_i6_soon.mp3"
+      ]
+    },
+    {
+      "type": "rhyme-puzzle",
+      "items": [
+        "ship",
+        "chip",
+        "lip",
+        "dip"
+      ],
+      "audioPaths": [
+        "audio/lesson-65_c2_i0_ship.mp3",
+        "audio/lesson-65_c2_i1_chip.mp3",
+        "audio/lesson-65_c2_i2_lip.mp3",
+        "audio/lesson-65_c2_i3_dip.mp3"
+      ]
+    },
+    {
+      "type": "story-gauntlet",
+      "items": [
+        "The ship was at the shop.",
+        "Chip had a thin ring.",
+        "The ring went ping.",
+        "Chip said, 'Where did my ring go?'",
+        "The ring was on a dish.",
+        "The dish was by the moon lamp.",
+        "Chip said, 'I will get it soon.'",
+        "Then the ring went ping again.",
+        "Chip said, 'This ring can sing.'",
+        "The end."
+      ],
+      "imagePath": "images/lesson-65-story.webp",
+      "imagePrompt": "Original cute kawaii children's storybook illustration with warm pastel colors and expressive child-friendly characters. Simple clean composition, blank background areas only, no text, no letters, no signs, no captions, no watermark. Scene: Chip finding a tiny shiny ring on a dish near a moon-shaped lamp in a cozy shop with blank walls",
+      "audioPaths": [
+        "audio/lesson-65_c3_i0_the-ship-was-at-the-.mp3",
+        "audio/lesson-65_c3_i1_chip-had-a-thin-ring.mp3",
+        "audio/lesson-65_c3_i2_the-ring-went-ping.mp3",
+        "audio/lesson-65_c3_i3_chip-said-where-did-.mp3",
+        "audio/lesson-65_c3_i4_the-ring-was-on-a-di.mp3",
+        "audio/lesson-65_c3_i5_the-dish-was-by-the-.mp3",
+        "audio/lesson-65_c3_i6_chip-said-i-will-get.mp3",
+        "audio/lesson-65_c3_i7_then-the-ring-went-p.mp3",
+        "audio/lesson-65_c3_i8_chip-said-this-ring-.mp3",
+        "audio/lesson-65_c3_i9_the-end.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-65_c3_i0_w0_the.mp3",
+          "audio/lesson-65_c3_i0_w1_ship.mp3",
+          "audio/lesson-65_c3_i0_w2_was.mp3",
+          "audio/lesson-65_c3_i0_w3_at.mp3",
+          "audio/lesson-65_c3_i0_w4_the.mp3",
+          "audio/lesson-65_c3_i0_w5_shop.mp3"
+        ],
+        [
+          "audio/lesson-65_c3_i1_w0_chip.mp3",
+          "audio/lesson-65_c3_i1_w1_had.mp3",
+          "audio/lesson-65_c3_i1_w2_a.mp3",
+          "audio/lesson-65_c3_i1_w3_thin.mp3",
+          "audio/lesson-65_c3_i1_w4_ring.mp3"
+        ],
+        [
+          "audio/lesson-65_c3_i2_w0_the.mp3",
+          "audio/lesson-65_c3_i2_w1_ring.mp3",
+          "audio/lesson-65_c3_i2_w2_went.mp3",
+          "audio/lesson-65_c3_i2_w3_ping.mp3"
+        ],
+        [
+          "audio/lesson-65_c3_i3_w0_chip.mp3",
+          "audio/lesson-65_c3_i3_w1_said.mp3",
+          "audio/lesson-65_c3_i3_w2_where.mp3",
+          "audio/lesson-65_c3_i3_w3_did.mp3",
+          "audio/lesson-65_c3_i3_w4_my.mp3",
+          "audio/lesson-65_c3_i3_w5_ring.mp3",
+          "audio/lesson-65_c3_i3_w6_go.mp3"
+        ],
+        [
+          "audio/lesson-65_c3_i4_w0_the.mp3",
+          "audio/lesson-65_c3_i4_w1_ring.mp3",
+          "audio/lesson-65_c3_i4_w2_was.mp3",
+          "audio/lesson-65_c3_i4_w3_on.mp3",
+          "audio/lesson-65_c3_i4_w4_a.mp3",
+          "audio/lesson-65_c3_i4_w5_dish.mp3"
+        ],
+        [
+          "audio/lesson-65_c3_i5_w0_the.mp3",
+          "audio/lesson-65_c3_i5_w1_dish.mp3",
+          "audio/lesson-65_c3_i5_w2_was.mp3",
+          "audio/lesson-65_c3_i5_w3_by.mp3",
+          "audio/lesson-65_c3_i5_w4_the.mp3",
+          "audio/lesson-65_c3_i5_w5_moon.mp3",
+          "audio/lesson-65_c3_i5_w6_lamp.mp3"
+        ],
+        [
+          "audio/lesson-65_c3_i6_w0_chip.mp3",
+          "audio/lesson-65_c3_i6_w1_said.mp3",
+          "audio/lesson-65_c3_i6_w2_i.mp3",
+          "audio/lesson-65_c3_i6_w3_will.mp3",
+          "audio/lesson-65_c3_i6_w4_get.mp3",
+          "audio/lesson-65_c3_i6_w5_it.mp3",
+          "audio/lesson-65_c3_i6_w6_soon.mp3"
+        ],
+        [
+          "audio/lesson-65_c3_i7_w0_then.mp3",
+          "audio/lesson-65_c3_i7_w1_the.mp3",
+          "audio/lesson-65_c3_i7_w2_ring.mp3",
+          "audio/lesson-65_c3_i7_w3_went.mp3",
+          "audio/lesson-65_c3_i7_w4_ping.mp3",
+          "audio/lesson-65_c3_i7_w5_again.mp3"
+        ],
+        [
+          "audio/lesson-65_c3_i8_w0_chip.mp3",
+          "audio/lesson-65_c3_i8_w1_said.mp3",
+          "audio/lesson-65_c3_i8_w2_this.mp3",
+          "audio/lesson-65_c3_i8_w3_ring.mp3",
+          "audio/lesson-65_c3_i8_w4_can.mp3",
+          "audio/lesson-65_c3_i8_w5_sing.mp3"
+        ],
+        [
+          "audio/lesson-65_c3_i9_w0_the.mp3",
+          "audio/lesson-65_c3_i9_w1_end.mp3"
+        ]
+      ]
+    }
+  ]
+}

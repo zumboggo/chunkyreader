@@ -13,12 +13,12 @@
         "h"
       ],
       "audioPaths": [
-        "audio/lesson-50_c0_i0_ch.mp3",
-        "audio/lesson-50_c0_i1_p.mp3",
-        "audio/lesson-50_c0_i2_sh.mp3",
-        "audio/lesson-50_c0_i3_th.mp3",
-        "audio/lesson-50_c0_i4_f.mp3",
-        "audio/lesson-50_c0_i5_h.mp3"
+        "audio/lesson-50_c0_i0_ch-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-50_c0_i1_p-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-50_c0_i2_sh-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-50_c0_i3_th-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-50_c0_i4_f-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-50_c0_i5_h-phoneme-phonics-sounds-v2.mp3"
       ]
     },
     {
@@ -77,7 +77,7 @@
         "This Is Not the End."
       ],
       "imagePath": "images/lesson-50-story.webp",
-      "imagePrompt": "Manhwa webcomic style illustration with extra emotional expressiveness. Cute and vibrant, kawaii pastel style. A scene showing: The old man said, 'I need a tiger coat. So I will hunt for a tiger.' The girl said, 'But you can not see. How can you hunt for a tiger?'",
+      "imagePrompt": "Original cute kawaii children's storybook illustration with warm pastel colors and expressive child-friendly characters. Simple clean composition, blank background areas only, no text, no letters, no signs, no captions, no watermark. Scene: The old man said, 'I need a tiger coat. So I will hunt for a tiger.' The girl said, 'But you can not see. How can you hunt for a tiger?'",
       "audioPaths": [
         "audio/lesson-50_c3_i0_the-old-man-said-i-n.mp3",
         "audio/lesson-50_c3_i1_the-girl-said-but-yo.mp3",
