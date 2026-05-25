@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import { playAudioUrl } from './audioClipPack';
-import type { HundredLesson } from './types';
 
 function Mascot({ mood = 'reading' }: { mood?: 'happy' | 'reading' | 'sad' | 'curious' }) {
   const src = `${import.meta.env.BASE_URL}assets/mascots/mascot-expressions.png`;
@@ -21,10 +19,6 @@ function ChunkyLogo({ compact = false }: { compact?: boolean }) {
       <strong>Reading</strong>
     </div>
   );
-}
-
-function PlayIcon() {
-  return <span className="play-icon" aria-hidden="true" />;
 }
 
 export function HundredLessonsHome({
