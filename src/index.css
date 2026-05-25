@@ -3608,6 +3608,8 @@ body.lesson-active {
   box-shadow: 0 4px 12px rgba(255, 214, 92, 0.3);
 }
 
+}
+
 /* =========================================
    Distar Activity Styles
    ========================================= */
@@ -3633,3 +3635,4 @@ body.lesson-active {
 .pass-3-style { font-style: italic; color: #1565C0; }
 .pass-indicator { font-size: 1.2rem; color: #666; text-transform: uppercase; letter-spacing: 0.1rem; }
 .story-hint, .rhyme-hint { font-size: 1rem; color: #999; margin-top: 1rem; }
+
