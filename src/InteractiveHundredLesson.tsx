@@ -1,10 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { playAudioUrl } from './audioClipPack';
 import type { HundredLesson, HundredLessonChunk } from './types';
-
-function PlayIcon() {
-  return <span className="play-icon" aria-hidden="true" />;
-}
 
 function Mascot({ mood = 'reading' }: { mood?: 'happy' | 'reading' | 'sad' | 'curious' }) {
   const src = `${import.meta.env.BASE_URL}assets/mascots/mascot-expressions.png`;
@@ -121,7 +117,7 @@ function RhymePuzzle({ items, onComplete }: { items: string[], onComplete: () =>
 }
 
 // 4. Story Gauntlet: 3 passes through the text
-function StoryGauntlet({ items, audioPaths, wordAudioPaths, imagePath, onComplete }: { items: string[], audioPaths?: string[], wordAudioPaths?: string[][], imagePath?: string, onComplete: () => void }) {
+function StoryGauntlet({ items, audioPaths, imagePath, onComplete }: { items: string[], audioPaths?: string[], wordAudioPaths?: string[][], imagePath?: string, onComplete: () => void }) {
   const [pass, setPass] = useState<1 | 2 | 3>(1);
   const [currentSentence, setCurrentSentence] = useState(0);
   

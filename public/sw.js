@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-reader-v6'
+const CACHE_VERSION = 'chunky-reader-v7'
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`
 
@@ -21,6 +21,26 @@ const CORE_ASSETS = [
 ]
 
 const toScopeUrl = (path) => new URL(path, self.registration.scope).toString()
+
+const CONTENT_PATH_PARTS = ['/decks/', '/clip-packs/', '/stories/']
+const FRESH_EXTENSIONS = ['.json', '.csv']
+
+function shouldRefreshFirst(url) {
+  return (
+    CONTENT_PATH_PARTS.some((part) => url.pathname.includes(part)) ||
+    FRESH_EXTENSIONS.some((extension) => url.pathname.endsWith(extension))
+  )
+}
+
+function putSuccessfulResponse(request, response) {
+  if (!response || response.status !== 200) {
+    return response
+  }
+
+  const responseClone = response.clone()
+  caches.open(RUNTIME_CACHE).then((cache) => cache.put(request, responseClone))
+  return response
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -75,21 +95,18 @@ self.addEventListener('fetch', (event) => {
     return
   }
 
+  if (shouldRefreshFirst(requestUrl)) {
+    event.respondWith(fetch(request).then((response) => putSuccessfulResponse(request, response)).catch(() => caches.match(request)))
+    return
+  }
+
   event.respondWith(
     caches.match(request).then((cachedResponse) => {
       if (cachedResponse) {
         return cachedResponse
       }
 
-      return fetch(request).then((response) => {
-        if (!response || response.status !== 200) {
-          return response
-        }
-
-        const responseClone = response.clone()
-        caches.open(RUNTIME_CACHE).then((cache) => cache.put(request, responseClone))
-        return response
-      })
+      return fetch(request).then((response) => putSuccessfulResponse(request, response))
     }),
   )
 })
