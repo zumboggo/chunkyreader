@@ -2,7 +2,7 @@
 <speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
   <voice name="en-US-JennyNeural">
     <prosody rate="-12%" pitch="+4%">
-      Listen. <phoneme alphabet="ipa" ph="d">d</phoneme>. <break time="250ms"/> dog starts with <phoneme alphabet="ipa" ph="d">d</phoneme>. <break time="250ms"/> Tongue taps and pops down.
+      Listen. <phoneme alphabet="ipa" ph="d">d</phoneme>. <break time="250ms"/> dinosaur starts with <phoneme alphabet="ipa" ph="d">d</phoneme>. <break time="250ms"/> Tongue taps and pops down.
     </prosody>
   </voice>
 </speak>

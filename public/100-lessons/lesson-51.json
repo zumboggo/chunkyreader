@@ -1,0 +1,81 @@
+{
+  "id": "lesson-51",
+  "lessonNumber": 51,
+  "chunks": [
+    {
+      "type": "sounds-words",
+      "items": [
+        "ch",
+        "sh",
+        "p"
+      ],
+      "audioPaths": [
+        "audio/lesson-51_c0_i0_ch.mp3",
+        "audio/lesson-51_c0_i1_sh.mp3",
+        "audio/lesson-51_c0_i2_p.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "th",
+        "v",
+        "k"
+      ],
+      "audioPaths": [
+        "audio/lesson-51_c1_i0_th.mp3",
+        "audio/lesson-51_c1_i1_v.mp3",
+        "audio/lesson-51_c1_i2_k.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "to",
+        "fog",
+        "log"
+      ],
+      "audioPaths": [
+        "audio/lesson-51_c2_i0_to.mp3",
+        "audio/lesson-51_c2_i1_fog.mp3",
+        "audio/lesson-51_c2_i2_log.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "I am a log."
+      ],
+      "audioPaths": [
+        "audio/lesson-51_c3_i0_i-am-a-log.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "I can not run."
+      ],
+      "audioPaths": [
+        "audio/lesson-51_c4_i0_i-can-not-run.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "I can not sit on an ant."
+      ],
+      "audioPaths": [
+        "audio/lesson-51_c5_i0_i-can-not-sit-on-an-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "An ant will sit on me."
+      ],
+      "audioPaths": [
+        "audio/lesson-51_c6_i0_an-ant-will-sit-on-m.mp3"
+      ]
+    }
+  ]
+}

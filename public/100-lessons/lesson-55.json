@@ -1,0 +1,115 @@
+{
+  "id": "lesson-55",
+  "lessonNumber": 55,
+  "chunks": [
+    {
+      "type": "sounds-words",
+      "items": [
+        "ch",
+        "b",
+        "v"
+      ],
+      "audioPaths": [
+        "audio/lesson-55_c0_i0_ch.mp3",
+        "audio/lesson-55_c0_i1_b.mp3",
+        "audio/lesson-55_c0_i2_v.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "p",
+        "k",
+        "o"
+      ],
+      "audioPaths": [
+        "audio/lesson-55_c1_i0_p.mp3",
+        "audio/lesson-55_c1_i1_k.mp3",
+        "audio/lesson-55_c1_i2_o.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "go",
+        "no"
+      ],
+      "audioPaths": [
+        "audio/lesson-55_c2_i0_go.mp3",
+        "audio/lesson-55_c2_i1_no.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The old man did not hear well."
+      ],
+      "audioPaths": [
+        "audio/lesson-55_c3_i0_the-old-man-did-not-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "An old man lived with a little girl. the old man did not hear well."
+      ],
+      "audioPaths": [
+        "audio/lesson-55_c4_i0_an-old-man-lived-wit.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The little girl said to that man, 'I will see you soon.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-55_c5_i0_the-little-girl-said.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The man did not hear her. he said, 'no, I do not see the moon.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-55_c6_i0_the-man-did-not-hear.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The girl said, 'I did not say that. I told you when we will meet.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-55_c7_i0_the-girl-said-i-did-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The man said, 'no, I am not on my seat.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-55_c8_i0_the-man-said-no-i-am.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The girl said, 'if you can read, I will make a note.' and she did."
+      ],
+      "audioPaths": [
+        "audio/lesson-55_c9_i0_the-girl-said-if-you.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "Here is that note: 'I will see you soon.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-55_c10_i0_here-is-that-note-i-.mp3"
+      ]
+    }
+  ]
+}

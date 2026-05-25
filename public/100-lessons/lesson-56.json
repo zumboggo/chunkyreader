@@ -1,0 +1,169 @@
+{
+  "id": "lesson-56",
+  "lessonNumber": 56,
+  "chunks": [
+    {
+      "type": "sounds-words",
+      "items": [
+        "ing",
+        "b",
+        "e"
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c0_i0_ing.mp3",
+        "audio/lesson-56_c0_i1_b.mp3",
+        "audio/lesson-56_c0_i2_e.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "ch",
+        "ing",
+        "p"
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c1_i0_ch.mp3",
+        "audio/lesson-56_c1_i1_ing.mp3",
+        "audio/lesson-56_c1_i2_p.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "v"
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c2_i0_v.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "cow",
+        "how"
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c3_i0_cow.mp3",
+        "audio/lesson-56_c3_i1_how.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The fat eagle."
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c4_i0_the-fat-eagle.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "There was an eagle that was fat, fat, fat."
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c5_i0_there-was-an-eagle-t.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The other eagles made fun of the fat eagle. they said, 'you do not look like an eagle. you look like a fat rock.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c6_i0_the-other-eagles-mad.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The fat eagle was sitting in a tree when a tiger came hunting for eagles."
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c7_i0_the-fat-eagle-was-si.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "That tiger was going to get a little white eagle."
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c8_i0_that-tiger-was-going.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The little white eagle was under the fat eagle's tree."
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c9_i0_the-little-white-eag.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The other eagles yelled, but the little white eagle did not hear them."
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c10_i0_the-other-eagles-yel.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The fat eagle looked at the tiger getting near the white eagle."
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c11_i0_the-fat-eagle-looked.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "Then the fat eagle said, 'I must save that white eagle.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c12_i0_then-the-fat-eagle-s.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "So he jumped down. he came down on the tiger like a fat rock."
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c13_i0_so-he-jumped-down-he.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "That tiger ran far away. the little white eagle was saved."
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c14_i0_that-tiger-ran-far-a.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "When the other eagles came over to the fat eagle, they said, 'we will never make fun of you now.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c15_i0_when-the-other-eagle.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The end."
+      ],
+      "audioPaths": [
+        "audio/lesson-56_c16_i0_the-end.mp3"
+      ]
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 <speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
   <voice name="en-US-JennyNeural">
     <prosody rate="-12%" pitch="+4%">
-      Listen. <phoneme alphabet="ipa" ph="dʒ">j</phoneme>. <break time="250ms"/> jam starts with <phoneme alphabet="ipa" ph="dʒ">j</phoneme>. <break time="250ms"/> Lips forward. Tongue pops into the sound.
+      Listen. <phoneme alphabet="ipa" ph="dʒ">j</phoneme>. <break time="250ms"/> jellyfish starts with <phoneme alphabet="ipa" ph="dʒ">j</phoneme>. <break time="250ms"/> Lips forward. Tongue pops into the sound.
     </prosody>
   </voice>
 </speak>

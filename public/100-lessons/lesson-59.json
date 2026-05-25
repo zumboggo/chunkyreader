@@ -1,0 +1,166 @@
+{
+  "id": "lesson-59",
+  "lessonNumber": 59,
+  "chunks": [
+    {
+      "type": "sounds-words",
+      "items": [
+        "i",
+        "ch",
+        "a"
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c0_i0_i.mp3",
+        "audio/lesson-59_c0_i1_ch.mp3",
+        "audio/lesson-59_c0_i2_a.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "e",
+        "o",
+        "i"
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c1_i0_e.mp3",
+        "audio/lesson-59_c1_i1_o.mp3",
+        "audio/lesson-59_c1_i2_i.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "fishing",
+        "bed",
+        "tub"
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c2_i0_fishing.mp3",
+        "audio/lesson-59_c2_i1_bed.mp3",
+        "audio/lesson-59_c2_i2_tub.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "but",
+        "bite",
+        "sleep"
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c3_i0_but.mp3",
+        "audio/lesson-59_c3_i1_bite.mp3",
+        "audio/lesson-59_c3_i2_sleep.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "like"
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c4_i0_like.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The bed bugs."
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c5_i0_the-bed-bugs.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "A mouse had a house that shined. every day, that mouse got a rag and went from room to room."
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c6_i0_a-mouse-had-a-house-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The mouse picked up every bit of dust. the mouse was very proud."
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c7_i0_the-mouse-picked-up-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "'This is how I like my house.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c8_i0_this-is-how-i-like-m.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "But on a cold day that mouse found something bad. the mouse was going to dust in the bed room."
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c9_i0_but-on-a-cold-day-th.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The mouse looked at the bed and said, 'I see bugs in that bed.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c10_i0_the-mouse-looked-at-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "There were ten red bugs in the bed. 'get out of that bed,' the mouse yelled."
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c11_i0_there-were-ten-red-b.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "'No,' a bug said. 'we must stay in a bed. we are bed bugs.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c12_i0_no-a-bug-said-we-mus.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "'My house shines,' the mouse said. 'I can not have bugs in here.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c13_i0_my-house-shines-the-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "A bug came near the mouse. that bug said, 'if we are bed bugs, we must live in beds. we are not grass bugs, so we can not live in the grass. we are not barn bugs, so we can not live in a barn.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c14_i0_a-bug-came-near-the-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "Stop."
+      ],
+      "audioPaths": [
+        "audio/lesson-59_c15_i0_stop.mp3"
+      ]
+    }
+  ]
+}

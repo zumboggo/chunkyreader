@@ -1,10 +1,22 @@
-export type ProfileId = 'anna' | 'sarah' | 'library'
+export type ProfileId = 'anna' | 'sarah' | 'library' | '100-lessons'
 
 export type DeckType = 'reading-words' | 'letters' | 'phonemes' | 'chinese-vocab'
 
 // These ids preserve the original Chunky Chinese learning-mode wiring:
 // listeningMode, activeRecall, and the reader-style third flow.
 export type LearningMode = 'listeningMode' | 'activeRecall' | 'readerMode'
+
+export interface HundredLessonChunk {
+  type: 'sounds-words' | 'story'
+  items: string[]
+  audioPaths?: string[]
+}
+
+export interface HundredLesson {
+  id: string
+  lessonNumber: number
+  chunks: HundredLessonChunk[]
+}
 
 export interface DeckIndexEntry {
   id: string

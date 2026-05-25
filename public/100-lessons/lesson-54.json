@@ -1,0 +1,113 @@
+{
+  "id": "lesson-54",
+  "lessonNumber": 54,
+  "chunks": [
+    {
+      "type": "sounds-words",
+      "items": [
+        "e",
+        "p",
+        "b"
+      ],
+      "audioPaths": [
+        "audio/lesson-54_c0_i0_e.mp3",
+        "audio/lesson-54_c0_i1_p.mp3",
+        "audio/lesson-54_c0_i2_b.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "ch",
+        "o",
+        "v"
+      ],
+      "audioPaths": [
+        "audio/lesson-54_c1_i0_ch.mp3",
+        "audio/lesson-54_c1_i1_o.mp3",
+        "audio/lesson-54_c1_i2_v.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "of"
+      ],
+      "audioPaths": [
+        "audio/lesson-54_c2_i0_of.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "Going to the toy shop."
+      ],
+      "audioPaths": [
+        "audio/lesson-54_c3_i0_going-to-the-toy-sho.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "A boy and his mother went shopping for toys."
+      ],
+      "audioPaths": [
+        "audio/lesson-54_c4_i0_a-boy-and-his-mother.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The boy said, 'I love big toys.' but his mother said, 'I like little toys.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-54_c5_i0_the-boy-said-i-love-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The man in the toy shop said, 'I have toys that you will like. they are big and little.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-54_c6_i0_the-man-in-the-toy-s.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The boy said, 'toys can not be big and little.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-54_c7_i0_the-boy-said-toys-ca.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The man said, 'this toy is big and little.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-54_c8_i0_the-man-said-this-to.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "He got a little toy duck and he made it big."
+      ],
+      "audioPaths": [
+        "audio/lesson-54_c9_i0_he-got-a-little-toy-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "This is the end."
+      ],
+      "audioPaths": [
+        "audio/lesson-54_c10_i0_this-is-the-end.mp3"
+      ]
+    }
+  ]
+}
