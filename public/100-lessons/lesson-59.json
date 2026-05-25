@@ -3,163 +3,279 @@
   "lessonNumber": 59,
   "chunks": [
     {
-      "type": "sounds-words",
+      "type": "sound-discovery",
       "items": [
         "i",
         "ch",
-        "a"
-      ],
-      "audioPaths": [
-        "audio/lesson-59_c0_i0_i.mp3",
-        "audio/lesson-59_c0_i1_ch.mp3",
-        "audio/lesson-59_c0_i2_a.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "a",
         "e",
         "o",
         "i"
       ],
       "audioPaths": [
-        "audio/lesson-59_c1_i0_e.mp3",
-        "audio/lesson-59_c1_i1_o.mp3",
-        "audio/lesson-59_c1_i2_i.mp3"
+        "audio/lesson-59_c0_i0_i.mp3",
+        "audio/lesson-59_c0_i1_ch.mp3",
+        "audio/lesson-59_c0_i2_a.mp3",
+        "audio/lesson-59_c0_i3_e.mp3",
+        "audio/lesson-59_c0_i4_o.mp3",
+        "audio/lesson-59_c0_i5_i.mp3"
       ]
     },
     {
-      "type": "sounds-words",
+      "type": "blending-bridge",
       "items": [
         "fishing",
         "bed",
-        "tub"
-      ],
-      "audioPaths": [
-        "audio/lesson-59_c2_i0_fishing.mp3",
-        "audio/lesson-59_c2_i1_bed.mp3",
-        "audio/lesson-59_c2_i2_tub.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "tub",
         "but",
         "bite",
-        "sleep"
-      ],
-      "audioPaths": [
-        "audio/lesson-59_c3_i0_but.mp3",
-        "audio/lesson-59_c3_i1_bite.mp3",
-        "audio/lesson-59_c3_i2_sleep.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "sleep",
         "like"
       ],
       "audioPaths": [
-        "audio/lesson-59_c4_i0_like.mp3"
+        "audio/lesson-59_c1_i0_fishing.mp3",
+        "audio/lesson-59_c1_i1_bed.mp3",
+        "audio/lesson-59_c1_i2_tub.mp3",
+        "audio/lesson-59_c1_i3_but.mp3",
+        "audio/lesson-59_c1_i4_bite.mp3",
+        "audio/lesson-59_c1_i5_sleep.mp3",
+        "audio/lesson-59_c1_i6_like.mp3"
       ]
     },
     {
-      "type": "story",
+      "type": "rhyme-puzzle",
       "items": [
-        "The bed bugs."
+        "cat",
+        "bat",
+        "rat",
+        "mat"
       ],
       "audioPaths": [
-        "audio/lesson-59_c5_i0_the-bed-bugs.mp3"
+        "audio/lesson-59_c2_i0_cat.mp3",
+        "audio/lesson-59_c2_i1_bat.mp3",
+        "audio/lesson-59_c2_i2_rat.mp3",
+        "audio/lesson-59_c2_i3_mat.mp3"
       ]
     },
     {
-      "type": "story",
+      "type": "story-gauntlet",
       "items": [
-        "A mouse had a house that shined. every day, that mouse got a rag and went from room to room."
-      ],
-      "audioPaths": [
-        "audio/lesson-59_c6_i0_a-mouse-had-a-house-.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The mouse picked up every bit of dust. the mouse was very proud."
-      ],
-      "audioPaths": [
-        "audio/lesson-59_c7_i0_the-mouse-picked-up-.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "'This is how I like my house.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-59_c8_i0_this-is-how-i-like-m.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "But on a cold day that mouse found something bad. the mouse was going to dust in the bed room."
-      ],
-      "audioPaths": [
-        "audio/lesson-59_c9_i0_but-on-a-cold-day-th.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The mouse looked at the bed and said, 'I see bugs in that bed.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-59_c10_i0_the-mouse-looked-at-.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "There were ten red bugs in the bed. 'get out of that bed,' the mouse yelled."
-      ],
-      "audioPaths": [
-        "audio/lesson-59_c11_i0_there-were-ten-red-b.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "'No,' a bug said. 'we must stay in a bed. we are bed bugs.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-59_c12_i0_no-a-bug-said-we-mus.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "'My house shines,' the mouse said. 'I can not have bugs in here.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-59_c13_i0_my-house-shines-the-.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "A bug came near the mouse. that bug said, 'if we are bed bugs, we must live in beds. we are not grass bugs, so we can not live in the grass. we are not barn bugs, so we can not live in a barn.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-59_c14_i0_a-bug-came-near-the-.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
+        "The bed bugs.",
+        "A mouse had a house that shined. every day, that mouse got a rag and went from room to room.",
+        "The mouse picked up every bit of dust. the mouse was very proud.",
+        "'This is how I like my house.'",
+        "But on a cold day that mouse found something bad. the mouse was going to dust in the bed room.",
+        "The mouse looked at the bed and said, 'I see bugs in that bed.'",
+        "There were ten red bugs in the bed. 'get out of that bed,' the mouse yelled.",
+        "'No,' a bug said. 'we must stay in a bed. we are bed bugs.'",
+        "'My house shines,' the mouse said. 'I can not have bugs in here.'",
+        "A bug came near the mouse. that bug said, 'if we are bed bugs, we must live in beds. we are not grass bugs, so we can not live in the grass. we are not barn bugs, so we can not live in a barn.'",
         "Stop."
       ],
+      "imagePath": "images/lesson-59-story.webp",
+      "imagePrompt": "Manhwa webcomic style illustration with extra emotional expressiveness. Cute and vibrant, kawaii pastel style. A scene showing: The bed bugs. A mouse had a house that shined. every day, that mouse got a rag and went from room to room.",
       "audioPaths": [
-        "audio/lesson-59_c15_i0_stop.mp3"
+        "audio/lesson-59_c3_i0_the-bed-bugs.mp3",
+        "audio/lesson-59_c3_i1_a-mouse-had-a-house-.mp3",
+        "audio/lesson-59_c3_i2_the-mouse-picked-up-.mp3",
+        "audio/lesson-59_c3_i3_this-is-how-i-like-m.mp3",
+        "audio/lesson-59_c3_i4_but-on-a-cold-day-th.mp3",
+        "audio/lesson-59_c3_i5_the-mouse-looked-at-.mp3",
+        "audio/lesson-59_c3_i6_there-were-ten-red-b.mp3",
+        "audio/lesson-59_c3_i7_no-a-bug-said-we-mus.mp3",
+        "audio/lesson-59_c3_i8_my-house-shines-the-.mp3",
+        "audio/lesson-59_c3_i9_a-bug-came-near-the-.mp3",
+        "audio/lesson-59_c3_i10_stop.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-59_c3_i0_w0_the.mp3",
+          "audio/lesson-59_c3_i0_w1_bed.mp3",
+          "audio/lesson-59_c3_i0_w2_bugs.mp3"
+        ],
+        [
+          "audio/lesson-59_c3_i1_w0_a.mp3",
+          "audio/lesson-59_c3_i1_w1_mouse.mp3",
+          "audio/lesson-59_c3_i1_w2_had.mp3",
+          "audio/lesson-59_c3_i1_w3_a.mp3",
+          "audio/lesson-59_c3_i1_w4_house.mp3",
+          "audio/lesson-59_c3_i1_w5_that.mp3",
+          "audio/lesson-59_c3_i1_w6_shined.mp3",
+          "audio/lesson-59_c3_i1_w7_every.mp3",
+          "audio/lesson-59_c3_i1_w8_day.mp3",
+          "audio/lesson-59_c3_i1_w9_that.mp3",
+          "audio/lesson-59_c3_i1_w10_mouse.mp3",
+          "audio/lesson-59_c3_i1_w11_got.mp3",
+          "audio/lesson-59_c3_i1_w12_a.mp3",
+          "audio/lesson-59_c3_i1_w13_rag.mp3",
+          "audio/lesson-59_c3_i1_w14_and.mp3",
+          "audio/lesson-59_c3_i1_w15_went.mp3",
+          "audio/lesson-59_c3_i1_w16_from.mp3",
+          "audio/lesson-59_c3_i1_w17_room.mp3",
+          "audio/lesson-59_c3_i1_w18_to.mp3",
+          "audio/lesson-59_c3_i1_w19_room.mp3"
+        ],
+        [
+          "audio/lesson-59_c3_i2_w0_the.mp3",
+          "audio/lesson-59_c3_i2_w1_mouse.mp3",
+          "audio/lesson-59_c3_i2_w2_picked.mp3",
+          "audio/lesson-59_c3_i2_w3_up.mp3",
+          "audio/lesson-59_c3_i2_w4_every.mp3",
+          "audio/lesson-59_c3_i2_w5_bit.mp3",
+          "audio/lesson-59_c3_i2_w6_of.mp3",
+          "audio/lesson-59_c3_i2_w7_dust.mp3",
+          "audio/lesson-59_c3_i2_w8_the.mp3",
+          "audio/lesson-59_c3_i2_w9_mouse.mp3",
+          "audio/lesson-59_c3_i2_w10_was.mp3",
+          "audio/lesson-59_c3_i2_w11_very.mp3",
+          "audio/lesson-59_c3_i2_w12_proud.mp3"
+        ],
+        [
+          "audio/lesson-59_c3_i3_w0_this.mp3",
+          "audio/lesson-59_c3_i3_w1_is.mp3",
+          "audio/lesson-59_c3_i3_w2_how.mp3",
+          "audio/lesson-59_c3_i3_w3_i.mp3",
+          "audio/lesson-59_c3_i3_w4_like.mp3",
+          "audio/lesson-59_c3_i3_w5_my.mp3",
+          "audio/lesson-59_c3_i3_w6_house.mp3"
+        ],
+        [
+          "audio/lesson-59_c3_i4_w0_but.mp3",
+          "audio/lesson-59_c3_i4_w1_on.mp3",
+          "audio/lesson-59_c3_i4_w2_a.mp3",
+          "audio/lesson-59_c3_i4_w3_cold.mp3",
+          "audio/lesson-59_c3_i4_w4_day.mp3",
+          "audio/lesson-59_c3_i4_w5_that.mp3",
+          "audio/lesson-59_c3_i4_w6_mouse.mp3",
+          "audio/lesson-59_c3_i4_w7_found.mp3",
+          "audio/lesson-59_c3_i4_w8_something.mp3",
+          "audio/lesson-59_c3_i4_w9_bad.mp3",
+          "audio/lesson-59_c3_i4_w10_the.mp3",
+          "audio/lesson-59_c3_i4_w11_mouse.mp3",
+          "audio/lesson-59_c3_i4_w12_was.mp3",
+          "audio/lesson-59_c3_i4_w13_going.mp3",
+          "audio/lesson-59_c3_i4_w14_to.mp3",
+          "audio/lesson-59_c3_i4_w15_dust.mp3",
+          "audio/lesson-59_c3_i4_w16_in.mp3",
+          "audio/lesson-59_c3_i4_w17_the.mp3",
+          "audio/lesson-59_c3_i4_w18_bed.mp3",
+          "audio/lesson-59_c3_i4_w19_room.mp3"
+        ],
+        [
+          "audio/lesson-59_c3_i5_w0_the.mp3",
+          "audio/lesson-59_c3_i5_w1_mouse.mp3",
+          "audio/lesson-59_c3_i5_w2_looked.mp3",
+          "audio/lesson-59_c3_i5_w3_at.mp3",
+          "audio/lesson-59_c3_i5_w4_the.mp3",
+          "audio/lesson-59_c3_i5_w5_bed.mp3",
+          "audio/lesson-59_c3_i5_w6_and.mp3",
+          "audio/lesson-59_c3_i5_w7_said.mp3",
+          "audio/lesson-59_c3_i5_w8_i.mp3",
+          "audio/lesson-59_c3_i5_w9_see.mp3",
+          "audio/lesson-59_c3_i5_w10_bugs.mp3",
+          "audio/lesson-59_c3_i5_w11_in.mp3",
+          "audio/lesson-59_c3_i5_w12_that.mp3",
+          "audio/lesson-59_c3_i5_w13_bed.mp3"
+        ],
+        [
+          "audio/lesson-59_c3_i6_w0_there.mp3",
+          "audio/lesson-59_c3_i6_w1_were.mp3",
+          "audio/lesson-59_c3_i6_w2_ten.mp3",
+          "audio/lesson-59_c3_i6_w3_red.mp3",
+          "audio/lesson-59_c3_i6_w4_bugs.mp3",
+          "audio/lesson-59_c3_i6_w5_in.mp3",
+          "audio/lesson-59_c3_i6_w6_the.mp3",
+          "audio/lesson-59_c3_i6_w7_bed.mp3",
+          "audio/lesson-59_c3_i6_w8_get.mp3",
+          "audio/lesson-59_c3_i6_w9_out.mp3",
+          "audio/lesson-59_c3_i6_w10_of.mp3",
+          "audio/lesson-59_c3_i6_w11_that.mp3",
+          "audio/lesson-59_c3_i6_w12_bed.mp3",
+          "audio/lesson-59_c3_i6_w13_the.mp3",
+          "audio/lesson-59_c3_i6_w14_mouse.mp3",
+          "audio/lesson-59_c3_i6_w15_yelled.mp3"
+        ],
+        [
+          "audio/lesson-59_c3_i7_w0_no.mp3",
+          "audio/lesson-59_c3_i7_w1_a.mp3",
+          "audio/lesson-59_c3_i7_w2_bug.mp3",
+          "audio/lesson-59_c3_i7_w3_said.mp3",
+          "audio/lesson-59_c3_i7_w4_we.mp3",
+          "audio/lesson-59_c3_i7_w5_must.mp3",
+          "audio/lesson-59_c3_i7_w6_stay.mp3",
+          "audio/lesson-59_c3_i7_w7_in.mp3",
+          "audio/lesson-59_c3_i7_w8_a.mp3",
+          "audio/lesson-59_c3_i7_w9_bed.mp3",
+          "audio/lesson-59_c3_i7_w10_we.mp3",
+          "audio/lesson-59_c3_i7_w11_are.mp3",
+          "audio/lesson-59_c3_i7_w12_bed.mp3",
+          "audio/lesson-59_c3_i7_w13_bugs.mp3"
+        ],
+        [
+          "audio/lesson-59_c3_i8_w0_my.mp3",
+          "audio/lesson-59_c3_i8_w1_house.mp3",
+          "audio/lesson-59_c3_i8_w2_shines.mp3",
+          "audio/lesson-59_c3_i8_w3_the.mp3",
+          "audio/lesson-59_c3_i8_w4_mouse.mp3",
+          "audio/lesson-59_c3_i8_w5_said.mp3",
+          "audio/lesson-59_c3_i8_w6_i.mp3",
+          "audio/lesson-59_c3_i8_w7_can.mp3",
+          "audio/lesson-59_c3_i8_w8_not.mp3",
+          "audio/lesson-59_c3_i8_w9_have.mp3",
+          "audio/lesson-59_c3_i8_w10_bugs.mp3",
+          "audio/lesson-59_c3_i8_w11_in.mp3",
+          "audio/lesson-59_c3_i8_w12_here.mp3"
+        ],
+        [
+          "audio/lesson-59_c3_i9_w0_a.mp3",
+          "audio/lesson-59_c3_i9_w1_bug.mp3",
+          "audio/lesson-59_c3_i9_w2_came.mp3",
+          "audio/lesson-59_c3_i9_w3_near.mp3",
+          "audio/lesson-59_c3_i9_w4_the.mp3",
+          "audio/lesson-59_c3_i9_w5_mouse.mp3",
+          "audio/lesson-59_c3_i9_w6_that.mp3",
+          "audio/lesson-59_c3_i9_w7_bug.mp3",
+          "audio/lesson-59_c3_i9_w8_said.mp3",
+          "audio/lesson-59_c3_i9_w9_if.mp3",
+          "audio/lesson-59_c3_i9_w10_we.mp3",
+          "audio/lesson-59_c3_i9_w11_are.mp3",
+          "audio/lesson-59_c3_i9_w12_bed.mp3",
+          "audio/lesson-59_c3_i9_w13_bugs.mp3",
+          "audio/lesson-59_c3_i9_w14_we.mp3",
+          "audio/lesson-59_c3_i9_w15_must.mp3",
+          "audio/lesson-59_c3_i9_w16_live.mp3",
+          "audio/lesson-59_c3_i9_w17_in.mp3",
+          "audio/lesson-59_c3_i9_w18_beds.mp3",
+          "audio/lesson-59_c3_i9_w19_we.mp3",
+          "audio/lesson-59_c3_i9_w20_are.mp3",
+          "audio/lesson-59_c3_i9_w21_not.mp3",
+          "audio/lesson-59_c3_i9_w22_grass.mp3",
+          "audio/lesson-59_c3_i9_w23_bugs.mp3",
+          "audio/lesson-59_c3_i9_w24_so.mp3",
+          "audio/lesson-59_c3_i9_w25_we.mp3",
+          "audio/lesson-59_c3_i9_w26_can.mp3",
+          "audio/lesson-59_c3_i9_w27_not.mp3",
+          "audio/lesson-59_c3_i9_w28_live.mp3",
+          "audio/lesson-59_c3_i9_w29_in.mp3",
+          "audio/lesson-59_c3_i9_w30_the.mp3",
+          "audio/lesson-59_c3_i9_w31_grass.mp3",
+          "audio/lesson-59_c3_i9_w32_we.mp3",
+          "audio/lesson-59_c3_i9_w33_are.mp3",
+          "audio/lesson-59_c3_i9_w34_not.mp3",
+          "audio/lesson-59_c3_i9_w35_barn.mp3",
+          "audio/lesson-59_c3_i9_w36_bugs.mp3",
+          "audio/lesson-59_c3_i9_w37_so.mp3",
+          "audio/lesson-59_c3_i9_w38_we.mp3",
+          "audio/lesson-59_c3_i9_w39_can.mp3",
+          "audio/lesson-59_c3_i9_w40_not.mp3",
+          "audio/lesson-59_c3_i9_w41_live.mp3",
+          "audio/lesson-59_c3_i9_w42_in.mp3",
+          "audio/lesson-59_c3_i9_w43_a.mp3",
+          "audio/lesson-59_c3_i9_w44_barn.mp3"
+        ],
+        [
+          "audio/lesson-59_c3_i10_w0_stop.mp3"
+        ]
       ]
     }
   ]

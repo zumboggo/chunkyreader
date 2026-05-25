@@ -3,110 +3,171 @@
   "lessonNumber": 54,
   "chunks": [
     {
-      "type": "sounds-words",
+      "type": "sound-discovery",
       "items": [
         "e",
         "p",
-        "b"
-      ],
-      "audioPaths": [
-        "audio/lesson-54_c0_i0_e.mp3",
-        "audio/lesson-54_c0_i1_p.mp3",
-        "audio/lesson-54_c0_i2_b.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "b",
         "ch",
         "o",
         "v"
       ],
       "audioPaths": [
-        "audio/lesson-54_c1_i0_ch.mp3",
-        "audio/lesson-54_c1_i1_o.mp3",
-        "audio/lesson-54_c1_i2_v.mp3"
+        "audio/lesson-54_c0_i0_e.mp3",
+        "audio/lesson-54_c0_i1_p.mp3",
+        "audio/lesson-54_c0_i2_b.mp3",
+        "audio/lesson-54_c0_i3_ch.mp3",
+        "audio/lesson-54_c0_i4_o.mp3",
+        "audio/lesson-54_c0_i5_v.mp3"
       ]
     },
     {
-      "type": "sounds-words",
+      "type": "blending-bridge",
       "items": [
         "of"
       ],
       "audioPaths": [
-        "audio/lesson-54_c2_i0_of.mp3"
+        "audio/lesson-54_c1_i0_of.mp3"
       ]
     },
     {
-      "type": "story",
+      "type": "rhyme-puzzle",
       "items": [
-        "Going to the toy shop."
+        "cat",
+        "bat",
+        "rat",
+        "mat"
       ],
       "audioPaths": [
-        "audio/lesson-54_c3_i0_going-to-the-toy-sho.mp3"
+        "audio/lesson-54_c2_i0_cat.mp3",
+        "audio/lesson-54_c2_i1_bat.mp3",
+        "audio/lesson-54_c2_i2_rat.mp3",
+        "audio/lesson-54_c2_i3_mat.mp3"
       ]
     },
     {
-      "type": "story",
+      "type": "story-gauntlet",
       "items": [
-        "A boy and his mother went shopping for toys."
-      ],
-      "audioPaths": [
-        "audio/lesson-54_c4_i0_a-boy-and-his-mother.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The boy said, 'I love big toys.' but his mother said, 'I like little toys.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-54_c5_i0_the-boy-said-i-love-.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The man in the toy shop said, 'I have toys that you will like. they are big and little.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-54_c6_i0_the-man-in-the-toy-s.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The boy said, 'toys can not be big and little.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-54_c7_i0_the-boy-said-toys-ca.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The man said, 'this toy is big and little.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-54_c8_i0_the-man-said-this-to.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "He got a little toy duck and he made it big."
-      ],
-      "audioPaths": [
-        "audio/lesson-54_c9_i0_he-got-a-little-toy-.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
+        "Going to the toy shop.",
+        "A boy and his mother went shopping for toys.",
+        "The boy said, 'I love big toys.' but his mother said, 'I like little toys.'",
+        "The man in the toy shop said, 'I have toys that you will like. they are big and little.'",
+        "The boy said, 'toys can not be big and little.'",
+        "The man said, 'this toy is big and little.'",
+        "He got a little toy duck and he made it big.",
         "This is the end."
       ],
+      "imagePath": "images/lesson-54-story.webp",
+      "imagePrompt": "Manhwa webcomic style illustration with extra emotional expressiveness. Cute and vibrant, kawaii pastel style. A scene showing: Going to the toy shop. A boy and his mother went shopping for toys.",
       "audioPaths": [
-        "audio/lesson-54_c10_i0_this-is-the-end.mp3"
+        "audio/lesson-54_c3_i0_going-to-the-toy-sho.mp3",
+        "audio/lesson-54_c3_i1_a-boy-and-his-mother.mp3",
+        "audio/lesson-54_c3_i2_the-boy-said-i-love-.mp3",
+        "audio/lesson-54_c3_i3_the-man-in-the-toy-s.mp3",
+        "audio/lesson-54_c3_i4_the-boy-said-toys-ca.mp3",
+        "audio/lesson-54_c3_i5_the-man-said-this-to.mp3",
+        "audio/lesson-54_c3_i6_he-got-a-little-toy-.mp3",
+        "audio/lesson-54_c3_i7_this-is-the-end.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-54_c3_i0_w0_going.mp3",
+          "audio/lesson-54_c3_i0_w1_to.mp3",
+          "audio/lesson-54_c3_i0_w2_the.mp3",
+          "audio/lesson-54_c3_i0_w3_toy.mp3",
+          "audio/lesson-54_c3_i0_w4_shop.mp3"
+        ],
+        [
+          "audio/lesson-54_c3_i1_w0_a.mp3",
+          "audio/lesson-54_c3_i1_w1_boy.mp3",
+          "audio/lesson-54_c3_i1_w2_and.mp3",
+          "audio/lesson-54_c3_i1_w3_his.mp3",
+          "audio/lesson-54_c3_i1_w4_mother.mp3",
+          "audio/lesson-54_c3_i1_w5_went.mp3",
+          "audio/lesson-54_c3_i1_w6_shopping.mp3",
+          "audio/lesson-54_c3_i1_w7_for.mp3",
+          "audio/lesson-54_c3_i1_w8_toys.mp3"
+        ],
+        [
+          "audio/lesson-54_c3_i2_w0_the.mp3",
+          "audio/lesson-54_c3_i2_w1_boy.mp3",
+          "audio/lesson-54_c3_i2_w2_said.mp3",
+          "audio/lesson-54_c3_i2_w3_i.mp3",
+          "audio/lesson-54_c3_i2_w4_love.mp3",
+          "audio/lesson-54_c3_i2_w5_big.mp3",
+          "audio/lesson-54_c3_i2_w6_toys.mp3",
+          "audio/lesson-54_c3_i2_w7_but.mp3",
+          "audio/lesson-54_c3_i2_w8_his.mp3",
+          "audio/lesson-54_c3_i2_w9_mother.mp3",
+          "audio/lesson-54_c3_i2_w10_said.mp3",
+          "audio/lesson-54_c3_i2_w11_i.mp3",
+          "audio/lesson-54_c3_i2_w12_like.mp3",
+          "audio/lesson-54_c3_i2_w13_little.mp3",
+          "audio/lesson-54_c3_i2_w14_toys.mp3"
+        ],
+        [
+          "audio/lesson-54_c3_i3_w0_the.mp3",
+          "audio/lesson-54_c3_i3_w1_man.mp3",
+          "audio/lesson-54_c3_i3_w2_in.mp3",
+          "audio/lesson-54_c3_i3_w3_the.mp3",
+          "audio/lesson-54_c3_i3_w4_toy.mp3",
+          "audio/lesson-54_c3_i3_w5_shop.mp3",
+          "audio/lesson-54_c3_i3_w6_said.mp3",
+          "audio/lesson-54_c3_i3_w7_i.mp3",
+          "audio/lesson-54_c3_i3_w8_have.mp3",
+          "audio/lesson-54_c3_i3_w9_toys.mp3",
+          "audio/lesson-54_c3_i3_w10_that.mp3",
+          "audio/lesson-54_c3_i3_w11_you.mp3",
+          "audio/lesson-54_c3_i3_w12_will.mp3",
+          "audio/lesson-54_c3_i3_w13_like.mp3",
+          "audio/lesson-54_c3_i3_w14_they.mp3",
+          "audio/lesson-54_c3_i3_w15_are.mp3",
+          "audio/lesson-54_c3_i3_w16_big.mp3",
+          "audio/lesson-54_c3_i3_w17_and.mp3",
+          "audio/lesson-54_c3_i3_w18_little.mp3"
+        ],
+        [
+          "audio/lesson-54_c3_i4_w0_the.mp3",
+          "audio/lesson-54_c3_i4_w1_boy.mp3",
+          "audio/lesson-54_c3_i4_w2_said.mp3",
+          "audio/lesson-54_c3_i4_w3_toys.mp3",
+          "audio/lesson-54_c3_i4_w4_can.mp3",
+          "audio/lesson-54_c3_i4_w5_not.mp3",
+          "audio/lesson-54_c3_i4_w6_be.mp3",
+          "audio/lesson-54_c3_i4_w7_big.mp3",
+          "audio/lesson-54_c3_i4_w8_and.mp3",
+          "audio/lesson-54_c3_i4_w9_little.mp3"
+        ],
+        [
+          "audio/lesson-54_c3_i5_w0_the.mp3",
+          "audio/lesson-54_c3_i5_w1_man.mp3",
+          "audio/lesson-54_c3_i5_w2_said.mp3",
+          "audio/lesson-54_c3_i5_w3_this.mp3",
+          "audio/lesson-54_c3_i5_w4_toy.mp3",
+          "audio/lesson-54_c3_i5_w5_is.mp3",
+          "audio/lesson-54_c3_i5_w6_big.mp3",
+          "audio/lesson-54_c3_i5_w7_and.mp3",
+          "audio/lesson-54_c3_i5_w8_little.mp3"
+        ],
+        [
+          "audio/lesson-54_c3_i6_w0_he.mp3",
+          "audio/lesson-54_c3_i6_w1_got.mp3",
+          "audio/lesson-54_c3_i6_w2_a.mp3",
+          "audio/lesson-54_c3_i6_w3_little.mp3",
+          "audio/lesson-54_c3_i6_w4_toy.mp3",
+          "audio/lesson-54_c3_i6_w5_duck.mp3",
+          "audio/lesson-54_c3_i6_w6_and.mp3",
+          "audio/lesson-54_c3_i6_w7_he.mp3",
+          "audio/lesson-54_c3_i6_w8_made.mp3",
+          "audio/lesson-54_c3_i6_w9_it.mp3",
+          "audio/lesson-54_c3_i6_w10_big.mp3"
+        ],
+        [
+          "audio/lesson-54_c3_i7_w0_this.mp3",
+          "audio/lesson-54_c3_i7_w1_is.mp3",
+          "audio/lesson-54_c3_i7_w2_the.mp3",
+          "audio/lesson-54_c3_i7_w3_end.mp3"
+        ]
       ]
     }
   ]

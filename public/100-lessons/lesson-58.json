@@ -3,154 +3,306 @@
   "lessonNumber": 58,
   "chunks": [
     {
-      "type": "sounds-words",
+      "type": "sound-discovery",
       "items": [
         "i",
         "b",
-        "e"
-      ],
-      "audioPaths": [
-        "audio/lesson-58_c0_i0_i.mp3",
-        "audio/lesson-58_c0_i1_b.mp3",
-        "audio/lesson-58_c0_i2_e.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "e",
         "i",
         "ch",
         "o"
       ],
       "audioPaths": [
-        "audio/lesson-58_c1_i0_i.mp3",
-        "audio/lesson-58_c1_i1_ch.mp3",
-        "audio/lesson-58_c1_i2_o.mp3"
+        "audio/lesson-58_c0_i0_i.mp3",
+        "audio/lesson-58_c0_i1_b.mp3",
+        "audio/lesson-58_c0_i2_e.mp3",
+        "audio/lesson-58_c0_i3_i.mp3",
+        "audio/lesson-58_c0_i4_ch.mp3",
+        "audio/lesson-58_c0_i5_o.mp3"
       ]
     },
     {
-      "type": "sounds-words",
+      "type": "blending-bridge",
       "items": [
         "be",
         "big",
-        "bit"
-      ],
-      "audioPaths": [
-        "audio/lesson-58_c2_i0_be.mp3",
-        "audio/lesson-58_c2_i1_big.mp3",
-        "audio/lesson-58_c2_i2_bit.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "bit",
         "eating",
         "getting",
-        "leaf"
-      ],
-      "audioPaths": [
-        "audio/lesson-58_c3_i0_eating.mp3",
-        "audio/lesson-58_c3_i1_getting.mp3",
-        "audio/lesson-58_c3_i2_leaf.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "leaf",
         "bugs"
       ],
       "audioPaths": [
-        "audio/lesson-58_c4_i0_bugs.mp3"
+        "audio/lesson-58_c1_i0_be.mp3",
+        "audio/lesson-58_c1_i1_big.mp3",
+        "audio/lesson-58_c1_i2_bit.mp3",
+        "audio/lesson-58_c1_i3_eating.mp3",
+        "audio/lesson-58_c1_i4_getting.mp3",
+        "audio/lesson-58_c1_i5_leaf.mp3",
+        "audio/lesson-58_c1_i6_bugs.mp3"
       ]
     },
     {
-      "type": "story",
+      "type": "rhyme-puzzle",
       "items": [
-        "A home for an ant part 2."
+        "cat",
+        "bat",
+        "rat",
+        "mat"
       ],
       "audioPaths": [
-        "audio/lesson-58_c5_i0_a-home-for-an-ant-pa.mp3"
+        "audio/lesson-58_c2_i0_cat.mp3",
+        "audio/lesson-58_c2_i1_bat.mp3",
+        "audio/lesson-58_c2_i2_rat.mp3",
+        "audio/lesson-58_c2_i3_mat.mp3"
       ]
     },
     {
-      "type": "story",
+      "type": "story-gauntlet",
       "items": [
-        "An ant was looking for a good home. an eagle made the ant leave and a ram made the ant leave."
-      ],
-      "audioPaths": [
-        "audio/lesson-58_c6_i0_an-ant-was-looking-f.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "But that ant did not give up. so the ant went to the home of a cow."
-      ],
-      "audioPaths": [
-        "audio/lesson-58_c7_i0_but-that-ant-did-not.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "That home was a big barn. the ant said, 'I will be a good ant if you let me live here.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-58_c8_i0_that-home-was-a-big-.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The cow said, 'a horse can live here and sheep can live here. we will let a chick live here and a pig live here. but no ants can live in this barn. so go dig a hole and live like other ants.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-58_c9_i0_the-cow-said-a-horse.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "'No,' the ant said. 'I like barns. and I will make an ant barn.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-58_c10_i0_no-the-ant-said-i-li.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "So the ant got logs and rocks. then the ant made a barn. it was a good barn. it was too little for cows, and pigs, and dogs, and deers."
-      ],
-      "audioPaths": [
-        "audio/lesson-58_c11_i0_so-the-ant-got-logs-.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "But it was not too little for rats. so a rat came to the barn and said 'can I live in this barn with you?'"
-      ],
-      "audioPaths": [
-        "audio/lesson-58_c12_i0_but-it-was-not-too-l.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The ant looked at the rat and said, 'go dig a hole and live like other rats.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-58_c13_i0_the-ant-looked-at-th.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
+        "A home for an ant part 2.",
+        "An ant was looking for a good home. an eagle made the ant leave and a ram made the ant leave.",
+        "But that ant did not give up. so the ant went to the home of a cow.",
+        "That home was a big barn. the ant said, 'I will be a good ant if you let me live here.'",
+        "The cow said, 'a horse can live here and sheep can live here. we will let a chick live here and a pig live here. but no ants can live in this barn. so go dig a hole and live like other ants.'",
+        "'No,' the ant said. 'I like barns. and I will make an ant barn.'",
+        "So the ant got logs and rocks. then the ant made a barn. it was a good barn. it was too little for cows, and pigs, and dogs, and deers.",
+        "But it was not too little for rats. so a rat came to the barn and said 'can I live in this barn with you?'",
+        "The ant looked at the rat and said, 'go dig a hole and live like other rats.'",
         "The end."
       ],
+      "imagePath": "images/lesson-58-story.webp",
+      "imagePrompt": "Manhwa webcomic style illustration with extra emotional expressiveness. Cute and vibrant, kawaii pastel style. A scene showing: A home for an ant part 2. An ant was looking for a good home. an eagle made the ant leave and a ram made the ant leave.",
       "audioPaths": [
-        "audio/lesson-58_c14_i0_the-end.mp3"
+        "audio/lesson-58_c3_i0_a-home-for-an-ant-pa.mp3",
+        "audio/lesson-58_c3_i1_an-ant-was-looking-f.mp3",
+        "audio/lesson-58_c3_i2_but-that-ant-did-not.mp3",
+        "audio/lesson-58_c3_i3_that-home-was-a-big-.mp3",
+        "audio/lesson-58_c3_i4_the-cow-said-a-horse.mp3",
+        "audio/lesson-58_c3_i5_no-the-ant-said-i-li.mp3",
+        "audio/lesson-58_c3_i6_so-the-ant-got-logs-.mp3",
+        "audio/lesson-58_c3_i7_but-it-was-not-too-l.mp3",
+        "audio/lesson-58_c3_i8_the-ant-looked-at-th.mp3",
+        "audio/lesson-58_c3_i9_the-end.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-58_c3_i0_w0_a.mp3",
+          "audio/lesson-58_c3_i0_w1_home.mp3",
+          "audio/lesson-58_c3_i0_w2_for.mp3",
+          "audio/lesson-58_c3_i0_w3_an.mp3",
+          "audio/lesson-58_c3_i0_w4_ant.mp3",
+          "audio/lesson-58_c3_i0_w5_part.mp3",
+          "audio/lesson-58_c3_i0_w6_2.mp3"
+        ],
+        [
+          "audio/lesson-58_c3_i1_w0_an.mp3",
+          "audio/lesson-58_c3_i1_w1_ant.mp3",
+          "audio/lesson-58_c3_i1_w2_was.mp3",
+          "audio/lesson-58_c3_i1_w3_looking.mp3",
+          "audio/lesson-58_c3_i1_w4_for.mp3",
+          "audio/lesson-58_c3_i1_w5_a.mp3",
+          "audio/lesson-58_c3_i1_w6_good.mp3",
+          "audio/lesson-58_c3_i1_w7_home.mp3",
+          "audio/lesson-58_c3_i1_w8_an.mp3",
+          "audio/lesson-58_c3_i1_w9_eagle.mp3",
+          "audio/lesson-58_c3_i1_w10_made.mp3",
+          "audio/lesson-58_c3_i1_w11_the.mp3",
+          "audio/lesson-58_c3_i1_w12_ant.mp3",
+          "audio/lesson-58_c3_i1_w13_leave.mp3",
+          "audio/lesson-58_c3_i1_w14_and.mp3",
+          "audio/lesson-58_c3_i1_w15_a.mp3",
+          "audio/lesson-58_c3_i1_w16_ram.mp3",
+          "audio/lesson-58_c3_i1_w17_made.mp3",
+          "audio/lesson-58_c3_i1_w18_the.mp3",
+          "audio/lesson-58_c3_i1_w19_ant.mp3",
+          "audio/lesson-58_c3_i1_w20_leave.mp3"
+        ],
+        [
+          "audio/lesson-58_c3_i2_w0_but.mp3",
+          "audio/lesson-58_c3_i2_w1_that.mp3",
+          "audio/lesson-58_c3_i2_w2_ant.mp3",
+          "audio/lesson-58_c3_i2_w3_did.mp3",
+          "audio/lesson-58_c3_i2_w4_not.mp3",
+          "audio/lesson-58_c3_i2_w5_give.mp3",
+          "audio/lesson-58_c3_i2_w6_up.mp3",
+          "audio/lesson-58_c3_i2_w7_so.mp3",
+          "audio/lesson-58_c3_i2_w8_the.mp3",
+          "audio/lesson-58_c3_i2_w9_ant.mp3",
+          "audio/lesson-58_c3_i2_w10_went.mp3",
+          "audio/lesson-58_c3_i2_w11_to.mp3",
+          "audio/lesson-58_c3_i2_w12_the.mp3",
+          "audio/lesson-58_c3_i2_w13_home.mp3",
+          "audio/lesson-58_c3_i2_w14_of.mp3",
+          "audio/lesson-58_c3_i2_w15_a.mp3",
+          "audio/lesson-58_c3_i2_w16_cow.mp3"
+        ],
+        [
+          "audio/lesson-58_c3_i3_w0_that.mp3",
+          "audio/lesson-58_c3_i3_w1_home.mp3",
+          "audio/lesson-58_c3_i3_w2_was.mp3",
+          "audio/lesson-58_c3_i3_w3_a.mp3",
+          "audio/lesson-58_c3_i3_w4_big.mp3",
+          "audio/lesson-58_c3_i3_w5_barn.mp3",
+          "audio/lesson-58_c3_i3_w6_the.mp3",
+          "audio/lesson-58_c3_i3_w7_ant.mp3",
+          "audio/lesson-58_c3_i3_w8_said.mp3",
+          "audio/lesson-58_c3_i3_w9_i.mp3",
+          "audio/lesson-58_c3_i3_w10_will.mp3",
+          "audio/lesson-58_c3_i3_w11_be.mp3",
+          "audio/lesson-58_c3_i3_w12_a.mp3",
+          "audio/lesson-58_c3_i3_w13_good.mp3",
+          "audio/lesson-58_c3_i3_w14_ant.mp3",
+          "audio/lesson-58_c3_i3_w15_if.mp3",
+          "audio/lesson-58_c3_i3_w16_you.mp3",
+          "audio/lesson-58_c3_i3_w17_let.mp3",
+          "audio/lesson-58_c3_i3_w18_me.mp3",
+          "audio/lesson-58_c3_i3_w19_live.mp3",
+          "audio/lesson-58_c3_i3_w20_here.mp3"
+        ],
+        [
+          "audio/lesson-58_c3_i4_w0_the.mp3",
+          "audio/lesson-58_c3_i4_w1_cow.mp3",
+          "audio/lesson-58_c3_i4_w2_said.mp3",
+          "audio/lesson-58_c3_i4_w3_a.mp3",
+          "audio/lesson-58_c3_i4_w4_horse.mp3",
+          "audio/lesson-58_c3_i4_w5_can.mp3",
+          "audio/lesson-58_c3_i4_w6_live.mp3",
+          "audio/lesson-58_c3_i4_w7_here.mp3",
+          "audio/lesson-58_c3_i4_w8_and.mp3",
+          "audio/lesson-58_c3_i4_w9_sheep.mp3",
+          "audio/lesson-58_c3_i4_w10_can.mp3",
+          "audio/lesson-58_c3_i4_w11_live.mp3",
+          "audio/lesson-58_c3_i4_w12_here.mp3",
+          "audio/lesson-58_c3_i4_w13_we.mp3",
+          "audio/lesson-58_c3_i4_w14_will.mp3",
+          "audio/lesson-58_c3_i4_w15_let.mp3",
+          "audio/lesson-58_c3_i4_w16_a.mp3",
+          "audio/lesson-58_c3_i4_w17_chick.mp3",
+          "audio/lesson-58_c3_i4_w18_live.mp3",
+          "audio/lesson-58_c3_i4_w19_here.mp3",
+          "audio/lesson-58_c3_i4_w20_and.mp3",
+          "audio/lesson-58_c3_i4_w21_a.mp3",
+          "audio/lesson-58_c3_i4_w22_pig.mp3",
+          "audio/lesson-58_c3_i4_w23_live.mp3",
+          "audio/lesson-58_c3_i4_w24_here.mp3",
+          "audio/lesson-58_c3_i4_w25_but.mp3",
+          "audio/lesson-58_c3_i4_w26_no.mp3",
+          "audio/lesson-58_c3_i4_w27_ants.mp3",
+          "audio/lesson-58_c3_i4_w28_can.mp3",
+          "audio/lesson-58_c3_i4_w29_live.mp3",
+          "audio/lesson-58_c3_i4_w30_in.mp3",
+          "audio/lesson-58_c3_i4_w31_this.mp3",
+          "audio/lesson-58_c3_i4_w32_barn.mp3",
+          "audio/lesson-58_c3_i4_w33_so.mp3",
+          "audio/lesson-58_c3_i4_w34_go.mp3",
+          "audio/lesson-58_c3_i4_w35_dig.mp3",
+          "audio/lesson-58_c3_i4_w36_a.mp3",
+          "audio/lesson-58_c3_i4_w37_hole.mp3",
+          "audio/lesson-58_c3_i4_w38_and.mp3",
+          "audio/lesson-58_c3_i4_w39_live.mp3",
+          "audio/lesson-58_c3_i4_w40_like.mp3",
+          "audio/lesson-58_c3_i4_w41_other.mp3",
+          "audio/lesson-58_c3_i4_w42_ants.mp3"
+        ],
+        [
+          "audio/lesson-58_c3_i5_w0_no.mp3",
+          "audio/lesson-58_c3_i5_w1_the.mp3",
+          "audio/lesson-58_c3_i5_w2_ant.mp3",
+          "audio/lesson-58_c3_i5_w3_said.mp3",
+          "audio/lesson-58_c3_i5_w4_i.mp3",
+          "audio/lesson-58_c3_i5_w5_like.mp3",
+          "audio/lesson-58_c3_i5_w6_barns.mp3",
+          "audio/lesson-58_c3_i5_w7_and.mp3",
+          "audio/lesson-58_c3_i5_w8_i.mp3",
+          "audio/lesson-58_c3_i5_w9_will.mp3",
+          "audio/lesson-58_c3_i5_w10_make.mp3",
+          "audio/lesson-58_c3_i5_w11_an.mp3",
+          "audio/lesson-58_c3_i5_w12_ant.mp3",
+          "audio/lesson-58_c3_i5_w13_barn.mp3"
+        ],
+        [
+          "audio/lesson-58_c3_i6_w0_so.mp3",
+          "audio/lesson-58_c3_i6_w1_the.mp3",
+          "audio/lesson-58_c3_i6_w2_ant.mp3",
+          "audio/lesson-58_c3_i6_w3_got.mp3",
+          "audio/lesson-58_c3_i6_w4_logs.mp3",
+          "audio/lesson-58_c3_i6_w5_and.mp3",
+          "audio/lesson-58_c3_i6_w6_rocks.mp3",
+          "audio/lesson-58_c3_i6_w7_then.mp3",
+          "audio/lesson-58_c3_i6_w8_the.mp3",
+          "audio/lesson-58_c3_i6_w9_ant.mp3",
+          "audio/lesson-58_c3_i6_w10_made.mp3",
+          "audio/lesson-58_c3_i6_w11_a.mp3",
+          "audio/lesson-58_c3_i6_w12_barn.mp3",
+          "audio/lesson-58_c3_i6_w13_it.mp3",
+          "audio/lesson-58_c3_i6_w14_was.mp3",
+          "audio/lesson-58_c3_i6_w15_a.mp3",
+          "audio/lesson-58_c3_i6_w16_good.mp3",
+          "audio/lesson-58_c3_i6_w17_barn.mp3",
+          "audio/lesson-58_c3_i6_w18_it.mp3",
+          "audio/lesson-58_c3_i6_w19_was.mp3",
+          "audio/lesson-58_c3_i6_w20_too.mp3",
+          "audio/lesson-58_c3_i6_w21_little.mp3",
+          "audio/lesson-58_c3_i6_w22_for.mp3",
+          "audio/lesson-58_c3_i6_w23_cows.mp3",
+          "audio/lesson-58_c3_i6_w24_and.mp3",
+          "audio/lesson-58_c3_i6_w25_pigs.mp3",
+          "audio/lesson-58_c3_i6_w26_and.mp3",
+          "audio/lesson-58_c3_i6_w27_dogs.mp3",
+          "audio/lesson-58_c3_i6_w28_and.mp3",
+          "audio/lesson-58_c3_i6_w29_deers.mp3"
+        ],
+        [
+          "audio/lesson-58_c3_i7_w0_but.mp3",
+          "audio/lesson-58_c3_i7_w1_it.mp3",
+          "audio/lesson-58_c3_i7_w2_was.mp3",
+          "audio/lesson-58_c3_i7_w3_not.mp3",
+          "audio/lesson-58_c3_i7_w4_too.mp3",
+          "audio/lesson-58_c3_i7_w5_little.mp3",
+          "audio/lesson-58_c3_i7_w6_for.mp3",
+          "audio/lesson-58_c3_i7_w7_rats.mp3",
+          "audio/lesson-58_c3_i7_w8_so.mp3",
+          "audio/lesson-58_c3_i7_w9_a.mp3",
+          "audio/lesson-58_c3_i7_w10_rat.mp3",
+          "audio/lesson-58_c3_i7_w11_came.mp3",
+          "audio/lesson-58_c3_i7_w12_to.mp3",
+          "audio/lesson-58_c3_i7_w13_the.mp3",
+          "audio/lesson-58_c3_i7_w14_barn.mp3",
+          "audio/lesson-58_c3_i7_w15_and.mp3",
+          "audio/lesson-58_c3_i7_w16_said.mp3",
+          "audio/lesson-58_c3_i7_w17_can.mp3",
+          "audio/lesson-58_c3_i7_w18_i.mp3",
+          "audio/lesson-58_c3_i7_w19_live.mp3",
+          "audio/lesson-58_c3_i7_w20_in.mp3",
+          "audio/lesson-58_c3_i7_w21_this.mp3",
+          "audio/lesson-58_c3_i7_w22_barn.mp3",
+          "audio/lesson-58_c3_i7_w23_with.mp3",
+          "audio/lesson-58_c3_i7_w24_you.mp3"
+        ],
+        [
+          "audio/lesson-58_c3_i8_w0_the.mp3",
+          "audio/lesson-58_c3_i8_w1_ant.mp3",
+          "audio/lesson-58_c3_i8_w2_looked.mp3",
+          "audio/lesson-58_c3_i8_w3_at.mp3",
+          "audio/lesson-58_c3_i8_w4_the.mp3",
+          "audio/lesson-58_c3_i8_w5_rat.mp3",
+          "audio/lesson-58_c3_i8_w6_and.mp3",
+          "audio/lesson-58_c3_i8_w7_said.mp3",
+          "audio/lesson-58_c3_i8_w8_go.mp3",
+          "audio/lesson-58_c3_i8_w9_dig.mp3",
+          "audio/lesson-58_c3_i8_w10_a.mp3",
+          "audio/lesson-58_c3_i8_w11_hole.mp3",
+          "audio/lesson-58_c3_i8_w12_and.mp3",
+          "audio/lesson-58_c3_i8_w13_live.mp3",
+          "audio/lesson-58_c3_i8_w14_like.mp3",
+          "audio/lesson-58_c3_i8_w15_other.mp3",
+          "audio/lesson-58_c3_i8_w16_rats.mp3"
+        ],
+        [
+          "audio/lesson-58_c3_i9_w0_the.mp3",
+          "audio/lesson-58_c3_i9_w1_end.mp3"
+        ]
       ]
     }
   ]

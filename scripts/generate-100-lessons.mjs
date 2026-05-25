@@ -179,21 +179,42 @@ function chunkArray(array, size) {
 const lessons = rawLessons.map(lesson => {
   const chunks = [];
 
-  // Add sounds
-  const soundChunks = chunkArray(lesson.sounds, 3);
-  soundChunks.forEach(items => {
-    chunks.push({ type: 'sounds-words', items });
+  // Add sound discovery chunk
+  chunks.push({
+    type: 'sound-discovery',
+    items: lesson.sounds
   });
 
-  // Add words
-  const wordChunks = chunkArray(lesson.words, 3);
-  wordChunks.forEach(items => {
-    chunks.push({ type: 'sounds-words', items });
+  // Add blending bridge chunk
+  chunks.push({
+    type: 'blending-bridge',
+    items: lesson.words
   });
 
-  // Add story sentences
-  lesson.story.forEach(sentence => {
-    chunks.push({ type: 'story', items: [sentence] });
+  // Determine rhyming words based on lesson words, or fallback
+  const allWords = lesson.words.join(' ');
+  let rhymes = [];
+  if (allWords.includes('cat')) rhymes = ['cat', 'bat', 'rat', 'mat'];
+  else if (allWords.includes('dog')) rhymes = ['dog', 'log', 'fog', 'hog'];
+  else if (allWords.includes('to')) rhymes = ['to', 'do', 'zoo', 'moo'];
+  else if (allWords.includes('see')) rhymes = ['see', 'tree', 'bee', 'free'];
+  else if (allWords.includes('car')) rhymes = ['car', 'star', 'far', 'jar'];
+  else if (allWords.includes('boy')) rhymes = ['boy', 'toy', 'joy'];
+  else if (allWords.includes('cow')) rhymes = ['cow', 'how', 'now', 'bow'];
+  else rhymes = ['cat', 'bat', 'rat', 'mat']; // Default fallback
+
+  // Add rhyme puzzle chunk
+  chunks.push({
+    type: 'rhyme-puzzle',
+    items: rhymes
+  });
+
+  // Map story to story-gauntlet
+  chunks.push({
+    type: 'story-gauntlet',
+    items: lesson.story,
+    imagePath: `images/lesson-${lesson.number}-story.webp`,
+    imagePrompt: `Manhwa webcomic style illustration with extra emotional expressiveness. Cute and vibrant, kawaii pastel style. A scene showing: ${lesson.story[0]} ${lesson.story[1] || ''}`
   });
 
   return {

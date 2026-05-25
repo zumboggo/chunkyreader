@@ -37,6 +37,9 @@ async function main() {
     for (let cIdx = 0; cIdx < content.chunks.length; cIdx++) {
       const chunk = content.chunks[cIdx];
       chunk.audioPaths = chunk.audioPaths || [];
+      if (chunk.type === 'story-gauntlet') {
+        chunk.wordAudioPaths = chunk.wordAudioPaths || [];
+      }
 
       for (let iIdx = 0; iIdx < chunk.items.length; iIdx++) {
         const item = chunk.items[iIdx];
@@ -48,9 +51,9 @@ async function main() {
         chunk.audioPaths[iIdx] = relativeAudioPath;
         modified = true;
 
-        const voice = chunk.type === 'story' ? TTS_VOICES.anneNarrator : TTS_VOICES.childInstructions;
+        const voice = chunk.type === 'story' || chunk.type === 'story-gauntlet' ? TTS_VOICES.anneNarrator : TTS_VOICES.childInstructions;
         let body = escapeXml(item);
-        if (chunk.type === 'sounds-words' && item.length <= 3) {
+        if ((chunk.type === 'sounds-words' || chunk.type === 'sound-discovery') && item.length <= 3) {
             // spell it out or just say it
             body = escapeXml(item);
         }
@@ -68,6 +71,37 @@ async function main() {
           if (force || !(await exists(absoluteAudioPath))) {
             console.log(`Generating audio for: ${item}`);
             await synthesizeClip(credentials, ssml, absoluteAudioPath);
+          }
+        }
+
+        // Generate word-level audio for story-gauntlet
+        if (chunk.type === 'story-gauntlet') {
+          const words = item.split(/\s+/).map(w => w.replace(/[^a-zA-Z0-9']/g, '')).filter(Boolean);
+          chunk.wordAudioPaths[iIdx] = chunk.wordAudioPaths[iIdx] || [];
+          
+          for (let wIdx = 0; wIdx < words.length; wIdx++) {
+            const word = words[wIdx];
+            const safeWord = safeFileName(word);
+            const wordFileName = `${content.id}_c${cIdx}_i${iIdx}_w${wIdx}_${safeWord.substring(0, 20)}.mp3`;
+            const wordRelativeAudioPath = `audio/${wordFileName}`;
+            const wordAbsoluteAudioPath = path.join(lessonsDir, wordRelativeAudioPath);
+            
+            chunk.wordAudioPaths[iIdx][wIdx] = wordRelativeAudioPath;
+
+            const wordSsml = createAzureSsml({
+              language: 'en-US',
+              voice,
+              rate: '-8%',
+              pitch: '+2%',
+              body: escapeXml(word),
+            });
+
+            if (synthesize && credentials) {
+              if (force || !(await exists(wordAbsoluteAudioPath))) {
+                console.log(`Generating word audio for: ${word}`);
+                await synthesizeClip(credentials, wordSsml, wordAbsoluteAudioPath);
+              }
+            }
           }
         }
       }

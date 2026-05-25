@@ -3,176 +3,318 @@
   "lessonNumber": 57,
   "chunks": [
     {
-      "type": "sounds-words",
+      "type": "sound-discovery",
       "items": [
         "g",
         "ing",
-        "v"
-      ],
-      "audioPaths": [
-        "audio/lesson-57_c0_i0_g.mp3",
-        "audio/lesson-57_c0_i1_ing.mp3",
-        "audio/lesson-57_c0_i2_v.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "v",
         "ch",
         "k",
         "b"
       ],
       "audioPaths": [
-        "audio/lesson-57_c1_i0_ch.mp3",
-        "audio/lesson-57_c1_i1_k.mp3",
-        "audio/lesson-57_c1_i2_b.mp3"
+        "audio/lesson-57_c0_i0_g.mp3",
+        "audio/lesson-57_c0_i1_ing.mp3",
+        "audio/lesson-57_c0_i2_v.mp3",
+        "audio/lesson-57_c0_i3_ch.mp3",
+        "audio/lesson-57_c0_i4_k.mp3",
+        "audio/lesson-57_c0_i5_b.mp3"
       ]
     },
     {
-      "type": "sounds-words",
+      "type": "blending-bridge",
       "items": [
         "there",
         "then",
-        "this"
-      ],
-      "audioPaths": [
-        "audio/lesson-57_c2_i0_there.mp3",
-        "audio/lesson-57_c2_i1_then.mp3",
-        "audio/lesson-57_c2_i2_this.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "this",
         "sent",
         "well",
-        "park"
-      ],
-      "audioPaths": [
-        "audio/lesson-57_c3_i0_sent.mp3",
-        "audio/lesson-57_c3_i1_well.mp3",
-        "audio/lesson-57_c3_i2_park.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "park",
         "farm",
         "pet",
-        "duck"
-      ],
-      "audioPaths": [
-        "audio/lesson-57_c4_i0_farm.mp3",
-        "audio/lesson-57_c4_i1_pet.mp3",
-        "audio/lesson-57_c4_i2_duck.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "duck",
         "girl"
       ],
       "audioPaths": [
-        "audio/lesson-57_c5_i0_girl.mp3"
+        "audio/lesson-57_c1_i0_there.mp3",
+        "audio/lesson-57_c1_i1_then.mp3",
+        "audio/lesson-57_c1_i2_this.mp3",
+        "audio/lesson-57_c1_i3_sent.mp3",
+        "audio/lesson-57_c1_i4_well.mp3",
+        "audio/lesson-57_c1_i5_park.mp3",
+        "audio/lesson-57_c1_i6_farm.mp3",
+        "audio/lesson-57_c1_i7_pet.mp3",
+        "audio/lesson-57_c1_i8_duck.mp3",
+        "audio/lesson-57_c1_i9_girl.mp3"
       ]
     },
     {
-      "type": "story",
+      "type": "rhyme-puzzle",
       "items": [
-        "A home for an ant."
+        "cat",
+        "bat",
+        "rat",
+        "mat"
       ],
       "audioPaths": [
-        "audio/lesson-57_c6_i0_a-home-for-an-ant.mp3"
+        "audio/lesson-57_c2_i0_cat.mp3",
+        "audio/lesson-57_c2_i1_bat.mp3",
+        "audio/lesson-57_c2_i2_rat.mp3",
+        "audio/lesson-57_c2_i3_mat.mp3"
       ]
     },
     {
-      "type": "story",
+      "type": "story-gauntlet",
       "items": [
-        "An ant lived in a hole. the ant said, 'this hole is no good. when it rains, the rain comes in this hole. and I get wet."
-      ],
-      "audioPaths": [
-        "audio/lesson-57_c7_i0_an-ant-lived-in-a-ho.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "When the days are hot, the hole gets hot. when the hole gets hot, I get hot.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-57_c8_i0_when-the-days-are-ho.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "But when the days got cold, the hole did not get hot. the hole got cold."
-      ],
-      "audioPaths": [
-        "audio/lesson-57_c9_i0_but-when-the-days-go.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "And so did that ant."
-      ],
-      "audioPaths": [
-        "audio/lesson-57_c10_i0_and-so-did-that-ant.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The ant said, 'this hole gets hot and this hole gets cold. and when it rains, this hole gets wet. I will leave this hole.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-57_c11_i0_the-ant-said-this-ho.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "So the ant did that."
-      ],
-      "audioPaths": [
-        "audio/lesson-57_c12_i0_so-the-ant-did-that.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The ant went up the hill to the home of an eagle. 'can I stay in this home?' the ant said."
-      ],
-      "audioPaths": [
-        "audio/lesson-57_c13_i0_the-ant-went-up-the-.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The eagle did not say a thing. the eagle picked up the ant and said, 'I will take you from this hill. do not come back. go dig a hole and live like other ants.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-57_c14_i0_the-eagle-did-not-sa.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "But the ant did not dig a hole. that ant went to the home of a ram."
-      ],
-      "audioPaths": [
-        "audio/lesson-57_c15_i0_but-the-ant-did-not-.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
+        "A home for an ant.",
+        "An ant lived in a hole. the ant said, 'this hole is no good. when it rains, the rain comes in this hole. and I get wet.",
+        "When the days are hot, the hole gets hot. when the hole gets hot, I get hot.'",
+        "But when the days got cold, the hole did not get hot. the hole got cold.",
+        "And so did that ant.",
+        "The ant said, 'this hole gets hot and this hole gets cold. and when it rains, this hole gets wet. I will leave this hole.'",
+        "So the ant did that.",
+        "The ant went up the hill to the home of an eagle. 'can I stay in this home?' the ant said.",
+        "The eagle did not say a thing. the eagle picked up the ant and said, 'I will take you from this hill. do not come back. go dig a hole and live like other ants.'",
+        "But the ant did not dig a hole. that ant went to the home of a ram.",
         "'Can I live in this home?' the ant said. the ram said, 'we do not like ants. go dig a hole and live like other ants.'"
       ],
+      "imagePath": "images/lesson-57-story.webp",
+      "imagePrompt": "Manhwa webcomic style illustration with extra emotional expressiveness. Cute and vibrant, kawaii pastel style. A scene showing: A home for an ant. An ant lived in a hole. the ant said, 'this hole is no good. when it rains, the rain comes in this hole. and I get wet.",
       "audioPaths": [
-        "audio/lesson-57_c16_i0_can-i-live-in-this-h.mp3"
+        "audio/lesson-57_c3_i0_a-home-for-an-ant.mp3",
+        "audio/lesson-57_c3_i1_an-ant-lived-in-a-ho.mp3",
+        "audio/lesson-57_c3_i2_when-the-days-are-ho.mp3",
+        "audio/lesson-57_c3_i3_but-when-the-days-go.mp3",
+        "audio/lesson-57_c3_i4_and-so-did-that-ant.mp3",
+        "audio/lesson-57_c3_i5_the-ant-said-this-ho.mp3",
+        "audio/lesson-57_c3_i6_so-the-ant-did-that.mp3",
+        "audio/lesson-57_c3_i7_the-ant-went-up-the-.mp3",
+        "audio/lesson-57_c3_i8_the-eagle-did-not-sa.mp3",
+        "audio/lesson-57_c3_i9_but-the-ant-did-not-.mp3",
+        "audio/lesson-57_c3_i10_can-i-live-in-this-h.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-57_c3_i0_w0_a.mp3",
+          "audio/lesson-57_c3_i0_w1_home.mp3",
+          "audio/lesson-57_c3_i0_w2_for.mp3",
+          "audio/lesson-57_c3_i0_w3_an.mp3",
+          "audio/lesson-57_c3_i0_w4_ant.mp3"
+        ],
+        [
+          "audio/lesson-57_c3_i1_w0_an.mp3",
+          "audio/lesson-57_c3_i1_w1_ant.mp3",
+          "audio/lesson-57_c3_i1_w2_lived.mp3",
+          "audio/lesson-57_c3_i1_w3_in.mp3",
+          "audio/lesson-57_c3_i1_w4_a.mp3",
+          "audio/lesson-57_c3_i1_w5_hole.mp3",
+          "audio/lesson-57_c3_i1_w6_the.mp3",
+          "audio/lesson-57_c3_i1_w7_ant.mp3",
+          "audio/lesson-57_c3_i1_w8_said.mp3",
+          "audio/lesson-57_c3_i1_w9_this.mp3",
+          "audio/lesson-57_c3_i1_w10_hole.mp3",
+          "audio/lesson-57_c3_i1_w11_is.mp3",
+          "audio/lesson-57_c3_i1_w12_no.mp3",
+          "audio/lesson-57_c3_i1_w13_good.mp3",
+          "audio/lesson-57_c3_i1_w14_when.mp3",
+          "audio/lesson-57_c3_i1_w15_it.mp3",
+          "audio/lesson-57_c3_i1_w16_rains.mp3",
+          "audio/lesson-57_c3_i1_w17_the.mp3",
+          "audio/lesson-57_c3_i1_w18_rain.mp3",
+          "audio/lesson-57_c3_i1_w19_comes.mp3",
+          "audio/lesson-57_c3_i1_w20_in.mp3",
+          "audio/lesson-57_c3_i1_w21_this.mp3",
+          "audio/lesson-57_c3_i1_w22_hole.mp3",
+          "audio/lesson-57_c3_i1_w23_and.mp3",
+          "audio/lesson-57_c3_i1_w24_i.mp3",
+          "audio/lesson-57_c3_i1_w25_get.mp3",
+          "audio/lesson-57_c3_i1_w26_wet.mp3"
+        ],
+        [
+          "audio/lesson-57_c3_i2_w0_when.mp3",
+          "audio/lesson-57_c3_i2_w1_the.mp3",
+          "audio/lesson-57_c3_i2_w2_days.mp3",
+          "audio/lesson-57_c3_i2_w3_are.mp3",
+          "audio/lesson-57_c3_i2_w4_hot.mp3",
+          "audio/lesson-57_c3_i2_w5_the.mp3",
+          "audio/lesson-57_c3_i2_w6_hole.mp3",
+          "audio/lesson-57_c3_i2_w7_gets.mp3",
+          "audio/lesson-57_c3_i2_w8_hot.mp3",
+          "audio/lesson-57_c3_i2_w9_when.mp3",
+          "audio/lesson-57_c3_i2_w10_the.mp3",
+          "audio/lesson-57_c3_i2_w11_hole.mp3",
+          "audio/lesson-57_c3_i2_w12_gets.mp3",
+          "audio/lesson-57_c3_i2_w13_hot.mp3",
+          "audio/lesson-57_c3_i2_w14_i.mp3",
+          "audio/lesson-57_c3_i2_w15_get.mp3",
+          "audio/lesson-57_c3_i2_w16_hot.mp3"
+        ],
+        [
+          "audio/lesson-57_c3_i3_w0_but.mp3",
+          "audio/lesson-57_c3_i3_w1_when.mp3",
+          "audio/lesson-57_c3_i3_w2_the.mp3",
+          "audio/lesson-57_c3_i3_w3_days.mp3",
+          "audio/lesson-57_c3_i3_w4_got.mp3",
+          "audio/lesson-57_c3_i3_w5_cold.mp3",
+          "audio/lesson-57_c3_i3_w6_the.mp3",
+          "audio/lesson-57_c3_i3_w7_hole.mp3",
+          "audio/lesson-57_c3_i3_w8_did.mp3",
+          "audio/lesson-57_c3_i3_w9_not.mp3",
+          "audio/lesson-57_c3_i3_w10_get.mp3",
+          "audio/lesson-57_c3_i3_w11_hot.mp3",
+          "audio/lesson-57_c3_i3_w12_the.mp3",
+          "audio/lesson-57_c3_i3_w13_hole.mp3",
+          "audio/lesson-57_c3_i3_w14_got.mp3",
+          "audio/lesson-57_c3_i3_w15_cold.mp3"
+        ],
+        [
+          "audio/lesson-57_c3_i4_w0_and.mp3",
+          "audio/lesson-57_c3_i4_w1_so.mp3",
+          "audio/lesson-57_c3_i4_w2_did.mp3",
+          "audio/lesson-57_c3_i4_w3_that.mp3",
+          "audio/lesson-57_c3_i4_w4_ant.mp3"
+        ],
+        [
+          "audio/lesson-57_c3_i5_w0_the.mp3",
+          "audio/lesson-57_c3_i5_w1_ant.mp3",
+          "audio/lesson-57_c3_i5_w2_said.mp3",
+          "audio/lesson-57_c3_i5_w3_this.mp3",
+          "audio/lesson-57_c3_i5_w4_hole.mp3",
+          "audio/lesson-57_c3_i5_w5_gets.mp3",
+          "audio/lesson-57_c3_i5_w6_hot.mp3",
+          "audio/lesson-57_c3_i5_w7_and.mp3",
+          "audio/lesson-57_c3_i5_w8_this.mp3",
+          "audio/lesson-57_c3_i5_w9_hole.mp3",
+          "audio/lesson-57_c3_i5_w10_gets.mp3",
+          "audio/lesson-57_c3_i5_w11_cold.mp3",
+          "audio/lesson-57_c3_i5_w12_and.mp3",
+          "audio/lesson-57_c3_i5_w13_when.mp3",
+          "audio/lesson-57_c3_i5_w14_it.mp3",
+          "audio/lesson-57_c3_i5_w15_rains.mp3",
+          "audio/lesson-57_c3_i5_w16_this.mp3",
+          "audio/lesson-57_c3_i5_w17_hole.mp3",
+          "audio/lesson-57_c3_i5_w18_gets.mp3",
+          "audio/lesson-57_c3_i5_w19_wet.mp3",
+          "audio/lesson-57_c3_i5_w20_i.mp3",
+          "audio/lesson-57_c3_i5_w21_will.mp3",
+          "audio/lesson-57_c3_i5_w22_leave.mp3",
+          "audio/lesson-57_c3_i5_w23_this.mp3",
+          "audio/lesson-57_c3_i5_w24_hole.mp3"
+        ],
+        [
+          "audio/lesson-57_c3_i6_w0_so.mp3",
+          "audio/lesson-57_c3_i6_w1_the.mp3",
+          "audio/lesson-57_c3_i6_w2_ant.mp3",
+          "audio/lesson-57_c3_i6_w3_did.mp3",
+          "audio/lesson-57_c3_i6_w4_that.mp3"
+        ],
+        [
+          "audio/lesson-57_c3_i7_w0_the.mp3",
+          "audio/lesson-57_c3_i7_w1_ant.mp3",
+          "audio/lesson-57_c3_i7_w2_went.mp3",
+          "audio/lesson-57_c3_i7_w3_up.mp3",
+          "audio/lesson-57_c3_i7_w4_the.mp3",
+          "audio/lesson-57_c3_i7_w5_hill.mp3",
+          "audio/lesson-57_c3_i7_w6_to.mp3",
+          "audio/lesson-57_c3_i7_w7_the.mp3",
+          "audio/lesson-57_c3_i7_w8_home.mp3",
+          "audio/lesson-57_c3_i7_w9_of.mp3",
+          "audio/lesson-57_c3_i7_w10_an.mp3",
+          "audio/lesson-57_c3_i7_w11_eagle.mp3",
+          "audio/lesson-57_c3_i7_w12_can.mp3",
+          "audio/lesson-57_c3_i7_w13_i.mp3",
+          "audio/lesson-57_c3_i7_w14_stay.mp3",
+          "audio/lesson-57_c3_i7_w15_in.mp3",
+          "audio/lesson-57_c3_i7_w16_this.mp3",
+          "audio/lesson-57_c3_i7_w17_home.mp3",
+          "audio/lesson-57_c3_i7_w18_the.mp3",
+          "audio/lesson-57_c3_i7_w19_ant.mp3",
+          "audio/lesson-57_c3_i7_w20_said.mp3"
+        ],
+        [
+          "audio/lesson-57_c3_i8_w0_the.mp3",
+          "audio/lesson-57_c3_i8_w1_eagle.mp3",
+          "audio/lesson-57_c3_i8_w2_did.mp3",
+          "audio/lesson-57_c3_i8_w3_not.mp3",
+          "audio/lesson-57_c3_i8_w4_say.mp3",
+          "audio/lesson-57_c3_i8_w5_a.mp3",
+          "audio/lesson-57_c3_i8_w6_thing.mp3",
+          "audio/lesson-57_c3_i8_w7_the.mp3",
+          "audio/lesson-57_c3_i8_w8_eagle.mp3",
+          "audio/lesson-57_c3_i8_w9_picked.mp3",
+          "audio/lesson-57_c3_i8_w10_up.mp3",
+          "audio/lesson-57_c3_i8_w11_the.mp3",
+          "audio/lesson-57_c3_i8_w12_ant.mp3",
+          "audio/lesson-57_c3_i8_w13_and.mp3",
+          "audio/lesson-57_c3_i8_w14_said.mp3",
+          "audio/lesson-57_c3_i8_w15_i.mp3",
+          "audio/lesson-57_c3_i8_w16_will.mp3",
+          "audio/lesson-57_c3_i8_w17_take.mp3",
+          "audio/lesson-57_c3_i8_w18_you.mp3",
+          "audio/lesson-57_c3_i8_w19_from.mp3",
+          "audio/lesson-57_c3_i8_w20_this.mp3",
+          "audio/lesson-57_c3_i8_w21_hill.mp3",
+          "audio/lesson-57_c3_i8_w22_do.mp3",
+          "audio/lesson-57_c3_i8_w23_not.mp3",
+          "audio/lesson-57_c3_i8_w24_come.mp3",
+          "audio/lesson-57_c3_i8_w25_back.mp3",
+          "audio/lesson-57_c3_i8_w26_go.mp3",
+          "audio/lesson-57_c3_i8_w27_dig.mp3",
+          "audio/lesson-57_c3_i8_w28_a.mp3",
+          "audio/lesson-57_c3_i8_w29_hole.mp3",
+          "audio/lesson-57_c3_i8_w30_and.mp3",
+          "audio/lesson-57_c3_i8_w31_live.mp3",
+          "audio/lesson-57_c3_i8_w32_like.mp3",
+          "audio/lesson-57_c3_i8_w33_other.mp3",
+          "audio/lesson-57_c3_i8_w34_ants.mp3"
+        ],
+        [
+          "audio/lesson-57_c3_i9_w0_but.mp3",
+          "audio/lesson-57_c3_i9_w1_the.mp3",
+          "audio/lesson-57_c3_i9_w2_ant.mp3",
+          "audio/lesson-57_c3_i9_w3_did.mp3",
+          "audio/lesson-57_c3_i9_w4_not.mp3",
+          "audio/lesson-57_c3_i9_w5_dig.mp3",
+          "audio/lesson-57_c3_i9_w6_a.mp3",
+          "audio/lesson-57_c3_i9_w7_hole.mp3",
+          "audio/lesson-57_c3_i9_w8_that.mp3",
+          "audio/lesson-57_c3_i9_w9_ant.mp3",
+          "audio/lesson-57_c3_i9_w10_went.mp3",
+          "audio/lesson-57_c3_i9_w11_to.mp3",
+          "audio/lesson-57_c3_i9_w12_the.mp3",
+          "audio/lesson-57_c3_i9_w13_home.mp3",
+          "audio/lesson-57_c3_i9_w14_of.mp3",
+          "audio/lesson-57_c3_i9_w15_a.mp3",
+          "audio/lesson-57_c3_i9_w16_ram.mp3"
+        ],
+        [
+          "audio/lesson-57_c3_i10_w0_can.mp3",
+          "audio/lesson-57_c3_i10_w1_i.mp3",
+          "audio/lesson-57_c3_i10_w2_live.mp3",
+          "audio/lesson-57_c3_i10_w3_in.mp3",
+          "audio/lesson-57_c3_i10_w4_this.mp3",
+          "audio/lesson-57_c3_i10_w5_home.mp3",
+          "audio/lesson-57_c3_i10_w6_the.mp3",
+          "audio/lesson-57_c3_i10_w7_ant.mp3",
+          "audio/lesson-57_c3_i10_w8_said.mp3",
+          "audio/lesson-57_c3_i10_w9_the.mp3",
+          "audio/lesson-57_c3_i10_w10_ram.mp3",
+          "audio/lesson-57_c3_i10_w11_said.mp3",
+          "audio/lesson-57_c3_i10_w12_we.mp3",
+          "audio/lesson-57_c3_i10_w13_do.mp3",
+          "audio/lesson-57_c3_i10_w14_not.mp3",
+          "audio/lesson-57_c3_i10_w15_like.mp3",
+          "audio/lesson-57_c3_i10_w16_ants.mp3",
+          "audio/lesson-57_c3_i10_w17_go.mp3",
+          "audio/lesson-57_c3_i10_w18_dig.mp3",
+          "audio/lesson-57_c3_i10_w19_a.mp3",
+          "audio/lesson-57_c3_i10_w20_hole.mp3",
+          "audio/lesson-57_c3_i10_w21_and.mp3",
+          "audio/lesson-57_c3_i10_w22_live.mp3",
+          "audio/lesson-57_c3_i10_w23_like.mp3",
+          "audio/lesson-57_c3_i10_w24_other.mp3",
+          "audio/lesson-57_c3_i10_w25_ants.mp3"
+        ]
       ]
     }
   ]

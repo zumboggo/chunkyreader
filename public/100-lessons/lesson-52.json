@@ -3,162 +3,194 @@
   "lessonNumber": 52,
   "chunks": [
     {
-      "type": "sounds-words",
+      "type": "sound-discovery",
       "items": [
         "e",
         "ch",
-        "p"
+        "p",
+        "v",
+        "e",
+        "o",
+        "k"
       ],
       "audioPaths": [
         "audio/lesson-52_c0_i0_e.mp3",
         "audio/lesson-52_c0_i1_ch.mp3",
-        "audio/lesson-52_c0_i2_p.mp3"
+        "audio/lesson-52_c0_i2_p.mp3",
+        "audio/lesson-52_c0_i3_v.mp3",
+        "audio/lesson-52_c0_i4_e.mp3",
+        "audio/lesson-52_c0_i5_o.mp3",
+        "audio/lesson-52_c0_i6_k.mp3"
       ]
     },
     {
-      "type": "sounds-words",
-      "items": [
-        "v",
-        "e",
-        "o"
-      ],
-      "audioPaths": [
-        "audio/lesson-52_c1_i0_v.mp3",
-        "audio/lesson-52_c1_i1_e.mp3",
-        "audio/lesson-52_c1_i2_o.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
-        "k"
-      ],
-      "audioPaths": [
-        "audio/lesson-52_c2_i0_k.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
+      "type": "blending-bridge",
       "items": [
         "shop",
         "chop",
-        "came"
-      ],
-      "audioPaths": [
-        "audio/lesson-52_c3_i0_shop.mp3",
-        "audio/lesson-52_c3_i1_chop.mp3",
-        "audio/lesson-52_c3_i2_came.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "came",
         "cars",
         "park",
-        "are"
-      ],
-      "audioPaths": [
-        "audio/lesson-52_c4_i0_cars.mp3",
-        "audio/lesson-52_c4_i1_park.mp3",
-        "audio/lesson-52_c4_i2_are.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "are",
         "dog",
         "cops",
-        "fog"
-      ],
-      "audioPaths": [
-        "audio/lesson-52_c5_i0_dog.mp3",
-        "audio/lesson-52_c5_i1_cops.mp3",
-        "audio/lesson-52_c5_i2_fog.mp3"
-      ]
-    },
-    {
-      "type": "sounds-words",
-      "items": [
+        "fog",
         "log",
         "to",
         "goat"
       ],
       "audioPaths": [
-        "audio/lesson-52_c6_i0_log.mp3",
-        "audio/lesson-52_c6_i1_to.mp3",
-        "audio/lesson-52_c6_i2_goat.mp3"
+        "audio/lesson-52_c1_i0_shop.mp3",
+        "audio/lesson-52_c1_i1_chop.mp3",
+        "audio/lesson-52_c1_i2_came.mp3",
+        "audio/lesson-52_c1_i3_cars.mp3",
+        "audio/lesson-52_c1_i4_park.mp3",
+        "audio/lesson-52_c1_i5_are.mp3",
+        "audio/lesson-52_c1_i6_dog.mp3",
+        "audio/lesson-52_c1_i7_cops.mp3",
+        "audio/lesson-52_c1_i8_fog.mp3",
+        "audio/lesson-52_c1_i9_log.mp3",
+        "audio/lesson-52_c1_i10_to.mp3",
+        "audio/lesson-52_c1_i11_goat.mp3"
       ]
     },
     {
-      "type": "story",
+      "type": "rhyme-puzzle",
       "items": [
-        "The pet shop."
+        "dog",
+        "log",
+        "fog",
+        "hog"
       ],
       "audioPaths": [
-        "audio/lesson-52_c7_i0_the-pet-shop.mp3"
+        "audio/lesson-52_c2_i0_dog.mp3",
+        "audio/lesson-52_c2_i1_log.mp3",
+        "audio/lesson-52_c2_i2_fog.mp3",
+        "audio/lesson-52_c2_i3_hog.mp3"
       ]
     },
     {
-      "type": "story",
+      "type": "story-gauntlet",
       "items": [
-        "A girl said to a man, 'let us go to the pet shop.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-52_c8_i0_a-girl-said-to-a-man.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "So the man and the girl went down the road."
-      ],
-      "audioPaths": [
-        "audio/lesson-52_c9_i0_so-the-man-and-the-g.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The man and the girl went in the pet shop."
-      ],
-      "audioPaths": [
-        "audio/lesson-52_c10_i0_the-man-and-the-girl.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The girl said to the man in the pet shop, 'I need a dog.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-52_c11_i0_the-girl-said-to-the.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "The man said, 'no. I do not have dogs."
-      ],
-      "audioPaths": [
-        "audio/lesson-52_c12_i0_the-man-said-no-i-do.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
-        "I have a red cat. let me get that cat.'"
-      ],
-      "audioPaths": [
-        "audio/lesson-52_c13_i0_i-have-a-red-cat-let.mp3"
-      ]
-    },
-    {
-      "type": "story",
-      "items": [
+        "The pet shop.",
+        "A girl said to a man, 'let us go to the pet shop.'",
+        "So the man and the girl went down the road.",
+        "The man and the girl went in the pet shop.",
+        "The girl said to the man in the pet shop, 'I need a dog.'",
+        "The man said, 'no. I do not have dogs.",
+        "I have a red cat. let me get that cat.'",
         "So he did. and the girl went home with the red cat."
       ],
+      "imagePath": "images/lesson-52-story.webp",
+      "imagePrompt": "Manhwa webcomic style illustration with extra emotional expressiveness. Cute and vibrant, kawaii pastel style. A scene showing: The pet shop. A girl said to a man, 'let us go to the pet shop.'",
       "audioPaths": [
-        "audio/lesson-52_c14_i0_so-he-did-and-the-gi.mp3"
+        "audio/lesson-52_c3_i0_the-pet-shop.mp3",
+        "audio/lesson-52_c3_i1_a-girl-said-to-a-man.mp3",
+        "audio/lesson-52_c3_i2_so-the-man-and-the-g.mp3",
+        "audio/lesson-52_c3_i3_the-man-and-the-girl.mp3",
+        "audio/lesson-52_c3_i4_the-girl-said-to-the.mp3",
+        "audio/lesson-52_c3_i5_the-man-said-no-i-do.mp3",
+        "audio/lesson-52_c3_i6_i-have-a-red-cat-let.mp3",
+        "audio/lesson-52_c3_i7_so-he-did-and-the-gi.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-52_c3_i0_w0_the.mp3",
+          "audio/lesson-52_c3_i0_w1_pet.mp3",
+          "audio/lesson-52_c3_i0_w2_shop.mp3"
+        ],
+        [
+          "audio/lesson-52_c3_i1_w0_a.mp3",
+          "audio/lesson-52_c3_i1_w1_girl.mp3",
+          "audio/lesson-52_c3_i1_w2_said.mp3",
+          "audio/lesson-52_c3_i1_w3_to.mp3",
+          "audio/lesson-52_c3_i1_w4_a.mp3",
+          "audio/lesson-52_c3_i1_w5_man.mp3",
+          "audio/lesson-52_c3_i1_w6_let.mp3",
+          "audio/lesson-52_c3_i1_w7_us.mp3",
+          "audio/lesson-52_c3_i1_w8_go.mp3",
+          "audio/lesson-52_c3_i1_w9_to.mp3",
+          "audio/lesson-52_c3_i1_w10_the.mp3",
+          "audio/lesson-52_c3_i1_w11_pet.mp3",
+          "audio/lesson-52_c3_i1_w12_shop.mp3"
+        ],
+        [
+          "audio/lesson-52_c3_i2_w0_so.mp3",
+          "audio/lesson-52_c3_i2_w1_the.mp3",
+          "audio/lesson-52_c3_i2_w2_man.mp3",
+          "audio/lesson-52_c3_i2_w3_and.mp3",
+          "audio/lesson-52_c3_i2_w4_the.mp3",
+          "audio/lesson-52_c3_i2_w5_girl.mp3",
+          "audio/lesson-52_c3_i2_w6_went.mp3",
+          "audio/lesson-52_c3_i2_w7_down.mp3",
+          "audio/lesson-52_c3_i2_w8_the.mp3",
+          "audio/lesson-52_c3_i2_w9_road.mp3"
+        ],
+        [
+          "audio/lesson-52_c3_i3_w0_the.mp3",
+          "audio/lesson-52_c3_i3_w1_man.mp3",
+          "audio/lesson-52_c3_i3_w2_and.mp3",
+          "audio/lesson-52_c3_i3_w3_the.mp3",
+          "audio/lesson-52_c3_i3_w4_girl.mp3",
+          "audio/lesson-52_c3_i3_w5_went.mp3",
+          "audio/lesson-52_c3_i3_w6_in.mp3",
+          "audio/lesson-52_c3_i3_w7_the.mp3",
+          "audio/lesson-52_c3_i3_w8_pet.mp3",
+          "audio/lesson-52_c3_i3_w9_shop.mp3"
+        ],
+        [
+          "audio/lesson-52_c3_i4_w0_the.mp3",
+          "audio/lesson-52_c3_i4_w1_girl.mp3",
+          "audio/lesson-52_c3_i4_w2_said.mp3",
+          "audio/lesson-52_c3_i4_w3_to.mp3",
+          "audio/lesson-52_c3_i4_w4_the.mp3",
+          "audio/lesson-52_c3_i4_w5_man.mp3",
+          "audio/lesson-52_c3_i4_w6_in.mp3",
+          "audio/lesson-52_c3_i4_w7_the.mp3",
+          "audio/lesson-52_c3_i4_w8_pet.mp3",
+          "audio/lesson-52_c3_i4_w9_shop.mp3",
+          "audio/lesson-52_c3_i4_w10_i.mp3",
+          "audio/lesson-52_c3_i4_w11_need.mp3",
+          "audio/lesson-52_c3_i4_w12_a.mp3",
+          "audio/lesson-52_c3_i4_w13_dog.mp3"
+        ],
+        [
+          "audio/lesson-52_c3_i5_w0_the.mp3",
+          "audio/lesson-52_c3_i5_w1_man.mp3",
+          "audio/lesson-52_c3_i5_w2_said.mp3",
+          "audio/lesson-52_c3_i5_w3_no.mp3",
+          "audio/lesson-52_c3_i5_w4_i.mp3",
+          "audio/lesson-52_c3_i5_w5_do.mp3",
+          "audio/lesson-52_c3_i5_w6_not.mp3",
+          "audio/lesson-52_c3_i5_w7_have.mp3",
+          "audio/lesson-52_c3_i5_w8_dogs.mp3"
+        ],
+        [
+          "audio/lesson-52_c3_i6_w0_i.mp3",
+          "audio/lesson-52_c3_i6_w1_have.mp3",
+          "audio/lesson-52_c3_i6_w2_a.mp3",
+          "audio/lesson-52_c3_i6_w3_red.mp3",
+          "audio/lesson-52_c3_i6_w4_cat.mp3",
+          "audio/lesson-52_c3_i6_w5_let.mp3",
+          "audio/lesson-52_c3_i6_w6_me.mp3",
+          "audio/lesson-52_c3_i6_w7_get.mp3",
+          "audio/lesson-52_c3_i6_w8_that.mp3",
+          "audio/lesson-52_c3_i6_w9_cat.mp3"
+        ],
+        [
+          "audio/lesson-52_c3_i7_w0_so.mp3",
+          "audio/lesson-52_c3_i7_w1_he.mp3",
+          "audio/lesson-52_c3_i7_w2_did.mp3",
+          "audio/lesson-52_c3_i7_w3_and.mp3",
+          "audio/lesson-52_c3_i7_w4_the.mp3",
+          "audio/lesson-52_c3_i7_w5_girl.mp3",
+          "audio/lesson-52_c3_i7_w6_went.mp3",
+          "audio/lesson-52_c3_i7_w7_home.mp3",
+          "audio/lesson-52_c3_i7_w8_with.mp3",
+          "audio/lesson-52_c3_i7_w9_the.mp3",
+          "audio/lesson-52_c3_i7_w10_red.mp3",
+          "audio/lesson-52_c3_i7_w11_cat.mp3"
+        ]
       ]
     }
   ]
