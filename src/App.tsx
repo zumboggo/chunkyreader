@@ -14,7 +14,7 @@ import type { LearningCard, LearningDeck, LearningMode, ProfileId, Story, StoryP
 import confetti from 'canvas-confetti'
 import { playSfx } from './audioEffects'
 import { playNarrationClip } from './audioClipPack'
-
+import { HundredLessonsHome, HundredLessonScreen } from './HundredLessons'
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious'
 type LessonPhase = 'learn' | 'question'
 type GrowingReaderView = 'home' | 'words' | 'stories'
@@ -115,6 +115,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [showAdultDetails, setShowAdultDetails] = useState(false)
   const [showStickers, setShowStickers] = useState(false)
+  const [hundredLessonId, setHundredLessonId] = useState('')
 
   useEffect(() => {
     let cancelled = false
@@ -177,6 +178,7 @@ function App() {
     setPhase('learn')
     setSarahActivityIndex(0)
     setMenuOpen(false)
+    setHundredLessonId('')
   }
 
   function openGrowingWords() {
@@ -271,6 +273,7 @@ function App() {
             setProfile(null)
             setGrowingView('home')
             setMenuOpen(false)
+            setHundredLessonId('')
           }}
         >
           <Mascot size="small" mood="reading" />
@@ -344,6 +347,12 @@ function App() {
           }}
           onToggleAdultDetails={() => setShowAdultDetails((v) => !v)}
         />
+      ) : profile === '100-lessons' ? (
+        hundredLessonId ? (
+          <HundredLessonScreen lessonId={hundredLessonId} onDone={() => setHundredLessonId('')} />
+        ) : (
+          <HundredLessonsHome onChooseLesson={setHundredLessonId} />
+        )
       ) : (
         <section className="empty-screen">
           <Mascot mood="curious" />
@@ -392,6 +401,12 @@ function HomeScreen({
           <span className="path-badge">Sounds</span>
           <strong>Earliest Reader</strong>
           <small>{sarahCount} letter and sound cards</small>
+        </button>
+        <button type="button" className="path-card" onClick={() => onChoose('100-lessons')} style={{ background: 'var(--c-background-glass)', borderColor: 'var(--c-brand)' }}>
+          <span className="choice-sticker" aria-hidden="true">💯</span>
+          <span className="path-badge">Classic</span>
+          <strong>100 Lessons</strong>
+          <small>Teach Your Child to Read</small>
         </button>
       </div>
       <div style={{display: 'flex', justifyContent: 'center', marginTop: '1rem'}}>
@@ -2159,7 +2174,7 @@ function buildSarahActivities(lessonCards: LearningCard[]): SarahActivity[] {
     options: buildSarahOptions(lessonCards, card),
   }))
   const review = lessonCards.map((card, index): SarahActivity => buildSarahReviewActivity(lessonCards, card, index))
-  return [...intros, ...wordToBeginningSound, ...upperLower, ...beginningSound, ...review]
+  return [...intros, ...wordToBeginningSound, ...soundToWord, ...upperLower, ...beginningSound, ...review]
 }
 
 function buildSarahReviewActivity(lessonCards: LearningCard[], card: LearningCard, index: number): SarahActivity {
@@ -2440,13 +2455,8 @@ function stableSort(value: string): number {
 }
 
 function StickerBook({ onClose }: { onClose: () => void }) {
-  const [annaLessons, setAnnaLessons] = useState(0)
-  const [sarahLessons, setSarahLessons] = useState(0)
-
-  useEffect(() => {
-    setAnnaLessons(parseInt(localStorage.getItem('completed-lessons-anna') || '0', 10))
-    setSarahLessons(parseInt(localStorage.getItem('completed-lessons-sarah') || '0', 10))
-  }, [])
+  const [annaLessons] = useState(() => parseInt(localStorage.getItem('completed-lessons-anna') || '0', 10))
+  const [sarahLessons] = useState(() => parseInt(localStorage.getItem('completed-lessons-sarah') || '0', 10))
 
   function renderStickers(lessons: number, isAnna: boolean) {
     const stickers = []
@@ -2497,7 +2507,7 @@ function fireworksCelebration() {
     return Math.random() * (max - min) + min;
   }
 
-  const interval: any = setInterval(function() {
+  const interval: ReturnType<typeof setInterval> = setInterval(function() {
     const timeLeft = animationEnd - Date.now();
 
     if (timeLeft <= 0) {

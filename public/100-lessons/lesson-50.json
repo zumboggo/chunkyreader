@@ -1,0 +1,170 @@
+{
+  "id": "lesson-50",
+  "lessonNumber": 50,
+  "chunks": [
+    {
+      "type": "sounds-words",
+      "items": [
+        "ch",
+        "p",
+        "sh"
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c0_i0_ch.mp3",
+        "audio/lesson-50_c0_i1_p.mp3",
+        "audio/lesson-50_c0_i2_sh.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "th",
+        "f",
+        "h"
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c1_i0_th.mp3",
+        "audio/lesson-50_c1_i1_f.mp3",
+        "audio/lesson-50_c1_i2_h.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "to",
+        "us",
+        "seat"
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c2_i0_to.mp3",
+        "audio/lesson-50_c2_i1_us.mp3",
+        "audio/lesson-50_c2_i2_seat.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "hear",
+        "ran",
+        "sand"
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c3_i0_hear.mp3",
+        "audio/lesson-50_c3_i1_ran.mp3",
+        "audio/lesson-50_c3_i2_sand.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "hope",
+        "pot",
+        "dog"
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c4_i0_hope.mp3",
+        "audio/lesson-50_c4_i1_pot.mp3",
+        "audio/lesson-50_c4_i2_dog.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The old man said, 'I need a tiger coat. So I will hunt for a tiger.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c5_i0_the-old-man-said-i-n.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The girl said, 'But you can not see. How can you hunt for a tiger?'"
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c6_i0_the-girl-said-but-yo.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The old man said, 'I can hear. Tigers make sounds. I will hear those sounds and take a shot.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c7_i0_the-old-man-said-i-c.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The girl said, 'The shot may miss.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c8_i0_the-girl-said-the-sh.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "'No,' the old man said. 'When I hear something I will take a good shot.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c9_i0_no-the-old-man-said-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "So the man went out with his gun. He did not see well. So he fell over a log. Then he fell over a rock."
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c10_i0_so-the-man-went-out-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "Then he walked up a hill. When he got to the top he stopped. 'I hear something,' he said. 'I have found a tiger.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c11_i0_then-he-walked-up-a-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The man did hear the sound of a tiger. It was a big tiger. And it was very near. The old man picked up his gun. 'Blam.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c12_i0_the-man-did-hear-the.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The shot did not hit the tiger. It hit a nut in a tree. The nut fell on a mouse."
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c13_i0_the-shot-did-not-hit.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The mouse yelled, 'Stop hitting me with nuts.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c14_i0_the-mouse-yelled-sto.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "This Is Not the End."
+      ],
+      "audioPaths": [
+        "audio/lesson-50_c15_i0_this-is-not-the-end.mp3"
+      ]
+    }
+  ]
+}

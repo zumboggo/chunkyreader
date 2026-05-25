@@ -2,7 +2,7 @@
 <speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
   <voice name="en-US-JennyNeural">
     <prosody rate="-12%" pitch="+4%">
-      Listen. <phoneme alphabet="ipa" ph="p">p</phoneme>. <break time="250ms"/> pig starts with <phoneme alphabet="ipa" ph="p">p</phoneme>. <break time="250ms"/> Lips together. Quiet pop.
+      Listen. <phoneme alphabet="ipa" ph="p">p</phoneme>. <break time="250ms"/> pelican starts with <phoneme alphabet="ipa" ph="p">p</phoneme>. <break time="250ms"/> Lips together. Quiet pop.
     </prosody>
   </voice>
 </speak>

@@ -2,7 +2,7 @@
 <speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
   <voice name="en-US-JennyNeural">
     <prosody rate="-12%" pitch="+4%">
-      Listen. <phoneme alphabet="ipa" ph="n">nnn</phoneme>. <break time="250ms"/> nose starts with <phoneme alphabet="ipa" ph="n">nnn</phoneme>. <break time="250ms"/> Tongue touches up. Hum through your nose.
+      Listen. <phoneme alphabet="ipa" ph="n">nnn</phoneme>. <break time="250ms"/> necklace starts with <phoneme alphabet="ipa" ph="n">nnn</phoneme>. <break time="250ms"/> Tongue touches up. Hum through your nose.
     </prosody>
   </voice>
 </speak>

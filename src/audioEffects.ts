@@ -1,6 +1,10 @@
+interface WebkitAudioWindow extends Window {
+  webkitAudioContext?: typeof AudioContext
+}
+
 export function playSfx(type: 'correct' | 'wrong' | 'celebrate' | 'fireworks') {
   try {
-    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+    const AudioContext = window.AudioContext || (window as WebkitAudioWindow).webkitAudioContext;
     if (!AudioContext) return;
     
     const ctx = new AudioContext();
@@ -77,7 +81,7 @@ export function playSfx(type: 'correct' | 'wrong' | 'celebrate' | 'fireworks') {
       burstOsc.start(t + 0.3);
       burstOsc.stop(t + 0.5);
     }
-  } catch (e) {
+  } catch {
     // Ignore audio context errors
   }
 }

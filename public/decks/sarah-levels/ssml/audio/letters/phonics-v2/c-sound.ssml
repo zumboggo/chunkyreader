@@ -2,7 +2,7 @@
 <speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
   <voice name="en-US-JennyNeural">
     <prosody rate="-12%" pitch="+4%">
-      Listen. <phoneme alphabet="ipa" ph="k">k</phoneme>. <break time="250ms"/> cat starts with <phoneme alphabet="ipa" ph="k">k</phoneme>. <break time="250ms"/> Back of tongue jumps up.
+      Listen. <phoneme alphabet="ipa" ph="k">k</phoneme>. <break time="250ms"/> caterpillar starts with <phoneme alphabet="ipa" ph="k">k</phoneme>. <break time="250ms"/> Back of tongue jumps up.
     </prosody>
   </voice>
 </speak>

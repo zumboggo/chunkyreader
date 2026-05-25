@@ -1,0 +1,165 @@
+{
+  "id": "lesson-52",
+  "lessonNumber": 52,
+  "chunks": [
+    {
+      "type": "sounds-words",
+      "items": [
+        "e",
+        "ch",
+        "p"
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c0_i0_e.mp3",
+        "audio/lesson-52_c0_i1_ch.mp3",
+        "audio/lesson-52_c0_i2_p.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "v",
+        "e",
+        "o"
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c1_i0_v.mp3",
+        "audio/lesson-52_c1_i1_e.mp3",
+        "audio/lesson-52_c1_i2_o.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "k"
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c2_i0_k.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "shop",
+        "chop",
+        "came"
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c3_i0_shop.mp3",
+        "audio/lesson-52_c3_i1_chop.mp3",
+        "audio/lesson-52_c3_i2_came.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "cars",
+        "park",
+        "are"
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c4_i0_cars.mp3",
+        "audio/lesson-52_c4_i1_park.mp3",
+        "audio/lesson-52_c4_i2_are.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "dog",
+        "cops",
+        "fog"
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c5_i0_dog.mp3",
+        "audio/lesson-52_c5_i1_cops.mp3",
+        "audio/lesson-52_c5_i2_fog.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "log",
+        "to",
+        "goat"
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c6_i0_log.mp3",
+        "audio/lesson-52_c6_i1_to.mp3",
+        "audio/lesson-52_c6_i2_goat.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The pet shop."
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c7_i0_the-pet-shop.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "A girl said to a man, 'let us go to the pet shop.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c8_i0_a-girl-said-to-a-man.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "So the man and the girl went down the road."
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c9_i0_so-the-man-and-the-g.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The man and the girl went in the pet shop."
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c10_i0_the-man-and-the-girl.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The girl said to the man in the pet shop, 'I need a dog.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c11_i0_the-girl-said-to-the.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The man said, 'no. I do not have dogs."
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c12_i0_the-man-said-no-i-do.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "I have a red cat. let me get that cat.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c13_i0_i-have-a-red-cat-let.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "So he did. and the girl went home with the red cat."
+      ],
+      "audioPaths": [
+        "audio/lesson-52_c14_i0_so-he-did-and-the-gi.mp3"
+      ]
+    }
+  ]
+}

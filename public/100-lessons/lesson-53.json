@@ -1,0 +1,122 @@
+{
+  "id": "lesson-53",
+  "lessonNumber": 53,
+  "chunks": [
+    {
+      "type": "sounds-words",
+      "items": [
+        "e",
+        "e",
+        "a"
+      ],
+      "audioPaths": [
+        "audio/lesson-53_c0_i0_e.mp3",
+        "audio/lesson-53_c0_i1_e.mp3",
+        "audio/lesson-53_c0_i2_a.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "a",
+        "o",
+        "o"
+      ],
+      "audioPaths": [
+        "audio/lesson-53_c1_i0_a.mp3",
+        "audio/lesson-53_c1_i1_o.mp3",
+        "audio/lesson-53_c1_i2_o.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "girl"
+      ],
+      "audioPaths": [
+        "audio/lesson-53_c2_i0_girl.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The bugs."
+      ],
+      "audioPaths": [
+        "audio/lesson-53_c3_i0_the-bugs.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "A big bug met a little bug. the big bug said, 'let's go eat.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-53_c4_i0_a-big-bug-met-a-litt.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "So the big bug ate a leaf and a nut and a rock."
+      ],
+      "audioPaths": [
+        "audio/lesson-53_c5_i0_so-the-big-bug-ate-a.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The big bug said, 'that is how big bugs eat.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-53_c6_i0_the-big-bug-said-tha.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The little bug said, 'now I will eat.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-53_c7_i0_the-little-bug-said-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "So the little bug ate a leaf and a nut and a rock. then the little bug went to a log and ate the log."
+      ],
+      "audioPaths": [
+        "audio/lesson-53_c8_i0_so-the-little-bug-at.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "Then she ate ten more logs."
+      ],
+      "audioPaths": [
+        "audio/lesson-53_c9_i0_then-she-ate-ten-mor.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "'Wow,' the big bug said. 'that little bug can eat a lot.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-53_c10_i0_wow-the-big-bug-said.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The little bug said, 'now let's eat more.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-53_c11_i0_the-little-bug-said-.mp3"
+      ]
+    }
+  ]
+}

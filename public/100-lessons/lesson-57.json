@@ -1,0 +1,179 @@
+{
+  "id": "lesson-57",
+  "lessonNumber": 57,
+  "chunks": [
+    {
+      "type": "sounds-words",
+      "items": [
+        "g",
+        "ing",
+        "v"
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c0_i0_g.mp3",
+        "audio/lesson-57_c0_i1_ing.mp3",
+        "audio/lesson-57_c0_i2_v.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "ch",
+        "k",
+        "b"
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c1_i0_ch.mp3",
+        "audio/lesson-57_c1_i1_k.mp3",
+        "audio/lesson-57_c1_i2_b.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "there",
+        "then",
+        "this"
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c2_i0_there.mp3",
+        "audio/lesson-57_c2_i1_then.mp3",
+        "audio/lesson-57_c2_i2_this.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "sent",
+        "well",
+        "park"
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c3_i0_sent.mp3",
+        "audio/lesson-57_c3_i1_well.mp3",
+        "audio/lesson-57_c3_i2_park.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "farm",
+        "pet",
+        "duck"
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c4_i0_farm.mp3",
+        "audio/lesson-57_c4_i1_pet.mp3",
+        "audio/lesson-57_c4_i2_duck.mp3"
+      ]
+    },
+    {
+      "type": "sounds-words",
+      "items": [
+        "girl"
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c5_i0_girl.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "A home for an ant."
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c6_i0_a-home-for-an-ant.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "An ant lived in a hole. the ant said, 'this hole is no good. when it rains, the rain comes in this hole. and I get wet."
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c7_i0_an-ant-lived-in-a-ho.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "When the days are hot, the hole gets hot. when the hole gets hot, I get hot.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c8_i0_when-the-days-are-ho.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "But when the days got cold, the hole did not get hot. the hole got cold."
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c9_i0_but-when-the-days-go.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "And so did that ant."
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c10_i0_and-so-did-that-ant.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The ant said, 'this hole gets hot and this hole gets cold. and when it rains, this hole gets wet. I will leave this hole.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c11_i0_the-ant-said-this-ho.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "So the ant did that."
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c12_i0_so-the-ant-did-that.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The ant went up the hill to the home of an eagle. 'can I stay in this home?' the ant said."
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c13_i0_the-ant-went-up-the-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "The eagle did not say a thing. the eagle picked up the ant and said, 'I will take you from this hill. do not come back. go dig a hole and live like other ants.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c14_i0_the-eagle-did-not-sa.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "But the ant did not dig a hole. that ant went to the home of a ram."
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c15_i0_but-the-ant-did-not-.mp3"
+      ]
+    },
+    {
+      "type": "story",
+      "items": [
+        "'Can I live in this home?' the ant said. the ram said, 'we do not like ants. go dig a hole and live like other ants.'"
+      ],
+      "audioPaths": [
+        "audio/lesson-57_c16_i0_can-i-live-in-this-h.mp3"
+      ]
+    }
+  ]
+}
