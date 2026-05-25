@@ -265,7 +265,7 @@ function App() {
     <main className={`app-shell ${isLessonActive ? 'lesson-active' : ''}`}>
       <header className="topbar">
         <button
-          className="brand-button"
+          className="brand-button squish"
           type="button"
           onClick={() => {
             setProfile(null)
@@ -275,11 +275,9 @@ function App() {
         >
           <Mascot size="small" mood="reading" />
           <span>
-            <strong>Chunky Reader</strong>
-            <small>{activeDeck ? activeDeck.title : 'Ready to read?'}</small>
+            <strong>🏠 Home</strong>
           </span>
         </button>
-        {!isLessonActive && <button className="sticker-nav-button squish" onClick={() => setShowStickers(true)}>🏆 Stickers</button>}
       </header>
 
       {showStickers && <StickerBook onClose={() => setShowStickers(false)} />}
@@ -296,7 +294,7 @@ function App() {
           <p>{loadError}</p>
         </section>
       ) : !profile ? (
-        <HomeScreen onChoose={chooseProfile} decks={decks} />
+        <HomeScreen onChoose={chooseProfile} decks={decks} onShowStickers={() => setShowStickers(true)} />
       ) : profile === 'anna' && growingView === 'home' ? (
         <GrowingReaderHome
           decks={visibleDecks}
@@ -360,9 +358,11 @@ function App() {
 function HomeScreen({
   onChoose,
   decks,
+  onShowStickers,
 }: {
   onChoose: (profile: ProfileId) => void
   decks: LearningDeck[]
+  onShowStickers: () => void
 }) {
   const annaCount = decks.filter((deck) => deck.profile === 'anna').reduce((sum, deck) => sum + deck.cards.length, 0)
   const sarahCount = decks.filter((deck) => deck.profile === 'sarah').reduce((sum, deck) => sum + deck.cards.length, 0)
@@ -394,11 +394,8 @@ function HomeScreen({
           <small>{sarahCount} letter and sound cards</small>
         </button>
       </div>
-      <div className="daily-cloud" aria-label="Daily goal">
-        <span className="star-badge" aria-hidden="true">★</span>
-        <strong>Daily Goal</strong>
-        <span>15 / 20 min</span>
-        <div className="daily-progress"><span /></div>
+      <div style={{display: 'flex', justifyContent: 'center', marginTop: '1rem'}}>
+        <button className="sticker-nav-button squish" style={{fontSize: '1.2rem', padding: '0.75rem 1.5rem'}} onClick={onShowStickers}>🏆 Sticker Book</button>
       </div>
     </section>
   )
@@ -1089,10 +1086,10 @@ function SarahLetterLesson({
 
   useEffect(() => {
     if (completed) {
-      playSfx('celebrate')
-      confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } })
-      const currentProgress = parseInt(localStorage.getItem('completed-lessons') || '0', 10)
-      localStorage.setItem('completed-lessons', (currentProgress + 1).toString())
+      playSfx('fireworks')
+      fireworksCelebration()
+      const currentProgress = parseInt(localStorage.getItem('completed-lessons-sarah') || '0', 10)
+      localStorage.setItem('completed-lessons-sarah', (currentProgress + 1).toString())
     }
   }, [completed])
 
@@ -1463,10 +1460,10 @@ function OlderReaderLesson({
 
   useEffect(() => {
     if (showCompletion) {
-      playSfx('celebrate')
-      confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } })
-      const currentProgress = parseInt(localStorage.getItem('completed-lessons') || '0', 10)
-      localStorage.setItem('completed-lessons', (currentProgress + 1).toString())
+      playSfx('fireworks')
+      fireworksCelebration()
+      const currentProgress = parseInt(localStorage.getItem('completed-lessons-anna') || '0', 10)
+      localStorage.setItem('completed-lessons-anna', (currentProgress + 1).toString())
     }
   }, [showCompletion])
 
@@ -2162,7 +2159,7 @@ function buildSarahActivities(lessonCards: LearningCard[]): SarahActivity[] {
     options: buildSarahOptions(lessonCards, card),
   }))
   const review = lessonCards.map((card, index): SarahActivity => buildSarahReviewActivity(lessonCards, card, index))
-  return [...intros, ...wordToBeginningSound, ...soundToWord, ...upperLower, ...beginningSound, ...review]
+  return [...intros, ...wordToBeginningSound, ...upperLower, ...beginningSound, ...review]
 }
 
 function buildSarahReviewActivity(lessonCards: LearningCard[], card: LearningCard, index: number): SarahActivity {
@@ -2443,17 +2440,22 @@ function stableSort(value: string): number {
 }
 
 function StickerBook({ onClose }: { onClose: () => void }) {
-  const [lessons, setLessons] = useState(0)
+  const [annaLessons, setAnnaLessons] = useState(0)
+  const [sarahLessons, setSarahLessons] = useState(0)
 
   useEffect(() => {
-    setLessons(parseInt(localStorage.getItem('completed-lessons') || '0', 10))
+    setAnnaLessons(parseInt(localStorage.getItem('completed-lessons-anna') || '0', 10))
+    setSarahLessons(parseInt(localStorage.getItem('completed-lessons-sarah') || '0', 10))
   }, [])
 
-  const stickers = []
-  const totalSlots = Math.max(12, lessons + (3 - (lessons % 3 || 3)))
-  for (let i = 0; i < totalSlots; i++) {
-    const emojis = ['🌟', '🐼', '🍎', '🎈', '🚀', '🌈']
-    stickers.push(i < lessons ? emojis[i % emojis.length] : '')
+  function renderStickers(lessons: number, isAnna: boolean) {
+    const stickers = []
+    const totalSlots = Math.max(6, lessons + (3 - (lessons % 3 || 3)))
+    for (let i = 0; i < totalSlots; i++) {
+      const emojis = isAnna ? ['🌟', '📚', '🚀', '🌈'] : ['🐼', '🍎', '🎈', '⭐']
+      stickers.push(i < lessons ? emojis[i % emojis.length] : '')
+    }
+    return stickers
   }
 
   return (
@@ -2463,9 +2465,19 @@ function StickerBook({ onClose }: { onClose: () => void }) {
           <h2>My Stickers</h2>
           <button type="button" onClick={onClose} className="squish">Close</button>
         </div>
-        <p>You have earned {lessons} sticker{lessons !== 1 ? 's' : ''}!</p>
+        
+        <h3 style={{marginTop: 0, color: 'var(--brand-dark)'}}>Older Reader ({annaLessons})</h3>
+        <div className="sticker-grid" style={{marginBottom: '2rem'}}>
+          {renderStickers(annaLessons, true).map((s, i) => (
+            <div key={i} className={`sticker-slot ${s ? 'earned pulse' : ''}`}>
+              {s}
+            </div>
+          ))}
+        </div>
+
+        <h3 style={{marginTop: 0, color: 'var(--brand-dark)'}}>Earliest Reader ({sarahLessons})</h3>
         <div className="sticker-grid">
-          {stickers.map((s, i) => (
+          {renderStickers(sarahLessons, false).map((s, i) => (
             <div key={i} className={`sticker-slot ${s ? 'earned pulse' : ''}`}>
               {s}
             </div>
@@ -2474,6 +2486,34 @@ function StickerBook({ onClose }: { onClose: () => void }) {
       </div>
     </section>
   )
+}
+
+function fireworksCelebration() {
+  const duration = 2500;
+  const animationEnd = Date.now() + duration;
+  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+  function randomInRange(min: number, max: number) {
+    return Math.random() * (max - min) + min;
+  }
+
+  const interval: any = setInterval(function() {
+    const timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+
+    const particleCount = 50 * (timeLeft / duration);
+    confetti({
+      ...defaults, particleCount,
+      origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+    });
+    confetti({
+      ...defaults, particleCount,
+      origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+    });
+  }, 250);
 }
 
 export default App

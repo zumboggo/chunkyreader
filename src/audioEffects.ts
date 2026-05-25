@@ -1,4 +1,4 @@
-export function playSfx(type: 'correct' | 'wrong' | 'celebrate') {
+export function playSfx(type: 'correct' | 'wrong' | 'celebrate' | 'fireworks') {
   try {
     const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
     if (!AudioContext) return;
@@ -46,6 +46,36 @@ export function playSfx(type: 'correct' | 'wrong' | 'celebrate') {
         noteOsc.start(t + timeOffset);
         noteOsc.stop(t + timeOffset + 0.3);
       });
+    } else if (type === 'fireworks') {
+      // Whistle up, then a noise pop
+      const popOsc = ctx.createOscillator();
+      const popGain = ctx.createGain();
+      popOsc.type = 'triangle';
+      popOsc.frequency.setValueAtTime(400, t);
+      popOsc.frequency.exponentialRampToValueAtTime(1000, t + 0.3); // whistle up
+      popGain.gain.setValueAtTime(0, t);
+      popGain.gain.linearRampToValueAtTime(0.2, t + 0.05);
+      popGain.gain.linearRampToValueAtTime(0.01, t + 0.3);
+      
+      // The pop (using a short low frequency burst)
+      const burstOsc = ctx.createOscillator();
+      const burstGain = ctx.createGain();
+      burstOsc.type = 'square';
+      burstOsc.frequency.setValueAtTime(100, t + 0.3);
+      burstOsc.frequency.exponentialRampToValueAtTime(50, t + 0.4);
+      burstGain.gain.setValueAtTime(0, t + 0.3);
+      burstGain.gain.linearRampToValueAtTime(0.3, t + 0.32);
+      burstGain.gain.exponentialRampToValueAtTime(0.01, t + 0.5);
+
+      popOsc.connect(popGain);
+      popGain.connect(ctx.destination);
+      burstOsc.connect(burstGain);
+      burstGain.connect(ctx.destination);
+
+      popOsc.start(t);
+      popOsc.stop(t + 0.3);
+      burstOsc.start(t + 0.3);
+      burstOsc.stop(t + 0.5);
     }
   } catch (e) {
     // Ignore audio context errors

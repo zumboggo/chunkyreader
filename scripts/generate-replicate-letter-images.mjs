@@ -23,10 +23,10 @@ for (const card of cards) {
   const word = card.exampleWord
   const outputFile = path.join(defaultOutDir, `${slug(word)}.png`)
   const prompt = [
-    `A cute kawaii chibi sticker illustration of ${subjectFor(word)}.`,
+    `A cute kawaii sticker illustration of ${subjectFor(card)}.`,
     'One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background.',
     'Toddler reading app asset, high clarity, simple icon composition.',
-    'No text anywhere, no words, no captions, no labels, no alphabet letters, no spelling, no watermark, no poster, no flashcard border.',
+    'No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.',
   ].join(' ')
 
   if (force || !(await exists(outputFile))) {
@@ -107,15 +107,20 @@ function article(value) {
   return /^[aeiou]/i.test(value) ? 'an' : 'a'
 }
 
-function subjectFor(word) {
-  if (word === 'jam') return 'an open glass jar filled with red strawberry jam, completely blank jar with no label'
-  if (word === 'hat') return 'a soft winter hat'
-  if (word === 'queen') return 'a smiling queen character with a tiny crown and a plain dress with no writing'
-  if (word === 'umbrella') return 'a cheerful open umbrella with a smiling face'
-  if (word === 'van') return 'a small rounded toy van with blank sides and no markings'
-  if (word === 'fox') return 'a friendly orange fox'
-  if (word === 'yak') return 'a cute fluffy yak'
-  return `${article(word)} ${word}`
+function subjectFor(card) {
+  const word = card.exampleWord
+  const letter = card.uppercase
+  
+  // Custom subjects for tricky words
+  if (word === 'jam') return `an open glass jar filled with red strawberry jam, whose shape explicitly forms the letter ${letter}`
+  if (word === 'hat') return `a soft winter hat, whose shape explicitly forms the letter ${letter}`
+  if (word === 'queen') return `a smiling queen character with a tiny crown and a plain dress, whose shape explicitly forms the letter ${letter}`
+  if (word === 'umbrella') return `a cheerful open umbrella with a smiling face, whose shape explicitly forms the letter ${letter}`
+  if (word === 'van') return `a small rounded toy van, whose shape explicitly forms the letter ${letter}`
+  if (word === 'fox') return `a friendly orange fox, whose shape explicitly forms the letter ${letter}`
+  if (word === 'yak') return `a cute fluffy yak, whose shape explicitly forms the letter ${letter}`
+  
+  return `${article(word)} ${word}, whose shape explicitly forms the letter ${letter}`
 }
 
 async function exists(filePath) {
