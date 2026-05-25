@@ -3613,7 +3613,7 @@ body.lesson-active {
    ========================================= */
 
 .distar-path {
-  min-height: 100dvh;
+  min-height: clamp(30rem, calc(100dvh - 12rem), 42rem);
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -3722,6 +3722,10 @@ body.lesson-active {
   justify-content: center;
   gap: clamp(0.75rem, 2.5vw, 1.25rem);
   text-align: center;
+}
+
+.distar-activity .mascot-sprite {
+  width: clamp(6.4rem, 14vw, 8.8rem);
 }
 
 .activity-copy {
