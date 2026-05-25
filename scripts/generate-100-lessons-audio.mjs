@@ -19,6 +19,66 @@ const outputFormat = TTS_OUTPUT_FORMAT;
 const synthesize = !process.argv.includes('--ssml-only');
 const force = process.argv.includes('--force');
 
+const soundPhonemes = new Map([
+  ['a', { ipa: 'æ', text: 'a' }],
+  ['b', { ipa: 'b', text: 'b' }],
+  ['c', { ipa: 'k', text: 'c' }],
+  ['d', { ipa: 'd', text: 'd' }],
+  ['e', { ipa: 'ɛ', text: 'e' }],
+  ['f', { ipa: 'f', text: 'f' }],
+  ['g', { ipa: 'g', text: 'g' }],
+  ['h', { ipa: 'h', text: 'h' }],
+  ['i', { ipa: 'ɪ', text: 'i' }],
+  ['j', { ipa: 'dʒ', text: 'j' }],
+  ['k', { ipa: 'k', text: 'k' }],
+  ['l', { ipa: 'l', text: 'l' }],
+  ['m', { ipa: 'm', text: 'm' }],
+  ['n', { ipa: 'n', text: 'n' }],
+  ['o', { ipa: 'ɑ', text: 'o' }],
+  ['p', { ipa: 'p', text: 'p' }],
+  ['q', { ipa: 'kw', text: 'qu' }],
+  ['r', { ipa: 'ɹ', text: 'r' }],
+  ['s', { ipa: 's', text: 's' }],
+  ['t', { ipa: 't', text: 't' }],
+  ['u', { ipa: 'ʌ', text: 'u' }],
+  ['v', { ipa: 'v', text: 'v' }],
+  ['w', { ipa: 'w', text: 'w' }],
+  ['x', { ipa: 'ks', text: 'x' }],
+  ['y', { ipa: 'j', text: 'y' }],
+  ['z', { ipa: 'z', text: 'z' }],
+  ['ch', { ipa: 'tʃ', text: 'ch' }],
+  ['sh', { ipa: 'ʃ', text: 'sh' }],
+  ['th', { ipa: 'θ', text: 'th' }],
+  ['ng', { ipa: 'ŋ', text: 'ng' }],
+  ['ing', { ipa: 'ɪŋ', text: 'ing' }],
+  ['oo', { ipa: 'u', text: 'oo' }],
+  ['ar', { ipa: 'ɑɹ', text: 'ar' }],
+  ['or', { ipa: 'ɔɹ', text: 'or' }],
+  ['er', { ipa: 'ɝ', text: 'er' }],
+  ['ay', { ipa: 'eɪ', text: 'ay' }],
+  ['ee', { ipa: 'i', text: 'ee' }],
+  ['ai', { ipa: 'eɪ', text: 'ai' }],
+  ['oa', { ipa: 'oʊ', text: 'oa' }],
+  ['ow', { ipa: 'aʊ', text: 'ow' }],
+  ['oy', { ipa: 'ɔɪ', text: 'oy' }],
+  ['igh', { ipa: 'aɪ', text: 'igh' }],
+  ['ck', { ipa: 'k', text: 'ck' }],
+  ['wh', { ipa: 'w', text: 'wh' }],
+  ['ph', { ipa: 'f', text: 'ph' }],
+  ['ea', { ipa: 'i', text: 'ea' }],
+  ['oi', { ipa: 'ɔɪ', text: 'oi' }],
+  ['ir', { ipa: 'ɝ', text: 'ir' }],
+  ['ur', { ipa: 'ɝ', text: 'ur' }],
+  ['aw', { ipa: 'ɔ', text: 'aw' }],
+  ['au', { ipa: 'ɔ', text: 'au' }],
+  ['ou', { ipa: 'aʊ', text: 'ou' }],
+  ['tion', { ipa: 'ʃən', text: 'tion' }],
+  ['sion', { ipa: 'ʒən', text: 'sion' }],
+  ['le', { ipa: 'əl', text: 'le' }],
+  ['ed', { ipa: 'd', text: 'ed' }],
+  ['all', { ipa: 'ɔl', text: 'all' }],
+]);
+
 async function main() {
   const credentials = synthesize ? await loadCredentials() : null;
   
@@ -37,6 +97,7 @@ async function main() {
     for (let cIdx = 0; cIdx < content.chunks.length; cIdx++) {
       const chunk = content.chunks[cIdx];
       chunk.audioPaths = chunk.audioPaths || [];
+      const isSoundDiscovery = chunk.type === 'sounds-words' || chunk.type === 'sound-discovery';
       if (chunk.type === 'story-gauntlet') {
         chunk.wordAudioPaths = chunk.wordAudioPaths || [];
       }
@@ -44,19 +105,21 @@ async function main() {
       for (let iIdx = 0; iIdx < chunk.items.length; iIdx++) {
         const item = chunk.items[iIdx];
         const safeName = safeFileName(item);
-        const fileName = `${content.id}_c${cIdx}_i${iIdx}_${safeName.substring(0, 20)}.mp3`;
+        const fileName = isSoundDiscovery
+          ? `${content.id}_c${cIdx}_i${iIdx}_${safeName.substring(0, 20)}-phoneme-${TTS_VOICE_VERSIONS.phonicsTeacher}.mp3`
+          : `${content.id}_c${cIdx}_i${iIdx}_${safeName.substring(0, 20)}.mp3`;
         const relativeAudioPath = `audio/${fileName}`;
         const absoluteAudioPath = path.join(lessonsDir, relativeAudioPath);
         
         chunk.audioPaths[iIdx] = relativeAudioPath;
         modified = true;
 
-        const voice = chunk.type === 'story' || chunk.type === 'story-gauntlet' ? TTS_VOICES.anneNarrator : TTS_VOICES.childInstructions;
-        let body = escapeXml(item);
-        if ((chunk.type === 'sounds-words' || chunk.type === 'sound-discovery') && item.length <= 3) {
-            // spell it out or just say it
-            body = escapeXml(item);
-        }
+        const voice = chunk.type === 'story' || chunk.type === 'story-gauntlet'
+          ? TTS_VOICES.anneNarrator
+          : isSoundDiscovery
+            ? TTS_VOICES.phonicsTeacher
+            : TTS_VOICES.childInstructions;
+        const body = isSoundDiscovery ? phonemeSsmlBody(item) : escapeXml(item);
 
         const ssml = createAzureSsml({
           language: 'en-US',
@@ -166,6 +229,14 @@ async function exists(filePath) {
 
 function safeFileName(value) {
   return String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function phonemeSsmlBody(value) {
+  const key = String(value).toLowerCase();
+  const phoneme = soundPhonemes.get(key);
+  if (!phoneme) return escapeXml(value);
+  const tag = `<phoneme alphabet="ipa" ph="${escapeXml(phoneme.ipa)}">${escapeXml(phoneme.text)}</phoneme>`;
+  return `${tag}<break time="160ms"/>${tag}`;
 }
 
 main().catch((error) => {

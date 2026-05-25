@@ -13,12 +13,12 @@
         "o"
       ],
       "audioPaths": [
-        "audio/lesson-53_c0_i0_e.mp3",
-        "audio/lesson-53_c0_i1_e.mp3",
-        "audio/lesson-53_c0_i2_a.mp3",
-        "audio/lesson-53_c0_i3_a.mp3",
-        "audio/lesson-53_c0_i4_o.mp3",
-        "audio/lesson-53_c0_i5_o.mp3"
+        "audio/lesson-53_c0_i0_e-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-53_c0_i1_e-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-53_c0_i2_a-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-53_c0_i3_a-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-53_c0_i4_o-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-53_c0_i5_o-phoneme-phonics-sounds-v2.mp3"
       ]
     },
     {
@@ -59,7 +59,7 @@
         "The little bug said, 'now let's eat more.'"
       ],
       "imagePath": "images/lesson-53-story.webp",
-      "imagePrompt": "Manhwa webcomic style illustration with extra emotional expressiveness. Cute and vibrant, kawaii pastel style. A scene showing: The bugs. A big bug met a little bug. the big bug said, 'let's go eat.'",
+      "imagePrompt": "Original cute kawaii children's storybook illustration with warm pastel colors and expressive child-friendly characters. Simple clean composition, blank background areas only, no text, no letters, no signs, no captions, no watermark. Scene: The bugs. A big bug met a little bug. the big bug said, 'let's go eat.'",
       "audioPaths": [
         "audio/lesson-53_c3_i0_the-bugs.mp3",
         "audio/lesson-53_c3_i1_a-big-bug-met-a-litt.mp3",

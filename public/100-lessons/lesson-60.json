@@ -1,0 +1,169 @@
+{
+  "id": "lesson-60",
+  "lessonNumber": 60,
+  "chunks": [
+    {
+      "type": "sound-discovery",
+      "items": [
+        "m",
+        "s",
+        "a",
+        "t",
+        "p"
+      ],
+      "audioPaths": [
+        "audio/lesson-60_c0_i0_m-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-60_c0_i1_s-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-60_c0_i2_a-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-60_c0_i3_t-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-60_c0_i4_p-phoneme-phonics-sounds-v2.mp3"
+      ]
+    },
+    {
+      "type": "blending-bridge",
+      "items": [
+        "mat",
+        "sat",
+        "tap",
+        "pat",
+        "map",
+        "sap",
+        "Sam"
+      ],
+      "audioPaths": [
+        "audio/lesson-60_c1_i0_mat.mp3",
+        "audio/lesson-60_c1_i1_sat.mp3",
+        "audio/lesson-60_c1_i2_tap.mp3",
+        "audio/lesson-60_c1_i3_pat.mp3",
+        "audio/lesson-60_c1_i4_map.mp3",
+        "audio/lesson-60_c1_i5_sap.mp3",
+        "audio/lesson-60_c1_i6_sam.mp3"
+      ]
+    },
+    {
+      "type": "rhyme-puzzle",
+      "items": [
+        "mat",
+        "sat",
+        "pat",
+        "cat"
+      ],
+      "audioPaths": [
+        "audio/lesson-60_c2_i0_mat.mp3",
+        "audio/lesson-60_c2_i1_sat.mp3",
+        "audio/lesson-60_c2_i2_pat.mp3",
+        "audio/lesson-60_c2_i3_cat.mp3"
+      ]
+    },
+    {
+      "type": "story-gauntlet",
+      "items": [
+        "Sam sat on a mat.",
+        "Sam had a map.",
+        "Sam saw a path on the map.",
+        "Sam said, 'I can tap, tap, tap on the path.'",
+        "A cat sat by Sam.",
+        "Sam said, 'This map is for us.'",
+        "The cat did not tap.",
+        "The cat sat and had a nap.",
+        "Sam said, 'That cat likes my mat.'",
+        "The end."
+      ],
+      "imagePath": "images/lesson-60-story.webp",
+      "imagePrompt": "Original cute kawaii children's storybook illustration with warm pastel colors and expressive child-friendly characters. Simple clean composition, blank background areas only, no text, no letters, no signs, no captions, no watermark. Scene: Sam sitting on a cozy mat with a paper map while a sleepy cat naps beside the mat",
+      "audioPaths": [
+        "audio/lesson-60_c3_i0_sam-sat-on-a-mat.mp3",
+        "audio/lesson-60_c3_i1_sam-had-a-map.mp3",
+        "audio/lesson-60_c3_i2_sam-saw-a-path-on-th.mp3",
+        "audio/lesson-60_c3_i3_sam-said-i-can-tap-t.mp3",
+        "audio/lesson-60_c3_i4_a-cat-sat-by-sam.mp3",
+        "audio/lesson-60_c3_i5_sam-said-this-map-is.mp3",
+        "audio/lesson-60_c3_i6_the-cat-did-not-tap.mp3",
+        "audio/lesson-60_c3_i7_the-cat-sat-and-had-.mp3",
+        "audio/lesson-60_c3_i8_sam-said-that-cat-li.mp3",
+        "audio/lesson-60_c3_i9_the-end.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-60_c3_i0_w0_sam.mp3",
+          "audio/lesson-60_c3_i0_w1_sat.mp3",
+          "audio/lesson-60_c3_i0_w2_on.mp3",
+          "audio/lesson-60_c3_i0_w3_a.mp3",
+          "audio/lesson-60_c3_i0_w4_mat.mp3"
+        ],
+        [
+          "audio/lesson-60_c3_i1_w0_sam.mp3",
+          "audio/lesson-60_c3_i1_w1_had.mp3",
+          "audio/lesson-60_c3_i1_w2_a.mp3",
+          "audio/lesson-60_c3_i1_w3_map.mp3"
+        ],
+        [
+          "audio/lesson-60_c3_i2_w0_sam.mp3",
+          "audio/lesson-60_c3_i2_w1_saw.mp3",
+          "audio/lesson-60_c3_i2_w2_a.mp3",
+          "audio/lesson-60_c3_i2_w3_path.mp3",
+          "audio/lesson-60_c3_i2_w4_on.mp3",
+          "audio/lesson-60_c3_i2_w5_the.mp3",
+          "audio/lesson-60_c3_i2_w6_map.mp3"
+        ],
+        [
+          "audio/lesson-60_c3_i3_w0_sam.mp3",
+          "audio/lesson-60_c3_i3_w1_said.mp3",
+          "audio/lesson-60_c3_i3_w2_i.mp3",
+          "audio/lesson-60_c3_i3_w3_can.mp3",
+          "audio/lesson-60_c3_i3_w4_tap.mp3",
+          "audio/lesson-60_c3_i3_w5_tap.mp3",
+          "audio/lesson-60_c3_i3_w6_tap.mp3",
+          "audio/lesson-60_c3_i3_w7_on.mp3",
+          "audio/lesson-60_c3_i3_w8_the.mp3",
+          "audio/lesson-60_c3_i3_w9_path.mp3"
+        ],
+        [
+          "audio/lesson-60_c3_i4_w0_a.mp3",
+          "audio/lesson-60_c3_i4_w1_cat.mp3",
+          "audio/lesson-60_c3_i4_w2_sat.mp3",
+          "audio/lesson-60_c3_i4_w3_by.mp3",
+          "audio/lesson-60_c3_i4_w4_sam.mp3"
+        ],
+        [
+          "audio/lesson-60_c3_i5_w0_sam.mp3",
+          "audio/lesson-60_c3_i5_w1_said.mp3",
+          "audio/lesson-60_c3_i5_w2_this.mp3",
+          "audio/lesson-60_c3_i5_w3_map.mp3",
+          "audio/lesson-60_c3_i5_w4_is.mp3",
+          "audio/lesson-60_c3_i5_w5_for.mp3",
+          "audio/lesson-60_c3_i5_w6_us.mp3"
+        ],
+        [
+          "audio/lesson-60_c3_i6_w0_the.mp3",
+          "audio/lesson-60_c3_i6_w1_cat.mp3",
+          "audio/lesson-60_c3_i6_w2_did.mp3",
+          "audio/lesson-60_c3_i6_w3_not.mp3",
+          "audio/lesson-60_c3_i6_w4_tap.mp3"
+        ],
+        [
+          "audio/lesson-60_c3_i7_w0_the.mp3",
+          "audio/lesson-60_c3_i7_w1_cat.mp3",
+          "audio/lesson-60_c3_i7_w2_sat.mp3",
+          "audio/lesson-60_c3_i7_w3_and.mp3",
+          "audio/lesson-60_c3_i7_w4_had.mp3",
+          "audio/lesson-60_c3_i7_w5_a.mp3",
+          "audio/lesson-60_c3_i7_w6_nap.mp3"
+        ],
+        [
+          "audio/lesson-60_c3_i8_w0_sam.mp3",
+          "audio/lesson-60_c3_i8_w1_said.mp3",
+          "audio/lesson-60_c3_i8_w2_that.mp3",
+          "audio/lesson-60_c3_i8_w3_cat.mp3",
+          "audio/lesson-60_c3_i8_w4_likes.mp3",
+          "audio/lesson-60_c3_i8_w5_my.mp3",
+          "audio/lesson-60_c3_i8_w6_mat.mp3"
+        ],
+        [
+          "audio/lesson-60_c3_i9_w0_the.mp3",
+          "audio/lesson-60_c3_i9_w1_end.mp3"
+        ]
+      ]
+    }
+  ]
+}

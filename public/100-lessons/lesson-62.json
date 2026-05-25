@@ -1,0 +1,165 @@
+{
+  "id": "lesson-62",
+  "lessonNumber": 62,
+  "chunks": [
+    {
+      "type": "sound-discovery",
+      "items": [
+        "f",
+        "b",
+        "h",
+        "g",
+        "o"
+      ],
+      "audioPaths": [
+        "audio/lesson-62_c0_i0_f-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-62_c0_i1_b-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-62_c0_i2_h-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-62_c0_i3_g-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-62_c0_i4_o-phoneme-phonics-sounds-v2.mp3"
+      ]
+    },
+    {
+      "type": "blending-bridge",
+      "items": [
+        "fog",
+        "hog",
+        "big",
+        "bag",
+        "hot",
+        "hop",
+        "Bob"
+      ],
+      "audioPaths": [
+        "audio/lesson-62_c1_i0_fog.mp3",
+        "audio/lesson-62_c1_i1_hog.mp3",
+        "audio/lesson-62_c1_i2_big.mp3",
+        "audio/lesson-62_c1_i3_bag.mp3",
+        "audio/lesson-62_c1_i4_hot.mp3",
+        "audio/lesson-62_c1_i5_hop.mp3",
+        "audio/lesson-62_c1_i6_bob.mp3"
+      ]
+    },
+    {
+      "type": "rhyme-puzzle",
+      "items": [
+        "fog",
+        "hog",
+        "log",
+        "dog"
+      ],
+      "audioPaths": [
+        "audio/lesson-62_c2_i0_fog.mp3",
+        "audio/lesson-62_c2_i1_hog.mp3",
+        "audio/lesson-62_c2_i2_log.mp3",
+        "audio/lesson-62_c2_i3_dog.mp3"
+      ]
+    },
+    {
+      "type": "story-gauntlet",
+      "items": [
+        "Bob had a big bag.",
+        "The bag had a hat.",
+        "The hat was hot.",
+        "Bob put the hat on a hog.",
+        "The hog did not like the hot hat.",
+        "The hog ran into fog.",
+        "Bob said, 'I can not see that hog.'",
+        "The hog came back with no hat.",
+        "Bob said, 'Good hog.'",
+        "The end."
+      ],
+      "imagePath": "images/lesson-62-story.webp",
+      "imagePrompt": "Original cute kawaii children's storybook illustration with warm pastel colors and expressive child-friendly characters. Simple clean composition, blank background areas only, no text, no letters, no signs, no captions, no watermark. Scene: Bob holding a big bag while a friendly hog peeks out from soft fog without wearing a hat",
+      "audioPaths": [
+        "audio/lesson-62_c3_i0_bob-had-a-big-bag.mp3",
+        "audio/lesson-62_c3_i1_the-bag-had-a-hat.mp3",
+        "audio/lesson-62_c3_i2_the-hat-was-hot.mp3",
+        "audio/lesson-62_c3_i3_bob-put-the-hat-on-a.mp3",
+        "audio/lesson-62_c3_i4_the-hog-did-not-like.mp3",
+        "audio/lesson-62_c3_i5_the-hog-ran-into-fog.mp3",
+        "audio/lesson-62_c3_i6_bob-said-i-can-not-s.mp3",
+        "audio/lesson-62_c3_i7_the-hog-came-back-wi.mp3",
+        "audio/lesson-62_c3_i8_bob-said-good-hog.mp3",
+        "audio/lesson-62_c3_i9_the-end.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-62_c3_i0_w0_bob.mp3",
+          "audio/lesson-62_c3_i0_w1_had.mp3",
+          "audio/lesson-62_c3_i0_w2_a.mp3",
+          "audio/lesson-62_c3_i0_w3_big.mp3",
+          "audio/lesson-62_c3_i0_w4_bag.mp3"
+        ],
+        [
+          "audio/lesson-62_c3_i1_w0_the.mp3",
+          "audio/lesson-62_c3_i1_w1_bag.mp3",
+          "audio/lesson-62_c3_i1_w2_had.mp3",
+          "audio/lesson-62_c3_i1_w3_a.mp3",
+          "audio/lesson-62_c3_i1_w4_hat.mp3"
+        ],
+        [
+          "audio/lesson-62_c3_i2_w0_the.mp3",
+          "audio/lesson-62_c3_i2_w1_hat.mp3",
+          "audio/lesson-62_c3_i2_w2_was.mp3",
+          "audio/lesson-62_c3_i2_w3_hot.mp3"
+        ],
+        [
+          "audio/lesson-62_c3_i3_w0_bob.mp3",
+          "audio/lesson-62_c3_i3_w1_put.mp3",
+          "audio/lesson-62_c3_i3_w2_the.mp3",
+          "audio/lesson-62_c3_i3_w3_hat.mp3",
+          "audio/lesson-62_c3_i3_w4_on.mp3",
+          "audio/lesson-62_c3_i3_w5_a.mp3",
+          "audio/lesson-62_c3_i3_w6_hog.mp3"
+        ],
+        [
+          "audio/lesson-62_c3_i4_w0_the.mp3",
+          "audio/lesson-62_c3_i4_w1_hog.mp3",
+          "audio/lesson-62_c3_i4_w2_did.mp3",
+          "audio/lesson-62_c3_i4_w3_not.mp3",
+          "audio/lesson-62_c3_i4_w4_like.mp3",
+          "audio/lesson-62_c3_i4_w5_the.mp3",
+          "audio/lesson-62_c3_i4_w6_hot.mp3",
+          "audio/lesson-62_c3_i4_w7_hat.mp3"
+        ],
+        [
+          "audio/lesson-62_c3_i5_w0_the.mp3",
+          "audio/lesson-62_c3_i5_w1_hog.mp3",
+          "audio/lesson-62_c3_i5_w2_ran.mp3",
+          "audio/lesson-62_c3_i5_w3_into.mp3",
+          "audio/lesson-62_c3_i5_w4_fog.mp3"
+        ],
+        [
+          "audio/lesson-62_c3_i6_w0_bob.mp3",
+          "audio/lesson-62_c3_i6_w1_said.mp3",
+          "audio/lesson-62_c3_i6_w2_i.mp3",
+          "audio/lesson-62_c3_i6_w3_can.mp3",
+          "audio/lesson-62_c3_i6_w4_not.mp3",
+          "audio/lesson-62_c3_i6_w5_see.mp3",
+          "audio/lesson-62_c3_i6_w6_that.mp3",
+          "audio/lesson-62_c3_i6_w7_hog.mp3"
+        ],
+        [
+          "audio/lesson-62_c3_i7_w0_the.mp3",
+          "audio/lesson-62_c3_i7_w1_hog.mp3",
+          "audio/lesson-62_c3_i7_w2_came.mp3",
+          "audio/lesson-62_c3_i7_w3_back.mp3",
+          "audio/lesson-62_c3_i7_w4_with.mp3",
+          "audio/lesson-62_c3_i7_w5_no.mp3",
+          "audio/lesson-62_c3_i7_w6_hat.mp3"
+        ],
+        [
+          "audio/lesson-62_c3_i8_w0_bob.mp3",
+          "audio/lesson-62_c3_i8_w1_said.mp3",
+          "audio/lesson-62_c3_i8_w2_good.mp3",
+          "audio/lesson-62_c3_i8_w3_hog.mp3"
+        ],
+        [
+          "audio/lesson-62_c3_i9_w0_the.mp3",
+          "audio/lesson-62_c3_i9_w1_end.mp3"
+        ]
+      ]
+    }
+  ]
+}

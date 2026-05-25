@@ -1,0 +1,173 @@
+{
+  "id": "lesson-68",
+  "lessonNumber": 68,
+  "chunks": [
+    {
+      "type": "sound-discovery",
+      "items": [
+        "ck",
+        "wh",
+        "ph",
+        "ea",
+        "oi"
+      ],
+      "audioPaths": [
+        "audio/lesson-68_c0_i0_ck-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-68_c0_i1_wh-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-68_c0_i2_ph-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-68_c0_i3_ea-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-68_c0_i4_oi-phoneme-phonics-sounds-v2.mp3"
+      ]
+    },
+    {
+      "type": "blending-bridge",
+      "items": [
+        "back",
+        "duck",
+        "when",
+        "whip",
+        "phone",
+        "leaf",
+        "coin"
+      ],
+      "audioPaths": [
+        "audio/lesson-68_c1_i0_back.mp3",
+        "audio/lesson-68_c1_i1_duck.mp3",
+        "audio/lesson-68_c1_i2_when.mp3",
+        "audio/lesson-68_c1_i3_whip.mp3",
+        "audio/lesson-68_c1_i4_phone.mp3",
+        "audio/lesson-68_c1_i5_leaf.mp3",
+        "audio/lesson-68_c1_i6_coin.mp3"
+      ]
+    },
+    {
+      "type": "rhyme-puzzle",
+      "items": [
+        "duck",
+        "luck",
+        "truck",
+        "stuck"
+      ],
+      "audioPaths": [
+        "audio/lesson-68_c2_i0_duck.mp3",
+        "audio/lesson-68_c2_i1_luck.mp3",
+        "audio/lesson-68_c2_i2_truck.mp3",
+        "audio/lesson-68_c2_i3_stuck.mp3"
+      ]
+    },
+    {
+      "type": "story-gauntlet",
+      "items": [
+        "A duck went back to the pond.",
+        "When the duck got there, it saw a coin.",
+        "The coin was on a leaf.",
+        "A boy had a phone.",
+        "The boy said, 'That coin is not for a duck.'",
+        "The duck did not pick up the coin.",
+        "The duck sat by the leaf.",
+        "The boy took the coin back.",
+        "The duck said, 'Quack.'",
+        "The end."
+      ],
+      "imagePath": "images/lesson-68-story.webp",
+      "imagePrompt": "Original cute kawaii children's storybook illustration with warm pastel colors and expressive child-friendly characters. Simple clean composition, blank background areas only, no text, no letters, no signs, no captions, no watermark. Scene: a duck sitting beside a pond while a child picks up a shiny coin from a leaf",
+      "audioPaths": [
+        "audio/lesson-68_c3_i0_a-duck-went-back-to-.mp3",
+        "audio/lesson-68_c3_i1_when-the-duck-got-th.mp3",
+        "audio/lesson-68_c3_i2_the-coin-was-on-a-le.mp3",
+        "audio/lesson-68_c3_i3_a-boy-had-a-phone.mp3",
+        "audio/lesson-68_c3_i4_the-boy-said-that-co.mp3",
+        "audio/lesson-68_c3_i5_the-duck-did-not-pic.mp3",
+        "audio/lesson-68_c3_i6_the-duck-sat-by-the-.mp3",
+        "audio/lesson-68_c3_i7_the-boy-took-the-coi.mp3",
+        "audio/lesson-68_c3_i8_the-duck-said-quack.mp3",
+        "audio/lesson-68_c3_i9_the-end.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-68_c3_i0_w0_a.mp3",
+          "audio/lesson-68_c3_i0_w1_duck.mp3",
+          "audio/lesson-68_c3_i0_w2_went.mp3",
+          "audio/lesson-68_c3_i0_w3_back.mp3",
+          "audio/lesson-68_c3_i0_w4_to.mp3",
+          "audio/lesson-68_c3_i0_w5_the.mp3",
+          "audio/lesson-68_c3_i0_w6_pond.mp3"
+        ],
+        [
+          "audio/lesson-68_c3_i1_w0_when.mp3",
+          "audio/lesson-68_c3_i1_w1_the.mp3",
+          "audio/lesson-68_c3_i1_w2_duck.mp3",
+          "audio/lesson-68_c3_i1_w3_got.mp3",
+          "audio/lesson-68_c3_i1_w4_there.mp3",
+          "audio/lesson-68_c3_i1_w5_it.mp3",
+          "audio/lesson-68_c3_i1_w6_saw.mp3",
+          "audio/lesson-68_c3_i1_w7_a.mp3",
+          "audio/lesson-68_c3_i1_w8_coin.mp3"
+        ],
+        [
+          "audio/lesson-68_c3_i2_w0_the.mp3",
+          "audio/lesson-68_c3_i2_w1_coin.mp3",
+          "audio/lesson-68_c3_i2_w2_was.mp3",
+          "audio/lesson-68_c3_i2_w3_on.mp3",
+          "audio/lesson-68_c3_i2_w4_a.mp3",
+          "audio/lesson-68_c3_i2_w5_leaf.mp3"
+        ],
+        [
+          "audio/lesson-68_c3_i3_w0_a.mp3",
+          "audio/lesson-68_c3_i3_w1_boy.mp3",
+          "audio/lesson-68_c3_i3_w2_had.mp3",
+          "audio/lesson-68_c3_i3_w3_a.mp3",
+          "audio/lesson-68_c3_i3_w4_phone.mp3"
+        ],
+        [
+          "audio/lesson-68_c3_i4_w0_the.mp3",
+          "audio/lesson-68_c3_i4_w1_boy.mp3",
+          "audio/lesson-68_c3_i4_w2_said.mp3",
+          "audio/lesson-68_c3_i4_w3_that.mp3",
+          "audio/lesson-68_c3_i4_w4_coin.mp3",
+          "audio/lesson-68_c3_i4_w5_is.mp3",
+          "audio/lesson-68_c3_i4_w6_not.mp3",
+          "audio/lesson-68_c3_i4_w7_for.mp3",
+          "audio/lesson-68_c3_i4_w8_a.mp3",
+          "audio/lesson-68_c3_i4_w9_duck.mp3"
+        ],
+        [
+          "audio/lesson-68_c3_i5_w0_the.mp3",
+          "audio/lesson-68_c3_i5_w1_duck.mp3",
+          "audio/lesson-68_c3_i5_w2_did.mp3",
+          "audio/lesson-68_c3_i5_w3_not.mp3",
+          "audio/lesson-68_c3_i5_w4_pick.mp3",
+          "audio/lesson-68_c3_i5_w5_up.mp3",
+          "audio/lesson-68_c3_i5_w6_the.mp3",
+          "audio/lesson-68_c3_i5_w7_coin.mp3"
+        ],
+        [
+          "audio/lesson-68_c3_i6_w0_the.mp3",
+          "audio/lesson-68_c3_i6_w1_duck.mp3",
+          "audio/lesson-68_c3_i6_w2_sat.mp3",
+          "audio/lesson-68_c3_i6_w3_by.mp3",
+          "audio/lesson-68_c3_i6_w4_the.mp3",
+          "audio/lesson-68_c3_i6_w5_leaf.mp3"
+        ],
+        [
+          "audio/lesson-68_c3_i7_w0_the.mp3",
+          "audio/lesson-68_c3_i7_w1_boy.mp3",
+          "audio/lesson-68_c3_i7_w2_took.mp3",
+          "audio/lesson-68_c3_i7_w3_the.mp3",
+          "audio/lesson-68_c3_i7_w4_coin.mp3",
+          "audio/lesson-68_c3_i7_w5_back.mp3"
+        ],
+        [
+          "audio/lesson-68_c3_i8_w0_the.mp3",
+          "audio/lesson-68_c3_i8_w1_duck.mp3",
+          "audio/lesson-68_c3_i8_w2_said.mp3",
+          "audio/lesson-68_c3_i8_w3_quack.mp3"
+        ],
+        [
+          "audio/lesson-68_c3_i9_w0_the.mp3",
+          "audio/lesson-68_c3_i9_w1_end.mp3"
+        ]
+      ]
+    }
+  ]
+}

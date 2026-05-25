@@ -1,0 +1,163 @@
+{
+  "id": "lesson-70",
+  "lessonNumber": 70,
+  "chunks": [
+    {
+      "type": "sound-discovery",
+      "items": [
+        "tion",
+        "sion",
+        "le",
+        "ed",
+        "all"
+      ],
+      "audioPaths": [
+        "audio/lesson-70_c0_i0_tion-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-70_c0_i1_sion-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-70_c0_i2_le-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-70_c0_i3_ed-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-70_c0_i4_all-phoneme-phonics-sounds-v2.mp3"
+      ]
+    },
+    {
+      "type": "blending-bridge",
+      "items": [
+        "action",
+        "mission",
+        "little",
+        "jumped",
+        "called",
+        "ball",
+        "fall"
+      ],
+      "audioPaths": [
+        "audio/lesson-70_c1_i0_action.mp3",
+        "audio/lesson-70_c1_i1_mission.mp3",
+        "audio/lesson-70_c1_i2_little.mp3",
+        "audio/lesson-70_c1_i3_jumped.mp3",
+        "audio/lesson-70_c1_i4_called.mp3",
+        "audio/lesson-70_c1_i5_ball.mp3",
+        "audio/lesson-70_c1_i6_fall.mp3"
+      ]
+    },
+    {
+      "type": "rhyme-puzzle",
+      "items": [
+        "ball",
+        "fall",
+        "wall",
+        "call"
+      ],
+      "audioPaths": [
+        "audio/lesson-70_c2_i0_ball.mp3",
+        "audio/lesson-70_c2_i1_fall.mp3",
+        "audio/lesson-70_c2_i2_wall.mp3",
+        "audio/lesson-70_c2_i3_call.mp3"
+      ]
+    },
+    {
+      "type": "story-gauntlet",
+      "items": [
+        "The little dog had a mission.",
+        "The mission was to get the ball.",
+        "The ball rolled by the wall.",
+        "The dog jumped.",
+        "The dog missed the ball.",
+        "A little girl called, 'Come here.'",
+        "The dog ran back.",
+        "Then the girl and the dog got the ball together.",
+        "That was good action.",
+        "The end."
+      ],
+      "imagePath": "images/lesson-70-story.webp",
+      "imagePrompt": "Original cute kawaii children's storybook illustration with warm pastel colors and expressive child-friendly characters. Simple clean composition, blank background areas only, no text, no letters, no signs, no captions, no watermark. Scene: a little dog and a smiling child working together to get a colorful ball by a low wall",
+      "audioPaths": [
+        "audio/lesson-70_c3_i0_the-little-dog-had-a.mp3",
+        "audio/lesson-70_c3_i1_the-mission-was-to-g.mp3",
+        "audio/lesson-70_c3_i2_the-ball-rolled-by-t.mp3",
+        "audio/lesson-70_c3_i3_the-dog-jumped.mp3",
+        "audio/lesson-70_c3_i4_the-dog-missed-the-b.mp3",
+        "audio/lesson-70_c3_i5_a-little-girl-called.mp3",
+        "audio/lesson-70_c3_i6_the-dog-ran-back.mp3",
+        "audio/lesson-70_c3_i7_then-the-girl-and-th.mp3",
+        "audio/lesson-70_c3_i8_that-was-good-action.mp3",
+        "audio/lesson-70_c3_i9_the-end.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-70_c3_i0_w0_the.mp3",
+          "audio/lesson-70_c3_i0_w1_little.mp3",
+          "audio/lesson-70_c3_i0_w2_dog.mp3",
+          "audio/lesson-70_c3_i0_w3_had.mp3",
+          "audio/lesson-70_c3_i0_w4_a.mp3",
+          "audio/lesson-70_c3_i0_w5_mission.mp3"
+        ],
+        [
+          "audio/lesson-70_c3_i1_w0_the.mp3",
+          "audio/lesson-70_c3_i1_w1_mission.mp3",
+          "audio/lesson-70_c3_i1_w2_was.mp3",
+          "audio/lesson-70_c3_i1_w3_to.mp3",
+          "audio/lesson-70_c3_i1_w4_get.mp3",
+          "audio/lesson-70_c3_i1_w5_the.mp3",
+          "audio/lesson-70_c3_i1_w6_ball.mp3"
+        ],
+        [
+          "audio/lesson-70_c3_i2_w0_the.mp3",
+          "audio/lesson-70_c3_i2_w1_ball.mp3",
+          "audio/lesson-70_c3_i2_w2_rolled.mp3",
+          "audio/lesson-70_c3_i2_w3_by.mp3",
+          "audio/lesson-70_c3_i2_w4_the.mp3",
+          "audio/lesson-70_c3_i2_w5_wall.mp3"
+        ],
+        [
+          "audio/lesson-70_c3_i3_w0_the.mp3",
+          "audio/lesson-70_c3_i3_w1_dog.mp3",
+          "audio/lesson-70_c3_i3_w2_jumped.mp3"
+        ],
+        [
+          "audio/lesson-70_c3_i4_w0_the.mp3",
+          "audio/lesson-70_c3_i4_w1_dog.mp3",
+          "audio/lesson-70_c3_i4_w2_missed.mp3",
+          "audio/lesson-70_c3_i4_w3_the.mp3",
+          "audio/lesson-70_c3_i4_w4_ball.mp3"
+        ],
+        [
+          "audio/lesson-70_c3_i5_w0_a.mp3",
+          "audio/lesson-70_c3_i5_w1_little.mp3",
+          "audio/lesson-70_c3_i5_w2_girl.mp3",
+          "audio/lesson-70_c3_i5_w3_called.mp3",
+          "audio/lesson-70_c3_i5_w4_come.mp3",
+          "audio/lesson-70_c3_i5_w5_here.mp3"
+        ],
+        [
+          "audio/lesson-70_c3_i6_w0_the.mp3",
+          "audio/lesson-70_c3_i6_w1_dog.mp3",
+          "audio/lesson-70_c3_i6_w2_ran.mp3",
+          "audio/lesson-70_c3_i6_w3_back.mp3"
+        ],
+        [
+          "audio/lesson-70_c3_i7_w0_then.mp3",
+          "audio/lesson-70_c3_i7_w1_the.mp3",
+          "audio/lesson-70_c3_i7_w2_girl.mp3",
+          "audio/lesson-70_c3_i7_w3_and.mp3",
+          "audio/lesson-70_c3_i7_w4_the.mp3",
+          "audio/lesson-70_c3_i7_w5_dog.mp3",
+          "audio/lesson-70_c3_i7_w6_got.mp3",
+          "audio/lesson-70_c3_i7_w7_the.mp3",
+          "audio/lesson-70_c3_i7_w8_ball.mp3",
+          "audio/lesson-70_c3_i7_w9_together.mp3"
+        ],
+        [
+          "audio/lesson-70_c3_i8_w0_that.mp3",
+          "audio/lesson-70_c3_i8_w1_was.mp3",
+          "audio/lesson-70_c3_i8_w2_good.mp3",
+          "audio/lesson-70_c3_i8_w3_action.mp3"
+        ],
+        [
+          "audio/lesson-70_c3_i9_w0_the.mp3",
+          "audio/lesson-70_c3_i9_w1_end.mp3"
+        ]
+      ]
+    }
+  ]
+}

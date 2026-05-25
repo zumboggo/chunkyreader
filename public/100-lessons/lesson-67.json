@@ -1,0 +1,157 @@
+{
+  "id": "lesson-67",
+  "lessonNumber": 67,
+  "chunks": [
+    {
+      "type": "sound-discovery",
+      "items": [
+        "ai",
+        "oa",
+        "ow",
+        "oy",
+        "igh"
+      ],
+      "audioPaths": [
+        "audio/lesson-67_c0_i0_ai-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-67_c0_i1_oa-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-67_c0_i2_ow-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-67_c0_i3_oy-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-67_c0_i4_igh-phoneme-phonics-sounds-v2.mp3"
+      ]
+    },
+    {
+      "type": "blending-bridge",
+      "items": [
+        "rain",
+        "boat",
+        "cow",
+        "toy",
+        "light",
+        "night",
+        "road"
+      ],
+      "audioPaths": [
+        "audio/lesson-67_c1_i0_rain.mp3",
+        "audio/lesson-67_c1_i1_boat.mp3",
+        "audio/lesson-67_c1_i2_cow.mp3",
+        "audio/lesson-67_c1_i3_toy.mp3",
+        "audio/lesson-67_c1_i4_light.mp3",
+        "audio/lesson-67_c1_i5_night.mp3",
+        "audio/lesson-67_c1_i6_road.mp3"
+      ]
+    },
+    {
+      "type": "rhyme-puzzle",
+      "items": [
+        "to",
+        "do",
+        "zoo",
+        "moo"
+      ],
+      "audioPaths": [
+        "audio/lesson-67_c2_i0_to.mp3",
+        "audio/lesson-67_c2_i1_do.mp3",
+        "audio/lesson-67_c2_i2_zoo.mp3",
+        "audio/lesson-67_c2_i3_moo.mp3"
+      ]
+    },
+    {
+      "type": "story-gauntlet",
+      "items": [
+        "It was night.",
+        "Rain fell on the road.",
+        "A toy boat sat by the road.",
+        "A cow saw the toy boat.",
+        "The cow said, 'Moo.'",
+        "A light came on.",
+        "The boy ran out.",
+        "The boy got the toy boat.",
+        "The cow went back to bed.",
+        "The end."
+      ],
+      "imagePath": "images/lesson-67-story.webp",
+      "imagePrompt": "Original cute kawaii children's storybook illustration with warm pastel colors and expressive child-friendly characters. Simple clean composition, blank background areas only, no text, no letters, no signs, no captions, no watermark. Scene: a child rescuing a toy boat from a rainy road while a gentle cow watches under a warm light",
+      "audioPaths": [
+        "audio/lesson-67_c3_i0_it-was-night.mp3",
+        "audio/lesson-67_c3_i1_rain-fell-on-the-roa.mp3",
+        "audio/lesson-67_c3_i2_a-toy-boat-sat-by-th.mp3",
+        "audio/lesson-67_c3_i3_a-cow-saw-the-toy-bo.mp3",
+        "audio/lesson-67_c3_i4_the-cow-said-moo.mp3",
+        "audio/lesson-67_c3_i5_a-light-came-on.mp3",
+        "audio/lesson-67_c3_i6_the-boy-ran-out.mp3",
+        "audio/lesson-67_c3_i7_the-boy-got-the-toy-.mp3",
+        "audio/lesson-67_c3_i8_the-cow-went-back-to.mp3",
+        "audio/lesson-67_c3_i9_the-end.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-67_c3_i0_w0_it.mp3",
+          "audio/lesson-67_c3_i0_w1_was.mp3",
+          "audio/lesson-67_c3_i0_w2_night.mp3"
+        ],
+        [
+          "audio/lesson-67_c3_i1_w0_rain.mp3",
+          "audio/lesson-67_c3_i1_w1_fell.mp3",
+          "audio/lesson-67_c3_i1_w2_on.mp3",
+          "audio/lesson-67_c3_i1_w3_the.mp3",
+          "audio/lesson-67_c3_i1_w4_road.mp3"
+        ],
+        [
+          "audio/lesson-67_c3_i2_w0_a.mp3",
+          "audio/lesson-67_c3_i2_w1_toy.mp3",
+          "audio/lesson-67_c3_i2_w2_boat.mp3",
+          "audio/lesson-67_c3_i2_w3_sat.mp3",
+          "audio/lesson-67_c3_i2_w4_by.mp3",
+          "audio/lesson-67_c3_i2_w5_the.mp3",
+          "audio/lesson-67_c3_i2_w6_road.mp3"
+        ],
+        [
+          "audio/lesson-67_c3_i3_w0_a.mp3",
+          "audio/lesson-67_c3_i3_w1_cow.mp3",
+          "audio/lesson-67_c3_i3_w2_saw.mp3",
+          "audio/lesson-67_c3_i3_w3_the.mp3",
+          "audio/lesson-67_c3_i3_w4_toy.mp3",
+          "audio/lesson-67_c3_i3_w5_boat.mp3"
+        ],
+        [
+          "audio/lesson-67_c3_i4_w0_the.mp3",
+          "audio/lesson-67_c3_i4_w1_cow.mp3",
+          "audio/lesson-67_c3_i4_w2_said.mp3",
+          "audio/lesson-67_c3_i4_w3_moo.mp3"
+        ],
+        [
+          "audio/lesson-67_c3_i5_w0_a.mp3",
+          "audio/lesson-67_c3_i5_w1_light.mp3",
+          "audio/lesson-67_c3_i5_w2_came.mp3",
+          "audio/lesson-67_c3_i5_w3_on.mp3"
+        ],
+        [
+          "audio/lesson-67_c3_i6_w0_the.mp3",
+          "audio/lesson-67_c3_i6_w1_boy.mp3",
+          "audio/lesson-67_c3_i6_w2_ran.mp3",
+          "audio/lesson-67_c3_i6_w3_out.mp3"
+        ],
+        [
+          "audio/lesson-67_c3_i7_w0_the.mp3",
+          "audio/lesson-67_c3_i7_w1_boy.mp3",
+          "audio/lesson-67_c3_i7_w2_got.mp3",
+          "audio/lesson-67_c3_i7_w3_the.mp3",
+          "audio/lesson-67_c3_i7_w4_toy.mp3",
+          "audio/lesson-67_c3_i7_w5_boat.mp3"
+        ],
+        [
+          "audio/lesson-67_c3_i8_w0_the.mp3",
+          "audio/lesson-67_c3_i8_w1_cow.mp3",
+          "audio/lesson-67_c3_i8_w2_went.mp3",
+          "audio/lesson-67_c3_i8_w3_back.mp3",
+          "audio/lesson-67_c3_i8_w4_to.mp3",
+          "audio/lesson-67_c3_i8_w5_bed.mp3"
+        ],
+        [
+          "audio/lesson-67_c3_i9_w0_the.mp3",
+          "audio/lesson-67_c3_i9_w1_end.mp3"
+        ]
+      ]
+    }
+  ]
+}

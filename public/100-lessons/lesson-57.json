@@ -13,12 +13,12 @@
         "b"
       ],
       "audioPaths": [
-        "audio/lesson-57_c0_i0_g.mp3",
-        "audio/lesson-57_c0_i1_ing.mp3",
-        "audio/lesson-57_c0_i2_v.mp3",
-        "audio/lesson-57_c0_i3_ch.mp3",
-        "audio/lesson-57_c0_i4_k.mp3",
-        "audio/lesson-57_c0_i5_b.mp3"
+        "audio/lesson-57_c0_i0_g-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-57_c0_i1_ing-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-57_c0_i2_v-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-57_c0_i3_ch-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-57_c0_i4_k-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-57_c0_i5_b-phoneme-phonics-sounds-v2.mp3"
       ]
     },
     {
@@ -51,16 +51,16 @@
     {
       "type": "rhyme-puzzle",
       "items": [
-        "cat",
-        "bat",
-        "rat",
-        "mat"
+        "duck",
+        "luck",
+        "truck",
+        "stuck"
       ],
       "audioPaths": [
-        "audio/lesson-57_c2_i0_cat.mp3",
-        "audio/lesson-57_c2_i1_bat.mp3",
-        "audio/lesson-57_c2_i2_rat.mp3",
-        "audio/lesson-57_c2_i3_mat.mp3"
+        "audio/lesson-57_c2_i0_duck.mp3",
+        "audio/lesson-57_c2_i1_luck.mp3",
+        "audio/lesson-57_c2_i2_truck.mp3",
+        "audio/lesson-57_c2_i3_stuck.mp3"
       ]
     },
     {
@@ -79,7 +79,7 @@
         "'Can I live in this home?' the ant said. the ram said, 'we do not like ants. go dig a hole and live like other ants.'"
       ],
       "imagePath": "images/lesson-57-story.webp",
-      "imagePrompt": "Manhwa webcomic style illustration with extra emotional expressiveness. Cute and vibrant, kawaii pastel style. A scene showing: A home for an ant. An ant lived in a hole. the ant said, 'this hole is no good. when it rains, the rain comes in this hole. and I get wet.",
+      "imagePrompt": "Original cute kawaii children's storybook illustration with warm pastel colors and expressive child-friendly characters. Simple clean composition, blank background areas only, no text, no letters, no signs, no captions, no watermark. Scene: A home for an ant. An ant lived in a hole. the ant said, 'this hole is no good. when it rains, the rain comes in this hole. and I get wet.",
       "audioPaths": [
         "audio/lesson-57_c3_i0_a-home-for-an-ant.mp3",
         "audio/lesson-57_c3_i1_an-ant-lived-in-a-ho.mp3",

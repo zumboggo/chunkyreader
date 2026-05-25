@@ -1,0 +1,162 @@
+{
+  "id": "lesson-61",
+  "lessonNumber": 61,
+  "chunks": [
+    {
+      "type": "sound-discovery",
+      "items": [
+        "n",
+        "r",
+        "i",
+        "d",
+        "c"
+      ],
+      "audioPaths": [
+        "audio/lesson-61_c0_i0_n-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-61_c0_i1_r-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-61_c0_i2_i-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-61_c0_i3_d-phoneme-phonics-sounds-v2.mp3",
+        "audio/lesson-61_c0_i4_c-phoneme-phonics-sounds-v2.mp3"
+      ]
+    },
+    {
+      "type": "blending-bridge",
+      "items": [
+        "ran",
+        "rid",
+        "did",
+        "can",
+        "cat",
+        "din",
+        "in"
+      ],
+      "audioPaths": [
+        "audio/lesson-61_c1_i0_ran.mp3",
+        "audio/lesson-61_c1_i1_rid.mp3",
+        "audio/lesson-61_c1_i2_did.mp3",
+        "audio/lesson-61_c1_i3_can.mp3",
+        "audio/lesson-61_c1_i4_cat.mp3",
+        "audio/lesson-61_c1_i5_din.mp3",
+        "audio/lesson-61_c1_i6_in.mp3"
+      ]
+    },
+    {
+      "type": "rhyme-puzzle",
+      "items": [
+        "cat",
+        "bat",
+        "rat",
+        "mat"
+      ],
+      "audioPaths": [
+        "audio/lesson-61_c2_i0_cat.mp3",
+        "audio/lesson-61_c2_i1_bat.mp3",
+        "audio/lesson-61_c2_i2_rat.mp3",
+        "audio/lesson-61_c2_i3_mat.mp3"
+      ]
+    },
+    {
+      "type": "story-gauntlet",
+      "items": [
+        "A cat ran in.",
+        "Nick ran in too.",
+        "The cat had a red cap.",
+        "Nick said, 'Can I see it?'",
+        "The cat ran under a cot.",
+        "Nick did not get mad.",
+        "Nick sat and said, 'I can wait.'",
+        "The cat came back.",
+        "Nick said, 'That is a nice red cap.'",
+        "The end."
+      ],
+      "imagePath": "images/lesson-61-story.webp",
+      "imagePrompt": "Original cute kawaii children's storybook illustration with warm pastel colors and expressive child-friendly characters. Simple clean composition, blank background areas only, no text, no letters, no signs, no captions, no watermark. Scene: Nick sitting calmly near a cute cat wearing a red cap under a small cot",
+      "audioPaths": [
+        "audio/lesson-61_c3_i0_a-cat-ran-in.mp3",
+        "audio/lesson-61_c3_i1_nick-ran-in-too.mp3",
+        "audio/lesson-61_c3_i2_the-cat-had-a-red-ca.mp3",
+        "audio/lesson-61_c3_i3_nick-said-can-i-see-.mp3",
+        "audio/lesson-61_c3_i4_the-cat-ran-under-a-.mp3",
+        "audio/lesson-61_c3_i5_nick-did-not-get-mad.mp3",
+        "audio/lesson-61_c3_i6_nick-sat-and-said-i-.mp3",
+        "audio/lesson-61_c3_i7_the-cat-came-back.mp3",
+        "audio/lesson-61_c3_i8_nick-said-that-is-a-.mp3",
+        "audio/lesson-61_c3_i9_the-end.mp3"
+      ],
+      "wordAudioPaths": [
+        [
+          "audio/lesson-61_c3_i0_w0_a.mp3",
+          "audio/lesson-61_c3_i0_w1_cat.mp3",
+          "audio/lesson-61_c3_i0_w2_ran.mp3",
+          "audio/lesson-61_c3_i0_w3_in.mp3"
+        ],
+        [
+          "audio/lesson-61_c3_i1_w0_nick.mp3",
+          "audio/lesson-61_c3_i1_w1_ran.mp3",
+          "audio/lesson-61_c3_i1_w2_in.mp3",
+          "audio/lesson-61_c3_i1_w3_too.mp3"
+        ],
+        [
+          "audio/lesson-61_c3_i2_w0_the.mp3",
+          "audio/lesson-61_c3_i2_w1_cat.mp3",
+          "audio/lesson-61_c3_i2_w2_had.mp3",
+          "audio/lesson-61_c3_i2_w3_a.mp3",
+          "audio/lesson-61_c3_i2_w4_red.mp3",
+          "audio/lesson-61_c3_i2_w5_cap.mp3"
+        ],
+        [
+          "audio/lesson-61_c3_i3_w0_nick.mp3",
+          "audio/lesson-61_c3_i3_w1_said.mp3",
+          "audio/lesson-61_c3_i3_w2_can.mp3",
+          "audio/lesson-61_c3_i3_w3_i.mp3",
+          "audio/lesson-61_c3_i3_w4_see.mp3",
+          "audio/lesson-61_c3_i3_w5_it.mp3"
+        ],
+        [
+          "audio/lesson-61_c3_i4_w0_the.mp3",
+          "audio/lesson-61_c3_i4_w1_cat.mp3",
+          "audio/lesson-61_c3_i4_w2_ran.mp3",
+          "audio/lesson-61_c3_i4_w3_under.mp3",
+          "audio/lesson-61_c3_i4_w4_a.mp3",
+          "audio/lesson-61_c3_i4_w5_cot.mp3"
+        ],
+        [
+          "audio/lesson-61_c3_i5_w0_nick.mp3",
+          "audio/lesson-61_c3_i5_w1_did.mp3",
+          "audio/lesson-61_c3_i5_w2_not.mp3",
+          "audio/lesson-61_c3_i5_w3_get.mp3",
+          "audio/lesson-61_c3_i5_w4_mad.mp3"
+        ],
+        [
+          "audio/lesson-61_c3_i6_w0_nick.mp3",
+          "audio/lesson-61_c3_i6_w1_sat.mp3",
+          "audio/lesson-61_c3_i6_w2_and.mp3",
+          "audio/lesson-61_c3_i6_w3_said.mp3",
+          "audio/lesson-61_c3_i6_w4_i.mp3",
+          "audio/lesson-61_c3_i6_w5_can.mp3",
+          "audio/lesson-61_c3_i6_w6_wait.mp3"
+        ],
+        [
+          "audio/lesson-61_c3_i7_w0_the.mp3",
+          "audio/lesson-61_c3_i7_w1_cat.mp3",
+          "audio/lesson-61_c3_i7_w2_came.mp3",
+          "audio/lesson-61_c3_i7_w3_back.mp3"
+        ],
+        [
+          "audio/lesson-61_c3_i8_w0_nick.mp3",
+          "audio/lesson-61_c3_i8_w1_said.mp3",
+          "audio/lesson-61_c3_i8_w2_that.mp3",
+          "audio/lesson-61_c3_i8_w3_is.mp3",
+          "audio/lesson-61_c3_i8_w4_a.mp3",
+          "audio/lesson-61_c3_i8_w5_nice.mp3",
+          "audio/lesson-61_c3_i8_w6_red.mp3",
+          "audio/lesson-61_c3_i8_w7_cap.mp3"
+        ],
+        [
+          "audio/lesson-61_c3_i9_w0_the.mp3",
+          "audio/lesson-61_c3_i9_w1_end.mp3"
+        ]
+      ]
+    }
+  ]
+}
