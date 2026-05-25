@@ -1,163 +1,163 @@
 {
   "model": "black-forest-labs/flux-schnell",
-  "createdAt": "2026-05-25T06:05:47.475Z",
+  "createdAt": "2026-05-25T13:20:06.038Z",
   "count": 26,
-  "style": "cute kawaii chibi toddler reading app flashcard",
+  "style": "cute kawaii chibi toddler reading app flashcard with bold letter overlay",
   "images": [
     {
       "id": "letter-m",
       "word": "mountain",
-      "prompt": "A cute kawaii sticker illustration of a mountain, whose shape explicitly forms the letter M. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'm'. In the background, directly behind the letter, there is a green mountain range with dual peaks that curve like the arches of a lowercase m. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'm'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/mountain.png"
     },
     {
       "id": "letter-s",
       "word": "snake",
-      "prompt": "A cute kawaii sticker illustration of a snake, whose shape explicitly forms the letter S. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 's'. In the background, directly behind the letter, there is a cute green snake coiling and curving along the exact curves of a lowercase s. The background illustration's shape matches and flows along the exact curves of the foreground black letter 's'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/snake.png"
     },
     {
       "id": "letter-a",
       "word": "arrow",
-      "prompt": "A cute kawaii sticker illustration of an arrow, whose shape explicitly forms the letter A. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'a'. In the background, directly behind the letter, there is a stylized red arrow looping around to form the circular body and stem of a lowercase a. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'a'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/arrow.png"
     },
     {
       "id": "letter-t",
       "word": "tree",
-      "prompt": "A cute kawaii sticker illustration of a tree, whose shape explicitly forms the letter T. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 't'. In the background, directly behind the letter, there is a tall tree with a straight brown trunk and a horizontal green branch forming a crossbar, shaped like a lowercase t. The background illustration's shape matches and flows along the exact curves of the foreground black letter 't'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/tree.png"
     },
     {
       "id": "letter-p",
       "word": "pelican",
-      "prompt": "A cute kawaii sticker illustration of a pelican, whose shape explicitly forms the letter P. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'p'. In the background, directly behind the letter, there is a friendly pelican with a round head and a long beak pointing right, with a straight vertical body, shaped like a lowercase p. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'p'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/pelican.png"
     },
     {
       "id": "letter-c",
       "word": "caterpillar",
-      "prompt": "A cute kawaii sticker illustration of a caterpillar, whose shape explicitly forms the letter C. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'c'. In the background, directly behind the letter, there is a fuzzy green caterpillar curved in a semi-circle shape like a lowercase c. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'c'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/caterpillar.png"
     },
     {
       "id": "letter-r",
       "word": "ribbon",
-      "prompt": "A cute kawaii sticker illustration of a ribbon, whose shape explicitly forms the letter R. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'r'. In the background, directly behind the letter, there is a shiny red ribbon curving up and arching to the right like a lowercase r. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'r'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/ribbon.png"
     },
     {
       "id": "letter-n",
       "word": "necklace",
-      "prompt": "A cute kawaii sticker illustration of a necklace, whose shape explicitly forms the letter N. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'n'. In the background, directly behind the letter, there is a pearl necklace dangling in a single arch like a lowercase n. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'n'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/necklace.png"
     },
     {
       "id": "letter-d",
       "word": "dinosaur",
-      "prompt": "A cute kawaii sticker illustration of a dinosaur, whose shape explicitly forms the letter D. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'd'. In the background, directly behind the letter, there is a cute long-necked dinosaur with a round body on the left and a tall vertical neck on the right, shaped like a lowercase d. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'd'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/dinosaur.png"
     },
     {
       "id": "letter-i",
       "word": "inchworm",
-      "prompt": "A cute kawaii sticker illustration of an inchworm, whose shape explicitly forms the letter I. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'i'. In the background, directly behind the letter, there is a tiny green inchworm standing straight with a single round leaf floating above it, shaped like a lowercase i. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'i'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/inchworm.png"
     },
     {
       "id": "letter-f",
       "word": "flamingo",
-      "prompt": "A cute kawaii sticker illustration of a flamingo, whose shape explicitly forms the letter F. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'f'. In the background, directly behind the letter, there is a graceful pink flamingo with a curved neck bending forward and a horizontal wing, shaped like a lowercase f. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'f'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/flamingo.png"
     },
     {
       "id": "letter-b",
       "word": "butterfly",
-      "prompt": "A cute kawaii sticker illustration of a butterfly, whose shape explicitly forms the letter B. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'b'. In the background, directly behind the letter, there is a cute butterfly with a straight vertical body on the left and rounded wings on the right, shaped like a lowercase b. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'b'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/butterfly.png"
     },
     {
       "id": "letter-h",
       "word": "horse",
-      "prompt": "A cute kawaii sticker illustration of a horse, whose shape explicitly forms the letter H. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'h'. In the background, directly behind the letter, there is a friendly horse standing with a straight front leg and a curved back arching down, shaped like a lowercase h. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'h'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/horse.png"
     },
     {
       "id": "letter-g",
       "word": "goose",
-      "prompt": "A cute kawaii sticker illustration of a goose, whose shape explicitly forms the letter G. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'g'. In the background, directly behind the letter, there is a white goose with a round head, curved neck, and a loop below forming the tail, shaped like a lowercase g. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'g'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/goose.png"
     },
     {
       "id": "letter-o",
       "word": "orange",
-      "prompt": "A cute kawaii sticker illustration of an orange, whose shape explicitly forms the letter O. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'o'. In the background, directly behind the letter, there is a round bright orange fruit forming a perfect circle like a lowercase o. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'o'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/orange.png"
     },
     {
       "id": "letter-l",
       "word": "lizard",
-      "prompt": "A cute kawaii sticker illustration of a lizard, whose shape explicitly forms the letter L. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'l'. In the background, directly behind the letter, there is a long green lizard standing straight vertically like a lowercase l. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'l'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/lizard.png"
     },
     {
       "id": "letter-k",
       "word": "kangaroo",
-      "prompt": "A cute kawaii sticker illustration of a kangaroo, whose shape explicitly forms the letter K. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'k'. In the background, directly behind the letter, there is a cute kangaroo with a straight vertical back and legs branching out, shaped like a lowercase k. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'k'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/kangaroo.png"
     },
     {
       "id": "letter-e",
       "word": "eel",
-      "prompt": "A cute kawaii sticker illustration of an eel, whose shape explicitly forms the letter E. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'e'. In the background, directly behind the letter, there is a slippery blue eel coiled in a loop with its head crossing over, shaped like a lowercase e. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'e'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/eel.png"
     },
     {
       "id": "letter-u",
       "word": "umbrella",
-      "prompt": "A cute kawaii sticker illustration of a cheerful open umbrella with a smiling face, whose shape explicitly forms the letter U. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'u'. In the background, directly behind the letter, there is a cup-like open umbrella forming the deep curve of a lowercase u. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'u'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/umbrella.png"
     },
     {
       "id": "letter-w",
       "word": "worm",
-      "prompt": "A cute kawaii sticker illustration of a worm, whose shape explicitly forms the letter W. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'w'. In the background, directly behind the letter, there is a long pink worm wiggling up and down to form the double-curves of a lowercase w. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'w'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/worm.png"
     },
     {
       "id": "letter-j",
       "word": "jellyfish",
-      "prompt": "A cute kawaii sticker illustration of a jellyfish, whose shape explicitly forms the letter J. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'j'. In the background, directly behind the letter, there is a colorful jellyfish with a curved hook-like body and tentacles, shaped like a lowercase j. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'j'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/jellyfish.png"
     },
     {
       "id": "letter-y",
       "word": "yak",
-      "prompt": "A cute kawaii sticker illustration of a cute fluffy yak, whose shape explicitly forms the letter Y. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'y'. In the background, directly behind the letter, there is a cute yak with a v-shaped head and a long tail extending down to the right, shaped like a lowercase y. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'y'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/yak.png"
     },
     {
       "id": "letter-v",
       "word": "valley",
-      "prompt": "A cute kawaii sticker illustration of a valley, whose shape explicitly forms the letter V. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'v'. In the background, directly behind the letter, there is a green mountain valley dipping down to a sharp point in the center like a lowercase v. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'v'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/valley.png"
     },
     {
       "id": "letter-z",
       "word": "zebra",
-      "prompt": "A cute kawaii sticker illustration of a zebra, whose shape explicitly forms the letter Z. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'z'. In the background, directly behind the letter, there is a striped zebra zigzagging to form the sharp corners of a lowercase z. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'z'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/zebra.png"
     },
     {
       "id": "letter-q",
       "word": "quail",
-      "prompt": "A cute kawaii sticker illustration of a quail, whose shape explicitly forms the letter Q. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'q'. In the background, directly behind the letter, there is a cute round quail with a small topknot feather on its head, standing on the left of a straight vertical line, shaped like a lowercase q. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'q'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/quail.png"
     },
     {
       "id": "letter-x",
       "word": "xylophone",
-      "prompt": "A cute kawaii sticker illustration of a xylophone, whose shape explicitly forms the letter X. One centered object only, soft pastel colors, rounded shapes, joyful friendly expression, plain clean background. Toddler reading app asset, high clarity, simple icon composition. No text anywhere, no words, no captions, no labels, no spelling, no watermark, no poster, no flashcard border.",
+      "prompt": "A cute kawaii toddler reading app sticker illustration. In the foreground, there is a large, bold, clean, solid black lowercase letter 'x'. In the background, directly behind the letter, there is two crossed wooden mallets forming the diagonal lines of a lowercase x. The background illustration's shape matches and flows along the exact curves of the foreground black letter 'x'. Soft pastel colors, rounded shapes, plain clean solid white background, toddler-friendly, simple icon composition, high clarity. No other text or words, no captions, no labels.",
       "image": "decks/sarah-levels/images/xylophone.png"
     }
   ]

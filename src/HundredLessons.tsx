@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import { playAudioUrl } from './audioClipPack';
-import type { HundredLesson } from './types';
 
 function Mascot({ mood = 'reading' }: { mood?: 'happy' | 'reading' | 'sad' | 'curious' }) {
   const src = `${import.meta.env.BASE_URL}assets/mascots/mascot-expressions.png`;
@@ -21,10 +19,6 @@ function ChunkyLogo({ compact = false }: { compact?: boolean }) {
       <strong>Reading</strong>
     </div>
   );
-}
-
-function PlayIcon() {
-  return <span className="play-icon" aria-hidden="true" />;
 }
 
 export function HundredLessonsHome({
@@ -72,12 +66,12 @@ export function HundredLessonsHome({
       </div>
       <div className="reader-choice-grid" aria-label="Choose a lesson action">
         <button type="button" className="reader-choice story-choice" onClick={handleStart}>
-          <span className="choice-sticker" aria-hidden="true">📖</span>
+          <span className="choice-sticker" aria-hidden="true">Book</span>
           <strong>Continue Lesson {nextLesson}</strong>
-          <small>Next Lesson</small>
+          <small>Reading path</small>
         </button>
         <button type="button" className="reader-choice word-choice" onClick={handleRestart}>
-          <span className="choice-sticker" aria-hidden="true">⏪</span>
+          <span className="choice-sticker" aria-hidden="true">Start</span>
           <strong>Start from {lessons[0]?.lessonNumber || 50}</strong>
           <small>First Lesson</small>
         </button>
