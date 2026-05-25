@@ -15,7 +15,7 @@
     "phonicsTeacher": "phonics-sounds-v2"
   },
   "outputFormat": "audio-24khz-48kbitrate-mono-mp3",
-  "createdAt": "2026-05-25T12:41:39.915Z",
+  "createdAt": "2026-05-25T12:59:58.792Z",
   "clips": [
     {
       "id": "letter-m:sound",
@@ -1540,6 +1540,156 @@
       "voiceVersion": "anne-soft-female-v2",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-hat-page-3.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/green-wood-hat-page-3.ssml"
+    },
+    {
+      "id": "story:peppa-hat:page:1",
+      "type": "story-page",
+      "text": "This is a hat.\nThis is a brown hat.\nGeorge gives a frown in that.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-hat-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-hat-page-1.ssml"
+    },
+    {
+      "id": "story:peppa-hat:page:2",
+      "type": "story-page",
+      "text": "This is a white hat.\nMummy Pig looks out of sight in that.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-hat-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-hat-page-2.ssml"
+    },
+    {
+      "id": "story:peppa-hat:page:3",
+      "type": "story-page",
+      "text": "This is a red hat.\nPeppa is glad in that.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-hat-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-hat-page-3.ssml"
+    },
+    {
+      "id": "story:peppa-ball:page:1",
+      "type": "story-page",
+      "text": "This is a ball.\nThis is a red ball.\nDaddy Pig is too tall for the ball.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-ball-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-ball-page-1.ssml"
+    },
+    {
+      "id": "story:peppa-ball:page:2",
+      "type": "story-page",
+      "text": "This is a blue ball.\nGeorge throws it over the wall.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-ball-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-ball-page-2.ssml"
+    },
+    {
+      "id": "story:peppa-ball:page:3",
+      "type": "story-page",
+      "text": "This is a green ball.\nPeppa loves it most of all.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-ball-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-ball-page-3.ssml"
+    },
+    {
+      "id": "story:peppa-boots:page:1",
+      "type": "story-page",
+      "text": "These are boots.\nThese are yellow boots.\nGeorge looks at the muddy roots.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-boots-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-boots-page-1.ssml"
+    },
+    {
+      "id": "story:peppa-boots:page:2",
+      "type": "story-page",
+      "text": "These are blue boots.\nMummy Pig takes the long routes.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-boots-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-boots-page-2.ssml"
+    },
+    {
+      "id": "story:peppa-boots:page:3",
+      "type": "story-page",
+      "text": "These are red boots.\nPeppa jumps and toots!",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-boots-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-boots-page-3.ssml"
+    },
+    {
+      "id": "story:peppa-coat:page:1",
+      "type": "story-page",
+      "text": "This is a coat.\nThis is a blue coat.\nGeorge puts it in the boat.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-coat-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-coat-page-1.ssml"
+    },
+    {
+      "id": "story:peppa-coat:page:2",
+      "type": "story-page",
+      "text": "This is a pink coat.\nDaddy Pig tries to make it float.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-coat-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-coat-page-2.ssml"
+    },
+    {
+      "id": "story:peppa-coat:page:3",
+      "type": "story-page",
+      "text": "This is a red coat.\nPeppa wears it with a note.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-coat-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-coat-page-3.ssml"
+    },
+    {
+      "id": "story:peppa-car:page:1",
+      "type": "story-page",
+      "text": "This is a car.\nThis is a slow car.\nGeorge does not go far.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-car-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-car-page-1.ssml"
+    },
+    {
+      "id": "story:peppa-car:page:2",
+      "type": "story-page",
+      "text": "This is a green car.\nDaddy Pig drives it to the star.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-car-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-car-page-2.ssml"
+    },
+    {
+      "id": "story:peppa-car:page:3",
+      "type": "story-page",
+      "text": "This is a red car.\nPeppa puts it in a jar.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-car-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-car-page-3.ssml"
     },
     {
       "id": "ui:story:complete",

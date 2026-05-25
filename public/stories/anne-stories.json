@@ -358,5 +358,185 @@
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-hat-page-3.mp3"
       }
     ]
+  },
+  {
+    "id": "peppa-hat",
+    "title": "Peppa's Hat",
+    "series": "Peppa Pig Stories",
+    "readingLevel": "early reader",
+    "description": "Peppa and her family try on hats.",
+    "pages": [
+      {
+        "pageNumber": 1,
+        "text": "This is a hat.\nThis is a brown hat.\nGeorge gives a frown in that.",
+        "image": "stories/anne/images/peppa-hat-page-1.webp",
+        "imagePrompt": "Original children's storybook illustration of a cute little pink pig boy frowning while wearing a brown hat. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "George frowns in a brown hat.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-hat-page-1.mp3"
+      },
+      {
+        "pageNumber": 2,
+        "text": "This is a white hat.\nMummy Pig looks out of sight in that.",
+        "image": "stories/anne/images/peppa-hat-page-2.webp",
+        "imagePrompt": "Original children's storybook illustration of a mummy pink pig wearing a huge white hat that covers her eyes. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "Mummy Pig wears a huge white hat.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-hat-page-2.mp3"
+      },
+      {
+        "pageNumber": 3,
+        "text": "This is a red hat.\nPeppa is glad in that.",
+        "image": "stories/anne/images/peppa-hat-page-3.webp",
+        "imagePrompt": "Original children's storybook illustration of a cute little pink pig girl smiling happily in a bright red hat. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "Peppa smiles happily in a red hat.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-hat-page-3.mp3"
+      }
+    ]
+  },
+  {
+    "id": "peppa-ball",
+    "title": "Peppa's Ball",
+    "series": "Peppa Pig Stories",
+    "readingLevel": "early reader",
+    "description": "Peppa and her family play with bouncy balls.",
+    "pages": [
+      {
+        "pageNumber": 1,
+        "text": "This is a ball.\nThis is a red ball.\nDaddy Pig is too tall for the ball.",
+        "image": "stories/anne/images/peppa-ball-page-1.webp",
+        "imagePrompt": "Original children's storybook illustration of a big daddy pink pig standing next to a very small red ball. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "Daddy Pig looks at a small red ball.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-ball-page-1.mp3"
+      },
+      {
+        "pageNumber": 2,
+        "text": "This is a blue ball.\nGeorge throws it over the wall.",
+        "image": "stories/anne/images/peppa-ball-page-2.webp",
+        "imagePrompt": "Original children's storybook illustration of a cute little pink pig boy throwing a blue ball over a low brick wall. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "George throws a blue ball over a wall.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-ball-page-2.mp3"
+      },
+      {
+        "pageNumber": 3,
+        "text": "This is a green ball.\nPeppa loves it most of all.",
+        "image": "stories/anne/images/peppa-ball-page-3.webp",
+        "imagePrompt": "Original children's storybook illustration of a cute little pink pig girl hugging a bouncy green ball. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "Peppa hugs a green ball.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-ball-page-3.mp3"
+      }
+    ]
+  },
+  {
+    "id": "peppa-boots",
+    "title": "Peppa's Boots",
+    "series": "Peppa Pig Stories",
+    "readingLevel": "early reader",
+    "description": "Peppa and her family wear boots.",
+    "pages": [
+      {
+        "pageNumber": 1,
+        "text": "These are boots.\nThese are yellow boots.\nGeorge looks at the muddy roots.",
+        "image": "stories/anne/images/peppa-boots-page-1.webp",
+        "imagePrompt": "Original children's storybook illustration of a cute little pink pig boy in yellow boots looking at muddy tree roots. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "George in yellow boots looking at muddy roots.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-boots-page-1.mp3"
+      },
+      {
+        "pageNumber": 2,
+        "text": "These are blue boots.\nMummy Pig takes the long routes.",
+        "image": "stories/anne/images/peppa-boots-page-2.webp",
+        "imagePrompt": "Original children's storybook illustration of a mummy pink pig in blue boots walking on a long winding path. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "Mummy Pig walking in blue boots on a long route.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-boots-page-2.mp3"
+      },
+      {
+        "pageNumber": 3,
+        "text": "These are red boots.\nPeppa jumps and toots!",
+        "image": "stories/anne/images/peppa-boots-page-3.webp",
+        "imagePrompt": "Original children's storybook illustration of a cute little pink pig girl in red boots jumping in a muddy puddle with a happy toot. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "Peppa jumps happily in red boots.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-boots-page-3.mp3"
+      }
+    ]
+  },
+  {
+    "id": "peppa-coat",
+    "title": "Peppa's Coat",
+    "series": "Peppa Pig Stories",
+    "readingLevel": "early reader",
+    "description": "Peppa and her family try on coats.",
+    "pages": [
+      {
+        "pageNumber": 1,
+        "text": "This is a coat.\nThis is a blue coat.\nGeorge puts it in the boat.",
+        "image": "stories/anne/images/peppa-coat-page-1.webp",
+        "imagePrompt": "Original children's storybook illustration of a cute little pink pig boy putting a blue coat into a small toy boat. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "George puts a blue coat in a toy boat.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-coat-page-1.mp3"
+      },
+      {
+        "pageNumber": 2,
+        "text": "This is a pink coat.\nDaddy Pig tries to make it float.",
+        "image": "stories/anne/images/peppa-coat-page-2.webp",
+        "imagePrompt": "Original children's storybook illustration of a big daddy pink pig trying to float a pink coat on a pond. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "Daddy Pig tries to make a pink coat float.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-coat-page-2.mp3"
+      },
+      {
+        "pageNumber": 3,
+        "text": "This is a red coat.\nPeppa wears it with a note.",
+        "image": "stories/anne/images/peppa-coat-page-3.webp",
+        "imagePrompt": "Original children's storybook illustration of a cute little pink pig girl wearing a bright red coat and holding a paper note. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "Peppa wears a red coat and holds a note.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-coat-page-3.mp3"
+      }
+    ]
+  },
+  {
+    "id": "peppa-car",
+    "title": "Peppa's Car",
+    "series": "Peppa Pig Stories",
+    "readingLevel": "early reader",
+    "description": "Peppa and her family play with cars.",
+    "pages": [
+      {
+        "pageNumber": 1,
+        "text": "This is a car.\nThis is a slow car.\nGeorge does not go far.",
+        "image": "stories/anne/images/peppa-car-page-1.webp",
+        "imagePrompt": "Original children's storybook illustration of a cute little pink pig boy sitting in a slow toy car, looking bored. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "George in a slow car.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-car-page-1.mp3"
+      },
+      {
+        "pageNumber": 2,
+        "text": "This is a green car.\nDaddy Pig drives it to the star.",
+        "image": "stories/anne/images/peppa-car-page-2.webp",
+        "imagePrompt": "Original children's storybook illustration of a big daddy pink pig driving a green car looking up at a star in the sky. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "Daddy Pig drives a green car looking at a star.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-car-page-2.mp3"
+      },
+      {
+        "pageNumber": 3,
+        "text": "This is a red car.\nPeppa puts it in a jar.",
+        "image": "stories/anne/images/peppa-car-page-3.webp",
+        "imagePrompt": "Original children's storybook illustration of a cute little pink pig girl putting a small red toy car into a clear glass jar. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark.",
+        "negativePrompt": "Peppa Pig, text, letters, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern clothing, cars, phones, television, imitation of any film adaptation, imitation of any cartoon adaptation, Disney, Pixar, Ghibli, Bluey",
+        "altText": "Peppa puts a red car in a jar.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-car-page-3.mp3"
+      }
+    ]
   }
 ]
