@@ -129,12 +129,12 @@ function App() {
         const initialMode = params.get('mode') as LearningMode | null
         const wantsStories = params.get('stories') === 'true'
         const profileDeck =
-          initialProfile && ['anna', 'sarah', 'library'].includes(initialProfile)
+          initialProfile && ['anna', 'sarah', 'library', '100-lessons'].includes(initialProfile)
             ? nextDecks.find((deck) => deck.profile === initialProfile) ?? nextDecks[0]
             : nextDecks[0]
         setDecks(nextDecks)
         setStories(nextStories)
-        setProfile(initialProfile && ['anna', 'sarah', 'library'].includes(initialProfile) ? initialProfile : null)
+        setProfile(initialProfile && ['anna', 'sarah', 'library', '100-lessons'].includes(initialProfile) ? initialProfile : null)
         setGrowingView(initialProfile === 'anna' ? (wantsStories ? 'stories' : 'home') : 'home')
         setActiveDeckId(profileDeck?.id ?? '')
         if (initialMode && ['listeningMode', 'activeRecall', 'readerMode'].includes(initialMode)) {
@@ -349,7 +349,16 @@ function App() {
         />
       ) : profile === '100-lessons' ? (
         hundredLessonId ? (
-          <HundredLessonScreen lessonId={hundredLessonId} onDone={() => setHundredLessonId('')} />
+          <HundredLessonScreen
+            lessonId={hundredLessonId}
+            onDone={() => setHundredLessonId('')}
+            onHome={() => {
+              setHundredLessonId('')
+              setProfile(null)
+              setGrowingView('home')
+              setMenuOpen(false)
+            }}
+          />
         ) : (
           <HundredLessonsHome onChooseLesson={setHundredLessonId} />
         )
@@ -2457,6 +2466,7 @@ function stableSort(value: string): number {
 function StickerBook({ onClose }: { onClose: () => void }) {
   const [annaLessons] = useState(() => parseInt(localStorage.getItem('completed-lessons-anna') || '0', 10))
   const [sarahLessons] = useState(() => parseInt(localStorage.getItem('completed-lessons-sarah') || '0', 10))
+  const [hundredLessons] = useState(() => parseInt(localStorage.getItem('completed-lessons-100') || '0', 10))
 
   function renderStickers(lessons: number, isAnna: boolean) {
     const stickers = []
@@ -2464,6 +2474,16 @@ function StickerBook({ onClose }: { onClose: () => void }) {
     for (let i = 0; i < totalSlots; i++) {
       const emojis = isAnna ? ['🌟', '📚', '🚀', '🌈'] : ['🐼', '🍎', '🎈', '⭐']
       stickers.push(i < lessons ? emojis[i % emojis.length] : '')
+    }
+    return stickers
+  }
+
+  function renderHundredLessonStickers(lessons: number) {
+    const stickers = []
+    const trophyStickers = ['\u{1F3C6}', '\u{1F396}\uFE0F', '\u{1F4D8}', '\u2B50']
+    const totalSlots = Math.max(6, lessons + (3 - (lessons % 3 || 3)))
+    for (let i = 0; i < totalSlots; i++) {
+      stickers.push(i < lessons ? trophyStickers[i % trophyStickers.length] : '')
     }
     return stickers
   }
@@ -2486,8 +2506,17 @@ function StickerBook({ onClose }: { onClose: () => void }) {
         </div>
 
         <h3 style={{marginTop: 0, color: 'var(--brand-dark)'}}>Earliest Reader ({sarahLessons})</h3>
-        <div className="sticker-grid">
+        <div className="sticker-grid" style={{marginBottom: '2rem'}}>
           {renderStickers(sarahLessons, false).map((s, i) => (
+            <div key={i} className={`sticker-slot ${s ? 'earned pulse' : ''}`}>
+              {s}
+            </div>
+          ))}
+        </div>
+
+        <h3 style={{marginTop: 0, color: 'var(--brand-dark)'}}>100 Lessons ({hundredLessons})</h3>
+        <div className="sticker-grid">
+          {renderHundredLessonStickers(hundredLessons).map((s, i) => (
             <div key={i} className={`sticker-slot ${s ? 'earned pulse' : ''}`}>
               {s}
             </div>

@@ -28,6 +28,7 @@ export function HundredLessonsHome({
 }) {
   const [lessons, setLessons] = useState<{ id: string, lessonNumber: number }[]>([]);
   const [nextLesson, setNextLesson] = useState<number>(50);
+  const [chooserOpen, setChooserOpen] = useState(false);
 
   useEffect(() => {
     fetch(`${import.meta.env.BASE_URL}100-lessons/index.json`)
@@ -54,13 +55,22 @@ export function HundredLessonsHome({
     if (lesson) onChooseLesson(lesson.id);
   };
 
+  const handleChooseLesson = (lessonId: string) => {
+    if (lessonId) onChooseLesson(lessonId);
+  };
+
   return (
     <section className="growing-reader-home">
-      <div className="reader-hero">
+      <div className="reader-hero hundred-lessons-hero">
+        <img
+          className="hundred-journey-map"
+          src={`${import.meta.env.BASE_URL}assets/100-lessons/reading-well-journey.png`}
+          alt=""
+        />
         <div>
           <ChunkyLogo compact />
           <h1>100 Lessons</h1>
-          <p>Teach Your Child to Read in 100 Easy Lessons</p>
+          <p>I'm on a journey to the reading well.</p>
         </div>
         <Mascot mood="reading" />
       </div>
@@ -75,7 +85,29 @@ export function HundredLessonsHome({
           <strong>Start from {lessons[0]?.lessonNumber || 50}</strong>
           <small>First Lesson</small>
         </button>
+        <button type="button" className="reader-choice choose-lesson-choice" onClick={() => setChooserOpen((open) => !open)}>
+          <span className="choice-sticker" aria-hidden="true">Map</span>
+          <strong>Choose Lesson</strong>
+          <small>{lessons.length} lessons ready</small>
+        </button>
       </div>
+      {chooserOpen && (
+        <div className="hundred-lesson-chooser">
+          <label htmlFor="hundred-lesson-select">Pick a lesson</label>
+          <select
+            id="hundred-lesson-select"
+            defaultValue=""
+            onChange={(event) => handleChooseLesson(event.currentTarget.value)}
+          >
+            <option value="" disabled>Choose one</option>
+            {lessons.map((lesson) => (
+              <option key={lesson.id} value={lesson.id}>
+                Lesson {lesson.lessonNumber}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
     </section>
   );
 }

@@ -3,6 +3,7 @@ import { playAudioUrl } from './audioClipPack';
 import type { HundredLesson, HundredLessonChunk } from './types';
 
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious';
+type JourneyStepHandler = () => void;
 
 type LessonActivity =
   | { kind: 'collection-check'; sounds: string[] }
@@ -15,6 +16,10 @@ function lessonAsset(path?: string) {
   if (!path) return undefined;
   if (/^(https?:|data:|blob:)/u.test(path)) return path;
   return `${import.meta.env.BASE_URL}100-lessons/${path}`.replace(/([^:]\/)\/+/gu, '$1');
+}
+
+function hundredAsset(path: string) {
+  return `${import.meta.env.BASE_URL}assets/100-lessons/${path}`.replace(/([^:]\/)\/+/gu, '$1');
 }
 
 function playLessonAudio(path?: string) {
@@ -48,14 +53,65 @@ function buildLessonActivities(chunks: HundredLessonChunk[]): LessonActivity[] {
   return activities;
 }
 
-function CollectionCheck({ sounds, onComplete }: { sounds: string[]; onComplete: () => void }) {
+function countStoryWords(items: string[]) {
+  return items.reduce((sum, sentence) => sum + wordsFromSentence(sentence).filter((word) => /[A-Za-z']/u.test(word)).length, 0);
+}
+
+function countJourneySteps(chunks: HundredLessonChunk[]) {
+  const soundChunk = chunks.find((chunk) => chunk.type === 'sound-discovery' || chunk.type === 'sounds-words');
+  return Math.max(
+    1,
+    1 + chunks.reduce((sum, chunk) => {
+      if (chunk.type === 'story-gauntlet' || chunk.type === 'story') return sum + countStoryWords(chunk.items) + (chunk.items.length * 2) + 1;
+      return sum + chunk.items.length;
+    }, 0) + (soundChunk?.items.length ?? 0)
+  );
+}
+
+function JourneyTracker({ step, totalSteps }: { step: number; totalSteps: number }) {
+  const safeTotal = Math.max(1, totalSteps);
+  const progress = Math.min(1, Math.max(0, step / safeTotal));
+  const frame = (step % 3) + 1;
+
   return (
-    <div className="distar-activity path-intro">
-      <Mascot mood="reading" />
+    <aside className="journey-tracker" aria-label={`Reading well journey step ${step} of ${safeTotal}`}>
+      <div className="journey-tracker-copy">
+        <strong>Reading Well</strong>
+        <span>{step} {step === 1 ? 'step' : 'steps'}</span>
+      </div>
+      <div className="journey-mini-path" aria-hidden="true">
+        <span className="journey-path-line" />
+        <img
+          src={hundredAsset(`panda-walk-${frame}.png`)}
+          alt=""
+          className="journey-walker"
+          style={{ left: `${progress * 82}%` }}
+        />
+        <span className="journey-well-marker">Well</span>
+      </div>
+    </aside>
+  );
+}
+
+function CollectionCheck({ sounds, onComplete, onJourneyStep }: { sounds: string[]; onComplete: () => void; onJourneyStep: JourneyStepHandler }) {
+  const startPath = () => {
+    onJourneyStep();
+    onComplete();
+  };
+
+  return (
+    <div className="distar-activity path-intro journey-intro">
+      <div className="journey-intro-art">
+        <img src={hundredAsset('reading-well-journey.png')} alt="" />
+      </div>
+      <div className="journey-intro-panda">
+        <Mascot mood="reading" />
+        <p>I'm on a journey to the reading well.</p>
+      </div>
       <div className="activity-copy">
-        <span className="activity-kicker">Sound collection</span>
-        <h1>Warm up the path.</h1>
-        <p>Touch the glowing trail. Then we will wake up each sound.</p>
+        <span className="activity-kicker">Reading journey</span>
+        <h1>Walk the reading path.</h1>
+        <p>Each sound, word, and sentence helps Chunky take one step.</p>
       </div>
       <div className="sound-badge-row" aria-label="Sounds in this lesson">
         {sounds.map((sound) => (
@@ -64,7 +120,7 @@ function CollectionCheck({ sounds, onComplete }: { sounds: string[]; onComplete:
           </span>
         ))}
       </div>
-      <button type="button" className="path-start-button" onClick={onComplete}>
+      <button type="button" className="path-start-button" onClick={startPath}>
         Start the reading path
       </button>
     </div>
@@ -75,17 +131,21 @@ function SoundDiscoveryNode({
   items,
   audioPaths,
   onComplete,
+  onJourneyStep,
 }: {
   items: string[];
   audioPaths?: string[];
   onComplete: () => void;
+  onJourneyStep: JourneyStepHandler;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [discovered, setDiscovered] = useState<boolean[]>(() => new Array(items.length).fill(false));
 
   const discover = (index: number) => {
     if (index !== currentIndex) return;
+    if (discovered[index]) return;
     playLessonAudio(audioPaths?.[index]);
+    onJourneyStep();
     setDiscovered((previous) => previous.map((done, itemIndex) => done || itemIndex === index));
     if (index < items.length - 1) {
       window.setTimeout(() => setCurrentIndex(index + 1), 350);
@@ -124,10 +184,12 @@ function BlendingBridge({
   items,
   audioPaths,
   onComplete,
+  onJourneyStep,
 }: {
   items: string[];
   audioPaths?: string[];
   onComplete: () => void;
+  onJourneyStep: JourneyStepHandler;
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTracing, setIsTracing] = useState(false);
@@ -136,6 +198,7 @@ function BlendingBridge({
     if (index > activeIndex) return;
     playLessonAudio(audioPaths?.[index]);
     if (index === activeIndex) {
+      onJourneyStep();
       if (index < items.length - 1) {
         setActiveIndex(index + 1);
       } else {
@@ -184,10 +247,12 @@ function RhymePuzzle({
   items,
   audioPaths,
   onComplete,
+  onJourneyStep,
 }: {
   items: string[];
   audioPaths?: string[];
   onComplete: () => void;
+  onJourneyStep: JourneyStepHandler;
 }) {
   const [solved, setSolved] = useState<string[]>([]);
   const baseRime = items[0] ? getRime(items[0]) : '';
@@ -205,6 +270,7 @@ function RhymePuzzle({
     if (!word.endsWith(baseRime)) return;
     setSolved((previous) => {
       if (previous.includes(word)) return previous;
+      onJourneyStep();
       return [...previous, word];
     });
   };
@@ -248,12 +314,14 @@ function StoryGauntlet({
   wordAudioPaths,
   imagePath,
   onComplete,
+  onJourneyStep,
 }: {
   items: string[];
   audioPaths?: string[];
   wordAudioPaths?: string[][];
   imagePath?: string;
   onComplete: () => void;
+  onJourneyStep: JourneyStepHandler;
 }) {
   const [pass, setPass] = useState<1 | 2 | 3>(1);
   const [currentSentence, setCurrentSentence] = useState(0);
@@ -263,6 +331,7 @@ function StoryGauntlet({
   const allWordsTouched = wordIndex >= wordCount;
 
   const goToNextSentence = () => {
+    if (pass > 1) onJourneyStep();
     if (currentSentence < items.length - 1) {
       setCurrentSentence((previous) => previous + 1);
       setWordIndex(0);
@@ -280,6 +349,7 @@ function StoryGauntlet({
   const touchWord = (visibleWordIndex: number) => {
     if (visibleWordIndex !== wordIndex) return;
     playLessonAudio(wordAudioPaths?.[currentSentence]?.[visibleWordIndex]);
+    onJourneyStep();
     setWordIndex((previous) => previous + 1);
   };
 
@@ -359,7 +429,12 @@ function StoryGauntlet({
   );
 }
 
-function PictureReveal({ chunk, onComplete }: { chunk: HundredLessonChunk; onComplete: () => void }) {
+function PictureReveal({ chunk, onComplete, onJourneyStep }: { chunk: HundredLessonChunk; onComplete: () => void; onJourneyStep: JourneyStepHandler }) {
+  const completeReveal = () => {
+    onJourneyStep();
+    onComplete();
+  };
+
   return (
     <div className="distar-activity picture-reveal">
       <span className="activity-kicker">Picture unlocked</span>
@@ -369,7 +444,7 @@ function PictureReveal({ chunk, onComplete }: { chunk: HundredLessonChunk; onCom
       ) : (
         <div className="story-preview-fallback">Picture unlocked</div>
       )}
-      <button type="button" className="path-start-button" onClick={onComplete}>
+      <button type="button" className="path-start-button" onClick={completeReveal}>
         Talk about it
       </button>
     </div>
@@ -380,16 +455,22 @@ function SoundWritingSandbox({
   sounds,
   audioPaths,
   onComplete,
+  onJourneyStep,
 }: {
   sounds: string[];
   audioPaths?: string[];
   onComplete: () => void;
+  onJourneyStep: JourneyStepHandler;
 }) {
   const [painted, setPainted] = useState<string[]>([]);
 
   const traceSound = (sound: string, index: number) => {
     playLessonAudio(audioPaths?.[index]);
-    setPainted((previous) => (previous.includes(sound) ? previous : [...previous, sound]));
+    setPainted((previous) => {
+      if (previous.includes(sound)) return previous;
+      onJourneyStep();
+      return [...previous, sound];
+    });
   };
 
   return (
@@ -440,13 +521,32 @@ function LessonComplete({ lessonNumber, sounds, onDone }: { lessonNumber: number
   );
 }
 
-export function InteractiveHundredLessonScreen({ lessonId, onDone }: { lessonId: string; onDone: () => void }) {
+function incrementHundredLessonStickers() {
+  try {
+    const current = Number.parseInt(window.localStorage.getItem('completed-lessons-100') || '0', 10);
+    window.localStorage.setItem('completed-lessons-100', String((Number.isFinite(current) ? current : 0) + 1));
+  } catch {
+    // Stickers are a reward layer; lessons must still finish if storage is unavailable.
+  }
+}
+
+export function InteractiveHundredLessonScreen({
+  lessonId,
+  onDone,
+  onHome,
+}: {
+  lessonId: string;
+  onDone: () => void;
+  onHome: () => void;
+}) {
   const [lesson, setLesson] = useState<HundredLesson | null>(null);
   const [activityIndex, setActivityIndex] = useState(0);
+  const [journeyStep, setJourneyStep] = useState(0);
 
   useEffect(() => {
     setLesson(null);
     setActivityIndex(0);
+    setJourneyStep(0);
     fetch(`${import.meta.env.BASE_URL}100-lessons/${lessonId}.json`)
       .then((response) => {
         if (!response.ok) throw new Error(`Could not load ${lessonId}.json`);
@@ -457,6 +557,7 @@ export function InteractiveHundredLessonScreen({ lessonId, onDone }: { lessonId:
   }, [lessonId]);
 
   const activities = useMemo(() => buildLessonActivities(lesson?.chunks ?? []), [lesson]);
+  const journeyTotalSteps = useMemo(() => countJourneySteps(lesson?.chunks ?? []), [lesson]);
   const activity = activities[activityIndex];
   const sounds = activities.find((item): item is { kind: 'collection-check'; sounds: string[] } => item.kind === 'collection-check')?.sounds ?? [];
 
@@ -481,30 +582,32 @@ export function InteractiveHundredLessonScreen({ lessonId, onDone }: { lessonId:
   }
 
   const completeActivity = () => setActivityIndex((previous) => Math.min(previous + 1, activities.length - 1));
+  const advanceJourney = () => setJourneyStep((step) => Math.min(step + 1, journeyTotalSteps));
   const finishLesson = () => {
     localStorage.setItem('100-lessons-progress', String(lesson.lessonNumber + 1));
+    incrementHundredLessonStickers();
     onDone();
   };
 
   const renderActivity = () => {
     switch (activity.kind) {
       case 'collection-check':
-        return <CollectionCheck sounds={activity.sounds} onComplete={completeActivity} />;
+        return <CollectionCheck sounds={activity.sounds} onComplete={completeActivity} onJourneyStep={advanceJourney} />;
       case 'picture-reveal':
-        return <PictureReveal chunk={activity.chunk} onComplete={completeActivity} />;
+        return <PictureReveal chunk={activity.chunk} onComplete={completeActivity} onJourneyStep={advanceJourney} />;
       case 'sound-writing':
-        return <SoundWritingSandbox sounds={activity.sounds} audioPaths={activity.audioPaths} onComplete={completeActivity} />;
+        return <SoundWritingSandbox sounds={activity.sounds} audioPaths={activity.audioPaths} onComplete={completeActivity} onJourneyStep={advanceJourney} />;
       case 'complete':
         return <LessonComplete lessonNumber={lesson.lessonNumber} sounds={activity.sounds} onDone={finishLesson} />;
       case 'chunk':
         switch (activity.chunk.type) {
           case 'sound-discovery':
           case 'sounds-words':
-            return <SoundDiscoveryNode items={activity.chunk.items} audioPaths={activity.chunk.audioPaths} onComplete={completeActivity} />;
+            return <SoundDiscoveryNode items={activity.chunk.items} audioPaths={activity.chunk.audioPaths} onComplete={completeActivity} onJourneyStep={advanceJourney} />;
           case 'blending-bridge':
-            return <BlendingBridge items={activity.chunk.items} audioPaths={activity.chunk.audioPaths} onComplete={completeActivity} />;
+            return <BlendingBridge items={activity.chunk.items} audioPaths={activity.chunk.audioPaths} onComplete={completeActivity} onJourneyStep={advanceJourney} />;
           case 'rhyme-puzzle':
-            return <RhymePuzzle items={activity.chunk.items} audioPaths={activity.chunk.audioPaths} onComplete={completeActivity} />;
+            return <RhymePuzzle items={activity.chunk.items} audioPaths={activity.chunk.audioPaths} onComplete={completeActivity} onJourneyStep={advanceJourney} />;
           case 'story-gauntlet':
           case 'story':
             return (
@@ -514,6 +617,7 @@ export function InteractiveHundredLessonScreen({ lessonId, onDone }: { lessonId:
                 wordAudioPaths={activity.chunk.wordAudioPaths}
                 imagePath={activity.chunk.imagePath}
                 onComplete={completeActivity}
+                onJourneyStep={advanceJourney}
               />
             );
           default:
@@ -528,6 +632,9 @@ export function InteractiveHundredLessonScreen({ lessonId, onDone }: { lessonId:
         <button type="button" className="mini-button" onClick={onDone}>
           Back
         </button>
+        <button type="button" className="mini-button home-mini-button" onClick={onHome}>
+          Home
+        </button>
         <div className="distar-title">
           <span>100 Lessons</span>
           <strong>Lesson {lesson.lessonNumber}</strong>
@@ -541,7 +648,10 @@ export function InteractiveHundredLessonScreen({ lessonId, onDone }: { lessonId:
       <div className="distar-progress" aria-label={`Activity ${activityIndex + 1} of ${activities.length}`}>
         <span style={{ width: `${((activityIndex + 1) / activities.length) * 100}%` }} />
       </div>
-      <main className="distar-canvas">{renderActivity()}</main>
+      <main className="distar-canvas">
+        {renderActivity()}
+        <JourneyTracker step={journeyStep} totalSteps={journeyTotalSteps} />
+      </main>
     </section>
   );
 }

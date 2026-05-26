@@ -541,6 +541,53 @@ small {
   font-weight: 900;
 }
 
+.hundred-lessons-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hundred-journey-map {
+  width: clamp(7rem, 20vw, 12rem);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 6px solid rgba(255, 255, 255, 0.9);
+  border-radius: 22px;
+  box-shadow: 0 16px 34px rgba(89, 66, 117, 0.16);
+}
+
+.choose-lesson-choice {
+  background: linear-gradient(160deg, #fff8cf, #e7f8ff);
+}
+
+.hundred-lesson-chooser {
+  width: min(100%, 34rem);
+  margin: 0 auto;
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.9rem;
+  border: 2px solid rgba(112, 99, 172, 0.14);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 16px 34px rgba(76, 61, 115, 0.11);
+}
+
+.hundred-lesson-chooser label {
+  color: var(--purple);
+  font-weight: 950;
+}
+
+.hundred-lesson-chooser select {
+  min-height: 52px;
+  width: 100%;
+  border: 2px solid rgba(112, 99, 172, 0.18);
+  border-radius: 16px;
+  padding: 0 0.8rem;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 900;
+}
+
 .word-choice {
   background: linear-gradient(135deg, #ffe4ef, #fff9d8);
 }
@@ -3626,7 +3673,7 @@ body.lesson-active {
 
 .distar-header {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
   align-items: center;
   gap: var(--space-sm);
   width: min(100%, 980px);
@@ -3665,6 +3712,11 @@ body.lesson-active {
   color: var(--purple);
   font-weight: 900;
   box-shadow: 0 8px 20px rgba(94, 73, 153, 0.12);
+}
+
+.home-mini-button {
+  background: #fff5bf;
+  color: #6f5314;
 }
 
 .sound-collection-mini {
@@ -3709,6 +3761,10 @@ body.lesson-active {
   min-height: 0;
   width: min(100%, 980px);
   margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1.8vw, 0.8rem);
   overflow-y: auto;
   padding: clamp(0.4rem, 2vw, 1rem) 0 max(1rem, env(safe-area-inset-bottom));
 }
@@ -3722,6 +3778,128 @@ body.lesson-active {
   justify-content: center;
   gap: clamp(0.75rem, 2.5vw, 1.25rem);
   text-align: center;
+}
+
+.distar-canvas > .distar-activity {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.journey-intro {
+  justify-content: start;
+}
+
+.journey-intro-art {
+  width: min(100%, 34rem);
+  max-height: min(28vh, 15rem);
+  overflow: hidden;
+  border: 8px solid rgba(255, 255, 255, 0.92);
+  border-radius: 26px;
+  box-shadow: 0 18px 38px rgba(76, 61, 115, 0.14);
+}
+
+.journey-intro-art img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.journey-intro-panda {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 26px rgba(76, 61, 115, 0.1);
+}
+
+.journey-intro-panda .mascot-sprite {
+  width: clamp(3.2rem, 9vw, 4.8rem);
+}
+
+.journey-intro-panda p {
+  color: var(--ink);
+}
+
+.journey-tracker {
+  width: min(100%, 21rem);
+  align-self: flex-start;
+  display: grid;
+  gap: 0.35rem;
+  margin-top: auto;
+  padding: 0.55rem 0.65rem 0.65rem;
+  border: 2px solid rgba(112, 99, 172, 0.12);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 28px rgba(64, 56, 99, 0.12);
+}
+
+.journey-tracker-copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 950;
+}
+
+.journey-tracker-copy span {
+  color: var(--muted);
+}
+
+.journey-mini-path {
+  position: relative;
+  min-height: 3.2rem;
+  overflow: hidden;
+}
+
+.journey-path-line {
+  position: absolute;
+  left: 1.6rem;
+  right: 3.4rem;
+  top: 55%;
+  border-top: 5px dotted rgba(255, 151, 92, 0.48);
+}
+
+.journey-walker {
+  position: absolute;
+  z-index: 1;
+  top: 0.1rem;
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
+  transform: translateX(0);
+  transition: left 260ms ease;
+  animation: journey-bob 620ms ease-in-out infinite alternate;
+}
+
+.journey-well-marker {
+  position: absolute;
+  right: 0;
+  top: 0.65rem;
+  display: grid;
+  width: 3.1rem;
+  height: 2.2rem;
+  place-items: center;
+  border-radius: 999px;
+  background: #fff5bf;
+  color: #6f5314;
+  font-size: 0.72rem;
+  font-weight: 950;
+  box-shadow: inset 0 -3px 0 rgba(255, 190, 72, 0.22);
+}
+
+@keyframes journey-bob {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-4px);
+  }
 }
 
 .distar-activity .mascot-sprite {
@@ -4027,7 +4205,7 @@ body.lesson-active {
 
 @media (max-width: 720px) {
   .distar-header {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto auto 1fr;
   }
 
   .sound-collection-mini {
@@ -4042,5 +4220,43 @@ body.lesson-active {
   .story-preview-image,
   .story-preview-fallback {
     max-height: 24vh;
+  }
+
+  .hundred-lessons-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hundred-journey-map {
+    width: min(100%, 16rem);
+  }
+
+  .journey-intro-art {
+    max-height: 18vh;
+  }
+
+  .journey-tracker {
+    width: min(100%, 17rem);
+    padding: 0.45rem 0.55rem 0.55rem;
+  }
+
+  .journey-mini-path {
+    min-height: 2.75rem;
+  }
+
+  .journey-walker {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .journey-well-marker {
+    width: 2.75rem;
+    font-size: 0.66rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-walker {
+    animation: none;
+    transition: none;
   }
 }

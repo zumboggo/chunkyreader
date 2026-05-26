@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-reader-v7'
+const CACHE_VERSION = 'chunky-reader-v8'
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`
 
@@ -7,6 +7,10 @@ const CORE_ASSETS = [
   'manifest.webmanifest',
   'assets/mascots/mascot-reading.png',
   'assets/mascots/mascot-expressions.png',
+  'assets/100-lessons/reading-well-journey.png',
+  'assets/100-lessons/panda-walk-1.png',
+  'assets/100-lessons/panda-walk-2.png',
+  'assets/100-lessons/panda-walk-3.png',
   'assets/profiles/anna-red-shirt.png',
   'assets/profiles/sarah-reading.png',
   'decks/index.json',
