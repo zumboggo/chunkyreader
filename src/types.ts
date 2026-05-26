@@ -21,6 +21,33 @@ export interface HundredLesson {
   chunks: HundredLessonChunk[]
 }
 
+export interface LetterIllustrationCard {
+  id: string
+  letter: string
+  lowercase?: string
+  keyword: string
+  phrase?: string
+  imagePrompt: string
+  negativePrompt?: string
+  backgroundImage: string
+  finalCompositeImage?: string
+  altText?: string
+  overlay?: {
+    enabled: boolean
+    text: string
+    secondaryText?: string
+    fontFamily?: string
+    fontWeight?: number | string
+    color?: string
+    opacity?: number
+    position?: 'center' | 'left' | 'right'
+    x?: number
+    y?: number
+    fontSizeRatio?: number
+    secondaryFontSizeRatio?: number
+  }
+}
+
 export interface DeckIndexEntry {
   id: string
   title: string

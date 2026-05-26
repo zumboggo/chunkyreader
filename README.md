@@ -231,6 +231,30 @@ node scripts/generate-story-images.mjs --dry-run
 
 Generated files are saved to `public/stories/anne/images/`. Existing images are skipped unless `--force` is passed.
 
+## Sarah Letter Shape Cards
+
+Sarah's mnemonic alphabet-card data lives in `public/decks/sarah-letter-images.json`. Each card keeps the AI-generated background separate from the teaching letter:
+
+- backgrounds: `public/decks/sarah-letter-images/backgrounds/`
+- final composited cards: `public/decks/sarah-letter-images/final/`
+
+Generate background illustrations with Replicate / Ideogram 3 Balanced:
+
+```bash
+npm run generate:letter-backgrounds:dry
+npm run generate:letter-backgrounds:test
+npm run generate:letter-backgrounds
+```
+
+Then overlay the large black teaching letters in code:
+
+```bash
+npm run composite:letter-cards
+npm run verify:letter-images -- --require-files
+```
+
+The background prompt should never ask the image model to render the instructional letter. Add new cards by copying an existing entry in `public/decks/sarah-letter-images.json`, changing `letter`, `keyword`, paths, prompt, alt text, and `overlay.text`.
+
 ## Adding Another Deck
 
 Add an entry to `public/decks/index.json`.
@@ -271,6 +295,7 @@ For an existing Chunky Chinese-style pack:
 npm install
 npm run verify:decks
 npm run verify:stories
+npm run verify:letter-images
 npm run generate:story-images:dry
 npm run generate:audio
 npm run build
