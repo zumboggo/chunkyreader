@@ -40,7 +40,7 @@ export interface LetterIllustrationCard {
     fontWeight?: number | string
     color?: string
     opacity?: number
-    position?: 'center' | 'left' | 'right'
+    position?: 'center' | 'left' | 'right' | 'top-left'
     x?: number
     y?: number
     fontSizeRatio?: number
