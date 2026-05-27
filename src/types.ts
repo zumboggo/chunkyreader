@@ -113,6 +113,17 @@ export interface LearningCard {
   ssmlSound?: string
   mouthCue?: string
   avoidTtsLetterName?: boolean
+
+  // Older Reader Phoneme fields
+  spellings?: string[]
+  exampleWords?: string[]
+  primarySpelling?: string
+  adultIpa?: string
+  childSoundName?: string
+  frequencyRank?: number
+  decodableExamples?: string[]
+  trickyExamples?: string[]
+  phonemeKey?: string
 }
 
 export interface StoryPage {
