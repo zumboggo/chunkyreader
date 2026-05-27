@@ -70,7 +70,7 @@ for (const item of selectedPages) {
 
   await fs.mkdir(path.dirname(outputPath), { recursive: true })
   console.log(`Generating ${story.id} page ${page.pageNumber}...`)
-  const imageUrl = await createPrediction(page.imagePrompt)
+  const imageUrl = await createPrediction(page)
   await downloadImage(imageUrl, outputPath)
   console.log(`Saved ${appPath}`)
   generated += 1
@@ -83,16 +83,16 @@ if (changed && !dryRun) {
 
 console.log(`Done. Generated ${generated}, skipped ${skipped}.`)
 
-async function createPrediction(prompt) {
-  const response = await fetch(`https://api.replicate.com/v1/models/${model}/predictions`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-      Prefer: 'wait',
-    },
-    body: JSON.stringify({
-      input: {
+async function createPrediction(page) {
+  const isIdeogram = model.includes('ideogram-ai/')
+  const prompt = isIdeogram ? withNegativePrompt(page.imagePrompt, page.negativePrompt) : page.imagePrompt
+  const input = isIdeogram
+    ? {
+        prompt,
+        aspect_ratio: '4:3',
+        magic_prompt_option: 'Off',
+      }
+    : {
         prompt,
         aspect_ratio: '4:3',
         output_format: format,
@@ -100,8 +100,26 @@ async function createPrediction(prompt) {
         num_outputs: 1,
         go_fast: true,
         num_inference_steps: 4,
-      },
-    }),
+      }
+
+  try {
+    return await runPrediction(input)
+  } catch (error) {
+    if (!isIdeogram || !/magic_prompt_option|invalid|schema|input/iu.test(String(error?.message))) throw error
+    console.warn('Retrying with minimal Ideogram input after schema rejection.')
+    return runPrediction({ prompt, aspect_ratio: '4:3' })
+  }
+}
+
+async function runPrediction(input) {
+  const response = await fetch(`https://api.replicate.com/v1/models/${model}/predictions`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      Prefer: 'wait',
+    },
+    body: JSON.stringify({ input }),
   })
 
   const prediction = await response.json()
@@ -145,7 +163,18 @@ function extractImageUrl(output) {
 async function downloadImage(url, outputPath) {
   const response = await fetch(url)
   if (!response.ok) throw new Error(`Could not download generated image: ${response.status}`)
-  await fs.writeFile(outputPath, Buffer.from(await response.arrayBuffer()))
+  const input = Buffer.from(await response.arrayBuffer())
+  if (format === 'webp') {
+    const sharp = (await import('sharp')).default
+    await sharp(input).resize(1200, 900, { fit: 'cover' }).webp({ quality: 86 }).toFile(outputPath)
+    return
+  }
+  await fs.writeFile(outputPath, input)
+}
+
+function withNegativePrompt(prompt, negativePrompt) {
+  if (!negativePrompt) return prompt
+  return `${prompt} Avoid: ${negativePrompt}.`
 }
 
 function hasFlag(name) {
