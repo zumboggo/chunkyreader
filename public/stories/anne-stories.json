@@ -538,5 +538,41 @@
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-car-page-3.mp3"
       }
     ]
+  },
+  {
+    "id": "pippa-frog-log",
+    "title": "Pippa and the Frog on a Log",
+    "series": "Piglet Stories",
+    "readingLevel": "early reader",
+    "description": "Pippa finds a quiet frog on a log, but the surprise is not what she thinks.",
+    "pages": [
+      {
+        "pageNumber": 1,
+        "text": "Pippa sees a little frog.\nIt sits and sits upon a log.\n\"Come play with me,\" says Pippa Pig.\nThe frog says nothing. That is big.",
+        "image": "stories/anne/images/pippa-frog-log-page-1.webp",
+        "imagePrompt": "Original gentle children's picture-book illustration of a cheerful rosy-brown piglet girl named Pippa wearing blue overalls beside a pond, looking at a small frog sitting very still on a log. Cozy farmyard pond setting, hand-painted watercolor and gouache textures, warm outlines, rounded storybook proportions, front-facing or three-quarter character pose, simple uncluttered composition, expressive faces, child-friendly, sweet and funny mood, no text, no letters, no logo, no watermark. Create an original character design; do not imitate any existing cartoon, television show, movie, or branded pig character.",
+        "negativePrompt": "Peppa Pig, imitation of Peppa Pig, branded character, existing cartoon style, flat vector cartoon, sideways oval pig head, red dress, stick legs, text, letters, words, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern devices, television, Disney, Pixar, Ghibli, Bluey",
+        "altText": "Pippa Pig smiles at a small frog sitting still on a log.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/pippa-frog-log-page-1.mp3"
+      },
+      {
+        "pageNumber": 2,
+        "text": "\"Let's jump and splash,\" says Pippa Pig.\nThe frog just stares. He is a fog.\n\"Can you not talk?\" says Pippa Pig.\nThe frog sits still upon his log.",
+        "image": "stories/anne/images/pippa-frog-log-page-2.webp",
+        "imagePrompt": "Original gentle children's picture-book illustration of a cheerful rosy-brown piglet girl named Pippa wearing blue overalls hopping beside a pond and inviting a very still frog on a log to jump and splash. The frog looks blank and funny, the scene is warm and cozy, hand-painted watercolor and gouache textures, warm outlines, rounded storybook proportions, front-facing or three-quarter character pose, simple uncluttered composition, expressive faces, child-friendly, no text, no letters, no logo, no watermark. Create an original character design; do not imitate any existing cartoon, television show, movie, or branded pig character.",
+        "negativePrompt": "Peppa Pig, imitation of Peppa Pig, branded character, existing cartoon style, flat vector cartoon, sideways oval pig head, red dress, stick legs, text, letters, words, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern devices, television, Disney, Pixar, Ghibli, Bluey",
+        "altText": "Pippa Pig hops near the pond while the frog stays still on the log.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/pippa-frog-log-page-2.mp3"
+      },
+      {
+        "pageNumber": 3,
+        "text": "Then Georgie hops up and gives a shove.\nThe frog flies off -- oh, dear, oh, love!\n\"Where did he go?\" Pippa says, \"Oh, my!\"\nThen Mama Pig says, \"That's a fly.\"\nThe frog was a toy all along.\nPippa laughs, \"I sang the wrong song!\"",
+        "image": "stories/anne/images/pippa-frog-log-page-3.webp",
+        "imagePrompt": "Original gentle children's picture-book illustration of a funny surprise at a pond: a small rosy-brown piglet boy named Georgie nudges a toy frog off a log while Pippa Pig, a rosy-brown piglet girl in blue overalls, looks surprised, and a kind Mama Pig in a soft apron points out a tiny fly nearby. Cozy farmyard pond setting, hand-painted watercolor and gouache textures, warm outlines, rounded storybook proportions, front-facing or three-quarter character poses, simple uncluttered composition, expressive faces, child-friendly, playful reveal, no text, no letters, no logo, no watermark. Create original character designs; do not imitate any existing cartoon, television show, movie, or branded pig character.",
+        "negativePrompt": "Peppa Pig, imitation of Peppa Pig, branded character, existing cartoon style, flat vector cartoon, sideways oval pig head, red dress, stick legs, text, letters, words, watermark, logo, signature, scary, horror, cluttered background, extra limbs, distorted hands, modern devices, television, Disney, Pixar, Ghibli, Bluey",
+        "altText": "Georgie nudges the toy frog off the log while Pippa and Mama Pig notice a little fly.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/pippa-frog-log-page-3.mp3"
+      }
+    ]
   }
 ]

@@ -15,7 +15,7 @@
     "phonicsTeacher": "phonics-sounds-v2"
   },
   "outputFormat": "audio-24khz-48kbitrate-mono-mp3",
-  "createdAt": "2026-05-25T12:59:58.792Z",
+  "createdAt": "2026-05-27T02:21:38.840Z",
   "clips": [
     {
       "id": "letter-m:sound",
@@ -1690,6 +1690,36 @@
       "voiceVersion": "anne-soft-female-v2",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-car-page-3.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/peppa-car-page-3.ssml"
+    },
+    {
+      "id": "story:pippa-frog-log:page:1",
+      "type": "story-page",
+      "text": "Pippa sees a little frog.\nIt sits and sits upon a log.\n\"Come play with me,\" says Pippa Pig.\nThe frog says nothing. That is big.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/pippa-frog-log-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/pippa-frog-log-page-1.ssml"
+    },
+    {
+      "id": "story:pippa-frog-log:page:2",
+      "type": "story-page",
+      "text": "\"Let's jump and splash,\" says Pippa Pig.\nThe frog just stares. He is a fog.\n\"Can you not talk?\" says Pippa Pig.\nThe frog sits still upon his log.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/pippa-frog-log-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/pippa-frog-log-page-2.ssml"
+    },
+    {
+      "id": "story:pippa-frog-log:page:3",
+      "type": "story-page",
+      "text": "Then Georgie hops up and gives a shove.\nThe frog flies off -- oh, dear, oh, love!\n\"Where did he go?\" Pippa says, \"Oh, my!\"\nThen Mama Pig says, \"That's a fly.\"\nThe frog was a toy all along.\nPippa laughs, \"I sang the wrong song!\"",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/pippa-frog-log-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/pippa-frog-log-page-3.ssml"
     },
     {
       "id": "ui:story:complete",

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural">
+    <prosody rate="-8%" pitch="+2%">
+      Then Georgie hops up and gives a shove.<break time="350ms"/>The frog flies off -- oh, dear, oh, love!<break time="350ms"/>&quot;Where did he go?&quot; Pippa says, &quot;Oh, my!&quot;<break time="350ms"/>Then Mama Pig says, &quot;That&apos;s a fly.&quot;<break time="350ms"/>The frog was a toy all along.<break time="350ms"/>Pippa laughs, &quot;I sang the wrong song!&quot;
+    </prosody>
+  </voice>
+</speak>
