@@ -57,15 +57,15 @@ function countStoryWords(items: string[]) {
   return items.reduce((sum, sentence) => sum + wordsFromSentence(sentence).filter((word) => /[A-Za-z']/u.test(word)).length, 0);
 }
 
-function countJourneySteps(chunks: HundredLessonChunk[]) {
-  const soundChunk = chunks.find((chunk) => chunk.type === 'sound-discovery' || chunk.type === 'sounds-words');
-  return Math.max(
-    1,
-    1 + chunks.reduce((sum, chunk) => {
-      if (chunk.type === 'story-gauntlet' || chunk.type === 'story') return sum + countStoryWords(chunk.items) + (chunk.items.length * 2) + 1;
-      return sum + chunk.items.length;
-    }, 0) + (soundChunk?.items.length ?? 0)
-  );
+function countJourneyStepsForActivity(activity?: LessonActivity) {
+  if (!activity) return 1;
+  if (activity.kind === 'collection-check') return 1;
+  if (activity.kind === 'picture-reveal') return 1;
+  if (activity.kind === 'sound-writing') return Math.max(1, activity.sounds.length);
+  if (activity.kind === 'complete') return 1;
+  const { chunk } = activity;
+  if (chunk.type === 'story-gauntlet' || chunk.type === 'story') return Math.max(1, countStoryWords(chunk.items) + (chunk.items.length * 2));
+  return Math.max(1, chunk.items.length);
 }
 
 function JourneyTracker({ step, totalSteps }: { step: number; totalSteps: number }) {
@@ -557,15 +557,18 @@ export function InteractiveHundredLessonScreen({
   }, [lessonId]);
 
   const activities = useMemo(() => buildLessonActivities(lesson?.chunks ?? []), [lesson]);
-  const journeyTotalSteps = useMemo(() => countJourneySteps(lesson?.chunks ?? []), [lesson]);
   const activity = activities[activityIndex];
+  const journeyTotalSteps = useMemo(() => countJourneyStepsForActivity(activity), [activity]);
   const sounds = activities.find((item): item is { kind: 'collection-check'; sounds: string[] } => item.kind === 'collection-check')?.sounds ?? [];
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === '4') {
         event.preventDefault();
-        if (activityIndex > 0) setActivityIndex((previous) => previous - 1);
+        if (activityIndex > 0) {
+          setJourneyStep(0);
+          setActivityIndex((previous) => previous - 1);
+        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -581,7 +584,10 @@ export function InteractiveHundredLessonScreen({
     );
   }
 
-  const completeActivity = () => setActivityIndex((previous) => Math.min(previous + 1, activities.length - 1));
+  const completeActivity = () => {
+    setJourneyStep(0);
+    setActivityIndex((previous) => Math.min(previous + 1, activities.length - 1));
+  };
   const advanceJourney = () => setJourneyStep((step) => Math.min(step + 1, journeyTotalSteps));
   const finishLesson = () => {
     localStorage.setItem('100-lessons-progress', String(lesson.lessonNumber + 1));

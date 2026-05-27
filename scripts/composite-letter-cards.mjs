@@ -76,17 +76,20 @@ function buildOverlaySvg(card, cardWidth, cardHeight) {
   const opacity = Number.isFinite(overlay.opacity) ? overlay.opacity : 1
   const fontSize = Math.round(cardHeight * (overlay.fontSizeRatio ?? 0.68))
   const secondaryFontSize = Math.round(cardHeight * (overlay.secondaryFontSizeRatio ?? 0.17))
-  const anchor = overlay.position === 'left' ? { x: cardWidth * 0.42, y: cardHeight * 0.58 } :
-    overlay.position === 'right' ? { x: cardWidth * 0.58, y: cardHeight * 0.58 } :
-      { x: cardWidth * 0.5, y: cardHeight * 0.58 }
+  const anchor = overlay.position === 'top-left' ? { x: cardWidth * 0.14, y: cardHeight * 0.15 } :
+    overlay.position === 'left' ? { x: cardWidth * 0.42, y: cardHeight * 0.58 } :
+      overlay.position === 'right' ? { x: cardWidth * 0.58, y: cardHeight * 0.58 } :
+        { x: cardWidth * 0.5, y: cardHeight * 0.58 }
   const x = Math.round(overlay.x ?? anchor.x)
   const y = Math.round(overlay.y ?? anchor.y)
   const secondaryY = Math.round(y + fontSize * 0.24)
+  const strokeWidth = Math.round(cardHeight * (overlay.strokeWidthRatio ?? 0.012))
+  const strokeColor = overlay.strokeColor ?? 'rgba(255,255,255,0.86)'
 
   return `<svg width="${cardWidth}" height="${cardHeight}" viewBox="0 0 ${cardWidth} ${cardHeight}" xmlns="http://www.w3.org/2000/svg">
     <text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle"
       font-family="${escapeXml(fontFamily)}" font-size="${fontSize}" font-weight="900"
-      fill="${escapeXml(color)}" opacity="${opacity}" stroke="rgba(255,255,255,0.78)" stroke-width="${Math.max(10, Math.round(cardHeight * 0.018))}" paint-order="stroke fill">${text}</text>
+      fill="${escapeXml(color)}" opacity="${opacity}" stroke="${escapeXml(strokeColor)}" stroke-width="${strokeWidth}" paint-order="stroke fill">${text}</text>
     ${secondary ? `<text x="${x}" y="${secondaryY}" text-anchor="middle" dominant-baseline="middle"
       font-family="${escapeXml(fontFamily)}" font-size="${secondaryFontSize}" font-weight="900"
       fill="${escapeXml(color)}" opacity="${opacity}">${secondary}</text>` : ''}

@@ -18,14 +18,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/m-mountains-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter M using mountains: a charming mountain range with two clear peaks arranged to subtly echo the shape of an uppercase M, calm sky, soft clouds, and a simple grassy foreground. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "M letter card with a large bold black M in the foreground and a soft painted mountains background that echoes the letter shape.",
+      "altText": "M letter card with a small bold black M in the top-left corner and a soft painted mountains background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "M",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -38,14 +40,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/s-snake-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter S using snake: one friendly green snake curving in a clear S-like path on a simple branch or meadow path, with soft natural details and open space. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "S letter card with a large bold black S in the foreground and a soft painted snake background that echoes the letter shape.",
+      "altText": "S letter card with a small bold black S in the top-left corner and a soft painted snake background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "S",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -58,14 +62,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/a-apple-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter A using apple: one wholesome red apple with a leaf and stem, arranged with a subtle triangular composition that hints at an uppercase A while staying natural and simple. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "A letter card with a large bold black A in the foreground and a soft painted apple background that echoes the letter shape.",
+      "altText": "A letter card with a small bold black A in the top-left corner and a soft painted apple background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "A",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -78,14 +84,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/t-tree-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter T using tree: one strong friendly tree with a clear vertical trunk and a broad horizontal branch canopy that subtly reinforces the shape of an uppercase T, warm greens and browns, simple ground, and open sky. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "T letter card with a large bold black T in the foreground and a soft painted tree background that echoes the letter shape.",
+      "altText": "T letter card with a small bold black T in the top-left corner and a soft painted tree background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "T",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -98,14 +106,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/p-pelican-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter P using pelican: one friendly pelican standing near calm water, with its upright body, round chest, curved neck, and beak arranged to subtly suggest the shape of an uppercase P. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "P letter card with a large bold black P in the foreground and a soft painted pelican background that echoes the letter shape.",
+      "altText": "P letter card with a small bold black P in the top-left corner and a soft painted pelican background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "P",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -118,14 +128,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/c-cat-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter C using cat: one curled friendly cat, with the cat body and tail forming a clear open C-like curve on a soft rug or meadow patch. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "C letter card with a large bold black C in the foreground and a soft painted cat background that echoes the letter shape.",
+      "altText": "C letter card with a small bold black C in the top-left corner and a soft painted cat background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "C",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -138,14 +150,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/r-rabbit-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter R using rabbit: one friendly rabbit sitting upright beside a curved garden path, with long ears and rounded body subtly suggesting the shape of an uppercase R. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "R letter card with a large bold black R in the foreground and a soft painted rabbit background that echoes the letter shape.",
+      "altText": "R letter card with a small bold black R in the top-left corner and a soft painted rabbit background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "R",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -158,14 +172,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/n-nest-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter N using nest: a cozy bird nest placed between two slim tree trunks with a soft diagonal twig or branch connection, subtly echoing the structure of an uppercase N. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "N letter card with a large bold black N in the foreground and a soft painted nest background that echoes the letter shape.",
+      "altText": "N letter card with a small bold black N in the top-left corner and a soft painted nest background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "N",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -178,14 +194,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/d-duck-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter D using duck: one friendly duck with a clear upright neck and rounded body beside calm water, arranged to subtly suggest the shape of an uppercase D. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "D letter card with a large bold black D in the foreground and a soft painted duck background that echoes the letter shape.",
+      "altText": "D letter card with a small bold black D in the top-left corner and a soft painted duck background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "D",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -198,14 +216,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/i-inchworm-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter I using inchworm: one tiny green inchworm stretching straight up on a simple stem with a little leaf above, creating a clean vertical shape that echoes an uppercase I. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "I letter card with a large bold black I in the foreground and a soft painted inchworm background that echoes the letter shape.",
+      "altText": "I letter card with a small bold black I in the top-left corner and a soft painted inchworm background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "I",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -218,14 +238,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/f-fern-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter F using fern: one simple fern stem with a strong vertical stalk and two soft leaf fronds extending to the right, subtly reinforcing the shape of an uppercase F. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "F letter card with a large bold black F in the foreground and a soft painted fern background that echoes the letter shape.",
+      "altText": "F letter card with a small bold black F in the top-left corner and a soft painted fern background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "F",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -238,14 +260,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/b-bear-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter B using bear: one friendly bear with rounded head and rounded belly shapes, posed so the warm silhouette subtly suggests the two round bowls of an uppercase B. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "B letter card with a large bold black B in the foreground and a soft painted bear background that echoes the letter shape.",
+      "altText": "B letter card with a small bold black B in the top-left corner and a soft painted bear background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "B",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -258,14 +282,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/h-house-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter H using house: one cozy simple cottage or house, with two clear vertical sides and a horizontal roof or beam arrangement that subtly reinforces an uppercase H shape. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "H letter card with a large bold black H in the foreground and a soft painted house background that echoes the letter shape.",
+      "altText": "H letter card with a small bold black H in the top-left corner and a soft painted house background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "H",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -278,14 +304,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/g-goose-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter G using goose: one friendly white goose with a round body and curved neck forming an open circular shape with a small inward turn, subtly echoing an uppercase G. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "G letter card with a large bold black G in the foreground and a soft painted goose background that echoes the letter shape.",
+      "altText": "G letter card with a small bold black G in the top-left corner and a soft painted goose background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "G",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -298,14 +326,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/o-orange-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter O using orange: one bright round orange fruit with a tiny leaf and soft natural shadows, arranged as a clean circular form that subtly echoes an uppercase O. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "O letter card with a large bold black O in the foreground and a soft painted orange background that echoes the letter shape.",
+      "altText": "O letter card with a small bold black O in the top-left corner and a soft painted orange background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "O",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -318,14 +348,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/l-ladder-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter L using ladder: a simple wooden ladder or garden rail arranged with one strong vertical side and one clear horizontal base to subtly reinforce the shape of an uppercase L. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "L letter card with a large bold black L in the foreground and a soft painted ladder background that echoes the letter shape.",
+      "altText": "L letter card with a small bold black L in the top-left corner and a soft painted ladder background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "L",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -338,14 +370,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/k-kite-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter K using kite: one cheerful kite with a straight tail line and two diagonal ribbons or supports branching from the middle, subtly suggesting the shape of an uppercase K in an open sky. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "K letter card with a large bold black K in the foreground and a soft painted kite background that echoes the letter shape.",
+      "altText": "K letter card with a small bold black K in the top-left corner and a soft painted kite background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "K",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -358,14 +392,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/e-eel-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter E using eel: one friendly blue eel weaving beside three simple horizontal water ripples from a vertical reed, subtly reinforcing the shape of an uppercase E. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "E letter card with a large bold black E in the foreground and a soft painted eel background that echoes the letter shape.",
+      "altText": "E letter card with a small bold black E in the top-left corner and a soft painted eel background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "E",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -378,14 +414,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/u-umbrella-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter U using umbrella: one open umbrella with a smooth rounded bowl shape and curved handle, subtly echoing the shape of an uppercase U. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "U letter card with a large bold black U in the foreground and a soft painted umbrella background that echoes the letter shape.",
+      "altText": "U letter card with a small bold black U in the top-left corner and a soft painted umbrella background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "U",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -398,14 +436,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/w-waves-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter W using waves: three or four gentle blue water waves rising and dipping in a clear zigzag rhythm that subtly echoes an uppercase W. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "W letter card with a large bold black W in the foreground and a soft painted waves background that echoes the letter shape.",
+      "altText": "W letter card with a small bold black W in the top-left corner and a soft painted waves background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "W",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -418,14 +458,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/j-jellyfish-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter J using jellyfish: one friendly jellyfish with a rounded top and a long curved tentacle sweeping down like a hook, subtly echoing the shape of an uppercase J. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "J letter card with a large bold black J in the foreground and a soft painted jellyfish background that echoes the letter shape.",
+      "altText": "J letter card with a small bold black J in the top-left corner and a soft painted jellyfish background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "J",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -438,14 +480,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/y-yak-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter Y using yak: one gentle yak standing on a simple meadow path, with horns or branching path shapes above and a single body below subtly suggesting an uppercase Y. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "Y letter card with a large bold black Y in the foreground and a soft painted yak background that echoes the letter shape.",
+      "altText": "Y letter card with a small bold black Y in the top-left corner and a soft painted yak background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "Y",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -458,14 +502,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/v-valley-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter V using valley: two soft green hills sloping down into a clear valley point, creating a calm natural shape that subtly echoes an uppercase V. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "V letter card with a large bold black V in the foreground and a soft painted valley background that echoes the letter shape.",
+      "altText": "V letter card with a small bold black V in the top-left corner and a soft painted valley background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "V",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -478,14 +524,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/z-zebra-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter Z using zebra: one friendly zebra on a simple path with a clear zigzag trail or striped blanket shape behind it, subtly echoing an uppercase Z. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "Z letter card with a large bold black Z in the foreground and a soft painted zebra background that echoes the letter shape.",
+      "altText": "Z letter card with a small bold black Z in the top-left corner and a soft painted zebra background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "Z",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -498,14 +546,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/q-quail-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter Q using quail: one round friendly quail with a small tail or feather stroke extending from the circle, subtly echoing the shape of an uppercase Q. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "Q letter card with a large bold black Q in the foreground and a soft painted quail background that echoes the letter shape.",
+      "altText": "Q letter card with a small bold black Q in the top-left corner and a soft painted quail background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "Q",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     },
     {
@@ -518,14 +568,16 @@
       "finalCompositeImage": "decks/sarah-letter-images/final/x-xylophone-card.webp",
       "imagePrompt": "Original gentle woodland children's picture-book illustration with soft watercolor and gouache texture, warm outlines, simple beautiful composition, uncluttered and child-friendly. Create a scene for the letter X using xylophone: two simple crossed xylophone mallets above a small warm wooden xylophone, the crossed mallets clearly echoing the shape of an uppercase X. Keep the design clean and open so a large bold black teaching letter can be overlaid prominently in the foreground later. Background illustration only. No text, no letters, no logo, no watermark.",
       "negativePrompt": "text, letters, words, logo, watermark, signature, cluttered composition, crowded background, scary, highly realistic, photorealistic, messy anatomy, modern graphic poster, busy typography",
-      "altText": "X letter card with a large bold black X in the foreground and a soft painted xylophone background that echoes the letter shape.",
+      "altText": "X letter card with a small bold black X in the top-left corner and a soft painted xylophone background that echoes the letter shape.",
       "overlay": {
         "enabled": true,
         "text": "X",
-        "position": "center",
-        "fontSizeRatio": 0.68,
+        "position": "top-left",
+        "fontSizeRatio": 0.22,
         "color": "#050505",
-        "opacity": 1
+        "opacity": 1,
+        "strokeColor": "rgba(255,255,255,0.9)",
+        "strokeWidthRatio": 0.01
       }
     }
   ]
