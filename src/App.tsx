@@ -17,7 +17,7 @@ import { playNarrationClip } from './audioClipPack'
 import { HundredLessonsHome, HundredLessonScreen } from './HundredLessons'
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious'
 type LessonPhase = 'learn' | 'question'
-type GrowingReaderView = 'home' | 'words' | 'stories'
+type GrowingReaderView = 'home' | 'words' | 'stories' | 'phonemes'
 type FlashcardChoice = 'again' | 'good'
 type SarahQuestionKind =
   | 'soundToLetter'
@@ -36,6 +36,15 @@ type OlderReaderQuestionKind =
   | 'wordFamily'
   | 'review'
 
+type OlderReaderPhonemeActivityKind =
+  | 'intro'
+  | 'soundToSpelling'
+  | 'spellingToSound'
+  | 'exampleWord'
+  | 'sameSound'
+  | 'spellingPatternRecall'
+  | 'mixedReview'
+
 interface SarahActivity {
   kind: SarahActivityKind
   card: LearningCard
@@ -50,6 +59,15 @@ interface OlderReaderActivity {
   kind: OlderReaderQuestionKind
   card: LearningCard
   options: LearningCard[]
+}
+
+interface OlderReaderPhonemeActivity {
+  kind: OlderReaderPhonemeActivityKind
+  card: LearningCard
+  options?: LearningCard[]
+  textOptions?: string[]
+  correctText?: string
+  reviewVariant?: OlderReaderPhonemeActivityKind
 }
 
 const LESSON_SIZE = 5
@@ -182,8 +200,19 @@ function App() {
   }
 
   function openGrowingWords() {
-    const firstDeck = decks.find((deck) => deck.profile === 'anna') ?? decks[0]
+    const firstDeck = decks.find((deck) => deck.profile === 'anna' && deck.type === 'reading-words') ?? decks.find(d => d.profile === 'anna')
     setGrowingView('words')
+    setActiveDeckId(firstDeck?.id ?? '')
+    setMode('activeRecall')
+    setCardIndex(0)
+    setPhase('question')
+    setSarahActivityIndex(0)
+    setMenuOpen(false)
+  }
+
+  function openGrowingPhonemes() {
+    const firstDeck = decks.find((deck) => deck.profile === 'anna' && deck.type === 'phonemes') ?? decks.find(d => d.profile === 'anna')
+    setGrowingView('phonemes')
     setActiveDeckId(firstDeck?.id ?? '')
     setMode('activeRecall')
     setCardIndex(0)
@@ -304,6 +333,7 @@ function App() {
           stories={stories}
           onWords={openGrowingWords}
           onStories={() => setGrowingView('stories')}
+          onPhonemes={openGrowingPhonemes}
         />
       ) : profile === 'anna' && growingView === 'stories' ? (
         <StorySection stories={stories} onBack={() => setGrowingView('home')} />
@@ -430,14 +460,17 @@ function GrowingReaderHome({
   stories,
   onWords,
   onStories,
+  onPhonemes,
 }: {
   decks: LearningDeck[]
   stories: Story[]
   onWords: () => void
   onStories: () => void
+  onPhonemes: () => void
 }) {
-  const wordCount = decks.reduce((sum, deck) => sum + deck.cards.length, 0)
+  const wordCount = decks.filter(d => d.type === 'reading-words').reduce((sum, deck) => sum + deck.cards.length, 0)
   const pageCount = stories.reduce((sum, story) => sum + story.pages.length, 0)
+  const phonemeCount = decks.filter(d => d.type === 'phonemes').reduce((sum, deck) => sum + deck.cards.length, 0)
 
   return (
     <section className="growing-reader-home">
@@ -451,6 +484,11 @@ function GrowingReaderHome({
         <Mascot mood="reading" />
       </div>
       <div className="reader-choice-grid" aria-label="Choose an Older Reader activity">
+        <button type="button" className="reader-choice phoneme-choice" onClick={onPhonemes}>
+          <span className="choice-sticker" aria-hidden="true">🔊</span>
+          <strong>Phonemes</strong>
+          <small>{phonemeCount} sounds & spellings</small>
+        </button>
         <button type="button" className="reader-choice word-choice" onClick={onWords}>
           <span className="choice-sticker" aria-hidden="true">ABC</span>
           <strong>Read Words</strong>
@@ -736,6 +774,7 @@ function LearningScreen({
 }) {
   const isSarahLetters = activeDeck.profile === 'sarah' && activeDeck.type === 'letters'
   const isOlderReaderWords = activeDeck.profile === 'anna' && activeDeck.type === 'reading-words'
+  const isOlderReaderPhonemes = activeDeck.profile === 'anna' && activeDeck.type === 'phonemes'
   const lessonDeckCards = isSarahLetters ? activeDeck.cards : orderCardsForMode(activeDeck, mode)
   const activeCard = lessonDeckCards[cardIndex % Math.max(1, lessonDeckCards.length)] ?? card
   const lessonStart = isSarahLetters
@@ -752,10 +791,21 @@ function LearningScreen({
     () => (isOlderReaderWords ? buildOlderReaderActivities(lessonCards) : []),
     [isOlderReaderWords, lessonCards],
   )
-  const progress = isSarahLetters || isOlderReaderWords
-    ? Math.min(sarahActivityIndex + 1, isSarahLetters ? sarahActivities.length : olderReaderActivities.length)
+  const phonemeActivities = useMemo(
+    () => (isOlderReaderPhonemes ? buildOlderReaderPhonemeActivities(lessonCards) : []),
+    [isOlderReaderPhonemes, lessonCards],
+  )
+  const progress = isSarahLetters || isOlderReaderWords || isOlderReaderPhonemes
+    ? Math.min(
+        sarahActivityIndex + 1,
+        isSarahLetters
+          ? sarahActivities.length
+          : isOlderReaderWords
+          ? olderReaderActivities.length
+          : phonemeActivities.length,
+      )
     : lessonIndex + 1
-  const progressTotal = isSarahLetters ? sarahActivities.length : isOlderReaderWords ? olderReaderActivities.length : lessonCards.length
+  const progressTotal = isSarahLetters ? sarahActivities.length : isOlderReaderWords ? olderReaderActivities.length : isOlderReaderPhonemes ? phonemeActivities.length : lessonCards.length
   const lessonNumber = isSarahLetters
     ? sarahLetterLessonNumberForIndex(cardIndex, lessonDeckCards.length)
     : lessonNumberForIndex(cardIndex, lessonDeckCards.length)
@@ -802,6 +852,18 @@ function LearningScreen({
           deck={activeDeck}
           lessonCards={lessonCards}
           activities={olderReaderActivities}
+          lessonNumber={lessonNumber}
+          activityIndex={sarahActivityIndex}
+          onActivityChange={onSarahActivityChange}
+          onNextLesson={onNextLesson}
+          onDone={onDone}
+        />
+      ) : isOlderReaderPhonemes ? (
+        <OlderReaderPhonemeLesson
+          key={`${activeDeck.id}:${lessonNumber}:${sarahActivityIndex}`}
+          deck={activeDeck}
+          lessonCards={lessonCards}
+          activities={phonemeActivities}
           lessonNumber={lessonNumber}
           activityIndex={sarahActivityIndex}
           onActivityChange={onSarahActivityChange}
@@ -2553,6 +2615,218 @@ function fireworksCelebration() {
       origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
     });
   }, 250);
+}
+function buildOlderReaderPhonemeActivities(lessonCards: LearningCard[]): OlderReaderPhonemeActivity[] {
+  const activities: OlderReaderPhonemeActivity[] = []
+  
+  // 1. Intros
+  for (const card of lessonCards) {
+    activities.push({ kind: 'intro', card })
+  }
+  
+  // 2. Sound to spelling
+  for (const card of lessonCards) {
+    const distractors = lessonCards.filter(c => c.id !== card.id)
+    const randomDistractor = distractors[Math.floor(Math.random() * distractors.length)]
+    activities.push({ kind: 'soundToSpelling', card, options: [card, randomDistractor].sort(() => Math.random() - 0.5) })
+  }
+  
+  // 3. Spelling to sound (using example words)
+  for (const card of lessonCards) {
+    const distractors = lessonCards.filter(c => c.id !== card.id)
+    const randomDistractor = distractors[Math.floor(Math.random() * distractors.length)]
+    activities.push({ kind: 'spellingToSound', card, options: [card, randomDistractor].sort(() => Math.random() - 0.5) })
+  }
+  
+  // 4. Example word
+  for (const card of lessonCards) {
+    const distractors = lessonCards.filter(c => c.id !== card.id)
+    const randomDistractor = distractors[Math.floor(Math.random() * distractors.length)]
+    activities.push({ kind: 'exampleWord', card, options: [card, randomDistractor].sort(() => Math.random() - 0.5) })
+  }
+  
+  // 5. Mixed Review
+  for (const card of lessonCards) {
+    const distractors = lessonCards.filter(c => c.id !== card.id)
+    const randomDistractor = distractors[Math.floor(Math.random() * distractors.length)]
+    activities.push({ kind: 'mixedReview', card, options: [card, randomDistractor].sort(() => Math.random() - 0.5), reviewVariant: 'spellingPatternRecall' })
+  }
+  
+  return activities
+}
+
+function OlderReaderPhonemeLesson({
+  deck,
+  lessonCards,
+  activities,
+  lessonNumber,
+  activityIndex,
+  onActivityChange,
+  onNextLesson,
+  onDone,
+}: {
+  deck: LearningDeck
+  lessonCards: LearningCard[]
+  activities: OlderReaderPhonemeActivity[]
+  lessonNumber: number
+  activityIndex: number
+  onActivityChange: (index: number) => void
+  onNextLesson: () => void
+  onDone: () => void
+}) {
+  const [status, setStatus] = useState<SarahActivityStatus>('idle')
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
+  
+  const isComplete = activityIndex >= activities.length
+  if (isComplete) {
+    return (
+      <section className="lesson-complete">
+        <div className="celebration-burst" aria-hidden="true" />
+        <Mascot mood="happy" />
+        <span className="prompt-topline">Lesson {lessonNumber}</span>
+        <h1>You practiced 5 sounds!</h1>
+        <div className="completion-cards" aria-label="Review cards">
+          {lessonCards.map((c) => (
+            <div key={c.id} className="completion-card" style={{padding: '0.5rem', background: 'var(--c-surface)', borderRadius: 'var(--radius)', border: '2px solid var(--c-border)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem'}}>
+              <SpellingChip text={c.primarySpelling || c.displayText} />
+              <small>{c.exampleWord}</small>
+            </div>
+          ))}
+        </div>
+        <div className="completion-actions">
+          <button type="button" className="primary" onClick={onNextLesson}>Next Lesson</button>
+          <button type="button" onClick={onDone}>Back to Phonemes</button>
+        </div>
+      </section>
+    )
+  }
+  
+  const activity = activities[activityIndex]
+  const card = activity.card
+  const audioAsset = resolveAssetUrl(deck, card.audio)
+  const exampleAudioAsset = resolveAssetUrl(deck, card.exampleAudio)
+  const isIntro = activity.kind === 'intro'
+  const options = activity.options || []
+
+  useEffect(() => {
+    if (isIntro) {
+      void playNarrationClip(card.id, card.speechCue, audioAsset)
+    }
+  }, [isIntro, audioAsset, card.speechCue, card.id])
+
+  function handleSelect(optionCard: LearningCard) {
+    if (status !== 'idle' && status !== 'try-again') return
+    setSelectedCardId(optionCard.id)
+    if (optionCard.id === card.id) {
+      setStatus('correct')
+      playSfx('correct')
+      confetti({ particleCount: 30, spread: 60, origin: { y: 0.8 }, zIndex: 9999 })
+      setTimeout(() => {
+        onActivityChange(activityIndex + 1)
+        setStatus('idle')
+        setSelectedCardId(null)
+      }, 1500)
+    } else {
+      setStatus('try-again')
+      playSfx('wrong')
+    }
+  }
+
+  function renderChoices() {
+    return (
+      <div className="choices">
+        {options.map((opt) => {
+          const isSelected = selectedCardId === opt.id
+          const isWrong = isSelected && status === 'try-again'
+          const isCorrect = isSelected && status === 'correct'
+          let content = null
+          if (activity.kind === 'soundToSpelling' || activity.kind === 'mixedReview') {
+            content = <SpellingChip text={opt.primarySpelling || opt.displayText} />
+          } else if (activity.kind === 'spellingToSound') {
+            content = <span style={{fontSize: '1.5rem', fontWeight: 'bold'}}>{opt.exampleWord}</span>
+          } else if (activity.kind === 'exampleWord') {
+            content = <span style={{fontSize: '1.5rem', fontWeight: 'bold'}}>{opt.exampleWord}</span>
+          }
+          
+          return (
+            <button
+              key={opt.id}
+              type="button"
+              className={`choice-button squish ${isWrong ? 'wrong' : ''} ${isCorrect ? 'correct' : ''}`}
+              onClick={() => handleSelect(opt)}
+            >
+              {content}
+            </button>
+          )
+        })}
+      </div>
+    )
+  }
+
+  let prompt = ''
+  if (activity.kind === 'soundToSpelling') prompt = 'Listen. Which spelling makes that sound?'
+  else if (activity.kind === 'spellingToSound') prompt = 'What sound can this spelling make?'
+  else if (activity.kind === 'exampleWord') prompt = 'Which word has this sound?'
+  else if (activity.kind === 'mixedReview') prompt = 'Which spelling can make the sound in this word?'
+
+  return (
+    <div className={`active-activity ${status}`} style={{display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center'}}>
+      {isIntro ? (
+        <div className="intro-activity" style={{display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center'}}>
+          <span className="prompt-topline">Listen</span>
+          <div className="intro-card-large" style={{display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', background: 'var(--c-surface)', padding: '2rem', borderRadius: '1rem', border: '3px solid var(--c-brand)'}}>
+             <button type="button" className="big-audio-button squish" style={{fontSize: '3rem', background: 'var(--c-brand)', color: 'white', border: 'none', borderRadius: '50%', width: '100px', height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 4px 0 rgba(0,0,0,0.1)'}} onClick={() => playNarrationClip(card.id, card.speechCue, audioAsset)}>
+               🔊
+             </button>
+             <SpellingChip text={card.primarySpelling || card.displayText} />
+             <div className="intro-example">
+               <button type="button" className="example-audio squish" style={{fontSize: '1.5rem', fontWeight: 'bold', padding: '0.75rem 1.5rem', borderRadius: '100px', border: '2px solid var(--c-border)', cursor: 'pointer', background: 'white'}} onClick={() => playNarrationClip(card.id + '-example', card.exampleWord, exampleAudioAsset)}>
+                 🔊 {card.exampleWord}
+               </button>
+             </div>
+          </div>
+          <div className="intro-actions" style={{marginTop: '1rem'}}>
+            <button type="button" className="primary" onClick={() => { setStatus('idle'); onActivityChange(activityIndex + 1); }}>Next</button>
+          </div>
+        </div>
+      ) : (
+        <div className="question-activity" style={{display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center'}}>
+          <span className="prompt-topline">{prompt}</span>
+          
+          <div className="question-stimulus" style={{minHeight: '120px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            {(activity.kind === 'soundToSpelling' || activity.kind === 'exampleWord') && (
+              <button type="button" className="big-audio-button squish" style={{fontSize: '3rem', background: 'var(--c-brand)', color: 'white', border: 'none', borderRadius: '50%', width: '100px', height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 4px 0 rgba(0,0,0,0.1)'}} onClick={() => playNarrationClip(card.id, card.speechCue, audioAsset)}>
+                🔊
+              </button>
+            )}
+            {activity.kind === 'spellingToSound' && (
+              <SpellingChip text={card.primarySpelling || card.displayText} />
+            )}
+            {activity.kind === 'mixedReview' && (
+              <button type="button" className="example-audio squish" style={{fontSize: '1.5rem', fontWeight: 'bold', padding: '0.75rem 1.5rem', borderRadius: '100px', border: '2px solid var(--c-border)', cursor: 'pointer', background: 'white'}} onClick={() => playNarrationClip(card.id + '-example', card.exampleWord, exampleAudioAsset)}>
+                🔊 {card.exampleWord}
+              </button>
+            )}
+          </div>
+          
+          {renderChoices()}
+        </div>
+      )}
+      <Mascot mood={status === 'correct' ? 'happy' : status === 'try-again' ? 'sad' : 'curious'} />
+    </div>
+  )
+}
+
+function SpellingChip({ text }: { text: string }) {
+  const parts = text.split('_')
+  if (parts.length === 2) {
+    return (
+      <span className="spelling-chip split-chip" style={{fontSize: '4rem', fontWeight: 800, fontFamily: 'monospace', letterSpacing: '2px', color: 'var(--c-brand-dark)', textShadow: '2px 2px 0 white'}}>
+        {parts[0]}<span className="chip-blank" style={{color: 'var(--c-border)', opacity: 0.5}}>_</span>{parts[1]}
+      </span>
+    )
+  }
+  return <span className="spelling-chip" style={{fontSize: '4rem', fontWeight: 800, fontFamily: 'monospace', letterSpacing: '2px', color: 'var(--c-brand-dark)', textShadow: '2px 2px 0 white'}}>{text}</span>
 }
 
 export default App

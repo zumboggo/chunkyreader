@@ -10,6 +10,18 @@
     "language": "en-US"
   },
   {
+    "id": "anna-phonemes-level-1",
+    "title": "Anna Phonemes Level 1",
+    "description": "Learn common English sounds and their most useful spellings.",
+    "type": "phonemes",
+    "profile": "anna",
+    "format": "json",
+    "source": "decks/anna-phonemes-level-1.json",
+    "language": "en-US",
+    "level": 1,
+    "assetBaseUrl": "decks/anna-phonemes"
+  },
+  {
     "id": "sarah-letters-level-1",
     "title": "Earliest Reader Level 1: Letters",
     "description": "See each letter, hear one simple starter sound, and try a tiny question.",
