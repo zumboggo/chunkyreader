@@ -87,7 +87,7 @@ async function main() {
 }
 
 async function loadSarahDecks() {
-  const files = ['sarah-letters-level-1.json', 'sarah-phonemes-level-2.json']
+  const files = ['sarah-letters-level-1.json', 'sarah-phonemes-level-2.json', 'anna-phonemes-level-1.json']
   return Promise.all(files.map(async (file) => JSON.parse(await fs.readFile(path.join(decksDir, file), 'utf8'))))
 }
 
