@@ -215,7 +215,7 @@ function App() {
     setGrowingView('phonemes')
     setActiveDeckId(firstDeck?.id ?? '')
     setMode('activeRecall')
-    setCardIndex(0)
+    setCardIndex(firstDeck?.type === 'phonemes' ? readOlderReaderPhonemeNextIndex(firstDeck.id, firstDeck.cards.length) : 0)
     setPhase('question')
     setSarahActivityIndex(0)
     setMenuOpen(false)
@@ -245,6 +245,15 @@ function App() {
     if (!activeDeck?.cards.length) return
     if (activeDeck.profile === 'sarah' && activeDeck.type === 'letters') {
       moveSarahLesson(1)
+      return
+    }
+    if (activeDeck.profile === 'anna' && activeDeck.type === 'phonemes') {
+      const lessonStart = fixedLessonStartForIndex(cardIndex, activeDeck.cards.length)
+      const lessonCards = activeDeck.cards.slice(lessonStart, lessonStart + LESSON_SIZE)
+      setCardIndex(completeOlderReaderPhonemeLesson(activeDeck, lessonCards))
+      setPhase('question')
+      setSarahActivityIndex(0)
+      setMenuOpen(false)
       return
     }
     const orderedCards = orderCardsForMode(activeDeck, mode)
@@ -775,12 +784,18 @@ function LearningScreen({
   const isSarahLetters = activeDeck.profile === 'sarah' && activeDeck.type === 'letters'
   const isOlderReaderWords = activeDeck.profile === 'anna' && activeDeck.type === 'reading-words'
   const isOlderReaderPhonemes = activeDeck.profile === 'anna' && activeDeck.type === 'phonemes'
-  const lessonDeckCards = isSarahLetters ? activeDeck.cards : orderCardsForMode(activeDeck, mode)
+  const lessonDeckCards = isSarahLetters || isOlderReaderPhonemes ? activeDeck.cards : orderCardsForMode(activeDeck, mode)
   const activeCard = lessonDeckCards[cardIndex % Math.max(1, lessonDeckCards.length)] ?? card
   const lessonStart = isSarahLetters
     ? sarahLetterLessonStartForIndex(cardIndex, lessonDeckCards.length)
+    : isOlderReaderPhonemes
+    ? fixedLessonStartForIndex(cardIndex, lessonDeckCards.length)
     : lessonStartForIndex(cardIndex, lessonDeckCards.length)
-  const lessonLength = isSarahLetters ? sarahLetterLessonSizeForStart(lessonStart, lessonDeckCards.length) : LESSON_SIZE
+  const lessonLength = isSarahLetters
+    ? sarahLetterLessonSizeForStart(lessonStart, lessonDeckCards.length)
+    : isOlderReaderPhonemes
+    ? Math.min(LESSON_SIZE, lessonDeckCards.length - lessonStart)
+    : LESSON_SIZE
   const lessonCards = lessonDeckCards.slice(lessonStart, lessonStart + lessonLength)
   const lessonIndex = cardIndex - lessonStart
   const sarahActivities = useMemo(
@@ -808,7 +823,13 @@ function LearningScreen({
   const progressTotal = isSarahLetters ? sarahActivities.length : isOlderReaderWords ? olderReaderActivities.length : isOlderReaderPhonemes ? phonemeActivities.length : lessonCards.length
   const lessonNumber = isSarahLetters
     ? sarahLetterLessonNumberForIndex(cardIndex, lessonDeckCards.length)
+    : isOlderReaderPhonemes
+    ? fixedLessonNumberForIndex(cardIndex, lessonDeckCards.length)
     : lessonNumberForIndex(cardIndex, lessonDeckCards.length)
+  const completePhonemeAndDone = () => {
+    if (isOlderReaderPhonemes) completeOlderReaderPhonemeLesson(activeDeck, lessonCards)
+    onDone()
+  }
 
   return (
     <section className="learning-screen lesson-focus">
@@ -856,7 +877,7 @@ function LearningScreen({
           activityIndex={sarahActivityIndex}
           onActivityChange={onSarahActivityChange}
           onNextLesson={onNextLesson}
-          onDone={onDone}
+          onDone={completePhonemeAndDone}
         />
       ) : isOlderReaderPhonemes ? (
         <OlderReaderPhonemeLesson
@@ -2482,6 +2503,68 @@ function lessonNumberForIndex(index: number, totalCards: number): number {
   return Math.min(totalLessons, Math.floor(index / LESSON_SIZE) + 1)
 }
 
+function fixedLessonStartForIndex(index: number, totalCards: number): number {
+  if (totalCards <= 0) return 0
+  const start = Math.floor(index / LESSON_SIZE) * LESSON_SIZE
+  return Math.min(start, Math.max(0, totalCards - 1))
+}
+
+function fixedLessonNumberForIndex(index: number, totalCards: number): number {
+  const totalLessons = Math.max(1, Math.ceil(totalCards / LESSON_SIZE))
+  return Math.min(totalLessons, Math.floor(index / LESSON_SIZE) + 1)
+}
+
+interface OlderReaderPhonemeProgress {
+  learnedIds: string[]
+  nextIndex: number
+  cycle: number
+}
+
+function readOlderReaderPhonemeProgress(deckId: string, totalCards: number): OlderReaderPhonemeProgress {
+  try {
+    const raw = window.localStorage.getItem(olderReaderPhonemeProgressKey(deckId))
+    const parsed = raw ? JSON.parse(raw) as Partial<OlderReaderPhonemeProgress> : {}
+    const nextIndex = Number.isFinite(parsed.nextIndex) ? Number(parsed.nextIndex) : 0
+    return {
+      learnedIds: Array.isArray(parsed.learnedIds) ? parsed.learnedIds.filter((id): id is string => typeof id === 'string') : [],
+      nextIndex: Math.min(Math.max(0, nextIndex), Math.max(0, totalCards - 1)),
+      cycle: Number.isFinite(parsed.cycle) ? Number(parsed.cycle) : 1,
+    }
+  } catch {
+    return { learnedIds: [], nextIndex: 0, cycle: 1 }
+  }
+}
+
+function readOlderReaderPhonemeNextIndex(deckId: string, totalCards: number): number {
+  return readOlderReaderPhonemeProgress(deckId, totalCards).nextIndex
+}
+
+function completeOlderReaderPhonemeLesson(deck: LearningDeck, lessonCards: LearningCard[]): number {
+  const progress = readOlderReaderPhonemeProgress(deck.id, deck.cards.length)
+  const learned = new Set(progress.learnedIds)
+  for (const card of lessonCards) learned.add(card.id)
+
+  const allDone = deck.cards.every((card) => learned.has(card.id))
+  const nextIndex = allDone ? 0 : Math.max(0, deck.cards.findIndex((card) => !learned.has(card.id)))
+  const nextProgress: OlderReaderPhonemeProgress = {
+    learnedIds: allDone ? [] : [...learned],
+    nextIndex,
+    cycle: allDone ? progress.cycle + 1 : progress.cycle,
+  }
+
+  try {
+    window.localStorage.setItem(olderReaderPhonemeProgressKey(deck.id), JSON.stringify(nextProgress))
+  } catch {
+    // Progress tracking should help the loop, but never block the reading lesson.
+  }
+
+  return nextIndex
+}
+
+function olderReaderPhonemeProgressKey(deckId: string): string {
+  return `chunky-reader:older-reader-phonemes:${deckId}`
+}
+
 function sarahLetterLessonCount(totalCards: number): number {
   if (totalCards <= LESSON_SIZE) return 1
   const normalCards = totalCards - SARAH_FINAL_REVIEW_SIZE
@@ -2626,33 +2709,42 @@ function buildOlderReaderPhonemeActivities(lessonCards: LearningCard[]): OlderRe
   
   // 2. Sound to spelling
   for (const card of lessonCards) {
-    const distractors = lessonCards.filter(c => c.id !== card.id)
-    const randomDistractor = distractors[Math.floor(Math.random() * distractors.length)]
-    activities.push({ kind: 'soundToSpelling', card, options: [card, randomDistractor].sort(() => Math.random() - 0.5) })
+    activities.push({ kind: 'soundToSpelling', card, options: buildOlderReaderPhonemeOptions(lessonCards, card, 'soundToSpelling') })
   }
   
   // 3. Spelling to sound (using example words)
   for (const card of lessonCards) {
-    const distractors = lessonCards.filter(c => c.id !== card.id)
-    const randomDistractor = distractors[Math.floor(Math.random() * distractors.length)]
-    activities.push({ kind: 'spellingToSound', card, options: [card, randomDistractor].sort(() => Math.random() - 0.5) })
+    activities.push({ kind: 'spellingToSound', card, options: buildOlderReaderPhonemeOptions(lessonCards, card, 'spellingToSound') })
   }
   
   // 4. Example word
   for (const card of lessonCards) {
-    const distractors = lessonCards.filter(c => c.id !== card.id)
-    const randomDistractor = distractors[Math.floor(Math.random() * distractors.length)]
-    activities.push({ kind: 'exampleWord', card, options: [card, randomDistractor].sort(() => Math.random() - 0.5) })
+    activities.push({ kind: 'exampleWord', card, options: buildOlderReaderPhonemeOptions(lessonCards, card, 'exampleWord') })
   }
   
   // 5. Mixed Review
   for (const card of lessonCards) {
-    const distractors = lessonCards.filter(c => c.id !== card.id)
-    const randomDistractor = distractors[Math.floor(Math.random() * distractors.length)]
-    activities.push({ kind: 'mixedReview', card, options: [card, randomDistractor].sort(() => Math.random() - 0.5), reviewVariant: 'spellingPatternRecall' })
+    activities.push({
+      kind: 'mixedReview',
+      card,
+      options: buildOlderReaderPhonemeOptions(lessonCards, card, 'mixedReview'),
+      reviewVariant: 'spellingPatternRecall',
+    })
   }
   
   return activities
+}
+
+function buildOlderReaderPhonemeOptions(
+  lessonCards: LearningCard[],
+  card: LearningCard,
+  kind: OlderReaderPhonemeActivityKind,
+): LearningCard[] {
+  const distractor = lessonCards
+    .filter((candidate) => candidate.id !== card.id)
+    .sort((a, b) => stableSort(`phoneme:${kind}:${card.id}:${a.id}`) - stableSort(`phoneme:${kind}:${card.id}:${b.id}`))[0]
+  const options = distractor ? [card, distractor] : [card]
+  return options.sort((a, b) => stableSort(`phoneme-order:${kind}:${card.id}:${a.id}`) - stableSort(`phoneme-order:${kind}:${card.id}:${b.id}`))
 }
 
 function OlderReaderPhonemeLesson({
