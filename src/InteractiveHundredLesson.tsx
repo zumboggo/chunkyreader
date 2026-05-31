@@ -239,8 +239,25 @@ function BlendingBridge({
   );
 }
 
-function getRime(word: string) {
-  return word.length <= 2 ? word : word.slice(1);
+function deriveSharedRime(words: string[]) {
+  const cleanWords = words.map((word) => word.toLowerCase().replace(/[^a-z]/gu, '')).filter(Boolean);
+  if (cleanWords.length === 0) return '';
+  const shortest = cleanWords.reduce((current, word) => (word.length < current.length ? word : current), cleanWords[0]);
+
+  for (let length = Math.max(1, shortest.length - 1); length >= 1; length -= 1) {
+    const suffix = shortest.slice(-length);
+    if (cleanWords.every((word) => word.endsWith(suffix))) return suffix;
+  }
+
+  return shortest.length <= 2 ? shortest.slice(-1) : shortest.slice(1);
+}
+
+function splitRimeWord(word: string, rime: string) {
+  if (!rime || !word.toLowerCase().endsWith(rime.toLowerCase())) {
+    return { onset: word, rime: '' };
+  }
+  const onset = word.slice(0, word.length - rime.length);
+  return { onset, rime: word.slice(word.length - rime.length) };
 }
 
 function RhymePuzzle({
@@ -255,19 +272,20 @@ function RhymePuzzle({
   onJourneyStep: JourneyStepHandler;
 }) {
   const [solved, setSolved] = useState<string[]>([]);
-  const baseRime = items[0] ? getRime(items[0]) : '';
+  const baseRime = deriveSharedRime(items);
+  const targetItems = items.filter((word) => splitRimeWord(word, baseRime).rime);
 
   useEffect(() => {
-    if (items.length > 0 && solved.length === items.length) {
+    if (targetItems.length > 0 && solved.length === targetItems.length) {
       const timer = window.setTimeout(onComplete, 900);
       return () => window.clearTimeout(timer);
     }
     return undefined;
-  }, [items.length, onComplete, solved.length]);
+  }, [onComplete, solved.length, targetItems.length]);
 
   const choose = (word: string, index: number) => {
     playLessonAudio(audioPaths?.[index]);
-    if (!word.endsWith(baseRime)) return;
+    if (!splitRimeWord(word, baseRime).rime) return;
     setSolved((previous) => {
       if (previous.includes(word)) return previous;
       onJourneyStep();
@@ -285,7 +303,7 @@ function RhymePuzzle({
       <div className="rime-base">-{baseRime}</div>
       <div className="rhyme-container">
         {items.map((word, index) => {
-          const onset = word.slice(0, Math.max(1, word.length - baseRime.length));
+          const { onset, rime } = splitRimeWord(word, baseRime);
           const isSolved = solved.includes(word);
           return (
             <button
@@ -295,7 +313,7 @@ function RhymePuzzle({
               onClick={() => choose(word, index)}
             >
               <span>{onset}</span>
-              <strong>{baseRime}</strong>
+              <strong>{rime || baseRime}</strong>
             </button>
           );
         })}

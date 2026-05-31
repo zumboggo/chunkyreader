@@ -29,6 +29,7 @@
     "generate:100-audio": "node scripts/generate-100-lessons-audio.mjs",
     "generate:100-images": "node scripts/generate-100-lessons-images.mjs",
     "generate:100-images:dry": "node scripts/generate-100-lessons-images.mjs --dry-run",
+    "verify:100-lessons": "node scripts/verify-100-lessons.mjs",
     "generate:story-images": "node scripts/generate-story-images.mjs",
     "generate:story-images:dry": "node scripts/generate-story-images.mjs --dry-run",
     "generate:story-images:test": "node scripts/generate-story-images.mjs --limit 2"
