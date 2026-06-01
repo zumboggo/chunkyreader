@@ -8,10 +8,12 @@ const dryRun = hasFlag('dry-run')
 const force = hasFlag('force')
 const limit = readNumberArg('limit')
 const storyFilter = readStringArg('story')
+const pageFilter = readNumberArg('page')
 const format = readStringArg('format') || 'webp'
 const provider = process.env.IMAGE_PROVIDER || 'replicate'
 const model = process.env.IMAGE_MODEL || 'black-forest-labs/flux-schnell'
 const token = process.env.REPLICATE_API_TOKEN
+let cachedModelVersion = ''
 
 if (provider !== 'replicate') {
   console.error(`Unsupported IMAGE_PROVIDER "${provider}". This script currently supports "replicate".`)
@@ -30,6 +32,7 @@ let changed = false
 for (const story of stories) {
   if (storyFilter && story.id !== storyFilter) continue
   for (const page of story.pages ?? []) {
+    if (Number.isFinite(pageFilter) && page.pageNumber !== pageFilter) continue
     if (!page.imagePrompt) continue
     const appPath = `stories/anne/images/${story.id}-page-${page.pageNumber}.${format}`
     if (page.image !== appPath) {
@@ -85,8 +88,22 @@ console.log(`Done. Generated ${generated}, skipped ${skipped}.`)
 
 async function createPrediction(page) {
   const isIdeogram = model.includes('ideogram-ai/')
+  const isSdxl = model.includes('stability-ai/sdxl')
   const prompt = isIdeogram ? withNegativePrompt(page.imagePrompt, page.negativePrompt) : page.imagePrompt
-  const input = isIdeogram
+  const input = isSdxl
+    ? {
+        prompt: page.imagePrompt,
+        negative_prompt: page.negativePrompt || 'text, letters, words, watermark, logo, signature, low quality, blurry',
+        width: 1024,
+        height: 768,
+        num_outputs: 1,
+        scheduler: 'K_EULER',
+        num_inference_steps: 35,
+        guidance_scale: 7.5,
+        refine: 'expert_ensemble_refiner',
+        apply_watermark: false,
+      }
+    : isIdeogram
     ? {
         prompt,
         aspect_ratio: '4:3',
@@ -112,14 +129,15 @@ async function createPrediction(page) {
 }
 
 async function runPrediction(input) {
-  const response = await fetch(`https://api.replicate.com/v1/models/${model}/predictions`, {
+  const usesVersionEndpoint = model.includes('stability-ai/sdxl')
+  const response = await fetch(usesVersionEndpoint ? 'https://api.replicate.com/v1/predictions' : `https://api.replicate.com/v1/models/${model}/predictions`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
       Prefer: 'wait',
     },
-    body: JSON.stringify({ input }),
+    body: JSON.stringify(usesVersionEndpoint ? { version: await modelVersion(), input } : { input }),
   })
 
   const prediction = await response.json()
@@ -136,6 +154,20 @@ async function runPrediction(input) {
   }
 
   return extractImageUrl(finished.output)
+}
+
+async function modelVersion() {
+  if (process.env.REPLICATE_MODEL_VERSION) return process.env.REPLICATE_MODEL_VERSION
+  if (cachedModelVersion) return cachedModelVersion
+  const response = await fetch(`https://api.replicate.com/v1/models/${model}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+  const data = await response.json()
+  if (!response.ok || !data.latest_version?.id) {
+    throw new Error(`Could not find latest version for ${model}: ${data.detail || response.status}`)
+  }
+  cachedModelVersion = data.latest_version.id
+  return cachedModelVersion
 }
 
 async function pollPrediction(prediction) {

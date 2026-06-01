@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural">
+    <prosody rate="-8%" pitch="+2%">
+      One bright little day, by the bay full of boats,<break time="350ms"/>Sat Gus the Goat in his big blue coat.<break time="350ms"/>He munched on his oats with a crunch and a chew,<break time="350ms"/>And sang, ?This is lunch! This is lunch! This will do!?
+    </prosody>
+  </voice>
+</speak>

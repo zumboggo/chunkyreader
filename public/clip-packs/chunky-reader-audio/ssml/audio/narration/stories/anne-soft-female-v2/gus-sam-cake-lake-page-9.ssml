@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural">
+    <prosody rate="-8%" pitch="+2%">
+      They passed a van by a very green vine,<break time="350ms"/>A zebra with zip, and a pig-shaped sign.<break time="350ms"/>They passed a small ship that whispered, ?Shh! Shh!<break time="350ms"/>The cake went that way with a swish and a whoosh!?
+    </prosody>
+  </voice>
+</speak>

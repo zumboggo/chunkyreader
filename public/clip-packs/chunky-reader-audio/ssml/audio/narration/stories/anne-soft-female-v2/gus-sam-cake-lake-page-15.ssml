@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural">
+    <prosody rate="-8%" pitch="+2%">
+      ?I blamed you too fast,? Sam said to the goat.<break time="350ms"/>?I saw crumbs and jam and your big blue coat.<break time="350ms"/>I should have asked Pip. I should have asked you.<break time="350ms"/>A snake can be wrong. It is sadly quite true.?
+    </prosody>
+  </voice>
+</speak>

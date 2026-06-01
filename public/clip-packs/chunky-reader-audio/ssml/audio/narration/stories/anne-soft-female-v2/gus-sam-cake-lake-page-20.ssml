@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural">
+    <prosody rate="-8%" pitch="+2%">
+      So if cake disappears by the lake or the bay,<break time="350ms"/>Do not hiss, do not bleat, do not shout right away.<break time="350ms"/>Look under the chair. Look behind the bear?s knees.<break time="350ms"/>Then share what you find and say,<break time="350ms"/>?More cake, please!?
+    </prosody>
+  </voice>
+</speak>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural">
+    <prosody rate="-8%" pitch="+2%">
+      Now Gus by the bay always shares all his oats.<break time="350ms"/>Sam labels his cakes with much bigger notes.<break time="350ms"/>And Pip keeps a map in her red little pack,<break time="350ms"/>In case any snack ever sneaks off the track.
+    </prosody>
+  </voice>
+</speak>
