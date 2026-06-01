@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural">
+    <prosody rate="-8%" pitch="+2%">
+      Gus smiled and said, ?I forgive you, my friend.<break time="350ms"/>But now that we?ve found it, how does this end??<break time="350ms"/>Pip said, ?That?s easy. No shouting. No fight.<break time="350ms"/>We slice it and share it before it turns night.?
+    </prosody>
+  </voice>
+</speak>

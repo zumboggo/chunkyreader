@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural">
+    <prosody rate="-8%" pitch="+2%">
+      They climbed up a hill to a strange little chair,<break time="350ms"/>Where crumbs made a trail to a cave over there.<break time="350ms"/>Inside sat a bear with a crown made of string,<break time="350ms"/>A book, and a hook, and a bright silver ring.
+    </prosody>
+  </voice>
+</speak>

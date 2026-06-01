@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural">
+    <prosody rate="-8%" pitch="+2%">
+      They ate by the fire.<break time="350ms"/>They danced in the rain.<break time="350ms"/>They rode down the hill on a very small train.<break time="350ms"/>A cow on a cloud gave a laugh and a bow,<break time="350ms"/>And the ship called, ?Hooray!? with a swish and a wow.
+    </prosody>
+  </voice>
+</speak>

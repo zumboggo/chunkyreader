@@ -15,7 +15,7 @@
     "phonicsTeacher": "phonics-sounds-v2"
   },
   "outputFormat": "audio-24khz-48kbitrate-mono-mp3",
-  "createdAt": "2026-05-27T11:27:31.302Z",
+  "createdAt": "2026-06-01T08:44:57.732Z",
   "clips": [
     {
       "id": "letter-m:sound",
@@ -2800,6 +2800,206 @@
       "voiceVersion": "anne-soft-female-v2",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/pippa-frog-log-page-3.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/pippa-frog-log-page-3.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:1",
+      "type": "story-page",
+      "text": "One bright little day, by the bay full of boats,\nSat Gus the Goat in his big blue coat.\nHe munched on his oats with a crunch and a chew,\nAnd sang, ?This is lunch! This is lunch! This will do!?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-1.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-1.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:2",
+      "type": "story-page",
+      "text": "Then Sam the Snake came down with a rake,\nAnd cried, ?Oh no! Oh no! Where?s my cake?\nI baked it last night by the soft moon light,\nAnd I set it right here. It was round. It was white!?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-2.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-2.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:3",
+      "type": "story-page",
+      "text": "Gus blinked once.\nThen Gus blinked twice.\n?I did not take your cake.\nBut it smelled rather nice.?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-3.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-3.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:4",
+      "type": "story-page",
+      "text": "Sam hissed, ?You have jam on the tip of your chin!\nAnd crumbs on your coat! And a grinny-goat grin!?\nGus said, ?That is oat-jam. I eat it with tea.\nYour cake was not taken by goatish old me!?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-4.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-4.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:5",
+      "type": "story-page",
+      "text": "Then up trotted Pip, with a cup and a map,\nA red little hat and a blue little cap.\n?What?s all this shouting by hill, lake, and tree?\nA snake and a goat are too loud before tea!?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-5.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-5.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:6",
+      "type": "story-page",
+      "text": "?My cake has been stolen!? said Sam with a shake.\n?And Gus looks suspicious!?\n?I did not!? bleated Gus.\n?I ate oats, not cake!?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-6.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-6.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:7",
+      "type": "story-page",
+      "text": "Pip looked at the mud.\nPip looked at the grass.\nPip looked through a round little looking-glass.\n?There are marks by the path, and a print by the well.\nAnd something smells sweet. I can follow that smell.?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-7.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-7.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:8",
+      "type": "story-page",
+      "text": "So Gus and Sam followed Pip down the track,\nPast a thin little twig and a thick muddy stack.\nThey passed a fish with a fin in a dish,\nAnd a frog on a log making one birthday wish.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-8.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-8.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:9",
+      "type": "story-page",
+      "text": "They passed a van by a very green vine,\nA zebra with zip, and a pig-shaped sign.\nThey passed a small ship that whispered, ?Shh! Shh!\nThe cake went that way with a swish and a whoosh!?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-9.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-9.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:10",
+      "type": "story-page",
+      "text": "They climbed up a hill to a strange little chair,\nWhere crumbs made a trail to a cave over there.\nInside sat a bear with a crown made of string,\nA book, and a hook, and a bright silver ring.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-10.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-10.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:11",
+      "type": "story-page",
+      "text": "The bear gave a cough.\nThe bear gave a sneeze.\nThen cake flew out\nFrom behind both his knees.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-11.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-11.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:12",
+      "type": "story-page",
+      "text": "Sam shouted, ?My cake!?\nGus shouted, ?Aha!?\nPip shouted, ?Well, that is the weirdest thing?ha!?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-12.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-12.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:13",
+      "type": "story-page",
+      "text": "The bear looked ashamed.\n?My name is Ben Bear.\nI found a lost cake by the lake over there.\nI thought it said, ?Ben,? but it really said, ?Sam.?\nAnd then I got cake on my knees and my jam.?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-13.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-13.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:14",
+      "type": "story-page",
+      "text": "Sam looked at Ben.\nThen he looked at the cake.\nThen he looked at poor Gus, who was starting to shake.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-14.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-14.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:15",
+      "type": "story-page",
+      "text": "?I blamed you too fast,? Sam said to the goat.\n?I saw crumbs and jam and your big blue coat.\nI should have asked Pip. I should have asked you.\nA snake can be wrong. It is sadly quite true.?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-15.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-15.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:16",
+      "type": "story-page",
+      "text": "Gus smiled and said, ?I forgive you, my friend.\nBut now that we?ve found it, how does this end??\nPip said, ?That?s easy. No shouting. No fight.\nWe slice it and share it before it turns night.?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-16.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-16.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:17",
+      "type": "story-page",
+      "text": "So Sam cut the cake with a chop and a chat,\nAnd Ben put a plate on the top of his hat.\nGus got a slice with a spoon and a tune,\nAnd Pip got a piece shaped like half of the moon.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-17.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-17.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:18",
+      "type": "story-page",
+      "text": "They ate by the fire.\nThey danced in the rain.\nThey rode down the hill on a very small train.\nA cow on a cloud gave a laugh and a bow,\nAnd the ship called, ?Hooray!? with a swish and a wow.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-18.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-18.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:19",
+      "type": "story-page",
+      "text": "Now Gus by the bay always shares all his oats.\nSam labels his cakes with much bigger notes.\nAnd Pip keeps a map in her red little pack,\nIn case any snack ever sneaks off the track.",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-19.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-19.ssml"
+    },
+    {
+      "id": "story:gus-sam-cake-lake:page:20",
+      "type": "story-page",
+      "text": "So if cake disappears by the lake or the bay,\nDo not hiss, do not bleat, do not shout right away.\nLook under the chair. Look behind the bear?s knees.\nThen share what you find and say,\n?More cake, please!?",
+      "language": "en-US",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-20.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-20.ssml"
     },
     {
       "id": "ui:story:complete",

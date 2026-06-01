@@ -14,8 +14,12 @@ if (!fs.existsSync(storyPath)) {
   } else {
     for (const story of stories) {
       if (!story.id || !story.title) errors.push(`Story is missing id or title: ${JSON.stringify(story)}`)
-      if (!Array.isArray(story.pages) || story.pages.length !== 3) {
-        errors.push(`${story.id || story.title}: expected exactly 3 pages`)
+      if (!Array.isArray(story.pages) || story.pages.length === 0) {
+        errors.push(`${story.id || story.title}: expected at least 1 page`)
+        continue
+      }
+      if (story.readingLevel !== 'older reader' && story.pages.length !== 3) {
+        errors.push(`${story.id || story.title}: expected exactly 3 pages for early reader stories`)
         continue
       }
       for (const page of story.pages) {

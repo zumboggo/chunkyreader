@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural">
+    <prosody rate="-8%" pitch="+2%">
+      The bear looked ashamed.<break time="350ms"/>?My name is Ben Bear.<break time="350ms"/>I found a lost cake by the lake over there.<break time="350ms"/>I thought it said, ?Ben,? but it really said, ?Sam.?<break time="350ms"/>And then I got cake on my knees and my jam.?
+    </prosody>
+  </voice>
+</speak>

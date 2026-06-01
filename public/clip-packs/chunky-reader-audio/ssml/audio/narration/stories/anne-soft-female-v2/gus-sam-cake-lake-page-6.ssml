@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural">
+    <prosody rate="-8%" pitch="+2%">
+      ?My cake has been stolen!? said Sam with a shake.<break time="350ms"/>?And Gus looks suspicious!?<break time="350ms"/>?I did not!? bleated Gus.<break time="350ms"/>?I ate oats, not cake!?
+    </prosody>
+  </voice>
+</speak>
