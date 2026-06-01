@@ -250,6 +250,10 @@ function introText(deck, card) {
 }
 
 function soundSsmlBody(deck, card) {
+  if (deck.type === 'phonemes' && card.ssmlSound) {
+    const cue = escapeXml(card.speechCue || card.exampleWord || '')
+    return `${card.ssmlSound}. <break time="250ms"/> ${cue}.`
+  }
   if (deck.type !== 'letters' || !card.ssmlSound) return undefined
   const example = escapeXml(card.exampleWord || '')
   const soundText = card.ssmlSound
