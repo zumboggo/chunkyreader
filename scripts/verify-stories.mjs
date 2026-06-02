@@ -24,7 +24,10 @@ if (!fs.existsSync(storyPath)) {
       }
       for (const page of story.pages) {
         const label = `${story.id} page ${page.pageNumber}`
-        for (const field of ['pageNumber', 'text', 'image', 'imagePrompt', 'negativePrompt', 'altText']) {
+        const requiredFields = story.sourceType === 'pdf-import'
+          ? ['pageNumber', 'text', 'image', 'altText']
+          : ['pageNumber', 'text', 'image', 'imagePrompt', 'negativePrompt', 'altText']
+        for (const field of requiredFields) {
           if (!page[field]) errors.push(`${label}: missing ${field}`)
         }
         if (typeof page.image === 'string' && page.image.startsWith('/')) {

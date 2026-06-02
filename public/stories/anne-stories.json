@@ -1,5 +1,116 @@
 [
   {
+    "id": "lava-girls-tropical-adventure",
+    "title": "The Lava Girls' Tropical Adventure",
+    "series": "PDF Stories",
+    "readingLevel": "older reader",
+    "description": "The Lava Girls' Tropical Adventure imported from a PDF for Older Reader story practice.",
+    "coverImage": "stories/pdf/lava-girls-tropical-adventure/images/cover.webp",
+    "sourceType": "pdf-import",
+    "sourceManifest": "stories/pdf/lava-girls-tropical-adventure/source-manifest.json",
+    "pages": [
+      {
+        "pageNumber": 1,
+        "text": "Anna and Sarah lived in\nsnowy Canada. They felt\nmuch too hot for the\ncold.",
+        "image": "stories/pdf/lava-girls-tropical-adventure/images/page-1.webp",
+        "altText": "The Lava Girls' Tropical Adventure page 1, imported from PDF page 2.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/lava-girls-tropical-adventure-page-1.mp3",
+        "sourcePdfPage": 2,
+        "sourceImagePage": 2,
+        "extractionMethod": "ocr",
+        "ocrConfidence": 95
+      },
+      {
+        "pageNumber": 2,
+        "text": "They were magical girls\nmade of glowing lava.\nSnow melted into\npuddles wherever they\nstepped.",
+        "image": "stories/pdf/lava-girls-tropical-adventure/images/page-2.webp",
+        "altText": "The Lava Girls' Tropical Adventure page 2, imported from PDF page 3.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/lava-girls-tropical-adventure-page-2.mp3",
+        "sourcePdfPage": 3,
+        "sourceImagePage": 3,
+        "extractionMethod": "ocr",
+        "ocrConfidence": 95
+      },
+      {
+        "pageNumber": 3,
+        "text": "\"We must go to\nMalaysia,\" said Anna. \"To\nstop the villain Pedro\nPony!\"",
+        "image": "stories/pdf/lava-girls-tropical-adventure/images/page-3.webp",
+        "altText": "The Lava Girls' Tropical Adventure page 3, imported from PDF page 4.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/lava-girls-tropical-adventure-page-3.mp3",
+        "sourcePdfPage": 4,
+        "sourceImagePage": 4,
+        "extractionMethod": "ocr",
+        "ocrConfidence": 89
+      },
+      {
+        "pageNumber": 4,
+        "text": "Sarah packed their bags\nfor a big adventure. They\nflew high across the deep\nblue sea.",
+        "image": "stories/pdf/lava-girls-tropical-adventure/images/page-4.webp",
+        "altText": "The Lava Girls' Tropical Adventure page 4, imported from PDF page 5.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/lava-girls-tropical-adventure-page-4.mp3",
+        "sourcePdfPage": 5,
+        "sourceImagePage": 5,
+        "extractionMethod": "ocr",
+        "ocrConfidence": 95
+      },
+      {
+        "pageNumber": 5,
+        "text": "They landed in beautiful,\nsunny Malaysia. The\ntropical heat felt just like\nhome.",
+        "image": "stories/pdf/lava-girls-tropical-adventure/images/page-5.webp",
+        "altText": "The Lava Girls' Tropical Adventure page 5, imported from PDF page 6.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/lava-girls-tropical-adventure-page-5.mp3",
+        "sourcePdfPage": 6,
+        "sourceImagePage": 6,
+        "extractionMethod": "ocr",
+        "ocrConfidence": 95
+      },
+      {
+        "pageNumber": 6,
+        "text": "\"There is the villain!\"\nSarah cried. They saw\nPedro Pony wearing a\nscary mask.",
+        "image": "stories/pdf/lava-girls-tropical-adventure/images/page-6.webp",
+        "altText": "The Lava Girls' Tropical Adventure page 6, imported from PDF page 7.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/lava-girls-tropical-adventure-page-6.mp3",
+        "sourcePdfPage": 7,
+        "sourceImagePage": 7,
+        "extractionMethod": "ocr",
+        "ocrConfidence": 95
+      },
+      {
+        "pageNumber": 7,
+        "text": "But look! There are\ncameras and bright\nlights. Pedro Pony was\nonly acting in a movie.",
+        "image": "stories/pdf/lava-girls-tropical-adventure/images/page-7.webp",
+        "altText": "The Lava Girls' Tropical Adventure page 7, imported from PDF page 8.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/lava-girls-tropical-adventure-page-7.mp3",
+        "sourcePdfPage": 8,
+        "sourceImagePage": 8,
+        "extractionMethod": "ocr",
+        "ocrConfidence": 95
+      },
+      {
+        "pageNumber": 8,
+        "text": "\"I am not a villain,\" Pedro\nPony said. \"I just like\nplaying pretend on film!\"",
+        "image": "stories/pdf/lava-girls-tropical-adventure/images/page-8.webp",
+        "altText": "The Lava Girls' Tropical Adventure page 8, imported from PDF page 9.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/lava-girls-tropical-adventure-page-8.mp3",
+        "sourcePdfPage": 9,
+        "sourceImagePage": 9,
+        "extractionMethod": "ocr",
+        "ocrConfidence": 94
+      },
+      {
+        "pageNumber": 9,
+        "text": "Adventure is better with\nnew friends. Malaysia is\nthe perfect place for lava\ngirls.",
+        "image": "stories/pdf/lava-girls-tropical-adventure/images/page-9.webp",
+        "altText": "The Lava Girls' Tropical Adventure page 9, imported from PDF page 10.",
+        "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/lava-girls-tropical-adventure-page-9.mp3",
+        "sourcePdfPage": 10,
+        "sourceImagePage": 10,
+        "extractionMethod": "ocr",
+        "ocrConfidence": 95
+      }
+    ]
+  },
+  {
     "id": "gus-sam-cake-lake",
     "title": "Gus and Sam and the Cake by the Lake",
     "series": "Animal Stories",
