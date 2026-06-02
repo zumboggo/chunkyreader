@@ -67,7 +67,7 @@ If an image or audio file is missing, the app shows a friendly placeholder and f
 
 ## Adding Growing Reader Stories
 
-Growing Reader story content lives in `public/stories/anne-stories.json`. Each story has exactly three pages with text, image path, image prompt, negative prompt, and alt text.
+Growing Reader story content lives in `public/stories/anne-stories.json`. Early-reader stories have exactly three pages with text, image path, image prompt, negative prompt, and alt text. Older Reader stories can be longer, and PDF-imported stories can use extracted page images instead of image-generation prompts.
 
 Story page images should go in:
 
@@ -88,6 +88,31 @@ The app resolves story image paths through the Vite base URL, so JSON should use
 ```
 
 Missing story illustrations show a storybook-style placeholder instead of breaking the reader.
+
+## Importing PDF Stories
+
+Use the local importer to turn a PDF into normal Older Reader story pages with extracted text, rendered page images, and Azure narration paths. The original PDF is not committed.
+
+```bash
+npm run import:pdf-story:dry -- --pdf "C:\Users\LENOVO\Downloads\The Lava Girls' Tropical Adventure.pdf" --story-id lava-girls-tropical-adventure --title "The Lava Girls' Tropical Adventure"
+npm run import:pdf-story -- --pdf "C:\Users\LENOVO\Downloads\The Lava Girls' Tropical Adventure.pdf" --story-id lava-girls-tropical-adventure --title "The Lava Girls' Tropical Adventure" --force
+npm run generate:audio
+```
+
+The importer renders optimized WebP images into:
+
+```text
+public/stories/pdf/<story-id>/images/
+```
+
+It writes a source manifest and OCR review file beside the images:
+
+```text
+public/stories/pdf/<story-id>/source-manifest.json
+public/stories/pdf/<story-id>/review-text.json
+```
+
+Review the extracted text before forcing audio regeneration if OCR confidence looks low or a word looks odd. The importer supports `--page-mode auto-pair|each-page`, `--ocr` to force OCR even when a text layer exists, `--dry-run`, and `--force`.
 
 ## Adding Earliest Reader Letter Cards
 

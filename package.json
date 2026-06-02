@@ -32,7 +32,9 @@
     "verify:100-lessons": "node scripts/verify-100-lessons.mjs",
     "generate:story-images": "node scripts/generate-story-images.mjs",
     "generate:story-images:dry": "node scripts/generate-story-images.mjs --dry-run",
-    "generate:story-images:test": "node scripts/generate-story-images.mjs --limit 2"
+    "generate:story-images:test": "node scripts/generate-story-images.mjs --limit 2",
+    "import:pdf-story": "node scripts/import-pdf-story.mjs",
+    "import:pdf-story:dry": "node scripts/import-pdf-story.mjs --dry-run"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",
@@ -41,6 +43,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@napi-rs/canvas": "^1.0.0",
     "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^24.12.3",
     "@types/react": "^19.2.14",
@@ -50,7 +53,9 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
+    "pdfjs-dist": "^6.0.227",
     "sharp": "^0.34.5",
+    "tesseract.js": "^7.0.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
     "vite": "^8.0.12"

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural">
+    <prosody rate="-8%" pitch="+2%">
+      &quot;We must go to<break time="350ms"/>Malaysia,&quot; said Anna. &quot;To<break time="350ms"/>stop the villain Pedro<break time="350ms"/>Pony!&quot;
+    </prosody>
+  </voice>
+</speak>

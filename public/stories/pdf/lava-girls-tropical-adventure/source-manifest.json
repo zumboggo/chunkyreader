@@ -1,0 +1,94 @@
+{
+  "storyId": "lava-girls-tropical-adventure",
+  "title": "The Lava Girls' Tropical Adventure",
+  "sourceFileName": "The Lava Girls' Tropical Adventure.pdf",
+  "sourceFileSizeBytes": 0,
+  "importedAt": "2026-06-02T17:13:46.062Z",
+  "pageCount": 10,
+  "pageMode": "auto-pair",
+  "ocrUsed": true,
+  "coverSourcePage": 1,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "sourcePdfPage": 2,
+      "sourceImagePage": 2,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 95,
+      "cropName": "right-center",
+      "image": "stories/pdf/lava-girls-tropical-adventure/images/page-1.webp"
+    },
+    {
+      "pageNumber": 2,
+      "sourcePdfPage": 3,
+      "sourceImagePage": 3,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 95,
+      "cropName": "right-center",
+      "image": "stories/pdf/lava-girls-tropical-adventure/images/page-2.webp"
+    },
+    {
+      "pageNumber": 3,
+      "sourcePdfPage": 4,
+      "sourceImagePage": 4,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 89,
+      "cropName": "right-half",
+      "image": "stories/pdf/lava-girls-tropical-adventure/images/page-3.webp"
+    },
+    {
+      "pageNumber": 4,
+      "sourcePdfPage": 5,
+      "sourceImagePage": 5,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 95,
+      "cropName": "right-center",
+      "image": "stories/pdf/lava-girls-tropical-adventure/images/page-4.webp"
+    },
+    {
+      "pageNumber": 5,
+      "sourcePdfPage": 6,
+      "sourceImagePage": 6,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 95,
+      "cropName": "right-center",
+      "image": "stories/pdf/lava-girls-tropical-adventure/images/page-5.webp"
+    },
+    {
+      "pageNumber": 6,
+      "sourcePdfPage": 7,
+      "sourceImagePage": 7,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 95,
+      "cropName": "right-half",
+      "image": "stories/pdf/lava-girls-tropical-adventure/images/page-6.webp"
+    },
+    {
+      "pageNumber": 7,
+      "sourcePdfPage": 8,
+      "sourceImagePage": 8,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 95,
+      "cropName": "right-center",
+      "image": "stories/pdf/lava-girls-tropical-adventure/images/page-7.webp"
+    },
+    {
+      "pageNumber": 8,
+      "sourcePdfPage": 9,
+      "sourceImagePage": 9,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 94,
+      "cropName": "right-center",
+      "image": "stories/pdf/lava-girls-tropical-adventure/images/page-8.webp"
+    },
+    {
+      "pageNumber": 9,
+      "sourcePdfPage": 10,
+      "sourceImagePage": 10,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 95,
+      "cropName": "right-half",
+      "image": "stories/pdf/lava-girls-tropical-adventure/images/page-9.webp"
+    }
+  ]
+}

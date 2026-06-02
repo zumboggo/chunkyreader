@@ -134,6 +134,10 @@ export interface StoryPage {
   negativePrompt?: string
   altText?: string
   audio?: string
+  sourcePdfPage?: number
+  sourceImagePage?: number
+  extractionMethod?: 'pdf-text' | 'ocr' | 'manual-review'
+  ocrConfidence?: number
 }
 
 export interface Story {
@@ -144,6 +148,8 @@ export interface Story {
   description?: string
   coverImage?: string
   coverPrompt?: string
+  sourceType?: 'manual' | 'pdf-import'
+  sourceManifest?: string
   pages: StoryPage[]
 }
 

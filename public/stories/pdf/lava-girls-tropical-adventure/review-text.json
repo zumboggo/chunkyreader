@@ -1,0 +1,70 @@
+{
+  "storyId": "lava-girls-tropical-adventure",
+  "title": "The Lava Girls' Tropical Adventure",
+  "note": "Review and correct OCR text here before regenerating Azure TTS if any words look wrong.",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "sourcePdfPage": 2,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 95,
+      "text": "Anna and Sarah lived in\nsnowy Canada. They felt\nmuch too hot for the\ncold."
+    },
+    {
+      "pageNumber": 2,
+      "sourcePdfPage": 3,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 95,
+      "text": "They were magical girls\nmade of glowing lava.\nSnow melted into\npuddles wherever they\nstepped."
+    },
+    {
+      "pageNumber": 3,
+      "sourcePdfPage": 4,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 89,
+      "text": "\"We must go to\nMalaysia,\" said Anna. \"To\nstop the villain Pedro\nPony!\""
+    },
+    {
+      "pageNumber": 4,
+      "sourcePdfPage": 5,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 95,
+      "text": "Sarah packed their bags\nfor a big adventure. They\nflew high across the deep\nblue sea."
+    },
+    {
+      "pageNumber": 5,
+      "sourcePdfPage": 6,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 95,
+      "text": "They landed in beautiful,\nsunny Malaysia. The\ntropical heat felt just like\nhome."
+    },
+    {
+      "pageNumber": 6,
+      "sourcePdfPage": 7,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 95,
+      "text": "\"There is the villain!\"\nSarah cried. They saw\nPedro Pony wearing a\nscary mask."
+    },
+    {
+      "pageNumber": 7,
+      "sourcePdfPage": 8,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 95,
+      "text": "But look! There are\ncameras and bright\nlights. Pedro Pony was\nonly acting in a movie."
+    },
+    {
+      "pageNumber": 8,
+      "sourcePdfPage": 9,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 94,
+      "text": "\"I am not a villain,\" Pedro\nPony said. \"I just like\nplaying pretend on film!\""
+    },
+    {
+      "pageNumber": 9,
+      "sourcePdfPage": 10,
+      "extractionMethod": "ocr",
+      "ocrConfidence": 95,
+      "text": "Adventure is better with\nnew friends. Malaysia is\nthe perfect place for lava\ngirls."
+    }
+  ]
+}
