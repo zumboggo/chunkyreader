@@ -4260,3 +4260,57 @@ body.lesson-active {
     transition: none;
   }
 }
+
+/* Story images are intentionally pannable so wide illustrations are not cropped on phones. */
+.story-page-image {
+  height: clamp(220px, 42dvh, 420px);
+  min-height: clamp(220px, 42dvh, 420px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.story-image-scroll {
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  min-width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.story-image-scroll:focus-visible {
+  outline: 4px solid rgba(255, 195, 74, 0.72);
+  outline-offset: -6px;
+}
+
+.story-page-image img {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+@media (max-width: 700px) {
+  .story-page-image {
+    height: clamp(190px, 42dvh, 340px);
+    min-height: clamp(190px, 42dvh, 340px);
+  }
+
+  .story-page-image img {
+    min-width: max(100%, 150vw);
+  }
+}
+
+@media (max-width: 380px) {
+  .story-page-image {
+    height: clamp(170px, 38dvh, 280px);
+    min-height: clamp(170px, 38dvh, 280px);
+  }
+}

@@ -714,13 +714,24 @@ function StoryReader({
 }
 
 function StoryPageImage({ page, story }: { page: StoryPage; story: Story }) {
+  const src = resolveStoryAssetUrl(page.image)
+  const label = page.altText || `${story.title} page ${page.pageNumber}`
+  const [failedSrc, setFailedSrc] = useState<string | undefined>()
+
+  if (!src || failedSrc === src) {
+    return (
+      <div className="story-page-image">
+        <StoryImageFallback title={story.title} pageNumber={page.pageNumber} />
+      </div>
+    )
+  }
+
   return (
-    <AssetImage
-      src={resolveStoryAssetUrl(page.image)}
-      label={page.altText || `${story.title} page ${page.pageNumber}`}
-      className="story-page-image"
-      fallback={<StoryImageFallback title={story.title} pageNumber={page.pageNumber} />}
-    />
+    <div className="story-page-image">
+      <div className="story-image-scroll" tabIndex={0} aria-label="Scrollable story picture">
+        <img src={src} alt={label} onError={() => setFailedSrc(src)} />
+      </div>
+    </div>
   )
 }
 
