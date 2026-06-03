@@ -132,7 +132,7 @@ import { getNewlyUnlockedRewards } from './rewards'
         >
           <Mascot size="small" mood="reading" />
           <span>
-            <strong>🏠 Home</strong>
+            <strong>Home</strong>
           </span>
         </button>
       </header>

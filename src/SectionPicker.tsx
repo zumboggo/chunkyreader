@@ -1,17 +1,36 @@
-
 import { LEARNING_SECTIONS } from './content/sections'
-import { loadProgress, getSectionProgress } from './progress'
 import { getAllUnlockedRewards } from './rewards'
+import { getSectionProgress, loadProgress } from './progress'
+import type { AppSettings } from './appSettings'
 import type { SectionId } from './types'
+
+export interface ContinueLearningState {
+  section: SectionId
+  deckId?: string
+  cardIndex?: number
+  mode?: string
+  storyId?: string
+  pageIndex?: number
+  label?: string
+}
 
 export function SectionPicker({
   onChooseSection,
-  onShowCloset
+  onShowCloset,
+  onShowSettings,
+  onContinue,
+  continueState,
+  settings,
 }: {
   onChooseSection: (id: SectionId) => void
   onShowCloset: () => void
+  onShowSettings: () => void
+  onContinue: () => void
+  continueState?: ContinueLearningState
+  settings: AppSettings
 }) {
   const progress = loadProgress()
+  const unlockedCount = progress.unlockedRewards.length || getAllUnlockedRewards(progress.totalLessonsCompleted).length
 
   return (
     <section className="home-screen">
@@ -21,12 +40,21 @@ export function SectionPicker({
           <p>What would you like to learn today?</p>
         </div>
       </div>
+
+      {continueState && (
+        <button type="button" className="continue-card squish" onClick={onContinue}>
+          <span className="continue-label">Continue</span>
+          <strong>{continueState.label || sectionTitle(continueState.section)}</strong>
+          <small>{continueDetail(continueState)}</small>
+        </button>
+      )}
+
       <div className="path-grid section-grid" aria-label="Choose a learning section">
-        {LEARNING_SECTIONS.map(section => (
-          <button 
-            key={section.id} 
-            type="button" 
-            className="path-card" 
+        {LEARNING_SECTIONS.map((section) => (
+          <button
+            key={section.id}
+            type="button"
+            className="path-card"
             style={{ backgroundColor: section.color }}
             onClick={() => onChooseSection(section.id)}
           >
@@ -38,15 +66,21 @@ export function SectionPicker({
             </div>
             <strong>{section.title}</strong>
             <small>{section.subtitle}</small>
-            <div className="section-progress-badge">
-              {getSectionProgress(section.id)} lessons completed
-            </div>
+            {settings.showProgress && (
+              <div className="section-progress-badge">
+                {progressLabel(getSectionProgress(section.id))}
+              </div>
+            )}
           </button>
         ))}
       </div>
-      <div style={{display: 'flex', justifyContent: 'center', marginTop: '1rem'}}>
-        <button className="sticker-nav-button squish" style={{fontSize: '1.2rem', padding: '0.75rem 1.5rem'}} onClick={onShowCloset}>
-          🎒 Panda Closet ({progress.unlockedRewards.length || getAllUnlockedRewards(progress.totalLessonsCompleted).length} unlocked)
+
+      <div className="dashboard-parent-actions" aria-label="Parent tools">
+        <button type="button" className="sticker-nav-button squish" onClick={onShowCloset}>
+          Panda Closet ({unlockedCount})
+        </button>
+        <button type="button" className="settings-nav-button squish" onClick={onShowSettings}>
+          Parent Settings
         </button>
       </div>
     </section>
@@ -55,12 +89,32 @@ export function SectionPicker({
 
 function sectionBadge(sectionId: SectionId) {
   if (sectionId === 'letters') return 'Aa'
-  if (sectionId === 'sounds') return ')))'
-  if (sectionId === 'words') return '▣'
-  if (sectionId === 'stories') return '▰'
+  if (sectionId === 'sounds') return 'Sound'
+  if (sectionId === 'words') return 'W'
+  if (sectionId === 'stories') return 'Book'
   if (sectionId === 'math') return '2 + 3'
-  if (sectionId === 'chinese') return '人'
+  if (sectionId === 'chinese') return '\u4eba'
   return ''
+}
+
+function sectionTitle(sectionId: SectionId) {
+  return LEARNING_SECTIONS.find((section) => section.id === sectionId)?.title || 'Learning'
+}
+
+function continueDetail(state: ContinueLearningState) {
+  if (state.section === 'stories' && state.storyId) {
+    return `Page ${(state.pageIndex ?? 0) + 1}`
+  }
+  if (typeof state.cardIndex === 'number') {
+    return `Lesson ${Math.floor(state.cardIndex / 5) + 1}`
+  }
+  return 'Pick up where you left off'
+}
+
+function progressLabel(count: number) {
+  if (count === 0) return 'New'
+  if (count === 1) return '1 lesson'
+  return `${count} lessons`
 }
 
 export function PandaCloset({ onClose }: { onClose: () => void }) {
@@ -73,11 +127,11 @@ export function PandaCloset({ onClose }: { onClose: () => void }) {
         <button className="close-button" onClick={onClose}>Close</button>
         <h2>Panda Closet</h2>
         <p>You have completed {progress.totalLessonsCompleted} lessons!</p>
-        <div className="sticker-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginTop: '1rem' }}>
-          {unlocked.map(reward => (
-            <div key={reward.id} className="sticker-item" style={{ padding: '1rem', background: '#f0f0f0', borderRadius: '12px', textAlign: 'center' }}>
-              <span className="sticker-emoji" style={{ fontSize: '2rem' }}>{reward.emoji}</span>
-              <strong style={{ display: 'block', marginTop: '0.5rem' }}>{reward.name}</strong>
+        <div className="sticker-grid">
+          {unlocked.map((reward) => (
+            <div key={reward.id} className="sticker-item">
+              <span className="sticker-emoji">{reward.emoji}</span>
+              <strong>{reward.name}</strong>
             </div>
           ))}
           {unlocked.length === 0 && <p>Keep learning to unlock items!</p>}
