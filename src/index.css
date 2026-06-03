@@ -506,6 +506,36 @@ small {
   scroll-behavior: smooth;
 }
 
+.story-level-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-xs);
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: var(--soft-shadow);
+}
+
+.story-level-tabs button {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 18px;
+  box-shadow: none;
+}
+
+.story-level-tabs button span {
+  min-width: 28px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.68);
+  color: inherit;
+  font-size: 0.88rem;
+}
+
 .reader-choice {
   min-height: clamp(210px, 24vw, 290px);
   display: grid;
@@ -1743,6 +1773,12 @@ small {
     margin: 0;
     padding: 12px;
     overflow-x: hidden;
+  }
+
+  .app-shell.section-dashboard-active {
+    max-width: min(100%, 760px);
+    margin: 0 auto;
+    padding: clamp(10px, 3vw, 18px) clamp(10px, 3.5vw, 22px) max(16px, env(safe-area-inset-bottom));
   }
 
   .topbar,
@@ -4315,16 +4351,17 @@ body.lesson-active {
 
 /* Section Picker Styles */
 .section-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-md);
-  padding: 0 var(--space-md);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 2.2vw, 22px);
+  padding: 0;
 }
 
 .section-grid .path-card {
-  min-height: 220px;
+  min-height: clamp(210px, 25vw, 290px);
   display: grid;
   align-content: start;
-  gap: 8px;
+  gap: 10px;
+  padding: clamp(12px, 2vw, 18px);
   text-align: center;
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -4334,20 +4371,57 @@ body.lesson-active {
 }
 
 .section-image-container {
+  position: relative;
   width: 100%;
-  height: 120px;
-  border-radius: 20px;
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: 22px;
   background: rgba(255, 255, 255, 0.5);
   display: grid;
   place-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(38, 50, 74, 0.08);
 }
 
 .section-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+}
+
+.section-visual-badge {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  min-width: 52px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 6px 10px;
+  border: 3px solid rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--ink);
+  box-shadow: 0 10px 22px rgba(74, 58, 84, 0.16);
+  font-size: clamp(1.25rem, 3.8vw, 2rem);
+  font-weight: 950;
+  line-height: 1;
+}
+
+.badge-sounds,
+.badge-stories,
+.badge-words {
+  font-size: clamp(1.1rem, 3.2vw, 1.75rem);
+}
+
+.badge-math {
+  color: #255d42;
+}
+
+.badge-chinese {
+  color: #6b3f21;
 }
 
 .section-progress-badge {
@@ -4359,6 +4433,135 @@ body.lesson-active {
   font-size: 0.9rem;
   font-weight: 800;
   color: var(--ink);
+}
+
+.math-equation-card,
+.math-visual-card,
+.chinese-question-card {
+  width: min(100%, 560px);
+  justify-self: center;
+  border: 1px solid rgba(38, 50, 74, 0.1);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 15% 12%, rgba(255, 255, 255, 0.9) 0 24px, transparent 25px),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 250, 226, 0.72));
+  box-shadow: var(--soft-shadow);
+}
+
+.math-equation-card {
+  padding: clamp(14px, 3vw, 24px);
+  color: var(--purple-pop);
+  font-size: clamp(2rem, 8vw, 4.8rem);
+  font-weight: 950;
+  text-align: center;
+}
+
+.math-visual-card {
+  display: grid;
+  gap: 12px;
+  padding: clamp(12px, 2.5vw, 18px);
+}
+
+.math-visual-card p {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1rem, 3vw, 1.35rem);
+  font-weight: 900;
+  line-height: 1.14;
+  text-align: center;
+}
+
+.math-group-row,
+.math-token-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.math-token-group {
+  min-width: min(100%, 108px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.math-token {
+  width: clamp(18px, 5vw, 28px);
+  aspect-ratio: 1;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 999px 999px 88% 88%;
+  background:
+    radial-gradient(circle at 68% 20%, rgba(255, 255, 255, 0.9) 0 12%, transparent 13%),
+    linear-gradient(145deg, #ff6f86, #e64559);
+  box-shadow: 0 7px 12px rgba(222, 70, 89, 0.18);
+}
+
+.math-token.removed {
+  position: relative;
+  opacity: 0.34;
+  filter: grayscale(0.3);
+}
+
+.math-token.removed::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 48%;
+  height: 3px;
+  border-radius: 999px;
+  background: #26324a;
+  transform: rotate(-28deg);
+}
+
+@media (max-width: 760px) {
+  .section-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .section-grid .path-card {
+    min-height: clamp(176px, 43vw, 235px);
+  }
+
+  .section-grid .path-card strong {
+    font-size: clamp(1.35rem, 7.2vw, 2.1rem);
+  }
+
+  .section-grid .path-card small {
+    display: block;
+    font-size: clamp(0.78rem, 3vw, 0.96rem);
+    line-height: 1.08;
+  }
+}
+
+@media (max-width: 420px) {
+  .section-grid {
+    gap: 10px;
+  }
+
+  .section-grid .path-card {
+    min-height: 162px;
+    border-radius: 22px;
+  }
+
+  .section-image-container {
+    border-radius: 18px;
+  }
+
+  .section-visual-badge {
+    left: 7px;
+    bottom: 7px;
+    min-width: 42px;
+    min-height: 36px;
+    border-radius: 13px;
+    border-width: 2px;
+  }
 }
 
 /* Modal / Panda Closet Styles */

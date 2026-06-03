@@ -38,7 +38,8 @@
     "generate:section-images": "node scripts/generate-section-images.mjs",
     "generate:section-images:dry": "node scripts/generate-section-images.mjs --dry-run",
     "generate:section-images:test": "node scripts/generate-section-images.mjs --limit 1",
-    "generate:math-decks": "node scripts/generate-math-decks.mjs"
+    "generate:math-decks": "node scripts/generate-math-decks.mjs",
+    "generate:chinese-deck": "node scripts/generate-chinese-deck.mjs"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",
