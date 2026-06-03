@@ -6,7 +6,7 @@ function Mascot({ mood = 'reading' }: { mood?: 'happy' | 'reading' | 'sad' | 'cu
     <span
       className={`mascot-sprite large mood-${mood}`}
       role="img"
-      aria-label={`Chunky Reader panda mascot feeling ${mood}`}
+      aria-label={`Chunky Learner panda mascot feeling ${mood}`}
       style={{ backgroundImage: `url(${src})` }}
     />
   );
@@ -14,9 +14,9 @@ function Mascot({ mood = 'reading' }: { mood?: 'happy' | 'reading' | 'sad' | 'cu
 
 function ChunkyLogo({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`chunky-logo ${compact ? 'compact' : ''}`} aria-label="Chunky Reader">
+    <div className={`chunky-logo ${compact ? 'compact' : ''}`} aria-label="Chunky Learner">
       <span>Chunky</span>
-      <strong>Reading</strong>
+      <strong>Learner</strong>
     </div>
   );
 }

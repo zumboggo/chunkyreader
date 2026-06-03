@@ -31,6 +31,7 @@ type SarahQuestionKind =
   | 'soundToWord'
 type SarahActivityKind = 'intro' | SarahQuestionKind | 'review'
 type SarahActivityStatus = 'idle' | 'try-again' | 'correct' | 'revealed'
+type StoryDifficultyFilter = 'easy' | 'growing' | 'longer'
 type OlderReaderQuestionKind =
   | 'pictureToWord'
   | 'wordToPicture'
@@ -108,6 +109,12 @@ const encouragement = [
   'Nice reading!',
   'You did it!',
   'One more!',
+]
+
+const storyDifficultyFilters: { id: StoryDifficultyFilter; label: string }[] = [
+  { id: 'easy', label: 'Easy' },
+  { id: 'growing', label: 'Growing' },
+  { id: 'longer', label: 'Longer' },
 ]
 
 function shouldIgnoreControllerKey(event: KeyboardEvent) {
@@ -188,6 +195,7 @@ function App() {
   )
   const currentCard = activeDeck?.cards[cardIndex % Math.max(1, activeDeck.cards.length)]
   const isLessonActive = Boolean(profile && activeDeck && currentCard)
+  const isSectionDashboard = !loading && !loadError && !activeSection && !profile
 
   function chooseSection(section: SectionId, currentDecks = decks) {
     setActiveSection(section)
@@ -341,7 +349,7 @@ function App() {
   }
 
   return (
-    <main className={`app-shell ${isLessonActive ? 'lesson-active' : ''}`}>
+    <main className={`app-shell ${isLessonActive ? 'lesson-active' : ''} ${isSectionDashboard ? 'section-dashboard-active' : ''}`}>
       <header className="topbar">
         <button
           className="brand-button squish"
@@ -528,8 +536,10 @@ function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => voi
   const [selectedStoryId, setSelectedStoryId] = useState('')
   const [pageIndex, setPageIndex] = useState(0)
   const [complete, setComplete] = useState(false)
+  const [difficultyFilter, setDifficultyFilter] = useState<StoryDifficultyFilter>('easy')
   const selectedStory = stories.find((story) => story.id === selectedStoryId)
   const resumeStory = stories.find(s => readStoryProgress(s.id, s.pages.length) > 0)
+  const filteredStories = stories.filter((story) => storyDifficulty(story) === difficultyFilter)
 
   function openStory(story: Story) {
     setSelectedStoryId(story.id)
@@ -579,10 +589,24 @@ function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => voi
         <div>
           <span className="prompt-topline">Older Reader</span>
           <h1>Read a Story</h1>
-          <p>Pick one tiny story. Each one has three gentle pages.</p>
+          <p>Pick a story pocket.</p>
         </div>
         <AudioPackButton />
         <Mascot mood="happy" />
+      </div>
+
+      <div className="story-level-tabs" aria-label="Choose story level">
+        {storyDifficultyFilters.map((filter) => (
+          <button
+            key={filter.id}
+            type="button"
+            className={filter.id === difficultyFilter ? 'active' : ''}
+            onClick={() => setDifficultyFilter(filter.id)}
+          >
+            {filter.label}
+            <span>{stories.filter((story) => storyDifficulty(story) === filter.id).length}</span>
+          </button>
+        ))}
       </div>
 
       {stories.length === 0 ? (
@@ -599,7 +623,14 @@ function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => voi
               <small>Continue reading from where you left off</small>
             </button>
           )}
-          {stories.map((story, index) => {
+          {filteredStories.length === 0 && (
+            <section className="empty-screen story-empty">
+              <Mascot mood="curious" />
+              <h2>No stories here yet</h2>
+              <p>Try another level.</p>
+            </section>
+          )}
+          {filteredStories.map((story, index) => {
             const cover = story.coverImage || story.pages[0]?.image
             return (
               <button key={story.id} type="button" className="story-card" onClick={() => openStory(story)}>
@@ -620,6 +651,13 @@ function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => voi
       )}
     </section>
   )
+}
+
+function storyDifficulty(story: Story): StoryDifficultyFilter {
+  if (story.readingLevel === 'older reader') return story.pages.length > 10 ? 'longer' : 'growing'
+  if (story.pages.length > 6) return 'longer'
+  if (story.pages.length > 3) return 'growing'
+  return 'easy'
 }
 
 function StoryReader({
@@ -1968,6 +2006,13 @@ function ChoiceMode({
               </div>
             )}
           </div>
+          {deck.type === 'math' && <MathVisual card={card} />}
+          {deck.type === 'chinese-vocab' && (
+            <div className="chinese-question-card">
+              <span>{card.simpleMeaning}</span>
+              <strong>{card.pinyin}</strong>
+            </div>
+          )}
           <div className="focus-options" aria-label="Answer choices">
             {options.map((option) => {
               const state =
@@ -2016,6 +2061,45 @@ function ChoiceMode({
         </div>
       </div>
     </section>
+  )
+}
+
+function MathVisual({ card }: { card: LearningCard }) {
+  const kind = card.mathQuestionKind || (card.mathOperation === 'subtract' ? 'picture-subtract' : 'picture-add')
+  const object = card.mathObject || 'apple'
+  if (kind === 'equation') {
+    return <div className="math-equation-card">{card.equation || card.displayText}</div>
+  }
+
+  if (card.mathOperation === 'subtract') {
+    const count = card.mathVisualCount ?? 0
+    const removed = card.mathRemovedCount ?? 0
+    return (
+      <div className="math-visual-card">
+        {card.mathStoryText && <p>{card.mathStoryText}</p>}
+        <div className="math-token-row" aria-label={`${count} ${object}s, ${removed} taken away`}>
+          {Array.from({ length: count }, (_, index) => (
+            <span key={index} className={`math-token ${index < removed ? 'removed' : ''}`} aria-hidden="true" />
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  const groups = card.mathVisualGroups ?? []
+  return (
+    <div className="math-visual-card">
+      {card.mathStoryText && <p>{card.mathStoryText}</p>}
+      <div className="math-group-row" aria-label={groups.map((group) => `${group} ${object}s`).join(' plus ')}>
+        {groups.map((group, groupIndex) => (
+          <div key={groupIndex} className="math-token-group">
+            {Array.from({ length: group }, (_, index) => (
+              <span key={index} className="math-token" aria-hidden="true" />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -2074,7 +2158,7 @@ function Mascot({ size = 'large', mood = 'reading' }: { size?: 'small' | 'large'
   }, [src])
 
   return failed ? (
-    <span className={`panda-fallback ${size}`} aria-label="Chunky Reader panda mascot">
+    <span className={`panda-fallback ${size}`} aria-label="Chunky Learner panda mascot">
       <span className="panda-ear left" />
       <span className="panda-ear right" />
       <span className="panda-eye left" />
@@ -2085,7 +2169,7 @@ function Mascot({ size = 'large', mood = 'reading' }: { size?: 'small' | 'large'
     <span
       className={`mascot-sprite ${size} mood-${mood}`}
       role="img"
-      aria-label={`Chunky Reader panda mascot feeling ${mood}`}
+      aria-label={`Chunky Learner panda mascot feeling ${mood}`}
       style={{ backgroundImage: `url(${src})` }}
     />
   )
@@ -2093,9 +2177,9 @@ function Mascot({ size = 'large', mood = 'reading' }: { size?: 'small' | 'large'
 
 function ChunkyLogo({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`chunky-logo ${compact ? 'compact' : ''}`} aria-label="Chunky Reader">
+    <div className={`chunky-logo ${compact ? 'compact' : ''}`} aria-label="Chunky Learner">
       <span>Chunky</span>
-      <strong>Reading</strong>
+      <strong>Learner</strong>
     </div>
   )
 }
@@ -2175,7 +2259,7 @@ async function playCardAudio(deck: LearningDeck, card: LearningCard) {
     }
   }
 
-  const text = card.speechCue || card.exampleWord || card.word || card.displayText
+  const text = card.ttsText || card.speechCue || card.mathPrompt || card.exampleWord || card.word || card.displayText
   speakText(deck, text)
 }
 
@@ -2274,6 +2358,8 @@ function optionSmallLabel(card: LearningCard): string {
   if (card.type === 'phoneme') return card.exampleWord || ''
   if (card.type === 'letter') return card.exampleWord || ''
   if (card.type === 'sentence') return card.meaning || ''
+  if (card.type === 'math') return 'answer'
+  if (card.type === 'chinese') return [card.pinyin, card.simpleMeaning].filter(Boolean).join(' - ')
   return card.category || ''
 }
 
@@ -2282,7 +2368,7 @@ function getChoicePrompt(deck: LearningDeck, card: LearningCard, mode: LearningM
   if (deck.type === 'reading-words') return mode === 'readerMode' ? 'What word matches the picture?' : 'Find this word.'
   if (deck.type === 'letters') return mode === 'readerMode' ? 'Which letter makes this sound?' : 'Tap the matching letter.'
   if (card.grapheme) return mode === 'readerMode' ? 'Which spelling matches this sound?' : 'Tap the matching sound.'
-  if (deck.type === 'math') return card.equation || card.displayText || 'Solve.'
+  if (deck.type === 'math') return card.mathPrompt || card.equation || card.displayText || 'Solve.'
   if (deck.type === 'chinese-vocab') return 'Tap the matching character.'
   return 'Choose the match.'
 }

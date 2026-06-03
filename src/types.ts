@@ -134,6 +134,10 @@ export interface LearningCard {
   mathVisualCount?: number
   mathVisualGroups?: number[]
   mathRemovedCount?: number
+  mathQuestionKind?: 'equation' | 'picture-add' | 'picture-subtract' | 'story-add' | 'story-subtract'
+  mathPrompt?: string
+  mathObject?: string
+  mathStoryText?: string
 
   // Chinese fields
   pinyin?: string

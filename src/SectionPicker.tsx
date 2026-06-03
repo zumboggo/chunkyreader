@@ -32,6 +32,9 @@ export function SectionPicker({
           >
             <div className="section-image-container">
               <img className="section-image" src={`${import.meta.env.BASE_URL}${section.image}`} alt="" />
+              <span className={`section-visual-badge badge-${section.id}`} aria-hidden="true">
+                {sectionBadge(section.id)}
+              </span>
             </div>
             <strong>{section.title}</strong>
             <small>{section.subtitle}</small>
@@ -48,6 +51,16 @@ export function SectionPicker({
       </div>
     </section>
   )
+}
+
+function sectionBadge(sectionId: SectionId) {
+  if (sectionId === 'letters') return 'Aa'
+  if (sectionId === 'sounds') return ')))'
+  if (sectionId === 'words') return '▣'
+  if (sectionId === 'stories') return '▰'
+  if (sectionId === 'math') return '2 + 3'
+  if (sectionId === 'chinese') return '人'
+  return ''
 }
 
 export function PandaCloset({ onClose }: { onClose: () => void }) {

@@ -8,7 +8,7 @@
   },
   {
     "id": "chunky-reader-audio",
-    "name": "Chunky Reader Audio Pack",
+    "name": "Chunky Learner Audio Pack",
     "description": "Generated Azure TTS clips and SSML for kid-facing app narration, story pages, prompts, feedback, and sound decks.",
     "baseUrl": "clip-packs/chunky-reader-audio",
     "language": "en-US"

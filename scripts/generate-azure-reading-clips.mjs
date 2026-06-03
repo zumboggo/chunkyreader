@@ -66,8 +66,8 @@ async function main() {
     JSON.stringify(
       {
         id: 'chunky-reader-audio',
-        title: 'Chunky Reader Audio Pack',
-        description: 'Azure TTS clips for kid-facing Chunky Reader text, including sound decks, story pages, prompts, and feedback.',
+        title: 'Chunky Learner Audio Pack',
+        description: 'Azure TTS clips for kid-facing Chunky Learner text, including sound decks, story pages, prompts, and feedback.',
         provider: synthesize && credentials ? 'azure-tts' : 'ssml-only',
         version: '2026-05-kid-facing-audio-v3',
         voices: TTS_VOICES,
@@ -82,7 +82,7 @@ async function main() {
   )
 
   console.log(
-    `${synthesize && credentials ? 'Generated' : 'Prepared'} ${written.length} Chunky Reader audio clips with SSML.`,
+    `${synthesize && credentials ? 'Generated' : 'Prepared'} ${written.length} Chunky Learner audio clips with SSML.`,
   )
 }
 
@@ -259,7 +259,7 @@ function introText(deck, card) {
   if (deck.type === 'phonemes') {
     return `${card.displayText}. ${card.speechCue || card.exampleWord || card.grapheme || card.phoneme}.`
   }
-  return card.speechCue || card.exampleWord || card.word || card.displayText
+  return card.ttsText || card.speechCue || card.mathPrompt || card.exampleWord || card.word || card.displayText
 }
 
 function soundSsmlBody(deck, card) {
