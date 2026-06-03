@@ -37,6 +37,7 @@ function generateAdditionDeck() {
         mathAnswer: answer,
         mathAnswerOptions: [answer, wrongAnswer].sort(() => rng() - 0.5),
         mathVisualGroups: [a, b],
+        audio: `audio/math-addition/child-instructions-v1/add-${a}-${b}.mp3`,
         difficulty: Math.max(1, Math.ceil((a + b) / 3)),
         category: 'addition'
       })
@@ -70,6 +71,7 @@ function generateSubtractionDeck() {
         mathAnswerOptions: [answer, wrongAnswer].sort(() => rng() - 0.5),
         mathVisualCount: a,
         mathRemovedCount: b,
+        audio: `audio/math-subtraction/child-instructions-v1/sub-${a}-${b}.mp3`,
         difficulty: Math.max(1, Math.ceil(a / 2)),
         category: 'subtraction'
       })

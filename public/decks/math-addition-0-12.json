@@ -20,6 +20,7 @@
         0,
         0
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-0-0.mp3",
       "difficulty": 1,
       "category": "addition"
     },
@@ -38,6 +39,7 @@
         0,
         1
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-0-1.mp3",
       "difficulty": 1,
       "category": "addition"
     },
@@ -56,6 +58,7 @@
         0,
         2
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-0-2.mp3",
       "difficulty": 1,
       "category": "addition"
     },
@@ -74,6 +77,7 @@
         0,
         3
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-0-3.mp3",
       "difficulty": 1,
       "category": "addition"
     },
@@ -92,6 +96,7 @@
         1,
         0
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-1-0.mp3",
       "difficulty": 1,
       "category": "addition"
     },
@@ -110,6 +115,7 @@
         1,
         1
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-1-1.mp3",
       "difficulty": 1,
       "category": "addition"
     },
@@ -128,6 +134,7 @@
         1,
         2
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-1-2.mp3",
       "difficulty": 1,
       "category": "addition"
     },
@@ -146,6 +153,7 @@
         2,
         0
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-2-0.mp3",
       "difficulty": 1,
       "category": "addition"
     },
@@ -164,6 +172,7 @@
         2,
         1
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-2-1.mp3",
       "difficulty": 1,
       "category": "addition"
     },
@@ -182,6 +191,7 @@
         3,
         0
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-3-0.mp3",
       "difficulty": 1,
       "category": "addition"
     },
@@ -200,6 +210,7 @@
         0,
         4
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-0-4.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -218,6 +229,7 @@
         0,
         5
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-0-5.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -236,6 +248,7 @@
         0,
         6
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-0-6.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -254,6 +267,7 @@
         1,
         3
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-1-3.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -272,6 +286,7 @@
         1,
         4
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-1-4.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -290,6 +305,7 @@
         1,
         5
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-1-5.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -308,6 +324,7 @@
         2,
         2
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-2-2.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -326,6 +343,7 @@
         2,
         3
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-2-3.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -344,6 +362,7 @@
         2,
         4
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-2-4.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -362,6 +381,7 @@
         3,
         1
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-3-1.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -380,6 +400,7 @@
         3,
         2
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-3-2.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -398,6 +419,7 @@
         3,
         3
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-3-3.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -416,6 +438,7 @@
         4,
         0
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-4-0.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -434,6 +457,7 @@
         4,
         1
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-4-1.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -452,6 +476,7 @@
         4,
         2
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-4-2.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -470,6 +495,7 @@
         5,
         0
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-5-0.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -488,6 +514,7 @@
         5,
         1
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-5-1.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -506,6 +533,7 @@
         6,
         0
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-6-0.mp3",
       "difficulty": 2,
       "category": "addition"
     },
@@ -524,6 +552,7 @@
         0,
         7
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-0-7.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -542,6 +571,7 @@
         0,
         8
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-0-8.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -560,6 +590,7 @@
         0,
         9
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-0-9.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -578,6 +609,7 @@
         1,
         6
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-1-6.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -596,6 +628,7 @@
         1,
         7
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-1-7.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -614,6 +647,7 @@
         1,
         8
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-1-8.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -632,6 +666,7 @@
         2,
         5
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-2-5.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -650,6 +685,7 @@
         2,
         6
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-2-6.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -668,6 +704,7 @@
         2,
         7
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-2-7.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -686,6 +723,7 @@
         3,
         4
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-3-4.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -704,6 +742,7 @@
         3,
         5
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-3-5.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -722,6 +761,7 @@
         3,
         6
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-3-6.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -740,6 +780,7 @@
         4,
         3
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-4-3.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -758,6 +799,7 @@
         4,
         4
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-4-4.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -776,6 +818,7 @@
         4,
         5
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-4-5.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -794,6 +837,7 @@
         5,
         2
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-5-2.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -812,6 +856,7 @@
         5,
         3
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-5-3.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -830,6 +875,7 @@
         5,
         4
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-5-4.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -848,6 +894,7 @@
         6,
         1
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-6-1.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -866,6 +913,7 @@
         6,
         2
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-6-2.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -884,6 +932,7 @@
         6,
         3
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-6-3.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -902,6 +951,7 @@
         7,
         0
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-7-0.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -920,6 +970,7 @@
         7,
         1
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-7-1.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -938,6 +989,7 @@
         7,
         2
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-7-2.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -956,6 +1008,7 @@
         8,
         0
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-8-0.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -974,6 +1027,7 @@
         8,
         1
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-8-1.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -992,6 +1046,7 @@
         9,
         0
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-9-0.mp3",
       "difficulty": 3,
       "category": "addition"
     },
@@ -1010,6 +1065,7 @@
         0,
         10
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-0-10.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1028,6 +1084,7 @@
         0,
         11
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-0-11.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1046,6 +1103,7 @@
         0,
         12
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-0-12.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1064,6 +1122,7 @@
         1,
         9
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-1-9.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1082,6 +1141,7 @@
         1,
         10
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-1-10.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1100,6 +1160,7 @@
         1,
         11
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-1-11.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1118,6 +1179,7 @@
         2,
         8
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-2-8.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1136,6 +1198,7 @@
         2,
         9
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-2-9.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1154,6 +1217,7 @@
         2,
         10
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-2-10.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1172,6 +1236,7 @@
         3,
         7
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-3-7.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1190,6 +1255,7 @@
         3,
         8
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-3-8.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1208,6 +1274,7 @@
         3,
         9
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-3-9.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1226,6 +1293,7 @@
         4,
         6
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-4-6.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1244,6 +1312,7 @@
         4,
         7
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-4-7.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1262,6 +1331,7 @@
         4,
         8
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-4-8.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1280,6 +1350,7 @@
         5,
         5
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-5-5.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1298,6 +1369,7 @@
         5,
         6
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-5-6.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1316,6 +1388,7 @@
         5,
         7
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-5-7.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1334,6 +1407,7 @@
         6,
         4
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-6-4.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1352,6 +1426,7 @@
         6,
         5
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-6-5.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1370,6 +1445,7 @@
         6,
         6
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-6-6.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1388,6 +1464,7 @@
         7,
         3
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-7-3.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1406,6 +1483,7 @@
         7,
         4
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-7-4.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1424,6 +1502,7 @@
         7,
         5
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-7-5.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1442,6 +1521,7 @@
         8,
         2
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-8-2.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1460,6 +1540,7 @@
         8,
         3
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-8-3.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1478,6 +1559,7 @@
         8,
         4
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-8-4.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1496,6 +1578,7 @@
         9,
         1
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-9-1.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1514,6 +1597,7 @@
         9,
         2
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-9-2.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1532,6 +1616,7 @@
         9,
         3
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-9-3.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1550,6 +1635,7 @@
         10,
         0
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-10-0.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1568,6 +1654,7 @@
         10,
         1
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-10-1.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1586,6 +1673,7 @@
         10,
         2
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-10-2.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1604,6 +1692,7 @@
         11,
         0
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-11-0.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1622,6 +1711,7 @@
         11,
         1
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-11-1.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1640,6 +1730,7 @@
         12,
         0
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-12-0.mp3",
       "difficulty": 4,
       "category": "addition"
     },
@@ -1658,6 +1749,7 @@
         1,
         12
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-1-12.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1676,6 +1768,7 @@
         2,
         11
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-2-11.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1694,6 +1787,7 @@
         2,
         12
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-2-12.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1712,6 +1806,7 @@
         3,
         10
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-3-10.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1730,6 +1825,7 @@
         3,
         11
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-3-11.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1748,6 +1844,7 @@
         3,
         12
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-3-12.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1766,6 +1863,7 @@
         4,
         9
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-4-9.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1784,6 +1882,7 @@
         4,
         10
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-4-10.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1802,6 +1901,7 @@
         4,
         11
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-4-11.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1820,6 +1920,7 @@
         5,
         8
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-5-8.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1838,6 +1939,7 @@
         5,
         9
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-5-9.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1856,6 +1958,7 @@
         5,
         10
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-5-10.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1874,6 +1977,7 @@
         6,
         7
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-6-7.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1892,6 +1996,7 @@
         6,
         8
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-6-8.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1910,6 +2015,7 @@
         6,
         9
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-6-9.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1928,6 +2034,7 @@
         7,
         6
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-7-6.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1946,6 +2053,7 @@
         7,
         7
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-7-7.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1964,6 +2072,7 @@
         7,
         8
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-7-8.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -1982,6 +2091,7 @@
         8,
         5
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-8-5.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2000,6 +2110,7 @@
         8,
         6
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-8-6.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2018,6 +2129,7 @@
         8,
         7
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-8-7.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2036,6 +2148,7 @@
         9,
         4
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-9-4.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2054,6 +2167,7 @@
         9,
         5
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-9-5.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2072,6 +2186,7 @@
         9,
         6
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-9-6.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2090,6 +2205,7 @@
         10,
         3
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-10-3.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2108,6 +2224,7 @@
         10,
         4
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-10-4.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2126,6 +2243,7 @@
         10,
         5
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-10-5.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2144,6 +2262,7 @@
         11,
         2
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-11-2.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2162,6 +2281,7 @@
         11,
         3
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-11-3.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2180,6 +2300,7 @@
         11,
         4
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-11-4.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2198,6 +2319,7 @@
         12,
         1
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-12-1.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2216,6 +2338,7 @@
         12,
         2
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-12-2.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2234,6 +2357,7 @@
         12,
         3
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-12-3.mp3",
       "difficulty": 5,
       "category": "addition"
     },
@@ -2252,6 +2376,7 @@
         4,
         12
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-4-12.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2270,6 +2395,7 @@
         5,
         11
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-5-11.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2288,6 +2414,7 @@
         5,
         12
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-5-12.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2306,6 +2433,7 @@
         6,
         10
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-6-10.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2324,6 +2452,7 @@
         6,
         11
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-6-11.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2342,6 +2471,7 @@
         6,
         12
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-6-12.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2360,6 +2490,7 @@
         7,
         9
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-7-9.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2378,6 +2509,7 @@
         7,
         10
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-7-10.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2396,6 +2528,7 @@
         7,
         11
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-7-11.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2414,6 +2547,7 @@
         8,
         8
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-8-8.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2432,6 +2566,7 @@
         8,
         9
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-8-9.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2450,6 +2585,7 @@
         8,
         10
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-8-10.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2468,6 +2604,7 @@
         9,
         7
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-9-7.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2486,6 +2623,7 @@
         9,
         8
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-9-8.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2504,6 +2642,7 @@
         9,
         9
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-9-9.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2522,6 +2661,7 @@
         10,
         6
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-10-6.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2540,6 +2680,7 @@
         10,
         7
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-10-7.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2558,6 +2699,7 @@
         10,
         8
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-10-8.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2576,6 +2718,7 @@
         11,
         5
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-11-5.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2594,6 +2737,7 @@
         11,
         6
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-11-6.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2612,6 +2756,7 @@
         11,
         7
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-11-7.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2630,6 +2775,7 @@
         12,
         4
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-12-4.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2648,6 +2794,7 @@
         12,
         5
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-12-5.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2666,6 +2813,7 @@
         12,
         6
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-12-6.mp3",
       "difficulty": 6,
       "category": "addition"
     },
@@ -2684,6 +2832,7 @@
         7,
         12
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-7-12.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2702,6 +2851,7 @@
         8,
         11
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-8-11.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2720,6 +2870,7 @@
         8,
         12
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-8-12.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2738,6 +2889,7 @@
         9,
         10
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-9-10.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2756,6 +2908,7 @@
         9,
         11
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-9-11.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2774,6 +2927,7 @@
         9,
         12
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-9-12.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2792,6 +2946,7 @@
         10,
         9
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-10-9.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2810,6 +2965,7 @@
         10,
         10
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-10-10.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2828,6 +2984,7 @@
         10,
         11
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-10-11.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2846,6 +3003,7 @@
         11,
         8
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-11-8.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2864,6 +3022,7 @@
         11,
         9
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-11-9.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2882,6 +3041,7 @@
         11,
         10
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-11-10.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2900,6 +3060,7 @@
         12,
         7
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-12-7.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2918,6 +3079,7 @@
         12,
         8
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-12-8.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2936,6 +3098,7 @@
         12,
         9
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-12-9.mp3",
       "difficulty": 7,
       "category": "addition"
     },
@@ -2954,6 +3117,7 @@
         10,
         12
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-10-12.mp3",
       "difficulty": 8,
       "category": "addition"
     },
@@ -2972,6 +3136,7 @@
         11,
         11
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-11-11.mp3",
       "difficulty": 8,
       "category": "addition"
     },
@@ -2990,6 +3155,7 @@
         11,
         12
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-11-12.mp3",
       "difficulty": 8,
       "category": "addition"
     },
@@ -3008,6 +3174,7 @@
         12,
         10
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-12-10.mp3",
       "difficulty": 8,
       "category": "addition"
     },
@@ -3026,6 +3193,7 @@
         12,
         11
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-12-11.mp3",
       "difficulty": 8,
       "category": "addition"
     },
@@ -3044,6 +3212,7 @@
         12,
         12
       ],
+      "audio": "audio/math-addition/child-instructions-v1/add-12-12.mp3",
       "difficulty": 8,
       "category": "addition"
     }

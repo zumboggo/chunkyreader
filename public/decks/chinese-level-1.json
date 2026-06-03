@@ -11,7 +11,8 @@
       "displayText": "人",
       "pinyin": "rén",
       "simpleMeaning": "person",
-      "difficulty": 1
+      "difficulty": 1,
+      "audio": "audio/chinese-level-1/chinese-teacher-v1/char-人.mp3"
     },
     {
       "id": "char-口",
@@ -19,7 +20,8 @@
       "displayText": "口",
       "pinyin": "kǒu",
       "simpleMeaning": "mouth",
-      "difficulty": 1
+      "difficulty": 1,
+      "audio": "audio/chinese-level-1/chinese-teacher-v1/char-口.mp3"
     },
     {
       "id": "char-手",
@@ -27,7 +29,8 @@
       "displayText": "手",
       "pinyin": "shǒu",
       "simpleMeaning": "hand",
-      "difficulty": 1
+      "difficulty": 1,
+      "audio": "audio/chinese-level-1/chinese-teacher-v1/char-手.mp3"
     },
     {
       "id": "char-目",
@@ -35,7 +38,8 @@
       "displayText": "目",
       "pinyin": "mù",
       "simpleMeaning": "eye",
-      "difficulty": 1
+      "difficulty": 1,
+      "audio": "audio/chinese-level-1/chinese-teacher-v1/char-目.mp3"
     },
     {
       "id": "char-大",
@@ -43,7 +47,8 @@
       "displayText": "大",
       "pinyin": "dà",
       "simpleMeaning": "big",
-      "difficulty": 1
+      "difficulty": 1,
+      "audio": "audio/chinese-level-1/chinese-teacher-v1/char-大.mp3"
     },
     {
       "id": "char-小",
@@ -51,7 +56,8 @@
       "displayText": "小",
       "pinyin": "xiǎo",
       "simpleMeaning": "small",
-      "difficulty": 1
+      "difficulty": 1,
+      "audio": "audio/chinese-level-1/chinese-teacher-v1/char-小.mp3"
     },
     {
       "id": "char-上",
@@ -59,7 +65,8 @@
       "displayText": "上",
       "pinyin": "shàng",
       "simpleMeaning": "up",
-      "difficulty": 2
+      "difficulty": 2,
+      "audio": "audio/chinese-level-1/chinese-teacher-v1/char-上.mp3"
     },
     {
       "id": "char-下",
@@ -67,7 +74,8 @@
       "displayText": "下",
       "pinyin": "xià",
       "simpleMeaning": "down",
-      "difficulty": 2
+      "difficulty": 2,
+      "audio": "audio/chinese-level-1/chinese-teacher-v1/char-下.mp3"
     },
     {
       "id": "char-中",
@@ -75,7 +83,8 @@
       "displayText": "中",
       "pinyin": "zhōng",
       "simpleMeaning": "middle",
-      "difficulty": 2
+      "difficulty": 2,
+      "audio": "audio/chinese-level-1/chinese-teacher-v1/char-中.mp3"
     },
     {
       "id": "char-一",
@@ -83,7 +92,8 @@
       "displayText": "一",
       "pinyin": "yī",
       "simpleMeaning": "one",
-      "difficulty": 2
+      "difficulty": 2,
+      "audio": "audio/chinese-level-1/chinese-teacher-v1/char-一.mp3"
     },
     {
       "id": "char-二",
@@ -91,7 +101,8 @@
       "displayText": "二",
       "pinyin": "èr",
       "simpleMeaning": "two",
-      "difficulty": 2
+      "difficulty": 2,
+      "audio": "audio/chinese-level-1/chinese-teacher-v1/char-二.mp3"
     },
     {
       "id": "char-三",
@@ -99,7 +110,8 @@
       "displayText": "三",
       "pinyin": "sān",
       "simpleMeaning": "three",
-      "difficulty": 2
+      "difficulty": 2,
+      "audio": "audio/chinese-level-1/chinese-teacher-v1/char-三.mp3"
     }
   ]
 }
