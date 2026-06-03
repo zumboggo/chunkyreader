@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-reader-v8'
+const CACHE_VERSION = 'chunky-learner-v9'
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`
 
@@ -13,9 +13,21 @@ const CORE_ASSETS = [
   'assets/100-lessons/panda-walk-3.png',
   'assets/profiles/anna-red-shirt.png',
   'assets/profiles/sarah-reading.png',
+  'assets/sections/letters.webp',
+  'assets/sections/sounds.webp',
+  'assets/sections/words.webp',
+  'assets/sections/stories.webp',
+  'assets/sections/math.webp',
+  'assets/sections/chinese.webp',
+
+  // Core App Data
   'decks/index.json',
   'decks/sarah-letters-level-1.json',
   'decks/sarah-phonemes-level-2.json',
+  'decks/annas-reading-deck/deck.json',
+  'decks/math-addition-0-12.json',
+  'decks/math-subtraction-0-12.json',
+  'decks/chinese-level-1.json',
   'stories/anne-stories.json',
   'clip-packs/index.json',
   'clip-packs/chunky-reader-audio/clips_manifest.json',

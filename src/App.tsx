@@ -14,7 +14,10 @@ import type { LearningCard, LearningDeck, LearningMode, ProfileId, Story, StoryP
 import confetti from 'canvas-confetti'
 import { playSfx } from './audioEffects'
 import { playNarrationClip } from './audioClipPack'
-import { HundredLessonsHome, HundredLessonScreen } from './HundredLessons'
+
+import { SectionPicker, PandaCloset } from './SectionPicker'
+import type { SectionId } from './types'
+import { markLessonComplete } from './progress'
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious'
 type LessonPhase = 'learn' | 'question'
 type GrowingReaderView = 'home' | 'words' | 'stories' | 'phonemes'
@@ -121,8 +124,10 @@ function choiceKeyLabel(index: number) {
 function App() {
   const [decks, setDecks] = useState<LearningDeck[]>([])
   const [stories, setStories] = useState<Story[]>([])
+  const [activeSection, setActiveSection] = useState<SectionId | null>(null)
   const [profile, setProfile] = useState<ProfileId | null>(null)
   const [growingView, setGrowingView] = useState<GrowingReaderView>('home')
+  const [showCloset, setShowCloset] = useState(false)
   const [activeDeckId, setActiveDeckId] = useState('')
   const [mode, setMode] = useState<LearningMode>('listeningMode')
   const [cardIndex, setCardIndex] = useState(0)
@@ -132,8 +137,6 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
   const [showAdultDetails, setShowAdultDetails] = useState(false)
-  const [showStickers, setShowStickers] = useState(false)
-  const [hundredLessonId, setHundredLessonId] = useState('')
 
   useEffect(() => {
     let cancelled = false
@@ -143,18 +146,23 @@ function App() {
         const nextStories = await loadAnneStories().catch(() => [])
         if (cancelled) return
         const params = new URLSearchParams(window.location.search)
+        const initialSection = params.get('section') as SectionId | null
         const initialProfile = params.get('profile') as ProfileId | null
         const initialMode = params.get('mode') as LearningMode | null
         const wantsStories = params.get('stories') === 'true'
-        const profileDeck =
-          initialProfile && ['anna', 'sarah', 'library', '100-lessons'].includes(initialProfile)
-            ? nextDecks.find((deck) => deck.profile === initialProfile) ?? nextDecks[0]
-            : nextDecks[0]
+        
         setDecks(nextDecks)
         setStories(nextStories)
-        setProfile(initialProfile && ['anna', 'sarah', 'library', '100-lessons'].includes(initialProfile) ? initialProfile : null)
-        setGrowingView(initialProfile === 'anna' ? (wantsStories ? 'stories' : 'home') : 'home')
-        setActiveDeckId(profileDeck?.id ?? '')
+        
+        if (initialSection) {
+          chooseSection(initialSection, nextDecks)
+        } else if (initialProfile === 'sarah') {
+          chooseSection('letters', nextDecks)
+        } else if (initialProfile === 'anna') {
+          chooseSection(wantsStories ? 'stories' : 'words', nextDecks)
+        } else {
+          setActiveDeckId(nextDecks[0]?.id ?? '')
+        }
         if (initialMode && ['listeningMode', 'activeRecall', 'readerMode'].includes(initialMode)) {
           setMode(initialMode)
         }
@@ -181,10 +189,41 @@ function App() {
   const currentCard = activeDeck?.cards[cardIndex % Math.max(1, activeDeck.cards.length)]
   const isLessonActive = Boolean(profile && activeDeck && currentCard)
 
+  function chooseSection(section: SectionId, currentDecks = decks) {
+    setActiveSection(section)
+    setPhase('learn')
+    setSarahActivityIndex(0)
+    setMenuOpen(false)
+    setCardIndex(0)
+    
+    let targetDeckId = ''
+    let targetMode: LearningMode = 'activeRecall'
+    
+    if (section === 'letters') {
+      targetDeckId = currentDecks.find(d => d.type === 'letters' && d.profile === 'sarah')?.id ?? ''
+      targetMode = 'listeningMode'
+    } else if (section === 'sounds') {
+      targetDeckId = currentDecks.find(d => d.type === 'phonemes' && d.profile === 'sarah')?.id ?? ''
+      targetMode = 'listeningMode'
+    } else if (section === 'words') {
+      targetDeckId = currentDecks.find(d => d.type === 'reading-words' && d.profile === 'anna')?.id ?? ''
+      targetMode = 'activeRecall'
+    } else if (section === 'math') {
+      targetDeckId = currentDecks.find(d => d.type === 'math')?.id ?? ''
+      targetMode = 'activeRecall'
+    } else if (section === 'chinese') {
+      targetDeckId = currentDecks.find(d => d.type === 'chinese-vocab')?.id ?? ''
+      targetMode = 'activeRecall'
+    }
+    
+    setActiveDeckId(targetDeckId)
+    setMode(targetMode)
+  }
+
   function chooseProfile(nextProfile: ProfileId) {
     const firstDeck = decks.find((deck) => deck.profile === nextProfile) ?? decks[0]
     setProfile(nextProfile)
-    setGrowingView('home')
+    /* setGrowingView('home') */
     setActiveDeckId(firstDeck?.id ?? '')
     setMode(nextProfile === 'anna' ? 'activeRecall' : 'listeningMode')
     if (nextProfile === 'sarah' && firstDeck) {
@@ -196,7 +235,7 @@ function App() {
     setPhase('learn')
     setSarahActivityIndex(0)
     setMenuOpen(false)
-    setHundredLessonId('')
+    /* setHundredLessonId('') */
   }
 
   function openGrowingWords() {
@@ -268,7 +307,7 @@ function App() {
 
   function finishCurrentPath() {
     if (profile === 'anna') {
-      setGrowingView('home')
+      /* setGrowingView('home') */
     } else {
       setProfile(null)
     }
@@ -308,10 +347,11 @@ function App() {
           className="brand-button squish"
           type="button"
           onClick={() => {
+            setActiveSection(null)
             setProfile(null)
-            setGrowingView('home')
+            /* setGrowingView('home') */
             setMenuOpen(false)
-            setHundredLessonId('')
+            /* setHundredLessonId('') */
           }}
         >
           <Mascot size="small" mood="reading" />
@@ -321,7 +361,7 @@ function App() {
         </button>
       </header>
 
-      {showStickers && <StickerBook onClose={() => setShowStickers(false)} />}
+      {showCloset && <PandaCloset onClose={() => setShowCloset(false)} />}
 
       {loading ? (
         <section className="loading-screen">
@@ -334,21 +374,13 @@ function App() {
           <h1>Decks need a little help</h1>
           <p>{loadError}</p>
         </section>
-      ) : !profile ? (
-        <HomeScreen onChoose={chooseProfile} decks={decks} onShowStickers={() => setShowStickers(true)} />
-      ) : profile === 'anna' && growingView === 'home' ? (
-        <GrowingReaderHome
-          decks={visibleDecks}
-          stories={stories}
-          onWords={openGrowingWords}
-          onStories={() => setGrowingView('stories')}
-          onPhonemes={openGrowingPhonemes}
-        />
-      ) : profile === 'anna' && growingView === 'stories' ? (
-        <StorySection stories={stories} onBack={() => setGrowingView('home')} />
+      ) : !activeSection && !profile ? (
+        <SectionPicker onChooseSection={(s) => chooseSection(s)} onShowCloset={() => setShowCloset(true)} />
+      ) : activeSection === 'stories' ? (
+        <StorySection stories={stories} onBack={() => setActiveSection(null)} />
       ) : activeDeck && currentCard ? (
         <LearningScreen
-          decks={visibleDecks}
+          decks={decks.filter(d => activeSection ? d.type === activeDeck.type : true)}
           activeDeck={activeDeck}
           activeDeckId={activeDeckId}
           card={currentCard}
@@ -361,12 +393,7 @@ function App() {
           onMenuToggle={() => setMenuOpen((v) => !v)}
           onDeckChange={(deckId) => {
             setActiveDeckId(deckId)
-            if (profile === 'sarah') {
-              const saved = localStorage.getItem(`sarah-progress-${deckId}`)
-              setCardIndex(saved ? parseInt(saved, 10) : 0)
-            } else {
-              setCardIndex(0)
-            }
+            setCardIndex(0)
             setPhase('learn')
             setSarahActivityIndex(0)
             setMenuOpen(false)
@@ -374,38 +401,22 @@ function App() {
           onNext={moveWithinLesson}
           onSarahActivityChange={setSarahActivityIndex}
           onSarahLessonChange={moveSarahLesson}
-          onBackToPath={profile === 'anna' ? () => setGrowingView('home') : undefined}
+          onBackToPath={() => setActiveSection(null)}
           onRestartLesson={restartLesson}
           onModeChange={changeMode}
-          onNextLesson={moveNextLessonFromCurrent}
-          onDone={finishCurrentPath}
-          onGoHome={() => {
-            setProfile(null)
-            setGrowingView('home')
-            setMenuOpen(false)
+          onNextLesson={() => {
+            if (activeSection) markLessonComplete(activeSection, activeDeckId)
+            moveNextLessonFromCurrent()
           }}
+          onDone={() => setActiveSection(null)}
+          onGoHome={() => setActiveSection(null)}
           onToggleAdultDetails={() => setShowAdultDetails((v) => !v)}
         />
-      ) : profile === '100-lessons' ? (
-        hundredLessonId ? (
-          <HundredLessonScreen
-            lessonId={hundredLessonId}
-            onDone={() => setHundredLessonId('')}
-            onHome={() => {
-              setHundredLessonId('')
-              setProfile(null)
-              setGrowingView('home')
-              setMenuOpen(false)
-            }}
-          />
-        ) : (
-          <HundredLessonsHome onChooseLesson={setHundredLessonId} />
-        )
       ) : (
         <section className="empty-screen">
           <Mascot mood="curious" />
           <h1>No cards yet</h1>
-          <p>Add cards to this deck and Chunky Reader will pick them up.</p>
+          <p>Add cards to this deck and Chunky Learner will pick them up.</p>
         </section>
       )}
     </main>

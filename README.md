@@ -1,6 +1,6 @@
-# Chunky Reader
+# Chunky Learner
 
-Chunky Reader is a cute, low-friction reading and pre-reading app for young children. It was built from the Chunky Chinese Vite/React app shape: a static web app, bundled deck assets under `public/`, CSV/manifest-based clip packs, and three simple learning flows.
+Chunky Learner is a cute, low-friction learning and reading app for young children. It was built from the Chunky Chinese Vite/React app shape: a static web app, bundled deck assets under `public/`, CSV/manifest-based clip packs, and a shared section-based lesson engine.
 
 The app follows the Chunky Chinese pocket-lesson rhythm: 4-minute lessons, 5 cards at a time, audio-first introductions, and no more than two answer choices on screen.
 
@@ -331,13 +331,13 @@ On this Windows machine, use `npm.cmd` from PowerShell if script execution polic
 
 ## Progressive Web App
 
-Chunky Reader includes a small service worker at `public/sw.js` and registers it from `src/registerServiceWorker.ts` in production builds. The PWA manifest lives at `public/manifest.webmanifest`.
+Chunky Learner includes a small service worker at `public/sw.js` and registers it from `src/registerServiceWorker.ts` in production builds. The PWA manifest lives at `public/manifest.webmanifest`.
 
 The service worker pre-caches the app shell, mascot/profile assets, deck registry, Earliest Reader JSON decks, Anne story registry, and Growing Reader's core clip-pack files. Images and audio are cached as the child uses them, so the app becomes more offline-friendly over time.
 
 The expressive panda sheet lives at `public/assets/mascots/mascot-expressions.png`. The app uses it for curious, reading, happy, and try-again states.
 
-For quick QA or sharing a direct path, Chunky Reader supports simple query parameters:
+For quick QA or sharing a direct path, Chunky Learner supports simple query parameters:
 
 ```text
 /?profile=anna

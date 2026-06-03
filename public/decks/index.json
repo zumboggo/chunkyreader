@@ -44,5 +44,32 @@
     "language": "en-US",
     "level": 2,
     "accentModel": "General American English"
+  },
+  {
+    "id": "math-addition-0-12",
+    "title": "Addition 0-12",
+    "description": "Learn to add numbers from 0 to 12.",
+    "type": "math",
+    "profile": "library",
+    "format": "json",
+    "source": "decks/math-addition-0-12.json"
+  },
+  {
+    "id": "math-subtraction-0-12",
+    "title": "Subtraction 0-12",
+    "description": "Learn to subtract numbers from 0 to 12.",
+    "type": "math",
+    "profile": "library",
+    "format": "json",
+    "source": "decks/math-subtraction-0-12.json"
+  },
+  {
+    "id": "chinese-level-1",
+    "title": "Chinese Level 1",
+    "description": "Simple Chinese characters for beginners.",
+    "type": "chinese-vocab",
+    "profile": "library",
+    "format": "json",
+    "source": "decks/chinese-level-1.json"
   }
 ]
