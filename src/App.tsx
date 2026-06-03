@@ -15,9 +15,10 @@ import confetti from 'canvas-confetti'
 import { playSfx } from './audioEffects'
 import { playNarrationClip } from './audioClipPack'
 
-import { SectionPicker, PandaCloset } from './SectionPicker'
+import { SectionPicker, PandaCloset, type ContinueLearningState } from './SectionPicker'
 import type { SectionId } from './types'
-import { markLessonComplete } from './progress'
+import { markLessonComplete, markStoryComplete, resetProgress } from './progress'
+import { applyAppSettings, loadAppSettings, saveAppSettings, type AppSettings } from './appSettings'
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious'
 type LessonPhase = 'learn' | 'question'
 type GrowingReaderView = 'home' | 'words' | 'stories' | 'phonemes'
@@ -116,6 +117,12 @@ const storyDifficultyFilters: { id: StoryDifficultyFilter; label: string }[] = [
   { id: 'growing', label: 'Growing' },
   { id: 'longer', label: 'Longer' },
 ]
+const CONTINUE_KEY = 'chunkyLearnerContinue.v1'
+
+interface StoryStartRequest {
+  storyId: string
+  pageIndex: number
+}
 
 function shouldIgnoreControllerKey(event: KeyboardEvent) {
   if (event.defaultPrevented || event.repeat) return true
@@ -144,6 +151,15 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
   const [showAdultDetails, setShowAdultDetails] = useState(false)
+  const [settings, setSettings] = useState<AppSettings>(() => loadAppSettings())
+  const [showSettings, setShowSettings] = useState(false)
+  const [progressVersion, setProgressVersion] = useState(0)
+  const [continueState, setContinueState] = useState<ContinueLearningState | undefined>(() => readContinueState())
+  const [storyStartRequest, setStoryStartRequest] = useState<StoryStartRequest | null>(null)
+
+  useEffect(() => {
+    applyAppSettings(settings)
+  }, [settings])
 
   useEffect(() => {
     let cancelled = false
@@ -196,6 +212,64 @@ function App() {
   const currentCard = activeDeck?.cards[cardIndex % Math.max(1, activeDeck.cards.length)]
   const isLessonActive = Boolean(profile && activeDeck && currentCard)
   const isSectionDashboard = !loading && !loadError && !activeSection && !profile
+
+  useEffect(() => {
+    if (!activeSection || activeSection === 'stories' || !activeDeckId) return
+    rememberContinue({
+      section: activeSection,
+      deckId: activeDeckId,
+      cardIndex,
+      mode,
+      label: activeDeck?.title,
+    })
+  }, [activeDeck?.title, activeDeckId, activeSection, cardIndex, mode])
+
+  function updateSettings(patch: Partial<AppSettings>) {
+    setSettings((current) => {
+      const next = { ...current, ...patch }
+      saveAppSettings(next)
+      return next
+    })
+  }
+
+  function resetLocalProgress() {
+    resetProgress()
+    setContinueState(undefined)
+    setProgressVersion((version) => version + 1)
+    setStoryStartRequest(null)
+    setActiveSection(null)
+    setProfile(null)
+    setCardIndex(0)
+    setSarahActivityIndex(0)
+  }
+
+  function rememberContinue(next: ContinueLearningState) {
+    const state = { ...next }
+    setContinueState(state)
+    try {
+      localStorage.setItem(CONTINUE_KEY, JSON.stringify(state))
+    } catch {
+      // Continue is a convenience; lessons still work without storage.
+    }
+  }
+
+  function openContinue() {
+    const state = continueState || readContinueState()
+    if (!state) return
+    if (state.section === 'stories') {
+      setStoryStartRequest(state.storyId ? { storyId: state.storyId, pageIndex: state.pageIndex ?? 0 } : null)
+      setActiveSection('stories')
+      setProfile(null)
+      setMenuOpen(false)
+      return
+    }
+    chooseSection(state.section)
+    if (state.deckId) setActiveDeckId(state.deckId)
+    if (state.mode && ['listeningMode', 'activeRecall', 'readerMode'].includes(state.mode)) {
+      setMode(state.mode as LearningMode)
+    }
+    if (typeof state.cardIndex === 'number') setCardIndex(state.cardIndex)
+  }
 
   function chooseSection(section: SectionId, currentDecks = decks) {
     setActiveSection(section)
@@ -364,12 +438,20 @@ function App() {
         >
           <Mascot size="small" mood="reading" />
           <span>
-            <strong>🏠 Home</strong>
+            <strong>Home</strong>
           </span>
         </button>
       </header>
 
       {showCloset && <PandaCloset onClose={() => setShowCloset(false)} />}
+      {showSettings && (
+        <ParentSettingsModal
+          settings={settings}
+          onChange={updateSettings}
+          onResetProgress={resetLocalProgress}
+          onClose={() => setShowSettings(false)}
+        />
+      )}
 
       {loading ? (
         <section className="loading-screen">
@@ -383,9 +465,23 @@ function App() {
           <p>{loadError}</p>
         </section>
       ) : !activeSection && !profile ? (
-        <SectionPicker onChooseSection={(s) => chooseSection(s)} onShowCloset={() => setShowCloset(true)} />
+        <SectionPicker
+          key={progressVersion}
+          onChooseSection={(s) => chooseSection(s)}
+          onShowCloset={() => setShowCloset(true)}
+          onShowSettings={() => setShowSettings(true)}
+          onContinue={openContinue}
+          continueState={continueState}
+          settings={settings}
+        />
       ) : activeSection === 'stories' ? (
-        <StorySection stories={stories} onBack={() => setActiveSection(null)} />
+        <StorySection
+          stories={stories}
+          onBack={() => setActiveSection(null)}
+          startRequest={storyStartRequest}
+          onStartConsumed={() => setStoryStartRequest(null)}
+          onRememberContinue={rememberContinue}
+        />
       ) : activeDeck && currentCard ? (
         <LearningScreen
           decks={decks.filter(d => activeSection ? d.type === activeDeck.type : true)}
@@ -431,6 +527,77 @@ function App() {
   )
 }
 
+function ParentSettingsModal({
+  settings,
+  onChange,
+  onResetProgress,
+  onClose,
+}: {
+  settings: AppSettings
+  onChange: (patch: Partial<AppSettings>) => void
+  onResetProgress: () => void
+  onClose: () => void
+}) {
+  const [confirmReset, setConfirmReset] = useState(false)
+
+  function reset() {
+    if (!confirmReset) {
+      setConfirmReset(true)
+      return
+    }
+    onResetProgress()
+    onClose()
+  }
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content parent-settings">
+        <button className="close-button" onClick={onClose}>Close</button>
+        <span className="prompt-topline">Parent</span>
+        <h2>Settings</h2>
+        <div className="settings-list">
+          <label className="settings-toggle">
+            <span>
+              <strong>Autoplay audio</strong>
+              <small>Play words and story pages when they open.</small>
+            </span>
+            <input
+              type="checkbox"
+              checked={settings.autoplayAudio}
+              onChange={(event) => onChange({ autoplayAudio: event.currentTarget.checked })}
+            />
+          </label>
+          <label className="settings-toggle">
+            <span>
+              <strong>Dark mode</strong>
+              <small>Use a softer low-light palette.</small>
+            </span>
+            <input
+              type="checkbox"
+              checked={settings.darkMode}
+              onChange={(event) => onChange({ darkMode: event.currentTarget.checked })}
+            />
+          </label>
+          <label className="settings-toggle">
+            <span>
+              <strong>Show progress</strong>
+              <small>Show lesson counts and progress dots.</small>
+            </span>
+            <input
+              type="checkbox"
+              checked={settings.showProgress}
+              onChange={(event) => onChange({ showProgress: event.currentTarget.checked })}
+            />
+          </label>
+        </div>
+        <button type="button" className="danger-button" onClick={reset}>
+          {confirmReset ? 'Tap again to reset progress' : 'Reset local progress'}
+        </button>
+      </div>
+    </div>
+  )
+}
+
 function HomeScreen({
   onChoose,
   decks,
@@ -470,14 +637,14 @@ function HomeScreen({
           <small>{sarahCount} letter and sound cards</small>
         </button>
         <button type="button" className="path-card" onClick={() => onChoose('100-lessons')} style={{ background: 'var(--c-background-glass)', borderColor: 'var(--c-brand)' }}>
-          <span className="choice-sticker" aria-hidden="true">💯</span>
+          <span className="choice-sticker" aria-hidden="true">100</span>
           <span className="path-badge">Classic</span>
           <strong>100 Lessons</strong>
           <small>Teach Your Child to Read</small>
         </button>
       </div>
       <div style={{display: 'flex', justifyContent: 'center', marginTop: '1rem'}}>
-        <button className="sticker-nav-button squish" style={{fontSize: '1.2rem', padding: '0.75rem 1.5rem'}} onClick={onShowStickers}>🏆 Sticker Book</button>
+        <button className="sticker-nav-button squish" style={{fontSize: '1.2rem', padding: '0.75rem 1.5rem'}} onClick={onShowStickers}>Sticker Book</button>
       </div>
     </section>
   )
@@ -506,14 +673,14 @@ function GrowingReaderHome({
         <img className="reader-hero-child" src={`${import.meta.env.BASE_URL}assets/profiles/anna-red-shirt.png`} alt="" />
         <div>
           <ChunkyLogo compact />
-          <h1>Older Reader</h1>
+          <h1>Words and Stories</h1>
           <p>Choose one happy reading pocket.</p>
         </div>
         <Mascot mood="reading" />
       </div>
-      <div className="reader-choice-grid" aria-label="Choose an Older Reader activity">
+      <div className="reader-choice-grid" aria-label="Choose a reading activity">
         <button type="button" className="reader-choice phoneme-choice" onClick={onPhonemes}>
-          <span className="choice-sticker" aria-hidden="true">🔊</span>
+          <span className="choice-sticker" aria-hidden="true">Sound</span>
           <strong>Phonemes</strong>
           <small>{phonemeCount} sounds & spellings</small>
         </button>
@@ -532,7 +699,19 @@ function GrowingReaderHome({
   )
 }
 
-function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => void }) {
+function StorySection({
+  stories,
+  onBack,
+  startRequest,
+  onStartConsumed,
+  onRememberContinue,
+}: {
+  stories: Story[]
+  onBack: () => void
+  startRequest: StoryStartRequest | null
+  onStartConsumed: () => void
+  onRememberContinue: (state: ContinueLearningState) => void
+}) {
   const [selectedStoryId, setSelectedStoryId] = useState('')
   const [pageIndex, setPageIndex] = useState(0)
   const [complete, setComplete] = useState(false)
@@ -545,12 +724,25 @@ function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => voi
     setSelectedStoryId(story.id)
     setPageIndex(0)
     setComplete(false)
+    onRememberContinue({
+      section: 'stories',
+      storyId: story.id,
+      pageIndex: 0,
+      label: story.title,
+    })
   }
 
   function resume(story: Story) {
+    const nextPage = readStoryProgress(story.id, story.pages.length)
     setSelectedStoryId(story.id)
-    setPageIndex(readStoryProgress(story.id, story.pages.length))
+    setPageIndex(nextPage)
     setComplete(false)
+    onRememberContinue({
+      section: 'stories',
+      storyId: story.id,
+      pageIndex: nextPage,
+      label: story.title,
+    })
   }
 
   function restartStory(story: Story) {
@@ -558,6 +750,20 @@ function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => voi
     setPageIndex(0)
     setComplete(false)
   }
+
+  useEffect(() => {
+    if (!startRequest) return
+    const story = stories.find((candidate) => candidate.id === startRequest.storyId)
+    if (!story) {
+      onStartConsumed()
+      return
+    }
+    const nextPage = Math.max(0, Math.min(story.pages.length - 1, startRequest.pageIndex))
+    setSelectedStoryId(story.id)
+    setPageIndex(nextPage)
+    setComplete(false)
+    onStartConsumed()
+  }, [onStartConsumed, startRequest, stories])
 
   if (selectedStory) {
     return (
@@ -573,10 +779,23 @@ function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => voi
         onPageIndexChange={(index) => {
           setPageIndex(index)
           saveStoryProgress(selectedStory.id, index)
+          onRememberContinue({
+            section: 'stories',
+            storyId: selectedStory.id,
+            pageIndex: index,
+            label: selectedStory.title,
+          })
         }}
         onComplete={() => {
           setComplete(true)
           saveStoryProgress(selectedStory.id, selectedStory.pages.length - 1)
+          markStoryComplete(selectedStory.id)
+          onRememberContinue({
+            section: 'stories',
+            storyId: selectedStory.id,
+            pageIndex: selectedStory.pages.length - 1,
+            label: selectedStory.title,
+          })
         }}
       />
     )
@@ -587,7 +806,7 @@ function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => voi
       <div className="story-library-header">
         <button type="button" className="soft-back" onClick={onBack}>Back</button>
         <div>
-          <span className="prompt-topline">Older Reader</span>
+          <span className="prompt-topline">Stories</span>
           <h1>Read a Story</h1>
           <p>Pick a story pocket.</p>
         </div>
@@ -632,6 +851,7 @@ function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => voi
           )}
           {filteredStories.map((story, index) => {
             const cover = story.coverImage || story.pages[0]?.image
+            const savedPage = readStoryProgress(story.id, story.pages.length)
             return (
               <button key={story.id} type="button" className="story-card" onClick={() => openStory(story)}>
                 <AssetImage
@@ -644,6 +864,8 @@ function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => voi
                 <strong>{story.title}</strong>
                 <small>{story.description}</small>
                 <span className="story-meta">{story.pages.length} pages - {story.readingLevel}</span>
+                {savedPage > 0 && <span className="story-resume-pill">Resume page {savedPage + 1}</span>}
+                <span className="story-read-pill">Read</span>
               </button>
             )
           })}
@@ -1057,7 +1279,7 @@ function LessonMenu({
         aria-controls="lesson-menu"
         aria-label="Open menu"
       >
-        ☰
+        Menu
       </button>
       {isOpen && (
         <div
@@ -1070,17 +1292,17 @@ function LessonMenu({
           <div className="lesson-menu-header">
             <strong>Menu</strong>
             <button type="button" className="menu-close" onClick={onToggle} aria-label="Close menu">
-              ✕
+              Close
             </button>
           </div>
           <div className="lesson-menu-content">
             {onBackToPath && (
               <button type="button" className="menu-item" onClick={onBackToPath}>
-                ← Back to Older Reader
+                Back to Sections
               </button>
             )}
             <button type="button" className="menu-item" onClick={onRestartLesson}>
-              ↻ Restart Lesson
+              Restart Lesson
             </button>
             {decks.length > 1 && (
               <div className="menu-section">
@@ -1093,7 +1315,7 @@ function LessonMenu({
                     onClick={() => onDeckChange(deck.id)}
                   >
                     {deck.level ? `Level ${deck.level}` : deck.title}
-                    {deck.id === activeDeckId && ' ✓'}
+                    {deck.id === activeDeckId && ' selected'}
                   </button>
                 ))}
               </div>
@@ -1133,7 +1355,7 @@ function LessonMenu({
               <strong>Options</strong>
               <AudioPackButton compact />
               <button type="button" className="menu-item" onClick={onToggleAdultDetails}>
-                {showAdultDetails ? '✓ ' : ''}Adult Details
+                {showAdultDetails ? 'Showing ' : ''}Adult Details
               </button>
             </div>
               {activeDeck.type === 'letters' && (
@@ -1142,7 +1364,7 @@ function LessonMenu({
                 </div>
               )}
             <button type="button" className="menu-item menu-home" onClick={onGoHome}>
-              ⌂ Home
+              Home
             </button>
           </div>
         </div>
@@ -1173,7 +1395,7 @@ function FocusLessonTopBar({
         onClick={onMenuToggle}
         aria-label="Menu"
       >
-        ☰
+        Menu
       </button>
       <div className="focus-progress">
         <span className="lesson-label">Lesson {lessonNumber}</span>
@@ -2000,11 +2222,9 @@ function ChoiceMode({
           <div className="focus-prompt">
             <span className="stage-label">{mode === 'readerMode' ? 'Quiz' : 'Practice'}</span>
             <h2>{getChoicePrompt(deck, card, mode)}</h2>
-            {deck.type === 'letters' && mode === 'activeRecall' && (
-              <div className="prompt-cue">
-                <AudioPromptButton onClick={() => playCardAudio(deck, card)} label="Hear it" />
-              </div>
-            )}
+            <div className="prompt-cue">
+              <AudioPromptButton onClick={() => playCardAudio(deck, card)} label="Listen" />
+            </div>
           </div>
           {deck.type === 'math' && <MathVisual card={card} />}
           {deck.type === 'chinese-vocab' && (
@@ -2240,6 +2460,7 @@ function useAutoplayCard(deck: LearningDeck, card: LearningCard, key: string) {
   useEffect(() => {
     if (lastKey.current === key) return
     lastKey.current = key
+    if (!loadAppSettings().autoplayAudio) return
     const timer = window.setTimeout(() => {
       void playCardAudio(deck, card)
     }, 220)
@@ -2536,6 +2757,17 @@ function storyProgressKey(storyId: string): string {
   return `chunky-reader:story:${storyId}:page`
 }
 
+function readContinueState(): ContinueLearningState | undefined {
+  try {
+    const raw = localStorage.getItem(CONTINUE_KEY)
+    if (!raw) return undefined
+    const parsed = JSON.parse(raw) as ContinueLearningState
+    return parsed.section ? parsed : undefined
+  } catch {
+    return undefined
+  }
+}
+
 function orderCardsForMode(deck: LearningDeck, mode: LearningMode): LearningCard[] {
   const sourceCards = deck.profile === 'anna' && deck.type === 'reading-words'
     ? deck.cards.filter((card) => card.type === 'word')
@@ -2752,7 +2984,7 @@ function StickerBook({ onClose }: { onClose: () => void }) {
     const stickers = []
     const totalSlots = Math.max(6, lessons + (3 - (lessons % 3 || 3)))
     for (let i = 0; i < totalSlots; i++) {
-      const emojis = isAnna ? ['🌟', '📚', '🚀', '🌈'] : ['🐼', '🍎', '🎈', '⭐']
+      const emojis = isAnna ? ['A1', 'A2', 'A3', 'A4'] : ['S1', 'S2', 'S3', 'S4']
       stickers.push(i < lessons ? emojis[i % emojis.length] : '')
     }
     return stickers
@@ -2760,7 +2992,7 @@ function StickerBook({ onClose }: { onClose: () => void }) {
 
   function renderHundredLessonStickers(lessons: number) {
     const stickers = []
-    const trophyStickers = ['\u{1F3C6}', '\u{1F396}\uFE0F', '\u{1F4D8}', '\u2B50']
+    const trophyStickers = ['100', 'WIN', 'BOOK', 'STAR']
     const totalSlots = Math.max(6, lessons + (3 - (lessons % 3 || 3)))
     for (let i = 0; i < totalSlots; i++) {
       stickers.push(i < lessons ? trophyStickers[i % trophyStickers.length] : '')
@@ -3003,12 +3235,12 @@ function OlderReaderPhonemeLesson({
           <span className="prompt-topline">Listen</span>
           <div className="intro-card-large" style={{display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', background: 'var(--c-surface)', padding: '2rem', borderRadius: '1rem', border: '3px solid var(--c-brand)'}}>
              <button type="button" className="big-audio-button squish" style={{fontSize: '3rem', background: 'var(--c-brand)', color: 'white', border: 'none', borderRadius: '50%', width: '100px', height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 4px 0 rgba(0,0,0,0.1)'}} onClick={() => playNarrationClip(card.id, card.speechCue, audioAsset)}>
-               🔊
+               Play
              </button>
              <SpellingChip text={card.primarySpelling || card.displayText} />
              <div className="intro-example">
                <button type="button" className="example-audio squish" style={{fontSize: '1.5rem', fontWeight: 'bold', padding: '0.75rem 1.5rem', borderRadius: '100px', border: '2px solid var(--c-border)', cursor: 'pointer', background: 'white'}} onClick={() => playNarrationClip(card.id + '-example', card.exampleWord, exampleAudioAsset)}>
-                 🔊 {card.exampleWord}
+                 Play {card.exampleWord}
                </button>
              </div>
           </div>
@@ -3023,7 +3255,7 @@ function OlderReaderPhonemeLesson({
           <div className="question-stimulus" style={{minHeight: '120px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             {(activity.kind === 'soundToSpelling' || activity.kind === 'exampleWord') && (
               <button type="button" className="big-audio-button squish" style={{fontSize: '3rem', background: 'var(--c-brand)', color: 'white', border: 'none', borderRadius: '50%', width: '100px', height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 4px 0 rgba(0,0,0,0.1)'}} onClick={() => playNarrationClip(card.id, card.speechCue, audioAsset)}>
-                🔊
+                Play
               </button>
             )}
             {activity.kind === 'spellingToSound' && (
@@ -3031,7 +3263,7 @@ function OlderReaderPhonemeLesson({
             )}
             {activity.kind === 'mixedReview' && (
               <button type="button" className="example-audio squish" style={{fontSize: '1.5rem', fontWeight: 'bold', padding: '0.75rem 1.5rem', borderRadius: '100px', border: '2px solid var(--c-border)', cursor: 'pointer', background: 'white'}} onClick={() => playNarrationClip(card.id + '-example', card.exampleWord, exampleAudioAsset)}>
-                🔊 {card.exampleWord}
+                Play {card.exampleWord}
               </button>
             )}
           </div>

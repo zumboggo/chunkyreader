@@ -48,6 +48,34 @@ export function saveProgress(progress: LearnerProgress) {
   }
 }
 
+export function resetProgress() {
+  try {
+    saveProgress(getEmptyProgress())
+    const prefixes = [
+      'chunky-reader:story:',
+      'chunky-reader:card-progress:',
+      'chunky-reader:older-phonemes:',
+      'sarah-progress-',
+    ]
+    const exactKeys = [
+      'completed-lessons-anna',
+      'completed-lessons-sarah',
+      'completed-lessons-100',
+      '100-lessons-progress',
+      'chunkyLearnerContinue.v1',
+    ]
+    for (let index = localStorage.length - 1; index >= 0; index -= 1) {
+      const key = localStorage.key(index)
+      if (!key) continue
+      if (exactKeys.includes(key) || prefixes.some((prefix) => key.startsWith(prefix))) {
+        localStorage.removeItem(key)
+      }
+    }
+  } catch (e) {
+    console.error('Failed to reset progress', e)
+  }
+}
+
 export function markLessonComplete(sectionId: SectionId, deckId: string): LearnerProgress {
   const progress = loadProgress()
   progress.totalLessonsCompleted += 1

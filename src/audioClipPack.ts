@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { loadAppSettings } from './appSettings'
 
 // Text-to-audio mapping:
 // - every kid-facing narration clip has a stable manifest id, for example
@@ -115,6 +116,10 @@ export function useNarration(
     if (!clipId || lastKey.current === key) return
     lastKey.current = key
     setStatus('idle')
+    if (!loadAppSettings().autoplayAudio) {
+      setStatus('blocked')
+      return
+    }
     const timer = window.setTimeout(() => {
       void playNarrationClip(clipId, fallbackText, directAudioPath).then(setStatus)
     }, autoplayUnlocked ? 220 : 360)
