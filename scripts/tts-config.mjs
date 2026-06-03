@@ -4,14 +4,14 @@ export const TTS_VOICES = {
   anneNarrator: 'en-US-JennyNeural',
   childInstructions: 'en-US-AvaNeural',
   phonicsTeacher: 'en-US-JennyNeural',
-  chineseTeacher: 'zh-CN-XiaoxiaoNeural',
+  chineseTeacher: 'zh-CN-XiaoxiaoMultilingualNeural',
 }
 
 export const TTS_VOICE_VERSIONS = {
   anneNarrator: 'anne-soft-female-v2',
   childInstructions: 'child-instructions-v1',
   phonicsTeacher: 'phonics-sounds-v2',
-  chineseTeacher: 'chinese-teacher-v1',
+  chineseTeacher: 'chinese-teacher-multilingual-v2',
 }
 
 export const TTS_OUTPUT_FORMAT = 'audio-24khz-48kbitrate-mono-mp3'
