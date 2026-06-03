@@ -1,5 +1,5 @@
 {
-  "name": "chunky-reader",
+  "name": "chunky-learner",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -34,7 +34,11 @@
     "generate:story-images:dry": "node scripts/generate-story-images.mjs --dry-run",
     "generate:story-images:test": "node scripts/generate-story-images.mjs --limit 2",
     "import:pdf-story": "node scripts/import-pdf-story.mjs",
-    "import:pdf-story:dry": "node scripts/import-pdf-story.mjs --dry-run"
+    "import:pdf-story:dry": "node scripts/import-pdf-story.mjs --dry-run",
+    "generate:section-images": "node scripts/generate-section-images.mjs",
+    "generate:section-images:dry": "node scripts/generate-section-images.mjs --dry-run",
+    "generate:section-images:test": "node scripts/generate-section-images.mjs --limit 1",
+    "generate:math-decks": "node scripts/generate-math-decks.mjs"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",

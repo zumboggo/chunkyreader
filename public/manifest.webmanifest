@@ -1,8 +1,8 @@
 {
   "id": ".",
-  "name": "Chunky Reader",
-  "short_name": "Chunky Reader",
-  "description": "Cute English reading, letter, and phonics practice for young children.",
+  "name": "Chunky Learner",
+  "short_name": "Chunky Learner",
+  "description": "Cute learning, reading, math, and phonics practice for young children.",
   "start_url": ".",
   "scope": ".",
   "display": "standalone",

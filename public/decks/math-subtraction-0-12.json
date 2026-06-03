@@ -1,0 +1,1465 @@
+{
+  "id": "math-subtraction-0-12",
+  "title": "Subtraction 0-12",
+  "description": "Learn to subtract numbers from 0 to 12.",
+  "type": "math",
+  "profile": "library",
+  "cards": [
+    {
+      "id": "math-sub-0-0",
+      "type": "math",
+      "displayText": "0 - 0 = ?",
+      "equation": "0 - 0 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 0,
+      "mathAnswerOptions": [
+        1,
+        0
+      ],
+      "mathVisualCount": 0,
+      "mathRemovedCount": 0,
+      "difficulty": 1,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-1-0",
+      "type": "math",
+      "displayText": "1 - 0 = ?",
+      "equation": "1 - 0 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 1,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 1,
+      "mathRemovedCount": 0,
+      "difficulty": 1,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-1-1",
+      "type": "math",
+      "displayText": "1 - 1 = ?",
+      "equation": "1 - 1 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 0,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 1,
+      "mathRemovedCount": 1,
+      "difficulty": 1,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-2-0",
+      "type": "math",
+      "displayText": "2 - 0 = ?",
+      "equation": "2 - 0 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 2,
+      "mathAnswerOptions": [
+        2,
+        1
+      ],
+      "mathVisualCount": 2,
+      "mathRemovedCount": 0,
+      "difficulty": 1,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-2-1",
+      "type": "math",
+      "displayText": "2 - 1 = ?",
+      "equation": "2 - 1 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 1,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 2,
+      "mathRemovedCount": 1,
+      "difficulty": 1,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-2-2",
+      "type": "math",
+      "displayText": "2 - 2 = ?",
+      "equation": "2 - 2 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 0,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 2,
+      "mathRemovedCount": 2,
+      "difficulty": 1,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-3-0",
+      "type": "math",
+      "displayText": "3 - 0 = ?",
+      "equation": "3 - 0 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 3,
+      "mathAnswerOptions": [
+        4,
+        3
+      ],
+      "mathVisualCount": 3,
+      "mathRemovedCount": 0,
+      "difficulty": 2,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-3-1",
+      "type": "math",
+      "displayText": "3 - 1 = ?",
+      "equation": "3 - 1 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 2,
+      "mathAnswerOptions": [
+        1,
+        2
+      ],
+      "mathVisualCount": 3,
+      "mathRemovedCount": 1,
+      "difficulty": 2,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-3-2",
+      "type": "math",
+      "displayText": "3 - 2 = ?",
+      "equation": "3 - 2 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 1,
+      "mathAnswerOptions": [
+        1,
+        2
+      ],
+      "mathVisualCount": 3,
+      "mathRemovedCount": 2,
+      "difficulty": 2,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-3-3",
+      "type": "math",
+      "displayText": "3 - 3 = ?",
+      "equation": "3 - 3 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 0,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 3,
+      "mathRemovedCount": 3,
+      "difficulty": 2,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-4-0",
+      "type": "math",
+      "displayText": "4 - 0 = ?",
+      "equation": "4 - 0 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 4,
+      "mathAnswerOptions": [
+        5,
+        4
+      ],
+      "mathVisualCount": 4,
+      "mathRemovedCount": 0,
+      "difficulty": 2,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-4-1",
+      "type": "math",
+      "displayText": "4 - 1 = ?",
+      "equation": "4 - 1 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 3,
+      "mathAnswerOptions": [
+        3,
+        2
+      ],
+      "mathVisualCount": 4,
+      "mathRemovedCount": 1,
+      "difficulty": 2,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-4-2",
+      "type": "math",
+      "displayText": "4 - 2 = ?",
+      "equation": "4 - 2 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 2,
+      "mathAnswerOptions": [
+        2,
+        1
+      ],
+      "mathVisualCount": 4,
+      "mathRemovedCount": 2,
+      "difficulty": 2,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-4-3",
+      "type": "math",
+      "displayText": "4 - 3 = ?",
+      "equation": "4 - 3 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 1,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 4,
+      "mathRemovedCount": 3,
+      "difficulty": 2,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-4-4",
+      "type": "math",
+      "displayText": "4 - 4 = ?",
+      "equation": "4 - 4 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 0,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 4,
+      "mathRemovedCount": 4,
+      "difficulty": 2,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-5-0",
+      "type": "math",
+      "displayText": "5 - 0 = ?",
+      "equation": "5 - 0 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 5,
+      "mathAnswerOptions": [
+        5,
+        4
+      ],
+      "mathVisualCount": 5,
+      "mathRemovedCount": 0,
+      "difficulty": 3,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-5-1",
+      "type": "math",
+      "displayText": "5 - 1 = ?",
+      "equation": "5 - 1 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 4,
+      "mathAnswerOptions": [
+        5,
+        4
+      ],
+      "mathVisualCount": 5,
+      "mathRemovedCount": 1,
+      "difficulty": 3,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-5-2",
+      "type": "math",
+      "displayText": "5 - 2 = ?",
+      "equation": "5 - 2 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 3,
+      "mathAnswerOptions": [
+        3,
+        2
+      ],
+      "mathVisualCount": 5,
+      "mathRemovedCount": 2,
+      "difficulty": 3,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-5-3",
+      "type": "math",
+      "displayText": "5 - 3 = ?",
+      "equation": "5 - 3 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 2,
+      "mathAnswerOptions": [
+        2,
+        1
+      ],
+      "mathVisualCount": 5,
+      "mathRemovedCount": 3,
+      "difficulty": 3,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-5-4",
+      "type": "math",
+      "displayText": "5 - 4 = ?",
+      "equation": "5 - 4 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 1,
+      "mathAnswerOptions": [
+        1,
+        2
+      ],
+      "mathVisualCount": 5,
+      "mathRemovedCount": 4,
+      "difficulty": 3,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-5-5",
+      "type": "math",
+      "displayText": "5 - 5 = ?",
+      "equation": "5 - 5 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 0,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 5,
+      "mathRemovedCount": 5,
+      "difficulty": 3,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-6-0",
+      "type": "math",
+      "displayText": "6 - 0 = ?",
+      "equation": "6 - 0 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 6,
+      "mathAnswerOptions": [
+        5,
+        6
+      ],
+      "mathVisualCount": 6,
+      "mathRemovedCount": 0,
+      "difficulty": 3,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-6-1",
+      "type": "math",
+      "displayText": "6 - 1 = ?",
+      "equation": "6 - 1 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 5,
+      "mathAnswerOptions": [
+        5,
+        6
+      ],
+      "mathVisualCount": 6,
+      "mathRemovedCount": 1,
+      "difficulty": 3,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-6-2",
+      "type": "math",
+      "displayText": "6 - 2 = ?",
+      "equation": "6 - 2 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 4,
+      "mathAnswerOptions": [
+        4,
+        3
+      ],
+      "mathVisualCount": 6,
+      "mathRemovedCount": 2,
+      "difficulty": 3,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-6-3",
+      "type": "math",
+      "displayText": "6 - 3 = ?",
+      "equation": "6 - 3 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 3,
+      "mathAnswerOptions": [
+        4,
+        3
+      ],
+      "mathVisualCount": 6,
+      "mathRemovedCount": 3,
+      "difficulty": 3,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-6-4",
+      "type": "math",
+      "displayText": "6 - 4 = ?",
+      "equation": "6 - 4 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 2,
+      "mathAnswerOptions": [
+        1,
+        2
+      ],
+      "mathVisualCount": 6,
+      "mathRemovedCount": 4,
+      "difficulty": 3,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-6-5",
+      "type": "math",
+      "displayText": "6 - 5 = ?",
+      "equation": "6 - 5 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 1,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 6,
+      "mathRemovedCount": 5,
+      "difficulty": 3,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-6-6",
+      "type": "math",
+      "displayText": "6 - 6 = ?",
+      "equation": "6 - 6 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 0,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 6,
+      "mathRemovedCount": 6,
+      "difficulty": 3,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-7-0",
+      "type": "math",
+      "displayText": "7 - 0 = ?",
+      "equation": "7 - 0 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 7,
+      "mathAnswerOptions": [
+        6,
+        7
+      ],
+      "mathVisualCount": 7,
+      "mathRemovedCount": 0,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-7-1",
+      "type": "math",
+      "displayText": "7 - 1 = ?",
+      "equation": "7 - 1 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 6,
+      "mathAnswerOptions": [
+        6,
+        7
+      ],
+      "mathVisualCount": 7,
+      "mathRemovedCount": 1,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-7-2",
+      "type": "math",
+      "displayText": "7 - 2 = ?",
+      "equation": "7 - 2 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 5,
+      "mathAnswerOptions": [
+        5,
+        4
+      ],
+      "mathVisualCount": 7,
+      "mathRemovedCount": 2,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-7-3",
+      "type": "math",
+      "displayText": "7 - 3 = ?",
+      "equation": "7 - 3 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 4,
+      "mathAnswerOptions": [
+        5,
+        4
+      ],
+      "mathVisualCount": 7,
+      "mathRemovedCount": 3,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-7-4",
+      "type": "math",
+      "displayText": "7 - 4 = ?",
+      "equation": "7 - 4 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 3,
+      "mathAnswerOptions": [
+        3,
+        2
+      ],
+      "mathVisualCount": 7,
+      "mathRemovedCount": 4,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-7-5",
+      "type": "math",
+      "displayText": "7 - 5 = ?",
+      "equation": "7 - 5 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 2,
+      "mathAnswerOptions": [
+        2,
+        1
+      ],
+      "mathVisualCount": 7,
+      "mathRemovedCount": 5,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-7-6",
+      "type": "math",
+      "displayText": "7 - 6 = ?",
+      "equation": "7 - 6 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 1,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 7,
+      "mathRemovedCount": 6,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-7-7",
+      "type": "math",
+      "displayText": "7 - 7 = ?",
+      "equation": "7 - 7 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 0,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 7,
+      "mathRemovedCount": 7,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-8-0",
+      "type": "math",
+      "displayText": "8 - 0 = ?",
+      "equation": "8 - 0 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 8,
+      "mathAnswerOptions": [
+        8,
+        7
+      ],
+      "mathVisualCount": 8,
+      "mathRemovedCount": 0,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-8-1",
+      "type": "math",
+      "displayText": "8 - 1 = ?",
+      "equation": "8 - 1 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 7,
+      "mathAnswerOptions": [
+        7,
+        8
+      ],
+      "mathVisualCount": 8,
+      "mathRemovedCount": 1,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-8-2",
+      "type": "math",
+      "displayText": "8 - 2 = ?",
+      "equation": "8 - 2 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 6,
+      "mathAnswerOptions": [
+        5,
+        6
+      ],
+      "mathVisualCount": 8,
+      "mathRemovedCount": 2,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-8-3",
+      "type": "math",
+      "displayText": "8 - 3 = ?",
+      "equation": "8 - 3 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 5,
+      "mathAnswerOptions": [
+        5,
+        6
+      ],
+      "mathVisualCount": 8,
+      "mathRemovedCount": 3,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-8-4",
+      "type": "math",
+      "displayText": "8 - 4 = ?",
+      "equation": "8 - 4 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 4,
+      "mathAnswerOptions": [
+        4,
+        5
+      ],
+      "mathVisualCount": 8,
+      "mathRemovedCount": 4,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-8-5",
+      "type": "math",
+      "displayText": "8 - 5 = ?",
+      "equation": "8 - 5 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 3,
+      "mathAnswerOptions": [
+        3,
+        4
+      ],
+      "mathVisualCount": 8,
+      "mathRemovedCount": 5,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-8-6",
+      "type": "math",
+      "displayText": "8 - 6 = ?",
+      "equation": "8 - 6 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 2,
+      "mathAnswerOptions": [
+        2,
+        1
+      ],
+      "mathVisualCount": 8,
+      "mathRemovedCount": 6,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-8-7",
+      "type": "math",
+      "displayText": "8 - 7 = ?",
+      "equation": "8 - 7 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 1,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 8,
+      "mathRemovedCount": 7,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-8-8",
+      "type": "math",
+      "displayText": "8 - 8 = ?",
+      "equation": "8 - 8 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 0,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 8,
+      "mathRemovedCount": 8,
+      "difficulty": 4,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-9-0",
+      "type": "math",
+      "displayText": "9 - 0 = ?",
+      "equation": "9 - 0 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 9,
+      "mathAnswerOptions": [
+        10,
+        9
+      ],
+      "mathVisualCount": 9,
+      "mathRemovedCount": 0,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-9-1",
+      "type": "math",
+      "displayText": "9 - 1 = ?",
+      "equation": "9 - 1 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 8,
+      "mathAnswerOptions": [
+        8,
+        7
+      ],
+      "mathVisualCount": 9,
+      "mathRemovedCount": 1,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-9-2",
+      "type": "math",
+      "displayText": "9 - 2 = ?",
+      "equation": "9 - 2 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 7,
+      "mathAnswerOptions": [
+        7,
+        8
+      ],
+      "mathVisualCount": 9,
+      "mathRemovedCount": 2,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-9-3",
+      "type": "math",
+      "displayText": "9 - 3 = ?",
+      "equation": "9 - 3 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 6,
+      "mathAnswerOptions": [
+        6,
+        5
+      ],
+      "mathVisualCount": 9,
+      "mathRemovedCount": 3,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-9-4",
+      "type": "math",
+      "displayText": "9 - 4 = ?",
+      "equation": "9 - 4 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 5,
+      "mathAnswerOptions": [
+        5,
+        6
+      ],
+      "mathVisualCount": 9,
+      "mathRemovedCount": 4,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-9-5",
+      "type": "math",
+      "displayText": "9 - 5 = ?",
+      "equation": "9 - 5 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 4,
+      "mathAnswerOptions": [
+        4,
+        3
+      ],
+      "mathVisualCount": 9,
+      "mathRemovedCount": 5,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-9-6",
+      "type": "math",
+      "displayText": "9 - 6 = ?",
+      "equation": "9 - 6 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 3,
+      "mathAnswerOptions": [
+        3,
+        4
+      ],
+      "mathVisualCount": 9,
+      "mathRemovedCount": 6,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-9-7",
+      "type": "math",
+      "displayText": "9 - 7 = ?",
+      "equation": "9 - 7 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 2,
+      "mathAnswerOptions": [
+        2,
+        1
+      ],
+      "mathVisualCount": 9,
+      "mathRemovedCount": 7,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-9-8",
+      "type": "math",
+      "displayText": "9 - 8 = ?",
+      "equation": "9 - 8 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 1,
+      "mathAnswerOptions": [
+        1,
+        2
+      ],
+      "mathVisualCount": 9,
+      "mathRemovedCount": 8,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-9-9",
+      "type": "math",
+      "displayText": "9 - 9 = ?",
+      "equation": "9 - 9 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 0,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 9,
+      "mathRemovedCount": 9,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-10-0",
+      "type": "math",
+      "displayText": "10 - 0 = ?",
+      "equation": "10 - 0 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 10,
+      "mathAnswerOptions": [
+        10,
+        11
+      ],
+      "mathVisualCount": 10,
+      "mathRemovedCount": 0,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-10-1",
+      "type": "math",
+      "displayText": "10 - 1 = ?",
+      "equation": "10 - 1 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 9,
+      "mathAnswerOptions": [
+        8,
+        9
+      ],
+      "mathVisualCount": 10,
+      "mathRemovedCount": 1,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-10-2",
+      "type": "math",
+      "displayText": "10 - 2 = ?",
+      "equation": "10 - 2 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 8,
+      "mathAnswerOptions": [
+        8,
+        7
+      ],
+      "mathVisualCount": 10,
+      "mathRemovedCount": 2,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-10-3",
+      "type": "math",
+      "displayText": "10 - 3 = ?",
+      "equation": "10 - 3 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 7,
+      "mathAnswerOptions": [
+        6,
+        7
+      ],
+      "mathVisualCount": 10,
+      "mathRemovedCount": 3,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-10-4",
+      "type": "math",
+      "displayText": "10 - 4 = ?",
+      "equation": "10 - 4 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 6,
+      "mathAnswerOptions": [
+        5,
+        6
+      ],
+      "mathVisualCount": 10,
+      "mathRemovedCount": 4,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-10-5",
+      "type": "math",
+      "displayText": "10 - 5 = ?",
+      "equation": "10 - 5 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 5,
+      "mathAnswerOptions": [
+        5,
+        4
+      ],
+      "mathVisualCount": 10,
+      "mathRemovedCount": 5,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-10-6",
+      "type": "math",
+      "displayText": "10 - 6 = ?",
+      "equation": "10 - 6 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 4,
+      "mathAnswerOptions": [
+        3,
+        4
+      ],
+      "mathVisualCount": 10,
+      "mathRemovedCount": 6,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-10-7",
+      "type": "math",
+      "displayText": "10 - 7 = ?",
+      "equation": "10 - 7 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 3,
+      "mathAnswerOptions": [
+        4,
+        3
+      ],
+      "mathVisualCount": 10,
+      "mathRemovedCount": 7,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-10-8",
+      "type": "math",
+      "displayText": "10 - 8 = ?",
+      "equation": "10 - 8 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 2,
+      "mathAnswerOptions": [
+        2,
+        3
+      ],
+      "mathVisualCount": 10,
+      "mathRemovedCount": 8,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-10-9",
+      "type": "math",
+      "displayText": "10 - 9 = ?",
+      "equation": "10 - 9 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 1,
+      "mathAnswerOptions": [
+        1,
+        2
+      ],
+      "mathVisualCount": 10,
+      "mathRemovedCount": 9,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-10-10",
+      "type": "math",
+      "displayText": "10 - 10 = ?",
+      "equation": "10 - 10 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 0,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 10,
+      "mathRemovedCount": 10,
+      "difficulty": 5,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-11-0",
+      "type": "math",
+      "displayText": "11 - 0 = ?",
+      "equation": "11 - 0 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 11,
+      "mathAnswerOptions": [
+        11,
+        12
+      ],
+      "mathVisualCount": 11,
+      "mathRemovedCount": 0,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-11-1",
+      "type": "math",
+      "displayText": "11 - 1 = ?",
+      "equation": "11 - 1 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 10,
+      "mathAnswerOptions": [
+        10,
+        9
+      ],
+      "mathVisualCount": 11,
+      "mathRemovedCount": 1,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-11-2",
+      "type": "math",
+      "displayText": "11 - 2 = ?",
+      "equation": "11 - 2 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 9,
+      "mathAnswerOptions": [
+        9,
+        8
+      ],
+      "mathVisualCount": 11,
+      "mathRemovedCount": 2,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-11-3",
+      "type": "math",
+      "displayText": "11 - 3 = ?",
+      "equation": "11 - 3 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 8,
+      "mathAnswerOptions": [
+        9,
+        8
+      ],
+      "mathVisualCount": 11,
+      "mathRemovedCount": 3,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-11-4",
+      "type": "math",
+      "displayText": "11 - 4 = ?",
+      "equation": "11 - 4 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 7,
+      "mathAnswerOptions": [
+        6,
+        7
+      ],
+      "mathVisualCount": 11,
+      "mathRemovedCount": 4,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-11-5",
+      "type": "math",
+      "displayText": "11 - 5 = ?",
+      "equation": "11 - 5 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 6,
+      "mathAnswerOptions": [
+        5,
+        6
+      ],
+      "mathVisualCount": 11,
+      "mathRemovedCount": 5,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-11-6",
+      "type": "math",
+      "displayText": "11 - 6 = ?",
+      "equation": "11 - 6 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 5,
+      "mathAnswerOptions": [
+        5,
+        4
+      ],
+      "mathVisualCount": 11,
+      "mathRemovedCount": 6,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-11-7",
+      "type": "math",
+      "displayText": "11 - 7 = ?",
+      "equation": "11 - 7 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 4,
+      "mathAnswerOptions": [
+        4,
+        3
+      ],
+      "mathVisualCount": 11,
+      "mathRemovedCount": 7,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-11-8",
+      "type": "math",
+      "displayText": "11 - 8 = ?",
+      "equation": "11 - 8 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 3,
+      "mathAnswerOptions": [
+        4,
+        3
+      ],
+      "mathVisualCount": 11,
+      "mathRemovedCount": 8,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-11-9",
+      "type": "math",
+      "displayText": "11 - 9 = ?",
+      "equation": "11 - 9 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 2,
+      "mathAnswerOptions": [
+        1,
+        2
+      ],
+      "mathVisualCount": 11,
+      "mathRemovedCount": 9,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-11-10",
+      "type": "math",
+      "displayText": "11 - 10 = ?",
+      "equation": "11 - 10 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 1,
+      "mathAnswerOptions": [
+        1,
+        2
+      ],
+      "mathVisualCount": 11,
+      "mathRemovedCount": 10,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-11-11",
+      "type": "math",
+      "displayText": "11 - 11 = ?",
+      "equation": "11 - 11 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 0,
+      "mathAnswerOptions": [
+        0,
+        1
+      ],
+      "mathVisualCount": 11,
+      "mathRemovedCount": 11,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-12-0",
+      "type": "math",
+      "displayText": "12 - 0 = ?",
+      "equation": "12 - 0 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 12,
+      "mathAnswerOptions": [
+        11,
+        12
+      ],
+      "mathVisualCount": 12,
+      "mathRemovedCount": 0,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-12-1",
+      "type": "math",
+      "displayText": "12 - 1 = ?",
+      "equation": "12 - 1 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 11,
+      "mathAnswerOptions": [
+        11,
+        10
+      ],
+      "mathVisualCount": 12,
+      "mathRemovedCount": 1,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-12-2",
+      "type": "math",
+      "displayText": "12 - 2 = ?",
+      "equation": "12 - 2 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 10,
+      "mathAnswerOptions": [
+        10,
+        11
+      ],
+      "mathVisualCount": 12,
+      "mathRemovedCount": 2,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-12-3",
+      "type": "math",
+      "displayText": "12 - 3 = ?",
+      "equation": "12 - 3 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 9,
+      "mathAnswerOptions": [
+        8,
+        9
+      ],
+      "mathVisualCount": 12,
+      "mathRemovedCount": 3,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-12-4",
+      "type": "math",
+      "displayText": "12 - 4 = ?",
+      "equation": "12 - 4 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 8,
+      "mathAnswerOptions": [
+        8,
+        7
+      ],
+      "mathVisualCount": 12,
+      "mathRemovedCount": 4,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-12-5",
+      "type": "math",
+      "displayText": "12 - 5 = ?",
+      "equation": "12 - 5 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 7,
+      "mathAnswerOptions": [
+        7,
+        6
+      ],
+      "mathVisualCount": 12,
+      "mathRemovedCount": 5,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-12-6",
+      "type": "math",
+      "displayText": "12 - 6 = ?",
+      "equation": "12 - 6 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 6,
+      "mathAnswerOptions": [
+        6,
+        5
+      ],
+      "mathVisualCount": 12,
+      "mathRemovedCount": 6,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-12-7",
+      "type": "math",
+      "displayText": "12 - 7 = ?",
+      "equation": "12 - 7 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 5,
+      "mathAnswerOptions": [
+        4,
+        5
+      ],
+      "mathVisualCount": 12,
+      "mathRemovedCount": 7,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-12-8",
+      "type": "math",
+      "displayText": "12 - 8 = ?",
+      "equation": "12 - 8 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 4,
+      "mathAnswerOptions": [
+        4,
+        5
+      ],
+      "mathVisualCount": 12,
+      "mathRemovedCount": 8,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-12-9",
+      "type": "math",
+      "displayText": "12 - 9 = ?",
+      "equation": "12 - 9 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 3,
+      "mathAnswerOptions": [
+        3,
+        4
+      ],
+      "mathVisualCount": 12,
+      "mathRemovedCount": 9,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-12-10",
+      "type": "math",
+      "displayText": "12 - 10 = ?",
+      "equation": "12 - 10 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 2,
+      "mathAnswerOptions": [
+        2,
+        1
+      ],
+      "mathVisualCount": 12,
+      "mathRemovedCount": 10,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-12-11",
+      "type": "math",
+      "displayText": "12 - 11 = ?",
+      "equation": "12 - 11 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 1,
+      "mathAnswerOptions": [
+        1,
+        0
+      ],
+      "mathVisualCount": 12,
+      "mathRemovedCount": 11,
+      "difficulty": 6,
+      "category": "subtraction"
+    },
+    {
+      "id": "math-sub-12-12",
+      "type": "math",
+      "displayText": "12 - 12 = ?",
+      "equation": "12 - 12 = ?",
+      "mathOperation": "subtract",
+      "mathAnswer": 0,
+      "mathAnswerOptions": [
+        1,
+        0
+      ],
+      "mathVisualCount": 12,
+      "mathRemovedCount": 12,
+      "difficulty": 6,
+      "category": "subtraction"
+    }
+  ]
+}

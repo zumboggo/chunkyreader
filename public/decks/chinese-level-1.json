@@ -1,0 +1,105 @@
+{
+  "id": "chinese-level-1",
+  "title": "Chinese Level 1",
+  "description": "Simple Chinese characters for beginners.",
+  "type": "chinese-vocab",
+  "profile": "library",
+  "cards": [
+    {
+      "id": "char-人",
+      "type": "chinese",
+      "displayText": "人",
+      "pinyin": "rén",
+      "simpleMeaning": "person",
+      "difficulty": 1
+    },
+    {
+      "id": "char-口",
+      "type": "chinese",
+      "displayText": "口",
+      "pinyin": "kǒu",
+      "simpleMeaning": "mouth",
+      "difficulty": 1
+    },
+    {
+      "id": "char-手",
+      "type": "chinese",
+      "displayText": "手",
+      "pinyin": "shǒu",
+      "simpleMeaning": "hand",
+      "difficulty": 1
+    },
+    {
+      "id": "char-目",
+      "type": "chinese",
+      "displayText": "目",
+      "pinyin": "mù",
+      "simpleMeaning": "eye",
+      "difficulty": 1
+    },
+    {
+      "id": "char-大",
+      "type": "chinese",
+      "displayText": "大",
+      "pinyin": "dà",
+      "simpleMeaning": "big",
+      "difficulty": 1
+    },
+    {
+      "id": "char-小",
+      "type": "chinese",
+      "displayText": "小",
+      "pinyin": "xiǎo",
+      "simpleMeaning": "small",
+      "difficulty": 1
+    },
+    {
+      "id": "char-上",
+      "type": "chinese",
+      "displayText": "上",
+      "pinyin": "shàng",
+      "simpleMeaning": "up",
+      "difficulty": 2
+    },
+    {
+      "id": "char-下",
+      "type": "chinese",
+      "displayText": "下",
+      "pinyin": "xià",
+      "simpleMeaning": "down",
+      "difficulty": 2
+    },
+    {
+      "id": "char-中",
+      "type": "chinese",
+      "displayText": "中",
+      "pinyin": "zhōng",
+      "simpleMeaning": "middle",
+      "difficulty": 2
+    },
+    {
+      "id": "char-一",
+      "type": "chinese",
+      "displayText": "一",
+      "pinyin": "yī",
+      "simpleMeaning": "one",
+      "difficulty": 2
+    },
+    {
+      "id": "char-二",
+      "type": "chinese",
+      "displayText": "二",
+      "pinyin": "èr",
+      "simpleMeaning": "two",
+      "difficulty": 2
+    },
+    {
+      "id": "char-三",
+      "type": "chinese",
+      "displayText": "三",
+      "pinyin": "sān",
+      "simpleMeaning": "three",
+      "difficulty": 2
+    }
+  ]
+}

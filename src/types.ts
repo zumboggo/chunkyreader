@@ -1,6 +1,7 @@
 export type ProfileId = 'anna' | 'sarah' | 'library' | '100-lessons'
+export type SectionId = 'letters' | 'sounds' | 'words' | 'stories' | 'math' | 'chinese'
 
-export type DeckType = 'reading-words' | 'letters' | 'phonemes' | 'chinese-vocab'
+export type DeckType = 'reading-words' | 'letters' | 'phonemes' | 'chinese-vocab' | 'math' | 'stories'
 
 // These ids preserve the original Chunky Chinese learning-mode wiring:
 // listeningMode, activeRecall, and the reader-style third flow.
@@ -80,7 +81,7 @@ export interface LearningDeck {
 export interface LearningCard {
   id: string
   deckId: string
-  type: 'word' | 'letter' | 'phoneme' | 'sentence'
+  type: 'word' | 'letter' | 'phoneme' | 'sentence' | 'math' | 'chinese'
   displayText: string
   word?: string
   sentence?: string
@@ -124,6 +125,45 @@ export interface LearningCard {
   decodableExamples?: string[]
   trickyExamples?: string[]
   phonemeKey?: string
+
+  // Math fields
+  equation?: string
+  mathOperation?: 'add' | 'subtract' | 'count' | 'compare'
+  mathAnswer?: number
+  mathAnswerOptions?: number[]
+  mathVisualCount?: number
+  mathVisualGroups?: number[]
+  mathRemovedCount?: number
+
+  // Chinese fields
+  pinyin?: string
+  simpleMeaning?: string
+}
+
+export interface LearningSection {
+  id: SectionId
+  title: string
+  subtitle: string
+  image: string
+  imagePrompt?: string
+  color: string
+}
+
+export interface RewardItem {
+  id: string
+  name: string
+  lessonsRequired: number
+  emoji?: string
+  image?: string
+}
+
+export interface LearnerProgress {
+  totalLessonsCompleted: number
+  completedLessonsBySection: Record<SectionId, number>
+  completedLessonsByDeck: Record<string, number>
+  unlockedRewards: string[]
+  selectedRewardId?: string
+  storyCompletions: Record<string, number>
 }
 
 export interface StoryPage {
