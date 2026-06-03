@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { TTS_VOICE_VERSIONS } from './tts-config.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.join(__dirname, '..')
@@ -116,7 +117,7 @@ function cardFor([character, pinyin, meaning], index) {
     pinyin,
     simpleMeaning: meaning,
     speechCue: `${character}. ${pinyin}. ${meaning}.`,
-    audio: `audio/chinese-level-1/chinese-teacher-v1/char-${character}.mp3`,
+    audio: `audio/chinese-level-1/${TTS_VOICE_VERSIONS.chineseTeacher}/char-${character}.mp3`,
     lessonGroup: Math.floor(index / 5) + 1,
     difficulty: Math.floor(index / 20) + 1,
     category: 'simple characters',
