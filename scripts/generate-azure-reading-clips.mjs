@@ -87,8 +87,21 @@ async function main() {
 }
 
 async function loadSarahDecks() {
-  const files = ['sarah-letters-level-1.json', 'sarah-phonemes-level-2.json', 'anna-phonemes-level-1.json']
-  return Promise.all(files.map(async (file) => JSON.parse(await fs.readFile(path.join(decksDir, file), 'utf8'))))
+  const files = [
+    'sarah-letters-level-1.json',
+    'sarah-phonemes-level-2.json',
+    'anna-phonemes-level-1.json',
+    'chinese-level-1.json',
+    'math-addition-0-12.json',
+    'math-subtraction-0-12.json'
+  ]
+  return Promise.all(files.map(async (file) => {
+    try {
+      return JSON.parse(await fs.readFile(path.join(decksDir, file), 'utf8'))
+    } catch {
+      return null
+    }
+  })).then(res => res.filter(Boolean))
 }
 
 async function loadStories() {
@@ -151,9 +164,9 @@ function makeClip(deck, card, type, relativeAudioPath, text, language, ssmlBody)
     cardId: card.id,
     type,
     text,
-    language,
-    voice: deck.type === 'letters' || deck.type === 'phonemes' ? TTS_VOICES.phonicsTeacher : TTS_VOICES.childInstructions,
-    voiceVersion: deck.type === 'letters' || deck.type === 'phonemes'
+    language: deck.type === 'chinese-vocab' ? 'zh-CN' : language,
+    voice: deck.type === 'chinese-vocab' ? TTS_VOICES.chineseTeacher : deck.type === 'letters' || deck.type === 'phonemes' ? TTS_VOICES.phonicsTeacher : TTS_VOICES.childInstructions,
+    voiceVersion: deck.type === 'chinese-vocab' ? TTS_VOICE_VERSIONS.chineseTeacher : deck.type === 'letters' || deck.type === 'phonemes'
       ? TTS_VOICE_VERSIONS.phonicsTeacher
       : TTS_VOICE_VERSIONS.childInstructions,
     ssmlBody,

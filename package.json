@@ -58,6 +58,7 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
     "pdfjs-dist": "^6.0.227",
+    "replicate": "^1.4.0",
     "sharp": "^0.34.5",
     "tesseract.js": "^7.0.0",
     "typescript": "~6.0.2",

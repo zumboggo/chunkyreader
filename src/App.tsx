@@ -529,8 +529,15 @@ function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => voi
   const [pageIndex, setPageIndex] = useState(0)
   const [complete, setComplete] = useState(false)
   const selectedStory = stories.find((story) => story.id === selectedStoryId)
+  const resumeStory = stories.find(s => readStoryProgress(s.id, s.pages.length) > 0)
 
   function openStory(story: Story) {
+    setSelectedStoryId(story.id)
+    setPageIndex(0)
+    setComplete(false)
+  }
+
+  function resume(story: Story) {
     setSelectedStoryId(story.id)
     setPageIndex(readStoryProgress(story.id, story.pages.length))
     setComplete(false)
@@ -586,6 +593,12 @@ function StorySection({ stories, onBack }: { stories: Story[]; onBack: () => voi
         </section>
       ) : (
         <div className="story-grid" aria-label="Story library">
+          {resumeStory && !selectedStoryId && (
+            <button type="button" className="story-card resume-card" style={{gridColumn: '1 / -1', background: 'var(--c-brand-light)'}} onClick={() => resume(resumeStory)}>
+              <strong>Resume: {resumeStory.title}</strong>
+              <small>Continue reading from where you left off</small>
+            </button>
+          )}
           {stories.map((story, index) => {
             const cover = story.coverImage || story.pages[0]?.image
             return (
@@ -712,13 +725,15 @@ function StoryReader({
           </button>
         </div>
       </article>
-      <div className="story-nav">
+      <div className="story-nav" style={{flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center'}}>
+        <button type="button" onClick={onRestart}>Start Over</button>
         <button type="button" disabled={pageIndex === 0} onClick={previousPage}>
-          Back
+          Back Page
         </button>
         <button type="button" className="primary" onClick={nextPage}>
-          {pageIndex >= story.pages.length - 1 ? 'Finish' : 'Next'}
+          {pageIndex >= story.pages.length - 1 ? 'Finish' : 'Next Page'}
         </button>
+        <button type="button" onClick={onBack}>Done</button>
       </div>
     </section>
   )
@@ -2166,6 +2181,16 @@ async function playCardAudio(deck: LearningDeck, card: LearningCard) {
 
 function buildOptions(cards: LearningCard[], card: LearningCard): LearningCard[] {
   const seed = card.id
+
+  if (card.type === 'math' && card.mathAnswerOptions) {
+    return card.mathAnswerOptions.map(num => ({
+      ...card,
+      id: num === card.mathAnswer ? card.id : `${card.id}-wrong-${num}`,
+      displayText: String(num),
+      category: ''
+    }))
+  }
+
   const distractors = cards
     .filter((candidate) => candidate.id !== card.id)
     .sort((a, b) => stableSort(`${seed}:${a.id}`) - stableSort(`${seed}:${b.id}`))
@@ -2257,6 +2282,8 @@ function getChoicePrompt(deck: LearningDeck, card: LearningCard, mode: LearningM
   if (deck.type === 'reading-words') return mode === 'readerMode' ? 'What word matches the picture?' : 'Find this word.'
   if (deck.type === 'letters') return mode === 'readerMode' ? 'Which letter makes this sound?' : 'Tap the matching letter.'
   if (card.grapheme) return mode === 'readerMode' ? 'Which spelling matches this sound?' : 'Tap the matching sound.'
+  if (deck.type === 'math') return card.equation || card.displayText || 'Solve.'
+  if (deck.type === 'chinese-vocab') return 'Tap the matching character.'
   return 'Choose the match.'
 }
 
