@@ -22,7 +22,7 @@ export const REWARD_CATALOG: RewardItem[] = [
   { id: 'lantern-charm', name: 'Lantern charm', rarity: 'rare', slot: 'hand', description: 'A warm lantern for reading paths.', badgeText: 'LC', colorTheme: '#ff986f', duplicateSparkles: 8, lessonsRequired: 40, emoji: 'LC' },
   { id: 'golden-book-badge', name: 'Golden book badge', rarity: 'rare', slot: 'sticker', description: 'A shiny badge for book friends.', badgeText: 'BOOK', colorTheme: '#e8b93f', duplicateSparkles: 8, lessonsRequired: 50, emoji: 'BOOK' },
   { id: 'rainbow-cape', name: 'Rainbow cape', rarity: 'epic', slot: 'back', description: 'A joyful cape for big celebrations.', badgeText: 'RC', colorTheme: '#9a77ff', duplicateSparkles: 20, lessonsRequired: 75, emoji: 'RC' },
-  { id: 'master-learner-crown', name: 'Master Learner crown', rarity: 'legendary', slot: 'head', description: 'A crown for a mighty learner.', badgeText: '100', colorTheme: '#ffcf33', duplicateSparkles: 50, lessonsRequired: 100, emoji: '100' },
+  { id: 'master-learner-crown', name: 'Reading Well Crown', rarity: 'legendary', slot: 'head', description: 'The rare crown from the reading well.', badgeText: 'WELL', colorTheme: '#ffcf33', duplicateSparkles: 50, lessonsRequired: 100, emoji: '100' },
 
   { id: 'flower-crown', name: 'Flower crown', rarity: 'common', slot: 'head', description: 'Soft flowers for a gentle panda.', badgeText: 'FL', colorTheme: '#ff9ec5', duplicateSparkles: 1 },
   { id: 'rain-hood', name: 'Rain hood', rarity: 'common', slot: 'head', description: 'A tiny hood for rainy learning.', badgeText: 'RH', colorTheme: '#72c9ff', duplicateSparkles: 1 },
@@ -46,22 +46,16 @@ export const REWARD_CATALOG: RewardItem[] = [
   { id: 'tiny-umbrella', name: 'Tiny umbrella', rarity: 'uncommon', slot: 'hand', description: 'A tiny umbrella for drizzly stories.', badgeText: 'UM', colorTheme: '#6ed1d6', duplicateSparkles: 3 },
   { id: 'trophy-badge', name: 'Trophy badge', rarity: 'uncommon', slot: 'sticker', description: 'A little trophy for steady practice.', badgeText: 'WIN', colorTheme: '#ffc84a', duplicateSparkles: 3 },
   { id: 'garden-background', name: 'Garden background', rarity: 'uncommon', slot: 'background', description: 'A gentle garden behind Panda.', badgeText: 'GDN', colorTheme: '#99d989', duplicateSparkles: 3 },
-  { id: 'storybook-mat', name: 'Storybook mat', rarity: 'uncommon', slot: 'background', description: 'A cozy story mat for quiet reading.', badgeText: 'MAT', colorTheme: '#e8c6ff', duplicateSparkles: 3 },
 
   { id: 'wizard-cap', name: 'Wizard cap', rarity: 'rare', slot: 'head', description: 'A sparkly cap for sound magic.', badgeText: 'WIZ', colorTheme: '#6f60d9', duplicateSparkles: 8 },
   { id: 'butterfly-wings', name: 'Butterfly wings', rarity: 'rare', slot: 'back', description: 'Soft wings for floating through lessons.', badgeText: 'BW', colorTheme: '#f68ed7', duplicateSparkles: 8 },
   { id: 'rocket-pack', name: 'Rocket pack', rarity: 'rare', slot: 'back', description: 'A tiny rocket pack for zoomy wins.', badgeText: 'RP', colorTheme: '#ff785e', duplicateSparkles: 8 },
   { id: 'reading-well-badge', name: 'Reading well badge', rarity: 'rare', slot: 'sticker', description: 'A badge from the reading well path.', badgeText: 'WELL', colorTheme: '#62bcd6', duplicateSparkles: 8 },
   { id: 'golden-pencil', name: 'Golden pencil', rarity: 'rare', slot: 'hand', description: 'A bright pencil for brave readers.', badgeText: 'GP', colorTheme: '#e5bd43', duplicateSparkles: 8 },
-  { id: 'night-sky-background', name: 'Night sky background', rarity: 'rare', slot: 'background', description: 'A soft night sky full of quiet stars.', badgeText: 'SKY', colorTheme: '#536ad8', duplicateSparkles: 8 },
-  { id: 'sparkle-boots', name: 'Sparkle boots', rarity: 'rare', slot: 'body', description: 'Boots that sparkle after each step.', badgeText: 'SB', colorTheme: '#5ad5ef', duplicateSparkles: 8 },
 
   { id: 'aurora-cape', name: 'Aurora cape', rarity: 'epic', slot: 'back', description: 'A glowing cape with northern lights.', badgeText: 'AUR', colorTheme: '#58d8c5', duplicateSparkles: 20 },
   { id: 'moon-crown', name: 'Moon crown', rarity: 'epic', slot: 'head', description: 'A soft crown with a moon glow.', badgeText: 'MC', colorTheme: '#b5a5ff', duplicateSparkles: 20 },
   { id: 'dragon-book-charm', name: 'Dragon book charm', rarity: 'epic', slot: 'hand', description: 'A tiny book charm with brave sparkle.', badgeText: 'DB', colorTheme: '#7bcf83', duplicateSparkles: 20 },
-  { id: 'rainbow-room', name: 'Rainbow room', rarity: 'epic', slot: 'background', description: 'A joyful rainbow room for Panda.', badgeText: 'ROOM', colorTheme: '#ff8abf', duplicateSparkles: 20 },
-
-  { id: 'reading-well-crown', name: 'Reading Well Crown', rarity: 'legendary', slot: 'head', description: 'The rare crown from the reading well.', badgeText: 'WELL', colorTheme: '#ffd24a', duplicateSparkles: 50 },
 ]
 
 const RARITY_WEIGHTS: Array<{ rarity: RewardRarity; weight: number }> = [
