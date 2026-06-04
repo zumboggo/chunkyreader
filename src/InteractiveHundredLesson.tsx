@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { playAudioUrl } from './audioClipPack';
+import { recordLocalProgressChange } from './cloudProgressSync';
 import type { HundredLesson, HundredLessonChunk } from './types';
+import { markHundredLessonComplete, type CompletionRewardResult } from './progress';
 
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious';
 type JourneyStepHandler = () => void;
@@ -543,6 +545,7 @@ function incrementHundredLessonStickers() {
   try {
     const current = Number.parseInt(window.localStorage.getItem('completed-lessons-100') || '0', 10);
     window.localStorage.setItem('completed-lessons-100', String((Number.isFinite(current) ? current : 0) + 1));
+    recordLocalProgressChange();
   } catch {
     // Stickers are a reward layer; lessons must still finish if storage is unavailable.
   }
@@ -552,10 +555,12 @@ export function InteractiveHundredLessonScreen({
   lessonId,
   onDone,
   onHome,
+  onReward,
 }: {
   lessonId: string;
   onDone: () => void;
   onHome: () => void;
+  onReward?: (result: CompletionRewardResult) => void;
 }) {
   const [lesson, setLesson] = useState<HundredLesson | null>(null);
   const [activityIndex, setActivityIndex] = useState(0);
@@ -609,7 +614,10 @@ export function InteractiveHundredLessonScreen({
   const advanceJourney = () => setJourneyStep((step) => Math.min(step + 1, journeyTotalSteps));
   const finishLesson = () => {
     localStorage.setItem('100-lessons-progress', String(lesson.lessonNumber + 1));
+    recordLocalProgressChange();
     incrementHundredLessonStickers();
+    const rewardResult = markHundredLessonComplete(lesson.id);
+    onReward?.(rewardResult);
     onDone();
   };
 

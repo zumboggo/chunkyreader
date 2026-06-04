@@ -18,6 +18,17 @@ Earliest Reader Level 1 uses a phonics-first order instead of alphabetical order
 
 The original Chunky Chinese project was not modified. This app is in `C:\Users\LENOVO\Documents\New project`.
 
+## Parent Cloud Sync
+
+Parent Settings includes optional Supabase login so progress can follow a child across devices. It reuses the ChunkyChineseVocab Supabase project by default, and can also be pointed at another project with:
+
+```text
+VITE_SUPABASE_URL=
+VITE_SUPABASE_ANON_KEY=
+```
+
+Before using sync in a fresh Supabase project, run `supabase-reader-sync-schema.sql` in the Supabase SQL editor. The synced payload is one per-user JSON snapshot containing parent settings, lesson counters, Sarah letter position, Growing Reader card review state, story page positions, 100 Lessons progress, continue-state, and Panda Box reward progress. Audio and image assets are not uploaded.
+
 ## Current Decks And Stories
 
 Decks are registered in `public/decks/index.json`.

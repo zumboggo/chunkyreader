@@ -17,8 +17,21 @@ import { playNarrationClip } from './audioClipPack'
 
 import { SectionPicker, PandaCloset, type ContinueLearningState } from './SectionPicker'
 import type { SectionId } from './types'
-import { markLessonComplete, markStoryComplete, resetProgress } from './progress'
+import { markLessonComplete, markStoryComplete, resetProgress, type CompletionRewardResult } from './progress'
 import { applyAppSettings, loadAppSettings, saveAppSettings, type AppSettings } from './appSettings'
+import {
+  getCloudAuthState,
+  isSupabaseConfigured,
+  onCloudAuthChange,
+  PROGRESS_CHANGED_EVENT,
+  recordLocalProgressChange,
+  signInWithGoogle,
+  signInWithMagicLink,
+  signOutOfCloud,
+  syncNow,
+  type CloudSyncResult,
+  type CloudSyncStatus,
+} from './cloudProgressSync'
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious'
 type LessonPhase = 'learn' | 'question'
 type GrowingReaderView = 'home' | 'words' | 'stories' | 'phonemes'
@@ -124,6 +137,13 @@ interface StoryStartRequest {
   pageIndex: number
 }
 
+interface CloudSyncUiState {
+  status: CloudSyncStatus
+  email: string
+  message: string
+  lastSyncedAt?: string
+}
+
 function shouldIgnoreControllerKey(event: KeyboardEvent) {
   if (event.defaultPrevented || event.repeat) return true
   const target = event.target
@@ -133,6 +153,37 @@ function shouldIgnoreControllerKey(event: KeyboardEvent) {
 
 function choiceKeyLabel(index: number) {
   return index === 0 ? 'A' : index === 1 ? 'B' : String(index + 1)
+}
+
+function syncStatusLabel(status: CloudSyncStatus): string {
+  if (status === 'unconfigured') return 'Setup needed'
+  if (status === 'signed-out') return 'Signed out'
+  if (status === 'idle') return 'Ready'
+  if (status === 'syncing') return 'Syncing'
+  if (status === 'synced') return 'Synced'
+  if (status === 'offline') return 'Offline'
+  return 'Needs attention'
+}
+
+function formatCloudSyncResult(result: CloudSyncResult): string {
+  if (result.mergedSnapshot) return 'Merged local and cloud progress.'
+  if (result.pushedSnapshot && result.pulledSnapshot) return 'Synced local and cloud progress.'
+  if (result.pushedSnapshot) return 'Uploaded progress to the cloud.'
+  if (result.pulledSnapshot) return 'Downloaded progress from the cloud.'
+  return 'Progress is already up to date.'
+}
+
+function formatRelativeTime(value: string): string {
+  const parsed = Date.parse(value)
+  if (!Number.isFinite(parsed)) return 'Recently'
+  const seconds = Math.max(0, Math.round((Date.now() - parsed) / 1000))
+  if (seconds < 60) return 'Just now'
+  const minutes = Math.round(seconds / 60)
+  if (minutes < 60) return `${minutes} min ago`
+  const hours = Math.round(minutes / 60)
+  if (hours < 24) return `${hours} hr ago`
+  const days = Math.round(hours / 24)
+  return `${days} day${days === 1 ? '' : 's'} ago`
 }
 
 function App() {
@@ -156,6 +207,16 @@ function App() {
   const [progressVersion, setProgressVersion] = useState(0)
   const [continueState, setContinueState] = useState<ContinueLearningState | undefined>(() => readContinueState())
   const [storyStartRequest, setStoryStartRequest] = useState<StoryStartRequest | null>(null)
+  const [rewardNoticeBoxes, setRewardNoticeBoxes] = useState(0)
+  const [cloudUserEmail, setCloudUserEmail] = useState<string | null>(null)
+  const [cloudSync, setCloudSync] = useState<CloudSyncUiState>({
+    status: isSupabaseConfigured ? 'signed-out' : 'unconfigured',
+    email: '',
+    message: isSupabaseConfigured
+      ? 'Sign in to sync progress across devices.'
+      : 'Supabase sync is not configured yet.',
+  })
+  const syncTimerRef = useRef<number | null>(null)
 
   useEffect(() => {
     applyAppSettings(settings)
@@ -213,6 +274,135 @@ function App() {
   const isLessonActive = Boolean(profile && activeDeck && currentCard)
   const isSectionDashboard = !loading && !loadError && !activeSection && !profile
 
+  const refreshProgressState = useCallback(() => {
+    const nextSettings = loadAppSettings()
+    setSettings(nextSettings)
+    applyAppSettings(nextSettings)
+    setContinueState(readContinueState())
+    setProgressVersion((version) => version + 1)
+  }, [])
+
+  const handleCloudSyncNow = useCallback(async (silent = false) => {
+    if (!isSupabaseConfigured) {
+      setCloudSync((current) => ({
+        ...current,
+        status: 'unconfigured',
+        message: 'Supabase sync is not configured yet.',
+      }))
+      return
+    }
+    if (!cloudUserEmail) {
+      setCloudSync((current) => ({
+        ...current,
+        status: 'signed-out',
+        message: 'Sign in to sync progress across devices.',
+      }))
+      return
+    }
+    if (!navigator.onLine) {
+      setCloudSync((current) => ({
+        ...current,
+        status: 'offline',
+        message: 'Offline. Changes will sync when this device reconnects.',
+      }))
+      return
+    }
+
+    setCloudSync((current) => ({
+      ...current,
+      status: 'syncing',
+      message: silent ? current.message : 'Syncing progress...',
+    }))
+    try {
+      const result = await syncNow()
+      if (result.pulledSnapshot || result.mergedSnapshot) refreshProgressState()
+      setCloudSync((current) => ({
+        ...current,
+        status: 'synced',
+        lastSyncedAt: result.syncedAt,
+        message: formatCloudSyncResult(result),
+      }))
+    } catch (error) {
+      setCloudSync((current) => ({
+        ...current,
+        status: 'error',
+        message: error instanceof Error ? error.message : 'Could not sync progress.',
+      }))
+    }
+  }, [cloudUserEmail, refreshProgressState])
+
+  const queueCloudSync = useCallback(() => {
+    if (!isSupabaseConfigured || !cloudUserEmail) return
+    if (syncTimerRef.current) window.clearTimeout(syncTimerRef.current)
+    syncTimerRef.current = window.setTimeout(() => {
+      syncTimerRef.current = null
+      void handleCloudSyncNow(true)
+    }, 1200)
+  }, [cloudUserEmail, handleCloudSyncNow])
+
+  useEffect(() => {
+    function handleProgressChange() {
+      queueCloudSync()
+    }
+
+    window.addEventListener(PROGRESS_CHANGED_EVENT, handleProgressChange)
+    return () => window.removeEventListener(PROGRESS_CHANGED_EVENT, handleProgressChange)
+  }, [queueCloudSync])
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function loadAuth() {
+      try {
+        const state = await getCloudAuthState()
+        if (cancelled) return
+        const email = state.user?.email ?? null
+        setCloudUserEmail(email)
+        setCloudSync((current) => ({
+          ...current,
+          status: !state.configured ? 'unconfigured' : email ? 'idle' : 'signed-out',
+          message: !state.configured
+            ? 'Supabase sync is not configured yet.'
+            : email
+              ? 'Signed in. Sync is ready.'
+              : 'Sign in to sync progress across devices.',
+        }))
+      } catch (error) {
+        if (cancelled) return
+        setCloudSync((current) => ({
+          ...current,
+          status: 'error',
+          message: error instanceof Error ? error.message : 'Could not load sync sign-in.',
+        }))
+      }
+    }
+
+    void loadAuth()
+    const unsubscribe = onCloudAuthChange((state) => {
+      const email = state.user?.email ?? null
+      setCloudUserEmail(email)
+      setCloudSync((current) => ({
+        ...current,
+        status: !state.configured ? 'unconfigured' : email ? 'idle' : 'signed-out',
+        message: !state.configured
+          ? 'Supabase sync is not configured yet.'
+          : email
+            ? 'Signed in. Sync is ready.'
+            : 'Sign in to sync progress across devices.',
+      }))
+    })
+    return () => {
+      cancelled = true
+      unsubscribe()
+      if (syncTimerRef.current) window.clearTimeout(syncTimerRef.current)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!cloudUserEmail || loading) return
+    void handleCloudSyncNow(true)
+  }, [cloudUserEmail, handleCloudSyncNow, loading])
+
   useEffect(() => {
     if (!activeSection || activeSection === 'stories' || !activeDeckId) return
     rememberContinue({
@@ -232,9 +422,58 @@ function App() {
     })
   }
 
+  async function handleGoogleSignIn() {
+    try {
+      setCloudSync((current) => ({ ...current, status: 'syncing', message: 'Opening Google sign-in...' }))
+      await signInWithGoogle()
+    } catch (error) {
+      setCloudSync((current) => ({
+        ...current,
+        status: 'error',
+        message: error instanceof Error ? error.message : 'Could not start Google sign-in.',
+      }))
+    }
+  }
+
+  async function handleMagicLinkSignIn() {
+    try {
+      await signInWithMagicLink(cloudSync.email)
+      setCloudSync((current) => ({
+        ...current,
+        status: 'signed-out',
+        message: 'Check your email for the sign-in link.',
+      }))
+    } catch (error) {
+      setCloudSync((current) => ({
+        ...current,
+        status: 'error',
+        message: error instanceof Error ? error.message : 'Could not send sign-in link.',
+      }))
+    }
+  }
+
+  async function handleCloudSignOut() {
+    try {
+      await signOutOfCloud()
+      setCloudUserEmail(null)
+      setCloudSync((current) => ({
+        ...current,
+        status: 'signed-out',
+        message: 'Signed out. Local progress is still saved on this device.',
+      }))
+    } catch (error) {
+      setCloudSync((current) => ({
+        ...current,
+        status: 'error',
+        message: error instanceof Error ? error.message : 'Could not sign out.',
+      }))
+    }
+  }
+
   function resetLocalProgress() {
     resetProgress()
     setContinueState(undefined)
+    setRewardNoticeBoxes(0)
     setProgressVersion((version) => version + 1)
     setStoryStartRequest(null)
     setActiveSection(null)
@@ -243,11 +482,24 @@ function App() {
     setSarahActivityIndex(0)
   }
 
+  function handleCompletionReward(result: CompletionRewardResult) {
+    setProgressVersion((version) => version + 1)
+    if (result.boxesAwarded > 0) {
+      setRewardNoticeBoxes((count) => count + result.boxesAwarded)
+    }
+  }
+
+  function completeActiveLesson() {
+    if (!activeSection || !activeDeckId) return
+    handleCompletionReward(markLessonComplete(activeSection, activeDeckId))
+  }
+
   function rememberContinue(next: ContinueLearningState) {
     const state = { ...next }
     setContinueState(state)
     try {
       localStorage.setItem(CONTINUE_KEY, JSON.stringify(state))
+      recordLocalProgressChange()
     } catch {
       // Continue is a convenience; lessons still work without storage.
     }
@@ -405,6 +657,7 @@ function App() {
     setCardIndex(nextIndex)
     if (activeDeck.profile === 'sarah') {
       localStorage.setItem(`sarah-progress-${activeDeck.id}`, String(nextIndex))
+      recordLocalProgressChange()
     }
     setPhase('learn')
     setSarahActivityIndex(0)
@@ -444,11 +697,28 @@ function App() {
       </header>
 
       {showCloset && <PandaCloset onClose={() => setShowCloset(false)} />}
+      {rewardNoticeBoxes > 0 && (
+        <RewardBoxNotice
+          boxes={rewardNoticeBoxes}
+          onOpen={() => {
+            setRewardNoticeBoxes(0)
+            setShowCloset(true)
+          }}
+          onLater={() => setRewardNoticeBoxes(0)}
+        />
+      )}
       {showSettings && (
         <ParentSettingsModal
           settings={settings}
           onChange={updateSettings}
           onResetProgress={resetLocalProgress}
+          cloudSync={cloudSync}
+          cloudUserEmail={cloudUserEmail}
+          onCloudEmailChange={(email) => setCloudSync((current) => ({ ...current, email }))}
+          onGoogleSignIn={() => void handleGoogleSignIn()}
+          onMagicLinkSignIn={() => void handleMagicLinkSignIn()}
+          onCloudSignOut={() => void handleCloudSignOut()}
+          onCloudSyncNow={() => void handleCloudSyncNow(false)}
           onClose={() => setShowSettings(false)}
         />
       )}
@@ -481,6 +751,7 @@ function App() {
           startRequest={storyStartRequest}
           onStartConsumed={() => setStoryStartRequest(null)}
           onRememberContinue={rememberContinue}
+          onReward={handleCompletionReward}
         />
       ) : activeDeck && currentCard ? (
         <LearningScreen
@@ -509,9 +780,11 @@ function App() {
           onRestartLesson={restartLesson}
           onModeChange={changeMode}
           onNextLesson={() => {
-            if (activeSection) markLessonComplete(activeSection, activeDeckId)
+            completeActiveLesson()
             moveNextLessonFromCurrent()
           }}
+          onAdvanceLesson={moveNextLessonFromCurrent}
+          onLessonComplete={completeActiveLesson}
           onDone={() => setActiveSection(null)}
           onGoHome={() => setActiveSection(null)}
           onToggleAdultDetails={() => setShowAdultDetails((v) => !v)}
@@ -531,11 +804,25 @@ function ParentSettingsModal({
   settings,
   onChange,
   onResetProgress,
+  cloudSync,
+  cloudUserEmail,
+  onCloudEmailChange,
+  onGoogleSignIn,
+  onMagicLinkSignIn,
+  onCloudSignOut,
+  onCloudSyncNow,
   onClose,
 }: {
   settings: AppSettings
   onChange: (patch: Partial<AppSettings>) => void
   onResetProgress: () => void
+  cloudSync: CloudSyncUiState
+  cloudUserEmail: string | null
+  onCloudEmailChange: (email: string) => void
+  onGoogleSignIn: () => void
+  onMagicLinkSignIn: () => void
+  onCloudSignOut: () => void
+  onCloudSyncNow: () => void
   onClose: () => void
 }) {
   const [confirmReset, setConfirmReset] = useState(false)
@@ -590,11 +877,101 @@ function ParentSettingsModal({
             />
           </label>
         </div>
+        <section className="cloud-sync-panel">
+          <div className="cloud-sync-title-row">
+            <div>
+              <strong>Cloud sync</strong>
+              <small>Save progress across signed-in devices.</small>
+            </div>
+            <span className={`sync-pill sync-${cloudSync.status}`}>
+              {syncStatusLabel(cloudSync.status)}
+            </span>
+          </div>
+          {cloudUserEmail ? (
+            <>
+              <dl className="cloud-sync-stats">
+                <div>
+                  <dt>Account</dt>
+                  <dd>{cloudUserEmail}</dd>
+                </div>
+                <div>
+                  <dt>Last sync</dt>
+                  <dd>{cloudSync.lastSyncedAt ? formatRelativeTime(cloudSync.lastSyncedAt) : 'Not yet'}</dd>
+                </div>
+              </dl>
+              <div className="settings-button-row">
+                <button
+                  type="button"
+                  className="primary"
+                  disabled={cloudSync.status === 'syncing'}
+                  onClick={onCloudSyncNow}
+                >
+                  {cloudSync.status === 'syncing' ? 'Syncing...' : 'Sync now'}
+                </button>
+                <button type="button" onClick={onCloudSignOut}>
+                  Sign out
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="settings-button-row">
+                <button
+                  type="button"
+                  className="primary"
+                  disabled={!isSupabaseConfigured || cloudSync.status === 'syncing'}
+                  onClick={onGoogleSignIn}
+                >
+                  Continue with Google
+                </button>
+              </div>
+              <div className="magic-link-row">
+                <input
+                  type="email"
+                  placeholder="Email for magic link"
+                  value={cloudSync.email}
+                  disabled={!isSupabaseConfigured}
+                  onChange={(event) => onCloudEmailChange(event.currentTarget.value)}
+                />
+                <button
+                  type="button"
+                  disabled={!isSupabaseConfigured || cloudSync.status === 'syncing'}
+                  onClick={onMagicLinkSignIn}
+                >
+                  Send link
+                </button>
+              </div>
+            </>
+          )}
+          <small className="cloud-sync-message">{cloudSync.message}</small>
+        </section>
         <button type="button" className="danger-button" onClick={reset}>
           {confirmReset ? 'Tap again to reset progress' : 'Reset local progress'}
         </button>
       </div>
     </div>
+  )
+}
+
+function RewardBoxNotice({
+  boxes,
+  onOpen,
+  onLater,
+}: {
+  boxes: number
+  onOpen: () => void
+  onLater: () => void
+}) {
+  return (
+    <section className="reward-box-notice" aria-live="polite">
+      <div className="reward-box-mini" aria-hidden="true">Box</div>
+      <div>
+        <strong>You found a Panda Box!</strong>
+        <span>{boxes > 1 ? `${boxes} boxes are waiting.` : 'A surprise is waiting.'}</span>
+      </div>
+      <button type="button" className="primary" onClick={onOpen}>Open</button>
+      <button type="button" onClick={onLater}>Later</button>
+    </section>
   )
 }
 
@@ -705,12 +1082,14 @@ function StorySection({
   startRequest,
   onStartConsumed,
   onRememberContinue,
+  onReward,
 }: {
   stories: Story[]
   onBack: () => void
   startRequest: StoryStartRequest | null
   onStartConsumed: () => void
   onRememberContinue: (state: ContinueLearningState) => void
+  onReward: (result: CompletionRewardResult) => void
 }) {
   const [selectedStoryId, setSelectedStoryId] = useState('')
   const [pageIndex, setPageIndex] = useState(0)
@@ -789,7 +1168,7 @@ function StorySection({
         onComplete={() => {
           setComplete(true)
           saveStoryProgress(selectedStory.id, selectedStory.pages.length - 1)
-          markStoryComplete(selectedStory.id)
+          onReward(markStoryComplete(selectedStory.id))
           onRememberContinue({
             section: 'stories',
             storyId: selectedStory.id,
@@ -1051,6 +1430,8 @@ function LearningScreen({
   onRestartLesson,
   onModeChange,
   onNextLesson,
+  onAdvanceLesson,
+  onLessonComplete,
   onDone,
   onGoHome,
   onToggleAdultDetails,
@@ -1074,6 +1455,8 @@ function LearningScreen({
   onRestartLesson: () => void
   onModeChange: (mode: LearningMode) => void
   onNextLesson: () => void
+  onAdvanceLesson: () => void
+  onLessonComplete: () => void
   onDone: () => void
   onGoHome: () => void
   onToggleAdultDetails: () => void
@@ -1162,6 +1545,7 @@ function LearningScreen({
           activityIndex={sarahActivityIndex}
           onActivityChange={onSarahActivityChange}
           onLessonChange={onSarahLessonChange}
+          onLessonComplete={onLessonComplete}
           showAdultDetails={showAdultDetails}
         />
       ) : isOlderReaderWords ? (
@@ -1173,7 +1557,8 @@ function LearningScreen({
           lessonNumber={lessonNumber}
           activityIndex={sarahActivityIndex}
           onActivityChange={onSarahActivityChange}
-          onNextLesson={onNextLesson}
+          onNextLesson={onAdvanceLesson}
+          onLessonComplete={onLessonComplete}
           onDone={completePhonemeAndDone}
         />
       ) : isOlderReaderPhonemes ? (
@@ -1185,7 +1570,8 @@ function LearningScreen({
           lessonNumber={lessonNumber}
           activityIndex={sarahActivityIndex}
           onActivityChange={onSarahActivityChange}
-          onNextLesson={onNextLesson}
+          onNextLesson={onAdvanceLesson}
+          onLessonComplete={onLessonComplete}
           onDone={onDone}
         />
       ) : mode === 'listeningMode' ? (
@@ -1435,6 +1821,7 @@ function SarahLetterLesson({
   activityIndex,
   onActivityChange,
   onLessonChange,
+  onLessonComplete,
   showAdultDetails,
 }: {
   deck: LearningDeck
@@ -1443,6 +1830,7 @@ function SarahLetterLesson({
   activityIndex: number
   onActivityChange: (index: number) => void
   onLessonChange: (deltaLessons: number) => void
+  onLessonComplete: () => void
   showAdultDetails: boolean
 }) {
   const activities = useMemo(() => buildSarahActivities(lessonCards), [lessonCards])
@@ -1451,6 +1839,7 @@ function SarahLetterLesson({
   const [status, setStatus] = useState<SarahActivityStatus>('idle')
   const [wrongChoice, setWrongChoice] = useState('')
   const [tries, setTries] = useState(0)
+  const completionRecordedRef = useRef(false)
 
   useAutoplaySarahActivity(deck, completed ? undefined : activity, `${deck.id}:${lessonNumber}:${activityIndex}`)
 
@@ -1489,13 +1878,16 @@ function SarahLetterLesson({
   }
 
   useEffect(() => {
-    if (completed) {
+    if (completed && !completionRecordedRef.current) {
+      completionRecordedRef.current = true
       playSfx('fireworks')
       fireworksCelebration()
       const currentProgress = parseInt(localStorage.getItem('completed-lessons-sarah') || '0', 10)
       localStorage.setItem('completed-lessons-sarah', (currentProgress + 1).toString())
+      recordLocalProgressChange()
+      onLessonComplete()
     }
-  }, [completed])
+  }, [completed, onLessonComplete])
 
   if (!activity || completed) {
     return (
@@ -1772,6 +2164,7 @@ function OlderReaderLesson({
   activityIndex,
   onActivityChange,
   onNextLesson,
+  onLessonComplete,
   onDone,
 }: {
   deck: LearningDeck
@@ -1781,12 +2174,14 @@ function OlderReaderLesson({
   activityIndex: number
   onActivityChange: (index: number) => void
   onNextLesson: () => void
+  onLessonComplete: () => void
   onDone: () => void
 }) {
   const activity = activities[Math.min(activityIndex, activities.length - 1)]
   const [selected, setSelected] = useState('')
   const [attempts, setAttempts] = useState(0)
   const [complete, setComplete] = useState(false)
+  const completionRecordedRef = useRef(false)
   const correct = selected === activity?.card.id
   const showCompletion = complete || activityIndex >= activities.length
   const prompt = activity ? getOlderReaderPrompt(activity) : ''
@@ -1863,13 +2258,16 @@ function OlderReaderLesson({
   }, [chooseByIndex, onDone, onNextLesson, showCompletion])
 
   useEffect(() => {
-    if (showCompletion) {
+    if (showCompletion && !completionRecordedRef.current) {
+      completionRecordedRef.current = true
       playSfx('fireworks')
       fireworksCelebration()
       const currentProgress = parseInt(localStorage.getItem('completed-lessons-anna') || '0', 10)
       localStorage.setItem('completed-lessons-anna', (currentProgress + 1).toString())
+      recordLocalProgressChange()
+      onLessonComplete()
     }
-  }, [showCompletion])
+  }, [onLessonComplete, showCompletion])
 
   if (!activity || showCompletion) {
     return (
@@ -2748,6 +3146,7 @@ function readStoryProgress(storyId: string, pageCount: number): number {
 function saveStoryProgress(storyId: string, pageIndex: number) {
   try {
     window.localStorage.setItem(storyProgressKey(storyId), String(pageIndex))
+    recordLocalProgressChange()
   } catch {
     // Reading should never depend on storage support.
   }
@@ -2849,6 +3248,7 @@ function updateCardProgress(deckId: string, cardId: string, patch: CardProgress)
   try {
     const next = { ...readCardProgress(deckId, cardId), ...patch }
     window.localStorage.setItem(cardProgressKey(deckId, cardId), JSON.stringify(next))
+    recordLocalProgressChange()
   } catch {
     // Review scheduling is helpful, but the lesson must keep working without storage.
   }
@@ -2921,6 +3321,7 @@ function completeOlderReaderPhonemeLesson(deck: LearningDeck, lessonCards: Learn
 
   try {
     window.localStorage.setItem(olderReaderPhonemeProgressKey(deck.id), JSON.stringify(nextProgress))
+    recordLocalProgressChange()
   } catch {
     // Progress tracking should help the loop, but never block the reading lesson.
   }
@@ -3122,6 +3523,7 @@ function OlderReaderPhonemeLesson({
   activityIndex,
   onActivityChange,
   onNextLesson,
+  onLessonComplete,
   onDone,
 }: {
   deck: LearningDeck
@@ -3131,12 +3533,22 @@ function OlderReaderPhonemeLesson({
   activityIndex: number
   onActivityChange: (index: number) => void
   onNextLesson: () => void
+  onLessonComplete: () => void
   onDone: () => void
 }) {
   const [status, setStatus] = useState<SarahActivityStatus>('idle')
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
+  const completionRecordedRef = useRef(false)
   
   const isComplete = activityIndex >= activities.length
+  useEffect(() => {
+    if (!isComplete || completionRecordedRef.current) return
+    completionRecordedRef.current = true
+    playSfx('fireworks')
+    fireworksCelebration()
+    onLessonComplete()
+  }, [isComplete, onLessonComplete])
+
   if (isComplete) {
     return (
       <section className="lesson-complete">
