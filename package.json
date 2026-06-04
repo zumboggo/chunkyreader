@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "verify:decks": "node scripts/verify-decks.mjs",
     "verify:stories": "node scripts/verify-stories.mjs",
+    "verify:rewards": "node scripts/verify-rewards.mjs",
     "generate:audio": "node scripts/generate-azure-reading-clips.mjs",
     "generate:audio:ssml": "node scripts/generate-azure-reading-clips.mjs --ssml-only",
     "generate:word-audio": "node scripts/generate-anna-word-clips.mjs",
