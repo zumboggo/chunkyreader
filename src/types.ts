@@ -153,12 +153,31 @@ export interface LearningSection {
   color: string
 }
 
+export type RewardRarity = 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary'
+export type RewardSlot = 'head' | 'face' | 'neck' | 'body' | 'back' | 'hand' | 'sticker' | 'background'
+
 export interface RewardItem {
   id: string
   name: string
-  lessonsRequired: number
+  rarity: RewardRarity
+  slot: RewardSlot
+  description: string
+  badgeText: string
+  colorTheme: string
+  duplicateSparkles: number
+  lessonsRequired?: number
   emoji?: string
   image?: string
+  animation?: string
+}
+
+export interface RewardDrop {
+  id: string
+  itemId: string
+  openedAt: string
+  rarity: RewardRarity
+  duplicate: boolean
+  sparklePointsGained: number
 }
 
 export interface LearnerProgress {
@@ -168,6 +187,15 @@ export interface LearnerProgress {
   unlockedRewards: string[]
   selectedRewardId?: string
   storyCompletions: Record<string, number>
+  rewardSystemVersion?: number
+  unopenedBoxes?: number
+  rewardedCompletionCount?: number
+  sparklePoints?: number
+  rewardInventory?: Record<string, number>
+  equippedRewards?: Partial<Record<RewardSlot, string>>
+  rewardHistory?: RewardDrop[]
+  rarePityCount?: number
+  epicPityCount?: number
 }
 
 export interface StoryPage {
