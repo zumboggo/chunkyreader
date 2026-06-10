@@ -29,6 +29,7 @@ const PREFIX_SYNC_KEYS = [
   'chunky-reader:story:',
   'chunky-reader:card-progress:',
   'chunky-reader:older-reader-phonemes:',
+  'chunky-reader:flashcard-states:',
 ]
 
 const DEFAULT_APP_SETTINGS: AppSettings = {
@@ -333,6 +334,9 @@ function mergeStorageValue(
   if (key.startsWith('chunky-reader:older-reader-phonemes:')) {
     return stringify(mergeOlderReaderPhonemeProgress(parseJson(localValue), parseJson(remoteValue)))
   }
+  if (key.startsWith('chunky-reader:flashcard-states:')) {
+    return stringify(mergeFlashcardStates(parseJson(localValue), parseJson(remoteValue)))
+  }
   return timeValue(local.localUpdatedAt) >= timeValue(remote.localUpdatedAt) ? localValue : remoteValue
 }
 
@@ -416,6 +420,49 @@ function mergeOlderReaderPhonemeProgress(localRaw: unknown, remoteRaw: unknown) 
     nextIndex: Math.max(Number(local.nextIndex || 0), Number(remote.nextIndex || 0)),
     cycle: Math.max(Number(local.cycle || 1), Number(remote.cycle || 1)),
   }
+}
+
+interface FlashcardStateSync {
+  cardId: string
+  deckId: string
+  state: string
+  due: number
+  stability: number
+  difficulty: number
+  elapsed_days: number
+  scheduled_days: number
+  reps: number
+  lapses: number
+  last_review?: number
+}
+
+function mergeFlashcardStates(localRaw: unknown, remoteRaw: unknown): FlashcardStateSync[] {
+  const localArray = Array.isArray(localRaw) ? localRaw : []
+  const remoteArray = Array.isArray(remoteRaw) ? remoteRaw : []
+  const merged = new Map<string, FlashcardStateSync>()
+
+  for (const card of localArray) {
+    if (card && typeof card === 'object' && 'cardId' in card) {
+      merged.set(card.cardId as string, card as FlashcardStateSync)
+    }
+  }
+
+  for (const card of remoteArray) {
+    if (card && typeof card === 'object' && 'cardId' in card) {
+      const existing = merged.get(card.cardId as string)
+      if (!existing) {
+        merged.set(card.cardId as string, card as FlashcardStateSync)
+      } else {
+        const localReview = existing.last_review ?? 0
+        const remoteReview = (card as FlashcardStateSync).last_review ?? 0
+        if (remoteReview > localReview) {
+          merged.set(card.cardId as string, card as FlashcardStateSync)
+        }
+      }
+    }
+  }
+
+  return [...merged.values()]
 }
 
 function trackedLocalStorageKeys(): string[] {

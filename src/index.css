@@ -5264,3 +5264,360 @@ body.lesson-active {
   }
 }
 
+.fsrs-flashcard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.fsrs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 0.5rem;
+}
+
+.fsrs-state-badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: var(--lavender);
+  color: var(--purple-pop);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.fsrs-progress {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.fsrs-card-container {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  max-height: 420px;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.fsrs-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.fsrs-card-container.flipped .fsrs-card {
+  transform: rotateY(180deg);
+}
+
+.fsrs-card-front,
+.fsrs-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+.fsrs-card-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(145deg, #fff 0%, var(--peach) 100%);
+}
+
+.fsrs-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+  width: 100%;
+}
+
+.fsrs-word {
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-weight: 800;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.fsrs-pinyin {
+  font-size: 1.25rem;
+  color: var(--muted);
+  margin: 0;
+  font-style: italic;
+}
+
+.fsrs-meaning {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--berry);
+  margin: 0.5rem 0 0;
+}
+
+.fsrs-example {
+  font-size: 1rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+  font-style: italic;
+}
+
+.fsrs-hint {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 1rem;
+  opacity: 0.7;
+}
+
+.fsrs-image {
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.5);
+  display: grid;
+  place-items: center;
+}
+
+.fsrs-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fsrs-rating-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.fsrs-show-answer {
+  width: 100%;
+  max-width: 400px;
+}
+
+.fsrs-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.75rem 0.5rem;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 64px;
+}
+
+.fsrs-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.fsrs-btn.selected {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.btn-label {
+  font-size: 0.95rem;
+}
+
+.btn-interval {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.fsrs-btn-again {
+  background: #ffebee;
+  color: #c62828;
+  border-color: #ef9a9a;
+}
+
+.fsrs-btn-again:hover:not(:disabled) {
+  background: #ffcdd2;
+}
+
+.fsrs-btn-hard {
+  background: #fff3e0;
+  color: #e65100;
+  border-color: #ffcc80;
+}
+
+.fsrs-btn-hard:hover:not(:disabled) {
+  background: #ffe0b2;
+}
+
+.fsrs-btn-good {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-color: #a5d6a7;
+}
+
+.fsrs-btn-good:hover:not(:disabled) {
+  background: #c8e6c9;
+}
+
+.fsrs-btn-easy {
+  background: #e3f2fd;
+  color: #1565c0;
+  border-color: #90caf9;
+}
+
+.fsrs-btn-easy:hover:not(:disabled) {
+  background: #bbdefb;
+}
+
+.fsrs-btn-show {
+  width: 100%;
+  background: var(--lavender);
+  color: var(--purple-pop);
+  border-color: rgba(117, 81, 199, 0.3);
+  font-size: 1.1rem;
+  padding: 1rem;
+}
+
+.fsrs-btn-show:hover:not(:disabled) {
+  background: #d4c9f5;
+}
+
+.fsrs-complete,
+.fsrs-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+  min-height: 400px;
+}
+
+.fsrs-complete h2,
+.fsrs-empty h2 {
+  margin: 0;
+  color: var(--ink);
+}
+
+.fsrs-complete p,
+.fsrs-empty p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.flashcard-choice {
+  background: linear-gradient(145deg, var(--lavender) 0%, #d4c9f5 100%);
+}
+
+.flashcard-choice .choice-sticker {
+  background: var(--purple-pop);
+  color: white;
+}
+
+.flashcard-shortcut {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: 0 1rem;
+}
+
+.flashcard-shortcut-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--lavender) 0%, #d4c9f5 100%);
+  border: 2px solid rgba(117, 81, 199, 0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  max-width: 400px;
+  width: 100%;
+}
+
+.flashcard-shortcut-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--soft-shadow);
+}
+
+.flashcard-shortcut-button:active {
+  transform: scale(0.98);
+}
+
+.flashcard-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--purple-pop);
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.flashcard-shortcut-button strong {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin-bottom: 0.15rem;
+}
+
+.flashcard-shortcut-button small {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+@media (max-width: 480px) {
+  .fsrs-flashcard {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+
+  .fsrs-card-container {
+    max-height: 360px;
+  }
+
+  .fsrs-rating-buttons {
+    gap: 0.4rem;
+  }
+
+  .fsrs-btn {
+    padding: 0.6rem 0.4rem;
+    min-height: 56px;
+  }
+
+  .btn-label {
+    font-size: 0.85rem;
+  }
+
+  .btn-interval {
+    font-size: 0.7rem;
+  }
+}
+
+

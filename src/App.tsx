@@ -32,6 +32,8 @@ import {
   type CloudSyncResult,
   type CloudSyncStatus,
 } from './cloudProgressSync'
+import { scheduleCard, sortCardsByDue, type FlashcardState, type Rating } from './fsrs'
+import { loadFlashcardStates, saveFlashcardStates, getCardState } from './flashcardStorage'
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious'
 type LessonPhase = 'learn' | 'question'
 type GrowingReaderView = 'home' | 'words' | 'stories' | 'phonemes'
@@ -541,17 +543,28 @@ function App() {
       targetMode = 'listeningMode'
     } else if (section === 'words') {
       targetDeckId = currentDecks.find(d => d.type === 'reading-words' && d.profile === 'anna')?.id ?? ''
-      targetMode = 'activeRecall'
+      targetMode = 'flashcardMode'
     } else if (section === 'math') {
       targetDeckId = currentDecks.find(d => d.type === 'math')?.id ?? ''
       targetMode = 'activeRecall'
     } else if (section === 'chinese') {
       targetDeckId = currentDecks.find(d => d.type === 'chinese-vocab')?.id ?? ''
-      targetMode = 'activeRecall'
+      targetMode = 'flashcardMode'
     }
     
     setActiveDeckId(targetDeckId)
     setMode(targetMode)
+  }
+
+  function chooseFlashcards() {
+    setActiveSection('words')
+    setPhase('learn')
+    setSarahActivityIndex(0)
+    setMenuOpen(false)
+    setCardIndex(0)
+    const targetDeckId = decks.find(d => d.type === 'reading-words' && d.profile === 'anna')?.id ?? ''
+    setActiveDeckId(targetDeckId)
+    setMode('flashcardMode')
   }
 
   function chooseProfile(nextProfile: ProfileId) {
@@ -738,6 +751,7 @@ function App() {
         <SectionPicker
           key={progressVersion}
           onChooseSection={(s) => chooseSection(s)}
+          onChooseFlashcards={() => chooseFlashcards()}
           onShowCloset={() => setShowCloset(true)}
           onShowSettings={() => setShowSettings(true)}
           onContinue={openContinue}
@@ -1033,12 +1047,14 @@ function GrowingReaderHome({
   onWords,
   onStories,
   onPhonemes,
+  onFlashcards,
 }: {
   decks: LearningDeck[]
   stories: Story[]
   onWords: () => void
   onStories: () => void
   onPhonemes: () => void
+  onFlashcards: () => void
 }) {
   const wordCount = decks.filter(d => d.type === 'reading-words').reduce((sum, deck) => sum + deck.cards.length, 0)
   const pageCount = stories.reduce((sum, story) => sum + story.pages.length, 0)
@@ -1065,6 +1081,11 @@ function GrowingReaderHome({
           <span className="choice-sticker" aria-hidden="true">ABC</span>
           <strong>Read Words</strong>
           <small>{wordCount} picture words</small>
+        </button>
+        <button type="button" className="reader-choice flashcard-choice" onClick={onFlashcards}>
+          <span className="choice-sticker" aria-hidden="true">Cards</span>
+          <strong>Flashcards</strong>
+          <small>{wordCount} words with spaced repetition</small>
         </button>
         <button type="button" className="reader-choice story-choice" onClick={onStories}>
           <span className="choice-sticker book-sticker" aria-hidden="true" />
@@ -1583,6 +1604,11 @@ function LearningScreen({
           onNextLesson={onNextLesson}
           onDone={onDone}
         />
+      ) : mode === 'flashcardMode' ? (
+        <FsrsFlashcardMode
+          deck={activeDeck}
+          onComplete={onDone}
+        />
       ) : mode === 'readerMode' ? (
         <FlashcardMode
           key={`${activeDeck.id}:${mode}:${activeCard.id}`}
@@ -1723,6 +1749,15 @@ function LessonMenu({
                 >
                   Active Recall
                 </button>
+                {(activeDeck.type === 'reading-words' || activeDeck.type === 'chinese-vocab') && (
+                  <button
+                    type="button"
+                    className={`menu-item ${mode === 'flashcardMode' ? 'active' : ''}`}
+                    onClick={() => onModeChange('flashcardMode')}
+                  >
+                    Flashcards (FSRS)
+                  </button>
+                )}
                 <button
                   type="button"
                   className={`menu-item ${mode === 'readerMode' ? 'active' : ''}`}
@@ -2579,6 +2614,198 @@ function FlashcardMode({
           <span>{choice ? 'Nice flash card work.' : 'A again, B good'}</span>
         </div>
       </div>
+    </section>
+  )
+}
+
+function FsrsFlashcardMode({
+  deck,
+  onComplete,
+}: {
+  deck: LearningDeck
+  onComplete: () => void
+}) {
+  const [cardStates, setCardStates] = useState<Map<string, FlashcardState>>(() => loadFlashcardStates(deck.id))
+  const [currentCardIndex, setCurrentCardIndex] = useState(0)
+  const [isFlipped, setIsFlipped] = useState(false)
+  const [rating, setRating] = useState<Rating | null>(null)
+  const [sessionStats, setSessionStats] = useState({ reviewed: 0, due: 0, newCards: 0 })
+  const audioPlayedRef = useRef(false)
+
+  const sortedCards = useMemo(() => {
+    const states = [...cardStates.values()]
+    const cardsWithStates = deck.cards.filter((c) => states.some((s) => s.cardId === c.id))
+    const newCards = deck.cards.filter((c) => !states.some((s) => s.cardId === c.id))
+    const dueCards = cardsWithStates.filter((c) => {
+      const state = states.find((s) => s.cardId === c.id)
+      return state && state.due <= Date.now()
+    })
+    return [...dueCards, ...newCards]
+  }, [deck.cards, cardStates])
+
+  const currentCard = sortedCards[currentCardIndex]
+  const isSessionComplete = currentCardIndex >= sortedCards.length
+
+  useEffect(() => {
+    const states = loadFlashcardStates(deck.id)
+    const dueCount = [...states.values()].filter((s) => s.due <= Date.now()).length
+    const newCount = deck.cards.length - states.size
+    setSessionStats({ reviewed: 0, due: dueCount, newCards: newCount })
+  }, [deck.id, deck.cards.length])
+
+  useEffect(() => {
+    if (isFlipped && currentCard && !audioPlayedRef.current) {
+      audioPlayedRef.current = true
+      const audioUrl = resolveAssetUrl(deck, currentCard.audio)
+      if (audioUrl) {
+        void playAudioUrl(audioUrl)
+        window.setTimeout(() => {
+          void playAudioUrl(audioUrl)
+        }, 1500)
+      }
+    }
+  }, [isFlipped, currentCard, deck])
+
+  useEffect(() => {
+    if (!isFlipped) {
+      audioPlayedRef.current = false
+    }
+  }, [isFlipped])
+
+  function handleFlip() {
+    if (!isFlipped) {
+      setIsFlipped(true)
+    }
+  }
+
+  function handleRate(r: Rating) {
+    if (!currentCard || rating) return
+    setRating(r)
+    const currentState = getCardState(deck.id, currentCard.id)
+    const result = scheduleCard(currentState, r)
+    const newStates = new Map(cardStates)
+    newStates.set(currentCard.id, result.card)
+    setCardStates(newStates)
+    saveFlashcardStates(deck.id, newStates)
+    setSessionStats((prev) => ({ ...prev, reviewed: prev.reviewed + 1 }))
+    window.setTimeout(() => {
+      setIsFlipped(false)
+      setRating(null)
+      setCurrentCardIndex((i) => i + 1)
+    }, 600)
+  }
+
+  if (isSessionComplete) {
+    return (
+      <section className="fsrs-complete">
+        <div className="celebration-burst" aria-hidden="true" />
+        <Mascot mood="happy" />
+        <div>
+          <span className="prompt-topline">Session complete!</span>
+          <h2>You reviewed {sessionStats.reviewed} cards</h2>
+          <p>All caught up! Come back later for more reviews.</p>
+        </div>
+        <div className="completion-actions">
+          <button type="button" className="primary" onClick={onComplete}>Done</button>
+        </div>
+      </section>
+    )
+  }
+
+  if (!currentCard) {
+    return (
+      <section className="fsrs-empty">
+        <Mascot mood="curious" />
+        <h2>No cards to review</h2>
+        <p>Add more cards to this deck to start learning.</p>
+        <button type="button" className="primary" onClick={onComplete}>Back</button>
+      </section>
+    )
+  }
+
+  const cardState = cardStates.get(currentCard.id)
+  const stateLabel = !cardState ? 'New' : cardState.state === 'learning' ? 'Learning' : cardState.state === 'relearning' ? 'Relearning' : 'Review'
+
+  return (
+    <section className="fsrs-flashcard">
+      <div className="fsrs-header">
+        <span className="fsrs-state-badge">{stateLabel}</span>
+        <span className="fsrs-progress">Card {currentCardIndex + 1} of {sortedCards.length}</span>
+      </div>
+
+      <div className={`fsrs-card-container ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
+        <div className="fsrs-card">
+          <div className="fsrs-card-front">
+            <div className="fsrs-card-content">
+              <h2 className="fsrs-word">{currentCard.displayText}</h2>
+              {currentCard.pinyin && <p className="fsrs-pinyin">{currentCard.pinyin}</p>}
+              <p className="fsrs-hint">Tap to reveal</p>
+            </div>
+          </div>
+          <div className="fsrs-card-back">
+            <div className="fsrs-card-content">
+              {currentCard.image && (
+                <div className="fsrs-image">
+                  <img src={resolveAssetUrl(deck, currentCard.image)} alt={currentCard.displayText} />
+                </div>
+              )}
+              <h2 className="fsrs-word">{currentCard.displayText}</h2>
+              {currentCard.pinyin && <p className="fsrs-pinyin">{currentCard.pinyin}</p>}
+              {currentCard.meaning && <p className="fsrs-meaning">{currentCard.meaning}</p>}
+              {currentCard.exampleSentence && <p className="fsrs-example">{currentCard.exampleSentence}</p>}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {isFlipped && (
+        <div className="fsrs-rating-buttons">
+          <button
+            type="button"
+            className={`fsrs-btn fsrs-btn-again ${rating === 1 ? 'selected' : ''}`}
+            onClick={() => handleRate(1)}
+            disabled={rating !== null}
+          >
+            <span className="btn-label">Again</span>
+            <span className="btn-interval">&lt;1m</span>
+          </button>
+          <button
+            type="button"
+            className={`fsrs-btn fsrs-btn-hard ${rating === 2 ? 'selected' : ''}`}
+            onClick={() => handleRate(2)}
+            disabled={rating !== null}
+          >
+            <span className="btn-label">Hard</span>
+            <span className="btn-interval">6m</span>
+          </button>
+          <button
+            type="button"
+            className={`fsrs-btn fsrs-btn-good ${rating === 3 ? 'selected' : ''}`}
+            onClick={() => handleRate(3)}
+            disabled={rating !== null}
+          >
+            <span className="btn-label">Good</span>
+            <span className="btn-interval">10m</span>
+          </button>
+          <button
+            type="button"
+            className={`fsrs-btn fsrs-btn-easy ${rating === 4 ? 'selected' : ''}`}
+            onClick={() => handleRate(4)}
+            disabled={rating !== null}
+          >
+            <span className="btn-label">Easy</span>
+            <span className="btn-interval">4d</span>
+          </button>
+        </div>
+      )}
+
+      {!isFlipped && (
+        <div className="fsrs-show-answer">
+          <button type="button" className="fsrs-btn fsrs-btn-show" onClick={handleFlip}>
+            Show Answer
+          </button>
+        </div>
+      )}
     </section>
   )
 }
