@@ -5,7 +5,7 @@ export type DeckType = 'reading-words' | 'letters' | 'phonemes' | 'chinese-vocab
 
 // These ids preserve the original Chunky Chinese learning-mode wiring:
 // listeningMode, activeRecall, and the reader-style third flow.
-export type LearningMode = 'listeningMode' | 'activeRecall' | 'readerMode'
+export type LearningMode = 'listeningMode' | 'activeRecall' | 'readerMode' | 'flashcardMode'
 
 export interface HundredLessonChunk {
   type: 'sounds-words' | 'story' | 'sound-discovery' | 'blending-bridge' | 'rhyme-puzzle' | 'story-gauntlet'

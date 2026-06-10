@@ -25,6 +25,7 @@ export interface ContinueLearningState {
 
 export function SectionPicker({
   onChooseSection,
+  onChooseFlashcards,
   onShowCloset,
   onShowSettings,
   onContinue,
@@ -32,6 +33,7 @@ export function SectionPicker({
   settings,
 }: {
   onChooseSection: (id: SectionId) => void
+  onChooseFlashcards: () => void
   onShowCloset: () => void
   onShowSettings: () => void
   onContinue: () => void
@@ -83,6 +85,16 @@ export function SectionPicker({
             )}
           </button>
         ))}
+      </div>
+
+      <div className="flashcard-shortcut" aria-label="Spaced repetition flashcards">
+        <button type="button" className="flashcard-shortcut-button squish" onClick={onChooseFlashcards}>
+          <span className="flashcard-icon" aria-hidden="true">Cards</span>
+          <div>
+            <strong>Flashcards</strong>
+            <small>Spaced repetition review</small>
+          </div>
+        </button>
       </div>
 
       <div className="dashboard-parent-actions" aria-label="Parent tools">
