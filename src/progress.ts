@@ -140,3 +140,80 @@ export function selectReward(rewardId: string) {
   progress.selectedRewardId = rewardId
   saveProgress(progress)
 }
+
+function todayISO(): string {
+  const now = new Date()
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
+}
+
+function yesterdayISO(): string {
+  const now = new Date()
+  now.setDate(now.getDate() - 1)
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
+}
+
+export function updateStreakOnLesson(wordsRead: number) {
+  const progress = loadProgress()
+  const today = todayISO()
+  const yesterday = yesterdayISO()
+
+  if (!progress.studyDates) progress.studyDates = {}
+
+  if (progress.lastActiveDate === today) {
+    progress.wordsReadToday = (progress.wordsReadToday || 0) + wordsRead
+    progress.studyDates[today] = (progress.studyDates[today] || 0) + wordsRead
+    saveProgress(progress)
+    return
+  }
+
+  if (progress.lastActiveDate === yesterday) {
+    progress.currentStreak = (progress.currentStreak || 0) + 1
+  } else {
+    progress.currentStreak = 1
+  }
+
+  if (progress.currentStreak > (progress.longestStreak || 0)) {
+    progress.longestStreak = progress.currentStreak
+  }
+
+  progress.lastActiveDate = today
+  progress.wordsReadToday = wordsRead
+  progress.wordsReadTodayDate = today
+  progress.studyDates[today] = (progress.studyDates[today] || 0) + wordsRead
+  saveProgress(progress)
+}
+
+export function getStreakInfo(): {
+  currentStreak: number
+  longestStreak: number
+  wordsReadToday: number
+  studyDates: Record<string, number>
+} {
+  const progress = loadProgress()
+  const today = todayISO()
+  return {
+    currentStreak: progress.currentStreak || 0,
+    longestStreak: progress.longestStreak || 0,
+    wordsReadToday: progress.lastActiveDate === today ? (progress.wordsReadToday || 0) : 0,
+    studyDates: progress.studyDates || {},
+  }
+}
+
+export function getHeatmapData(): Array<{ date: string; count: number; dayOfWeek: number }> {
+  const progress = loadProgress()
+  const studyDates = progress.studyDates || {}
+  const result: Array<{ date: string; count: number; dayOfWeek: number }> = []
+  const today = new Date()
+
+  for (let i = 83; i >= 0; i--) {
+    const d = new Date(today)
+    d.setDate(d.getDate() - i)
+    const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+    result.push({
+      date: dateStr,
+      count: studyDates[dateStr] || 0,
+      dayOfWeek: d.getDay(),
+    })
+  }
+  return result
+}

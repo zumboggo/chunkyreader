@@ -9,7 +9,7 @@ import {
   rarityRank,
   rewardsBySlot,
 } from './rewards'
-import { getSectionProgress, loadProgress, saveProgress } from './progress'
+import { getSectionProgress, loadProgress, saveProgress, getStreakInfo, getHeatmapData } from './progress'
 import type { AppSettings } from './appSettings'
 import type { RewardDrop, RewardItem, RewardRarity, RewardSlot, SectionId } from './types'
 
@@ -43,6 +43,8 @@ export function SectionPicker({
   const progress = loadProgress()
   const ownedCount = getOwnedRewards(progress).length
   const boxCount = progress.unopenedBoxes || 0
+  const streakInfo = getStreakInfo()
+  const heatmapData = getHeatmapData()
 
   return (
     <section className="home-screen">
@@ -52,6 +54,17 @@ export function SectionPicker({
           <p>What would you like to learn today?</p>
         </div>
       </div>
+
+      {streakInfo.currentStreak > 0 && (
+        <div className="streak-badge">
+          <span className="streak-flame" aria-hidden="true">🔥</span>
+          <span className="streak-count">{streakInfo.currentStreak}</span>
+          <span className="streak-label">day streak</span>
+          {streakInfo.wordsReadToday > 0 && (
+            <span className="streak-words-today">{streakInfo.wordsReadToday} words today</span>
+          )}
+        </div>
+      )}
 
       {continueState && (
         <button type="button" className="continue-card squish" onClick={onContinue}>
@@ -87,6 +100,8 @@ export function SectionPicker({
         ))}
       </div>
 
+      <StudyHeatmap data={heatmapData} />
+
       <div className="flashcard-shortcut" aria-label="Spaced repetition flashcards">
         <button type="button" className="flashcard-shortcut-button squish" onClick={onChooseFlashcards}>
           <span className="flashcard-icon" aria-hidden="true">Cards</span>
@@ -106,6 +121,46 @@ export function SectionPicker({
         </button>
       </div>
     </section>
+  )
+}
+
+function StudyHeatmap({ data }: { data: Array<{ date: string; count: number; dayOfWeek: number }> }) {
+  const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const todayStr = new Date().toISOString().slice(0, 10)
+
+  const rows: Array<{ label: string; cells: Array<{ date: string; count: number; isToday: boolean }> }> = []
+  for (let day = 0; day < 7; day++) {
+    const cells = data.filter(d => d.dayOfWeek === day)
+    rows.push({
+      label: dayLabels[day],
+      cells: cells.map(c => ({ date: c.date, count: c.count, isToday: c.date === todayStr })),
+    })
+  }
+
+  function intensityClass(count: number): string {
+    if (count === 0) return 'heatmap-empty'
+    if (count <= 5) return 'heatmap-light'
+    if (count <= 15) return 'heatmap-medium'
+    return 'heatmap-heavy'
+  }
+
+  return (
+    <div className="study-heatmap" aria-label="Study activity heatmap">
+      <div className="heatmap-grid">
+        {rows.map((row) => (
+          <div key={row.label} className="heatmap-row">
+            <span className="heatmap-day-label">{row.label}</span>
+            {row.cells.map((cell) => (
+              <div
+                key={cell.date}
+                className={`heatmap-cell ${intensityClass(cell.count)} ${cell.isToday ? 'heatmap-today' : ''}`}
+                title={`${cell.date}: ${cell.count} words`}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 
