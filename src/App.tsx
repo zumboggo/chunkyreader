@@ -17,7 +17,7 @@ import { playNarrationClip } from './audioClipPack'
 
 import { SectionPicker, PandaCloset, type ContinueLearningState } from './SectionPicker'
 import type { SectionId } from './types'
-import { markLessonComplete, markStoryComplete, resetProgress, type CompletionRewardResult } from './progress'
+import { markLessonComplete, markStoryComplete, resetProgress, updateStreakOnLesson, type CompletionRewardResult } from './progress'
 import { applyAppSettings, loadAppSettings, saveAppSettings, type AppSettings } from './appSettings'
 import {
   getCloudAuthState,
@@ -36,7 +36,7 @@ import { scheduleCard, sortCardsByDue, type FlashcardState, type Rating } from '
 import { loadFlashcardStates, saveFlashcardStates, getCardState } from './flashcardStorage'
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious'
 type LessonPhase = 'learn' | 'question'
-type GrowingReaderView = 'home' | 'words' | 'stories' | 'phonemes'
+type GrowingReaderView = 'home' | 'words' | 'stories' | 'phonemes' | 'collection'
 type FlashcardChoice = 'again' | 'good'
 type SarahQuestionKind =
   | 'soundToLetter'
@@ -55,6 +55,7 @@ type OlderReaderQuestionKind =
   | 'startsWithSound'
   | 'wordFamily'
   | 'review'
+  | 'peek'
 
 type OlderReaderPhonemeActivityKind =
   | 'intro'
@@ -94,7 +95,8 @@ const LESSON_SIZE = 5
 const ONE_DAY_MS = 24 * 60 * 60 * 1000
 const SARAH_FINAL_REVIEW_SIZE = 6
 const SARAH_LESSON_ADVANCE = 2
-const OLDER_READER_ACTIVITY_COUNT = 25
+const OLDER_READER_ACTIVITY_COUNT = 15
+const OLDER_READER_PEEK_COUNT = 5
 const SARAH_REVIEW_VARIANTS: SarahQuestionKind[] = [
   'wordToBeginningSound',
   'soundToWord',
@@ -543,7 +545,8 @@ function App() {
       targetMode = 'listeningMode'
     } else if (section === 'words') {
       targetDeckId = currentDecks.find(d => d.type === 'reading-words' && d.profile === 'anna')?.id ?? ''
-      targetMode = 'flashcardMode'
+      targetMode = 'activeRecall'
+      setGrowingView('home')
     } else if (section === 'math') {
       targetDeckId = currentDecks.find(d => d.type === 'math')?.id ?? ''
       targetMode = 'activeRecall'
@@ -604,6 +607,11 @@ function App() {
     setCardIndex(firstDeck?.type === 'phonemes' ? readOlderReaderPhonemeNextIndex(firstDeck.id, firstDeck.cards.length) : 0)
     setPhase('question')
     setSarahActivityIndex(0)
+    setMenuOpen(false)
+  }
+
+  function openGrowingCollection() {
+    setGrowingView('collection')
     setMenuOpen(false)
   }
 
@@ -767,6 +775,24 @@ function App() {
           onRememberContinue={rememberContinue}
           onReward={handleCompletionReward}
         />
+      ) : activeSection === 'words' && growingView === 'collection' ? (
+        <WordCollection
+          decks={decks}
+          onBack={() => setGrowingView('home')}
+        />
+      ) : activeSection === 'words' && growingView === 'home' ? (
+        <GrowingReaderHome
+          decks={decks}
+          stories={stories}
+          onWords={openGrowingWords}
+          onStories={() => {
+            setActiveSection('stories')
+            setGrowingView('home')
+          }}
+          onPhonemes={openGrowingPhonemes}
+          onFlashcards={() => chooseFlashcards()}
+          onCollection={openGrowingCollection}
+        />
       ) : activeDeck && currentCard ? (
         <LearningScreen
           decks={decks.filter(d => activeSection ? d.type === activeDeck.type : true)}
@@ -790,7 +816,13 @@ function App() {
           onNext={moveWithinLesson}
           onSarahActivityChange={setSarahActivityIndex}
           onSarahLessonChange={moveSarahLesson}
-          onBackToPath={() => setActiveSection(null)}
+          onBackToPath={() => {
+            if (activeSection === 'words') {
+              setGrowingView('home')
+            } else {
+              setActiveSection(null)
+            }
+          }}
           onRestartLesson={restartLesson}
           onModeChange={changeMode}
           onNextLesson={() => {
@@ -799,8 +831,20 @@ function App() {
           }}
           onAdvanceLesson={moveNextLessonFromCurrent}
           onLessonComplete={completeActiveLesson}
-          onDone={() => setActiveSection(null)}
-          onGoHome={() => setActiveSection(null)}
+          onDone={() => {
+            if (activeSection === 'words') {
+              setGrowingView('home')
+            } else {
+              setActiveSection(null)
+            }
+          }}
+          onGoHome={() => {
+            if (activeSection === 'words') {
+              setGrowingView('home')
+            } else {
+              setActiveSection(null)
+            }
+          }}
           onToggleAdultDetails={() => setShowAdultDetails((v) => !v)}
         />
       ) : (
@@ -1048,6 +1092,7 @@ function GrowingReaderHome({
   onStories,
   onPhonemes,
   onFlashcards,
+  onCollection,
 }: {
   decks: LearningDeck[]
   stories: Story[]
@@ -1055,10 +1100,12 @@ function GrowingReaderHome({
   onStories: () => void
   onPhonemes: () => void
   onFlashcards: () => void
+  onCollection: () => void
 }) {
   const wordCount = decks.filter(d => d.type === 'reading-words').reduce((sum, deck) => sum + deck.cards.length, 0)
   const pageCount = stories.reduce((sum, story) => sum + story.pages.length, 0)
   const phonemeCount = decks.filter(d => d.type === 'phonemes').reduce((sum, deck) => sum + deck.cards.length, 0)
+  const masteredCount = getMasteredWordCount(decks)
 
   return (
     <section className="growing-reader-home">
@@ -1072,6 +1119,11 @@ function GrowingReaderHome({
         <Mascot mood="reading" />
       </div>
       <div className="reader-choice-grid" aria-label="Choose a reading activity">
+        <button type="button" className="reader-choice collection-choice" onClick={onCollection}>
+          <span className="choice-sticker" aria-hidden="true">Star</span>
+          <strong>My Words</strong>
+          <small>{masteredCount} words you know!</small>
+        </button>
         <button type="button" className="reader-choice phoneme-choice" onClick={onPhonemes}>
           <span className="choice-sticker" aria-hidden="true">Sound</span>
           <strong>Phonemes</strong>
@@ -2214,32 +2266,28 @@ function OlderReaderLesson({
 }) {
   const activity = activities[Math.min(activityIndex, activities.length - 1)]
   const [selected, setSelected] = useState('')
-  const [attempts, setAttempts] = useState(0)
+  const [gentleReveal, setGentleReveal] = useState(false)
   const [complete, setComplete] = useState(false)
   const completionRecordedRef = useRef(false)
+  const firstTryWordsRef = useRef<Set<string>>(new Set())
+  const neededHelpWordsRef = useRef<Set<string>>(new Set())
   const correct = selected === activity?.card.id
+  const isPeek = activity?.kind === 'peek'
   const showCompletion = complete || activityIndex >= activities.length
   const prompt = activity ? getOlderReaderPrompt(activity) : ''
   const promptNarration = useNarration(
     showCompletion
-      ? 'older-reader:complete'
-      : activity?.kind === 'audioToWord'
+      ? 'older-reader:growing'
+      : isPeek
         ? undefined
-        : activity
-          ? `older-reader:prompt:${activity.kind}`
-          : undefined,
-    showCompletion ? 'You practiced five words. Great job!' : prompt,
+        : activity?.kind === 'audioToWord'
+          ? undefined
+          : activity
+            ? `older-reader:prompt:${activity.kind}`
+            : undefined,
+    showCompletion ? 'These words are growing!' : prompt,
     `${deck.id}:${lessonNumber}:${showCompletion ? 'complete' : activityIndex}`,
   )
-
-  useEffect(() => {
-    if (!activity || showCompletion) return
-    if (activity.kind !== 'audioToWord') return
-    const timer = window.setTimeout(() => {
-      void playCardAudio(deck, activity.card)
-    }, 250)
-    return () => window.clearTimeout(timer)
-  }, [activity, deck, showCompletion])
 
   const finishActivity = useCallback(() => {
     if (activityIndex >= activities.length - 1) {
@@ -2248,10 +2296,12 @@ function OlderReaderLesson({
       return
     }
     onActivityChange(activityIndex + 1)
+    setSelected('')
+    setGentleReveal(false)
   }, [activities.length, activityIndex, deck.id, lessonCards, onActivityChange])
 
   const chooseByIndex = useCallback((index: number) => {
-    if (!activity || selected || showCompletion) return
+    if (!activity || selected || showCompletion || gentleReveal) return
     const option = activity.options[index]
     if (!option) return
     setSelected(option.id)
@@ -2259,19 +2309,45 @@ function OlderReaderLesson({
       playSfx('correct')
       void playNarrationClip('feedback:great')
       void playCardAudio(deck, activity.card)
+      updateCardProgress(deck.id, activity.card.id, { recalledAt: Date.now(), firstTryRecalled: true })
+      firstTryWordsRef.current.add(activity.card.id)
       window.setTimeout(finishActivity, 650)
       return
     }
-    playSfx('wrong')
-    const nextAttempts = attempts + 1
-    setAttempts(nextAttempts)
-    if (nextAttempts >= 2) {
-      window.setTimeout(finishActivity, 900)
-    } else {
-      void playNarrationClip('feedback:try-again')
-      window.setTimeout(() => setSelected(''), 620)
+    setGentleReveal(true)
+    void playNarrationClip('feedback:let-me-help')
+    void playCardAudio(deck, activity.card)
+    updateCardProgress(deck.id, activity.card.id, { recalledAt: Date.now(), firstTryRecalled: false })
+    neededHelpWordsRef.current.add(activity.card.id)
+    window.setTimeout(finishActivity, 1800)
+  }, [activity, deck, finishActivity, gentleReveal, selected, showCompletion])
+
+  useEffect(() => {
+    if (!activity || showCompletion || isPeek) return
+    if (activity.kind !== 'audioToWord') return
+    const timer = window.setTimeout(() => {
+      void playCardAudio(deck, activity.card)
+    }, 250)
+    return () => window.clearTimeout(timer)
+  }, [activity, deck, showCompletion, isPeek])
+
+  useEffect(() => {
+    if (!activity || showCompletion || !isPeek) return
+    const timer = window.setTimeout(() => {
+      void playNarrationClip('feedback:this-word-is')
+    }, 200)
+    const audioTimer = window.setTimeout(() => {
+      void playCardAudio(deck, activity.card)
+    }, 800)
+    const advanceTimer = window.setTimeout(() => {
+      finishActivity()
+    }, 2500)
+    return () => {
+      window.clearTimeout(timer)
+      window.clearTimeout(audioTimer)
+      window.clearTimeout(advanceTimer)
     }
-  }, [activity, attempts, deck, finishActivity, selected, showCompletion])
+  }, [activity, deck, finishActivity, showCompletion, isPeek])
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -2279,18 +2355,18 @@ function OlderReaderLesson({
       if (event.key === '3') {
         event.preventDefault()
         if (showCompletion) onNextLesson()
-        else chooseByIndex(0)
+        else if (!isPeek) chooseByIndex(0)
       }
       if (event.key === '4') {
         event.preventDefault()
         if (showCompletion) onDone()
-        else chooseByIndex(1)
+        else if (!isPeek) chooseByIndex(1)
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [chooseByIndex, onDone, onNextLesson, showCompletion])
+  }, [chooseByIndex, isPeek, onDone, onNextLesson, showCompletion])
 
   useEffect(() => {
     if (showCompletion && !completionRecordedRef.current) {
@@ -2300,24 +2376,71 @@ function OlderReaderLesson({
       const currentProgress = parseInt(localStorage.getItem('completed-lessons-anna') || '0', 10)
       localStorage.setItem('completed-lessons-anna', (currentProgress + 1).toString())
       recordLocalProgressChange()
+      updateStreakOnLesson(lessonCards.length)
       onLessonComplete()
     }
-  }, [onLessonComplete, showCompletion])
+  }, [lessonCards.length, onLessonComplete, showCompletion])
+
+  if (isPeek && activity && !showCompletion) {
+    return (
+      <section className="focus-lesson older-reader-lesson">
+        <div className="focus-main">
+          <div className="peek-phase">
+            <span className="stage-label">Lesson {lessonNumber} - Let's look</span>
+            <div className="peek-card">
+              <div className="peek-visual">
+                <Picture deck={deck} card={activity.card} />
+              </div>
+              <div className="peek-word">{optionLabel(activity.card)}</div>
+            </div>
+            <div className="peek-hint">Listen and look</div>
+          </div>
+        </div>
+        <div className="focus-feedback">
+          <Mascot mood="reading" size="small" />
+          <div className="feedback-text">
+            <strong>This word is</strong>
+            <span>{optionLabel(activity.card)}</span>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   if (!activity || showCompletion) {
+    const firstTryCards = lessonCards.filter(c => firstTryWordsRef.current.has(c.id))
+    const neededHelpCards = lessonCards.filter(c => neededHelpWordsRef.current.has(c.id))
+    const hasGrowthData = firstTryCards.length > 0 || neededHelpCards.length > 0
     return (
       <section className="focus-lesson older-reader-lesson">
         <div className="focus-main">
           <div className="focus-intro completion-card">
             <div className="focus-prompt">
               <span className="stage-label">Lesson {lessonNumber}</span>
-              <h2>You practiced 5 words!</h2>
+              <h2>These words are growing!</h2>
             </div>
-            <div className="lesson-word-strip">
-              {lessonCards.map((card) => (
-                <span key={card.id}>{card.word || card.displayText}</span>
-              ))}
-            </div>
+            {hasGrowthData ? (
+              <div className="word-growth-strip">
+                {firstTryCards.map((card) => (
+                  <div key={card.id} className="word-growth-card blooming">
+                    <span className="growth-icon" aria-hidden="true">🌱</span>
+                    <span className="growth-word">{card.word || card.displayText}</span>
+                  </div>
+                ))}
+                {neededHelpCards.map((card) => (
+                  <div key={card.id} className="word-growth-card growing">
+                    <span className="growth-icon" aria-hidden="true">💧</span>
+                    <span className="growth-word">{card.word || card.displayText}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="lesson-word-strip">
+                {lessonCards.map((card) => (
+                  <span key={card.id}>{card.word || card.displayText}</span>
+                ))}
+              </div>
+            )}
             <div className="focus-actions">
               <button type="button" className="choice-action" onClick={promptNarration.replay}>
                 <PlayIcon />
@@ -2338,7 +2461,7 @@ function OlderReaderLesson({
           <Mascot mood="happy" size="small" />
           <div className="feedback-text">
             <strong>Great job!</strong>
-            <span>That was a full lesson.</span>
+            <span>These words are growing!</span>
           </div>
         </div>
       </section>
@@ -2347,14 +2470,14 @@ function OlderReaderLesson({
 
   const showPromptPicture = ['pictureToWord', 'startsWithSound', 'review'].includes(activity.kind)
   const showOptionPictures = activity.kind === 'wordToPicture'
-  const mood: MascotMood = selected ? (correct ? 'happy' : 'sad') : activity.kind === 'audioToWord' ? 'reading' : 'curious'
+  const mood: MascotMood = gentleReveal ? 'curious' : selected ? (correct ? 'happy' : 'sad') : activity.kind === 'audioToWord' ? 'reading' : 'curious'
 
   return (
     <section className="focus-lesson older-reader-lesson">
       <div className="focus-main">
         <div className="focus-question older-reader-question">
           <div className="focus-prompt">
-            <span className="stage-label">Lesson {lessonNumber} - Practice {activityIndex + 1} of {activities.length}</span>
+            <span className="stage-label">Lesson {lessonNumber} - Practice {activityIndex - OLDER_READER_PEEK_COUNT + 1} of {OLDER_READER_ACTIVITY_COUNT}</span>
             <h2>{prompt}</h2>
             {promptNarration.shouldShowPlayButton && (
               <AudioPromptButton onClick={promptNarration.replay} label="Hear question" />
@@ -2370,18 +2493,25 @@ function OlderReaderLesson({
           </div>
           <div className="focus-options" aria-label="Answer choices">
             {activity.options.map((option, index) => {
-              const state =
-                selected && option.id === activity.card.id
-                  ? 'correct'
-                  : selected === option.id
-                    ? 'wrong'
-                    : ''
+              const isCorrectOption = gentleReveal && option.id === activity.card.id
+              const isWrongSelection = gentleReveal && selected === option.id && option.id !== activity.card.id
+              const isSelectedCorrect = !gentleReveal && selected && option.id === activity.card.id
+              const isSelectedWrong = !gentleReveal && selected === option.id && option.id !== activity.card.id
+              const stateClass = isCorrectOption
+                ? 'correct pulse'
+                : isWrongSelection
+                  ? 'selected-soft'
+                  : isSelectedCorrect
+                    ? 'correct pulse'
+                    : isSelectedWrong
+                      ? 'wrong shake'
+                      : ''
               return (
                 <button
                   key={option.id}
                   type="button"
                   aria-label={`Choice ${choiceKeyLabel(index)}: ${optionLabel(option)}`}
-                  className={`focus-option squish ${showOptionPictures ? 'picture-choice' : ''} ${state === 'correct' ? 'correct pulse' : state === 'wrong' ? 'wrong shake' : ''}`}
+                  className={`focus-option squish ${showOptionPictures ? 'picture-choice' : ''} ${stateClass}`}
                   disabled={Boolean(selected)}
                   onClick={() => chooseByIndex(index)}
                 >
@@ -2395,10 +2525,15 @@ function OlderReaderLesson({
           </div>
         </div>
       </div>
-      <div className={`focus-feedback ${selected ? (correct ? 'happy' : 'try') : ''}`}>
+      <div className={`focus-feedback ${gentleReveal ? 'happy' : selected ? (correct ? 'happy' : 'try') : ''}`}>
         <Mascot mood={mood} size="small" />
         <div className="feedback-text">
-          {selected ? (
+          {gentleReveal ? (
+            <>
+              <strong>Let's hear it!</strong>
+              <span>It was {optionLabel(activity.card)}.</span>
+            </>
+          ) : selected ? (
             correct ? (
               <>
                 <strong>Great!</strong>
@@ -2407,7 +2542,7 @@ function OlderReaderLesson({
             ) : (
               <>
                 <strong>Try again</strong>
-                <span>{attempts >= 1 ? `It was ${optionLabel(activity.card)}.` : 'Pick the other one.'}</span>
+                <span>Pick the other one.</span>
               </>
             )
           ) : (
@@ -2826,17 +2961,24 @@ function ChoiceMode({
   onNext: () => void
 }) {
   const [selected, setSelected] = useState('')
+  const [gentleReveal, setGentleReveal] = useState(false)
   useAutoplayCard(deck, card, `question:${deck.id}:${card.id}`)
   const options = useMemo(() => buildOptions(lessonCards, card), [card, lessonCards])
   const correct = selected === card.id
-  const mood: MascotMood = selected ? (correct ? 'happy' : 'sad') : 'curious'
+  const mood: MascotMood = gentleReveal ? 'curious' : selected ? (correct ? 'happy' : 'sad') : 'curious'
 
   function choose(cardId: string) {
+    if (gentleReveal) return
     setSelected(cardId)
     if (cardId === card.id) {
       markCardRecalled(deck.id, card.id)
       void playCardAudio(deck, card)
       window.setTimeout(onNext, 900)
+    } else {
+      setGentleReveal(true)
+      void playNarrationClip('feedback:let-me-help')
+      void playCardAudio(deck, card)
+      window.setTimeout(onNext, 1800)
     }
   }
 
@@ -2860,17 +3002,24 @@ function ChoiceMode({
           )}
           <div className="focus-options" aria-label="Answer choices">
             {options.map((option) => {
-              const state =
-                selected && option.id === card.id
-                  ? 'correct'
-                  : selected === option.id
-                    ? 'wrong'
-                    : ''
+              const isCorrectOption = gentleReveal && option.id === card.id
+              const isWrongSelection = gentleReveal && selected === option.id && option.id !== card.id
+              const isSelectedCorrect = !gentleReveal && selected && option.id === card.id
+              const isSelectedWrong = !gentleReveal && selected === option.id && option.id !== card.id
+              const stateClass = isCorrectOption
+                ? 'correct pulse'
+                : isWrongSelection
+                  ? 'selected-soft'
+                  : isSelectedCorrect
+                    ? 'correct'
+                    : isSelectedWrong
+                      ? 'wrong'
+                      : ''
               return (
                 <button
                   key={option.id}
                   type="button"
-                  className={`focus-option ${state}`}
+                  className={`focus-option ${stateClass}`}
                   disabled={Boolean(selected)}
                   onClick={() => choose(option.id)}
                 >
@@ -2882,10 +3031,15 @@ function ChoiceMode({
           </div>
         </div>
       </div>
-      <div className={`focus-feedback ${selected ? (correct ? 'happy' : 'try') : ''}`}>
+      <div className={`focus-feedback ${gentleReveal ? 'happy' : selected ? (correct ? 'happy' : 'try') : ''}`}>
         <Mascot mood={mood} size="small" />
         <div className="feedback-text">
-          {selected ? (
+          {gentleReveal ? (
+            <>
+              <strong>Let's hear it!</strong>
+              <span>It was {optionLabel(card)}.</span>
+            </>
+          ) : selected ? (
             correct ? (
               <>
                 <strong>Great!</strong>
@@ -3133,25 +3287,41 @@ function buildOptions(cards: LearningCard[], card: LearningCard): LearningCard[]
 function buildOlderReaderActivities(lessonCards: LearningCard[]): OlderReaderActivity[] {
   const wordCards = lessonCards.filter((card) => card.type === 'word')
   if (!wordCards.length) return []
-  const firstHalfKinds: OlderReaderQuestionKind[] = [
+
+  const peekActivities: OlderReaderActivity[] = wordCards.map((card) => ({
+    kind: 'peek' as OlderReaderQuestionKind,
+    card,
+    options: [] as LearningCard[],
+  }))
+
+  const quizKinds: OlderReaderQuestionKind[] = [
     'pictureToWord',
     'audioToWord',
     'wordToPicture',
     'startsWithSound',
     'audioToWord',
-    'review',
+    'audioToWord',
+    'pictureToWord',
+    'audioToWord',
+    'wordToPicture',
+    'audioToWord',
+    'audioToWord',
+    'audioToWord',
+    'audioToWord',
+    'audioToWord',
+    'audioToWord',
   ]
-  const audioOnlyStart = Math.floor(OLDER_READER_ACTIVITY_COUNT / 2)
 
-  return Array.from({ length: OLDER_READER_ACTIVITY_COUNT }, (_, index): OlderReaderActivity => {
+  const quizActivities: OlderReaderActivity[] = quizKinds.map((kind, index) => {
     const card = wordCards[index % wordCards.length]
-    const kind = index >= audioOnlyStart ? 'audioToWord' : firstHalfKinds[index % firstHalfKinds.length]
     return {
       kind,
       card,
       options: buildOlderReaderOptions(wordCards, card, kind),
     }
   })
+
+  return [...peekActivities, ...quizActivities]
 }
 
 function buildOlderReaderOptions(
@@ -3176,6 +3346,7 @@ function buildOlderReaderOptions(
 }
 
 function getOlderReaderPrompt(activity: OlderReaderActivity): string {
+  if (activity.kind === 'peek') return ''
   if (activity.kind === 'pictureToWord' || activity.kind === 'review') return 'What word matches the picture?'
   if (activity.kind === 'wordToPicture') return 'Which picture matches this word?'
   if (activity.kind === 'audioToWord') return 'Which word did you hear?'
@@ -3433,6 +3604,7 @@ interface CardProgress {
   listenedAt?: number
   reviewAfter?: number
   recalledAt?: number
+  firstTryRecalled?: boolean
   flashAgainAt?: number
   flashGoodAt?: number
 }
@@ -3794,11 +3966,144 @@ function OlderReaderPhonemeLesson({
         <div className="completion-actions">
           <button type="button" className="primary" onClick={onNextLesson}>Next Lesson</button>
           <button type="button" onClick={onDone}>Back to Phonemes</button>
-        </div>
-      </section>
-    )
+      </div>
+    </section>
+  )
+}
+
+function getMasteredWordCount(decks: LearningDeck[]): number {
+  let count = 0
+  for (const deck of decks) {
+    if (deck.type !== 'reading-words') continue
+    for (const card of deck.cards) {
+      const progress = readCardProgress(deck.id, card.id)
+      if (progress.recalledAt) count++
+    }
   }
-  
+  return count
+}
+
+function getWordCollectionData(decks: LearningDeck[]): {
+  mastered: Array<{ deck: LearningDeck; card: LearningCard; firstTry: boolean }>
+  growing: Array<{ deck: LearningDeck; card: LearningCard }>
+} {
+  const mastered: Array<{ deck: LearningDeck; card: LearningCard; firstTry: boolean }> = []
+  const growing: Array<{ deck: LearningDeck; card: LearningCard }> = []
+  for (const deck of decks) {
+    if (deck.type !== 'reading-words') continue
+    for (const card of deck.cards) {
+      const progress = readCardProgress(deck.id, card.id)
+      if (progress.recalledAt) {
+        mastered.push({ deck, card, firstTry: progress.firstTryRecalled !== false })
+      } else if (progress.listenedAt) {
+        growing.push({ deck, card })
+      }
+    }
+  }
+  return { mastered, growing }
+}
+
+function WordCollection({
+  decks,
+  onBack,
+}: {
+  decks: LearningDeck[]
+  onBack: () => void
+}) {
+  const { mastered, growing } = getWordCollectionData(decks)
+  const [tappedId, setTappedId] = useState('')
+
+  function handleTap(deck: LearningDeck, card: LearningCard) {
+    setTappedId(card.id)
+    void playCardAudio(deck, card)
+    window.setTimeout(() => setTappedId(''), 600)
+  }
+
+  function hearAll() {
+    const allCards = mastered.map(m => ({ deck: m.deck, card: m.card }))
+    let index = 0
+    function playNext() {
+      if (index >= allCards.length) return
+      const { deck, card } = allCards[index]
+      setTappedId(card.id)
+      void playCardAudio(deck, card).then(() => {
+        index++
+        window.setTimeout(playNext, 300)
+      })
+    }
+    playNext()
+  }
+
+  return (
+    <section className="word-collection">
+      <div className="word-collection-header">
+        <button type="button" className="back-button squish" onClick={onBack}>Back</button>
+        <div>
+          <h1>My Words</h1>
+          <p className="word-collection-count">{mastered.length} words you know!</p>
+        </div>
+        {mastered.length > 0 && (
+          <button type="button" className="hear-all-button squish" onClick={hearAll}>
+            <PlayIcon /> Hear All
+          </button>
+        )}
+      </div>
+      {mastered.length === 0 && growing.length === 0 ? (
+        <div className="word-collection-empty">
+          <Mascot mood="curious" size="small" />
+          <p>Complete some lessons and your words will appear here!</p>
+        </div>
+      ) : (
+        <>
+          {mastered.length > 0 && (
+            <div className="word-collection-section">
+              <h2>Words You Know</h2>
+              <div className="word-collection-grid">
+                {mastered.map(({ deck, card, firstTry }) => (
+                  <button
+                    key={card.id}
+                    type="button"
+                    className={`word-card-mini squish ${tappedId === card.id ? 'tapped' : ''} ${firstTry ? 'first-try' : 'needed-help'}`}
+                    onClick={() => handleTap(deck, card)}
+                  >
+                    <div className="word-card-mini-picture">
+                      <Picture deck={deck} card={card} />
+                    </div>
+                    <span className="word-card-mini-text">{card.word || card.displayText}</span>
+                    <span className="word-card-mini-icon" aria-hidden="true">
+                      {firstTry ? '\u{1F331}' : '\u{1F4A7}'}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          {growing.length > 0 && (
+            <div className="word-collection-section growing-section">
+              <h2>Still Growing</h2>
+              <div className="word-collection-grid">
+                {growing.map(({ deck, card }) => (
+                  <button
+                    key={card.id}
+                    type="button"
+                    className={`word-card-mini unmastered squish ${tappedId === card.id ? 'tapped' : ''}`}
+                    onClick={() => handleTap(deck, card)}
+                  >
+                    <div className="word-card-mini-picture">
+                      <Picture deck={deck} card={card} />
+                    </div>
+                    <span className="word-card-mini-text">{card.word || card.displayText}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </>
+      )}
+    </section>
+  )
+}
+
   const activity = activities[activityIndex]
   const card = activity.card
   const audioAsset = resolveAssetUrl(deck, card.audio)

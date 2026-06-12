@@ -196,6 +196,12 @@ export interface LearnerProgress {
   rewardHistory?: RewardDrop[]
   rarePityCount?: number
   epicPityCount?: number
+  currentStreak?: number
+  longestStreak?: number
+  lastActiveDate?: string
+  wordsReadToday?: number
+  wordsReadTodayDate?: string
+  studyDates?: Record<string, number>
 }
 
 export interface StoryPage {

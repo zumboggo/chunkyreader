@@ -2,7 +2,7 @@
   "id": "chunky-reader-audio",
   "title": "Chunky Learner Audio Pack",
   "description": "Azure TTS clips for kid-facing Chunky Learner text, including sound decks, story pages, prompts, and feedback.",
-  "provider": "azure-tts",
+  "provider": "ssml-only",
   "version": "2026-05-kid-facing-audio-v3",
   "voices": {
     "anneNarrator": "en-US-JennyNeural",
@@ -17,7 +17,7 @@
     "chineseTeacher": "chinese-teacher-multilingual-v2"
   },
   "outputFormat": "audio-24khz-48kbitrate-mono-mp3",
-  "createdAt": "2026-06-03T18:03:57.101Z",
+  "createdAt": "2026-06-12T03:43:49.736Z",
   "clips": [
     {
       "id": "letter-m:sound",
@@ -7562,6 +7562,46 @@
       "voiceVersion": "child-instructions-v1",
       "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/ui-read-to-me.mp3",
       "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/ui-read-to-me.ssml"
+    },
+    {
+      "id": "feedback:let-me-help",
+      "type": "feedback",
+      "text": "Let's hear it!",
+      "language": "en-US",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/feedback-let-me-help.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/feedback-let-me-help.ssml"
+    },
+    {
+      "id": "feedback:this-word-is",
+      "type": "feedback",
+      "text": "This word is",
+      "language": "en-US",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/feedback-this-word-is.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/feedback-this-word-is.ssml"
+    },
+    {
+      "id": "older-reader:growing",
+      "type": "older-reader-ui",
+      "text": "These words are growing!",
+      "language": "en-US",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/older-reader-growing.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/older-reader-growing.ssml"
+    },
+    {
+      "id": "ui:streak-milestone",
+      "type": "ui",
+      "text": "Amazing! You've been reading every day!",
+      "language": "en-US",
+      "voice": "en-US-AvaNeural",
+      "voiceVersion": "child-instructions-v1",
+      "audioPath": "clip-packs/chunky-reader-audio/audio/narration/ui/ui-streak-milestone.mp3",
+      "ssmlPath": "clip-packs/chunky-reader-audio/ssml/audio/narration/ui/ui-streak-milestone.ssml"
     }
   ]
 }

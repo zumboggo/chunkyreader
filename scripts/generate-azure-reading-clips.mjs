@@ -213,6 +213,10 @@ function uiNarrationClips() {
     ['ui:save-audio', 'ui', 'Save audio.'],
     ['ui:tap-to-hear', 'ui', 'Tap to hear.'],
     ['ui:read-to-me', 'ui', 'Read to me.'],
+    ['feedback:let-me-help', 'feedback', "Let's hear it!"],
+    ['feedback:this-word-is', 'feedback', 'This word is'],
+    ['older-reader:growing', 'older-reader-ui', 'These words are growing!'],
+    ['ui:streak-milestone', 'ui', "Amazing! You've been reading every day!"],
   ]
   return entries.map(([id, type, text]) => makeNarrationClip({
     id,
