@@ -496,6 +496,7 @@ function App() {
   function completeActiveLesson() {
     if (!activeSection || !activeDeckId) return
     handleCompletionReward(markLessonComplete(activeSection, activeDeckId))
+    updateStreakOnLesson(5)
   }
 
   function rememberContinue(next: ContinueLearningState) {
@@ -1242,6 +1243,7 @@ function StorySection({
           setComplete(true)
           saveStoryProgress(selectedStory.id, selectedStory.pages.length - 1)
           onReward(markStoryComplete(selectedStory.id))
+          updateStreakOnLesson(1)
           onRememberContinue({
             section: 'stories',
             storyId: selectedStory.id,
@@ -2376,10 +2378,9 @@ function OlderReaderLesson({
       const currentProgress = parseInt(localStorage.getItem('completed-lessons-anna') || '0', 10)
       localStorage.setItem('completed-lessons-anna', (currentProgress + 1).toString())
       recordLocalProgressChange()
-      updateStreakOnLesson(lessonCards.length)
       onLessonComplete()
     }
-  }, [lessonCards.length, onLessonComplete, showCompletion])
+  }, [onLessonComplete, showCompletion])
 
   if (isPeek && activity && !showCompletion) {
     return (
