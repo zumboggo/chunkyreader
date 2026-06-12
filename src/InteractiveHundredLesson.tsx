@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { playAudioUrl } from './audioClipPack';
 import { recordLocalProgressChange } from './cloudProgressSync';
 import type { HundredLesson, HundredLessonChunk } from './types';
-import { markHundredLessonComplete, type CompletionRewardResult } from './progress';
+import { markHundredLessonComplete, updateStreakOnLesson, type CompletionRewardResult } from './progress';
 
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious';
 type JourneyStepHandler = () => void;
@@ -617,6 +617,7 @@ export function InteractiveHundredLessonScreen({
     recordLocalProgressChange();
     incrementHundredLessonStickers();
     const rewardResult = markHundredLessonComplete(lesson.id);
+    updateStreakOnLesson(5);
     onReward?.(rewardResult);
     onDone();
   };
