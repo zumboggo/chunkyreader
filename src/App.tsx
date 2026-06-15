@@ -190,6 +190,139 @@ function formatRelativeTime(value: string): string {
   return `${days} day${days === 1 ? '' : 's'} ago`
 }
 
+function getMasteredWordCount(decks: LearningDeck[]): number {
+  let count = 0
+  for (const deck of decks) {
+    if (deck.type !== 'reading-words') continue
+    for (const card of deck.cards) {
+      const progress = readCardProgress(deck.id, card.id)
+      if (progress.recalledAt) count++
+    }
+  }
+  return count
+}
+
+function getWordCollectionData(decks: LearningDeck[]): {
+  mastered: Array<{ deck: LearningDeck; card: LearningCard; firstTry: boolean }>
+  growing: Array<{ deck: LearningDeck; card: LearningCard }>
+} {
+  const mastered: Array<{ deck: LearningDeck; card: LearningCard; firstTry: boolean }> = []
+  const growing: Array<{ deck: LearningDeck; card: LearningCard }> = []
+  for (const deck of decks) {
+    if (deck.type !== 'reading-words') continue
+    for (const card of deck.cards) {
+      const progress = readCardProgress(deck.id, card.id)
+      if (progress.recalledAt) {
+        mastered.push({ deck, card, firstTry: progress.firstTryRecalled !== false })
+      } else if (progress.listenedAt) {
+        growing.push({ deck, card })
+      }
+    }
+  }
+  return { mastered, growing }
+}
+
+function WordCollection({
+  decks,
+  onBack,
+}: {
+  decks: LearningDeck[]
+  onBack: () => void
+}) {
+  const { mastered, growing } = getWordCollectionData(decks)
+  const [tappedId, setTappedId] = useState('')
+
+  function handleTap(deck: LearningDeck, card: LearningCard) {
+    setTappedId(card.id)
+    void playCardAudio(deck, card)
+    window.setTimeout(() => setTappedId(''), 600)
+  }
+
+  function hearAll() {
+    const allCards = mastered.map(m => ({ deck: m.deck, card: m.card }))
+    let index = 0
+    function playNext() {
+      if (index >= allCards.length) return
+      const { deck, card } = allCards[index]
+      setTappedId(card.id)
+      void playCardAudio(deck, card).then(() => {
+        index++
+        window.setTimeout(playNext, 300)
+      })
+    }
+    playNext()
+  }
+
+  return (
+    <section className="word-collection">
+      <div className="word-collection-header">
+        <button type="button" className="back-button squish" onClick={onBack}>Back</button>
+        <div>
+          <h1>My Words</h1>
+          <p className="word-collection-count">{mastered.length} words you know!</p>
+        </div>
+        {mastered.length > 0 && (
+          <button type="button" className="hear-all-button squish" onClick={hearAll}>
+            <PlayIcon /> Hear All
+          </button>
+        )}
+      </div>
+      {mastered.length === 0 && growing.length === 0 ? (
+        <div className="word-collection-empty">
+          <Mascot mood="curious" size="small" />
+          <p>Complete some lessons and your words will appear here!</p>
+        </div>
+      ) : (
+        <>
+          {mastered.length > 0 && (
+            <div className="word-collection-section">
+              <h2>Words You Know</h2>
+              <div className="word-collection-grid">
+                {mastered.map(({ deck, card, firstTry }) => (
+                  <button
+                    key={card.id}
+                    type="button"
+                    className={`word-card-mini squish ${tappedId === card.id ? 'tapped' : ''} ${firstTry ? 'first-try' : 'needed-help'}`}
+                    onClick={() => handleTap(deck, card)}
+                  >
+                    <div className="word-card-mini-picture">
+                      <Picture deck={deck} card={card} />
+                    </div>
+                    <span className="word-card-mini-text">{card.word || card.displayText}</span>
+                    <span className="word-card-mini-icon" aria-hidden="true">
+                      {firstTry ? '\u{1F331}' : '\u{1F4A7}'}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          {growing.length > 0 && (
+            <div className="word-collection-section growing-section">
+              <h2>Still Growing</h2>
+              <div className="word-collection-grid">
+                {growing.map(({ deck, card }) => (
+                  <button
+                    key={card.id}
+                    type="button"
+                    className={`word-card-mini unmastered squish ${tappedId === card.id ? 'tapped' : ''}`}
+                    onClick={() => handleTap(deck, card)}
+                  >
+                    <div className="word-card-mini-picture">
+                      <Picture deck={deck} card={card} />
+                    </div>
+                    <span className="word-card-mini-text">{card.word || card.displayText}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </>
+      )}
+    </section>
+  )
+}
+
 function App() {
   const [decks, setDecks] = useState<LearningDeck[]>([])
   const [stories, setStories] = useState<Story[]>([])
@@ -4001,139 +4134,6 @@ function OlderReaderPhonemeLesson({
           <button type="button" className="primary" onClick={onNextLesson}>Next Lesson</button>
           <button type="button" onClick={onDone}>Back to Phonemes</button>
       </div>
-    </section>
-  )
-}
-
-function getMasteredWordCount(decks: LearningDeck[]): number {
-  let count = 0
-  for (const deck of decks) {
-    if (deck.type !== 'reading-words') continue
-    for (const card of deck.cards) {
-      const progress = readCardProgress(deck.id, card.id)
-      if (progress.recalledAt) count++
-    }
-  }
-  return count
-}
-
-function getWordCollectionData(decks: LearningDeck[]): {
-  mastered: Array<{ deck: LearningDeck; card: LearningCard; firstTry: boolean }>
-  growing: Array<{ deck: LearningDeck; card: LearningCard }>
-} {
-  const mastered: Array<{ deck: LearningDeck; card: LearningCard; firstTry: boolean }> = []
-  const growing: Array<{ deck: LearningDeck; card: LearningCard }> = []
-  for (const deck of decks) {
-    if (deck.type !== 'reading-words') continue
-    for (const card of deck.cards) {
-      const progress = readCardProgress(deck.id, card.id)
-      if (progress.recalledAt) {
-        mastered.push({ deck, card, firstTry: progress.firstTryRecalled !== false })
-      } else if (progress.listenedAt) {
-        growing.push({ deck, card })
-      }
-    }
-  }
-  return { mastered, growing }
-}
-
-function WordCollection({
-  decks,
-  onBack,
-}: {
-  decks: LearningDeck[]
-  onBack: () => void
-}) {
-  const { mastered, growing } = getWordCollectionData(decks)
-  const [tappedId, setTappedId] = useState('')
-
-  function handleTap(deck: LearningDeck, card: LearningCard) {
-    setTappedId(card.id)
-    void playCardAudio(deck, card)
-    window.setTimeout(() => setTappedId(''), 600)
-  }
-
-  function hearAll() {
-    const allCards = mastered.map(m => ({ deck: m.deck, card: m.card }))
-    let index = 0
-    function playNext() {
-      if (index >= allCards.length) return
-      const { deck, card } = allCards[index]
-      setTappedId(card.id)
-      void playCardAudio(deck, card).then(() => {
-        index++
-        window.setTimeout(playNext, 300)
-      })
-    }
-    playNext()
-  }
-
-  return (
-    <section className="word-collection">
-      <div className="word-collection-header">
-        <button type="button" className="back-button squish" onClick={onBack}>Back</button>
-        <div>
-          <h1>My Words</h1>
-          <p className="word-collection-count">{mastered.length} words you know!</p>
-        </div>
-        {mastered.length > 0 && (
-          <button type="button" className="hear-all-button squish" onClick={hearAll}>
-            <PlayIcon /> Hear All
-          </button>
-        )}
-      </div>
-      {mastered.length === 0 && growing.length === 0 ? (
-        <div className="word-collection-empty">
-          <Mascot mood="curious" size="small" />
-          <p>Complete some lessons and your words will appear here!</p>
-        </div>
-      ) : (
-        <>
-          {mastered.length > 0 && (
-            <div className="word-collection-section">
-              <h2>Words You Know</h2>
-              <div className="word-collection-grid">
-                {mastered.map(({ deck, card, firstTry }) => (
-                  <button
-                    key={card.id}
-                    type="button"
-                    className={`word-card-mini squish ${tappedId === card.id ? 'tapped' : ''} ${firstTry ? 'first-try' : 'needed-help'}`}
-                    onClick={() => handleTap(deck, card)}
-                  >
-                    <div className="word-card-mini-picture">
-                      <Picture deck={deck} card={card} />
-                    </div>
-                    <span className="word-card-mini-text">{card.word || card.displayText}</span>
-                    <span className="word-card-mini-icon" aria-hidden="true">
-                      {firstTry ? '\u{1F331}' : '\u{1F4A7}'}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-          {growing.length > 0 && (
-            <div className="word-collection-section growing-section">
-              <h2>Still Growing</h2>
-              <div className="word-collection-grid">
-                {growing.map(({ deck, card }) => (
-                  <button
-                    key={card.id}
-                    type="button"
-                    className={`word-card-mini unmastered squish ${tappedId === card.id ? 'tapped' : ''}`}
-                    onClick={() => handleTap(deck, card)}
-                  >
-                    <div className="word-card-mini-picture">
-                      <Picture deck={deck} card={card} />
-                    </div>
-                    <span className="word-card-mini-text">{card.word || card.displayText}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-        </>
-      )}
     </section>
   )
 }
