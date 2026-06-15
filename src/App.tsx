@@ -546,8 +546,8 @@ function App() {
       targetMode = 'listeningMode'
     } else if (section === 'words') {
       targetDeckId = currentDecks.find(d => d.type === 'reading-words' && d.profile === 'anna')?.id ?? ''
-      targetMode = 'activeRecall'
-      setGrowingView('home')
+      targetMode = 'flashcardMode'
+      setGrowingView('words')
     } else if (section === 'math') {
       targetDeckId = currentDecks.find(d => d.type === 'math')?.id ?? ''
       targetMode = 'activeRecall'
@@ -826,6 +826,11 @@ function App() {
           }}
           onRestartLesson={restartLesson}
           onModeChange={changeMode}
+          onModeToggle={(nextMode) => {
+            setMode(nextMode)
+            setPhase(nextMode === 'listeningMode' ? 'learn' : 'question')
+            setMenuOpen(false)
+          }}
           onNextLesson={() => {
             completeActiveLesson()
             moveNextLessonFromCurrent()
@@ -1504,6 +1509,7 @@ function LearningScreen({
   onBackToPath,
   onRestartLesson,
   onModeChange,
+  onModeToggle,
   onNextLesson,
   onAdvanceLesson,
   onLessonComplete,
@@ -1529,6 +1535,7 @@ function LearningScreen({
   onBackToPath?: () => void
   onRestartLesson: () => void
   onModeChange: (mode: LearningMode) => void
+  onModeToggle: (mode: LearningMode) => void
   onNextLesson: () => void
   onAdvanceLesson: () => void
   onLessonComplete: () => void
@@ -1536,6 +1543,7 @@ function LearningScreen({
   onGoHome: () => void
   onToggleAdultDetails: () => void
 }) {
+  const [fsrsActive, setFsrsActive] = useState(false)
   const isSarahLetters = activeDeck.profile === 'sarah' && activeDeck.type === 'letters'
   const isOlderReaderWords = activeDeck.profile === 'anna' && activeDeck.type === 'reading-words'
   const isOlderReaderPhonemes = activeDeck.profile === 'anna' && activeDeck.type === 'phonemes'
@@ -1623,6 +1631,12 @@ function LearningScreen({
           onLessonComplete={onLessonComplete}
           showAdultDetails={showAdultDetails}
         />
+      ) : mode === 'flashcardMode' ? (
+        <FsrsFlashcardMode
+          deck={activeDeck}
+          onComplete={onDone}
+          onSessionStateChange={setFsrsActive}
+        />
       ) : isOlderReaderWords ? (
         <OlderReaderLesson
           key={`${activeDeck.id}:${lessonNumber}:${sarahActivityIndex}`}
@@ -1658,11 +1672,6 @@ function LearningScreen({
           onNextLesson={onNextLesson}
           onDone={onDone}
         />
-      ) : mode === 'flashcardMode' ? (
-        <FsrsFlashcardMode
-          deck={activeDeck}
-          onComplete={onDone}
-        />
       ) : mode === 'readerMode' ? (
         <FlashcardMode
           key={`${activeDeck.id}:${mode}:${activeCard.id}`}
@@ -1680,6 +1689,24 @@ function LearningScreen({
           mode={mode}
           onNext={onNext}
         />
+      )}
+      {isOlderReaderWords && (mode !== 'flashcardMode' || fsrsActive) && (
+        <div className="mode-toggle-bar">
+          <button
+            type="button"
+            className={mode === 'flashcardMode' ? 'active' : ''}
+            onClick={() => onModeToggle('flashcardMode')}
+          >
+            Flashcards
+          </button>
+          <button
+            type="button"
+            className={mode === 'activeRecall' ? 'active' : ''}
+            onClick={() => onModeToggle('activeRecall')}
+          >
+            Active Recall
+          </button>
+        </div>
       )}
     </section>
   )
@@ -2757,9 +2784,11 @@ function FlashcardMode({
 function FsrsFlashcardMode({
   deck,
   onComplete,
+  onSessionStateChange,
 }: {
   deck: LearningDeck
   onComplete: () => void
+  onSessionStateChange?: (active: boolean) => void
 }) {
   const [cardStates, setCardStates] = useState<Map<string, FlashcardState>>(() => loadFlashcardStates(deck.id))
   const [currentCardIndex, setCurrentCardIndex] = useState(0)
@@ -2807,6 +2836,10 @@ function FsrsFlashcardMode({
       audioPlayedRef.current = false
     }
   }, [isFlipped])
+
+  useEffect(() => {
+    onSessionStateChange?.(!isSessionComplete && !!currentCard)
+  }, [isSessionComplete, currentCard, onSessionStateChange])
 
   function handleFlip() {
     if (!isFlipped) {
