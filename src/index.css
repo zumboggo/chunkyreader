@@ -5620,6 +5620,143 @@ body.lesson-active {
   }
 }
 
+/* ─── FSRS Queue Counters ─── */
+.fsrs-queue-counts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.25rem;
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.fsrs-queue-count strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.queue-new strong { color: #7C4DFF; }
+.queue-learning strong { color: #FF6D00; }
+.queue-review strong { color: #00B0FF; }
+.queue-done strong { color: #00E676; }
+
+/* ─── FSRS Swipe Feedback ─── */
+.fsrs-swipe-up .fsrs-card {
+  transform: translateY(-8px);
+  transition: transform 0.1s ease;
+}
+
+.fsrs-swipe-down .fsrs-card {
+  transform: translateY(8px);
+  transition: transform 0.1s ease;
+}
+
+.fsrs-swipe-left .fsrs-card {
+  transform: translateX(-8px) rotate(-1.5deg);
+  transition: transform 0.1s ease;
+}
+
+.fsrs-swipe-right .fsrs-card {
+  transform: translateX(8px) rotate(1.5deg);
+  transition: transform 0.1s ease;
+}
+
+.fsrs-swipe-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0.5rem 1.25rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  z-index: 10;
+  animation: swipe-pop 0.15s ease;
+}
+
+@keyframes swipe-pop {
+  from { transform: translate(-50%, -50%) scale(0.85); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* ─── FSRS Audio/Picture Front Modes ─── */
+.fsrs-audio-front .fsrs-card-front {
+  background: linear-gradient(145deg, #f3e8ff 0%, #ede7f6 100%);
+}
+
+.fsrs-picture-front .fsrs-card-front {
+  background: linear-gradient(145deg, #e8f5e9 0%, #f1f8e9 100%);
+}
+
+.fsrs-word-audio {
+  font-size: 2.5rem !important;
+  font-family: var(--font-body) !important;
+  color: var(--purple-pop);
+}
+
+.fsrs-image-front {
+  width: 100%;
+  max-width: 180px;
+  max-height: 180px;
+}
+
+.fsrs-image-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.fsrs-replay-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: 2px solid var(--purple-pop);
+  background: white;
+  color: var(--purple-pop);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-top: 0.5rem;
+}
+
+.fsrs-replay-btn:hover {
+  background: var(--lavender);
+}
+
+.fsrs-replay-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ─── FSRS Keyboard Hints ─── */
+.fsrs-btn kbd {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-family: var(--font-body);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.08);
+  color: inherit;
+  opacity: 0.7;
+  margin-bottom: 0.1rem;
+}
+
+.fsrs-swipe-hint {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 0.5rem;
+  opacity: 0.7;
+}
+
 /* ─── Mode Toggle Bar ─── */
 .mode-toggle-bar {
   display: flex;
