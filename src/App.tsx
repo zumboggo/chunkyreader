@@ -2914,6 +2914,52 @@ function FlashcardMode({
   )
 }
 
+const SWIPE_THRESHOLD = 40
+const SWIPE_LABELS: Record<string, { text: string; color: string }> = {
+  up: { text: 'Again', color: '#c62828' },
+  left: { text: 'Hard', color: '#e65100' },
+  right: { text: 'Good', color: '#2e7d32' },
+  down: { text: 'Easy', color: '#1565c0' },
+}
+
+function stableHash(str: string): number {
+  let hash = 0
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash) + str.charCodeAt(i)
+    hash |= 0
+  }
+  return Math.abs(hash)
+}
+
+type FrontMode = 'text' | 'audio' | 'picture'
+
+function getFrontMode(card: LearningCard | undefined, index: number): FrontMode {
+  if (!card || !card.image) return 'text'
+  const bucket = stableHash(`${card.id}:${index}`) % 10
+  if (bucket < 3) return 'audio'
+  if (bucket < 5) return 'picture'
+  return 'text'
+}
+
+function getQueueCounts(cards: LearningCard[], states: Map<string, FlashcardState>, now: number) {
+  let newCount = 0
+  let learningCount = 0
+  let reviewCount = 0
+  let doneCount = 0
+  for (const card of cards) {
+    const state = states.get(card.id)
+    if (!state) { newCount++; continue }
+    if (state.state === 'learning' || state.state === 'relearning') {
+      learningCount++
+    } else if (state.due <= now) {
+      reviewCount++
+    } else {
+      doneCount++
+    }
+  }
+  return { new: newCount, learning: learningCount, review: reviewCount, done: doneCount }
+}
+
 function FsrsFlashcardMode({
   deck,
   onComplete,
@@ -2928,7 +2974,10 @@ function FsrsFlashcardMode({
   const [isFlipped, setIsFlipped] = useState(false)
   const [rating, setRating] = useState<Rating | null>(null)
   const [sessionStats, setSessionStats] = useState({ reviewed: 0, due: 0, newCards: 0 })
+  const [swipeDir, setSwipeDir] = useState<string | null>(null)
+  const [celebrationFired, setCelebrationFired] = useState(false)
   const audioPlayedRef = useRef(false)
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null)
 
   const sortedCards = useMemo(() => {
     const states = [...cardStates.values()]
@@ -2943,6 +2992,12 @@ function FsrsFlashcardMode({
 
   const currentCard = sortedCards[currentCardIndex]
   const isSessionComplete = currentCardIndex >= sortedCards.length
+  const frontMode = useMemo(() => getFrontMode(currentCard, currentCardIndex), [currentCard, currentCardIndex])
+
+  const queueCounts = useMemo(
+    () => getQueueCounts(sortedCards, cardStates, Date.now()),
+    [sortedCards, cardStates],
+  )
 
   useEffect(() => {
     const states = loadFlashcardStates(deck.id)
@@ -2952,32 +3007,54 @@ function FsrsFlashcardMode({
   }, [deck.id, deck.cards.length])
 
   useEffect(() => {
-    if (isFlipped && currentCard && !audioPlayedRef.current) {
-      audioPlayedRef.current = true
-      const audioUrl = resolveAssetUrl(deck, currentCard.audio)
-      if (audioUrl) {
-        void playAudioUrl(audioUrl)
-        window.setTimeout(() => {
-          void playAudioUrl(audioUrl)
-        }, 1500)
-      }
+    if (!currentCard || audioPlayedRef.current) return
+    const shouldPlay = (frontMode === 'audio' && !isFlipped) || (frontMode !== 'audio' && isFlipped)
+    if (!shouldPlay) return
+    audioPlayedRef.current = true
+    const audioUrl = resolveAssetUrl(deck, currentCard.audio)
+    if (audioUrl) {
+      void playAudioUrl(audioUrl)
+      window.setTimeout(() => void playAudioUrl(audioUrl), 1500)
     }
-  }, [isFlipped, currentCard, deck])
+  }, [isFlipped, currentCard, deck, frontMode])
 
   useEffect(() => {
-    if (!isFlipped) {
-      audioPlayedRef.current = false
-    }
-  }, [isFlipped])
+    audioPlayedRef.current = false
+    setIsFlipped(false)
+    setRating(null)
+    setSwipeDir(null)
+  }, [currentCardIndex])
 
   useEffect(() => {
     onSessionStateChange?.(!isSessionComplete && !!currentCard)
   }, [isSessionComplete, currentCard, onSessionStateChange])
 
-  function handleFlip() {
-    if (!isFlipped) {
-      setIsFlipped(true)
+  useEffect(() => {
+    if (isSessionComplete && !celebrationFired && sessionStats.reviewed > 0) {
+      setCelebrationFired(true)
+      confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 }, colors: ['#FFD600', '#7C4DFF', '#FF6D00', '#00E676', '#00B0FF'], disableForReducedMotion: true })
+      playSfx('celebrate')
     }
+  }, [isSessionComplete, celebrationFired, sessionStats.reviewed])
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (isSessionComplete || !currentCard) return
+      if (!isFlipped) {
+        if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); handleFlip() }
+      } else if (!rating) {
+        if (e.key === '1') handleRate(1)
+        else if (e.key === '2') handleRate(2)
+        else if (e.key === '3') handleRate(3)
+        else if (e.key === '4') handleRate(4)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  })
+
+  function handleFlip() {
+    if (!isFlipped) setIsFlipped(true)
   }
 
   function handleRate(r: Rating) {
@@ -2995,6 +3072,28 @@ function FsrsFlashcardMode({
       setRating(null)
       setCurrentCardIndex((i) => i + 1)
     }, 600)
+  }
+
+  function handleTouchStart(e: React.TouchEvent) {
+    if (!isFlipped || rating) return
+    touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+  }
+
+  function handleTouchMove(e: React.TouchEvent) {
+    if (!touchStartRef.current || !isFlipped || rating) return
+    const dx = e.touches[0].clientX - touchStartRef.current.x
+    const dy = e.touches[0].clientY - touchStartRef.current.y
+    if (Math.abs(dx) < 10 && Math.abs(dy) < 10) { setSwipeDir(null); return }
+    if (Math.abs(dx) > Math.abs(dy)) setSwipeDir(dx > 0 ? 'right' : 'left')
+    else setSwipeDir(dy > 0 ? 'down' : 'up')
+  }
+
+  function handleTouchEnd() {
+    if (!touchStartRef.current || !isFlipped || rating) { touchStartRef.current = null; setSwipeDir(null); return }
+    const swipeRating: Record<string, Rating> = { up: 1, left: 2, right: 3, down: 4 }
+    if (swipeDir && swipeRating[swipeDir]) handleRate(swipeRating[swipeDir])
+    touchStartRef.current = null
+    setSwipeDir(null)
   }
 
   if (isSessionComplete) {
@@ -3027,21 +3126,53 @@ function FsrsFlashcardMode({
 
   const cardState = cardStates.get(currentCard.id)
   const stateLabel = !cardState ? 'New' : cardState.state === 'learning' ? 'Learning' : cardState.state === 'relearning' ? 'Relearning' : 'Review'
+  const swipeLabel = swipeDir ? SWIPE_LABELS[swipeDir] : null
 
   return (
     <section className="fsrs-flashcard">
       <div className="fsrs-header">
         <span className="fsrs-state-badge">{stateLabel}</span>
-        <span className="fsrs-progress">Card {currentCardIndex + 1} of {sortedCards.length}</span>
+        <div className="fsrs-queue-counts">
+          <span className="fsrs-queue-count queue-new"><strong>{queueCounts.new}</strong>New</span>
+          <span className="fsrs-queue-count queue-learning"><strong>{queueCounts.learning}</strong>Learn</span>
+          <span className="fsrs-queue-count queue-review"><strong>{queueCounts.review}</strong>Review</span>
+          <span className="fsrs-queue-count queue-done"><strong>{queueCounts.done}</strong>Done</span>
+        </div>
+        <span className="fsrs-progress">{currentCardIndex + 1}/{sortedCards.length}</span>
       </div>
 
-      <div className={`fsrs-card-container ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
+      <div
+        className={`fsrs-card-container ${isFlipped ? 'flipped' : ''} ${swipeDir ? `fsrs-swipe-${swipeDir}` : ''} ${!isFlipped && frontMode === 'audio' ? 'fsrs-audio-front' : ''} ${!isFlipped && frontMode === 'picture' ? 'fsrs-picture-front' : ''}`}
+        onClick={isFlipped ? undefined : handleFlip}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <div className="fsrs-card">
           <div className="fsrs-card-front">
             <div className="fsrs-card-content">
-              <h2 className="fsrs-word">{currentCard.displayText}</h2>
-              {currentCard.pinyin && <p className="fsrs-pinyin">{currentCard.pinyin}</p>}
-              <p className="fsrs-hint">Tap to reveal</p>
+              {frontMode === 'audio' ? (
+                <>
+                  <h2 className="fsrs-word fsrs-word-audio">Listen</h2>
+                  <p className="fsrs-hint">The word plays twice</p>
+                  <button type="button" className="fsrs-replay-btn" onClick={(e) => { e.stopPropagation(); const url = resolveAssetUrl(deck, currentCard.audio); if (url) void playAudioUrl(url) }}>
+                    <PlayIcon /> Replay
+                  </button>
+                </>
+              ) : frontMode === 'picture' && currentCard.image ? (
+                <>
+                  <div className="fsrs-image fsrs-image-front">
+                    <img src={resolveAssetUrl(deck, currentCard.image)} alt="What word?" />
+                  </div>
+                  <p className="fsrs-hint">What word matches?</p>
+                </>
+              ) : (
+                <>
+                  <h2 className="fsrs-word">{currentCard.displayText}</h2>
+                  {currentCard.pinyin && <p className="fsrs-pinyin">{currentCard.pinyin}</p>}
+                  <p className="fsrs-hint">Tap to reveal</p>
+                </>
+              )}
             </div>
           </div>
           <div className="fsrs-card-back">
@@ -3058,43 +3189,32 @@ function FsrsFlashcardMode({
             </div>
           </div>
         </div>
+        {swipeDir && swipeLabel && (
+          <div className="fsrs-swipe-indicator" style={{ color: swipeLabel.color }}>
+            {swipeLabel.text}
+          </div>
+        )}
       </div>
 
       {isFlipped && (
         <div className="fsrs-rating-buttons">
-          <button
-            type="button"
-            className={`fsrs-btn fsrs-btn-again ${rating === 1 ? 'selected' : ''}`}
-            onClick={() => handleRate(1)}
-            disabled={rating !== null}
-          >
+          <button type="button" className={`fsrs-btn fsrs-btn-again ${rating === 1 ? 'selected' : ''}`} onClick={() => handleRate(1)} disabled={rating !== null}>
+            <kbd>1</kbd>
             <span className="btn-label">Again</span>
             <span className="btn-interval">&lt;1m</span>
           </button>
-          <button
-            type="button"
-            className={`fsrs-btn fsrs-btn-hard ${rating === 2 ? 'selected' : ''}`}
-            onClick={() => handleRate(2)}
-            disabled={rating !== null}
-          >
+          <button type="button" className={`fsrs-btn fsrs-btn-hard ${rating === 2 ? 'selected' : ''}`} onClick={() => handleRate(2)} disabled={rating !== null}>
+            <kbd>2</kbd>
             <span className="btn-label">Hard</span>
             <span className="btn-interval">6m</span>
           </button>
-          <button
-            type="button"
-            className={`fsrs-btn fsrs-btn-good ${rating === 3 ? 'selected' : ''}`}
-            onClick={() => handleRate(3)}
-            disabled={rating !== null}
-          >
+          <button type="button" className={`fsrs-btn fsrs-btn-good ${rating === 3 ? 'selected' : ''}`} onClick={() => handleRate(3)} disabled={rating !== null}>
+            <kbd>3</kbd>
             <span className="btn-label">Good</span>
             <span className="btn-interval">10m</span>
           </button>
-          <button
-            type="button"
-            className={`fsrs-btn fsrs-btn-easy ${rating === 4 ? 'selected' : ''}`}
-            onClick={() => handleRate(4)}
-            disabled={rating !== null}
-          >
+          <button type="button" className={`fsrs-btn fsrs-btn-easy ${rating === 4 ? 'selected' : ''}`} onClick={() => handleRate(4)} disabled={rating !== null}>
+            <kbd>4</kbd>
             <span className="btn-label">Easy</span>
             <span className="btn-interval">4d</span>
           </button>
@@ -3106,6 +3226,7 @@ function FsrsFlashcardMode({
           <button type="button" className="fsrs-btn fsrs-btn-show" onClick={handleFlip}>
             Show Answer
           </button>
+          <p className="fsrs-swipe-hint">After flipping: swipe ↑ Again ← Hard → Good ↓ Easy</p>
         </div>
       )}
     </section>
