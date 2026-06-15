@@ -5620,6 +5620,42 @@ body.lesson-active {
   }
 }
 
+/* ─── Mode Toggle Bar ─── */
+.mode-toggle-bar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin-top: auto;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  position: sticky;
+  bottom: 0;
+}
+
+.mode-toggle-bar button {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--lavender);
+  color: var(--purple-pop);
+}
+
+.mode-toggle-bar button.active {
+  background: var(--purple-pop);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(124, 77, 255, 0.3);
+}
+
+.mode-toggle-bar button:not(.active):hover {
+  background: #e8dff5;
+}
+
 /* ─── Peek Phase ─── */
 .peek-phase {
   display: flex;
