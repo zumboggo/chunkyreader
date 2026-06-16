@@ -49,6 +49,7 @@ type SarahActivityKind = 'intro' | SarahQuestionKind | 'review'
 type SarahActivityStatus = 'idle' | 'try-again' | 'correct' | 'revealed'
 type StoryDifficultyFilter = 'easy' | 'growing' | 'longer'
 type OlderReaderQuestionKind =
+  | 'peek'
   | 'pictureToWord'
   | 'wordToPicture'
   | 'audioToWord'
@@ -92,11 +93,12 @@ interface OlderReaderPhonemeActivity {
 }
 
 const LESSON_SIZE = 5
+const OLDER_READER_WORD_LESSON_SIZE = 10
 const ONE_DAY_MS = 24 * 60 * 60 * 1000
 const SARAH_FINAL_REVIEW_SIZE = 6
 const SARAH_LESSON_ADVANCE = 2
-const OLDER_READER_ACTIVITY_COUNT = 15
-const OLDER_READER_PEEK_COUNT = 5
+const OLDER_READER_ACTIVITY_COUNT = 14
+const OLDER_READER_PEEK_COUNT = OLDER_READER_WORD_LESSON_SIZE
 const SARAH_REVIEW_VARIANTS: SarahQuestionKind[] = [
   'wordToBeginningSound',
   'soundToWord',
@@ -785,10 +787,13 @@ function App() {
       return
     }
     const orderedCards = orderCardsForMode(activeDeck, mode)
-    const lessonStart = lessonStartForIndex(cardIndex, orderedCards.length)
-    const lessonCards = orderedCards.slice(lessonStart, lessonStart + LESSON_SIZE)
+    const lessonSize = activeDeck.profile === 'anna' && activeDeck.type === 'reading-words' && mode === 'activeRecall'
+      ? OLDER_READER_WORD_LESSON_SIZE
+      : LESSON_SIZE
+    const lessonStart = lessonStartForIndex(cardIndex, orderedCards.length, lessonSize)
+    const lessonCards = orderedCards.slice(lessonStart, lessonStart + lessonSize)
     if (mode === 'listeningMode') markCardsListened(activeDeck.id, lessonCards)
-    setCardIndex((lessonStart + LESSON_SIZE) % orderedCards.length)
+    setCardIndex((lessonStart + lessonSize) % orderedCards.length)
     setPhase(mode === 'listeningMode' ? 'learn' : 'question')
     setSarahActivityIndex(0)
     setMenuOpen(false)
@@ -822,7 +827,13 @@ function App() {
     setCardIndex((index) => {
       const lessonStart = activeDeck?.profile === 'sarah' && activeDeck?.type === 'letters'
         ? sarahLetterLessonStartForIndex(index, activeDeck.cards.length)
-        : lessonStartForIndex(index, activeDeck?.cards.length ?? 0)
+        : lessonStartForIndex(
+            index,
+            activeDeck?.cards.length ?? 0,
+            activeDeck?.profile === 'anna' && activeDeck?.type === 'reading-words' && mode === 'activeRecall'
+              ? OLDER_READER_WORD_LESSON_SIZE
+              : LESSON_SIZE,
+          )
       return lessonStart
     })
     setPhase('learn')
@@ -1686,12 +1697,18 @@ function LearningScreen({
     ? sarahLetterLessonStartForIndex(cardIndex, lessonDeckCards.length)
     : isOlderReaderPhonemes
     ? fixedLessonStartForIndex(cardIndex, lessonDeckCards.length)
-    : lessonStartForIndex(cardIndex, lessonDeckCards.length)
+    : lessonStartForIndex(
+        cardIndex,
+        lessonDeckCards.length,
+        isOlderReaderWords && mode === 'activeRecall' ? OLDER_READER_WORD_LESSON_SIZE : LESSON_SIZE,
+      )
   const lessonLength = isSarahLetters
     ? sarahLetterLessonSizeForStart(lessonStart, lessonDeckCards.length)
     : isOlderReaderPhonemes
     ? Math.min(LESSON_SIZE, lessonDeckCards.length - lessonStart)
-    : LESSON_SIZE
+    : isOlderReaderWords && mode === 'activeRecall'
+      ? Math.min(OLDER_READER_WORD_LESSON_SIZE, lessonDeckCards.length - lessonStart)
+      : LESSON_SIZE
   const lessonCards = lessonDeckCards.slice(lessonStart, lessonStart + lessonLength)
   const lessonIndex = cardIndex - lessonStart
   const sarahActivities = useMemo(
@@ -1721,7 +1738,11 @@ function LearningScreen({
     ? sarahLetterLessonNumberForIndex(cardIndex, lessonDeckCards.length)
     : isOlderReaderPhonemes
     ? fixedLessonNumberForIndex(cardIndex, lessonDeckCards.length)
-    : lessonNumberForIndex(cardIndex, lessonDeckCards.length)
+    : lessonNumberForIndex(
+        cardIndex,
+        lessonDeckCards.length,
+        isOlderReaderWords && mode === 'activeRecall' ? OLDER_READER_WORD_LESSON_SIZE : LESSON_SIZE,
+      )
   const completePhonemeAndDone = () => {
     if (isOlderReaderPhonemes) completeOlderReaderPhonemeLesson(activeDeck, lessonCards)
     onDone()
@@ -2547,7 +2568,7 @@ function OlderReaderLesson({
       <section className="focus-lesson older-reader-lesson">
         <div className="focus-main">
           <div className="peek-phase">
-            <span className="stage-label">Lesson {lessonNumber} - Let's look</span>
+            <span className="stage-label">Lesson {lessonNumber} - Word {activityIndex + 1} of {lessonCards.length}</span>
             <div className="peek-card">
               <div className="peek-visual">
                 <Picture deck={deck} card={activity.card} />
@@ -3587,11 +3608,10 @@ function buildOlderReaderActivities(lessonCards: LearningCard[]): OlderReaderAct
     'audioToWord',
     'wordToPicture',
     'startsWithSound',
-    'audioToWord',
+    'pictureToWord',
+    'wordToPicture',
     'audioToWord',
     'pictureToWord',
-    'audioToWord',
-    'wordToPicture',
     'audioToWord',
     'audioToWord',
     'audioToWord',
@@ -3945,16 +3965,16 @@ function cardProgressKey(deckId: string, cardId: string): string {
   return `chunky-reader:card-progress:${deckId}:${cardId}`
 }
 
-function lessonStartForIndex(index: number, totalCards: number): number {
-  const lastFullStart = Math.max(0, totalCards - LESSON_SIZE)
-  return Math.min(Math.floor(index / LESSON_SIZE) * LESSON_SIZE, lastFullStart)
+function lessonStartForIndex(index: number, totalCards: number, lessonSize = LESSON_SIZE): number {
+  const lastFullStart = Math.max(0, totalCards - lessonSize)
+  return Math.min(Math.floor(index / lessonSize) * lessonSize, lastFullStart)
 }
 
-function lessonNumberForIndex(index: number, totalCards: number): number {
-  const totalLessons = Math.max(1, Math.ceil(totalCards / LESSON_SIZE))
-  const lastFullStart = Math.max(0, totalCards - LESSON_SIZE)
-  if (index >= lastFullStart && index % LESSON_SIZE !== 0) return totalLessons
-  return Math.min(totalLessons, Math.floor(index / LESSON_SIZE) + 1)
+function lessonNumberForIndex(index: number, totalCards: number, lessonSize = LESSON_SIZE): number {
+  const totalLessons = Math.max(1, Math.ceil(totalCards / lessonSize))
+  const lastFullStart = Math.max(0, totalCards - lessonSize)
+  if (index >= lastFullStart && index % lessonSize !== 0) return totalLessons
+  return Math.min(totalLessons, Math.floor(index / lessonSize) + 1)
 }
 
 function fixedLessonStartForIndex(index: number, totalCards: number): number {
