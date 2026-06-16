@@ -233,6 +233,7 @@ function WordCollection({
 }) {
   const { mastered, growing } = getWordCollectionData(decks)
   const [tappedId, setTappedId] = useState('')
+  const allWords = [...mastered.map(m => ({ ...m, status: 'mastered' as const })), ...growing.map(g => ({ ...g, firstTry: false, status: 'growing' as const }))]
 
   function handleTap(deck: LearningDeck, card: LearningCard) {
     setTappedId(card.id)
@@ -241,7 +242,7 @@ function WordCollection({
   }
 
   function hearAll() {
-    const allCards = mastered.map(m => ({ deck: m.deck, card: m.card }))
+    const allCards = allWords.map(m => ({ deck: m.deck, card: m.card }))
     let index = 0
     function playNext() {
       if (index >= allCards.length) return
@@ -261,65 +262,37 @@ function WordCollection({
         <button type="button" className="back-button squish" onClick={onBack}>Back</button>
         <div>
           <h1>My Words</h1>
-          <p className="word-collection-count">{mastered.length} words you know!</p>
+          <p className="word-collection-count">{allWords.length} words!</p>
         </div>
-        {mastered.length > 0 && (
+        {allWords.length > 0 && (
           <button type="button" className="hear-all-button squish" onClick={hearAll}>
             <PlayIcon /> Hear All
           </button>
         )}
       </div>
-      {mastered.length === 0 && growing.length === 0 ? (
+      {allWords.length === 0 ? (
         <div className="word-collection-empty">
           <Mascot mood="curious" size="small" />
           <p>Complete some lessons and your words will appear here!</p>
         </div>
       ) : (
-        <>
-          {mastered.length > 0 && (
-            <div className="word-collection-section">
-              <h2>Words You Know</h2>
-              <div className="word-collection-grid">
-                {mastered.map(({ deck, card, firstTry }) => (
-                  <button
-                    key={card.id}
-                    type="button"
-                    className={`word-card-mini squish ${tappedId === card.id ? 'tapped' : ''} ${firstTry ? 'first-try' : 'needed-help'}`}
-                    onClick={() => handleTap(deck, card)}
-                  >
-                    <div className="word-card-mini-picture">
-                      <Picture deck={deck} card={card} />
-                    </div>
-                    <span className="word-card-mini-text">{card.word || card.displayText}</span>
-                    <span className="word-card-mini-icon" aria-hidden="true">
-                      {firstTry ? '\u{1F331}' : '\u{1F4A7}'}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-          {growing.length > 0 && (
-            <div className="word-collection-section growing-section">
-              <h2>Still Growing</h2>
-              <div className="word-collection-grid">
-                {growing.map(({ deck, card }) => (
-                  <button
-                    key={card.id}
-                    type="button"
-                    className={`word-card-mini unmastered squish ${tappedId === card.id ? 'tapped' : ''}`}
-                    onClick={() => handleTap(deck, card)}
-                  >
-                    <div className="word-card-mini-picture">
-                      <Picture deck={deck} card={card} />
-                    </div>
-                    <span className="word-card-mini-text">{card.word || card.displayText}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-        </>
+        <div className="word-collection-section">
+          <div className="word-collection-grid">
+            {allWords.map(({ deck, card }) => (
+              <button
+                key={card.id}
+                type="button"
+                className={`word-card-mini squish ${tappedId === card.id ? 'tapped' : ''}`}
+                onClick={() => handleTap(deck, card)}
+              >
+                <div className="word-card-mini-picture">
+                  <Picture deck={deck} card={card} />
+                </div>
+                <span className="word-card-mini-text">{card.word || card.displayText}</span>
+              </button>
+            ))}
+          </div>
+        </div>
       )}
     </section>
   )
@@ -1256,6 +1229,7 @@ function GrowingReaderHome({
   const pageCount = stories.reduce((sum, story) => sum + story.pages.length, 0)
   const phonemeCount = decks.filter(d => d.type === 'phonemes').reduce((sum, deck) => sum + deck.cards.length, 0)
   const masteredCount = getMasteredWordCount(decks)
+  const totalWordCount = decks.filter(d => d.type === 'reading-words').reduce((sum, deck) => sum + deck.cards.length, 0)
 
   return (
     <section className="growing-reader-home">
@@ -1272,7 +1246,7 @@ function GrowingReaderHome({
         <button type="button" className="reader-choice collection-choice" onClick={onCollection}>
           <span className="choice-sticker" aria-hidden="true">Star</span>
           <strong>My Words</strong>
-          <small>{masteredCount} words you know!</small>
+          <small>{totalWordCount} words to explore!</small>
         </button>
         <button type="button" className="reader-choice phoneme-choice" onClick={onPhonemes}>
           <span className="choice-sticker" aria-hidden="true">Sound</span>
@@ -2134,7 +2108,6 @@ function SarahLetterLesson({
       return
     }
     setWrongChoice(answer)
-    playSfx('wrong')
     if (tries === 0) {
       setTries(1)
       setStatus('try-again')
@@ -2181,7 +2154,7 @@ function SarahLetterLesson({
 
   const isIntro = activity.kind === 'intro'
   const mood: MascotMood =
-    status === 'correct' ? 'happy' : status === 'try-again' || status === 'revealed' ? 'sad' : isIntro ? 'reading' : 'curious'
+    status === 'correct' ? 'happy' : status === 'try-again' || status === 'revealed' ? 'curious' : isIntro ? 'reading' : 'curious'
   const feedback = getSarahFeedback(status, activity)
 
   return (
@@ -2590,39 +2563,22 @@ function OlderReaderLesson({
   }
 
   if (!activity || showCompletion) {
-    const firstTryCards = lessonCards.filter(c => firstTryWordsRef.current.has(c.id))
-    const neededHelpCards = lessonCards.filter(c => neededHelpWordsRef.current.has(c.id))
-    const hasGrowthData = firstTryCards.length > 0 || neededHelpCards.length > 0
     return (
       <section className="focus-lesson older-reader-lesson">
         <div className="focus-main">
           <div className="focus-intro completion-card">
             <div className="focus-prompt">
               <span className="stage-label">Lesson {lessonNumber}</span>
-              <h2>These words are growing!</h2>
+              <h2>Great work with these words!</h2>
             </div>
-            {hasGrowthData ? (
-              <div className="word-growth-strip">
-                {firstTryCards.map((card) => (
-                  <div key={card.id} className="word-growth-card blooming">
-                    <span className="growth-icon" aria-hidden="true">🌱</span>
-                    <span className="growth-word">{card.word || card.displayText}</span>
-                  </div>
-                ))}
-                {neededHelpCards.map((card) => (
-                  <div key={card.id} className="word-growth-card growing">
-                    <span className="growth-icon" aria-hidden="true">💧</span>
-                    <span className="growth-word">{card.word || card.displayText}</span>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="lesson-word-strip">
-                {lessonCards.map((card) => (
-                  <span key={card.id}>{card.word || card.displayText}</span>
-                ))}
-              </div>
-            )}
+            <div className="word-growth-strip">
+              {lessonCards.map((card) => (
+                <div key={card.id} className="word-growth-card blooming">
+                  <span className="growth-icon" aria-hidden="true">⭐</span>
+                  <span className="growth-word">{card.word || card.displayText}</span>
+                </div>
+              ))}
+            </div>
             <div className="focus-actions">
               <button type="button" className="choice-action" onClick={promptNarration.replay}>
                 <PlayIcon />
@@ -2652,7 +2608,7 @@ function OlderReaderLesson({
 
   const showPromptPicture = ['pictureToWord', 'startsWithSound', 'review'].includes(activity.kind)
   const showOptionPictures = activity.kind === 'wordToPicture'
-  const mood: MascotMood = gentleReveal ? 'curious' : selected ? (correct ? 'happy' : 'sad') : activity.kind === 'audioToWord' ? 'reading' : 'curious'
+  const mood: MascotMood = gentleReveal ? 'curious' : selected ? (correct ? 'happy' : 'curious') : activity.kind === 'audioToWord' ? 'reading' : 'curious'
 
   return (
     <section className="focus-lesson older-reader-lesson">
@@ -2937,8 +2893,8 @@ function FlashcardMode({
 
 const SWIPE_THRESHOLD = 40
 const SWIPE_LABELS: Record<string, { text: string; color: string }> = {
-  up: { text: 'Again', color: '#c62828' },
-  left: { text: 'Hard', color: '#e65100' },
+  up: { text: 'Try More', color: '#7C4DFF' },
+  left: { text: 'Almost', color: '#e65100' },
   right: { text: 'Good', color: '#2e7d32' },
   down: { text: 'Easy', color: '#1565c0' },
 }
@@ -3146,7 +3102,7 @@ function FsrsFlashcardMode({
   }
 
   const cardState = cardStates.get(currentCard.id)
-  const stateLabel = !cardState ? 'New' : cardState.state === 'learning' ? 'Learning' : cardState.state === 'relearning' ? 'Relearning' : 'Review'
+  const stateLabel = !cardState ? 'New' : cardState.state === 'learning' ? 'Learning' : cardState.state === 'relearning' ? 'Practicing' : 'Review'
   const swipeLabel = swipeDir ? SWIPE_LABELS[swipeDir] : null
 
   return (
@@ -3221,7 +3177,7 @@ function FsrsFlashcardMode({
         <div className="fsrs-rating-buttons">
           <button type="button" className={`fsrs-btn fsrs-btn-again ${rating === 1 ? 'selected' : ''}`} onClick={() => handleRate(1)} disabled={rating !== null}>
             <kbd>1</kbd>
-            <span className="btn-label">Again</span>
+            <span className="btn-label">Try More</span>
             <span className="btn-interval">&lt;1m</span>
           </button>
           <button type="button" className={`fsrs-btn fsrs-btn-hard ${rating === 2 ? 'selected' : ''}`} onClick={() => handleRate(2)} disabled={rating !== null}>
@@ -3247,7 +3203,7 @@ function FsrsFlashcardMode({
           <button type="button" className="fsrs-btn fsrs-btn-show" onClick={handleFlip}>
             Show Answer
           </button>
-          <p className="fsrs-swipe-hint">After flipping: swipe ↑ Again ← Hard → Good ↓ Easy</p>
+          <p className="fsrs-swipe-hint">After flipping: swipe ↑ Try More ← Almost → Good ↓ Easy</p>
         </div>
       )}
     </section>
@@ -3274,7 +3230,7 @@ function ChoiceMode({
   useAutoplayCard(deck, card, `question:${deck.id}:${card.id}`)
   const options = useMemo(() => buildOptions(lessonCards, card), [card, lessonCards])
   const correct = selected === card.id
-  const mood: MascotMood = gentleReveal ? 'curious' : selected ? (correct ? 'happy' : 'sad') : 'curious'
+  const mood: MascotMood = gentleReveal ? 'curious' : selected ? (correct ? 'happy' : 'curious') : 'curious'
 
   function choose(cardId: string) {
     if (gentleReveal) return
@@ -4306,7 +4262,6 @@ function OlderReaderPhonemeLesson({
       }, 1500)
     } else {
       setStatus('try-again')
-      playSfx('wrong')
     }
   }
 
@@ -4390,7 +4345,7 @@ function OlderReaderPhonemeLesson({
           {renderChoices()}
         </div>
       )}
-      <Mascot mood={status === 'correct' ? 'happy' : status === 'try-again' ? 'sad' : 'curious'} />
+      <Mascot mood={status === 'correct' ? 'happy' : status === 'try-again' ? 'curious' : 'curious'} />
     </div>
   )
 }
