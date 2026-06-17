@@ -4,21 +4,44 @@ export interface AppSettings {
   autoplayAudio: boolean
   darkMode: boolean
   showProgress: boolean
+  controllerKeys: ControllerKeyMap
 }
 
 const SETTINGS_KEY = 'chunkyLearnerSettings.v1'
+
+export type ControllerChoice = 'A' | 'B' | 'C' | 'D' | 'E'
+export type ControllerKeyMap = Record<ControllerChoice, string>
+
+export const controllerChoices: ControllerChoice[] = ['A', 'B', 'C', 'D', 'E']
+
+export const defaultControllerKeys: ControllerKeyMap = {
+  A: '3',
+  B: '4',
+  C: '1',
+  D: '2',
+  E: '5',
+}
 
 export const defaultAppSettings: AppSettings = {
   autoplayAudio: true,
   darkMode: false,
   showProgress: true,
+  controllerKeys: defaultControllerKeys,
 }
 
 export function loadAppSettings(): AppSettings {
   try {
     const raw = localStorage.getItem(SETTINGS_KEY)
     if (!raw) return defaultAppSettings
-    return { ...defaultAppSettings, ...JSON.parse(raw) }
+    const parsed = JSON.parse(raw) as Partial<AppSettings>
+    return {
+      ...defaultAppSettings,
+      ...parsed,
+      controllerKeys: {
+        ...defaultControllerKeys,
+        ...(parsed.controllerKeys ?? {}),
+      },
+    }
   } catch {
     return defaultAppSettings
   }

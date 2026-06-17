@@ -3,6 +3,7 @@ import { playAudioUrl } from './audioClipPack';
 import { recordLocalProgressChange } from './cloudProgressSync';
 import type { HundredLesson, HundredLessonChunk } from './types';
 import { markHundredLessonComplete, updateStreakOnLesson, type CompletionRewardResult } from './progress';
+import { loadAppSettings, type ControllerChoice } from './appSettings';
 
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious';
 type JourneyStepHandler = () => void;
@@ -27,6 +28,11 @@ function hundredAsset(path: string) {
 function playLessonAudio(path?: string) {
   const url = lessonAsset(path);
   if (url) void playAudioUrl(url);
+}
+
+function isChoiceKey(event: KeyboardEvent, choice: ControllerChoice): boolean {
+  const key = loadAppSettings().controllerKeys[choice];
+  return Boolean(key) && event.key.toLowerCase() === key.toLowerCase();
 }
 
 function Mascot({ mood = 'reading' }: { mood?: MascotMood }) {
@@ -586,7 +592,7 @@ export function InteractiveHundredLessonScreen({
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === '4') {
+      if (isChoiceKey(event, 'B')) {
         event.preventDefault();
         if (activityIndex > 0) {
           setJourneyStep(0);
