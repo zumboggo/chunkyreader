@@ -4601,6 +4601,56 @@ body.lesson-active {
   accent-color: var(--pink-pop);
 }
 
+.controller-key-settings {
+  display: grid;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.controller-key-settings > div:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.controller-key-settings strong {
+  color: var(--ink);
+}
+
+.controller-key-settings small {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.controller-key-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.controller-key-grid label {
+  display: grid;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 900;
+  color: var(--muted);
+}
+
+.controller-key-grid input {
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 900;
+  text-align: center;
+}
+
 .cloud-sync-panel {
   display: grid;
   gap: var(--space-sm);

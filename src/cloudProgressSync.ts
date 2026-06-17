@@ -1,5 +1,5 @@
 import { createClient, type Session, type User } from '@supabase/supabase-js'
-import type { AppSettings } from './appSettings'
+import { defaultAppSettings, type AppSettings } from './appSettings'
 import { normalizeRewardProgress } from './rewards'
 import type { LearnerProgress, SectionId } from './types'
 
@@ -33,9 +33,7 @@ const PREFIX_SYNC_KEYS = [
 ]
 
 const DEFAULT_APP_SETTINGS: AppSettings = {
-  autoplayAudio: true,
-  darkMode: false,
-  showProgress: true,
+  ...defaultAppSettings,
 }
 
 export type CloudSyncStatus =

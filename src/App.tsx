@@ -18,7 +18,7 @@ import { playNarrationClip } from './audioClipPack'
 import { SectionPicker, PandaCloset, type ContinueLearningState } from './SectionPicker'
 import type { SectionId } from './types'
 import { markLessonComplete, markStoryComplete, resetProgress, updateStreakOnLesson, type CompletionRewardResult } from './progress'
-import { applyAppSettings, loadAppSettings, saveAppSettings, type AppSettings } from './appSettings'
+import { applyAppSettings, controllerChoices, loadAppSettings, saveAppSettings, type AppSettings, type ControllerChoice } from './appSettings'
 import {
   getCloudAuthState,
   isSupabaseConfigured,
@@ -56,7 +56,6 @@ type OlderReaderQuestionKind =
   | 'startsWithSound'
   | 'wordFamily'
   | 'review'
-  | 'peek'
 
 type OlderReaderPhonemeActivityKind =
   | 'intro'
@@ -158,7 +157,12 @@ function shouldIgnoreControllerKey(event: KeyboardEvent) {
 }
 
 function choiceKeyLabel(index: number) {
-  return index === 0 ? 'A' : index === 1 ? 'B' : String(index + 1)
+  return controllerChoices[index] ?? String(index + 1)
+}
+
+function isChoiceKey(event: KeyboardEvent, choice: ControllerChoice): boolean {
+  const key = loadAppSettings().controllerKeys[choice]
+  return Boolean(key) && event.key.toLowerCase() === key.toLowerCase()
 }
 
 function syncStatusLabel(status: CloudSyncStatus): string {
@@ -760,7 +764,7 @@ function App() {
       return
     }
     const orderedCards = orderCardsForMode(activeDeck, mode)
-    const lessonSize = activeDeck.profile === 'anna' && activeDeck.type === 'reading-words' && mode === 'activeRecall'
+    const lessonSize = activeDeck.profile === 'anna' && activeDeck.type === 'reading-words'
       ? OLDER_READER_WORD_LESSON_SIZE
       : LESSON_SIZE
     const lessonStart = lessonStartForIndex(cardIndex, orderedCards.length, lessonSize)
@@ -803,7 +807,7 @@ function App() {
         : lessonStartForIndex(
             index,
             activeDeck?.cards.length ?? 0,
-            activeDeck?.profile === 'anna' && activeDeck?.type === 'reading-words' && mode === 'activeRecall'
+            activeDeck?.profile === 'anna' && activeDeck?.type === 'reading-words'
               ? OLDER_READER_WORD_LESSON_SIZE
               : LESSON_SIZE,
           )
@@ -1017,6 +1021,16 @@ function ParentSettingsModal({
     onClose()
   }
 
+  function updateControllerKey(choice: ControllerChoice, value: string) {
+    const key = value.trim()
+    onChange({
+      controllerKeys: {
+        ...settings.controllerKeys,
+        [choice]: key,
+      },
+    })
+  }
+
   return (
     <div className="modal-overlay">
       <div className="modal-content parent-settings">
@@ -1057,6 +1071,25 @@ function ParentSettingsModal({
               onChange={(event) => onChange({ showProgress: event.currentTarget.checked })}
             />
           </label>
+          <section className="controller-key-settings" aria-label="Controller choice keys">
+            <div>
+              <strong>Controller keys</strong>
+              <small>Use five buttons for choices, flashcards, and simple navigation.</small>
+            </div>
+            <div className="controller-key-grid">
+              {controllerChoices.map((choice) => (
+                <label key={choice}>
+                  <span>Choice {choice}</span>
+                  <input
+                    type="text"
+                    value={settings.controllerKeys[choice]}
+                    maxLength={12}
+                    onChange={(event) => updateControllerKey(choice, event.currentTarget.value)}
+                  />
+                </label>
+              ))}
+            </div>
+          </section>
         </div>
         <section className="cloud-sync-panel">
           <div className="cloud-sync-title-row">
@@ -1503,11 +1536,11 @@ function StoryReader({
 
     function handleKeyDown(event: KeyboardEvent) {
       if (shouldIgnoreControllerKey(event)) return
-      if (event.key === '3') {
+      if (isChoiceKey(event, 'A')) {
         event.preventDefault()
         nextPage()
       }
-      if (event.key === '4') {
+      if (isChoiceKey(event, 'B')) {
         event.preventDefault()
         previousPage()
       }
@@ -1674,13 +1707,13 @@ function LearningScreen({
     : lessonStartForIndex(
         cardIndex,
         lessonDeckCards.length,
-        isOlderReaderWords && mode === 'activeRecall' ? OLDER_READER_WORD_LESSON_SIZE : LESSON_SIZE,
+        isOlderReaderWords ? OLDER_READER_WORD_LESSON_SIZE : LESSON_SIZE,
       )
   const lessonLength = isSarahLetters
     ? sarahLetterLessonSizeForStart(lessonStart, lessonDeckCards.length)
     : isOlderReaderPhonemes
     ? Math.min(LESSON_SIZE, lessonDeckCards.length - lessonStart)
-    : isOlderReaderWords && mode === 'activeRecall'
+    : isOlderReaderWords
       ? Math.min(OLDER_READER_WORD_LESSON_SIZE, lessonDeckCards.length - lessonStart)
       : LESSON_SIZE
   const lessonCards = lessonDeckCards.slice(lessonStart, lessonStart + lessonLength)
@@ -1715,7 +1748,7 @@ function LearningScreen({
     : lessonNumberForIndex(
         cardIndex,
         lessonDeckCards.length,
-        isOlderReaderWords && mode === 'activeRecall' ? OLDER_READER_WORD_LESSON_SIZE : LESSON_SIZE,
+        isOlderReaderWords ? OLDER_READER_WORD_LESSON_SIZE : LESSON_SIZE,
       )
   const completePhonemeAndDone = () => {
     if (isOlderReaderPhonemes) completeOlderReaderPhonemeLesson(activeDeck, lessonCards)
@@ -2271,11 +2304,11 @@ function SarahQuestionView({
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (shouldIgnoreControllerKey(event) || disabled) return
-      if (event.key === '3') {
+      if (isChoiceKey(event, 'A')) {
         event.preventDefault()
         chooseByIndex(0)
       }
-      if (event.key === '4') {
+      if (isChoiceKey(event, 'B')) {
         event.preventDefault()
         chooseByIndex(1)
       }
@@ -2508,12 +2541,12 @@ function OlderReaderLesson({
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (shouldIgnoreControllerKey(event)) return
-      if (event.key === '3') {
+      if (isChoiceKey(event, 'A')) {
         event.preventDefault()
         if (showCompletion) onNextLesson()
         else if (!isPeek) chooseByIndex(0)
       }
-      if (event.key === '4') {
+      if (isChoiceKey(event, 'B')) {
         event.preventDefault()
         if (showCompletion) onDone()
         else if (!isPeek) chooseByIndex(1)
@@ -2543,9 +2576,6 @@ function OlderReaderLesson({
           <div className="peek-phase">
             <span className="stage-label">Lesson {lessonNumber} - Word {activityIndex + 1} of {lessonCards.length}</span>
             <div className="peek-card">
-              <div className="peek-visual">
-                <Picture deck={deck} card={activity.card} />
-              </div>
               <div className="peek-word">{optionLabel(activity.card)}</div>
             </div>
             <div className="peek-hint">Listen and look</div>
@@ -2845,6 +2875,22 @@ function FlashcardMode({
     window.setTimeout(onNext, 520)
   }
 
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (shouldIgnoreControllerKey(event) || choice) return
+      if (isChoiceKey(event, 'A')) {
+        event.preventDefault()
+        choose('again')
+      } else if (isChoiceKey(event, 'B')) {
+        event.preventDefault()
+        choose('good')
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  })
+
   return (
     <section className="focus-lesson">
       <div className="focus-main">
@@ -2854,7 +2900,7 @@ function FlashcardMode({
             <h2>How did it feel?</h2>
           </div>
           <div className="flashcard-card">
-            {card.type === 'word' ? <Picture deck={deck} card={card} /> : <div className="sentence-card"><p>{card.displayText}</p></div>}
+            {deck.type === 'reading-words' ? null : card.type === 'word' ? <Picture deck={deck} card={card} /> : <div className="sentence-card"><p>{card.displayText}</p></div>}
             <div className="word-display">{optionLabel(card)}</div>
             {card.meaning && card.meaning !== optionLabel(card) && <strong className="flashcard-meaning">{card.meaning}</strong>}
           </div>
@@ -2910,8 +2956,11 @@ function stableHash(str: string): number {
 
 type FrontMode = 'text' | 'audio' | 'picture'
 
-function getFrontMode(card: LearningCard | undefined, index: number): FrontMode {
+function getFrontMode(deck: LearningDeck, card: LearningCard | undefined, index: number): FrontMode {
   if (!card || !card.image) return 'text'
+  if (deck.type === 'reading-words') {
+    return stableHash(`${card.id}:${index}`) % 3 === 0 ? 'audio' : 'text'
+  }
   const bucket = stableHash(`${card.id}:${index}`) % 10
   if (bucket < 3) return 'audio'
   if (bucket < 5) return 'picture'
@@ -2967,9 +3016,13 @@ function FsrsFlashcardMode({
     return [...dueCards, ...newCards]
   }, [deck.cards, cardStates])
 
-  const currentCard = sortedCards[currentCardIndex]
-  const isSessionComplete = currentCardIndex >= sortedCards.length
-  const frontMode = useMemo(() => getFrontMode(currentCard, currentCardIndex), [currentCard, currentCardIndex])
+  const sessionCards = useMemo(
+    () => sortedCards.slice(0, deck.type === 'reading-words' ? OLDER_READER_WORD_LESSON_SIZE : sortedCards.length),
+    [deck.type, sortedCards],
+  )
+  const currentCard = sessionCards[currentCardIndex]
+  const isSessionComplete = currentCardIndex >= sessionCards.length
+  const frontMode = useMemo(() => getFrontMode(deck, currentCard, currentCardIndex), [deck, currentCard, currentCardIndex])
 
   const queueCounts = useMemo(
     () => getQueueCounts(sortedCards, cardStates, Date.now()),
@@ -3016,14 +3069,15 @@ function FsrsFlashcardMode({
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
+      if (shouldIgnoreControllerKey(e)) return
       if (isSessionComplete || !currentCard) return
       if (!isFlipped) {
-        if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); handleFlip() }
+        if (isChoiceKey(e, 'A') || e.key === ' ' || e.key === 'Enter') { e.preventDefault(); handleFlip() }
       } else if (!rating) {
-        if (e.key === '1') handleRate(1)
-        else if (e.key === '2') handleRate(2)
-        else if (e.key === '3') handleRate(3)
-        else if (e.key === '4') handleRate(4)
+        if (isChoiceKey(e, 'A')) { e.preventDefault(); handleRate(1) }
+        else if (isChoiceKey(e, 'B')) { e.preventDefault(); handleRate(2) }
+        else if (isChoiceKey(e, 'C')) { e.preventDefault(); handleRate(3) }
+        else if (isChoiceKey(e, 'D')) { e.preventDefault(); handleRate(4) }
       }
     }
     window.addEventListener('keydown', handleKeyDown)
@@ -3115,7 +3169,7 @@ function FsrsFlashcardMode({
           <span className="fsrs-queue-count queue-review"><strong>{queueCounts.review}</strong>Review</span>
           <span className="fsrs-queue-count queue-done"><strong>{queueCounts.done}</strong>Done</span>
         </div>
-        <span className="fsrs-progress">{currentCardIndex + 1}/{sortedCards.length}</span>
+        <span className="fsrs-progress">{currentCardIndex + 1}/{sessionCards.length}</span>
       </div>
 
       <div
@@ -3176,22 +3230,22 @@ function FsrsFlashcardMode({
       {isFlipped && (
         <div className="fsrs-rating-buttons">
           <button type="button" className={`fsrs-btn fsrs-btn-again ${rating === 1 ? 'selected' : ''}`} onClick={() => handleRate(1)} disabled={rating !== null}>
-            <kbd>1</kbd>
+            <kbd>A</kbd>
             <span className="btn-label">Try More</span>
             <span className="btn-interval">&lt;1m</span>
           </button>
           <button type="button" className={`fsrs-btn fsrs-btn-hard ${rating === 2 ? 'selected' : ''}`} onClick={() => handleRate(2)} disabled={rating !== null}>
-            <kbd>2</kbd>
+            <kbd>B</kbd>
             <span className="btn-label">Hard</span>
             <span className="btn-interval">6m</span>
           </button>
           <button type="button" className={`fsrs-btn fsrs-btn-good ${rating === 3 ? 'selected' : ''}`} onClick={() => handleRate(3)} disabled={rating !== null}>
-            <kbd>3</kbd>
+            <kbd>C</kbd>
             <span className="btn-label">Good</span>
             <span className="btn-interval">10m</span>
           </button>
           <button type="button" className={`fsrs-btn fsrs-btn-easy ${rating === 4 ? 'selected' : ''}`} onClick={() => handleRate(4)} disabled={rating !== null}>
-            <kbd>4</kbd>
+            <kbd>D</kbd>
             <span className="btn-label">Easy</span>
             <span className="btn-interval">4d</span>
           </button>
@@ -3201,6 +3255,7 @@ function FsrsFlashcardMode({
       {!isFlipped && (
         <div className="fsrs-show-answer">
           <button type="button" className="fsrs-btn fsrs-btn-show" onClick={handleFlip}>
+            <kbd>A</kbd>
             Show Answer
           </button>
           <p className="fsrs-swipe-hint">After flipping: swipe ↑ Try More ← Almost → Good ↓ Easy</p>
@@ -3246,6 +3301,28 @@ function ChoiceMode({
       window.setTimeout(onNext, 1800)
     }
   }
+
+  const chooseByIndex = useCallback((index: number) => {
+    if (gentleReveal || selected) return
+    const option = options[index]
+    if (option) choose(option.id)
+  }, [gentleReveal, options, selected])
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (shouldIgnoreControllerKey(event)) return
+      if (isChoiceKey(event, 'A')) {
+        event.preventDefault()
+        chooseByIndex(0)
+      } else if (isChoiceKey(event, 'B')) {
+        event.preventDefault()
+        chooseByIndex(1)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [chooseByIndex])
 
   return (
     <section className="focus-lesson">
@@ -3560,14 +3637,14 @@ function buildOlderReaderActivities(lessonCards: LearningCard[]): OlderReaderAct
   }))
 
   const quizKinds: OlderReaderQuestionKind[] = [
-    'pictureToWord',
     'audioToWord',
-    'wordToPicture',
     'startsWithSound',
-    'pictureToWord',
-    'wordToPicture',
+    'wordFamily',
     'audioToWord',
-    'pictureToWord',
+    'startsWithSound',
+    'wordFamily',
+    'audioToWord',
+    'startsWithSound',
     'audioToWord',
     'audioToWord',
     'audioToWord',
