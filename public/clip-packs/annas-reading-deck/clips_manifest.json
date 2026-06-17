@@ -1,6 +1,6 @@
 {
   "packName": "Anna's Reading Deck",
-  "createdAt": "2026-05-22T22:11:06.965Z",
+  "createdAt": "2026-06-17T15:34:40.653Z",
   "vocabCsvPath": "vocab.csv",
   "sentencesCsvPath": "sentences.csv",
   "clips": [
@@ -101,32 +101,64 @@
       "voice": "en-US-JennyNeural"
     },
     {
-      "id": "word:at",
+      "id": "word:a",
       "type": "word",
-      "text": "at",
+      "text": "a",
       "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/at.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/at.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/at.ssml",
-      "label": "at",
+      "path": "audio/words/anne-soft-female-v2/a.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/a.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/a.ssml",
+      "label": "a",
       "linkedWordIds": [
-        "word:at"
+        "word:a"
       ],
       "provider": "azure-tts",
       "voice": "en-US-JennyNeural",
       "voiceVersion": "anne-soft-female-v2"
     },
     {
-      "id": "meaning:at",
+      "id": "meaning:a",
       "type": "meaning",
-      "text": "at",
+      "text": "a",
       "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/at.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/at.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/at.ssml",
-      "label": "at",
+      "path": "audio/words/anne-soft-female-v2/a.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/a.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/a.ssml",
+      "label": "a",
       "linkedWordIds": [
-        "word:at"
+        "word:a"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:am",
+      "type": "word",
+      "text": "am",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/am.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/am.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/am.ssml",
+      "label": "am",
+      "linkedWordIds": [
+        "word:am"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:am",
+      "type": "meaning",
+      "text": "am",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/am.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/am.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/am.ssml",
+      "label": "am",
+      "linkedWordIds": [
+        "word:am"
       ],
       "provider": "azure-tts",
       "voice": "en-US-JennyNeural",
@@ -165,32 +197,1536 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
-      "id": "word:am",
+      "id": "word:anywhere",
       "type": "word",
-      "text": "am",
+      "text": "anywhere",
       "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/am.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/am.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/am.ssml",
-      "label": "am",
+      "path": "audio/words/anne-soft-female-v2/anywhere.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/anywhere.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/anywhere.ssml",
+      "label": "anywhere",
       "linkedWordIds": [
-        "word:am"
+        "word:anywhere"
       ],
       "provider": "azure-tts",
       "voice": "en-US-JennyNeural",
       "voiceVersion": "anne-soft-female-v2"
     },
     {
-      "id": "meaning:am",
+      "id": "meaning:anywhere",
       "type": "meaning",
-      "text": "am",
+      "text": "anywhere",
       "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/am.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/am.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/am.ssml",
-      "label": "am",
+      "path": "audio/words/anne-soft-female-v2/anywhere.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/anywhere.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/anywhere.ssml",
+      "label": "anywhere",
       "linkedWordIds": [
-        "word:am"
+        "word:anywhere"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:are",
+      "type": "word",
+      "text": "are",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/are.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/are.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/are.ssml",
+      "label": "are",
+      "linkedWordIds": [
+        "word:are"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:are",
+      "type": "meaning",
+      "text": "are",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/are.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/are.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/are.ssml",
+      "label": "are",
+      "linkedWordIds": [
+        "word:are"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:be",
+      "type": "word",
+      "text": "be",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/be.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/be.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/be.ssml",
+      "label": "be",
+      "linkedWordIds": [
+        "word:be"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:be",
+      "type": "meaning",
+      "text": "be",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/be.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/be.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/be.ssml",
+      "label": "be",
+      "linkedWordIds": [
+        "word:be"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:boat",
+      "type": "word",
+      "text": "boat",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/boat.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/boat.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/boat.ssml",
+      "label": "boat",
+      "linkedWordIds": [
+        "word:boat"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:boat",
+      "type": "meaning",
+      "text": "boat",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/boat.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/boat.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/boat.ssml",
+      "label": "boat",
+      "linkedWordIds": [
+        "word:boat"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:box",
+      "type": "word",
+      "text": "box",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/box.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/box.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/box.ssml",
+      "label": "box",
+      "linkedWordIds": [
+        "word:box"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:box",
+      "type": "meaning",
+      "text": "box",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/box.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/box.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/box.ssml",
+      "label": "box",
+      "linkedWordIds": [
+        "word:box"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:car",
+      "type": "word",
+      "text": "car",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/car.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/car.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/car.ssml",
+      "label": "car",
+      "linkedWordIds": [
+        "word:car"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:car",
+      "type": "meaning",
+      "text": "car",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/car.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/car.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/car.ssml",
+      "label": "car",
+      "linkedWordIds": [
+        "word:car"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:could",
+      "type": "word",
+      "text": "could",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/could.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/could.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/could.ssml",
+      "label": "could",
+      "linkedWordIds": [
+        "word:could"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:could",
+      "type": "meaning",
+      "text": "could",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/could.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/could.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/could.ssml",
+      "label": "could",
+      "linkedWordIds": [
+        "word:could"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:dark",
+      "type": "word",
+      "text": "dark",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/dark.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/dark.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/dark.ssml",
+      "label": "dark",
+      "linkedWordIds": [
+        "word:dark"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:dark",
+      "type": "meaning",
+      "text": "dark",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/dark.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/dark.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/dark.ssml",
+      "label": "dark",
+      "linkedWordIds": [
+        "word:dark"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:do",
+      "type": "word",
+      "text": "do",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/do.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/do.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/do.ssml",
+      "label": "do",
+      "linkedWordIds": [
+        "word:do"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:do",
+      "type": "meaning",
+      "text": "do",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/do.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/do.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/do.ssml",
+      "label": "do",
+      "linkedWordIds": [
+        "word:do"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:eat",
+      "type": "word",
+      "text": "eat",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/eat.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/eat.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/eat.ssml",
+      "label": "eat",
+      "linkedWordIds": [
+        "word:eat"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:eat",
+      "type": "meaning",
+      "text": "eat",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/eat.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/eat.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/eat.ssml",
+      "label": "eat",
+      "linkedWordIds": [
+        "word:eat"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:eggs",
+      "type": "word",
+      "text": "eggs",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/eggs.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/eggs.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/eggs.ssml",
+      "label": "eggs",
+      "linkedWordIds": [
+        "word:eggs"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:eggs",
+      "type": "meaning",
+      "text": "eggs",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/eggs.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/eggs.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/eggs.ssml",
+      "label": "eggs",
+      "linkedWordIds": [
+        "word:eggs"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:fox",
+      "type": "word",
+      "text": "fox",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/fox.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/fox.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/fox.ssml",
+      "label": "fox",
+      "linkedWordIds": [
+        "word:fox"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:fox",
+      "type": "meaning",
+      "text": "fox",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/fox.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/fox.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/fox.ssml",
+      "label": "fox",
+      "linkedWordIds": [
+        "word:fox"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:goat",
+      "type": "word",
+      "text": "goat",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/goat.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/goat.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/goat.ssml",
+      "label": "goat",
+      "linkedWordIds": [
+        "word:goat"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:goat",
+      "type": "meaning",
+      "text": "goat",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/goat.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/goat.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/goat.ssml",
+      "label": "goat",
+      "linkedWordIds": [
+        "word:goat"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:good",
+      "type": "word",
+      "text": "good",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/good.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/good.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/good.ssml",
+      "label": "good",
+      "linkedWordIds": [
+        "word:good"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:good",
+      "type": "meaning",
+      "text": "good",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/good.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/good.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/good.ssml",
+      "label": "good",
+      "linkedWordIds": [
+        "word:good"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:green",
+      "type": "word",
+      "text": "green",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/green.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/green.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/green.ssml",
+      "label": "green",
+      "linkedWordIds": [
+        "word:green"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:green",
+      "type": "meaning",
+      "text": "green",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/green.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/green.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/green.ssml",
+      "label": "green",
+      "linkedWordIds": [
+        "word:green"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:ham",
+      "type": "word",
+      "text": "ham",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/ham.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/ham.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/ham.ssml",
+      "label": "ham",
+      "linkedWordIds": [
+        "word:ham"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:ham",
+      "type": "meaning",
+      "text": "ham",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/ham.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/ham.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/ham.ssml",
+      "label": "ham",
+      "linkedWordIds": [
+        "word:ham"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:here",
+      "type": "word",
+      "text": "here",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/here.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/here.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/here.ssml",
+      "label": "here",
+      "linkedWordIds": [
+        "word:here"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:here",
+      "type": "meaning",
+      "text": "here",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/here.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/here.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/here.ssml",
+      "label": "here",
+      "linkedWordIds": [
+        "word:here"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:house",
+      "type": "word",
+      "text": "house",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/house.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/house.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/house.ssml",
+      "label": "house",
+      "linkedWordIds": [
+        "word:house"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:house",
+      "type": "meaning",
+      "text": "house",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/house.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/house.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/house.ssml",
+      "label": "house",
+      "linkedWordIds": [
+        "word:house"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:i",
+      "type": "word",
+      "text": "i",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/i.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/i.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/i.ssml",
+      "label": "i",
+      "linkedWordIds": [
+        "word:i"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:i",
+      "type": "meaning",
+      "text": "i",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/i.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/i.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/i.ssml",
+      "label": "i",
+      "linkedWordIds": [
+        "word:i"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:if",
+      "type": "word",
+      "text": "if",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/if.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/if.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/if.ssml",
+      "label": "if",
+      "linkedWordIds": [
+        "word:if"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:if",
+      "type": "meaning",
+      "text": "if",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/if.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/if.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/if.ssml",
+      "label": "if",
+      "linkedWordIds": [
+        "word:if"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:in",
+      "type": "word",
+      "text": "in",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/in.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/in.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/in.ssml",
+      "label": "in",
+      "linkedWordIds": [
+        "word:in"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:in",
+      "type": "meaning",
+      "text": "in",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/in.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/in.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/in.ssml",
+      "label": "in",
+      "linkedWordIds": [
+        "word:in"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:let",
+      "type": "word",
+      "text": "let",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/let.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/let.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/let.ssml",
+      "label": "let",
+      "linkedWordIds": [
+        "word:let"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:let",
+      "type": "meaning",
+      "text": "let",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/let.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/let.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/let.ssml",
+      "label": "let",
+      "linkedWordIds": [
+        "word:let"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:like",
+      "type": "word",
+      "text": "like",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/like.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/like.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/like.ssml",
+      "label": "like",
+      "linkedWordIds": [
+        "word:like"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:like",
+      "type": "meaning",
+      "text": "like",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/like.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/like.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/like.ssml",
+      "label": "like",
+      "linkedWordIds": [
+        "word:like"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:may",
+      "type": "word",
+      "text": "may",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/may.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/may.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/may.ssml",
+      "label": "may",
+      "linkedWordIds": [
+        "word:may"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:may",
+      "type": "meaning",
+      "text": "may",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/may.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/may.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/may.ssml",
+      "label": "may",
+      "linkedWordIds": [
+        "word:may"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:me",
+      "type": "word",
+      "text": "me",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/me.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/me.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/me.ssml",
+      "label": "me",
+      "linkedWordIds": [
+        "word:me"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:me",
+      "type": "meaning",
+      "text": "me",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/me.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/me.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/me.ssml",
+      "label": "me",
+      "linkedWordIds": [
+        "word:me"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:mouse",
+      "type": "word",
+      "text": "mouse",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/mouse.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/mouse.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/mouse.ssml",
+      "label": "mouse",
+      "linkedWordIds": [
+        "word:mouse"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:mouse",
+      "type": "meaning",
+      "text": "mouse",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/mouse.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/mouse.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/mouse.ssml",
+      "label": "mouse",
+      "linkedWordIds": [
+        "word:mouse"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:not",
+      "type": "word",
+      "text": "not",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/not.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/not.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/not.ssml",
+      "label": "not",
+      "linkedWordIds": [
+        "word:not"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:not",
+      "type": "meaning",
+      "text": "not",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/not.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/not.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/not.ssml",
+      "label": "not",
+      "linkedWordIds": [
+        "word:not"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:on",
+      "type": "word",
+      "text": "on",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/on.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/on.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/on.ssml",
+      "label": "on",
+      "linkedWordIds": [
+        "word:on"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:on",
+      "type": "meaning",
+      "text": "on",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/on.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/on.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/on.ssml",
+      "label": "on",
+      "linkedWordIds": [
+        "word:on"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:or",
+      "type": "word",
+      "text": "or",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/or.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/or.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/or.ssml",
+      "label": "or",
+      "linkedWordIds": [
+        "word:or"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:or",
+      "type": "meaning",
+      "text": "or",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/or.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/or.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/or.ssml",
+      "label": "or",
+      "linkedWordIds": [
+        "word:or"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:rain",
+      "type": "word",
+      "text": "rain",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/rain.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/rain.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/rain.ssml",
+      "label": "rain",
+      "linkedWordIds": [
+        "word:rain"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:rain",
+      "type": "meaning",
+      "text": "rain",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/rain.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/rain.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/rain.ssml",
+      "label": "rain",
+      "linkedWordIds": [
+        "word:rain"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:sam",
+      "type": "word",
+      "text": "sam",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/sam.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/sam.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/sam.ssml",
+      "label": "sam",
+      "linkedWordIds": [
+        "word:sam"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:sam",
+      "type": "meaning",
+      "text": "sam",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/sam.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/sam.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/sam.ssml",
+      "label": "sam",
+      "linkedWordIds": [
+        "word:sam"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:say",
+      "type": "word",
+      "text": "say",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/say.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/say.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/say.ssml",
+      "label": "say",
+      "linkedWordIds": [
+        "word:say"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:say",
+      "type": "meaning",
+      "text": "say",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/say.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/say.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/say.ssml",
+      "label": "say",
+      "linkedWordIds": [
+        "word:say"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:see",
+      "type": "word",
+      "text": "see",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/see.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/see.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/see.ssml",
+      "label": "see",
+      "linkedWordIds": [
+        "word:see"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:see",
+      "type": "meaning",
+      "text": "see",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/see.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/see.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/see.ssml",
+      "label": "see",
+      "linkedWordIds": [
+        "word:see"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:so",
+      "type": "word",
+      "text": "so",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/so.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/so.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/so.ssml",
+      "label": "so",
+      "linkedWordIds": [
+        "word:so"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:so",
+      "type": "meaning",
+      "text": "so",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/so.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/so.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/so.ssml",
+      "label": "so",
+      "linkedWordIds": [
+        "word:so"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:thank",
+      "type": "word",
+      "text": "thank",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/thank.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/thank.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/thank.ssml",
+      "label": "thank",
+      "linkedWordIds": [
+        "word:thank"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:thank",
+      "type": "meaning",
+      "text": "thank",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/thank.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/thank.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/thank.ssml",
+      "label": "thank",
+      "linkedWordIds": [
+        "word:thank"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:that",
+      "type": "word",
+      "text": "that",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/that.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/that.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/that.ssml",
+      "label": "that",
+      "linkedWordIds": [
+        "word:that"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:that",
+      "type": "meaning",
+      "text": "that",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/that.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/that.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/that.ssml",
+      "label": "that",
+      "linkedWordIds": [
+        "word:that"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:the",
+      "type": "word",
+      "text": "the",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/the.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/the.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/the.ssml",
+      "label": "the",
+      "linkedWordIds": [
+        "word:the"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:the",
+      "type": "meaning",
+      "text": "the",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/the.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/the.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/the.ssml",
+      "label": "the",
+      "linkedWordIds": [
+        "word:the"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:them",
+      "type": "word",
+      "text": "them",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/them.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/them.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/them.ssml",
+      "label": "them",
+      "linkedWordIds": [
+        "word:them"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:them",
+      "type": "meaning",
+      "text": "them",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/them.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/them.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/them.ssml",
+      "label": "them",
+      "linkedWordIds": [
+        "word:them"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:there",
+      "type": "word",
+      "text": "there",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/there.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/there.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/there.ssml",
+      "label": "there",
+      "linkedWordIds": [
+        "word:there"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:there",
+      "type": "meaning",
+      "text": "there",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/there.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/there.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/there.ssml",
+      "label": "there",
+      "linkedWordIds": [
+        "word:there"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:they",
+      "type": "word",
+      "text": "they",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/they.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/they.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/they.ssml",
+      "label": "they",
+      "linkedWordIds": [
+        "word:they"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:they",
+      "type": "meaning",
+      "text": "they",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/they.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/they.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/they.ssml",
+      "label": "they",
+      "linkedWordIds": [
+        "word:they"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:train",
+      "type": "word",
+      "text": "train",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/train.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/train.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/train.ssml",
+      "label": "train",
+      "linkedWordIds": [
+        "word:train"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:train",
+      "type": "meaning",
+      "text": "train",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/train.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/train.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/train.ssml",
+      "label": "train",
+      "linkedWordIds": [
+        "word:train"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:tree",
+      "type": "word",
+      "text": "tree",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/tree.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/tree.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/tree.ssml",
+      "label": "tree",
+      "linkedWordIds": [
+        "word:tree"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:tree",
+      "type": "meaning",
+      "text": "tree",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/tree.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/tree.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/tree.ssml",
+      "label": "tree",
+      "linkedWordIds": [
+        "word:tree"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:try",
+      "type": "word",
+      "text": "try",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/try.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/try.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/try.ssml",
+      "label": "try",
+      "linkedWordIds": [
+        "word:try"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:try",
+      "type": "meaning",
+      "text": "try",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/try.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/try.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/try.ssml",
+      "label": "try",
+      "linkedWordIds": [
+        "word:try"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:will",
+      "type": "word",
+      "text": "will",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/will.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/will.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/will.ssml",
+      "label": "will",
+      "linkedWordIds": [
+        "word:will"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:will",
+      "type": "meaning",
+      "text": "will",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/will.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/will.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/will.ssml",
+      "label": "will",
+      "linkedWordIds": [
+        "word:will"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:with",
+      "type": "word",
+      "text": "with",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/with.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/with.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/with.ssml",
+      "label": "with",
+      "linkedWordIds": [
+        "word:with"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:with",
+      "type": "meaning",
+      "text": "with",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/with.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/with.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/with.ssml",
+      "label": "with",
+      "linkedWordIds": [
+        "word:with"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:would",
+      "type": "word",
+      "text": "would",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/would.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/would.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/would.ssml",
+      "label": "would",
+      "linkedWordIds": [
+        "word:would"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:would",
+      "type": "meaning",
+      "text": "would",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/would.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/would.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/would.ssml",
+      "label": "would",
+      "linkedWordIds": [
+        "word:would"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:you",
+      "type": "word",
+      "text": "you",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/you.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/you.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/you.ssml",
+      "label": "you",
+      "linkedWordIds": [
+        "word:you"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:you",
+      "type": "meaning",
+      "text": "you",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/you.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/you.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/you.ssml",
+      "label": "you",
+      "linkedWordIds": [
+        "word:you"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word:at",
+      "type": "word",
+      "text": "at",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/at.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/at.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/at.ssml",
+      "label": "at",
+      "linkedWordIds": [
+        "word:at"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "meaning:at",
+      "type": "meaning",
+      "text": "at",
+      "language": "en-US",
+      "path": "audio/words/anne-soft-female-v2/at.mp3",
+      "audioPath": "audio/words/anne-soft-female-v2/at.mp3",
+      "ssmlPath": "ssml/words/anne-soft-female-v2/at.ssml",
+      "label": "at",
+      "linkedWordIds": [
+        "word:at"
       ],
       "provider": "azure-tts",
       "voice": "en-US-JennyNeural",
@@ -837,38 +2373,6 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
-      "id": "word:in",
-      "type": "word",
-      "text": "in",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/in.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/in.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/in.ssml",
-      "label": "in",
-      "linkedWordIds": [
-        "word:in"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "meaning:in",
-      "type": "meaning",
-      "text": "in",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/in.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/in.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/in.ssml",
-      "label": "in",
-      "linkedWordIds": [
-        "word:in"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
       "id": "word:big",
       "type": "word",
       "text": "big",
@@ -1349,38 +2853,6 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
-      "id": "word:on",
-      "type": "word",
-      "text": "on",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/on.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/on.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/on.ssml",
-      "label": "on",
-      "linkedWordIds": [
-        "word:on"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "meaning:on",
-      "type": "meaning",
-      "text": "on",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/on.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/on.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/on.ssml",
-      "label": "on",
-      "linkedWordIds": [
-        "word:on"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
       "id": "word:off",
       "type": "word",
       "text": "off",
@@ -1759,70 +3231,6 @@
       "label": "rod",
       "linkedWordIds": [
         "word:rod"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "word:box",
-      "type": "word",
-      "text": "box",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/box.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/box.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/box.ssml",
-      "label": "box",
-      "linkedWordIds": [
-        "word:box"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "meaning:box",
-      "type": "meaning",
-      "text": "box",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/box.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/box.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/box.ssml",
-      "label": "box",
-      "linkedWordIds": [
-        "word:box"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "word:fox",
-      "type": "word",
-      "text": "fox",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/fox.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/fox.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/fox.ssml",
-      "label": "fox",
-      "linkedWordIds": [
-        "word:fox"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "meaning:fox",
-      "type": "meaning",
-      "text": "fox",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/fox.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/fox.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/fox.ssml",
-      "label": "fox",
-      "linkedWordIds": [
-        "word:fox"
       ],
       "provider": "azure-tts",
       "voice": "en-US-JennyNeural",
@@ -3269,38 +4677,6 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
-      "id": "word:like",
-      "type": "word",
-      "text": "like",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/like.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/like.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/like.ssml",
-      "label": "like",
-      "linkedWordIds": [
-        "word:like"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "meaning:like",
-      "type": "meaning",
-      "text": "like",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/like.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/like.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/like.ssml",
-      "label": "like",
-      "linkedWordIds": [
-        "word:like"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
       "id": "word:time",
       "type": "word",
       "text": "time",
@@ -3973,38 +5349,6 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
-      "id": "word:rain",
-      "type": "word",
-      "text": "rain",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/rain.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/rain.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/rain.ssml",
-      "label": "rain",
-      "linkedWordIds": [
-        "word:rain"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "meaning:rain",
-      "type": "meaning",
-      "text": "rain",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/rain.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/rain.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/rain.ssml",
-      "label": "rain",
-      "linkedWordIds": [
-        "word:rain"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
       "id": "word:tail",
       "type": "word",
       "text": "tail",
@@ -4447,70 +5791,6 @@
       "label": "beef",
       "linkedWordIds": [
         "word:beef"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "word:boat",
-      "type": "word",
-      "text": "boat",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/boat.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/boat.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/boat.ssml",
-      "label": "boat",
-      "linkedWordIds": [
-        "word:boat"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "meaning:boat",
-      "type": "meaning",
-      "text": "boat",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/boat.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/boat.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/boat.ssml",
-      "label": "boat",
-      "linkedWordIds": [
-        "word:boat"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "word:goat",
-      "type": "word",
-      "text": "goat",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/goat.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/goat.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/goat.ssml",
-      "label": "goat",
-      "linkedWordIds": [
-        "word:goat"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "meaning:goat",
-      "type": "meaning",
-      "text": "goat",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/goat.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/goat.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/goat.ssml",
-      "label": "goat",
-      "linkedWordIds": [
-        "word:goat"
       ],
       "provider": "azure-tts",
       "voice": "en-US-JennyNeural",
@@ -5605,38 +6885,6 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
-      "id": "word:that",
-      "type": "word",
-      "text": "that",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/that.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/that.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/that.ssml",
-      "label": "that",
-      "linkedWordIds": [
-        "word:that"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "meaning:that",
-      "type": "meaning",
-      "text": "that",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/that.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/that.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/that.ssml",
-      "label": "that",
-      "linkedWordIds": [
-        "word:that"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
       "id": "word:bath",
       "type": "word",
       "text": "bath",
@@ -5663,38 +6911,6 @@
       "label": "bath",
       "linkedWordIds": [
         "word:bath"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "word:with",
-      "type": "word",
-      "text": "with",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/with.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/with.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/with.ssml",
-      "label": "with",
-      "linkedWordIds": [
-        "word:with"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "meaning:with",
-      "type": "meaning",
-      "text": "with",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/with.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/with.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/with.ssml",
-      "label": "with",
-      "linkedWordIds": [
-        "word:with"
       ],
       "provider": "azure-tts",
       "voice": "en-US-JennyNeural",
@@ -6693,38 +7909,6 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
-      "id": "word:car",
-      "type": "word",
-      "text": "car",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/car.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/car.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/car.ssml",
-      "label": "car",
-      "linkedWordIds": [
-        "word:car"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "meaning:car",
-      "type": "meaning",
-      "text": "car",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/car.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/car.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/car.ssml",
-      "label": "car",
-      "linkedWordIds": [
-        "word:car"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
       "id": "word:bark",
       "type": "word",
       "text": "bark",
@@ -6847,38 +8031,6 @@
       "label": "park",
       "linkedWordIds": [
         "word:park"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "word:dark",
-      "type": "word",
-      "text": "dark",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/dark.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/dark.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/dark.ssml",
-      "label": "dark",
-      "linkedWordIds": [
-        "word:dark"
-      ],
-      "provider": "azure-tts",
-      "voice": "en-US-JennyNeural",
-      "voiceVersion": "anne-soft-female-v2"
-    },
-    {
-      "id": "meaning:dark",
-      "type": "meaning",
-      "text": "dark",
-      "language": "en-US",
-      "path": "audio/words/anne-soft-female-v2/dark.mp3",
-      "audioPath": "audio/words/anne-soft-female-v2/dark.mp3",
-      "ssmlPath": "ssml/words/anne-soft-female-v2/dark.ssml",
-      "label": "dark",
-      "linkedWordIds": [
-        "word:dark"
       ],
       "provider": "azure-tts",
       "voice": "en-US-JennyNeural",
