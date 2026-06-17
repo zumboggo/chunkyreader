@@ -5446,6 +5446,37 @@ body.lesson-active {
   opacity: 0.7;
 }
 
+.fsrs-word-play-button {
+  width: 76px;
+  height: 76px;
+  border: 0;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 34%),
+    linear-gradient(135deg, var(--pink-pop), var(--sunset));
+  color: white;
+  box-shadow: 0 14px 28px rgba(249, 101, 146, 0.28), inset 0 -5px 0 rgba(137, 44, 80, 0.18);
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.fsrs-word-play-button svg {
+  width: 30px;
+  height: 30px;
+  filter: drop-shadow(0 2px 0 rgba(95, 36, 64, 0.18));
+}
+
+.fsrs-word-play-button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 18px 32px rgba(249, 101, 146, 0.34), inset 0 -5px 0 rgba(137, 44, 80, 0.18);
+}
+
+.fsrs-word-play-button:active {
+  transform: translateY(1px) scale(0.98);
+}
+
 .fsrs-image {
   width: 100%;
   max-width: 200px;

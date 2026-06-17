@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent, type ReactNode } from 'react'
 import {
   getInstalledAudioPackSummary,
   installAudioClipPack,
@@ -98,6 +98,58 @@ const SARAH_FINAL_REVIEW_SIZE = 6
 const SARAH_LESSON_ADVANCE = 2
 const OLDER_READER_ACTIVITY_COUNT = 14
 const OLDER_READER_PEEK_COUNT = OLDER_READER_WORD_LESSON_SIZE
+const GREEN_EGGS_STARTER_WORDS = new Set([
+  'a',
+  'am',
+  'and',
+  'anywhere',
+  'are',
+  'be',
+  'boat',
+  'box',
+  'car',
+  'could',
+  'dark',
+  'do',
+  'eat',
+  'eggs',
+  'fox',
+  'goat',
+  'good',
+  'green',
+  'ham',
+  'here',
+  'house',
+  'i',
+  'if',
+  'in',
+  'let',
+  'like',
+  'may',
+  'me',
+  'mouse',
+  'not',
+  'on',
+  'or',
+  'rain',
+  'sam',
+  'say',
+  'see',
+  'so',
+  'thank',
+  'that',
+  'the',
+  'them',
+  'there',
+  'they',
+  'train',
+  'tree',
+  'try',
+  'will',
+  'with',
+  'would',
+  'you',
+])
 const SARAH_REVIEW_VARIANTS: SarahQuestionKind[] = [
   'wordToBeginningSound',
   'soundToWord',
@@ -2986,6 +3038,21 @@ function getQueueCounts(cards: LearningCard[], states: Map<string, FlashcardStat
   return { new: newCount, learning: learningCount, review: reviewCount, done: doneCount }
 }
 
+function WordReplayButton({
+  audioUrl,
+  onClick,
+}: {
+  audioUrl?: string
+  onClick: (event: ReactMouseEvent<HTMLButtonElement>) => void
+}) {
+  if (!audioUrl) return null
+  return (
+    <button type="button" className="fsrs-word-play-button" aria-label="Play word audio" onClick={onClick}>
+      <PlayIcon />
+    </button>
+  )
+}
+
 function FsrsFlashcardMode({
   deck,
   onComplete,
@@ -3007,14 +3074,22 @@ function FsrsFlashcardMode({
 
   const sortedCards = useMemo(() => {
     const states = [...cardStates.values()]
-    const cardsWithStates = deck.cards.filter((c) => states.some((s) => s.cardId === c.id))
-    const newCards = deck.cards.filter((c) => !states.some((s) => s.cardId === c.id))
+    const starterCards = deck.type === 'reading-words'
+      ? deck.cards.filter((card) => GREEN_EGGS_STARTER_WORDS.has(optionLabel(card).toLowerCase()))
+      : []
+    const starterGateActive = starterCards.length > 0 && !starterCards.every((card) => {
+      const state = states.find((item) => item.cardId === card.id)
+      return state?.state === 'review' && state.reps >= 2
+    })
+    const availableCards = starterGateActive ? starterCards : deck.cards
+    const cardsWithStates = availableCards.filter((c) => states.some((s) => s.cardId === c.id))
+    const newCards = availableCards.filter((c) => !states.some((s) => s.cardId === c.id))
     const dueCards = cardsWithStates.filter((c) => {
       const state = states.find((s) => s.cardId === c.id)
       return state && state.due <= Date.now()
     })
     return [...dueCards, ...newCards]
-  }, [deck.cards, cardStates])
+  }, [deck.cards, deck.type, cardStates])
 
   const sessionCards = useMemo(
     () => sortedCards.slice(0, deck.type === 'reading-words' ? OLDER_READER_WORD_LESSON_SIZE : sortedCards.length),
@@ -3023,6 +3098,7 @@ function FsrsFlashcardMode({
   const currentCard = sessionCards[currentCardIndex]
   const isSessionComplete = currentCardIndex >= sessionCards.length
   const frontMode = useMemo(() => getFrontMode(deck, currentCard, currentCardIndex), [deck, currentCard, currentCardIndex])
+  const currentAudioUrl = currentCard ? resolveAssetUrl(deck, currentCard.audio) : undefined
 
   const queueCounts = useMemo(
     () => getQueueCounts(sortedCards, cardStates, Date.now()),
@@ -3041,12 +3117,11 @@ function FsrsFlashcardMode({
     const shouldPlay = (frontMode === 'audio' && !isFlipped) || (frontMode !== 'audio' && isFlipped)
     if (!shouldPlay) return
     audioPlayedRef.current = true
-    const audioUrl = resolveAssetUrl(deck, currentCard.audio)
-    if (audioUrl) {
-      void playAudioUrl(audioUrl)
-      window.setTimeout(() => void playAudioUrl(audioUrl), 1500)
+    if (currentAudioUrl) {
+      void playAudioUrl(currentAudioUrl)
+      window.setTimeout(() => void playAudioUrl(currentAudioUrl), 1500)
     }
-  }, [isFlipped, currentCard, deck, frontMode])
+  }, [isFlipped, currentCard, currentAudioUrl, frontMode])
 
   useEffect(() => {
     audioPlayedRef.current = false
@@ -3086,6 +3161,11 @@ function FsrsFlashcardMode({
 
   function handleFlip() {
     if (!isFlipped) setIsFlipped(true)
+  }
+
+  function replayCurrentWord(event?: ReactMouseEvent<HTMLButtonElement>) {
+    event?.stopPropagation()
+    if (currentAudioUrl) void playAudioUrl(currentAudioUrl)
   }
 
   function handleRate(r: Rating) {
@@ -3186,9 +3266,7 @@ function FsrsFlashcardMode({
                 <>
                   <h2 className="fsrs-word fsrs-word-audio">Listen</h2>
                   <p className="fsrs-hint">The word plays twice</p>
-                  <button type="button" className="fsrs-replay-btn" onClick={(e) => { e.stopPropagation(); const url = resolveAssetUrl(deck, currentCard.audio); if (url) void playAudioUrl(url) }}>
-                    <PlayIcon /> Replay
-                  </button>
+                  <WordReplayButton audioUrl={currentAudioUrl} onClick={replayCurrentWord} />
                 </>
               ) : frontMode === 'picture' && currentCard.image ? (
                 <>
@@ -3202,6 +3280,7 @@ function FsrsFlashcardMode({
                   <h2 className="fsrs-word">{currentCard.displayText}</h2>
                   {currentCard.pinyin && <p className="fsrs-pinyin">{currentCard.pinyin}</p>}
                   <p className="fsrs-hint">Tap to reveal</p>
+                  <WordReplayButton audioUrl={currentAudioUrl} onClick={replayCurrentWord} />
                 </>
               )}
             </div>
@@ -3217,6 +3296,7 @@ function FsrsFlashcardMode({
               {currentCard.pinyin && <p className="fsrs-pinyin">{currentCard.pinyin}</p>}
               {currentCard.meaning && <p className="fsrs-meaning">{currentCard.meaning}</p>}
               {currentCard.exampleSentence && <p className="fsrs-example">{currentCard.exampleSentence}</p>}
+              <WordReplayButton audioUrl={currentAudioUrl} onClick={replayCurrentWord} />
             </div>
           </div>
         </div>
