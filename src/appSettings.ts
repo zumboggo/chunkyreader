@@ -1,5 +1,3 @@
-import { recordLocalProgressChange } from './cloudProgressSync'
-
 export interface AppSettings {
   autoplayAudio: boolean
   darkMode: boolean
@@ -50,7 +48,7 @@ export function loadAppSettings(): AppSettings {
 export function saveAppSettings(settings: AppSettings) {
   try {
     localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings))
-    recordLocalProgressChange()
+    window.dispatchEvent(new CustomEvent('chunkyReaderProgressChanged', { detail: { changedAt: Date.now() } }))
     window.dispatchEvent(new CustomEvent('chunkyLearnerSettingsChanged', { detail: settings }))
   } catch {
     // Settings are helpful, but the app must still run if storage is unavailable.

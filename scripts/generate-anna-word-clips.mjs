@@ -21,8 +21,65 @@ const azureConfigPath =
   process.env.AZURE_TTS_CONFIG_PATH ||
   path.join(process.env.USERPROFILE || process.env.HOME || '', 'Documents', 'azure-tts-ssml', 'config.json')
 
+const STARTER_SENTENCES = {
+  a: 'I see a cat.',
+  am: 'I am here.',
+  and: 'You and I can read.',
+  anywhere: 'We can read anywhere.',
+  are: 'We are ready.',
+  be: 'Be kind.',
+  boat: 'The boat can go.',
+  box: 'The box is here.',
+  car: 'The car can go.',
+  could: 'I could try.',
+  dark: 'It is dark.',
+  do: 'I can do it.',
+  eat: 'We can eat.',
+  eggs: 'The eggs are green.',
+  fox: 'I see a fox.',
+  goat: 'The goat can hop.',
+  good: 'This is good.',
+  green: 'The tree is green.',
+  ham: 'I see the ham.',
+  here: 'I am here.',
+  house: 'This is my house.',
+  i: 'I can read.',
+  if: 'Try it if you like.',
+  in: 'The cat is in.',
+  let: 'Let me try.',
+  like: 'I like this.',
+  may: 'May I go?',
+  me: 'Come with me.',
+  mouse: 'The mouse can run.',
+  not: 'I am not sad.',
+  on: 'The hat is on.',
+  or: 'Red or green?',
+  rain: 'I see the rain.',
+  sam: 'Sam can read.',
+  say: 'Say the word.',
+  see: 'I can see.',
+  so: 'It is so good.',
+  thank: 'Thank you.',
+  that: 'I see that.',
+  the: 'The cat can run.',
+  them: 'I can see them.',
+  there: 'The box is there.',
+  they: 'They can play.',
+  train: 'The train can go.',
+  tree: 'I see a tree.',
+  try: 'I will try.',
+  will: 'I will read.',
+  with: 'Come with me.',
+  would: 'I would like that.',
+  you: 'You can read.',
+}
+
 async function main() {
-  const { headers, rows } = parseCsv(await fs.readFile(vocabPath, 'utf8'))
+  const parsedCsv = parseCsv(await fs.readFile(vocabPath, 'utf8'))
+  const headers = [...parsedCsv.headers]
+  const rows = parsedCsv.rows
+  ensureHeader(headers, 'exampleSentence')
+  ensureHeader(headers, 'exampleSentenceAudioFilename')
   const credentials = ssmlOnly ? null : await loadCredentials()
   const generatedClips = []
 
@@ -39,6 +96,9 @@ async function main() {
 
     row.audioWordFilename = relativeAudioPath
     row.audioMeaningFilename = relativeAudioPath
+    if (!row.exampleSentence && STARTER_SENTENCES[word.toLowerCase()]) {
+      row.exampleSentence = STARTER_SENTENCES[word.toLowerCase()]
+    }
 
     await fs.mkdir(path.dirname(ssmlPath), { recursive: true })
     await fs.writeFile(ssmlPath, ssml)
@@ -52,13 +112,35 @@ async function main() {
 
     generatedClips.push(makeManifestClip('word', word, relativeAudioPath, relativeSsmlPath))
     generatedClips.push(makeManifestClip('meaning', word, relativeAudioPath, relativeSsmlPath))
+
+    if (row.exampleSentence) {
+      const sentenceSlug = `${fileSlug}-sentence`
+      const relativeSentenceAudioPath = `audio/sentences/${voiceVersion}/${sentenceSlug}.mp3`
+      const relativeSentenceSsmlPath = `ssml/sentences/${voiceVersion}/${sentenceSlug}.ssml`
+      const sentenceAudioPath = path.join(packDir, relativeSentenceAudioPath)
+      const sentenceSsmlPath = path.join(packDir, relativeSentenceSsmlPath)
+      const sentenceSsml = createSentenceSsml(row.exampleSentence)
+      row.exampleSentenceAudioFilename = relativeSentenceAudioPath
+
+      await fs.mkdir(path.dirname(sentenceSsmlPath), { recursive: true })
+      await fs.writeFile(sentenceSsmlPath, sentenceSsml)
+      if (credentials) {
+        await fs.mkdir(path.dirname(sentenceAudioPath), { recursive: true })
+        if (force || !(await exists(sentenceAudioPath))) {
+          await synthesizeClip(credentials, sentenceSsml, sentenceAudioPath)
+        }
+      }
+      generatedClips.push(makeSentenceManifestClip(word, row.exampleSentence, relativeSentenceAudioPath, relativeSentenceSsmlPath))
+    }
   }
+
+  await createIntroClip(credentials, generatedClips)
 
   await fs.writeFile(vocabPath, stringifyCsv(headers, rows))
   await updateManifest(generatedClips)
 
   console.log(
-    `${credentials ? 'Generated' : 'Prepared'} ${generatedClips.length / 2} Growing Reader word clips with ${voice} (${voiceVersion}).`,
+    `${credentials ? 'Generated' : 'Prepared'} ${generatedClips.filter((clip) => clip.type === 'word').length} word clips, ${generatedClips.filter((clip) => clip.type === 'sentence').length} sentence clips, and the lesson intro with ${voice} (${voiceVersion}).`,
   )
 }
 
@@ -69,6 +151,16 @@ function createWordSsml(word) {
     rate: '-8%',
     pitch: '+2%',
     body: escapeXml(word),
+  })
+}
+
+function createSentenceSsml(sentence) {
+  return createAzureSsml({
+    language: 'en-US',
+    voice,
+    rate: '-10%',
+    pitch: '+2%',
+    body: escapeXml(sentence),
   })
 }
 
@@ -89,6 +181,51 @@ function makeManifestClip(type, word, audioPath, ssmlPath) {
   }
 }
 
+function makeSentenceManifestClip(word, sentence, audioPath, ssmlPath) {
+  return {
+    id: `word-sentence:word:${word}`,
+    type: 'sentence',
+    text: sentence,
+    language: 'en-US',
+    path: audioPath,
+    audioPath,
+    ssmlPath,
+    label: sentence,
+    linkedWordIds: [`word:${word}`],
+    provider: 'azure-tts',
+    voice,
+    voiceVersion,
+  }
+}
+
+async function createIntroClip(credentials, generatedClips) {
+  const text = 'Today we are going to learn.'
+  const relativeAudioPath = `audio/narration/${voiceVersion}/today-we-are-going-to-learn.mp3`
+  const relativeSsmlPath = `ssml/narration/${voiceVersion}/today-we-are-going-to-learn.ssml`
+  const audioPath = path.join(packDir, relativeAudioPath)
+  const ssmlPath = path.join(packDir, relativeSsmlPath)
+  const ssml = createSentenceSsml(text)
+  await fs.mkdir(path.dirname(ssmlPath), { recursive: true })
+  await fs.writeFile(ssmlPath, ssml)
+  if (credentials) {
+    await fs.mkdir(path.dirname(audioPath), { recursive: true })
+    if (force || !(await exists(audioPath))) await synthesizeClip(credentials, ssml, audioPath)
+  }
+  generatedClips.push({
+    id: 'older-reader:intro:today-words',
+    type: 'ui',
+    text,
+    language: 'en-US',
+    path: relativeAudioPath,
+    audioPath: relativeAudioPath,
+    ssmlPath: relativeSsmlPath,
+    label: text,
+    provider: 'azure-tts',
+    voice,
+    voiceVersion,
+  })
+}
+
 async function updateManifest(wordClips) {
   let existing = {}
   try {
@@ -97,7 +234,8 @@ async function updateManifest(wordClips) {
     existing = {}
   }
 
-  const preservedClips = (existing.clips ?? []).filter((clip) => clip.type !== 'word' && clip.type !== 'meaning')
+  const generatedIds = new Set(wordClips.map((clip) => clip.id))
+  const preservedClips = (existing.clips ?? []).filter((clip) => !generatedIds.has(clip.id))
   const manifest = {
     ...existing,
     id: existing.id || 'annas-reading-deck',
@@ -213,6 +351,10 @@ function stringifyCsv(headers, rows) {
 function csvCell(value) {
   const text = String(value)
   return /[",\n\r]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text
+}
+
+function ensureHeader(headers, header) {
+  if (!headers.includes(header)) headers.push(header)
 }
 
 async function exists(filePath) {
