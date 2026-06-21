@@ -1,6 +1,6 @@
 {
   "packName": "Anna's Reading Deck",
-  "createdAt": "2026-06-17T15:34:40.653Z",
+  "createdAt": "2026-06-21T07:58:49.831Z",
   "vocabCsvPath": "vocab.csv",
   "sentencesCsvPath": "sentences.csv",
   "clips": [
@@ -133,6 +133,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:a",
+      "type": "sentence",
+      "text": "I see a cat.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/a-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/a-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/a-sentence.ssml",
+      "label": "I see a cat.",
+      "linkedWordIds": [
+        "word:a"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:am",
       "type": "word",
       "text": "am",
@@ -157,6 +173,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/am.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/am.ssml",
       "label": "am",
+      "linkedWordIds": [
+        "word:am"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:am",
+      "type": "sentence",
+      "text": "I am here.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/am-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/am-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/am-sentence.ssml",
+      "label": "I am here.",
       "linkedWordIds": [
         "word:am"
       ],
@@ -197,6 +229,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:and",
+      "type": "sentence",
+      "text": "You and I can read.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/and-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/and-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/and-sentence.ssml",
+      "label": "You and I can read.",
+      "linkedWordIds": [
+        "word:and"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:anywhere",
       "type": "word",
       "text": "anywhere",
@@ -221,6 +269,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/anywhere.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/anywhere.ssml",
       "label": "anywhere",
+      "linkedWordIds": [
+        "word:anywhere"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:anywhere",
+      "type": "sentence",
+      "text": "We can read anywhere.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/anywhere-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/anywhere-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/anywhere-sentence.ssml",
+      "label": "We can read anywhere.",
       "linkedWordIds": [
         "word:anywhere"
       ],
@@ -261,6 +325,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:are",
+      "type": "sentence",
+      "text": "We are ready.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/are-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/are-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/are-sentence.ssml",
+      "label": "We are ready.",
+      "linkedWordIds": [
+        "word:are"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:be",
       "type": "word",
       "text": "be",
@@ -285,6 +365,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/be.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/be.ssml",
       "label": "be",
+      "linkedWordIds": [
+        "word:be"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:be",
+      "type": "sentence",
+      "text": "Be kind.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/be-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/be-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/be-sentence.ssml",
+      "label": "Be kind.",
       "linkedWordIds": [
         "word:be"
       ],
@@ -325,6 +421,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:boat",
+      "type": "sentence",
+      "text": "The boat can go.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/boat-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/boat-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/boat-sentence.ssml",
+      "label": "The boat can go.",
+      "linkedWordIds": [
+        "word:boat"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:box",
       "type": "word",
       "text": "box",
@@ -349,6 +461,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/box.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/box.ssml",
       "label": "box",
+      "linkedWordIds": [
+        "word:box"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:box",
+      "type": "sentence",
+      "text": "The box is here.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/box-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/box-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/box-sentence.ssml",
+      "label": "The box is here.",
       "linkedWordIds": [
         "word:box"
       ],
@@ -389,6 +517,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:car",
+      "type": "sentence",
+      "text": "The car can go.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/car-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/car-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/car-sentence.ssml",
+      "label": "The car can go.",
+      "linkedWordIds": [
+        "word:car"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:could",
       "type": "word",
       "text": "could",
@@ -413,6 +557,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/could.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/could.ssml",
       "label": "could",
+      "linkedWordIds": [
+        "word:could"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:could",
+      "type": "sentence",
+      "text": "I could try.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/could-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/could-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/could-sentence.ssml",
+      "label": "I could try.",
       "linkedWordIds": [
         "word:could"
       ],
@@ -453,6 +613,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:dark",
+      "type": "sentence",
+      "text": "It is dark.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/dark-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/dark-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/dark-sentence.ssml",
+      "label": "It is dark.",
+      "linkedWordIds": [
+        "word:dark"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:do",
       "type": "word",
       "text": "do",
@@ -477,6 +653,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/do.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/do.ssml",
       "label": "do",
+      "linkedWordIds": [
+        "word:do"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:do",
+      "type": "sentence",
+      "text": "I can do it.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/do-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/do-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/do-sentence.ssml",
+      "label": "I can do it.",
       "linkedWordIds": [
         "word:do"
       ],
@@ -517,6 +709,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:eat",
+      "type": "sentence",
+      "text": "We can eat.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/eat-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/eat-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/eat-sentence.ssml",
+      "label": "We can eat.",
+      "linkedWordIds": [
+        "word:eat"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:eggs",
       "type": "word",
       "text": "eggs",
@@ -541,6 +749,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/eggs.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/eggs.ssml",
       "label": "eggs",
+      "linkedWordIds": [
+        "word:eggs"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:eggs",
+      "type": "sentence",
+      "text": "The eggs are green.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/eggs-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/eggs-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/eggs-sentence.ssml",
+      "label": "The eggs are green.",
       "linkedWordIds": [
         "word:eggs"
       ],
@@ -581,6 +805,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:fox",
+      "type": "sentence",
+      "text": "I see a fox.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/fox-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/fox-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/fox-sentence.ssml",
+      "label": "I see a fox.",
+      "linkedWordIds": [
+        "word:fox"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:goat",
       "type": "word",
       "text": "goat",
@@ -605,6 +845,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/goat.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/goat.ssml",
       "label": "goat",
+      "linkedWordIds": [
+        "word:goat"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:goat",
+      "type": "sentence",
+      "text": "The goat can hop.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/goat-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/goat-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/goat-sentence.ssml",
+      "label": "The goat can hop.",
       "linkedWordIds": [
         "word:goat"
       ],
@@ -645,6 +901,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:good",
+      "type": "sentence",
+      "text": "This is good.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/good-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/good-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/good-sentence.ssml",
+      "label": "This is good.",
+      "linkedWordIds": [
+        "word:good"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:green",
       "type": "word",
       "text": "green",
@@ -669,6 +941,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/green.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/green.ssml",
       "label": "green",
+      "linkedWordIds": [
+        "word:green"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:green",
+      "type": "sentence",
+      "text": "The tree is green.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/green-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/green-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/green-sentence.ssml",
+      "label": "The tree is green.",
       "linkedWordIds": [
         "word:green"
       ],
@@ -709,6 +997,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:ham",
+      "type": "sentence",
+      "text": "I see the ham.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/ham-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/ham-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/ham-sentence.ssml",
+      "label": "I see the ham.",
+      "linkedWordIds": [
+        "word:ham"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:here",
       "type": "word",
       "text": "here",
@@ -733,6 +1037,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/here.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/here.ssml",
       "label": "here",
+      "linkedWordIds": [
+        "word:here"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:here",
+      "type": "sentence",
+      "text": "I am here.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/here-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/here-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/here-sentence.ssml",
+      "label": "I am here.",
       "linkedWordIds": [
         "word:here"
       ],
@@ -773,6 +1093,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:house",
+      "type": "sentence",
+      "text": "This is my house.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/house-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/house-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/house-sentence.ssml",
+      "label": "This is my house.",
+      "linkedWordIds": [
+        "word:house"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:i",
       "type": "word",
       "text": "i",
@@ -797,6 +1133,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/i.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/i.ssml",
       "label": "i",
+      "linkedWordIds": [
+        "word:i"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:i",
+      "type": "sentence",
+      "text": "I can read.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/i-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/i-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/i-sentence.ssml",
+      "label": "I can read.",
       "linkedWordIds": [
         "word:i"
       ],
@@ -837,6 +1189,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:if",
+      "type": "sentence",
+      "text": "Try it if you like.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/if-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/if-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/if-sentence.ssml",
+      "label": "Try it if you like.",
+      "linkedWordIds": [
+        "word:if"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:in",
       "type": "word",
       "text": "in",
@@ -861,6 +1229,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/in.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/in.ssml",
       "label": "in",
+      "linkedWordIds": [
+        "word:in"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:in",
+      "type": "sentence",
+      "text": "The cat is in.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/in-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/in-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/in-sentence.ssml",
+      "label": "The cat is in.",
       "linkedWordIds": [
         "word:in"
       ],
@@ -901,6 +1285,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:let",
+      "type": "sentence",
+      "text": "Let me try.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/let-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/let-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/let-sentence.ssml",
+      "label": "Let me try.",
+      "linkedWordIds": [
+        "word:let"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:like",
       "type": "word",
       "text": "like",
@@ -925,6 +1325,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/like.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/like.ssml",
       "label": "like",
+      "linkedWordIds": [
+        "word:like"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:like",
+      "type": "sentence",
+      "text": "I like this.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/like-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/like-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/like-sentence.ssml",
+      "label": "I like this.",
       "linkedWordIds": [
         "word:like"
       ],
@@ -965,6 +1381,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:may",
+      "type": "sentence",
+      "text": "May I go?",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/may-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/may-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/may-sentence.ssml",
+      "label": "May I go?",
+      "linkedWordIds": [
+        "word:may"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:me",
       "type": "word",
       "text": "me",
@@ -989,6 +1421,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/me.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/me.ssml",
       "label": "me",
+      "linkedWordIds": [
+        "word:me"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:me",
+      "type": "sentence",
+      "text": "Come with me.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/me-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/me-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/me-sentence.ssml",
+      "label": "Come with me.",
       "linkedWordIds": [
         "word:me"
       ],
@@ -1029,6 +1477,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:mouse",
+      "type": "sentence",
+      "text": "The mouse can run.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/mouse-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/mouse-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/mouse-sentence.ssml",
+      "label": "The mouse can run.",
+      "linkedWordIds": [
+        "word:mouse"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:not",
       "type": "word",
       "text": "not",
@@ -1053,6 +1517,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/not.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/not.ssml",
       "label": "not",
+      "linkedWordIds": [
+        "word:not"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:not",
+      "type": "sentence",
+      "text": "I am not sad.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/not-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/not-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/not-sentence.ssml",
+      "label": "I am not sad.",
       "linkedWordIds": [
         "word:not"
       ],
@@ -1093,6 +1573,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:on",
+      "type": "sentence",
+      "text": "The hat is on.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/on-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/on-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/on-sentence.ssml",
+      "label": "The hat is on.",
+      "linkedWordIds": [
+        "word:on"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:or",
       "type": "word",
       "text": "or",
@@ -1117,6 +1613,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/or.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/or.ssml",
       "label": "or",
+      "linkedWordIds": [
+        "word:or"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:or",
+      "type": "sentence",
+      "text": "Red or green?",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/or-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/or-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/or-sentence.ssml",
+      "label": "Red or green?",
       "linkedWordIds": [
         "word:or"
       ],
@@ -1157,6 +1669,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:rain",
+      "type": "sentence",
+      "text": "I see the rain.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/rain-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/rain-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/rain-sentence.ssml",
+      "label": "I see the rain.",
+      "linkedWordIds": [
+        "word:rain"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:sam",
       "type": "word",
       "text": "sam",
@@ -1181,6 +1709,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/sam.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/sam.ssml",
       "label": "sam",
+      "linkedWordIds": [
+        "word:sam"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:sam",
+      "type": "sentence",
+      "text": "Sam can read.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/sam-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/sam-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/sam-sentence.ssml",
+      "label": "Sam can read.",
       "linkedWordIds": [
         "word:sam"
       ],
@@ -1221,6 +1765,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:say",
+      "type": "sentence",
+      "text": "Say the word.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/say-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/say-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/say-sentence.ssml",
+      "label": "Say the word.",
+      "linkedWordIds": [
+        "word:say"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:see",
       "type": "word",
       "text": "see",
@@ -1245,6 +1805,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/see.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/see.ssml",
       "label": "see",
+      "linkedWordIds": [
+        "word:see"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:see",
+      "type": "sentence",
+      "text": "I can see.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/see-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/see-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/see-sentence.ssml",
+      "label": "I can see.",
       "linkedWordIds": [
         "word:see"
       ],
@@ -1285,6 +1861,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:so",
+      "type": "sentence",
+      "text": "It is so good.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/so-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/so-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/so-sentence.ssml",
+      "label": "It is so good.",
+      "linkedWordIds": [
+        "word:so"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:thank",
       "type": "word",
       "text": "thank",
@@ -1309,6 +1901,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/thank.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/thank.ssml",
       "label": "thank",
+      "linkedWordIds": [
+        "word:thank"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:thank",
+      "type": "sentence",
+      "text": "Thank you.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/thank-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/thank-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/thank-sentence.ssml",
+      "label": "Thank you.",
       "linkedWordIds": [
         "word:thank"
       ],
@@ -1349,6 +1957,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:that",
+      "type": "sentence",
+      "text": "I see that.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/that-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/that-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/that-sentence.ssml",
+      "label": "I see that.",
+      "linkedWordIds": [
+        "word:that"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:the",
       "type": "word",
       "text": "the",
@@ -1373,6 +1997,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/the.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/the.ssml",
       "label": "the",
+      "linkedWordIds": [
+        "word:the"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:the",
+      "type": "sentence",
+      "text": "The cat can run.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/the-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/the-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/the-sentence.ssml",
+      "label": "The cat can run.",
       "linkedWordIds": [
         "word:the"
       ],
@@ -1413,6 +2053,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:them",
+      "type": "sentence",
+      "text": "I can see them.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/them-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/them-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/them-sentence.ssml",
+      "label": "I can see them.",
+      "linkedWordIds": [
+        "word:them"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:there",
       "type": "word",
       "text": "there",
@@ -1437,6 +2093,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/there.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/there.ssml",
       "label": "there",
+      "linkedWordIds": [
+        "word:there"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:there",
+      "type": "sentence",
+      "text": "The box is there.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/there-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/there-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/there-sentence.ssml",
+      "label": "The box is there.",
       "linkedWordIds": [
         "word:there"
       ],
@@ -1477,6 +2149,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:they",
+      "type": "sentence",
+      "text": "They can play.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/they-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/they-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/they-sentence.ssml",
+      "label": "They can play.",
+      "linkedWordIds": [
+        "word:they"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:train",
       "type": "word",
       "text": "train",
@@ -1501,6 +2189,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/train.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/train.ssml",
       "label": "train",
+      "linkedWordIds": [
+        "word:train"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:train",
+      "type": "sentence",
+      "text": "The train can go.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/train-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/train-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/train-sentence.ssml",
+      "label": "The train can go.",
       "linkedWordIds": [
         "word:train"
       ],
@@ -1541,6 +2245,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:tree",
+      "type": "sentence",
+      "text": "I see a tree.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/tree-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/tree-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/tree-sentence.ssml",
+      "label": "I see a tree.",
+      "linkedWordIds": [
+        "word:tree"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:try",
       "type": "word",
       "text": "try",
@@ -1565,6 +2285,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/try.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/try.ssml",
       "label": "try",
+      "linkedWordIds": [
+        "word:try"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:try",
+      "type": "sentence",
+      "text": "I will try.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/try-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/try-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/try-sentence.ssml",
+      "label": "I will try.",
       "linkedWordIds": [
         "word:try"
       ],
@@ -1605,6 +2341,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:will",
+      "type": "sentence",
+      "text": "I will read.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/will-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/will-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/will-sentence.ssml",
+      "label": "I will read.",
+      "linkedWordIds": [
+        "word:will"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:with",
       "type": "word",
       "text": "with",
@@ -1629,6 +2381,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/with.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/with.ssml",
       "label": "with",
+      "linkedWordIds": [
+        "word:with"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:with",
+      "type": "sentence",
+      "text": "Come with me.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/with-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/with-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/with-sentence.ssml",
+      "label": "Come with me.",
       "linkedWordIds": [
         "word:with"
       ],
@@ -1669,6 +2437,22 @@
       "voiceVersion": "anne-soft-female-v2"
     },
     {
+      "id": "word-sentence:word:would",
+      "type": "sentence",
+      "text": "I would like that.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/would-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/would-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/would-sentence.ssml",
+      "label": "I would like that.",
+      "linkedWordIds": [
+        "word:would"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
       "id": "word:you",
       "type": "word",
       "text": "you",
@@ -1693,6 +2477,22 @@
       "audioPath": "audio/words/anne-soft-female-v2/you.mp3",
       "ssmlPath": "ssml/words/anne-soft-female-v2/you.ssml",
       "label": "you",
+      "linkedWordIds": [
+        "word:you"
+      ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "word-sentence:word:you",
+      "type": "sentence",
+      "text": "You can read.",
+      "language": "en-US",
+      "path": "audio/sentences/anne-soft-female-v2/you-sentence.mp3",
+      "audioPath": "audio/sentences/anne-soft-female-v2/you-sentence.mp3",
+      "ssmlPath": "ssml/sentences/anne-soft-female-v2/you-sentence.ssml",
+      "label": "You can read.",
       "linkedWordIds": [
         "word:you"
       ],
@@ -10720,6 +11520,19 @@
       "linkedWordIds": [
         "word:cloud"
       ],
+      "provider": "azure-tts",
+      "voice": "en-US-JennyNeural",
+      "voiceVersion": "anne-soft-female-v2"
+    },
+    {
+      "id": "older-reader:intro:today-words",
+      "type": "ui",
+      "text": "Today we are going to learn.",
+      "language": "en-US",
+      "path": "audio/narration/anne-soft-female-v2/today-we-are-going-to-learn.mp3",
+      "audioPath": "audio/narration/anne-soft-female-v2/today-we-are-going-to-learn.mp3",
+      "ssmlPath": "ssml/narration/anne-soft-female-v2/today-we-are-going-to-learn.ssml",
+      "label": "Today we are going to learn.",
       "provider": "azure-tts",
       "voice": "en-US-JennyNeural",
       "voiceVersion": "anne-soft-female-v2"

@@ -4601,6 +4601,178 @@ body.lesson-active {
   accent-color: var(--pink-pop);
 }
 
+.math-level-picker {
+  width: min(100%, 680px);
+  margin: 0 auto;
+  padding: clamp(0.75rem, 3vw, 1.5rem);
+  display: grid;
+  gap: var(--space-md);
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.math-picker-heading {
+  text-align: center;
+}
+
+.math-picker-heading h1 {
+  margin: 0.25rem 0 0;
+  color: var(--ink);
+  font-size: clamp(1.55rem, 5vw, 2.4rem);
+}
+
+.math-operation-toggle {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.math-operation-toggle button {
+  min-height: 54px;
+  border: 2px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.math-operation-toggle button.active {
+  border-color: var(--pink-pop);
+  background: #fff0f5;
+  box-shadow: 0 8px 18px rgba(249, 101, 146, 0.18);
+}
+
+.math-difficulty-card {
+  position: relative;
+  min-height: 230px;
+  padding: clamp(1.2rem, 5vw, 2rem);
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  background: linear-gradient(145deg, #e9f8ff, #fff3d8);
+  box-shadow: var(--soft-shadow);
+  display: grid;
+  align-content: center;
+  gap: 0.6rem;
+  overflow: hidden;
+}
+
+.math-difficulty-card h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(2rem, 8vw, 3.2rem);
+}
+
+.math-difficulty-card p {
+  max-width: 28rem;
+  margin: 0;
+  color: var(--muted);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.math-difficulty-count {
+  width: fit-content;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.math-range-preview {
+  position: absolute;
+  right: 1rem;
+  bottom: -1rem;
+  color: rgba(83, 80, 143, 0.12);
+  font-size: clamp(7rem, 28vw, 12rem);
+  font-weight: 950;
+  line-height: 1;
+}
+
+.difficulty-hard,
+.difficulty-very-hard {
+  background: linear-gradient(145deg, #f0e8ff, #e7f8ff);
+}
+
+.math-picker-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.math-picker-actions .choice-action {
+  min-height: 60px;
+}
+
+.math-focus-lesson .focus-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.math-complete {
+  overflow-y: auto;
+}
+
+.word-answer-reveal {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-sm);
+  width: min(100%, 330px);
+  margin: 0 auto;
+  padding: 0.6rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: var(--soft-shadow);
+}
+
+.word-answer-reveal .picture-frame {
+  width: 92px;
+  aspect-ratio: 1;
+}
+
+.word-answer-reveal > strong {
+  font-size: clamp(1.7rem, 7vw, 2.6rem);
+  color: var(--ink);
+}
+
+.read-together-card {
+  display: grid;
+  place-items: center;
+  gap: var(--space-md);
+  width: min(100%, 700px);
+  margin: auto;
+  padding: clamp(1rem, 5vw, 2rem);
+  text-align: center;
+}
+
+.read-together-card h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(2rem, 8vw, 4rem);
+  line-height: 1.35;
+}
+
+.read-together-card mark {
+  padding: 0.05em 0.18em;
+  border-radius: 0.2em;
+  background: #ffe66d;
+  color: inherit;
+}
+
+@media (max-width: 520px) {
+  .math-level-picker {
+    gap: 0.7rem;
+  }
+
+  .math-difficulty-card {
+    min-height: 190px;
+  }
+
+  .math-picker-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
 .controller-key-settings {
   display: grid;
   gap: var(--space-sm);

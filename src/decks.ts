@@ -114,6 +114,7 @@ async function loadChunkyClipPack(entry: DeckIndexEntry): Promise<LearningDeck> 
         image: rowImage || (entry.type === 'reading-words' ? `images/${slug}.png` : undefined),
         audio,
         exampleSentence: readColumn(row, ['exampleSentence', 'sentence']),
+        exampleAudio: readColumn(row, ['exampleSentenceAudioFilename', 'sentenceAudio']),
         category,
         difficulty: parseNumber(readColumn(row, ['difficulty', 'lessonNumber'])) ?? Math.ceil((index + 1) / 5),
         tags,
