@@ -1668,11 +1668,11 @@ function StorySection({
           <p>Add stories to <strong>public/stories/anne-stories.json</strong>.</p>
         </section>
       ) : (
-        <div className="story-grid" aria-label="Story library">
+        <div className="story-bookshelf" aria-label="Story library">
           {resumeStory && !selectedStoryId && (
-            <button type="button" className="story-card resume-card" style={{gridColumn: '1 / -1', background: 'var(--c-brand-light)'}} onClick={() => resume(resumeStory)}>
-              <strong>Resume: {resumeStory.title}</strong>
-              <small>Continue reading from where you left off</small>
+            <button type="button" className="story-resume-book" onClick={() => resume(resumeStory)}>
+              <span>Continue reading</span>
+              <strong>{resumeStory.title}</strong>
             </button>
           )}
           {filteredStories.length === 0 && (
@@ -1687,18 +1687,24 @@ function StorySection({
             const savedPage = readStoryProgress(story.id, story.pages.length)
             return (
               <button key={story.id} type="button" className="story-card" onClick={() => openStory(story)}>
-                <AssetImage
-                  src={resolveStoryAssetUrl(cover)}
-                  label={story.pages[0]?.altText || story.title}
-                  className="story-cover"
-                  fallback={<StoryImageFallback title={story.title} pageNumber={1} />}
-                />
-                <span className="story-number">Story {index + 1}</span>
-                <strong>{story.title}</strong>
-                <small>{story.description}</small>
-                <span className="story-meta">{story.pages.length} pages - {story.readingLevel}</span>
-                {savedPage > 0 && <span className="story-resume-pill">Resume page {savedPage + 1}</span>}
-                <span className="story-read-pill">Read</span>
+                <span className="story-book-cover">
+                  <AssetImage
+                    src={resolveStoryAssetUrl(cover)}
+                    label={`${story.title} cover`}
+                    className="story-cover"
+                    fallback={<StoryImageFallback title={story.title} pageNumber={1} />}
+                  />
+                  <span className="story-cover-shade" aria-hidden="true" />
+                  <span className="story-cover-copy">
+                    <small>Story {index + 1}</small>
+                    <strong>{story.title}</strong>
+                  </span>
+                  {savedPage > 0 && <span className="story-resume-pill">Page {savedPage + 1}</span>}
+                </span>
+                <span className="story-book-meta">
+                  <span>{story.pages.length} pages</span>
+                  <span>Read</span>
+                </span>
               </button>
             )
           })}

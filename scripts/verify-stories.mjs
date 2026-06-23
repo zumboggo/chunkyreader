@@ -14,6 +14,10 @@ if (!fs.existsSync(storyPath)) {
   } else {
     for (const story of stories) {
       if (!story.id || !story.title) errors.push(`Story is missing id or title: ${JSON.stringify(story)}`)
+      if (!story.coverImage) errors.push(`${story.id || story.title}: missing coverImage`)
+      if (typeof story.coverImage === 'string' && story.coverImage.startsWith('/')) {
+        errors.push(`${story.id || story.title}: coverImage path should be relative to public/, not root-absolute`)
+      }
       if (!Array.isArray(story.pages) || story.pages.length === 0) {
         errors.push(`${story.id || story.title}: expected at least 1 page`)
         continue

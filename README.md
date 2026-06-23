@@ -256,6 +256,23 @@ npm run generate:story-images:test
 npm run generate:story-images
 ```
 
+### Generate story covers with Google Flash
+
+Story-library covers are portrait, text-free illustrations. Titles and reading details are rendered by the app so they stay crisp and accessible.
+
+```powershell
+npm run generate:story-covers:dry
+npm run generate:story-covers:test
+npm run generate:story-covers
+```
+
+Set either `GEMINI_API_KEY` for Google AI Studio, or set `GOOGLE_APPLICATION_CREDENTIALS`,
+`GOOGLE_CLOUD_PROJECT`, and `GOOGLE_CLOUD_LOCATION` for Vertex AI. The default model is
+`gemini-3.1-flash-image-preview`; override it with `GOOGLE_IMAGE_MODEL`.
+
+The generator supports `--story story-id`, `--limit N`, and `--force`. It stores optimized
+WebP covers in `public/stories/covers/` and updates each story's `coverImage` and `coverPrompt`.
+
 Useful options:
 
 ```bash

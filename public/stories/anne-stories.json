@@ -5,7 +5,7 @@
     "series": "PDF Stories",
     "readingLevel": "older reader",
     "description": "The Lava Girls' Tropical Adventure imported from a PDF for Older Reader story practice.",
-    "coverImage": "stories/pdf/lava-girls-tropical-adventure/images/cover.webp",
+    "coverImage": "stories/covers/lava-girls-tropical-adventure-cover.webp",
     "sourceType": "pdf-import",
     "sourceManifest": "stories/pdf/lava-girls-tropical-adventure/source-manifest.json",
     "pages": [
@@ -108,7 +108,8 @@
         "extractionMethod": "ocr",
         "ocrConfidence": 95
       }
-    ]
+    ],
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"The Lava Girls' Tropical Adventure\". Do not render the title or any words in the image. Story summary: The Lava Girls' Tropical Adventure imported from a PDF for Older Reader story practice. Opening scene: Anna and Sarah lived in snowy Canada. They felt much too hot for the cold. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "gus-sam-cake-lake",
@@ -297,7 +298,9 @@
         "altText": "Gus, Sam, Pip, and Ben share cake happily by the lake at sunset.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/gus-sam-cake-lake-page-20.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/gus-sam-cake-lake-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Gus and Sam and the Cake by the Lake\". Do not render the title or any words in the image. Story summary: Gus the Goat, Sam the Snake, and Pip the Pig solve the mystery of a missing cake by the lake. A cheerful WHITE GOAT named Gus, with small horns and hooves, wearing a BIG BLUE COAT, sits by a sunny bay full of small boats and happily munches oats from a bowl. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "anne-red-hat",
@@ -333,7 +336,9 @@
         "altText": "Diana smiles at Anne's red hat while Anne smiles back.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-red-hat-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/anne-red-hat-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Anne and the Red Hat\". Do not render the title or any words in the image. Story summary: Anne wears a red hat and Diana likes it too. Original children's storybook illustration of Anne in a red hat running toward a wooden gate in the countryside. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "anne-sad-cat",
@@ -369,7 +374,9 @@
         "altText": "Anne smiles while the cat drinks milk and looks happy.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-sad-cat-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/anne-sad-cat-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Anne and the Sad Cat\". Do not render the title or any words in the image. Story summary: Anne finds a sad cat and helps it feel glad. Original children's storybook illustration of Anne kneeling beside a sad cat sitting on a woven mat near a farmhouse porch. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "anne-at-pond",
@@ -405,7 +412,9 @@
         "altText": "Anne laughs as ripples spread across the pond.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-at-pond-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/anne-at-pond-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Anne at the Pond\". Do not render the title or any words in the image. Story summary: Anne and Diana see themselves in a still pond. Original children's storybook illustration of Anne and Diana running to a still pond beside fields and trees. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, dark-haired Diana as a kind cheerful young girl, old-fashioned dresses, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "anne-big-tree",
@@ -441,7 +450,9 @@
         "altText": "Marilla watches kindly while Anne climbs down from the tree.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-big-tree-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/anne-big-tree-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Anne and the Big Tree\". Do not render the title or any words in the image. Story summary: Anne loves a big old tree, even when Marilla tells her to come down. Original children's storybook illustration of Anne sitting safely on a low branch in a big old tree near a farmhouse. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, modest old-fashioned dress, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "anne-and-matthew",
@@ -477,7 +488,9 @@
         "altText": "Matthew smiles kindly while Anne stands happily beside him.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/anne-and-matthew-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/anne-and-matthew-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Anne and Matthew\". Do not render the title or any words in the image. Story summary: Anne talks and Matthew listens kindly. Original children's storybook illustration of Matthew in a soft hat sitting outside with Anne nearby looking eager to talk. Inspired by the public-domain world of Anne of Green Gables. Red-haired Anne as a young girl, Matthew as a gentle older man with a quiet kind expression and old-fashioned rural clothing, warm rural Prince Edward Island atmosphere, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "green-wood-red-feather",
@@ -513,7 +526,9 @@
         "altText": "Robin and Little John share the red feather happily.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-red-feather-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/green-wood-red-feather-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Robin and the Red Feather\". Do not render the title or any words in the image. Story summary: Robin finds a red feather and shares it with a friend. Original kawaii children's storybook illustration of Robin, a kind young forest helper, holding a soft red feather beside a sunny forest path. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "green-wood-bun",
@@ -549,7 +564,9 @@
         "altText": "Robin shares the bun with the child.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-bun-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/green-wood-bun-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Robin and the Bun\". Do not render the title or any words in the image. Story summary: Robin shares one small bun in the green wood. Original kawaii children's storybook illustration of Robin holding one warm round bun near a forest picnic cloth. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "green-wood-lost-goat",
@@ -585,7 +602,9 @@
         "altText": "The goat gets home and Robin smiles.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-lost-goat-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/green-wood-lost-goat-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Robin and the Lost Goat\". Do not render the title or any words in the image. Story summary: Robin helps a little goat get home. Original kawaii children's storybook illustration of Robin finding a cute little goat beside a mossy log in the green forest. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "green-wood-rain",
@@ -621,7 +640,9 @@
         "altText": "Robin and Marian run home after the rain.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-rain-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/green-wood-rain-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Robin in the Rain\". Do not render the title or any words in the image. Story summary: Robin and Marian wait under a tree when soft rain falls. Original kawaii children's storybook illustration of Robin running under a large leafy tree as gentle rain falls in the forest. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "green-wood-hat",
@@ -657,7 +678,9 @@
         "altText": "Robin puts the green hat back on.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/green-wood-hat-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/green-wood-hat-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Robin and the Green Hat\". Do not render the title or any words in the image. Story summary: Robin loses his green hat and finds it again. Original kawaii children's storybook illustration of Robin wearing a green hat as a playful wind blows through the forest. Inspired by the public-domain Robin Hood folk tale tradition, not any film or cartoon adaptation. Warm Sherwood-like green forest, gentle medieval storybook clothing, soft colors, rounded cute shapes, expressive friendly faces, cozy light, simple charming composition, child-friendly, clean background, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "peppa-hat",
@@ -693,7 +716,9 @@
         "altText": "Peppa smiles happily in a red hat.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-hat-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/peppa-hat-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Peppa's Hat\". Do not render the title or any words in the image. Story summary: Peppa and her family try on hats. Original children's storybook illustration of a cute little pink pig boy frowning while wearing a brown hat. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "peppa-ball",
@@ -729,7 +754,9 @@
         "altText": "Peppa hugs a green ball.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-ball-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/peppa-ball-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Peppa's Ball\". Do not render the title or any words in the image. Story summary: Peppa and her family play with bouncy balls. Original children's storybook illustration of a big daddy pink pig standing next to a very small red ball. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "peppa-boots",
@@ -765,7 +792,9 @@
         "altText": "Peppa jumps happily in red boots.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-boots-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/peppa-boots-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Peppa's Boots\". Do not render the title or any words in the image. Story summary: Peppa and her family wear boots. Original children's storybook illustration of a cute little pink pig boy in yellow boots looking at muddy tree roots. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "peppa-coat",
@@ -801,7 +830,9 @@
         "altText": "Peppa wears a red coat and holds a note.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-coat-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/peppa-coat-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Peppa's Coat\". Do not render the title or any words in the image. Story summary: Peppa and her family try on coats. Original children's storybook illustration of a cute little pink pig boy putting a blue coat into a small toy boat. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "peppa-car",
@@ -837,7 +868,9 @@
         "altText": "Peppa puts a red car in a jar.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/peppa-car-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/peppa-car-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Peppa's Car\". Do not render the title or any words in the image. Story summary: Peppa and her family play with cars. Original children's storybook illustration of a cute little pink pig boy sitting in a slow toy car, looking bored. Anthropomorphic pink pigs, soft colors, gentle light, simple charming composition, child-friendly, nostalgic, clean background, expressive faces, original illustration, no text, no watermark. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   },
   {
     "id": "pippa-frog-log",
@@ -873,6 +906,8 @@
         "altText": "Georgie nudges the toy frog off the log while Pippa and Mama Pig notice a little fly.",
         "audio": "clip-packs/chunky-reader-audio/audio/narration/stories/anne-soft-female-v2/pippa-frog-log-page-3.mp3"
       }
-    ]
+    ],
+    "coverImage": "stories/covers/pippa-frog-log-cover.webp",
+    "coverPrompt": "Create a portrait 3:4 cover illustration for a young child's story library. Story title for context only: \"Pippa and the Frog on a Log\". Do not render the title or any words in the image. Story summary: Pippa finds a quiet frog on a log, but the surprise is not what she thinks. Original gentle children's picture-book illustration of a cheerful rosy-brown piglet girl named Pippa wearing blue overalls beside a pond, looking at a small frog sitting very still on a log. Cozy farmyard pond setting, hand-painted watercolor and gouache textures, warm outlines, rounded storybook proportions, front-facing or three-quarter character pose, simple uncluttered composition, expressive faces, child-friendly, sweet and funny mood, no text, no letters, no logo, no watermark. Create an original character design; do not imitate any existing cartoon, television show, movie, or branded pig character. Original premium children's storybook illustration, warm painterly watercolor and gouache textures, expressive friendly characters, clear central silhouette, rich but calm color, gentle humor, polished book-cover composition. Leave the upper and lower edges visually calm so the app can overlay its own title and badges. No text, no letters, no numbers, no typography, no logo, no watermark, no signature, no frightening imagery, no copied copyrighted character design, and no imitation of a specific living artist or animation studio."
   }
 ]
