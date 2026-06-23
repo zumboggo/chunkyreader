@@ -1377,9 +1377,20 @@ function MathLevelPicker({
           Subtraction
         </button>
       </div>
+      <div className="math-difficulty-track" aria-label={`Four math levels. ${detail.title} is selected.`}>
+        {MATH_DIFFICULTIES.map((level) => (
+          <span
+            key={level}
+            className={level === difficulty ? 'active' : ''}
+            aria-current={level === difficulty ? 'step' : undefined}
+          >
+            {MATH_DIFFICULTY_DETAILS[level].title}
+          </span>
+        ))}
+      </div>
       <article className={`math-difficulty-card difficulty-${difficulty}`}>
         <span className="math-difficulty-count">
-          {MATH_DIFFICULTIES.indexOf(difficulty) + 1} of {MATH_DIFFICULTIES.length}
+          Level {MATH_DIFFICULTIES.indexOf(difficulty) + 1} of {MATH_DIFFICULTIES.length}
         </span>
         <h2>{detail.title}</h2>
         <p>{detail.description}</p>
