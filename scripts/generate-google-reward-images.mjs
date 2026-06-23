@@ -5,6 +5,11 @@ import sharp from 'sharp'
 import ts from 'typescript'
 
 const root = process.cwd()
+try {
+  process.loadEnvFile(path.join(root, '.env'))
+} catch {
+  // Environment variables may also be supplied by the shell or CI.
+}
 const args = process.argv.slice(2)
 const dryRun = hasFlag('dry-run')
 const force = hasFlag('force')
