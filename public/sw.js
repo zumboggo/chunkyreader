@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-learner-v9'
+const CACHE_VERSION = 'chunky-learner-v10'
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`
 
@@ -76,7 +76,11 @@ self.addEventListener('activate', (event) => {
       .then((keys) =>
         Promise.all(
           keys
-            .filter((key) => key.startsWith('chunky-reader-') && ![STATIC_CACHE, RUNTIME_CACHE].includes(key))
+            .filter(
+              (key) =>
+                (key.startsWith('chunky-reader-') || key.startsWith('chunky-learner-')) &&
+                ![STATIC_CACHE, RUNTIME_CACHE].includes(key),
+            )
             .map((key) => caches.delete(key)),
         ),
       )
