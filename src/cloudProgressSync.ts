@@ -30,6 +30,7 @@ const PREFIX_SYNC_KEYS = [
   'chunky-reader:card-progress:',
   'chunky-reader:older-reader-phonemes:',
   'chunky-reader:flashcard-states:',
+  'chunky-reader:word-recognition:',
 ]
 
 const DEFAULT_APP_SETTINGS: AppSettings = {
