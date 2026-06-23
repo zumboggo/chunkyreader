@@ -43,6 +43,7 @@
     "generate:section-images:dry": "node scripts/generate-section-images.mjs --dry-run",
     "generate:section-images:test": "node scripts/generate-section-images.mjs --limit 1",
     "generate:math-decks": "node scripts/generate-math-decks.mjs",
+    "verify:math-levels": "node --experimental-strip-types scripts/verify-math-levels.mts",
     "generate:chinese-deck": "node scripts/generate-chinese-deck.mjs"
   },
   "dependencies": {
