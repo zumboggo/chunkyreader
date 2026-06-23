@@ -1,4 +1,5 @@
 import type { LearningCard } from './types'
+import { recordLocalProgressChange } from './cloudProgressSync'
 
 export interface WordRecognitionProgress {
   successfulLessons: number
@@ -136,7 +137,7 @@ function compareReviewPriority(deckId: string, a: LearningCard, b: LearningCard)
 function writeWordRecognitionProgress(deckId: string, cardId: string, progress: WordRecognitionProgress) {
   try {
     localStorage.setItem(wordProgressKey(deckId, cardId), JSON.stringify(progress))
-    window.dispatchEvent(new CustomEvent('chunkyReaderProgressChanged', { detail: { changedAt: Date.now() } }))
+    recordLocalProgressChange()
   } catch {
     // Recognition tracking should never block a lesson.
   }
