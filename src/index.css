@@ -5528,6 +5528,22 @@ body.lesson-active {
   font-size: 0.82rem;
   font-weight: 950;
   text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.reward-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.reward-badge img + span {
+  position: relative;
+  z-index: 0;
 }
 
 .reward-badge.large {
@@ -5583,6 +5599,8 @@ body.lesson-active {
   position: absolute;
   inset: 0;
   opacity: 0.28;
+  background-position: center;
+  background-size: cover;
 }
 
 .preview-accessory {
@@ -5601,13 +5619,27 @@ body.lesson-active {
   box-shadow: 0 8px 18px rgba(58, 46, 96, 0.16);
 }
 
-.preview-accessory.slot-head { top: 8%; left: 50%; transform: translateX(-50%); }
-.preview-accessory.slot-face { top: 33%; left: 50%; transform: translateX(-50%); }
-.preview-accessory.slot-neck { top: 55%; left: 50%; transform: translateX(-50%); }
-.preview-accessory.slot-body { bottom: 17%; left: 50%; transform: translateX(-50%); }
-.preview-accessory.slot-back { top: 35%; left: 12%; }
-.preview-accessory.slot-hand { right: 8%; bottom: 22%; }
-.preview-accessory.slot-sticker { right: 8%; top: 10%; }
+.preview-accessory img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.preview-accessory img + span {
+  position: relative;
+  z-index: 0;
+}
+
+.preview-accessory.slot-head { top: 2%; left: 50%; width: 36%; height: 28%; transform: translateX(-50%); }
+.preview-accessory.slot-face { top: 29%; left: 50%; width: 35%; height: 20%; transform: translateX(-50%); }
+.preview-accessory.slot-neck { top: 47%; left: 50%; width: 34%; height: 22%; transform: translateX(-50%); }
+.preview-accessory.slot-body { bottom: 4%; left: 50%; width: 46%; height: 38%; transform: translateX(-50%); }
+.preview-accessory.slot-back { top: 27%; left: 5%; width: 36%; height: 45%; }
+.preview-accessory.slot-hand { right: 2%; bottom: 12%; width: 30%; height: 34%; }
+.preview-accessory.slot-sticker { right: 5%; top: 6%; width: 22%; height: 22%; }
 
 .outfit-slot-list {
   display: grid;
@@ -5637,6 +5669,23 @@ body.lesson-active {
   background: white;
   color: var(--purple-pop);
   font-weight: 950;
+  position: relative;
+  overflow: hidden;
+}
+
+.mini-reward img {
+  width: 2.6rem;
+  height: 2.2rem;
+  object-fit: contain;
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.mini-reward img + span {
+  position: relative;
+  z-index: 0;
 }
 
 .mini-reward.selected {
