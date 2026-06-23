@@ -329,7 +329,14 @@ function OutfitPanel({
       <div className="panda-preview-card">
         <div className="panda-preview-stage">
           {equippedItems.filter((item) => item.slot === 'background').map((item) => (
-            <span key={item.id} className="preview-background" style={{ backgroundColor: item.colorTheme }} />
+            <span
+              key={item.id}
+              className="preview-background"
+              style={{
+                backgroundColor: item.colorTheme,
+                backgroundImage: `url("${rewardImageUrl(item)}")`,
+              }}
+            />
           ))}
           <img src={`${import.meta.env.BASE_URL}assets/mascots/mascot-reading.png`} alt="Panda wearing rewards" />
           {equippedItems.filter((item) => item.slot !== 'background').map((item) => (
@@ -338,7 +345,8 @@ function OutfitPanel({
               className={`preview-accessory slot-${item.slot} rarity-${item.rarity}`}
               style={{ backgroundColor: item.colorTheme }}
             >
-              {item.badgeText}
+              <img src={rewardImageUrl(item)} alt="" onError={hideBrokenRewardImage} />
+              <span>{item.badgeText}</span>
             </span>
           ))}
         </div>
@@ -358,7 +366,8 @@ function OutfitPanel({
                   onClick={() => onEquip(item)}
                   title={item.name}
                 >
-                  {item.badgeText}
+                  <img src={rewardImageUrl(item)} alt="" onError={hideBrokenRewardImage} />
+                  <span>{item.badgeText}</span>
                 </button>
               )) : <small>Find a {slotLabel(slot).toLowerCase()} item.</small>}
             </div>
@@ -404,9 +413,18 @@ function RewardBadge({ item, large = false }: { item: RewardItem; large?: boolea
       style={{ backgroundColor: item.colorTheme }}
       aria-hidden="true"
     >
-      {item.badgeText}
+      <img src={rewardImageUrl(item)} alt="" onError={hideBrokenRewardImage} />
+      <span>{item.badgeText}</span>
     </span>
   )
+}
+
+function rewardImageUrl(item: RewardItem) {
+  return `${import.meta.env.BASE_URL}assets/rewards/${item.id}.webp`
+}
+
+function hideBrokenRewardImage(event: React.SyntheticEvent<HTMLImageElement>) {
+  event.currentTarget.style.display = 'none'
 }
 
 function rarityLabel(rarity: RewardRarity) {
