@@ -1393,7 +1393,7 @@ function MathLevelPicker({
           Level {MATH_DIFFICULTIES.indexOf(difficulty) + 1} of {MATH_DIFFICULTIES.length}
         </span>
         <h2>{detail.title}</h2>
-        <p>{detail.description}</p>
+        <p>{detail.descriptions[operation]}</p>
         <div className="math-range-preview" aria-hidden="true">
           {operation === 'add' ? '+' : '−'}
         </div>

@@ -5,11 +5,38 @@ export type MathDifficulty = 'easy' | 'medium' | 'hard' | 'very-hard'
 
 export const MATH_DIFFICULTIES: MathDifficulty[] = ['easy', 'medium', 'hard', 'very-hard']
 
-export const MATH_DIFFICULTY_DETAILS: Record<MathDifficulty, { title: string; description: string }> = {
-  easy: { title: 'Easy', description: 'Add or take away 0, 1, or 2 with numbers to 6.' },
-  medium: { title: 'Medium', description: 'Practice all facts using numbers to 6.' },
-  hard: { title: 'Hard', description: 'Practice all facts using numbers to 10.' },
-  'very-hard': { title: 'Very Hard', description: 'Practice every fact using numbers to 12.' },
+export const MATH_DIFFICULTY_DETAILS: Record<
+  MathDifficulty,
+  { title: string; descriptions: Record<MathOperation, string> }
+> = {
+  easy: {
+    title: 'Easy',
+    descriptions: {
+      add: 'Add two small numbers with totals up to 6.',
+      subtract: 'Take away 1 or 2 from small numbers, including making 0.',
+    },
+  },
+  medium: {
+    title: 'Medium',
+    descriptions: {
+      add: 'Add numbers 2 and up with totals from 7 to 10.',
+      subtract: 'Take 2 or more away from numbers 6 to 8.',
+    },
+  },
+  hard: {
+    title: 'Hard',
+    descriptions: {
+      add: 'Cross 10 with totals from 11 to 18.',
+      subtract: 'Take 3 or more away from 9 and 10.',
+    },
+  },
+  'very-hard': {
+    title: 'Very Hard',
+    descriptions: {
+      add: 'Add large numbers for totals from 19 to 24.',
+      subtract: 'Take 4 or more away from 11 and 12.',
+    },
+  },
 }
 
 interface MathProgress {
@@ -72,28 +99,70 @@ export function filterMathCards(
   operation: MathOperation,
   difficulty: MathDifficulty,
 ): LearningCard[] {
-  return cards.filter((card) => {
-    if (card.mathOperation !== operation) return false
-    const operands = mathOperands(card)
-    if (!operands) return false
-    const [left, right] = operands
-    if (operation === 'subtract' && right > left) return false
-
-    if (difficulty === 'easy') {
-      return operation === 'add'
-        ? left <= 6 && right <= 6 && (left <= 2 || right <= 2)
-        : left <= 6 && right <= 2
-    }
-    if (difficulty === 'medium') return left <= 6 && right <= 6
-    if (difficulty === 'hard') return left <= 10 && right <= 10
-    return left <= 12 && right <= 12
-  })
+  return cards
+    .filter((card) => {
+      if (card.mathOperation !== operation) return false
+      const operands = mathOperands(card)
+      return operands ? matchesMathDifficulty(operation, difficulty, operands) : false
+    })
+    .sort((leftCard, rightCard) => compareMathCards(leftCard, rightCard, operation))
 }
 
 function mathOperands(card: LearningCard): [number, number] | undefined {
   const match = (card.equation || card.displayText).match(/(\d+)\s*[+-]\s*(\d+)/u)
   if (!match) return undefined
   return [Number(match[1]), Number(match[2])]
+}
+
+function matchesMathDifficulty(
+  operation: MathOperation,
+  difficulty: MathDifficulty,
+  [left, right]: [number, number],
+) {
+  if (operation === 'subtract') {
+    if (right > left) return false
+    if (difficulty === 'easy') {
+      return left >= 2 && left <= 6 && right >= 1 && (right <= 2 || right === left)
+    }
+    if (difficulty === 'medium') {
+      return left >= 6 && left <= 8 && right >= 2 && right <= left - 2
+    }
+    if (difficulty === 'hard') {
+      return left >= 9 && left <= 10 && right >= 3 && right < left
+    }
+    return left >= 11 && left <= 12 && right >= 4
+  }
+
+  const total = left + right
+  if (difficulty === 'easy') {
+    return left >= 1 && right >= 1 && total <= 6
+  }
+  if (difficulty === 'medium') {
+    return left >= 2 && right >= 2 && total >= 7 && total <= 10
+  }
+  if (difficulty === 'hard') {
+    return left >= 3 && right >= 3 && left <= 10 && right <= 10 && total >= 11 && total <= 18
+  }
+  return left >= 7 && right >= 7 && total >= 19 && total <= 24
+}
+
+function compareMathCards(leftCard: LearningCard, rightCard: LearningCard, operation: MathOperation) {
+  const leftOperands = mathOperands(leftCard)
+  const rightOperands = mathOperands(rightCard)
+  if (!leftOperands || !rightOperands) return 0
+
+  const [leftA, leftB] = leftOperands
+  const [rightA, rightB] = rightOperands
+
+  if (operation === 'subtract') {
+    const leftMakesZero = Number(leftA === leftB)
+    const rightMakesZero = Number(rightA === rightB)
+    return leftMakesZero - rightMakesZero || leftA - rightA || leftB - rightB
+  }
+
+  return (leftA + leftB) - (rightA + rightB)
+    || Math.abs(leftA - leftB) - Math.abs(rightA - rightB)
+    || leftA - rightA
 }
 
 function mathProgressKey(operation: MathOperation, difficulty: MathDifficulty) {
