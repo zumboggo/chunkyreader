@@ -1493,13 +1493,18 @@ function MathLevelPicker({
       </div>
       <div className="math-difficulty-track" aria-label={`Four math levels. ${detail.title} is selected.`}>
         {MATH_DIFFICULTIES.map((level) => (
-          <span
+          <button
             key={level}
+            type="button"
             className={level === difficulty ? 'active' : ''}
             aria-current={level === difficulty ? 'step' : undefined}
+            onClick={() => {
+              onDifficultyChange(level)
+              saveMathSelection(operation, level)
+            }}
           >
             {MATH_DIFFICULTY_DETAILS[level].title}
-          </span>
+          </button>
         ))}
       </div>
       <article className={`math-difficulty-card difficulty-${difficulty}`}>
