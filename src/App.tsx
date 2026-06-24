@@ -725,14 +725,18 @@ function App() {
     setPhase('learn')
     setSarahActivityIndex(0)
     setMenuOpen(false)
-    setCardIndex(0)
     
     let targetDeckId = ''
     let targetMode: LearningMode = 'activeRecall'
+    let resumeIndex = 0
     
     if (section === 'letters') {
       targetDeckId = currentDecks.find(d => d.type === 'letters' && d.profile === 'sarah')?.id ?? ''
       targetMode = 'listeningMode'
+      if (targetDeckId) {
+        const saved = localStorage.getItem(`sarah-progress-${targetDeckId}`)
+        resumeIndex = saved ? parseInt(saved, 10) : 0
+      }
     } else if (section === 'sounds') {
       targetDeckId = currentDecks.find(d => d.type === 'phonemes' && d.profile === 'sarah')?.id ?? ''
       targetMode = 'listeningMode'
@@ -744,16 +748,27 @@ function App() {
       const savedMath = loadMathProgress()
       setMathOperation(savedMath.operation)
       setMathDifficulty(savedMath.difficulty)
-      setMathStarted(false)
-      targetDeckId = currentDecks.find(d => d.type === 'math' && d.id.includes(savedMath.operation === 'add' ? 'addition' : 'subtraction'))?.id
+      const mathDeck = currentDecks.find(d => d.type === 'math' && d.id.includes(savedMath.operation === 'add' ? 'addition' : 'subtraction'))?.id
         ?? currentDecks.find(d => d.type === 'math')?.id
         ?? ''
+      const mathPool = filterMathCards(
+        currentDecks.find((d) => d.id === mathDeck)?.cards ?? [],
+        savedMath.operation,
+        savedMath.difficulty,
+      )
+      const mathIdx = mathPool.length
+        ? loadMathIndex(savedMath.operation, savedMath.difficulty, mathPool.length)
+        : 0
+      resumeIndex = mathIdx
+      setMathStarted(mathIdx > 0)
+      targetDeckId = mathDeck
       targetMode = 'activeRecall'
     } else if (section === 'chinese') {
       targetDeckId = currentDecks.find(d => d.type === 'chinese-vocab')?.id ?? ''
       targetMode = 'flashcardMode'
     }
     
+    setCardIndex(resumeIndex)
     setActiveDeckId(targetDeckId)
     setMode(targetMode)
   }
@@ -2374,6 +2389,13 @@ function SarahLetterLesson({
 
   useAutoplaySarahActivity(deck, completed ? undefined : activity, `${deck.id}:${lessonNumber}:${activityIndex}`)
 
+  useEffect(() => {
+    if (!activity || completed) return
+    if (activity.kind !== 'intro') return
+    const timer = window.setTimeout(() => nextActivity(), 3000)
+    return () => window.clearTimeout(timer)
+  }, [activity, completed, activityIndex])
+
   function nextActivity() {
     onActivityChange(activityIndex + 1)
   }
@@ -3393,7 +3415,8 @@ function MathLesson({
     setSelected(option.id)
     if (option.id === card.id) {
       playSfx('correct')
-      window.setTimeout(finishQuestion, 700)
+      speakText(deck, `${card.equation?.replace('=', 'is') ?? card.mathPrompt}`)
+      window.setTimeout(finishQuestion, 1400)
     } else {
       setGentleReveal(true)
       void playNarrationClip('feedback:let-me-help')
@@ -4117,10 +4140,15 @@ async function playCardAudio(deck: LearningDeck, card: LearningCard) {
 function buildOptions(cards: LearningCard[], card: LearningCard): LearningCard[] {
   const seed = card.id
 
-  if (card.type === 'math' && card.mathAnswerOptions) {
-    return card.mathAnswerOptions.map(num => ({
+  if (card.type === 'math' && card.mathAnswerOptions && card.mathAnswer !== undefined) {
+    const answer = card.mathAnswer
+    const offsets = [1, 2, -2, -1]
+    const offset = offsets[stableHash(card.id) % offsets.length]
+    const wrong = Math.max(0, answer + offset)
+    const options = wrong === answer ? [answer, answer + 1] : [wrong, answer]
+    return options.sort((a, b) => stableSort(`${card.id}:${a}`) - stableSort(`${card.id}:${b}`)).map(num => ({
       ...card,
-      id: num === card.mathAnswer ? card.id : `${card.id}-wrong-${num}`,
+      id: num === answer ? card.id : `${card.id}-wrong-${num}`,
       displayText: String(num),
       category: ''
     }))
@@ -4254,13 +4282,8 @@ function buildSarahActivities(lessonCards: LearningCard[]): SarahActivity[] {
       correctText: promptCase === 'upper' ? card.lowercase : card.uppercase,
     }
   })
-  const beginningSound = lessonCards.map((card): SarahActivity => ({
-    kind: 'beginningSound',
-    card,
-    options: buildSarahOptions(lessonCards, card),
-  }))
   const review = lessonCards.map((card, index): SarahActivity => buildSarahReviewActivity(lessonCards, card, index))
-  return [...intros, ...wordToBeginningSound, ...soundToWord, ...upperLower, ...beginningSound, ...review]
+  return [...intros, ...wordToBeginningSound, ...soundToWord, ...upperLower, ...review]
 }
 
 function buildSarahReviewActivity(lessonCards: LearningCard[], card: LearningCard, index: number): SarahActivity {
@@ -4337,7 +4360,8 @@ function sarahAnswerText(activity: SarahActivity): string {
 }
 
 function choiceState(answer: string, correctAnswer: string, wrongChoice: string, status: SarahActivityStatus): string {
-  if ((status === 'correct' || status === 'revealed') && answer === correctAnswer) return 'correct pulse'
+  if (status === 'revealed' && answer === correctAnswer) return 'correct pulse'
+  if (status === 'correct' && answer === correctAnswer) return 'correct pulse'
   if (wrongChoice === answer && (status === 'try-again' || status === 'revealed')) return 'wrong shake'
   return ''
 }
