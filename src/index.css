@@ -4962,6 +4962,51 @@ body.lesson-active {
   color: inherit;
 }
 
+.sentence-bridge-card {
+  gap: var(--space-sm);
+}
+
+.sentence-bridge-card h2 {
+  margin: 0 auto;
+  max-width: 680px;
+  color: var(--ink);
+  font-size: clamp(1.8rem, 7vw, 3.6rem);
+  line-height: 1.28;
+}
+
+.sentence-bridge-card mark,
+.sentence-blank {
+  display: inline-block;
+  min-width: 3.8em;
+  padding: 0.02em 0.18em;
+  border-radius: 0.22em;
+}
+
+.sentence-bridge-card mark {
+  background: #ffe66d;
+  color: inherit;
+}
+
+.sentence-blank {
+  color: var(--purple-pop);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 -0.12em 0 rgba(117, 81, 199, 0.18);
+}
+
+.challenge-badge {
+  display: inline-grid;
+  place-items: center;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffe66d, #c9f4df);
+  color: #2f315f;
+  font-size: 0.78rem;
+  font-weight: 950;
+  box-shadow: 0 8px 18px rgba(255, 214, 92, 0.22);
+}
+
 @media (max-width: 520px) {
   .math-level-picker {
     gap: 0.7rem;
@@ -6592,6 +6637,109 @@ body.dark-mode .heatmap-heavy {
   color: var(--muted);
 }
 
+.book-words-panel {
+  display: grid;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(201, 244, 223, 0.95), rgba(255, 232, 214, 0.9));
+  border: 2px solid rgba(255, 255, 255, 0.82);
+  box-shadow: var(--soft-shadow);
+}
+
+.book-words-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.book-words-heading h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.2rem, 4vw, 1.7rem);
+}
+
+.book-words-heading > strong {
+  display: grid;
+  place-items: center;
+  min-width: 72px;
+  min-height: 52px;
+  padding: 0.35rem 0.65rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--ink);
+  font-size: clamp(1.2rem, 4vw, 1.55rem);
+  font-weight: 950;
+}
+
+.book-word-lanes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-xs);
+}
+
+.book-word-lane {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.65rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.book-word-lane h3,
+.book-word-lane p {
+  margin: 0;
+}
+
+.book-word-lane h3 {
+  color: var(--ink);
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  font-weight: 950;
+}
+
+.book-word-lane p {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.book-word-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+}
+
+.book-word-chip {
+  min-height: 34px;
+  padding: 0.38rem 0.58rem;
+  border: 2px solid rgba(255, 255, 255, 0.88);
+  border-radius: 999px;
+  background: white;
+  color: var(--ink);
+  font-size: clamp(0.78rem, 2.4vw, 0.92rem);
+  font-weight: 900;
+  box-shadow: 0 5px 12px rgba(74, 58, 84, 0.08);
+}
+
+.book-word-lane.ready .book-word-chip {
+  background: #bdf4d0;
+}
+
+.book-word-lane.growing .book-word-chip {
+  background: #ffe8d6;
+}
+
+.book-word-lane.new .book-word-chip {
+  background: #f7fbff;
+}
+
+.book-word-chip.tapped {
+  animation: word-tap-glow 0.5s ease;
+}
+
 .word-collection-section {
   display: flex;
   flex-direction: column;
@@ -6696,6 +6844,16 @@ body.dark-mode .heatmap-heavy {
   margin-top: var(--space-sm);
   padding-top: var(--space-sm);
   border-top: 2px dashed var(--line);
+}
+
+@media (max-width: 720px) {
+  .book-word-lanes {
+    grid-template-columns: 1fr;
+  }
+
+  .book-words-heading {
+    align-items: flex-start;
+  }
 }
 
 /* ─── Growing Reader Home: My Words button ─── */

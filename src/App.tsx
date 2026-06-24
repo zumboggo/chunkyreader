@@ -31,7 +31,9 @@ import {
   type MathOperation,
 } from './mathProgress'
 import {
+  isWordMastered,
   markWordLessonIntroduced,
+  readWordRecognitionProgress,
   recordWordLessonResults,
   selectWordLessonCards,
 } from './wordLessonProgress'
@@ -72,6 +74,7 @@ type OlderReaderQuestionKind =
   | 'startsWithSound'
   | 'wordFamily'
   | 'review'
+  | 'sentenceBridge'
   | 'readTogether'
 
 type OlderReaderPhonemeActivityKind =
@@ -97,6 +100,7 @@ interface OlderReaderActivity {
   kind: OlderReaderQuestionKind
   card: LearningCard
   options: LearningCard[]
+  challenge?: boolean
 }
 
 interface OlderReaderPhonemeActivity {
@@ -298,6 +302,30 @@ function getWordCollectionData(decks: LearningDeck[]): {
   return { mastered, growing }
 }
 
+function getBookWordReadiness(decks: LearningDeck[]): {
+  ready: Array<{ deck: LearningDeck; card: LearningCard }>
+  growing: Array<{ deck: LearningDeck; card: LearningCard }>
+  fresh: Array<{ deck: LearningDeck; card: LearningCard }>
+} {
+  const ready: Array<{ deck: LearningDeck; card: LearningCard }> = []
+  const growing: Array<{ deck: LearningDeck; card: LearningCard }> = []
+  const fresh: Array<{ deck: LearningDeck; card: LearningCard }> = []
+  for (const deck of decks) {
+    if (deck.type !== 'reading-words') continue
+    for (const card of deck.cards) {
+      if (!isBookWord(card)) continue
+      const progress = readWordRecognitionProgress(deck.id, card.id)
+      if (isWordMastered(deck.id, card.id)) ready.push({ deck, card })
+      else if (progress.introducedAt || progress.successfulLessons > 0 || readCardProgress(deck.id, card.id).recalledAt) {
+        growing.push({ deck, card })
+      } else {
+        fresh.push({ deck, card })
+      }
+    }
+  }
+  return { ready, growing, fresh }
+}
+
 function WordCollection({
   decks,
   onBack,
@@ -306,8 +334,10 @@ function WordCollection({
   onBack: () => void
 }) {
   const { mastered, growing } = getWordCollectionData(decks)
+  const bookWords = getBookWordReadiness(decks)
   const [tappedId, setTappedId] = useState('')
   const allWords = [...mastered.map(m => ({ ...m, status: 'mastered' as const })), ...growing.map(g => ({ ...g, firstTry: false, status: 'growing' as const }))]
+  const bookWordTotal = bookWords.ready.length + bookWords.growing.length + bookWords.fresh.length
 
   function handleTap(deck: LearningDeck, card: LearningCard) {
     setTappedId(card.id)
@@ -344,6 +374,40 @@ function WordCollection({
           </button>
         )}
       </div>
+      {bookWordTotal > 0 && (
+        <div className="book-words-panel">
+          <div className="book-words-heading">
+            <div>
+              <span className="stage-label">Book Words</span>
+              <h2>Ready for the book</h2>
+            </div>
+            <strong>{bookWords.ready.length}/{bookWordTotal}</strong>
+          </div>
+          <div className="book-word-lanes">
+            <BookWordLane
+              title="Ready Words"
+              words={bookWords.ready}
+              tappedId={tappedId}
+              onTap={handleTap}
+              status="ready"
+            />
+            <BookWordLane
+              title="Growing Words"
+              words={bookWords.growing}
+              tappedId={tappedId}
+              onTap={handleTap}
+              status="growing"
+            />
+            <BookWordLane
+              title="New Words"
+              words={bookWords.fresh}
+              tappedId={tappedId}
+              onTap={handleTap}
+              status="new"
+            />
+          </div>
+        </div>
+      )}
       {allWords.length === 0 ? (
         <div className="word-collection-empty">
           <Mascot mood="curious" size="small" />
@@ -366,6 +430,42 @@ function WordCollection({
               </button>
             ))}
           </div>
+        </div>
+      )}
+    </section>
+  )
+}
+
+function BookWordLane({
+  title,
+  words,
+  tappedId,
+  status,
+  onTap,
+}: {
+  title: string
+  words: Array<{ deck: LearningDeck; card: LearningCard }>
+  tappedId: string
+  status: 'ready' | 'growing' | 'new'
+  onTap: (deck: LearningDeck, card: LearningCard) => void
+}) {
+  return (
+    <section className={`book-word-lane ${status}`}>
+      <h3>{title}</h3>
+      {words.length === 0 ? (
+        <p>None yet</p>
+      ) : (
+        <div className="book-word-chips">
+          {words.map(({ deck, card }) => (
+            <button
+              key={`${status}:${card.id}`}
+              type="button"
+              className={`book-word-chip squish ${tappedId === card.id ? 'tapped' : ''}`}
+              onClick={() => onTap(deck, card)}
+            >
+              {optionLabel(card)}
+            </button>
+          ))}
         </div>
       )}
     </section>
@@ -2733,13 +2833,16 @@ function OlderReaderLesson({
   const [selected, setSelected] = useState('')
   const [gentleReveal, setGentleReveal] = useState(false)
   const [complete, setComplete] = useState(false)
+  const [firstTryStreak, setFirstTryStreak] = useState(0)
   const completionRecordedRef = useRef(false)
   const firstTryCorrectCountsRef = useRef<Record<string, number>>({})
   const lessonId = `${deck.id}:lesson:${lessonNumber}`
   const correct = selected === activity?.card.id
   const isPeek = activity?.kind === 'peek'
   const isReadTogether = activity?.kind === 'readTogether'
+  const isSentenceBridge = activity?.kind === 'sentenceBridge'
   const showCompletion = complete || activityIndex >= activities.length
+  const challengeActive = Boolean(activity?.challenge && firstTryStreak >= 2 && !selected && !gentleReveal)
   const prompt = activity ? getOlderReaderPrompt(activity) : ''
   const promptNarration = useNarration(
     showCompletion
@@ -2781,10 +2884,12 @@ function OlderReaderLesson({
       void playCardAudio(deck, activity.card)
       updateCardProgress(deck.id, activity.card.id, { recalledAt: Date.now(), firstTryRecalled: true })
       firstTryCorrectCountsRef.current[activity.card.id] = (firstTryCorrectCountsRef.current[activity.card.id] ?? 0) + 1
+      setFirstTryStreak((value) => value + 1)
       window.setTimeout(finishActivity, 650)
       return
     }
     setGentleReveal(true)
+    setFirstTryStreak(0)
     void playNarrationClip('feedback:let-me-help')
     void playCardAudio(deck, activity.card)
     updateCardProgress(deck.id, activity.card.id, { recalledAt: Date.now(), firstTryRecalled: false })
@@ -2893,10 +2998,98 @@ function OlderReaderLesson({
     )
   }
 
-  if (isReadTogether && activity && !showCompletion) {
+  if ((isReadTogether || isSentenceBridge) && activity && !showCompletion) {
     const sentence = activity.card.exampleSentence || `I can read ${optionLabel(activity.card)}.`
     const targetWord = optionLabel(activity.card)
     const sentenceParts = sentence.split(new RegExp(`(${escapeRegExp(targetWord)})`, 'iu'))
+    if (isSentenceBridge) {
+      return (
+        <section className="focus-lesson older-reader-lesson">
+          <div className="focus-main">
+            <div className="focus-question older-reader-question">
+              <div className="focus-prompt sentence-bridge-card">
+                <span className="stage-label">Tiny sentence</span>
+                <h2>
+                  {sentenceParts.map((part, index) => (
+                    part.toLowerCase() === targetWord.toLowerCase()
+                      ? selected
+                        ? <mark key={`${part}:${index}`}>{part}</mark>
+                        : <span key={`${part}:${index}`} className="sentence-blank">_____</span>
+                      : <span key={`${part}:${index}`}>{part}</span>
+                  ))}
+                </h2>
+                <AudioPromptButton
+                  onClick={() => playNarrationClip(
+                    `word-sentence:${activity.card.id}`,
+                    sentence,
+                    deckAudioPackPath(deck, activity.card.exampleAudio),
+                  )}
+                  label="Hear sentence"
+                />
+              </div>
+              <div className="focus-options" aria-label="Answer choices">
+                {activity.options.map((option, index) => {
+                  const isCorrectOption = gentleReveal && option.id === activity.card.id
+                  const isWrongSelection = gentleReveal && selected === option.id && option.id !== activity.card.id
+                  const isSelectedCorrect = !gentleReveal && selected && option.id === activity.card.id
+                  const isSelectedWrong = !gentleReveal && selected === option.id && option.id !== activity.card.id
+                  const stateClass = isCorrectOption
+                    ? 'correct pulse'
+                    : isWrongSelection
+                      ? 'selected-soft'
+                      : isSelectedCorrect
+                        ? 'correct pulse'
+                        : isSelectedWrong
+                          ? 'wrong shake'
+                          : ''
+                  return (
+                    <button
+                      key={option.id}
+                      type="button"
+                      aria-label={`Choice ${choiceKeyLabel(index)}: ${optionLabel(option)}`}
+                      className={`focus-option squish ${stateClass}`}
+                      disabled={Boolean(selected)}
+                      onClick={() => chooseByIndex(index)}
+                    >
+                      <span className="choice-key" aria-hidden="true">{choiceKeyLabel(index)}</span>
+                      <strong>{optionLabel(option)}</strong>
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+          <div className={`focus-feedback ${gentleReveal ? 'happy' : selected ? (correct ? 'happy' : 'try') : ''}`}>
+            <Mascot mood={gentleReveal ? 'curious' : selected ? (correct ? 'happy' : 'curious') : 'reading'} size="small" />
+            <div className="feedback-text">
+              {gentleReveal ? (
+                <>
+                  <strong>Let's read it</strong>
+                  <span>It was {targetWord}.</span>
+                </>
+              ) : selected ? (
+                correct ? (
+                  <>
+                    <strong>Nice reading!</strong>
+                    <span>{targetWord} fits.</span>
+                  </>
+                ) : (
+                  <>
+                    <strong>Try again</strong>
+                    <span>Pick the other one.</span>
+                  </>
+                )
+              ) : (
+                <>
+                  <strong>Choose one</strong>
+                  <span>A or B</span>
+                </>
+              )}
+            </div>
+          </div>
+        </section>
+      )
+    }
     return (
       <section className="focus-lesson older-reader-lesson">
         <div className="focus-main">
@@ -2986,6 +3179,7 @@ function OlderReaderLesson({
 
   const showPromptPicture = ['pictureToWord', 'startsWithSound', 'review'].includes(activity.kind)
   const showOptionPictures = activity.kind === 'wordToPicture'
+  const hideSupportPicture = challengeActive && ['pictureToWord', 'review'].includes(activity.kind)
   const mood: MascotMood = gentleReveal ? 'curious' : selected ? (correct ? 'happy' : 'curious') : activity.kind === 'audioToWord' ? 'reading' : 'curious'
 
   return (
@@ -2994,6 +3188,7 @@ function OlderReaderLesson({
         <div className="focus-question older-reader-question">
           <div className="focus-prompt">
             <span className="stage-label">Lesson {lessonNumber} - Practice {activityIndex - OLDER_READER_PEEK_COUNT + 1} of {OLDER_READER_RECOGNITION_COUNT}</span>
+            {challengeActive && <span className="challenge-badge">Sparkle challenge</span>}
             <h2>{prompt}</h2>
             {promptNarration.shouldShowPlayButton && (
               <AudioPromptButton onClick={promptNarration.replay} label="Hear question" />
@@ -3007,7 +3202,7 @@ function OlderReaderLesson({
             )}
             {activity.kind === 'wordToPicture' && <div className="word-display prompt-word">{optionLabel(activity.card)}</div>}
             {activity.kind === 'wordFamily' && <div className="word-chunk">{wordChunk(activity.card)}</div>}
-            {showPromptPicture && (
+            {showPromptPicture && !hideSupportPicture && (
               <div className="focus-visual compact">
                 <Picture deck={deck} card={activity.card} />
               </div>
@@ -4173,12 +4368,28 @@ function buildOlderReaderActivities(lessonCards: LearningCard[]): OlderReaderAct
     options: [] as LearningCard[],
   }))
 
+  const practiceKinds: OlderReaderQuestionKind[] = [
+    'audioToWord',
+    'pictureToWord',
+    'wordToPicture',
+    'wordFamily',
+    'startsWithSound',
+    'sentenceBridge',
+    'review',
+    'audioToWord',
+    'pictureToWord',
+    'wordToPicture',
+    'wordFamily',
+    'review',
+  ]
   const quizActivities: OlderReaderActivity[] = Array.from({ length: OLDER_READER_RECOGNITION_COUNT }, (_, index) => {
     const card = wordCards[index % wordCards.length]
+    const kind = practiceKinds[index % practiceKinds.length]
     return {
-      kind: 'audioToWord',
+      kind,
       card,
-      options: buildOlderReaderOptions(wordCards, card, 'audioToWord'),
+      options: buildOlderReaderOptions(wordCards, card, kind, true),
+      challenge: ['pictureToWord', 'review', 'wordFamily'].includes(kind),
     }
   })
 
@@ -4197,6 +4408,7 @@ function buildOlderReaderOptions(
   lessonCards: LearningCard[],
   card: LearningCard,
   kind: OlderReaderQuestionKind,
+  preferNearMiss = false,
 ): LearningCard[] {
   const candidates = lessonCards.filter((candidate) => candidate.id !== card.id)
   const preferred = candidates.filter((candidate) => {
@@ -4205,13 +4417,32 @@ function buildOlderReaderOptions(
     return true
   })
   const pool = preferred.length ? preferred : candidates
-  const distractor = pool.sort(
-    (a, b) => stableSort(`older:${kind}:${card.id}:${a.id}`) - stableSort(`older:${kind}:${card.id}:${b.id}`),
-  )[0] ?? card
+  const distractor = pool
+    .map((candidate) => ({
+      candidate,
+      score: preferNearMiss ? olderReaderDistractorScore(card, candidate, kind) : 0,
+    }))
+    .sort((a, b) => {
+      if (a.score !== b.score) return b.score - a.score
+      return stableSort(`older:${kind}:${card.id}:${a.candidate.id}`) - stableSort(`older:${kind}:${card.id}:${b.candidate.id}`)
+    })[0]?.candidate ?? card
 
   return [card, distractor].sort(
     (a, b) => stableSort(`older-order:${kind}:${card.id}:${a.id}`) - stableSort(`older-order:${kind}:${card.id}:${b.id}`),
   )
+}
+
+function olderReaderDistractorScore(card: LearningCard, candidate: LearningCard, kind: OlderReaderQuestionKind): number {
+  const word = optionLabel(card).toLowerCase()
+  const other = optionLabel(candidate).toLowerCase()
+  let score = 0
+  if (firstSound(card) === firstSound(candidate)) score += kind === 'startsWithSound' ? -3 : 4
+  if (wordChunk(card) === wordChunk(candidate)) score += kind === 'wordFamily' ? -3 : 4
+  score += Math.max(0, 3 - Math.abs(word.length - other.length))
+  if (isBookWord(candidate)) score += 2
+  if (word[0] && word[0] === other[0]) score += 1
+  if (word[word.length - 1] && word[word.length - 1] === other[other.length - 1]) score += 1
+  return score
 }
 
 function getOlderReaderPrompt(activity: OlderReaderActivity): string {
@@ -4221,8 +4452,14 @@ function getOlderReaderPrompt(activity: OlderReaderActivity): string {
   if (activity.kind === 'audioToWord') return 'Which word did you hear?'
   if (activity.kind === 'startsWithSound') return `Which word starts with ${firstSound(activity.card)}?`
   if (activity.kind === 'wordFamily') return 'Which word has this chunk?'
+  if (activity.kind === 'sentenceBridge') return 'Which word fits?'
   if (activity.kind === 'readTogether') return 'Read together.'
   return 'Choose the word.'
+}
+
+function isBookWord(card: LearningCard): boolean {
+  const word = optionLabel(card).toLowerCase()
+  return GREEN_EGGS_STARTER_WORDS.has(word) || (card.tags ?? []).some((tag) => tag.toLowerCase() === 'green-eggs-starter')
 }
 
 function firstSound(card: LearningCard): string {
