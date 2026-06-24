@@ -4873,20 +4873,23 @@ body.lesson-active {
   background: rgba(255, 255, 255, 0.62);
 }
 
-.math-difficulty-track span {
+.math-difficulty-track button {
   display: grid;
   place-items: center;
   min-height: 38px;
   padding: 0.3rem 0.2rem;
+  border: 0;
   border-radius: 10px;
+  background: transparent;
   color: var(--muted);
   font-size: clamp(0.68rem, 2.5vw, 0.82rem);
   font-weight: 900;
   line-height: 1.05;
   text-align: center;
+  cursor: pointer;
 }
 
-.math-difficulty-track span.active {
+.math-difficulty-track button.active {
   background: var(--ink);
   color: #fff;
   box-shadow: 0 5px 12px rgba(38, 48, 76, 0.18);
