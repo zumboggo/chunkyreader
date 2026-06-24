@@ -842,7 +842,7 @@ function App() {
       targetMode = 'listeningMode'
     } else if (section === 'words') {
       targetDeckId = currentDecks.find(d => d.type === 'reading-words' && d.profile === 'anna')?.id ?? ''
-      targetMode = 'flashcardMode'
+      targetMode = 'activeRecall'
       setGrowingView('words')
     } else if (section === 'math') {
       const savedMath = loadMathProgress()
@@ -1144,7 +1144,6 @@ function App() {
             setGrowingView('home')
           }}
           onPhonemes={openGrowingPhonemes}
-          onFlashcards={() => chooseFlashcards()}
           onCollection={openGrowingCollection}
         />
       ) : activeDeck && currentCard ? (
@@ -1585,7 +1584,6 @@ function GrowingReaderHome({
   onWords,
   onStories,
   onPhonemes,
-  onFlashcards,
   onCollection,
 }: {
   decks: LearningDeck[]
@@ -1593,7 +1591,6 @@ function GrowingReaderHome({
   onWords: () => void
   onStories: () => void
   onPhonemes: () => void
-  onFlashcards: () => void
   onCollection: () => void
 }) {
   const wordCount = decks.filter(d => d.type === 'reading-words').reduce((sum, deck) => sum + deck.cards.length, 0)
@@ -1627,12 +1624,7 @@ function GrowingReaderHome({
         <button type="button" className="reader-choice word-choice" onClick={onWords}>
           <span className="choice-sticker" aria-hidden="true">ABC</span>
           <strong>Read Words</strong>
-          <small>{wordCount} picture words</small>
-        </button>
-        <button type="button" className="reader-choice flashcard-choice" onClick={onFlashcards}>
-          <span className="choice-sticker" aria-hidden="true">Cards</span>
-          <strong>Flashcards</strong>
-          <small>{wordCount} words with spaced repetition</small>
+          <small>{wordCount} words to read</small>
         </button>
         <button type="button" className="reader-choice story-choice" onClick={onStories}>
           <span className="choice-sticker book-sticker" aria-hidden="true" />
@@ -2135,6 +2127,7 @@ function LearningScreen({
         progress={progress}
         total={progressTotal}
         onMenuToggle={onMenuToggle}
+        onHome={isOlderReaderWords ? onGoHome : undefined}
       />
 
       {isSarahLetters ? (
@@ -2410,11 +2403,13 @@ function FocusLessonTopBar({
   progress,
   total,
   onMenuToggle,
+  onHome,
 }: {
   lessonNumber: number
   progress: number
   total: number
   onMenuToggle: () => void
+  onHome?: () => void
 }) {
   const dots = Math.min(5, total)
   const filledDots = Math.ceil((progress / total) * dots)
@@ -2429,6 +2424,17 @@ function FocusLessonTopBar({
       >
         Menu
       </button>
+      {onHome && (
+        <button
+          type="button"
+          className="home-button-compact"
+          onClick={onHome}
+          aria-label="Home"
+        >
+          <HomeIcon />
+          <span>Home</span>
+        </button>
+      )}
       <div className="focus-progress">
         <span className="lesson-label">Lesson {lessonNumber}</span>
         <div className="progress-dots" aria-label={`Progress ${progress} of ${total}`}>
@@ -3179,7 +3185,7 @@ function OlderReaderLesson({
 
   const showPromptPicture = ['pictureToWord', 'startsWithSound', 'review'].includes(activity.kind)
   const showOptionPictures = activity.kind === 'wordToPicture'
-  const hideSupportPicture = challengeActive && ['pictureToWord', 'review'].includes(activity.kind)
+  const showWordQuestionPictures = false
   const mood: MascotMood = gentleReveal ? 'curious' : selected ? (correct ? 'happy' : 'curious') : activity.kind === 'audioToWord' ? 'reading' : 'curious'
 
   return (
@@ -3196,13 +3202,12 @@ function OlderReaderLesson({
             {activity.kind === 'audioToWord' && <AudioPromptButton onClick={() => playCardAudio(deck, activity.card)} label="Hear it" />}
             {activity.kind === 'audioToWord' && selected && (
               <div className="word-answer-reveal">
-                <Picture deck={deck} card={activity.card} />
                 <strong>{optionLabel(activity.card)}</strong>
               </div>
             )}
             {activity.kind === 'wordToPicture' && <div className="word-display prompt-word">{optionLabel(activity.card)}</div>}
             {activity.kind === 'wordFamily' && <div className="word-chunk">{wordChunk(activity.card)}</div>}
-            {showPromptPicture && !hideSupportPicture && (
+            {showPromptPicture && showWordQuestionPictures && (
               <div className="focus-visual compact">
                 <Picture deck={deck} card={activity.card} />
               </div>
@@ -4256,6 +4261,10 @@ function PlayIcon() {
   return <span className="play-icon" aria-hidden="true" />
 }
 
+function HomeIcon() {
+  return <span className="home-icon" aria-hidden="true" />
+}
+
 function AudioPackButton({ compact = false }: { compact?: boolean }) {
   const [installing, setInstalling] = useState(false)
   const [progress, setProgress] = useState<AudioPackInstallProgress | undefined>()
@@ -4370,17 +4379,18 @@ function buildOlderReaderActivities(lessonCards: LearningCard[]): OlderReaderAct
 
   const practiceKinds: OlderReaderQuestionKind[] = [
     'audioToWord',
-    'pictureToWord',
-    'wordToPicture',
     'wordFamily',
+    'audioToWord',
     'startsWithSound',
     'sentenceBridge',
-    'review',
     'audioToWord',
-    'pictureToWord',
-    'wordToPicture',
     'wordFamily',
-    'review',
+    'audioToWord',
+    'startsWithSound',
+    'audioToWord',
+    'sentenceBridge',
+    'audioToWord',
+    'audioToWord',
   ]
   const quizActivities: OlderReaderActivity[] = Array.from({ length: OLDER_READER_RECOGNITION_COUNT }, (_, index) => {
     const card = wordCards[index % wordCards.length]
