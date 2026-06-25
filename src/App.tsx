@@ -4247,7 +4247,7 @@ function ObjectImage({ object }: { object: string }) {
   return (
     <img
       className="math-obj-img"
-      src={`/math-objects/${object}.png`}
+      src={`${import.meta.env.BASE_URL}math-objects/${object}.png`}
       alt=""
       aria-hidden="true"
       onError={() => setFailed(true)}
