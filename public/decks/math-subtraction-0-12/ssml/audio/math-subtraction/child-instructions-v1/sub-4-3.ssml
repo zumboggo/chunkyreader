@@ -2,7 +2,7 @@
 <speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
   <voice name="en-US-AvaNeural">
     <prosody rate="-12%" pitch="+4%">
-      4 - 3 = ?
+      3 berries go away. How many are left?
     </prosody>
   </voice>
 </speak>

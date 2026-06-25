@@ -2,7 +2,7 @@
 <speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
   <voice name="en-US-AvaNeural">
     <prosody rate="-12%" pitch="+4%">
-      3 + 8 = ?
+      Panda counts 3 blocks, then finds 8 more. How many does Panda count?
     </prosody>
   </voice>
 </speak>

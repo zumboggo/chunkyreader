@@ -55,16 +55,14 @@ export function SectionPicker({
         </div>
       </div>
 
-      {streakInfo.currentStreak > 0 && (
-        <div className="streak-badge">
-          <span className="streak-flame" aria-hidden="true">🔥</span>
-          <span className="streak-count">{streakInfo.currentStreak}</span>
-          <span className="streak-label">day streak</span>
-          {streakInfo.wordsReadToday > 0 && (
-            <span className="streak-words-today">{streakInfo.wordsReadToday} words today</span>
-          )}
-        </div>
-      )}
+      <div className={`streak-badge ${streakInfo.currentStreak === 0 ? 'streak-empty' : ''}`}>
+        <span className="streak-flame" aria-hidden="true">{streakInfo.currentStreak > 0 ? '🔥' : '⭐'}</span>
+        <span className="streak-count">{streakInfo.currentStreak}</span>
+        <span className="streak-label">{streakInfo.currentStreak === 1 ? 'day streak' : streakInfo.currentStreak > 0 ? 'day streak' : 'Start your streak!'}</span>
+        {streakInfo.wordsReadToday > 0 && (
+          <span className="streak-words-today">{streakInfo.wordsReadToday} words today</span>
+        )}
+      </div>
 
       {continueState && (
         <button type="button" className="continue-card squish" onClick={onContinue}>
@@ -190,8 +188,8 @@ function continueDetail(state: ContinueLearningState) {
 
 function progressLabel(count: number) {
   if (count === 0) return 'New'
-  if (count === 1) return '1 lesson'
-  return `${count} lessons`
+  const stars = Math.min(5, Math.ceil(count / 3))
+  return '⭐'.repeat(stars)
 }
 
 type ClosetTab = 'outfit' | 'boxes' | 'collection'

@@ -2,7 +2,7 @@
 <speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
   <voice name="en-US-AvaNeural">
     <prosody rate="-12%" pitch="+4%">
-      7 - 5 = ?
+      Panda has 7 buttons. 5 are eaten. How many are left?
     </prosody>
   </voice>
 </speak>
