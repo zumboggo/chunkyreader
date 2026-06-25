@@ -7,33 +7,41 @@ export const MATH_DIFFICULTIES: MathDifficulty[] = ['easy', 'medium', 'hard', 'v
 
 export const MATH_DIFFICULTY_DETAILS: Record<
   MathDifficulty,
-  { title: string; descriptions: Record<MathOperation, string> }
+  { title: string; icon: string; shortName: string; descriptions: Record<MathOperation, string> }
 > = {
   easy: {
-    title: 'Easy',
+    title: 'Beginner',
+    icon: '🟢',
+    shortName: 'Green',
     descriptions: {
-      add: 'Add two small numbers with totals up to 6.',
-      subtract: 'Take away 1 or 2 from small numbers, including making 0.',
+      add: 'Count and add two small groups up to 6.',
+      subtract: 'Take away 1 or 2 from small numbers.',
     },
   },
   medium: {
-    title: 'Medium',
+    title: 'Intermediate',
+    icon: '🟦',
+    shortName: 'Blue',
     descriptions: {
-      add: 'Add numbers 2 and up with totals from 7 to 10.',
+      add: 'Add numbers with totals from 7 to 10.',
       subtract: 'Take 2 or more away from numbers 6 to 8.',
     },
   },
   hard: {
-    title: 'Hard',
+    title: 'Advanced',
+    icon: '♦',
+    shortName: 'Diamond',
     descriptions: {
-      add: 'Cross 10 with totals from 11 to 18.',
+      add: 'Cross 10 — totals from 11 to 18.',
       subtract: 'Take 3 or more away from 9 and 10.',
     },
   },
   'very-hard': {
-    title: 'Very Hard',
+    title: 'Expert',
+    icon: '♦♦',
+    shortName: 'Double',
     descriptions: {
-      add: 'Add large numbers for totals from 19 to 24.',
+      add: 'Large numbers — totals from 19 to 24.',
       subtract: 'Take 4 or more away from 11 and 12.',
     },
   },

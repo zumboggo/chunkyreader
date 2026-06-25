@@ -13,7 +13,7 @@
       "pinyin": "yi1",
       "simpleMeaning": "one",
       "speechCue": "一. yi1. one.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-一.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-一.mp3",
       "lessonGroup": 1,
       "difficulty": 1,
       "category": "simple characters"
@@ -25,7 +25,7 @@
       "pinyin": "er4",
       "simpleMeaning": "two",
       "speechCue": "二. er4. two.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-二.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-二.mp3",
       "lessonGroup": 1,
       "difficulty": 1,
       "category": "simple characters"
@@ -37,7 +37,7 @@
       "pinyin": "san1",
       "simpleMeaning": "three",
       "speechCue": "三. san1. three.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-三.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-三.mp3",
       "lessonGroup": 1,
       "difficulty": 1,
       "category": "simple characters"
@@ -49,7 +49,7 @@
       "pinyin": "si4",
       "simpleMeaning": "four",
       "speechCue": "四. si4. four.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-四.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-四.mp3",
       "lessonGroup": 1,
       "difficulty": 1,
       "category": "simple characters"
@@ -61,7 +61,7 @@
       "pinyin": "wu3",
       "simpleMeaning": "five",
       "speechCue": "五. wu3. five.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-五.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-五.mp3",
       "lessonGroup": 1,
       "difficulty": 1,
       "category": "simple characters"
@@ -73,7 +73,7 @@
       "pinyin": "liu4",
       "simpleMeaning": "six",
       "speechCue": "六. liu4. six.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-六.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-六.mp3",
       "lessonGroup": 2,
       "difficulty": 1,
       "category": "simple characters"
@@ -85,7 +85,7 @@
       "pinyin": "qi1",
       "simpleMeaning": "seven",
       "speechCue": "七. qi1. seven.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-七.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-七.mp3",
       "lessonGroup": 2,
       "difficulty": 1,
       "category": "simple characters"
@@ -97,7 +97,7 @@
       "pinyin": "ba1",
       "simpleMeaning": "eight",
       "speechCue": "八. ba1. eight.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-八.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-八.mp3",
       "lessonGroup": 2,
       "difficulty": 1,
       "category": "simple characters"
@@ -109,7 +109,7 @@
       "pinyin": "jiu3",
       "simpleMeaning": "nine",
       "speechCue": "九. jiu3. nine.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-九.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-九.mp3",
       "lessonGroup": 2,
       "difficulty": 1,
       "category": "simple characters"
@@ -121,7 +121,7 @@
       "pinyin": "shi2",
       "simpleMeaning": "ten",
       "speechCue": "十. shi2. ten.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-十.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-十.mp3",
       "lessonGroup": 2,
       "difficulty": 1,
       "category": "simple characters"
@@ -133,7 +133,7 @@
       "pinyin": "ren2",
       "simpleMeaning": "person",
       "speechCue": "人. ren2. person.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-人.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-人.mp3",
       "lessonGroup": 3,
       "difficulty": 1,
       "category": "simple characters"
@@ -145,7 +145,7 @@
       "pinyin": "kou3",
       "simpleMeaning": "mouth",
       "speechCue": "口. kou3. mouth.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-口.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-口.mp3",
       "lessonGroup": 3,
       "difficulty": 1,
       "category": "simple characters"
@@ -157,7 +157,7 @@
       "pinyin": "shou3",
       "simpleMeaning": "hand",
       "speechCue": "手. shou3. hand.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-手.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-手.mp3",
       "lessonGroup": 3,
       "difficulty": 1,
       "category": "simple characters"
@@ -169,7 +169,7 @@
       "pinyin": "mu4",
       "simpleMeaning": "eye",
       "speechCue": "目. mu4. eye.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-目.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-目.mp3",
       "lessonGroup": 3,
       "difficulty": 1,
       "category": "simple characters"
@@ -181,7 +181,7 @@
       "pinyin": "er3",
       "simpleMeaning": "ear",
       "speechCue": "耳. er3. ear.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-耳.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-耳.mp3",
       "lessonGroup": 3,
       "difficulty": 1,
       "category": "simple characters"
@@ -193,7 +193,7 @@
       "pinyin": "da4",
       "simpleMeaning": "big",
       "speechCue": "大. da4. big.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-大.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-大.mp3",
       "lessonGroup": 4,
       "difficulty": 1,
       "category": "simple characters"
@@ -205,7 +205,7 @@
       "pinyin": "xiao3",
       "simpleMeaning": "small",
       "speechCue": "小. xiao3. small.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-小.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-小.mp3",
       "lessonGroup": 4,
       "difficulty": 1,
       "category": "simple characters"
@@ -217,7 +217,7 @@
       "pinyin": "shang4",
       "simpleMeaning": "up",
       "speechCue": "上. shang4. up.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-上.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-上.mp3",
       "lessonGroup": 4,
       "difficulty": 1,
       "category": "simple characters"
@@ -229,7 +229,7 @@
       "pinyin": "xia4",
       "simpleMeaning": "down",
       "speechCue": "下. xia4. down.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-下.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-下.mp3",
       "lessonGroup": 4,
       "difficulty": 1,
       "category": "simple characters"
@@ -241,7 +241,7 @@
       "pinyin": "zhong1",
       "simpleMeaning": "middle",
       "speechCue": "中. zhong1. middle.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-中.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-中.mp3",
       "lessonGroup": 4,
       "difficulty": 1,
       "category": "simple characters"
@@ -253,7 +253,7 @@
       "pinyin": "ri4",
       "simpleMeaning": "sun",
       "speechCue": "日. ri4. sun.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-日.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-日.mp3",
       "lessonGroup": 5,
       "difficulty": 2,
       "category": "simple characters"
@@ -265,7 +265,7 @@
       "pinyin": "yue4",
       "simpleMeaning": "moon",
       "speechCue": "月. yue4. moon.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-月.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-月.mp3",
       "lessonGroup": 5,
       "difficulty": 2,
       "category": "simple characters"
@@ -277,7 +277,7 @@
       "pinyin": "shan1",
       "simpleMeaning": "mountain",
       "speechCue": "山. shan1. mountain.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-山.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-山.mp3",
       "lessonGroup": 5,
       "difficulty": 2,
       "category": "simple characters"
@@ -289,7 +289,7 @@
       "pinyin": "shui3",
       "simpleMeaning": "water",
       "speechCue": "水. shui3. water.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-水.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-水.mp3",
       "lessonGroup": 5,
       "difficulty": 2,
       "category": "simple characters"
@@ -301,7 +301,7 @@
       "pinyin": "huo3",
       "simpleMeaning": "fire",
       "speechCue": "火. huo3. fire.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-火.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-火.mp3",
       "lessonGroup": 5,
       "difficulty": 2,
       "category": "simple characters"
@@ -313,7 +313,7 @@
       "pinyin": "mu4",
       "simpleMeaning": "tree",
       "speechCue": "木. mu4. tree.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-木.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-木.mp3",
       "lessonGroup": 6,
       "difficulty": 2,
       "category": "simple characters"
@@ -325,7 +325,7 @@
       "pinyin": "tu3",
       "simpleMeaning": "earth",
       "speechCue": "土. tu3. earth.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-土.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-土.mp3",
       "lessonGroup": 6,
       "difficulty": 2,
       "category": "simple characters"
@@ -337,7 +337,7 @@
       "pinyin": "tian2",
       "simpleMeaning": "field",
       "speechCue": "田. tian2. field.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-田.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-田.mp3",
       "lessonGroup": 6,
       "difficulty": 2,
       "category": "simple characters"
@@ -349,7 +349,7 @@
       "pinyin": "tian1",
       "simpleMeaning": "sky",
       "speechCue": "天. tian1. sky.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-天.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-天.mp3",
       "lessonGroup": 6,
       "difficulty": 2,
       "category": "simple characters"
@@ -361,7 +361,7 @@
       "pinyin": "di4",
       "simpleMeaning": "ground",
       "speechCue": "地. di4. ground.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-地.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-地.mp3",
       "lessonGroup": 6,
       "difficulty": 2,
       "category": "simple characters"
@@ -373,7 +373,7 @@
       "pinyin": "yun2",
       "simpleMeaning": "cloud",
       "speechCue": "云. yun2. cloud.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-云.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-云.mp3",
       "lessonGroup": 7,
       "difficulty": 2,
       "category": "simple characters"
@@ -385,7 +385,7 @@
       "pinyin": "yu3",
       "simpleMeaning": "rain",
       "speechCue": "雨. yu3. rain.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-雨.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-雨.mp3",
       "lessonGroup": 7,
       "difficulty": 2,
       "category": "simple characters"
@@ -397,7 +397,7 @@
       "pinyin": "feng1",
       "simpleMeaning": "wind",
       "speechCue": "风. feng1. wind.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-风.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-风.mp3",
       "lessonGroup": 7,
       "difficulty": 2,
       "category": "simple characters"
@@ -409,7 +409,7 @@
       "pinyin": "hua1",
       "simpleMeaning": "flower",
       "speechCue": "花. hua1. flower.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-花.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-花.mp3",
       "lessonGroup": 7,
       "difficulty": 2,
       "category": "simple characters"
@@ -421,7 +421,7 @@
       "pinyin": "cao3",
       "simpleMeaning": "grass",
       "speechCue": "草. cao3. grass.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-草.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-草.mp3",
       "lessonGroup": 7,
       "difficulty": 2,
       "category": "simple characters"
@@ -433,7 +433,7 @@
       "pinyin": "shi2",
       "simpleMeaning": "stone",
       "speechCue": "石. shi2. stone.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-石.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-石.mp3",
       "lessonGroup": 8,
       "difficulty": 2,
       "category": "simple characters"
@@ -445,7 +445,7 @@
       "pinyin": "zhu2",
       "simpleMeaning": "bamboo",
       "speechCue": "竹. zhu2. bamboo.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-竹.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-竹.mp3",
       "lessonGroup": 8,
       "difficulty": 2,
       "category": "simple characters"
@@ -457,7 +457,7 @@
       "pinyin": "lin2",
       "simpleMeaning": "woods",
       "speechCue": "林. lin2. woods.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-林.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-林.mp3",
       "lessonGroup": 8,
       "difficulty": 2,
       "category": "simple characters"
@@ -469,7 +469,7 @@
       "pinyin": "sen1",
       "simpleMeaning": "forest",
       "speechCue": "森. sen1. forest.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-森.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-森.mp3",
       "lessonGroup": 8,
       "difficulty": 2,
       "category": "simple characters"
@@ -481,7 +481,7 @@
       "pinyin": "wang2",
       "simpleMeaning": "king",
       "speechCue": "王. wang2. king.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-王.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-王.mp3",
       "lessonGroup": 8,
       "difficulty": 2,
       "category": "simple characters"
@@ -493,7 +493,7 @@
       "pinyin": "nv3",
       "simpleMeaning": "girl",
       "speechCue": "女. nv3. girl.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-女.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-女.mp3",
       "lessonGroup": 9,
       "difficulty": 3,
       "category": "simple characters"
@@ -505,7 +505,7 @@
       "pinyin": "nan2",
       "simpleMeaning": "boy",
       "speechCue": "男. nan2. boy.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-男.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-男.mp3",
       "lessonGroup": 9,
       "difficulty": 3,
       "category": "simple characters"
@@ -517,7 +517,7 @@
       "pinyin": "zi3",
       "simpleMeaning": "child",
       "speechCue": "子. zi3. child.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-子.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-子.mp3",
       "lessonGroup": 9,
       "difficulty": 3,
       "category": "simple characters"
@@ -529,7 +529,7 @@
       "pinyin": "fu4",
       "simpleMeaning": "father",
       "speechCue": "父. fu4. father.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-父.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-父.mp3",
       "lessonGroup": 9,
       "difficulty": 3,
       "category": "simple characters"
@@ -541,7 +541,7 @@
       "pinyin": "mu3",
       "simpleMeaning": "mother",
       "speechCue": "母. mu3. mother.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-母.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-母.mp3",
       "lessonGroup": 9,
       "difficulty": 3,
       "category": "simple characters"
@@ -553,7 +553,7 @@
       "pinyin": "er2",
       "simpleMeaning": "child",
       "speechCue": "儿. er2. child.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-儿.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-儿.mp3",
       "lessonGroup": 10,
       "difficulty": 3,
       "category": "simple characters"
@@ -565,7 +565,7 @@
       "pinyin": "you3",
       "simpleMeaning": "friend",
       "speechCue": "友. you3. friend.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-友.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-友.mp3",
       "lessonGroup": 10,
       "difficulty": 3,
       "category": "simple characters"
@@ -577,7 +577,7 @@
       "pinyin": "wo3",
       "simpleMeaning": "me",
       "speechCue": "我. wo3. me.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-我.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-我.mp3",
       "lessonGroup": 10,
       "difficulty": 3,
       "category": "simple characters"
@@ -589,7 +589,7 @@
       "pinyin": "ni3",
       "simpleMeaning": "you",
       "speechCue": "你. ni3. you.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-你.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-你.mp3",
       "lessonGroup": 10,
       "difficulty": 3,
       "category": "simple characters"
@@ -601,7 +601,7 @@
       "pinyin": "ta1",
       "simpleMeaning": "he",
       "speechCue": "他. ta1. he.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-他.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-他.mp3",
       "lessonGroup": 10,
       "difficulty": 3,
       "category": "simple characters"
@@ -613,7 +613,7 @@
       "pinyin": "ta1",
       "simpleMeaning": "she",
       "speechCue": "她. ta1. she.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-她.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-她.mp3",
       "lessonGroup": 11,
       "difficulty": 3,
       "category": "simple characters"
@@ -625,7 +625,7 @@
       "pinyin": "hao3",
       "simpleMeaning": "good",
       "speechCue": "好. hao3. good.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-好.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-好.mp3",
       "lessonGroup": 11,
       "difficulty": 3,
       "category": "simple characters"
@@ -637,7 +637,7 @@
       "pinyin": "ai4",
       "simpleMeaning": "love",
       "speechCue": "爱. ai4. love.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-爱.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-爱.mp3",
       "lessonGroup": 11,
       "difficulty": 3,
       "category": "simple characters"
@@ -649,7 +649,7 @@
       "pinyin": "xiao4",
       "simpleMeaning": "smile",
       "speechCue": "笑. xiao4. smile.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-笑.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-笑.mp3",
       "lessonGroup": 11,
       "difficulty": 3,
       "category": "simple characters"
@@ -661,7 +661,7 @@
       "pinyin": "ku1",
       "simpleMeaning": "cry",
       "speechCue": "哭. ku1. cry.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-哭.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-哭.mp3",
       "lessonGroup": 11,
       "difficulty": 3,
       "category": "simple characters"
@@ -673,7 +673,7 @@
       "pinyin": "chi1",
       "simpleMeaning": "eat",
       "speechCue": "吃. chi1. eat.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-吃.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-吃.mp3",
       "lessonGroup": 12,
       "difficulty": 3,
       "category": "simple characters"
@@ -685,7 +685,7 @@
       "pinyin": "he1",
       "simpleMeaning": "drink",
       "speechCue": "喝. he1. drink.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-喝.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-喝.mp3",
       "lessonGroup": 12,
       "difficulty": 3,
       "category": "simple characters"
@@ -697,7 +697,7 @@
       "pinyin": "kan4",
       "simpleMeaning": "look",
       "speechCue": "看. kan4. look.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-看.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-看.mp3",
       "lessonGroup": 12,
       "difficulty": 3,
       "category": "simple characters"
@@ -709,7 +709,7 @@
       "pinyin": "ting1",
       "simpleMeaning": "listen",
       "speechCue": "听. ting1. listen.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-听.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-听.mp3",
       "lessonGroup": 12,
       "difficulty": 3,
       "category": "simple characters"
@@ -721,7 +721,7 @@
       "pinyin": "shuo1",
       "simpleMeaning": "speak",
       "speechCue": "说. shuo1. speak.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-说.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-说.mp3",
       "lessonGroup": 12,
       "difficulty": 3,
       "category": "simple characters"
@@ -733,7 +733,7 @@
       "pinyin": "lai2",
       "simpleMeaning": "come",
       "speechCue": "来. lai2. come.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-来.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-来.mp3",
       "lessonGroup": 13,
       "difficulty": 4,
       "category": "simple characters"
@@ -745,7 +745,7 @@
       "pinyin": "qu4",
       "simpleMeaning": "go",
       "speechCue": "去. qu4. go.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-去.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-去.mp3",
       "lessonGroup": 13,
       "difficulty": 4,
       "category": "simple characters"
@@ -757,7 +757,7 @@
       "pinyin": "zuo4",
       "simpleMeaning": "sit",
       "speechCue": "坐. zuo4. sit.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-坐.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-坐.mp3",
       "lessonGroup": 13,
       "difficulty": 4,
       "category": "simple characters"
@@ -769,7 +769,7 @@
       "pinyin": "zou3",
       "simpleMeaning": "walk",
       "speechCue": "走. zou3. walk.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-走.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-走.mp3",
       "lessonGroup": 13,
       "difficulty": 4,
       "category": "simple characters"
@@ -781,7 +781,7 @@
       "pinyin": "pao3",
       "simpleMeaning": "run",
       "speechCue": "跑. pao3. run.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-跑.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-跑.mp3",
       "lessonGroup": 13,
       "difficulty": 4,
       "category": "simple characters"
@@ -793,7 +793,7 @@
       "pinyin": "fei1",
       "simpleMeaning": "fly",
       "speechCue": "飞. fei1. fly.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-飞.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-飞.mp3",
       "lessonGroup": 14,
       "difficulty": 4,
       "category": "simple characters"
@@ -805,7 +805,7 @@
       "pinyin": "kai1",
       "simpleMeaning": "open",
       "speechCue": "开. kai1. open.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-开.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-开.mp3",
       "lessonGroup": 14,
       "difficulty": 4,
       "category": "simple characters"
@@ -817,7 +817,7 @@
       "pinyin": "guan1",
       "simpleMeaning": "close",
       "speechCue": "关. guan1. close.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-关.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-关.mp3",
       "lessonGroup": 14,
       "difficulty": 4,
       "category": "simple characters"
@@ -829,7 +829,7 @@
       "pinyin": "men2",
       "simpleMeaning": "door",
       "speechCue": "门. men2. door.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-门.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-门.mp3",
       "lessonGroup": 14,
       "difficulty": 4,
       "category": "simple characters"
@@ -841,7 +841,7 @@
       "pinyin": "che1",
       "simpleMeaning": "car",
       "speechCue": "车. che1. car.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-车.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-车.mp3",
       "lessonGroup": 14,
       "difficulty": 4,
       "category": "simple characters"
@@ -853,7 +853,7 @@
       "pinyin": "chuan2",
       "simpleMeaning": "boat",
       "speechCue": "船. chuan2. boat.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-船.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-船.mp3",
       "lessonGroup": 15,
       "difficulty": 4,
       "category": "simple characters"
@@ -865,7 +865,7 @@
       "pinyin": "shu1",
       "simpleMeaning": "book",
       "speechCue": "书. shu1. book.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-书.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-书.mp3",
       "lessonGroup": 15,
       "difficulty": 4,
       "category": "simple characters"
@@ -877,7 +877,7 @@
       "pinyin": "bi3",
       "simpleMeaning": "pen",
       "speechCue": "笔. bi3. pen.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-笔.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-笔.mp3",
       "lessonGroup": 15,
       "difficulty": 4,
       "category": "simple characters"
@@ -889,7 +889,7 @@
       "pinyin": "bao1",
       "simpleMeaning": "bag",
       "speechCue": "包. bao1. bag.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-包.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-包.mp3",
       "lessonGroup": 15,
       "difficulty": 4,
       "category": "simple characters"
@@ -901,7 +901,7 @@
       "pinyin": "jia1",
       "simpleMeaning": "home",
       "speechCue": "家. jia1. home.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-家.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-家.mp3",
       "lessonGroup": 15,
       "difficulty": 4,
       "category": "simple characters"
@@ -913,7 +913,7 @@
       "pinyin": "xue2",
       "simpleMeaning": "learn",
       "speechCue": "学. xue2. learn.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-学.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-学.mp3",
       "lessonGroup": 16,
       "difficulty": 4,
       "category": "simple characters"
@@ -925,7 +925,7 @@
       "pinyin": "xiao4",
       "simpleMeaning": "school",
       "speechCue": "校. xiao4. school.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-校.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-校.mp3",
       "lessonGroup": 16,
       "difficulty": 4,
       "category": "simple characters"
@@ -937,7 +937,7 @@
       "pinyin": "mao1",
       "simpleMeaning": "cat",
       "speechCue": "猫. mao1. cat.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-猫.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-猫.mp3",
       "lessonGroup": 16,
       "difficulty": 4,
       "category": "simple characters"
@@ -949,7 +949,7 @@
       "pinyin": "gou3",
       "simpleMeaning": "dog",
       "speechCue": "狗. gou3. dog.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-狗.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-狗.mp3",
       "lessonGroup": 16,
       "difficulty": 4,
       "category": "simple characters"
@@ -961,7 +961,7 @@
       "pinyin": "niao3",
       "simpleMeaning": "bird",
       "speechCue": "鸟. niao3. bird.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-鸟.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-鸟.mp3",
       "lessonGroup": 16,
       "difficulty": 4,
       "category": "simple characters"
@@ -973,7 +973,7 @@
       "pinyin": "yu2",
       "simpleMeaning": "fish",
       "speechCue": "鱼. yu2. fish.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-鱼.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-鱼.mp3",
       "lessonGroup": 17,
       "difficulty": 5,
       "category": "simple characters"
@@ -985,7 +985,7 @@
       "pinyin": "ma3",
       "simpleMeaning": "horse",
       "speechCue": "马. ma3. horse.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-马.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-马.mp3",
       "lessonGroup": 17,
       "difficulty": 5,
       "category": "simple characters"
@@ -997,7 +997,7 @@
       "pinyin": "niu2",
       "simpleMeaning": "cow",
       "speechCue": "牛. niu2. cow.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-牛.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-牛.mp3",
       "lessonGroup": 17,
       "difficulty": 5,
       "category": "simple characters"
@@ -1009,7 +1009,7 @@
       "pinyin": "yang2",
       "simpleMeaning": "sheep",
       "speechCue": "羊. yang2. sheep.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-羊.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-羊.mp3",
       "lessonGroup": 17,
       "difficulty": 5,
       "category": "simple characters"
@@ -1021,7 +1021,7 @@
       "pinyin": "chong2",
       "simpleMeaning": "bug",
       "speechCue": "虫. chong2. bug.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-虫.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-虫.mp3",
       "lessonGroup": 17,
       "difficulty": 5,
       "category": "simple characters"
@@ -1033,7 +1033,7 @@
       "pinyin": "mi3",
       "simpleMeaning": "rice",
       "speechCue": "米. mi3. rice.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-米.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-米.mp3",
       "lessonGroup": 18,
       "difficulty": 5,
       "category": "simple characters"
@@ -1045,7 +1045,7 @@
       "pinyin": "mian4",
       "simpleMeaning": "noodles",
       "speechCue": "面. mian4. noodles.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-面.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-面.mp3",
       "lessonGroup": 18,
       "difficulty": 5,
       "category": "simple characters"
@@ -1057,7 +1057,7 @@
       "pinyin": "guo3",
       "simpleMeaning": "fruit",
       "speechCue": "果. guo3. fruit.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-果.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-果.mp3",
       "lessonGroup": 18,
       "difficulty": 5,
       "category": "simple characters"
@@ -1069,7 +1069,7 @@
       "pinyin": "cai4",
       "simpleMeaning": "vegetables",
       "speechCue": "菜. cai4. vegetables.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-菜.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-菜.mp3",
       "lessonGroup": 18,
       "difficulty": 5,
       "category": "simple characters"
@@ -1081,7 +1081,7 @@
       "pinyin": "dan4",
       "simpleMeaning": "egg",
       "speechCue": "蛋. dan4. egg.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-蛋.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-蛋.mp3",
       "lessonGroup": 18,
       "difficulty": 5,
       "category": "simple characters"
@@ -1093,7 +1093,7 @@
       "pinyin": "nai3",
       "simpleMeaning": "milk",
       "speechCue": "奶. nai3. milk.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-奶.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-奶.mp3",
       "lessonGroup": 19,
       "difficulty": 5,
       "category": "simple characters"
@@ -1105,7 +1105,7 @@
       "pinyin": "tang2",
       "simpleMeaning": "candy",
       "speechCue": "糖. tang2. candy.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-糖.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-糖.mp3",
       "lessonGroup": 19,
       "difficulty": 5,
       "category": "simple characters"
@@ -1117,7 +1117,7 @@
       "pinyin": "hong2",
       "simpleMeaning": "red",
       "speechCue": "红. hong2. red.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-红.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-红.mp3",
       "lessonGroup": 19,
       "difficulty": 5,
       "category": "simple characters"
@@ -1129,7 +1129,7 @@
       "pinyin": "lan2",
       "simpleMeaning": "blue",
       "speechCue": "蓝. lan2. blue.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-蓝.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-蓝.mp3",
       "lessonGroup": 19,
       "difficulty": 5,
       "category": "simple characters"
@@ -1141,7 +1141,7 @@
       "pinyin": "bai2",
       "simpleMeaning": "white",
       "speechCue": "白. bai2. white.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-白.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-白.mp3",
       "lessonGroup": 19,
       "difficulty": 5,
       "category": "simple characters"
@@ -1153,7 +1153,7 @@
       "pinyin": "hei1",
       "simpleMeaning": "black",
       "speechCue": "黑. hei1. black.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-黑.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-黑.mp3",
       "lessonGroup": 20,
       "difficulty": 5,
       "category": "simple characters"
@@ -1165,7 +1165,7 @@
       "pinyin": "duo1",
       "simpleMeaning": "many",
       "speechCue": "多. duo1. many.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-多.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-多.mp3",
       "lessonGroup": 20,
       "difficulty": 5,
       "category": "simple characters"
@@ -1177,7 +1177,7 @@
       "pinyin": "shao3",
       "simpleMeaning": "few",
       "speechCue": "少. shao3. few.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-少.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-少.mp3",
       "lessonGroup": 20,
       "difficulty": 5,
       "category": "simple characters"
@@ -1189,7 +1189,7 @@
       "pinyin": "zao3",
       "simpleMeaning": "morning",
       "speechCue": "早. zao3. morning.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-早.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-早.mp3",
       "lessonGroup": 20,
       "difficulty": 5,
       "category": "simple characters"
@@ -1201,7 +1201,7 @@
       "pinyin": "wan3",
       "simpleMeaning": "evening",
       "speechCue": "晚. wan3. evening.",
-      "audio": "audio/chinese-level-1/chinese-teacher-multilingual-v2/char-晚.mp3",
+      "audio": "audio/chinese-level-1/chinese-teacher-google-chirp-v1/char-晚.mp3",
       "lessonGroup": 20,
       "difficulty": 5,
       "category": "simple characters"

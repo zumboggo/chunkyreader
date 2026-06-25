@@ -2,7 +2,7 @@
 <speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
   <voice name="en-US-AvaNeural">
     <prosody rate="-12%" pitch="+4%">
-      10 + 10 = ?
+      Panda counts 10 buttons, then finds 10 more. How many does Panda count?
     </prosody>
   </voice>
 </speak>

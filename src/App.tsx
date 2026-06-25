@@ -17,6 +17,7 @@ import { playNarrationClip } from './audioClipPack'
 
 import { SectionPicker, PandaCloset, type ContinueLearningState } from './SectionPicker'
 import type { SectionId } from './types'
+import { LEARNING_SECTIONS } from './content/sections'
 import { markLessonComplete, markStoryComplete, resetProgress, updateStreakOnLesson, type CompletionRewardResult } from './progress'
 import { applyAppSettings, controllerChoices, loadAppSettings, saveAppSettings, type AppSettings, type ControllerChoice } from './appSettings'
 import {
@@ -873,6 +874,14 @@ function App() {
     setMode(targetMode)
   }
 
+  useEffect(() => {
+    if (!activeSection && settings.lockedSection) {
+      chooseSection(settings.lockedSection)
+    }
+  // chooseSection reads `decks` via closure; re-run when decks load or lock changes
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSection, settings.lockedSection, decks.length])
+
   function chooseFlashcards() {
     setActiveSection('words')
     setPhase('learn')
@@ -1169,7 +1178,7 @@ function App() {
           onNext={moveWithinLesson}
           onSarahActivityChange={setSarahActivityIndex}
           onSarahLessonChange={moveSarahLesson}
-          onBackToPath={() => {
+          onBackToPath={settings.lockedSection ? undefined : () => {
             if (activeSection === 'words') {
               setGrowingView('home')
             } else if (activeSection === 'math') {
@@ -1200,7 +1209,7 @@ function App() {
               setActiveSection(null)
             }
           }}
-          onGoHome={() => {
+          onGoHome={settings.lockedSection ? undefined : () => {
             if (activeSection === 'words') {
               setGrowingView('home')
             } else {
@@ -1208,6 +1217,8 @@ function App() {
             }
           }}
           onToggleAdultDetails={() => setShowAdultDetails((v) => !v)}
+          mathDifficulty={mathDifficulty}
+          onChangeMathDifficulty={(diff) => startMath(mathOperation, diff)}
         />
       ) : (
         <section className="empty-screen">
@@ -1322,6 +1333,32 @@ function ParentSettingsModal({
                     onChange={(event) => updateControllerKey(choice, event.currentTarget.value)}
                   />
                 </label>
+              ))}
+            </div>
+          </section>
+          <section className="toddler-lock-settings" aria-label="Toddler lock">
+            <div className="toddler-lock-heading">
+              <strong>Toddler lock</strong>
+              <small>Locks the app to one section — hides back navigation so little fingers can't wander away.</small>
+            </div>
+            <div className="toddler-lock-grid">
+              <button
+                type="button"
+                className={`toddler-lock-option ${!settings.lockedSection ? 'active' : ''}`}
+                onClick={() => onChange({ lockedSection: null })}
+              >
+                Off
+              </button>
+              {LEARNING_SECTIONS.map((section) => (
+                <button
+                  key={section.id}
+                  type="button"
+                  className={`toddler-lock-option ${settings.lockedSection === section.id ? 'active' : ''}`}
+                  style={{ backgroundColor: settings.lockedSection === section.id ? section.color : undefined }}
+                  onClick={() => onChange({ lockedSection: section.id })}
+                >
+                  {section.title}
+                </button>
               ))}
             </div>
           </section>
@@ -1492,30 +1529,29 @@ function MathLevelPicker({
         </button>
       </div>
       <div className="math-difficulty-track" aria-label={`Four math levels. ${detail.title} is selected.`}>
-        {MATH_DIFFICULTIES.map((level) => (
-          <button
-            key={level}
-            type="button"
-            className={level === difficulty ? 'active' : ''}
-            aria-current={level === difficulty ? 'step' : undefined}
-            onClick={() => {
-              onDifficultyChange(level)
-              saveMathSelection(operation, level)
-            }}
-          >
-            {MATH_DIFFICULTY_DETAILS[level].title}
-          </button>
-        ))}
+        {MATH_DIFFICULTIES.map((level) => {
+          const lvl = MATH_DIFFICULTY_DETAILS[level]
+          return (
+            <button
+              key={level}
+              type="button"
+              className={`math-slope-btn slope-${level} ${level === difficulty ? 'active' : ''}`}
+              aria-current={level === difficulty ? 'step' : undefined}
+              onClick={() => {
+                onDifficultyChange(level)
+                saveMathSelection(operation, level)
+              }}
+            >
+              <span className="slope-icon" aria-hidden="true">{lvl.icon}</span>
+              <span className="slope-name">{lvl.shortName}</span>
+            </button>
+          )
+        })}
       </div>
       <article className={`math-difficulty-card difficulty-${difficulty}`}>
-        <span className="math-difficulty-count">
-          Level {MATH_DIFFICULTIES.indexOf(difficulty) + 1} of {MATH_DIFFICULTIES.length}
-        </span>
+        <span className="math-difficulty-icon" aria-hidden="true">{detail.icon}</span>
         <h2>{detail.title}</h2>
         <p>{detail.descriptions[operation]}</p>
-        <div className="math-range-preview" aria-hidden="true">
-          {operation === 'add' ? '+' : '−'}
-        </div>
       </article>
       <div className="math-picker-actions">
         <button type="button" className="primary choice-action" onClick={() => onStart(operation, difficulty)}>
@@ -2008,6 +2044,8 @@ function LearningScreen({
   onDone,
   onGoHome,
   onToggleAdultDetails,
+  mathDifficulty,
+  onChangeMathDifficulty,
 }: {
   decks: LearningDeck[]
   activeDeck: LearningDeck
@@ -2032,8 +2070,10 @@ function LearningScreen({
   onAdvanceLesson: () => void
   onLessonComplete: () => void
   onDone: () => void
-  onGoHome: () => void
+  onGoHome?: () => void
   onToggleAdultDetails: () => void
+  mathDifficulty: MathDifficulty
+  onChangeMathDifficulty: (d: MathDifficulty) => void
 }) {
   const [fsrsActive, setFsrsActive] = useState(false)
   const isSarahLetters = activeDeck.profile === 'sarah' && activeDeck.type === 'letters'
@@ -2132,7 +2172,7 @@ function LearningScreen({
         progress={progress}
         total={progressTotal}
         onMenuToggle={onMenuToggle}
-        onHome={isOlderReaderWords ? onGoHome : undefined}
+        onHome={isOlderReaderWords && onGoHome ? onGoHome : undefined}
       />
 
       {isSarahLetters ? (
@@ -2187,9 +2227,11 @@ function LearningScreen({
           lessonNumber={lessonNumber}
           questionNumber={lessonIndex + 1}
           totalQuestions={lessonCards.length}
+          difficulty={mathDifficulty}
           onNext={onNext}
           onLessonComplete={onLessonComplete}
           onDone={onDone}
+          onChangeDifficulty={onChangeMathDifficulty}
         />
       ) : mode === 'listeningMode' ? (
         <ExploreMode
@@ -2262,7 +2304,7 @@ function LessonMenu({
   activeDeckId: string
   onDeckChange: (deckId: string) => void
   onRestartLesson: () => void
-  onGoHome: () => void
+  onGoHome?: () => void
   onBackToPath?: () => void
   mode: LearningMode
   onModeChange: (mode: LearningMode) => void
@@ -2393,9 +2435,11 @@ function LessonMenu({
                   This section teaches letter sounds before letter names. The goal is hearing, saying, and matching sounds.
                 </div>
               )}
-            <button type="button" className="menu-item menu-home" onClick={onGoHome}>
-              Home
-            </button>
+            {onGoHome && (
+              <button type="button" className="menu-item menu-home" onClick={onGoHome}>
+                Home
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -3326,7 +3370,12 @@ function ExploreMode({
             <span className="stage-label">Listen and learn</span>
             <h2>{card.type === 'word' ? 'This word is...' : 'This letter is...'}</h2>
           </div>
-          <div className="focus-visual">
+          <button
+            type="button"
+            className="focus-visual focus-visual-tap"
+            onClick={() => void playCardAudio(deck, card)}
+            aria-label={`Hear ${card.word ?? card.displayText}`}
+          >
             {card.type === 'word' ? (
               <>
                 <Picture deck={deck} card={card} />
@@ -3341,9 +3390,8 @@ function ExploreMode({
                 <span className="example-word">{card.exampleWord}</span>
               </>
             )}
-          </div>
+          </button>
           <div className="focus-actions">
-            <AudioPromptButton onClick={() => playCardAudio(deck, card)} label="Listen" />
             <button type="button" className="primary" onClick={onNext}>Next</button>
             <button type="button" className="secondary-action full-row" onClick={onNextLesson}>Next Lesson</button>
           </div>
@@ -3353,7 +3401,7 @@ function ExploreMode({
         <Mascot mood={mood} size="small" />
         <div className="feedback-text">
           <strong>{card.type === 'word' ? 'Read it!' : 'Say it!'}</strong>
-          <span>Tap the button to hear</span>
+          <span>Tap the card to hear</span>
         </div>
       </div>
     </section>
@@ -3576,19 +3624,24 @@ function MathLesson({
   lessonNumber,
   questionNumber,
   totalQuestions,
+  difficulty,
   onNext,
   onLessonComplete,
   onDone,
+  onChangeDifficulty,
 }: {
   deck: LearningDeck
   card: LearningCard
   lessonNumber: number
   questionNumber: number
   totalQuestions: number
+  difficulty: MathDifficulty
   onNext: () => void
   onLessonComplete: () => void
   onDone: () => void
+  onChangeDifficulty: (d: MathDifficulty) => void
 }) {
+  const isEasy = difficulty === 'easy'
   const [selected, setSelected] = useState('')
   const [gentleReveal, setGentleReveal] = useState(false)
   const [complete, setComplete] = useState(false)
@@ -3601,11 +3654,12 @@ function MathLesson({
     if (questionNumber >= totalQuestions) {
       const operation = card.mathOperation === 'subtract' ? 'subtract' : 'add'
       const nextIndex = (deck.cards.findIndex((candidate) => candidate.id === card.id) + 1) % Math.max(1, deck.cards.length)
-      saveMathIndex(operation, loadMathProgress().difficulty, nextIndex)
+      saveMathIndex(operation, difficulty, nextIndex)
       setComplete(true)
       if (!completionRecorded.current) {
         completionRecorded.current = true
         onLessonComplete()
+        playSfx('fireworks')
         fireworksCelebration()
       }
       return
@@ -3665,6 +3719,7 @@ function MathLesson({
           <button type="button" className="primary choice-action" onClick={onNext}><span>A</span>Next Lesson</button>
           <button type="button" className="choice-action" onClick={onDone}><span>B</span>Choose Level</button>
         </div>
+        <MathDiffBar difficulty={difficulty} onChangeDifficulty={onChangeDifficulty} />
       </section>
     )
   }
@@ -3678,8 +3733,8 @@ function MathLesson({
             <h2>{card.mathPrompt || card.displayText}</h2>
             <AudioPromptButton onClick={() => playCardAudio(deck, card)} label="Listen" />
           </div>
-          <MathVisual card={card} />
-          <div className="focus-options" aria-label="Answer choices">
+          <MathVisual card={card} isEasy={isEasy} />
+          <div className={`focus-options ${isEasy ? 'focus-options-easy' : ''}`} aria-label="Answer choices">
             {options.map((option, index) => {
               const isCorrectOption = gentleReveal && option.id === card.id
               const isWrongSelection = gentleReveal && selected === option.id && option.id !== card.id
@@ -3687,11 +3742,11 @@ function MathLesson({
                 <button
                   key={option.id}
                   type="button"
-                  className={`focus-option ${isCorrectOption ? 'correct pulse' : isWrongSelection ? 'selected-soft' : selected === option.id ? 'correct' : ''}`}
+                  className={`focus-option ${isEasy ? 'focus-option-easy' : ''} ${isCorrectOption ? 'correct pulse' : isWrongSelection ? 'selected-soft' : selected === option.id ? 'correct' : ''}`}
                   disabled={Boolean(selected)}
                   onClick={() => chooseByIndex(index)}
                 >
-                  <span className="choice-key">{choiceKeyLabel(index)}</span>
+                  {!isEasy && <span className="choice-key">{choiceKeyLabel(index)}</span>}
                   <strong>{optionLabel(option)}</strong>
                 </button>
               )
@@ -3702,11 +3757,35 @@ function MathLesson({
       <div className={`focus-feedback ${selected ? 'happy' : ''}`}>
         <Mascot mood={selected ? 'happy' : 'curious'} size="small" />
         <div className="feedback-text">
-          <strong>{gentleReveal ? 'Let’s count together' : selected && correct ? 'Great thinking!' : 'Choose one'}</strong>
-          <span>{gentleReveal ? `The answer is ${card.mathAnswer}.` : 'A or B'}</span>
+          <strong>{gentleReveal ? "Let's count together" : selected && correct ? "Great thinking!" : "Choose one"}</strong>
+          <span>{gentleReveal ? `The answer is ${card.mathAnswer}.` : "A or B"}</span>
         </div>
       </div>
+      <MathDiffBar difficulty={difficulty} onChangeDifficulty={onChangeDifficulty} />
     </section>
+  )
+}
+
+function MathDiffBar({ difficulty, onChangeDifficulty }: { difficulty: MathDifficulty; onChangeDifficulty: (d: MathDifficulty) => void }) {
+  return (
+    <div className="math-diff-bar" role="group" aria-label="Switch difficulty">
+      {MATH_DIFFICULTIES.map((level) => {
+        const details = MATH_DIFFICULTY_DETAILS[level]
+        return (
+          <button
+            key={level}
+            type="button"
+            className={`math-diff-btn math-diff-btn-${level} ${difficulty === level ? 'active' : ''}`}
+            onClick={() => onChangeDifficulty(level)}
+            title={details.title}
+            aria-label={details.title}
+            aria-pressed={difficulty === level}
+          >
+            <span aria-hidden="true">{details.icon}</span>
+          </button>
+        )
+      })}
+    </div>
   )
 }
 
@@ -4142,9 +4221,85 @@ function ChoiceMode({
   )
 }
 
-function MathVisual({ card }: { card: LearningCard }) {
+const MATH_OBJECT_EMOJI: Record<string, string> = {
+  apples: '🍎',
+  apple: '🍎',
+  stars: '⭐',
+  star: '⭐',
+  buttons: '🔵',
+  button: '🔵',
+  flowers: '🌸',
+  flower: '🌸',
+  fish: '🐟',
+  birds: '🐦',
+  bird: '🐦',
+  clouds: '☁️',
+  cloud: '☁️',
+  hearts: '💜',
+  heart: '💜',
+  suns: '🌟',
+  sun: '🌟',
+}
+
+function ObjectImage({ object }: { object: string }) {
+  const [failed, setFailed] = useState(false)
+  if (failed) return null
+  return (
+    <img
+      className="math-obj-img"
+      src={`/math-objects/${object}.png`}
+      alt=""
+      aria-hidden="true"
+      onError={() => setFailed(true)}
+    />
+  )
+}
+
+function MathVisual({ card, isEasy = false }: { card: LearningCard; isEasy?: boolean }) {
   const kind = card.mathQuestionKind || (card.mathOperation === 'subtract' ? 'picture-subtract' : 'picture-add')
   const object = card.mathObject || 'apple'
+  const emoji = MATH_OBJECT_EMOJI[object] ?? '🔴'
+
+  if (isEasy) {
+    if (card.mathOperation === 'subtract') {
+      const groups = card.mathVisualGroups ?? []
+      const total = groups[0] ?? 0
+      const removing = groups[1] ?? 0
+      return (
+        <div className="math-count-easy math-count-subtract" aria-label={`${total} ${object}s, take away ${removing}`}>
+          <ObjectImage object={object} />
+          <div className="math-count-group">
+            {Array.from({ length: total }, (_, i) => (
+              <span key={i} className={`math-count-emoji ${i >= total - removing ? 'count-cross' : ''}`} aria-hidden="true">
+                {emoji}
+              </span>
+            ))}
+          </div>
+        </div>
+      )
+    }
+    const groups = card.mathVisualGroups ?? []
+    const op = '+'
+    return (
+      <div className="math-count-easy" aria-label={groups.map((g) => `${g} ${object}s`).join(' plus ')}>
+        <ObjectImage object={object} />
+        {groups.map((group, gi) => (
+          <div key={gi} className="math-count-part">
+            {gi > 0 && <span className="math-count-op" aria-hidden="true">{op}</span>}
+            <div className="math-count-group">
+              {group === 0
+                ? <span className="math-count-zero" aria-hidden="true">0</span>
+                : Array.from({ length: group }, (_, i) => (
+                    <span key={i} className="math-count-emoji" aria-hidden="true">{emoji}</span>
+                  ))
+              }
+            </div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
   if (kind === 'equation') {
     return <div className="math-equation-card">{card.equation || card.displayText}</div>
   }
@@ -4154,6 +4309,7 @@ function MathVisual({ card }: { card: LearningCard }) {
     const removed = card.mathRemovedCount ?? 0
     return (
       <div className="math-visual-card">
+        <ObjectImage object={object} />
         {card.mathStoryText && <p>{card.mathStoryText}</p>}
         <div className="math-token-row" aria-label={`${count} ${object}s, ${removed} taken away`}>
           {Array.from({ length: count }, (_, index) => (
@@ -4167,6 +4323,7 @@ function MathVisual({ card }: { card: LearningCard }) {
   const groups = card.mathVisualGroups ?? []
   return (
     <div className="math-visual-card">
+      <ObjectImage object={object} />
       {card.mathStoryText && <p>{card.mathStoryText}</p>}
       <div className="math-group-row" aria-label={groups.map((group) => `${group} ${object}s`).join(' plus ')}>
         {groups.map((group, groupIndex) => (
@@ -4958,31 +5115,26 @@ function StickerBook({ onClose }: { onClose: () => void }) {
 }
 
 function fireworksCelebration() {
-  const duration = 2500;
-  const animationEnd = Date.now() + duration;
-  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+  const duration = 5500
+  const animationEnd = Date.now() + duration
+  const defaults = { startVelocity: 36, spread: 360, ticks: 80, zIndex: 200 }
+  const colors = ['#FFD600', '#FF6D00', '#00E676', '#00B0FF', '#FF4081', '#7C4DFF', '#FFFFFF']
 
   function randomInRange(min: number, max: number) {
-    return Math.random() * (max - min) + min;
+    return Math.random() * (max - min) + min
   }
 
-  const interval: ReturnType<typeof setInterval> = setInterval(function() {
-    const timeLeft = animationEnd - Date.now();
+  // Opening burst from center
+  confetti({ particleCount: 100, spread: 120, origin: { x: 0.5, y: 0.55 }, colors, zIndex: 200, startVelocity: 45 })
 
-    if (timeLeft <= 0) {
-      return clearInterval(interval);
-    }
+  const interval: ReturnType<typeof setInterval> = setInterval(function () {
+    const timeLeft = animationEnd - Date.now()
+    if (timeLeft <= 0) return clearInterval(interval)
 
-    const particleCount = 50 * (timeLeft / duration);
-    confetti({
-      ...defaults, particleCount,
-      origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-    });
-    confetti({
-      ...defaults, particleCount,
-      origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-    });
-  }, 250);
+    const particleCount = 80 * (timeLeft / duration)
+    confetti({ ...defaults, particleCount, colors, origin: { x: randomInRange(0.1, 0.35), y: Math.random() - 0.1 } })
+    confetti({ ...defaults, particleCount, colors, origin: { x: randomInRange(0.65, 0.9), y: Math.random() - 0.1 } })
+  }, 220)
 }
 function buildOlderReaderPhonemeActivities(lessonCards: LearningCard[]): OlderReaderPhonemeActivity[] {
   const activities: OlderReaderPhonemeActivity[] = []

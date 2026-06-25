@@ -1,8 +1,11 @@
+import type { SectionId } from './types'
+
 export interface AppSettings {
   autoplayAudio: boolean
   darkMode: boolean
   showProgress: boolean
   controllerKeys: ControllerKeyMap
+  lockedSection: SectionId | null
 }
 
 const SETTINGS_KEY = 'chunkyLearnerSettings.v1'
@@ -25,6 +28,7 @@ export const defaultAppSettings: AppSettings = {
   darkMode: false,
   showProgress: true,
   controllerKeys: defaultControllerKeys,
+  lockedSection: null,
 }
 
 export function loadAppSettings(): AppSettings {

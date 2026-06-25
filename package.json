@@ -47,7 +47,13 @@
     "generate:section-images:test": "node scripts/generate-section-images.mjs --limit 1",
     "generate:math-decks": "node scripts/generate-math-decks.mjs",
     "verify:math-levels": "node --experimental-strip-types scripts/verify-math-levels.mts",
-    "generate:chinese-deck": "node scripts/generate-chinese-deck.mjs"
+    "generate:chinese-deck": "node scripts/generate-chinese-deck.mjs",
+    "generate:chinese-audio": "node --env-file=.env scripts/generate-chinese-google-tts.mjs",
+    "generate:chinese-audio:dry": "node --env-file=.env scripts/generate-chinese-google-tts.mjs --dry-run",
+    "generate:chinese-audio:force": "node --env-file=.env scripts/generate-chinese-google-tts.mjs --force",
+    "generate:math-images": "node --env-file=.env scripts/generate-math-object-images.mjs",
+    "generate:math-images:dry": "node --env-file=.env scripts/generate-math-object-images.mjs --dry-run",
+    "generate:math-images:force": "node --env-file=.env scripts/generate-math-object-images.mjs --force"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.2",

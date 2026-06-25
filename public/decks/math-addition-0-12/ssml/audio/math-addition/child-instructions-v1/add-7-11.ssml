@@ -2,7 +2,7 @@
 <speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
   <voice name="en-US-AvaNeural">
     <prosody rate="-12%" pitch="+4%">
-      7 + 11 = ?
+      Count the apples. 7 plus 11. How many altogether?
     </prosody>
   </voice>
 </speak>
