@@ -70,6 +70,7 @@
     "type": "chinese-vocab",
     "profile": "library",
     "format": "json",
-    "source": "decks/chinese-level-1.json"
+    "source": "decks/chinese-level-1.json",
+    "assetBaseUrl": "decks/chinese-level-1"
   }
 ]
