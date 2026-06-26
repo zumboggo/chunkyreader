@@ -151,6 +151,10 @@ export interface LearningSection {
   image: string
   imagePrompt?: string
   color: string
+  eyebrow?: string
+  pocket?: string
+  helper?: string
+  cta?: string
 }
 
 export type RewardRarity = 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary'
