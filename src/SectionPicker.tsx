@@ -87,8 +87,14 @@ export function SectionPicker({
                 {sectionBadge(section.id)}
               </span>
             </div>
+            <span className="section-audience-pill">{section.eyebrow}</span>
             <strong>{section.title}</strong>
             <small>{section.subtitle}</small>
+            <p className="section-helper">{section.helper}</p>
+            <div className="section-card-footer">
+              <span>{section.pocket}</span>
+              <span>{section.cta}</span>
+            </div>
             {settings.showProgress && (
               <div className="section-progress-badge">
                 {progressLabel(getSectionProgress(section.id))}
@@ -164,11 +170,11 @@ function StudyHeatmap({ data }: { data: Array<{ date: string; count: number; day
 
 function sectionBadge(sectionId: SectionId) {
   if (sectionId === 'letters') return 'Aa'
-  if (sectionId === 'sounds') return 'Sound'
+  if (sectionId === 'sounds') return 'sh'
   if (sectionId === 'words') return 'W'
   if (sectionId === 'stories') return 'Book'
-  if (sectionId === 'math') return '2 + 3'
-  if (sectionId === 'chinese') return '人'
+  if (sectionId === 'math') return '1+2'
+  if (sectionId === 'chinese') return 'Ren'
   return ''
 }
 

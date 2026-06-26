@@ -571,6 +571,10 @@ function App() {
   const isLessonActive = Boolean(profile && activeDeck && currentCard)
   const isSectionDashboard = !loading && !loadError && !activeSection && !profile
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [activeSection, profile, growingView, mathStarted])
+
   const refreshProgressState = useCallback(() => {
     const nextSettings = loadAppSettings()
     setSettings(nextSettings)
@@ -1512,6 +1516,11 @@ function MathLevelPicker({
       <div className="math-picker-heading">
         <span className="prompt-topline">Math</span>
         <h1>What shall we practice?</h1>
+        <div className="math-picker-summary" aria-live="polite">
+          <span>{operation === 'add' ? 'Adding' : 'Taking away'}</span>
+          <strong>{detail.title}</strong>
+          <small>{detail.shortName} pocket</small>
+        </div>
       </div>
       <div className="math-operation-toggle" aria-label="Choose math operation">
         <button
@@ -1519,14 +1528,16 @@ function MathLevelPicker({
           className={operation === 'add' ? 'active' : ''}
           onClick={() => selectOperation('add')}
         >
-          Addition
+          <span className="operation-mark" aria-hidden="true">+</span>
+          <span>Add</span>
         </button>
         <button
           type="button"
           className={operation === 'subtract' ? 'active' : ''}
           onClick={() => selectOperation('subtract')}
         >
-          Subtraction
+          <span className="operation-mark" aria-hidden="true">-</span>
+          <span>Subtract</span>
         </button>
       </div>
       <div className="math-difficulty-track" aria-label={`Four math levels. ${detail.title} is selected.`}>
@@ -1553,6 +1564,11 @@ function MathLevelPicker({
         <span className="math-difficulty-icon" aria-hidden="true">{detail.icon}</span>
         <h2>{detail.title}</h2>
         <p>{detail.descriptions[operation]}</p>
+        <div className="math-card-meter" aria-hidden="true">
+          {MATH_DIFFICULTIES.map((level) => (
+            <span key={level} className={MATH_DIFFICULTIES.indexOf(level) <= MATH_DIFFICULTIES.indexOf(difficulty) ? 'filled' : ''} />
+          ))}
+        </div>
       </article>
       <div className="math-picker-actions">
         <button type="button" className="primary choice-action" onClick={() => onStart(operation, difficulty)}>
@@ -1649,6 +1665,11 @@ function GrowingReaderHome({
           <ChunkyLogo compact />
           <h1>Words and Stories</h1>
           <p>Choose one happy reading pocket.</p>
+          <div className="reader-hero-stats" aria-label="Reading progress">
+            <span><strong>{masteredCount}</strong> saved words</span>
+            <span><strong>{stories.length}</strong> books</span>
+            <span><strong>{phonemeCount}</strong> sounds</span>
+          </div>
         </div>
         <Mascot mood="reading" />
       </div>
@@ -1657,21 +1678,25 @@ function GrowingReaderHome({
           <span className="choice-sticker" aria-hidden="true">Star</span>
           <strong>My Words</strong>
           <small>{totalWordCount} words to explore!</small>
+          <span className="reader-choice-action">Open collection</span>
         </button>
         <button type="button" className="reader-choice phoneme-choice" onClick={onPhonemes}>
           <span className="choice-sticker" aria-hidden="true">Sound</span>
           <strong>Phonemes</strong>
           <small>{phonemeCount} sounds & spellings</small>
+          <span className="reader-choice-action">Practice sounds</span>
         </button>
         <button type="button" className="reader-choice word-choice" onClick={onWords}>
           <span className="choice-sticker" aria-hidden="true">ABC</span>
           <strong>Read Words</strong>
           <small>{wordCount} words to read</small>
+          <span className="reader-choice-action">Start word pocket</span>
         </button>
         <button type="button" className="reader-choice story-choice" onClick={onStories}>
           <span className="choice-sticker book-sticker" aria-hidden="true" />
           <strong>Read a Story</strong>
           <small>{stories.length} stories, {pageCount} pages</small>
+          <span className="reader-choice-action">Pick a story</span>
         </button>
       </div>
     </section>
@@ -1700,6 +1725,11 @@ function StorySection({
   const selectedStory = stories.find((story) => story.id === selectedStoryId)
   const resumeStory = stories.find(s => readStoryProgress(s.id, s.pages.length) > 0)
   const filteredStories = stories.filter((story) => storyDifficulty(story) === difficultyFilter)
+  const totalPages = stories.reduce((sum, story) => sum + story.pages.length, 0)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [difficultyFilter, selectedStoryId])
 
   function openStory(story: Story) {
     setSelectedStoryId(story.id)
@@ -1791,6 +1821,10 @@ function StorySection({
           <span className="prompt-topline">Stories</span>
           <h1>Read a Story</h1>
           <p>Pick a story pocket.</p>
+          <div className="story-shelf-summary" aria-label="Story shelf summary">
+            <span>{stories.length} books</span>
+            <span>{totalPages} pages</span>
+          </div>
         </div>
         <AudioPackButton />
         <Mascot mood="happy" />
