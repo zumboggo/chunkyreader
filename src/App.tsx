@@ -1052,6 +1052,7 @@ function App() {
 
   return (
     <main className={`app-shell ${isLessonActive ? 'lesson-active' : ''} ${isSectionDashboard ? 'section-dashboard-active' : ''}`}>
+      <RotateOverlay />
       <header className="topbar">
         <button
           className="brand-button squish"
@@ -4255,6 +4256,18 @@ function ObjectImage({ object }: { object: string }) {
   )
 }
 
+function RotateOverlay() {
+  return (
+    <div className="rotate-overlay" aria-live="polite">
+      <div className="rotate-overlay-inner">
+        <div className="rotate-icon" aria-hidden="true">&#8635;</div>
+        <h2>Rotate your device</h2>
+        <p>This app works best in landscape mode</p>
+      </div>
+    </div>
+  )
+}
+
 function MathVisual({ card, isEasy = false }: { card: LearningCard; isEasy?: boolean }) {
   const kind = card.mathQuestionKind || (card.mathOperation === 'subtract' ? 'picture-subtract' : 'picture-add')
   const object = card.mathObject || 'apple'
@@ -4301,7 +4314,12 @@ function MathVisual({ card, isEasy = false }: { card: LearningCard; isEasy?: boo
   }
 
   if (kind === 'equation') {
-    return <div className="math-equation-card">{card.equation || card.displayText}</div>
+    return (
+      <div className="math-equation-card">
+        <ObjectImage object={object} />
+        <span className="math-eq-formula">{card.equation || card.displayText}</span>
+      </div>
+    )
   }
 
   if (card.mathOperation === 'subtract') {
