@@ -112,7 +112,7 @@ export function SectionPicker({
 
       <div className="dashboard-parent-actions" aria-label="Parent tools">
         <button type="button" className="sticker-nav-button squish" onClick={onShowCloset}>
-          Panda Closet ({boxCount > 0 ? `${boxCount} boxes` : `${ownedCount} items`})
+          Panda's Room ({boxCount > 0 ? `${boxCount} boxes` : `${ownedCount} items`})
         </button>
         <button type="button" className="settings-nav-button squish" onClick={onShowSettings}>
           Parent Settings
@@ -168,7 +168,7 @@ function sectionBadge(sectionId: SectionId) {
   if (sectionId === 'words') return 'W'
   if (sectionId === 'stories') return 'Book'
   if (sectionId === 'math') return '2 + 3'
-  if (sectionId === 'chinese') return '\u4eba'
+  if (sectionId === 'chinese') return '人'
   return ''
 }
 
@@ -192,11 +192,22 @@ function progressLabel(count: number) {
   return '⭐'.repeat(stars)
 }
 
-type ClosetTab = 'outfit' | 'boxes' | 'collection'
+type RoomTab = 'room' | 'boxes' | 'collection'
+
+const ROOM_SLOTS: Array<{ slot: RewardSlot; emoji: string; label: string }> = [
+  { slot: 'window',  emoji: '🪟', label: 'Window'  },
+  { slot: 'ceiling', emoji: '✨', label: 'Ceiling'  },
+  { slot: 'wall',    emoji: '🖼️', label: 'Wall'     },
+  { slot: 'shelf',   emoji: '📚', label: 'Shelf'    },
+  { slot: 'cushion', emoji: '🛋️', label: 'Cushion'  },
+  { slot: 'desk',    emoji: '💡', label: 'Desk'     },
+  { slot: 'rug',     emoji: '🏠', label: 'Rug'      },
+  { slot: 'door',    emoji: '🚪', label: 'Door'     },
+]
 
 export function PandaCloset({ onClose }: { onClose: () => void }) {
   const [progress, setProgress] = useState(() => loadProgress())
-  const [tab, setTab] = useState<ClosetTab>((progress.unopenedBoxes || 0) > 0 ? 'boxes' : 'outfit')
+  const [tab, setTab] = useState<RoomTab>((progress.unopenedBoxes || 0) > 0 ? 'boxes' : 'room')
   const [result, setResult] = useState<{ drop: RewardDrop; item: RewardItem } | null>(null)
   const owned = getOwnedRewards(progress)
   const ownedBySlot = rewardsBySlot(owned)
@@ -223,15 +234,15 @@ export function PandaCloset({ onClose }: { onClose: () => void }) {
     }
   }
 
-  function wearItem(item: RewardItem) {
+  function placeItem(item: RewardItem) {
     persist(equipReward(progress, item.id))
     setResult(null)
-    setTab('outfit')
+    setTab('room')
   }
 
   function equipItem(item: RewardItem) {
     persist(equipReward(progress, item.id))
-    setTab('outfit')
+    setTab('room')
   }
 
   return (
@@ -240,12 +251,12 @@ export function PandaCloset({ onClose }: { onClose: () => void }) {
         <button className="close-button" onClick={onClose}>Close</button>
         <div className="closet-header">
           <span className="prompt-topline">Panda rewards</span>
-          <h2>Panda Closet</h2>
-          <p>{progress.totalLessonsCompleted} lessons finished · {sparkles} Sparkles</p>
+          <h2>Panda's Room</h2>
+          <p>{progress.totalLessonsCompleted} lessons finished · {sparkles} ✨</p>
         </div>
 
-        <div className="closet-tabs" role="tablist" aria-label="Panda Closet sections">
-          <button type="button" className={tab === 'outfit' ? 'active' : ''} onClick={() => setTab('outfit')}>Outfit</button>
+        <div className="closet-tabs" role="tablist" aria-label="Panda Room sections">
+          <button type="button" className={tab === 'room' ? 'active' : ''} onClick={() => setTab('room')}>Room</button>
           <button type="button" className={tab === 'boxes' ? 'active' : ''} onClick={() => setTab('boxes')}>Boxes {unopenedBoxes > 0 ? `(${unopenedBoxes})` : ''}</button>
           <button type="button" className={tab === 'collection' ? 'active' : ''} onClick={() => setTab('collection')}>Collection</button>
         </div>
@@ -254,7 +265,7 @@ export function PandaCloset({ onClose }: { onClose: () => void }) {
           <BoxResult
             item={result.item}
             drop={result.drop}
-            onWear={() => wearItem(result.item)}
+            onPlace={() => placeItem(result.item)}
             onDone={() => setResult(null)}
           />
         ) : tab === 'boxes' ? (
@@ -262,7 +273,7 @@ export function PandaCloset({ onClose }: { onClose: () => void }) {
         ) : tab === 'collection' ? (
           <CollectionPanel owned={owned} onEquip={equipItem} />
         ) : (
-          <OutfitPanel progress={progress} ownedBySlot={ownedBySlot} onEquip={equipItem} />
+          <RoomPanel progress={progress} ownedBySlot={ownedBySlot} onEquip={equipItem} />
         )}
       </div>
     </div>
@@ -287,12 +298,12 @@ function BoxesPanel({ unopenedBoxes, onOpen }: { unopenedBoxes: number; onOpen: 
 function BoxResult({
   item,
   drop,
-  onWear,
+  onPlace,
   onDone,
 }: {
   item: RewardItem
   drop: RewardDrop
-  onWear: () => void
+  onPlace: () => void
   onDone: () => void
 }) {
   return (
@@ -301,16 +312,16 @@ function BoxResult({
       <RewardBadge item={item} large />
       <h3>{drop.duplicate ? 'Sparkles!' : 'New item!'}</h3>
       <strong>{item.name}</strong>
-      <p>{drop.duplicate ? `You found this one again. +${drop.sparklePointsGained} Sparkles!` : item.description}</p>
+      <p>{drop.duplicate ? `You found this one again. +${drop.sparklePointsGained} ✨` : item.description}</p>
       <div className="box-result-actions">
-        {!drop.duplicate && <button type="button" className="path-start-button" onClick={onWear}>Wear It</button>}
+        {!drop.duplicate && <button type="button" className="path-start-button" onClick={onPlace}>Place It</button>}
         <button type="button" className="path-start-button secondary" onClick={onDone}>Done</button>
       </div>
     </div>
   )
 }
 
-function OutfitPanel({
+function RoomPanel({
   progress,
   ownedBySlot,
   onEquip,
@@ -320,57 +331,76 @@ function OutfitPanel({
   onEquip: (item: RewardItem) => void
 }) {
   const equipped = progress.equippedRewards || {}
-  const equippedItems = Object.values(equipped).map((id) => getRewardById(id)).filter(Boolean) as RewardItem[]
+  const [selectedSlot, setSelectedSlot] = useState<RewardSlot | null>(null)
+
+  if (selectedSlot !== null) {
+    const items = ownedBySlot[selectedSlot]
+    const slotInfo = ROOM_SLOTS.find(s => s.slot === selectedSlot)!
+    const equippedId = equipped[selectedSlot]
+    return (
+      <div className="closet-panel room-slot-picker">
+        <button type="button" className="room-back-button" onClick={() => setSelectedSlot(null)}>
+          ← Back to Room
+        </button>
+        <h3>{slotInfo.emoji} {slotInfo.label}</h3>
+        {items.length === 0 ? (
+          <p className="room-empty-hint">Open Panda Boxes to find {slotInfo.label.toLowerCase()} decorations.</p>
+        ) : (
+          <div className="room-item-grid">
+            {items.map(item => (
+              <button
+                key={item.id}
+                type="button"
+                className={`room-item-card rarity-${item.rarity} ${equippedId === item.id ? 'selected' : ''}`}
+                onClick={() => { onEquip(item); setSelectedSlot(null); }}
+              >
+                <RewardBadge item={item} />
+                <strong>{item.name}</strong>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    )
+  }
 
   return (
-    <div className="closet-panel outfit-panel">
-      <div className="panda-preview-card">
-        <div className="panda-preview-stage">
-          {equippedItems.filter((item) => item.slot === 'background').map((item) => (
-            <span
-              key={item.id}
-              className="preview-background"
-              style={{
-                backgroundColor: item.colorTheme,
-                backgroundImage: `url("${rewardImageUrl(item)}")`,
-              }}
-            />
-          ))}
-          <img src={`${import.meta.env.BASE_URL}assets/mascots/mascot-reading.png`} alt="Panda wearing rewards" />
-          {equippedItems.filter((item) => item.slot !== 'background').map((item) => (
-            <span
-              key={item.id}
-              className={`preview-accessory slot-${item.slot} rarity-${item.rarity}`}
-              style={{ backgroundColor: item.colorTheme }}
-            >
-              <img src={rewardImageUrl(item)} alt="" onError={hideBrokenRewardImage} />
-              <span>{item.badgeText}</span>
-            </span>
-          ))}
-        </div>
-        <p>{equippedItems.length ? 'Panda is ready to learn!' : 'Choose an item for Panda to wear.'}</p>
+    <div className="closet-panel room-panel">
+      <div className="room-panda-banner">
+        <img
+          src={`${import.meta.env.BASE_URL}assets/mascots/mascot-reading.png`}
+          alt="Panda in their room"
+          className="room-panda-img"
+        />
+        <p>Tap a spot to decorate Panda's room!</p>
       </div>
-
-      <div className="outfit-slot-list">
-        {(Object.keys(ownedBySlot) as RewardSlot[]).map((slot) => (
-          <div className="outfit-slot" key={slot}>
-            <strong>{slotLabel(slot)}</strong>
-            <div className="mini-reward-row">
-              {ownedBySlot[slot].length ? ownedBySlot[slot].map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  className={`mini-reward ${equipped[slot] === item.id ? 'selected' : ''}`}
-                  onClick={() => onEquip(item)}
-                  title={item.name}
-                >
-                  <img src={rewardImageUrl(item)} alt="" onError={hideBrokenRewardImage} />
-                  <span>{item.badgeText}</span>
-                </button>
-              )) : <small>Find a {slotLabel(slot).toLowerCase()} item.</small>}
-            </div>
-          </div>
-        ))}
+      <div className="room-grid">
+        {ROOM_SLOTS.map(({ slot, emoji, label }) => {
+          const equippedId = equipped[slot]
+          const equippedItem = equippedId ? getRewardById(equippedId) : undefined
+          const hasItems = ownedBySlot[slot].length > 0
+          return (
+            <button
+              key={slot}
+              type="button"
+              className={`room-slot-tile ${hasItems ? 'has-items' : 'locked'} ${equippedItem ? 'equipped' : ''}`}
+              onClick={() => setSelectedSlot(slot)}
+            >
+              {equippedItem ? (
+                <>
+                  <RewardBadge item={equippedItem} />
+                  <span className="room-slot-name">{equippedItem.name}</span>
+                </>
+              ) : (
+                <>
+                  <span className="room-slot-emoji" aria-hidden="true">{emoji}</span>
+                  <span className="room-slot-name">{label}</span>
+                  {hasItems && <span className="room-slot-dot" aria-label="items available" />}
+                </>
+              )}
+            </button>
+          )
+        })}
       </div>
     </div>
   )
@@ -434,12 +464,6 @@ function rarityLabel(rarity: RewardRarity) {
 }
 
 function slotLabel(slot: RewardSlot) {
-  if (slot === 'head') return 'Head'
-  if (slot === 'face') return 'Face'
-  if (slot === 'neck') return 'Neck'
-  if (slot === 'body') return 'Body'
-  if (slot === 'back') return 'Back'
-  if (slot === 'hand') return 'Charm'
-  if (slot === 'sticker') return 'Sticker'
-  return 'Background'
+  const info = ROOM_SLOTS.find(s => s.slot === slot)
+  return info ? `${info.emoji} ${info.label}` : slot
 }

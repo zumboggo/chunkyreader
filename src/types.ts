@@ -154,7 +154,7 @@ export interface LearningSection {
 }
 
 export type RewardRarity = 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary'
-export type RewardSlot = 'head' | 'face' | 'neck' | 'body' | 'back' | 'hand' | 'sticker' | 'background'
+export type RewardSlot = 'window' | 'ceiling' | 'wall' | 'shelf' | 'cushion' | 'desk' | 'rug' | 'door'
 
 export interface RewardItem {
   id: string
