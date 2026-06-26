@@ -1450,14 +1450,14 @@ function RewardBoxNotice({
   onLater: () => void
 }) {
   return (
-    <section className="reward-box-notice" aria-live="polite">
+    <section className="reward-box-notice" aria-live="polite" onClick={onOpen} style={{cursor: 'pointer'}}>
       <div className="reward-box-mini" aria-hidden="true">Box</div>
       <div>
         <strong>You found a Panda Box!</strong>
         <span>{boxes > 1 ? `${boxes} boxes are waiting.` : 'A surprise is waiting.'}</span>
       </div>
       <button type="button" className="primary" onClick={onOpen}>Open</button>
-      <button type="button" onClick={onLater}>Later</button>
+      <button type="button" onClick={(e) => { e.stopPropagation(); onLater(); }}>Later</button>
     </section>
   )
 }
@@ -3367,10 +3367,6 @@ function ExploreMode({
     <section className="focus-lesson">
       <div className="focus-main">
         <div className="focus-intro">
-          <div className="focus-prompt">
-            <span className="stage-label">Listen and learn</span>
-            <h2>{card.type === 'word' ? 'This word is...' : 'This letter is...'}</h2>
-          </div>
           <button
             type="button"
             className="focus-visual focus-visual-tap"
