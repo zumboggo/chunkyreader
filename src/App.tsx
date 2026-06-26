@@ -4221,6 +4221,12 @@ function ChoiceMode({
 const MATH_OBJECT_EMOJI: Record<string, string> = {
   apples: '🍎',
   apple: '🍎',
+  berries: '🍓',
+  berry: '🍓',
+  blocks: '🟦',
+  block: '🟦',
+  shells: '🐚',
+  shell: '🐚',
   stars: '⭐',
   star: '⭐',
   buttons: '🔵',
