@@ -194,15 +194,15 @@ function progressLabel(count: number) {
 
 type RoomTab = 'room' | 'boxes' | 'collection'
 
-const ROOM_SLOTS: Array<{ slot: RewardSlot; emoji: string; label: string }> = [
-  { slot: 'window',  emoji: '🪟', label: 'Window'  },
-  { slot: 'ceiling', emoji: '✨', label: 'Ceiling'  },
-  { slot: 'wall',    emoji: '🖼️', label: 'Wall'     },
-  { slot: 'shelf',   emoji: '📚', label: 'Shelf'    },
-  { slot: 'cushion', emoji: '🛋️', label: 'Cushion'  },
-  { slot: 'desk',    emoji: '💡', label: 'Desk'     },
-  { slot: 'rug',     emoji: '🏠', label: 'Rug'      },
-  { slot: 'door',    emoji: '🚪', label: 'Door'     },
+const ROOM_SLOTS: Array<{ slot: RewardSlot; emoji: string; label: string; top: string; left: string }> = [
+  { slot: 'window',  emoji: '🪟', label: 'Window',  top: '1%',  left: '1%'  },
+  { slot: 'ceiling', emoji: '✨', label: 'Ceiling',  top: '1%',  left: '36%' },
+  { slot: 'door',    emoji: '🚪', label: 'Door',     top: '7%',  left: '79%' },
+  { slot: 'wall',    emoji: '🖼️', label: 'Wall',     top: '22%', left: '76%' },
+  { slot: 'shelf',   emoji: '📚', label: 'Shelf',    top: '38%', left: '69%' },
+  { slot: 'cushion', emoji: '🛋️', label: 'Cushion',  top: '54%', left: '1%'  },
+  { slot: 'desk',    emoji: '💡', label: 'Desk',     top: '54%', left: '76%' },
+  { slot: 'rug',     emoji: '🏠', label: 'Rug',      top: '71%', left: '35%' },
 ]
 
 export function PandaCloset({ onClose }: { onClose: () => void }) {
@@ -344,7 +344,7 @@ function RoomPanel({
         </button>
         <h3>{slotInfo.emoji} {slotInfo.label}</h3>
         {items.length === 0 ? (
-          <p className="room-empty-hint">Open Panda Boxes to find {slotInfo.label.toLowerCase()} decorations.</p>
+          <p className="room-empty-hint">Open Panda Boxes to find {slotInfo.label.toLowerCase()} decorations!</p>
         ) : (
           <div className="room-item-grid">
             {items.map(item => (
@@ -365,43 +365,40 @@ function RoomPanel({
   }
 
   return (
-    <div className="closet-panel room-panel">
-      <div className="room-panda-banner">
-        <img
-          src={`${import.meta.env.BASE_URL}assets/mascots/mascot-reading.png`}
-          alt="Panda in their room"
-          className="room-panda-img"
-        />
-        <p>Tap a spot to decorate Panda's room!</p>
-      </div>
-      <div className="room-grid">
-        {ROOM_SLOTS.map(({ slot, emoji, label }) => {
-          const equippedId = equipped[slot]
-          const equippedItem = equippedId ? getRewardById(equippedId) : undefined
-          const hasItems = ownedBySlot[slot].length > 0
-          return (
-            <button
-              key={slot}
-              type="button"
-              className={`room-slot-tile ${hasItems ? 'has-items' : 'locked'} ${equippedItem ? 'equipped' : ''}`}
-              onClick={() => setSelectedSlot(slot)}
-            >
-              {equippedItem ? (
-                <>
-                  <RewardBadge item={equippedItem} />
-                  <span className="room-slot-name">{equippedItem.name}</span>
-                </>
-              ) : (
-                <>
-                  <span className="room-slot-emoji" aria-hidden="true">{emoji}</span>
-                  <span className="room-slot-name">{label}</span>
-                  {hasItems && <span className="room-slot-dot" aria-label="items available" />}
-                </>
-              )}
-            </button>
-          )
-        })}
-      </div>
+    <div className="room-scene-wrapper">
+      <img
+        src={`${import.meta.env.BASE_URL}assets/panda-room-bg.webp`}
+        alt="Panda's cosy room"
+        className="room-scene-bg"
+      />
+      {ROOM_SLOTS.map(({ slot, emoji, label, top, left }) => {
+        const equippedId = equipped[slot]
+        const equippedItem = equippedId ? getRewardById(equippedId) : undefined
+        const hasItems = ownedBySlot[slot].length > 0
+        return (
+          <button
+            key={slot}
+            type="button"
+            style={{ top, left }}
+            className={`room-spot ${hasItems ? 'has-items' : 'locked'} ${equippedItem ? 'equipped' : ''}`}
+            onClick={() => setSelectedSlot(slot)}
+            aria-label={equippedItem ? `${label}: ${equippedItem.name}` : label}
+          >
+            {equippedItem ? (
+              <>
+                <RewardBadge item={equippedItem} />
+                <span className="room-spot-name">{equippedItem.name}</span>
+              </>
+            ) : (
+              <>
+                <span className="room-spot-emoji" aria-hidden="true">{emoji}</span>
+                <span className="room-spot-name">{label}</span>
+                {hasItems && <span className="room-spot-dot" />}
+              </>
+            )}
+          </button>
+        )
+      })}
     </div>
   )
 }
