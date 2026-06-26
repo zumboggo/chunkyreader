@@ -3394,13 +3394,6 @@ function ExploreMode({
           </div>
         </div>
       </div>
-      <div className="focus-feedback">
-        <Mascot mood={mood} size="small" />
-        <div className="feedback-text">
-          <strong>{card.type === 'word' ? 'Read it!' : 'Say it!'}</strong>
-          <span>Tap the card to hear</span>
-        </div>
-      </div>
     </section>
   )
 }
@@ -4576,7 +4569,12 @@ function buildOlderReaderActivities(lessonCards: LearningCard[]): OlderReaderAct
   ]
   const quizActivities: OlderReaderActivity[] = Array.from({ length: OLDER_READER_RECOGNITION_COUNT }, (_, index) => {
     const card = wordCards[index % wordCards.length]
-    const kind = practiceKinds[index % practiceKinds.length]
+    let kind = practiceKinds[index % practiceKinds.length]
+    // If no other word has a different starting sound, startsWithSound would produce an
+    // impossible question (both choices start with the same sound) — fall back to audioToWord
+    if (kind === 'startsWithSound' && !wordCards.some(c => c.id !== card.id && firstSound(c) !== firstSound(card))) {
+      kind = 'audioToWord'
+    }
     return {
       kind,
       card,
