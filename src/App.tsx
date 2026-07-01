@@ -115,7 +115,16 @@ interface OlderReaderPhonemeActivity {
 
 const LESSON_SIZE = 5
 const OLDER_READER_WORD_LESSON_SIZE = 4
+// How many brand-new cards to introduce per flashcard session (Chinese etc.),
+// so learning stays paced and steady instead of dumping the whole deck at once.
+const NEW_CARDS_PER_SESSION = 8
 const ONE_DAY_MS = 24 * 60 * 60 * 1000
+
+// Persisted resume position for Anna's reading-words lessons, so she continues
+// where she left off instead of restarting at lesson 1 every session.
+function annaWordsProgressKey(deckId: string) {
+  return `anna-words-progress-${deckId}`
+}
 const SARAH_FINAL_REVIEW_SIZE = 6
 const SARAH_LESSON_ADVANCE = 2
 const OLDER_READER_RECOGNITION_COUNT = 12
@@ -849,6 +858,10 @@ function App() {
       targetDeckId = currentDecks.find(d => d.type === 'reading-words' && d.profile === 'anna')?.id ?? ''
       targetMode = 'activeRecall'
       setGrowingView('words')
+      if (targetDeckId) {
+        const saved = localStorage.getItem(annaWordsProgressKey(targetDeckId))
+        resumeIndex = saved ? parseInt(saved, 10) : 0
+      }
     } else if (section === 'math') {
       const savedMath = loadMathProgress()
       setMathOperation(savedMath.operation)
@@ -934,7 +947,8 @@ function App() {
     setGrowingView('words')
     setActiveDeckId(firstDeck?.id ?? '')
     setMode('activeRecall')
-    setCardIndex(0)
+    const saved = firstDeck ? localStorage.getItem(annaWordsProgressKey(firstDeck.id)) : null
+    setCardIndex(saved ? parseInt(saved, 10) : 0)
     setPhase('question')
     setSarahActivityIndex(0)
     setMenuOpen(false)
@@ -1006,7 +1020,12 @@ function App() {
     const lessonStart = lessonStartForIndex(cardIndex, orderedCards.length, lessonSize)
     const lessonCards = orderedCards.slice(lessonStart, lessonStart + lessonSize)
     if (mode === 'listeningMode') markCardsListened(activeDeck.id, lessonCards)
-    setCardIndex((lessonStart + lessonSize) % orderedCards.length)
+    const nextIndex = (lessonStart + lessonSize) % orderedCards.length
+    setCardIndex(nextIndex)
+    if (activeDeck.profile === 'anna' && activeDeck.type === 'reading-words') {
+      localStorage.setItem(annaWordsProgressKey(activeDeck.id), String(nextIndex))
+      recordLocalProgressChange()
+    }
     setPhase(mode === 'listeningMode' ? 'learn' : 'question')
     setSarahActivityIndex(0)
     setMenuOpen(false)
@@ -3848,7 +3867,11 @@ function FsrsFlashcardMode({
       const state = states.find((s) => s.cardId === c.id)
       return state && state.due <= Date.now()
     })
-    return [...dueCards, ...newCards]
+    // Reading-words gets its own lesson-size slice below. For every other deck
+    // (Chinese vocab, etc.) introduce only a small batch of new cards per
+    // session so progress stays steady instead of re-showing the whole deck.
+    const limitedNew = deck.type === 'reading-words' ? newCards : newCards.slice(0, NEW_CARDS_PER_SESSION)
+    return [...dueCards, ...limitedNew]
   }, [deck.cards, deck.type, cardStates])
 
   const sessionCards = useMemo(
@@ -3860,9 +3883,11 @@ function FsrsFlashcardMode({
   const frontMode = useMemo(() => getFrontMode(deck, currentCard, currentCardIndex), [deck, currentCard, currentCardIndex])
   const currentAudioUrl = currentCard ? resolveAssetUrl(deck, currentCard.audio) : undefined
 
+  // Count against the whole deck so "Done" grows as words are truly mastered —
+  // this gives the child a visible, cumulative sense of progression.
   const queueCounts = useMemo(
-    () => getQueueCounts(sortedCards, cardStates, Date.now()),
-    [sortedCards, cardStates],
+    () => getQueueCounts(deck.cards, cardStates, Date.now()),
+    [deck.cards, cardStates],
   )
 
   useEffect(() => {
