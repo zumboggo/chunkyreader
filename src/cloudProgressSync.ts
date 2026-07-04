@@ -22,10 +22,12 @@ const EXACT_SYNC_KEYS = [
   'completed-lessons-sarah',
   'completed-lessons-100',
   '100-lessons-progress',
+  'chunky-learner:math-progress:v1',
 ]
 
 const PREFIX_SYNC_KEYS = [
   'sarah-progress-',
+  'anna-words-progress-',
   'chunky-reader:story:',
   'chunky-reader:card-progress:',
   'chunky-reader:older-reader-phonemes:',
@@ -192,48 +194,31 @@ async function runSyncNow(): Promise<CloudSyncResult> {
   const localChangedSinceSync = timeValue(metadata.lastLocalUpdatedAt) > timeValue(metadata.lastSyncedAt)
   const remoteChangedSinceSync = timeValue(remoteRow.updated_at) > timeValue(metadata.lastRemoteUpdatedAt)
 
-  if (firstSyncForUser || (localChangedSinceSync && remoteChangedSinceSync)) {
-    const mergedSnapshot = mergeSnapshots(localSnapshot, remoteSnapshot)
-    applyProgressSnapshot(mergedSnapshot)
-    await upsertSnapshot(user.id, mergedSnapshot)
+  if (!firstSyncForUser && !localChangedSinceSync && !remoteChangedSinceSync) {
     saveSyncMetadata({
+      ...metadata,
       userId: user.id,
-      lastLocalUpdatedAt: mergedSnapshot.localUpdatedAt,
-      lastSyncedAt: syncedAt,
-      lastRemoteUpdatedAt: mergedSnapshot.capturedAt,
-    })
-    return { pushedSnapshot: true, pulledSnapshot: true, mergedSnapshot: true, syncedAt }
-  }
-
-  if (remoteChangedSinceSync && timeValue(remoteRow.updated_at) >= timeValue(localSnapshot.localUpdatedAt)) {
-    applyProgressSnapshot(remoteSnapshot)
-    saveSyncMetadata({
-      userId: user.id,
-      lastLocalUpdatedAt: remoteSnapshot.localUpdatedAt,
       lastSyncedAt: syncedAt,
       lastRemoteUpdatedAt: remoteRow.updated_at,
     })
-    return { pushedSnapshot: false, pulledSnapshot: true, mergedSnapshot: false, syncedAt }
+    return { pushedSnapshot: false, pulledSnapshot: false, mergedSnapshot: false, syncedAt }
   }
 
-  if (localChangedSinceSync || timeValue(localSnapshot.localUpdatedAt) > timeValue(remoteRow.updated_at)) {
-    await upsertSnapshot(user.id, localSnapshot)
-    saveSyncMetadata({
-      userId: user.id,
-      lastLocalUpdatedAt: localSnapshot.localUpdatedAt,
-      lastSyncedAt: syncedAt,
-      lastRemoteUpdatedAt: localSnapshot.capturedAt,
-    })
-    return { pushedSnapshot: true, pulledSnapshot: false, mergedSnapshot: false, syncedAt }
-  }
-
+  // ALWAYS merge — never blindly replace local progress with the remote
+  // snapshot. All merge rules are additive (max counts / union sets / newest
+  // per-card review), so a stale cloud copy can never revert lessons a child
+  // just completed on this device. Blind replacement was the root cause of
+  // progress "resetting to level one" whenever the cloud copy looked newer.
+  const mergedSnapshot = mergeSnapshots(localSnapshot, remoteSnapshot)
+  applyProgressSnapshot(mergedSnapshot)
+  await upsertSnapshot(user.id, mergedSnapshot)
   saveSyncMetadata({
-    ...metadata,
     userId: user.id,
+    lastLocalUpdatedAt: mergedSnapshot.localUpdatedAt,
     lastSyncedAt: syncedAt,
-    lastRemoteUpdatedAt: remoteRow.updated_at,
+    lastRemoteUpdatedAt: mergedSnapshot.capturedAt,
   })
-  return { pushedSnapshot: false, pulledSnapshot: false, mergedSnapshot: false, syncedAt }
+  return { pushedSnapshot: true, pulledSnapshot: true, mergedSnapshot: true, syncedAt }
 }
 
 async function fetchRemoteSnapshot(): Promise<CloudProgressRow | null> {
@@ -326,8 +311,11 @@ function mergeStorageValue(
   if (key === 'completed-lessons-anna' || key === 'completed-lessons-sarah' || key === 'completed-lessons-100') {
     return String(Math.max(parseInteger(localValue), parseInteger(remoteValue)))
   }
-  if (key === '100-lessons-progress' || key.startsWith('sarah-progress-') || key.startsWith('chunky-reader:story:')) {
+  if (key === '100-lessons-progress' || key.startsWith('sarah-progress-') || key.startsWith('anna-words-progress-') || key.startsWith('chunky-reader:story:')) {
     return String(Math.max(parseInteger(localValue), parseInteger(remoteValue)))
+  }
+  if (key === 'chunky-learner:math-progress:v1') {
+    return stringify(mergeMathProgress(parseJson(localValue), parseJson(remoteValue), timeValue(local.localUpdatedAt) >= timeValue(remote.localUpdatedAt)))
   }
   if (key.startsWith('chunky-reader:card-progress:')) return stringify(mergeMaxNumberObject(parseJson(localValue), parseJson(remoteValue)))
   if (key.startsWith('chunky-reader:older-reader-phonemes:')) {
@@ -336,7 +324,44 @@ function mergeStorageValue(
   if (key.startsWith('chunky-reader:flashcard-states:')) {
     return stringify(mergeFlashcardStates(parseJson(localValue), parseJson(remoteValue)))
   }
+  if (key.startsWith('chunky-reader:word-recognition:')) {
+    return mergeWordRecognitionValue(localValue, remoteValue, timeValue(local.localUpdatedAt) >= timeValue(remote.localUpdatedAt))
+  }
   return timeValue(local.localUpdatedAt) >= timeValue(remote.localUpdatedAt) ? localValue : remoteValue
+}
+
+// Word-recognition keys hold either per-word mastery objects or per-lesson
+// card-id arrays. Mastery merges additively (union of successful lessons), so
+// words a child has learned can never be un-learned by a stale cloud copy.
+function mergeWordRecognitionValue(localValue: string, remoteValue: string, localNewer: boolean): string {
+  const local = parseJson(localValue)
+  const remote = parseJson(remoteValue)
+  if (Array.isArray(local) || Array.isArray(remote)) {
+    // Lesson card-list snapshot — keep whichever side is newer.
+    return localNewer ? localValue : remoteValue
+  }
+  if (!isRecord(local) || !isRecord(remote)) return localNewer ? localValue : remoteValue
+  const successfulLessonIds = unionStrings(asStringArray(local.successfulLessonIds), asStringArray(remote.successfulLessonIds))
+  const introducedCandidates = [Number(local.introducedAt || 0), Number(remote.introducedAt || 0)].filter((value) => value > 0)
+  return stringify({
+    successfulLessons: Math.max(Number(local.successfulLessons || 0), Number(remote.successfulLessons || 0), successfulLessonIds.length),
+    successfulLessonIds,
+    lastPracticedAt: Math.max(Number(local.lastPracticedAt || 0), Number(remote.lastPracticedAt || 0)) || undefined,
+    introducedAt: introducedCandidates.length ? Math.min(...introducedCandidates) : undefined,
+  })
+}
+
+function mergeMathProgress(localRaw: unknown, remoteRaw: unknown, localNewer: boolean) {
+  const local = isRecord(localRaw) ? localRaw : {}
+  const remote = isRecord(remoteRaw) ? remoteRaw : {}
+  const preferred = localNewer ? local : remote
+  const localIndexes = isRecord(local.indexes) ? local.indexes : {}
+  const remoteIndexes = isRecord(remote.indexes) ? remote.indexes : {}
+  const indexes: Record<string, number> = {}
+  for (const key of new Set([...Object.keys(localIndexes), ...Object.keys(remoteIndexes)])) {
+    indexes[key] = Math.max(Number(localIndexes[key] || 0), Number(remoteIndexes[key] || 0))
+  }
+  return { ...local, ...remote, ...preferred, indexes }
 }
 
 function mergeLearnerProgress(localRaw: unknown, remoteRaw: unknown): LearnerProgress {

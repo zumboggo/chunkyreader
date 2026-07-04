@@ -659,6 +659,26 @@ function App() {
     return () => window.removeEventListener(PROGRESS_CHANGED_EVENT, handleProgressChange)
   }, [queueCloudSync])
 
+  // If the app is closed or backgrounded while a debounced sync is still
+  // pending (e.g. a lesson just finished and the tablet cover closes), flush
+  // it immediately so the last lesson's progress reaches Supabase.
+  useEffect(() => {
+    function flushPendingSync() {
+      if (document.visibilityState !== 'hidden') return
+      if (!syncTimerRef.current) return
+      window.clearTimeout(syncTimerRef.current)
+      syncTimerRef.current = null
+      void handleCloudSyncNow(true)
+    }
+
+    document.addEventListener('visibilitychange', flushPendingSync)
+    window.addEventListener('pagehide', flushPendingSync)
+    return () => {
+      document.removeEventListener('visibilitychange', flushPendingSync)
+      window.removeEventListener('pagehide', flushPendingSync)
+    }
+  }, [handleCloudSyncNow])
+
   useEffect(() => {
     let cancelled = false
 
