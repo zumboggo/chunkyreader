@@ -11,6 +11,8 @@ import {
   rewardsBySlot,
 } from './rewards'
 import { getSectionProgress, loadProgress, saveProgress, getStreakInfo, getHeatmapData } from './progress'
+import { GreenEggsJourney } from './GreenEggsJourney'
+import type { GreenEggsProgress } from './bookProgress'
 import type { RewardDrop, RewardItem, RewardRarity, RewardSlot, SectionId } from './types'
 
 export interface ContinueLearningState {
@@ -31,6 +33,7 @@ export function SectionPicker({
   onShowSettings,
   onContinue,
   continueState,
+  greenEggs,
 }: {
   onChooseSection: (id: SectionId) => void
   onChoosePhonemes: () => void
@@ -39,6 +42,7 @@ export function SectionPicker({
   onShowSettings: () => void
   onContinue: () => void
   continueState?: ContinueLearningState
+  greenEggs: GreenEggsProgress
 }) {
   const progress = loadProgress()
   const ownedCount = getOwnedRewards(progress).length
@@ -66,11 +70,20 @@ export function SectionPicker({
       </div>
 
       <button type="button" className="continue-hero squish" onClick={continueState ? onContinue : () => onChooseSection(LEARNING_SECTIONS[0]?.id ?? 'letters')}>
-        <span className="continue-hero-emoji" aria-hidden="true">{continueState ? '🚀' : '🌟'}</span>
+        {continueState?.section === 'words' ? (
+          <img
+            className="continue-hero-art"
+            src={`${import.meta.env.BASE_URL}assets/green-eggs-goal.png`}
+            alt=""
+            aria-hidden="true"
+          />
+        ) : (
+          <span className="continue-hero-emoji" aria-hidden="true">{continueState ? '🚀' : '🌟'}</span>
+        )}
         <span className="continue-hero-text">
           <span className="continue-hero-label">{continueState ? 'Keep going!' : 'Start learning!'}</span>
           <strong>{continueState ? (continueState.label || sectionTitle(continueState.section)) : 'Tap here to begin'}</strong>
-          {continueState && <small>{continueDetail(continueState)}</small>}
+          {continueState && <small>{continueDetail(continueState, greenEggs)}</small>}
         </span>
         <span className="continue-hero-arrow" aria-hidden="true">▶</span>
       </button>
@@ -104,7 +117,11 @@ export function SectionPicker({
               <span>{section.pocket}</span>
               <span>{section.cta}</span>
             </div>
-            <SectionProgressBadge count={getSectionProgress(section.id)} />
+            {section.id === 'words' ? (
+              <GreenEggsJourney mastered={greenEggs.mastered} total={greenEggs.total} compact />
+            ) : (
+              <SectionProgressBadge count={getSectionProgress(section.id)} />
+            )}
           </button>
         ))}
         <button
@@ -262,7 +279,10 @@ function sectionTitle(sectionId: SectionId) {
   return LEARNING_SECTIONS.find((section) => section.id === sectionId)?.title || 'Learning'
 }
 
-function continueDetail(state: ContinueLearningState) {
+function continueDetail(state: ContinueLearningState, greenEggs?: GreenEggsProgress) {
+  if (state.section === 'words' && greenEggs) {
+    return `${greenEggs.mastered} of ${greenEggs.total} words to Green Eggs and Ham`
+  }
   if (state.section === 'stories' && state.storyId) {
     return `Page ${(state.pageIndex ?? 0) + 1}`
   }

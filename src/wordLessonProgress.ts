@@ -75,6 +75,21 @@ export function isWordMastered(deckId: string, cardId: string) {
   return readWordRecognitionProgress(deckId, cardId).successfulLessons >= 2
 }
 
+/**
+ * One-time self-heal for devices whose saved resume index was stuck at 0
+ * while words were already being introduced: estimate how many lessons have
+ * effectively happened from the per-word introduction records, so the child
+ * resumes at a fresh lesson number instead of replaying a cached lesson 1.
+ */
+export function estimateWordLessonResumeIndex(deckId: string, cards: LearningCard[], lessonSize: number): number {
+  const wordCards = cards.filter((card) => card.type === 'word').slice(0, STARTER_WORD_LIMIT)
+  let introduced = 0
+  for (const card of wordCards) {
+    if (readWordRecognitionProgress(deckId, card.id).introducedAt) introduced += 1
+  }
+  return Math.floor(introduced / lessonSize) * lessonSize
+}
+
 export function readWordRecognitionProgress(deckId: string, cardId: string): WordRecognitionProgress {
   try {
     const raw = localStorage.getItem(wordProgressKey(deckId, cardId))

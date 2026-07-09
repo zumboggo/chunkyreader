@@ -33,6 +33,7 @@ const PREFIX_SYNC_KEYS = [
   'chunky-reader:older-reader-phonemes:',
   'chunky-reader:flashcard-states:',
   'chunky-reader:word-recognition:',
+  'chunky-reader:green-eggs:milestones:',
 ]
 
 const DEFAULT_APP_SETTINGS: AppSettings = {
@@ -326,6 +327,15 @@ function mergeStorageValue(
   }
   if (key.startsWith('chunky-reader:word-recognition:')) {
     return mergeWordRecognitionValue(localValue, remoteValue, timeValue(local.localUpdatedAt) >= timeValue(remote.localUpdatedAt))
+  }
+  if (key.startsWith('chunky-reader:green-eggs:milestones:')) {
+    const localList = parseJson(localValue)
+    const remoteList = parseJson(remoteValue)
+    const merged = new Set<number>()
+    for (const value of [...(Array.isArray(localList) ? localList : []), ...(Array.isArray(remoteList) ? remoteList : [])]) {
+      if (typeof value === 'number') merged.add(value)
+    }
+    return stringify([...merged].sort((a, b) => a - b))
   }
   return timeValue(local.localUpdatedAt) >= timeValue(remote.localUpdatedAt) ? localValue : remoteValue
 }
