@@ -3330,6 +3330,42 @@ body.lesson-active {
   box-shadow: 0 8px 20px rgba(74, 58, 84, 0.12);
 }
 
+.word-listen-locking .focus-option {
+  cursor: default;
+}
+
+.word-listen-locking .focus-option:not(.missed-soft) {
+  opacity: 0.68;
+  transform: scale(0.98);
+}
+
+.word-listen-lock {
+  justify-self: center;
+  margin-top: 8px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--purple-pop);
+  font-size: 0.82rem;
+  font-weight: 950;
+  box-shadow: 0 7px 16px rgba(74, 58, 84, 0.08);
+}
+
+.careful-reader-pill {
+  display: inline-flex;
+  justify-content: center;
+  width: fit-content;
+  justify-self: center;
+  margin: 4px auto 0;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fff3c9, #c9f4df);
+  color: #2f315f;
+  font-size: 0.82rem;
+  font-weight: 950;
+  box-shadow: 0 8px 18px rgba(255, 214, 92, 0.18);
+}
+
 .choice-key {
   justify-self: start;
   align-self: start;
@@ -7130,6 +7166,15 @@ body.lesson-active {
 
 .growth-word {
   font-weight: 900;
+}
+
+.growth-state {
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.62);
+  color: inherit;
+  font-size: 0.68rem;
+  font-weight: 950;
 }
 
 @keyframes growth-pop {

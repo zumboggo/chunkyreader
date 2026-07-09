@@ -2679,12 +2679,15 @@ function OlderReaderLesson({
   const activity = activities[Math.min(activityIndex, activities.length - 1)]
   const [selected, setSelected] = useState('')
   const [missedIds, setMissedIds] = useState<string[]>([])
+  const [retryLocked, setRetryLocked] = useState(false)
+  const [carefulStreak, setCarefulStreak] = useState(0)
   const [complete, setComplete] = useState(false)
   const [greenEggsNow, setGreenEggsNow] = useState<GreenEggsProgress | null>(null)
   const [milestoneHit, setMilestoneHit] = useState(0)
   const [greenEggsBefore] = useState(() => getGreenEggsProgress([deck]))
   const completionRecordedRef = useRef(false)
   const firstTryCorrectCountsRef = useRef<Record<string, number>>({})
+  const retryUnlockTimerRef = useRef<number | null>(null)
   const lessonId = `${deck.id}:lesson:${lessonNumber}`
   const correct = selected === activity?.card.id
   const isPeek = activity?.kind === 'peek'
@@ -2719,10 +2722,11 @@ function OlderReaderLesson({
     onActivityChange(activityIndex + 1)
     setSelected('')
     setMissedIds([])
+    setRetryLocked(false)
   }, [activities.length, activityIndex, deck.id, lessonCards, onActivityChange])
 
   const chooseByIndex = useCallback((index: number) => {
-    if (!activity || selected || showCompletion) return
+    if (!activity || selected || retryLocked || showCompletion) return
     const option = activity.options[index]
     if (!option || missedIds.includes(option.id)) return
     if (option.id === activity.card.id) {
@@ -2734,6 +2738,7 @@ function OlderReaderLesson({
       updateCardProgress(deck.id, activity.card.id, { recalledAt: Date.now(), firstTryRecalled: firstTry })
       if (firstTry) {
         firstTryCorrectCountsRef.current[activity.card.id] = (firstTryCorrectCountsRef.current[activity.card.id] ?? 0) + 1
+        setCarefulStreak((streak) => streak + 1)
       }
       window.setTimeout(finishActivity, 650)
       return
@@ -2741,13 +2746,26 @@ function OlderReaderLesson({
     // Gentle retry: no reveal, no forced advance. The wrong option softly
     // dims, the target word plays as a hint, and she taps again — so every
     // question ends with her succeeding, never with watching the answer.
+    setCarefulStreak(0)
+    setRetryLocked(true)
+    if (retryUnlockTimerRef.current !== null) window.clearTimeout(retryUnlockTimerRef.current)
+    retryUnlockTimerRef.current = window.setTimeout(() => {
+      setRetryLocked(false)
+      retryUnlockTimerRef.current = null
+    }, 1400)
     setMissedIds((ids) => [...ids, option.id])
     void playNarrationClip('feedback:let-me-help')
     void playCardAudio(deck, activity.card)
     if (missedIds.length === 0) {
       updateCardProgress(deck.id, activity.card.id, { recalledAt: Date.now(), firstTryRecalled: false })
     }
-  }, [activity, deck, finishActivity, missedIds, selected, showCompletion])
+  }, [activity, deck, finishActivity, missedIds, retryLocked, selected, showCompletion])
+
+  useEffect(() => {
+    return () => {
+      if (retryUnlockTimerRef.current !== null) window.clearTimeout(retryUnlockTimerRef.current)
+    }
+  }, [])
 
   useEffect(() => {
     if (!activity || showCompletion || isPeek || isReadTogether) return
@@ -2891,6 +2909,9 @@ function OlderReaderLesson({
                       : <span key={`${part}:${index}`}>{part}</span>
                   ))}
                 </h2>
+                {carefulStreak >= 2 && !missedIds.length && (
+                  <span className="careful-reader-pill">Careful reader x{carefulStreak}</span>
+                )}
                 <AudioPromptButton
                   onClick={() => playNarrationClip(
                     `word-sentence:${activity.card.id}`,
@@ -2900,7 +2921,7 @@ function OlderReaderLesson({
                   label="Hear sentence"
                 />
               </div>
-              <div className="focus-options" aria-label="Answer choices">
+              <div className={`focus-options ${retryLocked ? 'word-listen-locking' : ''}`} aria-label="Answer choices">
                 {activity.options.map((option, index) => {
                   const isMissed = missedIds.includes(option.id)
                   const isSelectedCorrect = selected && option.id === activity.card.id
@@ -2915,7 +2936,7 @@ function OlderReaderLesson({
                       type="button"
                       aria-label={`Choice ${choiceKeyLabel(index)}: ${optionLabel(option)}`}
                       className={`focus-option squish ${stateClass}`}
-                      disabled={Boolean(selected) || isMissed}
+                      disabled={Boolean(selected) || isMissed || retryLocked}
                       onClick={() => chooseByIndex(index)}
                     >
                       <span className="choice-key" aria-hidden="true">{choiceKeyLabel(index)}</span>
@@ -2924,6 +2945,7 @@ function OlderReaderLesson({
                   )
                 })}
               </div>
+              {retryLocked && <div className="word-listen-lock">Listen first, then tap the word.</div>}
             </div>
           </div>
           <div className={`focus-feedback ${selected && correct ? 'happy' : missedIds.length ? 'try' : ''}`}>
@@ -2931,17 +2953,17 @@ function OlderReaderLesson({
             <div className="feedback-text">
               {selected && correct ? (
                 <>
-                  <strong>{missedIds.length ? 'You got it!' : 'Nice reading!'}</strong>
-                  <span>{targetWord} fits.</span>
+                  <strong>{missedIds.length ? 'We practiced it!' : carefulStreak >= 2 ? `Careful reader x${carefulStreak}!` : 'Nice reading!'}</strong>
+                  <span>{missedIds.length ? `${targetWord} will keep growing.` : `${targetWord} fits.`}</span>
                 </>
               ) : missedIds.length ? (
                 <>
-                  <strong>Listen again</strong>
-                  <span>The word is {targetWord}. Tap it!</span>
+                  <strong>{retryLocked ? 'Listen first' : 'Tap the word'}</strong>
+                  <span>The word is {targetWord}.</span>
                 </>
               ) : (
                 <>
-                  <strong>Choose one</strong>
+                  <strong>Listen, then tap</strong>
                   <span>A or B</span>
                 </>
               )}
@@ -2996,13 +3018,20 @@ function OlderReaderLesson({
   if (!activity || showCompletion) {
     const greenEggs = greenEggsNow ?? greenEggsBefore
     const newBookWords = Math.max(0, greenEggs.mastered - greenEggsBefore.mastered)
+    const bloomedWords = lessonCards.filter((card) => (firstTryCorrectCountsRef.current[card.id] ?? 0) >= 2).length
     return (
       <section className="focus-lesson older-reader-lesson">
         <div className="focus-main">
           <div className="focus-intro completion-card">
             <div className="focus-prompt">
               <span className="stage-label">Lesson {lessonNumber}</span>
-              <h2>{milestoneHit > 0 ? `${milestoneHit} words closer to your book!` : 'Great work with these words!'}</h2>
+              <h2>
+                {milestoneHit > 0
+                  ? `${milestoneHit} words closer to your book!`
+                  : bloomedWords > 0
+                    ? `${bloomedWords} ${bloomedWords === 1 ? 'word bloomed' : 'words bloomed'}!`
+                    : 'These words are sprouting!'}
+              </h2>
             </div>
             <GreenEggsJourney mastered={greenEggs.mastered} total={greenEggs.total} />
             {newBookWords > 0 && (
@@ -3013,10 +3042,12 @@ function OlderReaderLesson({
             <div className="word-growth-strip">
               {lessonCards.map((card) => {
                 const mastered = isBookWord(card) && isWordMastered(deck.id, card.id)
+                const bloomed = (firstTryCorrectCountsRef.current[card.id] ?? 0) >= 2
                 return (
-                  <div key={card.id} className={`word-growth-card blooming ${mastered ? 'book-mastered' : ''}`}>
+                  <div key={card.id} className={`word-growth-card ${bloomed ? 'blooming' : 'growing'} ${mastered ? 'book-mastered' : ''}`}>
                     <span className="growth-icon" aria-hidden="true">{mastered ? '🌟' : '⭐'}</span>
                     <span className="growth-word">{card.word || card.displayText}</span>
+                    <span className="growth-state">{bloomed ? 'Bloomed' : 'Growing'}</span>
                   </div>
                 )
               })}
@@ -3045,8 +3076,8 @@ function OlderReaderLesson({
         <div className="focus-feedback happy">
           <Mascot mood="happy" size="small" />
           <div className="feedback-text">
-            <strong>Great job!</strong>
-            <span>These words are growing!</span>
+            <strong>{bloomedWords > 0 ? 'Careful reading!' : 'Good practice!'}</strong>
+            <span>{bloomedWords > 0 ? 'First-try words bloomed.' : 'Helped words keep growing.'}</span>
           </div>
         </div>
       </section>
@@ -3066,6 +3097,9 @@ function OlderReaderLesson({
           <div className="focus-prompt">
             <span className="stage-label">Lesson {lessonNumber} - Practice {activityIndex - OLDER_READER_PEEK_COUNT + 1} of {OLDER_READER_RECOGNITION_COUNT}</span>
             <h2>{prompt}</h2>
+            {carefulStreak >= 2 && !hasMissed && (
+              <span className="careful-reader-pill">Careful reader x{carefulStreak}</span>
+            )}
             {promptNarration.shouldShowPlayButton && (
               <AudioPromptButton onClick={promptNarration.replay} label="Hear question" />
             )}
@@ -3083,7 +3117,7 @@ function OlderReaderLesson({
               </div>
             )}
           </div>
-          <div className="focus-options" aria-label="Answer choices">
+          <div className={`focus-options ${retryLocked ? 'word-listen-locking' : ''}`} aria-label="Answer choices">
             {activity.options.map((option, index) => {
               const isMissed = missedIds.includes(option.id)
               const isSelectedCorrect = selected && option.id === activity.card.id
@@ -3098,7 +3132,7 @@ function OlderReaderLesson({
                   type="button"
                   aria-label={`Choice ${choiceKeyLabel(index)}: ${optionLabel(option)}`}
                   className={`focus-option squish ${showOptionPictures ? 'picture-choice' : ''} ${stateClass}`}
-                  disabled={Boolean(selected) || isMissed}
+                  disabled={Boolean(selected) || isMissed || retryLocked}
                   onClick={() => chooseByIndex(index)}
                 >
                   <span className="choice-key" aria-hidden="true">{choiceKeyLabel(index)}</span>
@@ -3109,6 +3143,7 @@ function OlderReaderLesson({
               )
             })}
           </div>
+          {retryLocked && <div className="word-listen-lock">Listen first, then tap the word.</div>}
         </div>
       </div>
       <div className={`focus-feedback ${selected && correct ? 'happy' : hasMissed ? 'try' : ''}`}>
@@ -3116,17 +3151,17 @@ function OlderReaderLesson({
         <div className="feedback-text">
           {selected && correct ? (
             <>
-              <strong>{hasMissed ? 'You got it!' : 'Great!'}</strong>
-              <span>{encouragement[(activityIndex + activity.card.id.length) % encouragement.length]}</span>
+              <strong>{hasMissed ? 'We practiced it!' : carefulStreak >= 2 ? `Careful reader x${carefulStreak}!` : 'Great!'}</strong>
+              <span>{hasMissed ? 'It will keep growing.' : encouragement[(activityIndex + activity.card.id.length) % encouragement.length]}</span>
             </>
           ) : hasMissed ? (
             <>
-              <strong>Listen again</strong>
-              <span>It says {optionLabel(activity.card)}. Tap it!</span>
+              <strong>{retryLocked ? 'Listen first' : 'Tap the word'}</strong>
+              <span>It says {optionLabel(activity.card)}.</span>
             </>
           ) : (
             <>
-              <strong>Choose one</strong>
+              <strong>Listen, then tap</strong>
               <span>3 for A, 4 for B</span>
             </>
           )}
