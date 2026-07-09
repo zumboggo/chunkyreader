@@ -2,6 +2,7 @@ import { useState } from 'react'
 import confetti from 'canvas-confetti'
 import { LEARNING_SECTIONS } from './content/sections'
 import {
+  BOX_CADENCE,
   equipReward,
   getOwnedRewards,
   getRewardById,
@@ -10,7 +11,6 @@ import {
   rewardsBySlot,
 } from './rewards'
 import { getSectionProgress, loadProgress, saveProgress, getStreakInfo, getHeatmapData } from './progress'
-import type { AppSettings } from './appSettings'
 import type { RewardDrop, RewardItem, RewardRarity, RewardSlot, SectionId } from './types'
 
 export interface ContinueLearningState {
@@ -25,26 +25,27 @@ export interface ContinueLearningState {
 
 export function SectionPicker({
   onChooseSection,
+  onChoosePhonemes,
   onChooseFlashcards,
   onShowCloset,
   onShowSettings,
   onContinue,
   continueState,
-  settings,
 }: {
   onChooseSection: (id: SectionId) => void
+  onChoosePhonemes: () => void
   onChooseFlashcards: () => void
   onShowCloset: () => void
   onShowSettings: () => void
   onContinue: () => void
   continueState?: ContinueLearningState
-  settings: AppSettings
 }) {
   const progress = loadProgress()
   const ownedCount = getOwnedRewards(progress).length
   const boxCount = progress.unopenedBoxes || 0
   const streakInfo = getStreakInfo()
   const heatmapData = getHeatmapData()
+  const phonemesLearned = getPhonemeLearnedCount()
 
   return (
     <section className="home-screen">
@@ -64,13 +65,21 @@ export function SectionPicker({
         )}
       </div>
 
-      {continueState && (
-        <button type="button" className="continue-card squish" onClick={onContinue}>
-          <span className="continue-label">Continue</span>
-          <strong>{continueState.label || sectionTitle(continueState.section)}</strong>
-          <small>{continueDetail(continueState)}</small>
-        </button>
-      )}
+      <button type="button" className="continue-hero squish" onClick={continueState ? onContinue : () => onChooseSection(LEARNING_SECTIONS[0]?.id ?? 'letters')}>
+        <span className="continue-hero-emoji" aria-hidden="true">{continueState ? '🚀' : '🌟'}</span>
+        <span className="continue-hero-text">
+          <span className="continue-hero-label">{continueState ? 'Keep going!' : 'Start learning!'}</span>
+          <strong>{continueState ? (continueState.label || sectionTitle(continueState.section)) : 'Tap here to begin'}</strong>
+          {continueState && <small>{continueDetail(continueState)}</small>}
+        </span>
+        <span className="continue-hero-arrow" aria-hidden="true">▶</span>
+      </button>
+
+      <PandaBoxPath
+        totalLessons={progress.totalLessonsCompleted}
+        unopenedBoxes={boxCount}
+        onOpenBoxes={onShowCloset}
+      />
 
       <div className="path-grid section-grid" aria-label="Choose a learning section">
         {LEARNING_SECTIONS.map((section) => (
@@ -95,13 +104,28 @@ export function SectionPicker({
               <span>{section.pocket}</span>
               <span>{section.cta}</span>
             </div>
-            {settings.showProgress && (
-              <div className="section-progress-badge">
-                {progressLabel(getSectionProgress(section.id))}
-              </div>
-            )}
+            <SectionProgressBadge count={getSectionProgress(section.id)} />
           </button>
         ))}
+        <button
+          type="button"
+          className="path-card phonics-card"
+          style={{ backgroundColor: '#e8f4e0' }}
+          onClick={onChoosePhonemes}
+        >
+          <div className="section-image-container">
+            <span className="section-visual-badge badge-sounds" aria-hidden="true">th</span>
+          </div>
+          <span className="section-audience-pill">Older reader</span>
+          <strong>Phonics</strong>
+          <small>Sounds and spellings</small>
+          <p className="section-helper">Practice the sounds inside words.</p>
+          <div className="section-card-footer">
+            <span>Sound pocket</span>
+            <span>Practice</span>
+          </div>
+          <SectionProgressBadge count={phonemesLearned} />
+        </button>
       </div>
 
       <StudyHeatmap data={heatmapData} />
@@ -125,6 +149,62 @@ export function SectionPicker({
         </button>
       </div>
     </section>
+  )
+}
+
+function getPhonemeLearnedCount(): number {
+  let count = 0
+  for (let index = 0; index < localStorage.length; index += 1) {
+    const key = localStorage.key(index)
+    if (!key || !key.startsWith('chunky-reader:older-reader-phonemes:')) continue
+    try {
+      const parsed = JSON.parse(localStorage.getItem(key) || '{}')
+      if (Array.isArray(parsed.learnedIds)) count += parsed.learnedIds.length
+    } catch {
+      // Ignore malformed entries; the badge is decorative.
+    }
+  }
+  return count
+}
+
+function SectionProgressBadge({ count }: { count: number }) {
+  return (
+    <div className={`section-progress-badge ${count === 0 ? 'is-new' : ''}`}>
+      <span className="section-progress-text">{count === 0 ? 'New!' : `${count} done`}</span>
+      <span className="section-progress-bar" aria-hidden="true">
+        <span style={{ width: `${(count % 10) * 10}%` }} />
+      </span>
+    </div>
+  )
+}
+
+function PandaBoxPath({
+  totalLessons,
+  unopenedBoxes,
+  onOpenBoxes,
+}: {
+  totalLessons: number
+  unopenedBoxes: number
+  onOpenBoxes: () => void
+}) {
+  const stepsDone = totalLessons % BOX_CADENCE
+  const stepsLeft = BOX_CADENCE - stepsDone
+  return (
+    <button type="button" className="box-path-strip squish" onClick={onOpenBoxes} aria-label={unopenedBoxes > 0 ? `${unopenedBoxes} Panda Boxes ready to open` : `${stepsLeft} more lessons until the next Panda Box`}>
+      <span className="box-path-steps" aria-hidden="true">
+        {Array.from({ length: BOX_CADENCE }, (_, index) => (
+          <span key={index} className={`box-path-paw ${index < stepsDone ? 'done' : ''}`}>
+            🐾
+          </span>
+        ))}
+        <span className={`box-path-box ${unopenedBoxes > 0 ? 'ready' : ''}`}>🎁</span>
+      </span>
+      <span className="box-path-text">
+        {unopenedBoxes > 0
+          ? `${unopenedBoxes > 1 ? `${unopenedBoxes} Panda Boxes are` : 'A Panda Box is'} waiting — tap to open!`
+          : `${stepsLeft} more ${stepsLeft === 1 ? 'lesson' : 'lessons'} to your next Panda Box`}
+      </span>
+    </button>
   )
 }
 
@@ -192,11 +272,6 @@ function continueDetail(state: ContinueLearningState) {
   return 'Pick up where you left off'
 }
 
-function progressLabel(count: number) {
-  if (count === 0) return 'New'
-  const stars = Math.min(5, Math.ceil(count / 3))
-  return '⭐'.repeat(stars)
-}
 
 type RoomTab = 'room' | 'boxes' | 'collection'
 

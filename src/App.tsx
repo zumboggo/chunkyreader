@@ -55,7 +55,7 @@ import { scheduleCard, sortCardsByDue, type FlashcardState, type Rating } from '
 import { loadFlashcardStates, saveFlashcardStates, getCardState } from './flashcardStorage'
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious'
 type LessonPhase = 'learn' | 'question'
-type GrowingReaderView = 'home' | 'words' | 'stories' | 'phonemes' | 'collection'
+type GrowingReaderView = 'words' | 'phonemes' | 'collection'
 type FlashcardChoice = 'again' | 'good'
 type SarahQuestionKind =
   | 'soundToLetter'
@@ -280,18 +280,6 @@ function formatRelativeTime(value: string): string {
   return `${days} day${days === 1 ? '' : 's'} ago`
 }
 
-function getMasteredWordCount(decks: LearningDeck[]): number {
-  let count = 0
-  for (const deck of decks) {
-    if (deck.type !== 'reading-words') continue
-    for (const card of deck.cards) {
-      const progress = readCardProgress(deck.id, card.id)
-      if (progress.recalledAt) count++
-    }
-  }
-  return count
-}
-
 function getWordCollectionData(decks: LearningDeck[]): {
   mastered: Array<{ deck: LearningDeck; card: LearningCard; firstTry: boolean }>
   growing: Array<{ deck: LearningDeck; card: LearningCard }>
@@ -487,7 +475,7 @@ function App() {
   const [stories, setStories] = useState<Story[]>([])
   const [activeSection, setActiveSection] = useState<SectionId | null>(null)
   const [profile, setProfile] = useState<ProfileId | null>(null)
-  const [growingView, setGrowingView] = useState<GrowingReaderView>('home')
+  const [growingView, setGrowingView] = useState<GrowingReaderView>('words')
   const [showCloset, setShowCloset] = useState(false)
   const [activeDeckId, setActiveDeckId] = useState('')
   const [mode, setMode] = useState<LearningMode>('listeningMode')
@@ -498,7 +486,6 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
   const [showAdultDetails, setShowAdultDetails] = useState(false)
-  const [mathStarted, setMathStarted] = useState(false)
   const [mathOperation, setMathOperation] = useState<MathOperation>(() => loadMathProgress().operation)
   const [mathDifficulty, setMathDifficulty] = useState<MathDifficulty>(() => loadMathProgress().difficulty)
   const [settings, setSettings] = useState<AppSettings>(() => loadAppSettings())
@@ -582,7 +569,7 @@ function App() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [activeSection, profile, growingView, mathStarted])
+  }, [activeSection, profile, growingView])
 
   const refreshProgressState = useCallback(() => {
     const nextSettings = loadAppSettings()
@@ -898,7 +885,6 @@ function App() {
         ? loadMathIndex(savedMath.operation, savedMath.difficulty, mathPool.length)
         : 0
       resumeIndex = mathIdx
-      setMathStarted(mathIdx > 0)
       targetDeckId = mathDeck
       targetMode = 'activeRecall'
     } else if (section === 'chinese') {
@@ -940,7 +926,6 @@ function App() {
     setCardIndex(loadMathIndex(operation, difficulty, pool.length))
     setPhase('question')
     setSarahActivityIndex(0)
-    setMathStarted(true)
     saveMathSelection(operation, difficulty)
   }
 
@@ -962,20 +947,9 @@ function App() {
     /* setHundredLessonId('') */
   }
 
-  function openGrowingWords() {
-    const firstDeck = decks.find((deck) => deck.profile === 'anna' && deck.type === 'reading-words') ?? decks.find(d => d.profile === 'anna')
-    setGrowingView('words')
-    setActiveDeckId(firstDeck?.id ?? '')
-    setMode('activeRecall')
-    const saved = firstDeck ? localStorage.getItem(annaWordsProgressKey(firstDeck.id)) : null
-    setCardIndex(saved ? parseInt(saved, 10) : 0)
-    setPhase('question')
-    setSarahActivityIndex(0)
-    setMenuOpen(false)
-  }
-
-  function openGrowingPhonemes() {
+  function choosePhonemesSection() {
     const firstDeck = decks.find((deck) => deck.profile === 'anna' && deck.type === 'phonemes') ?? decks.find(d => d.profile === 'anna')
+    setActiveSection('words')
     setGrowingView('phonemes')
     setActiveDeckId(firstDeck?.id ?? '')
     setMode('activeRecall')
@@ -1157,12 +1131,12 @@ function App() {
         <SectionPicker
           key={progressVersion}
           onChooseSection={(s) => chooseSection(s)}
+          onChoosePhonemes={choosePhonemesSection}
           onChooseFlashcards={() => chooseFlashcards()}
           onShowCloset={() => setShowCloset(true)}
           onShowSettings={() => setShowSettings(true)}
           onContinue={openContinue}
           continueState={continueState}
-          settings={settings}
         />
       ) : activeSection === 'stories' ? (
         <StorySection
@@ -1173,31 +1147,13 @@ function App() {
           onRememberContinue={rememberContinue}
           onReward={handleCompletionReward}
         />
-      ) : activeSection === 'math' && !mathStarted ? (
-        <MathLevelPicker
-          operation={mathOperation}
-          difficulty={mathDifficulty}
-          onOperationChange={setMathOperation}
-          onDifficultyChange={setMathDifficulty}
-          onStart={startMath}
-          onBack={() => setActiveSection(null)}
-        />
       ) : activeSection === 'words' && growingView === 'collection' ? (
         <WordCollection
           decks={decks}
-          onBack={() => setGrowingView('home')}
-        />
-      ) : activeSection === 'words' && growingView === 'home' ? (
-        <GrowingReaderHome
-          decks={decks}
-          stories={stories}
-          onWords={openGrowingWords}
-          onStories={() => {
-            setActiveSection('stories')
-            setGrowingView('home')
+          onBack={() => {
+            setGrowingView('words')
+            setActiveSection(null)
           }}
-          onPhonemes={openGrowingPhonemes}
-          onCollection={openGrowingCollection}
         />
       ) : activeDeck && currentCard ? (
         <LearningScreen
@@ -1223,13 +1179,8 @@ function App() {
           onSarahActivityChange={setSarahActivityIndex}
           onSarahLessonChange={moveSarahLesson}
           onBackToPath={settings.lockedSection ? undefined : () => {
-            if (activeSection === 'words') {
-              setGrowingView('home')
-            } else if (activeSection === 'math') {
-              setMathStarted(false)
-            } else {
-              setActiveSection(null)
-            }
+            setGrowingView('words')
+            setActiveSection(null)
           }}
           onRestartLesson={restartLesson}
           onModeChange={changeMode}
@@ -1245,24 +1196,19 @@ function App() {
           onAdvanceLesson={moveNextLessonFromCurrent}
           onLessonComplete={completeActiveLesson}
           onDone={() => {
-            if (activeSection === 'words') {
-              setGrowingView('home')
-            } else if (activeSection === 'math') {
-              setMathStarted(false)
-            } else {
-              setActiveSection(null)
-            }
+            setGrowingView('words')
+            setActiveSection(null)
           }}
           onGoHome={settings.lockedSection ? undefined : () => {
-            if (activeSection === 'words') {
-              setGrowingView('home')
-            } else {
-              setActiveSection(null)
-            }
+            setGrowingView('words')
+            setActiveSection(null)
           }}
           onToggleAdultDetails={() => setShowAdultDetails((v) => !v)}
           mathDifficulty={mathDifficulty}
           onChangeMathDifficulty={(diff) => startMath(mathOperation, diff)}
+          mathOperation={mathOperation}
+          onChangeMathOperation={(op) => startMath(op, mathDifficulty)}
+          onShowCollection={activeSection === 'words' && growingView === 'words' ? openGrowingCollection : undefined}
         />
       ) : (
         <section className="empty-screen">
@@ -1501,243 +1447,6 @@ function RewardBoxNotice({
       </div>
       <button type="button" className="primary" onClick={onOpen}>Open</button>
       <button type="button" onClick={(e) => { e.stopPropagation(); onLater(); }}>Later</button>
-    </section>
-  )
-}
-
-function MathLevelPicker({
-  operation,
-  difficulty,
-  onOperationChange,
-  onDifficultyChange,
-  onStart,
-  onBack,
-}: {
-  operation: MathOperation
-  difficulty: MathDifficulty
-  onOperationChange: (operation: MathOperation) => void
-  onDifficultyChange: (difficulty: MathDifficulty) => void
-  onStart: (operation: MathOperation, difficulty: MathDifficulty) => void
-  onBack: () => void
-}) {
-  const detail = MATH_DIFFICULTY_DETAILS[difficulty]
-
-  const cycleDifficulty = useCallback(() => {
-    const index = MATH_DIFFICULTIES.indexOf(difficulty)
-    const nextDifficulty = MATH_DIFFICULTIES[(index + 1) % MATH_DIFFICULTIES.length]
-    onDifficultyChange(nextDifficulty)
-    saveMathSelection(operation, nextDifficulty)
-  }, [difficulty, onDifficultyChange, operation])
-
-  const selectOperation = useCallback((nextOperation: MathOperation) => {
-    onOperationChange(nextOperation)
-    saveMathSelection(nextOperation, difficulty)
-  }, [difficulty, onOperationChange])
-
-  useEffect(() => {
-    function handleKeyDown(event: KeyboardEvent) {
-      if (shouldIgnoreControllerKey(event)) return
-      if (isChoiceKey(event, 'A')) {
-        event.preventDefault()
-        onStart(operation, difficulty)
-      } else if (isChoiceKey(event, 'B')) {
-        event.preventDefault()
-        cycleDifficulty()
-      }
-    }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [cycleDifficulty, difficulty, onStart, operation])
-
-  return (
-    <section className="math-level-picker">
-      <button type="button" className="soft-back" onClick={onBack}>Back</button>
-      <div className="math-picker-heading">
-        <span className="prompt-topline">Math</span>
-        <h1>What shall we practice?</h1>
-        <div className="math-picker-summary" aria-live="polite">
-          <span>{operation === 'add' ? 'Adding' : 'Taking away'}</span>
-          <strong>{detail.title}</strong>
-          <small>{detail.shortName} pocket</small>
-        </div>
-      </div>
-      <div className="math-operation-toggle" aria-label="Choose math operation">
-        <button
-          type="button"
-          className={operation === 'add' ? 'active' : ''}
-          onClick={() => selectOperation('add')}
-        >
-          <span className="operation-mark" aria-hidden="true">+</span>
-          <span>Add</span>
-        </button>
-        <button
-          type="button"
-          className={operation === 'subtract' ? 'active' : ''}
-          onClick={() => selectOperation('subtract')}
-        >
-          <span className="operation-mark" aria-hidden="true">-</span>
-          <span>Subtract</span>
-        </button>
-      </div>
-      <div className="math-difficulty-track" aria-label={`Four math levels. ${detail.title} is selected.`}>
-        {MATH_DIFFICULTIES.map((level) => {
-          const lvl = MATH_DIFFICULTY_DETAILS[level]
-          return (
-            <button
-              key={level}
-              type="button"
-              className={`math-slope-btn slope-${level} ${level === difficulty ? 'active' : ''}`}
-              aria-current={level === difficulty ? 'step' : undefined}
-              onClick={() => {
-                onDifficultyChange(level)
-                saveMathSelection(operation, level)
-              }}
-            >
-              <span className="slope-icon" aria-hidden="true">{lvl.icon}</span>
-              <span className="slope-name">{lvl.shortName}</span>
-            </button>
-          )
-        })}
-      </div>
-      <article className={`math-difficulty-card difficulty-${difficulty}`}>
-        <span className="math-difficulty-icon" aria-hidden="true">{detail.icon}</span>
-        <h2>{detail.title}</h2>
-        <p>{detail.descriptions[operation]}</p>
-        <div className="math-card-meter" aria-hidden="true">
-          {MATH_DIFFICULTIES.map((level) => (
-            <span key={level} className={MATH_DIFFICULTIES.indexOf(level) <= MATH_DIFFICULTIES.indexOf(difficulty) ? 'filled' : ''} />
-          ))}
-        </div>
-      </article>
-      <div className="math-picker-actions">
-        <button type="button" className="primary choice-action" onClick={() => onStart(operation, difficulty)}>
-          <span>A</span>
-          Start
-        </button>
-        <button type="button" className="choice-action" onClick={cycleDifficulty}>
-          <span>B</span>
-          Next Level
-        </button>
-      </div>
-    </section>
-  )
-}
-
-function HomeScreen({
-  onChoose,
-  decks,
-  onShowStickers,
-}: {
-  onChoose: (profile: ProfileId) => void
-  decks: LearningDeck[]
-  onShowStickers: () => void
-}) {
-  const annaCount = decks.filter((deck) => deck.profile === 'anna').reduce((sum, deck) => sum + deck.cards.length, 0)
-  const sarahCount = decks.filter((deck) => deck.profile === 'sarah').reduce((sum, deck) => sum + deck.cards.length, 0)
-
-  return (
-    <section className="home-screen">
-      <div className="mobile-logo-block" aria-hidden="true">
-        <ChunkyLogo />
-        <span>Let's read together!</span>
-      </div>
-      <div className="home-copy">
-        <Mascot mood="happy" />
-        <div>
-          <h1>Who is learning today?</h1>
-          <p>Fast, happy reading practice with words, sounds, pictures, and big friendly buttons.</p>
-        </div>
-      </div>
-      <div className="path-grid" aria-label="Choose a learning path">
-        <button type="button" className="path-card anna-path" onClick={() => onChoose('anna')}>
-          <img className="profile-image" src={`${import.meta.env.BASE_URL}assets/profiles/anna-red-shirt.png`} alt="" />
-          <span className="path-badge">Words + Stories</span>
-          <strong>Older Reader</strong>
-          <small>{annaCount} reading cards</small>
-        </button>
-        <button type="button" className="path-card sarah-path" onClick={() => onChoose('sarah')}>
-          <img className="profile-image" src={`${import.meta.env.BASE_URL}assets/profiles/sarah-reading.png`} alt="" />
-          <span className="path-badge">Sounds</span>
-          <strong>Earliest Reader</strong>
-          <small>{sarahCount} letter and sound cards</small>
-        </button>
-        <button type="button" className="path-card" onClick={() => onChoose('100-lessons')} style={{ background: 'var(--c-background-glass)', borderColor: 'var(--c-brand)' }}>
-          <span className="choice-sticker" aria-hidden="true">100</span>
-          <span className="path-badge">Classic</span>
-          <strong>100 Lessons</strong>
-          <small>Teach Your Child to Read</small>
-        </button>
-      </div>
-      <div style={{display: 'flex', justifyContent: 'center', marginTop: '1rem'}}>
-        <button className="sticker-nav-button squish" style={{fontSize: '1.2rem', padding: '0.75rem 1.5rem'}} onClick={onShowStickers}>Sticker Book</button>
-      </div>
-    </section>
-  )
-}
-
-function GrowingReaderHome({
-  decks,
-  stories,
-  onWords,
-  onStories,
-  onPhonemes,
-  onCollection,
-}: {
-  decks: LearningDeck[]
-  stories: Story[]
-  onWords: () => void
-  onStories: () => void
-  onPhonemes: () => void
-  onCollection: () => void
-}) {
-  const wordCount = decks.filter(d => d.type === 'reading-words').reduce((sum, deck) => sum + deck.cards.length, 0)
-  const pageCount = stories.reduce((sum, story) => sum + story.pages.length, 0)
-  const phonemeCount = decks.filter(d => d.type === 'phonemes').reduce((sum, deck) => sum + deck.cards.length, 0)
-  const masteredCount = getMasteredWordCount(decks)
-  const totalWordCount = decks.filter(d => d.type === 'reading-words').reduce((sum, deck) => sum + deck.cards.length, 0)
-
-  return (
-    <section className="growing-reader-home">
-      <div className="reader-hero">
-        <img className="reader-hero-child" src={`${import.meta.env.BASE_URL}assets/profiles/anna-red-shirt.png`} alt="" />
-        <div>
-          <ChunkyLogo compact />
-          <h1>Words and Stories</h1>
-          <p>Choose one happy reading pocket.</p>
-          <div className="reader-hero-stats" aria-label="Reading progress">
-            <span><strong>{masteredCount}</strong> saved words</span>
-            <span><strong>{stories.length}</strong> books</span>
-            <span><strong>{phonemeCount}</strong> sounds</span>
-          </div>
-        </div>
-        <Mascot mood="reading" />
-      </div>
-      <div className="reader-choice-grid" aria-label="Choose a reading activity">
-        <button type="button" className="reader-choice collection-choice" onClick={onCollection}>
-          <span className="choice-sticker" aria-hidden="true">Star</span>
-          <strong>My Words</strong>
-          <small>{totalWordCount} words to explore!</small>
-          <span className="reader-choice-action">Open collection</span>
-        </button>
-        <button type="button" className="reader-choice phoneme-choice" onClick={onPhonemes}>
-          <span className="choice-sticker" aria-hidden="true">Sound</span>
-          <strong>Phonemes</strong>
-          <small>{phonemeCount} sounds & spellings</small>
-          <span className="reader-choice-action">Practice sounds</span>
-        </button>
-        <button type="button" className="reader-choice word-choice" onClick={onWords}>
-          <span className="choice-sticker" aria-hidden="true">ABC</span>
-          <strong>Read Words</strong>
-          <small>{wordCount} words to read</small>
-          <span className="reader-choice-action">Start word pocket</span>
-        </button>
-        <button type="button" className="reader-choice story-choice" onClick={onStories}>
-          <span className="choice-sticker book-sticker" aria-hidden="true" />
-          <strong>Read a Story</strong>
-          <small>{stories.length} stories, {pageCount} pages</small>
-          <span className="reader-choice-action">Pick a story</span>
-        </button>
-      </div>
     </section>
   )
 }
@@ -2120,6 +1829,9 @@ function LearningScreen({
   onToggleAdultDetails,
   mathDifficulty,
   onChangeMathDifficulty,
+  mathOperation,
+  onChangeMathOperation,
+  onShowCollection,
 }: {
   decks: LearningDeck[]
   activeDeck: LearningDeck
@@ -2148,6 +1860,9 @@ function LearningScreen({
   onToggleAdultDetails: () => void
   mathDifficulty: MathDifficulty
   onChangeMathDifficulty: (d: MathDifficulty) => void
+  mathOperation: MathOperation
+  onChangeMathOperation: (o: MathOperation) => void
+  onShowCollection?: () => void
 }) {
   const [fsrsActive, setFsrsActive] = useState(false)
   const isSarahLetters = activeDeck.profile === 'sarah' && activeDeck.type === 'letters'
@@ -2275,6 +1990,7 @@ function LearningScreen({
           activities={olderReaderActivities}
           lessonNumber={lessonNumber}
           activityIndex={sarahActivityIndex}
+          onShowCollection={onShowCollection}
           onActivityChange={onSarahActivityChange}
           onNextLesson={onAdvanceLesson}
           onLessonComplete={onLessonComplete}
@@ -2306,6 +2022,8 @@ function LearningScreen({
           onLessonComplete={onLessonComplete}
           onDone={onDone}
           onChangeDifficulty={onChangeMathDifficulty}
+          operation={mathOperation}
+          onChangeOperation={onChangeMathOperation}
         />
       ) : mode === 'listeningMode' ? (
         <ExploreMode
@@ -2947,6 +2665,7 @@ function OlderReaderLesson({
   onNextLesson,
   onLessonComplete,
   onDone,
+  onShowCollection,
 }: {
   deck: LearningDeck
   lessonCards: LearningCard[]
@@ -2957,6 +2676,7 @@ function OlderReaderLesson({
   onNextLesson: () => void
   onLessonComplete: () => void
   onDone: () => void
+  onShowCollection?: () => void
 }) {
   const activity = activities[Math.min(activityIndex, activities.length - 1)]
   const [selected, setSelected] = useState('')
@@ -3293,6 +3013,11 @@ function OlderReaderLesson({
                 Done
               </button>
             </div>
+            {onShowCollection && (
+              <button type="button" className="my-words-link" onClick={onShowCollection}>
+                ⭐ See all my words
+              </button>
+            )}
           </div>
         </div>
         <div className="focus-feedback happy">
@@ -3692,6 +3417,8 @@ function MathLesson({
   onLessonComplete,
   onDone,
   onChangeDifficulty,
+  operation,
+  onChangeOperation,
 }: {
   deck: LearningDeck
   card: LearningCard
@@ -3703,6 +3430,8 @@ function MathLesson({
   onLessonComplete: () => void
   onDone: () => void
   onChangeDifficulty: (d: MathDifficulty) => void
+  operation: MathOperation
+  onChangeOperation: (o: MathOperation) => void
 }) {
   const isEasy = difficulty === 'easy'
   const [selected, setSelected] = useState('')
@@ -3780,9 +3509,9 @@ function MathLesson({
         <p>That was strong thinking.</p>
         <div className="completion-actions">
           <button type="button" className="primary choice-action" onClick={onNext}><span>A</span>Next Lesson</button>
-          <button type="button" className="choice-action" onClick={onDone}><span>B</span>Choose Level</button>
+          <button type="button" className="choice-action" onClick={onDone}><span>B</span>Home</button>
         </div>
-        <MathDiffBar difficulty={difficulty} onChangeDifficulty={onChangeDifficulty} />
+        <MathDiffBar difficulty={difficulty} onChangeDifficulty={onChangeDifficulty} operation={operation} onChangeOperation={onChangeOperation} />
       </section>
     )
   }
@@ -3824,14 +3553,44 @@ function MathLesson({
           <span>{gentleReveal ? `The answer is ${card.mathAnswer}.` : "A or B"}</span>
         </div>
       </div>
-      <MathDiffBar difficulty={difficulty} onChangeDifficulty={onChangeDifficulty} />
+      <MathDiffBar difficulty={difficulty} onChangeDifficulty={onChangeDifficulty} operation={operation} onChangeOperation={onChangeOperation} />
     </section>
   )
 }
 
-function MathDiffBar({ difficulty, onChangeDifficulty }: { difficulty: MathDifficulty; onChangeDifficulty: (d: MathDifficulty) => void }) {
+function MathDiffBar({
+  difficulty,
+  onChangeDifficulty,
+  operation,
+  onChangeOperation,
+}: {
+  difficulty: MathDifficulty
+  onChangeDifficulty: (d: MathDifficulty) => void
+  operation: MathOperation
+  onChangeOperation: (o: MathOperation) => void
+}) {
   return (
     <div className="math-diff-bar" role="group" aria-label="Switch difficulty">
+      <div className="math-op-toggle" role="group" aria-label="Switch between adding and subtracting">
+        <button
+          type="button"
+          className={`math-op-btn ${operation === 'add' ? 'active' : ''}`}
+          onClick={() => onChangeOperation('add')}
+          aria-pressed={operation === 'add'}
+          aria-label="Adding"
+        >
+          +
+        </button>
+        <button
+          type="button"
+          className={`math-op-btn ${operation === 'subtract' ? 'active' : ''}`}
+          onClick={() => onChangeOperation('subtract')}
+          aria-pressed={operation === 'subtract'}
+          aria-label="Taking away"
+        >
+          −
+        </button>
+      </div>
       {MATH_DIFFICULTIES.map((level) => {
         const details = MATH_DIFFICULTY_DETAILS[level]
         return (
