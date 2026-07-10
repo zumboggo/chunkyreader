@@ -13,13 +13,14 @@ try {
 const args = process.argv.slice(2)
 const dryRun = args.includes('--dry-run')
 const force = args.includes('--force')
-const provider = process.env.WORDS_IMAGE_PROVIDER || (process.env.REPLICATE_API_TOKEN ? 'replicate' : 'google')
+const provider = process.env.WORDS_IMAGE_PROVIDER || (process.env.REPLICATE_API_TOKEN || process.env.REPLICATE_API_KEY ? 'replicate' : 'google')
 const googleModel = process.env.GOOGLE_IMAGE_MODEL || 'gemini-2.5-flash-image'
-const replicateModel = process.env.REPLICATE_WORDS_IMAGE_MODEL || 'black-forest-labs/flux-1.1-pro'
+const replicateModel = process.env.REPLICATE_WORDS_IMAGE_MODEL || 'stability-ai/sdxl'
 const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || process.env.GOOGLE_CLOUD_API_KEY
 const credentialsPath = process.env.GOOGLE_APPLICATION_CREDENTIALS
 const googleLocation = process.env.GOOGLE_CLOUD_LOCATION || 'global'
-const replicateToken = process.env.REPLICATE_API_TOKEN
+const replicateToken = process.env.REPLICATE_API_TOKEN || process.env.REPLICATE_API_KEY
+let cachedReplicateModelVersion
 const outputDir = path.join(root, 'public', 'assets', 'words')
 
 const assets = [
@@ -27,7 +28,7 @@ const assets = [
     id: 'reading-garden',
     aspectRatio: '9:16',
     width: 768,
-    height: 1365,
+    height: 1360,
     transparent: false,
     prompt: [
       'Use case: illustration-story.',
@@ -46,16 +47,15 @@ const assets = [
     aspectRatio: '1:1',
     width: 768,
     height: 768,
-    transparent: true,
+    transparent: false,
     prompt: [
       'Use case: stylized-concept.',
       'Asset type: compact header mascot cutout for a kawaii children reading app.',
       'Create one friendly baby panda sitting and holding an open lavender-blue picture book.',
       'The panda has large warm brown eyes, small pink cheeks, rounded soft clay-and-gouache forms, and a delighted attentive reading expression.',
       'Full character and book visible, centered, front-facing, crisp silhouette, generous padding, premium polished mobile-game illustration.',
-      'Place the subject on a perfectly flat solid #00ff00 chroma-key background for background removal.',
-      'The background must be one uniform color with no shadows, gradients, texture, floor, reflections, or lighting variation.',
-      'Do not use green anywhere in the panda or book. No cast shadow, contact shadow, text, letters, numbers, logo, watermark, or extra objects.',
+      'Place the panda in a simple pale storybook reading nook with a soft uncluttered background that will still look good inside a small rounded header image.',
+      'Do not include text, letters, numbers, logos, watermarks, or unrelated characters. Keep the panda and book as the clear focal point.',
     ].join(' '),
   },
 ]
@@ -71,7 +71,7 @@ if (!dryRun && provider === 'google' && !apiKey && !credentialsPath) {
 }
 
 if (!dryRun && provider === 'replicate' && !replicateToken) {
-  console.error('Set REPLICATE_API_TOKEN before generating Replicate Words UI assets.')
+  console.error('Set REPLICATE_API_TOKEN or REPLICATE_API_KEY before generating Replicate Words UI assets.')
   process.exit(1)
 }
 
@@ -103,7 +103,7 @@ for (const asset of assets) {
     await fs.mkdir(outputDir, { recursive: true })
     console.log(`Generating ${asset.id}...`)
     const image = provider === 'replicate'
-      ? await generateReplicateImage(asset.prompt, asset.aspectRatio)
+      ? await generateReplicateImage(asset.prompt, asset.aspectRatio, asset.width, asset.height)
       : await generateImageWithRetry(asset.prompt, asset.aspectRatio)
     if (asset.transparent) {
       await saveChromaKeyCutout(image, outputPath, asset.width, asset.height)
@@ -211,24 +211,43 @@ async function generateImage(prompt, aspectRatio) {
   return Buffer.from(inlineData.data, 'base64')
 }
 
-async function generateReplicateImage(prompt, aspectRatio) {
-  const response = await fetch(`https://api.replicate.com/v1/models/${replicateModel}/predictions`, {
+async function generateReplicateImage(prompt, aspectRatio, width, height) {
+  const usesVersionEndpoint = replicateModel.includes('stability-ai/sdxl')
+  const input = usesVersionEndpoint
+    ? {
+        prompt,
+        width,
+        height,
+        num_outputs: 1,
+        scheduler: 'K_EULER',
+        num_inference_steps: 35,
+        guidance_scale: 7.5,
+        refine: 'expert_ensemble_refiner',
+        apply_watermark: false,
+      }
+    : {
+        prompt,
+        aspect_ratio: aspectRatio,
+        output_format: 'webp',
+        output_quality: 90,
+        prompt_upsampling: true,
+      }
+  const response = await fetch(
+    usesVersionEndpoint
+      ? 'https://api.replicate.com/v1/predictions'
+      : `https://api.replicate.com/v1/models/${replicateModel}/predictions`,
+    {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${replicateToken}`,
       'Content-Type': 'application/json',
       Prefer: 'wait=60',
     },
-    body: JSON.stringify({
-      input: {
-        prompt,
-        aspect_ratio: aspectRatio,
-        output_format: 'webp',
-        output_quality: 90,
-        prompt_upsampling: true,
-      },
-    }),
-  })
+    body: JSON.stringify(usesVersionEndpoint
+      ? { version: await replicateModelVersion(), input }
+      : { input }),
+    },
+  )
   const prediction = await response.json()
   if (!response.ok) throw new Error(`Replicate request failed: ${prediction.detail || response.status}`)
   const finished = ['starting', 'processing'].includes(prediction.status)
@@ -243,6 +262,20 @@ async function generateReplicateImage(prompt, aspectRatio) {
   const image = await fetch(imageUrl)
   if (!image.ok) throw new Error(`Could not download Replicate image: ${image.status}`)
   return Buffer.from(await image.arrayBuffer())
+}
+
+async function replicateModelVersion() {
+  if (process.env.REPLICATE_MODEL_VERSION) return process.env.REPLICATE_MODEL_VERSION
+  if (cachedReplicateModelVersion) return cachedReplicateModelVersion
+  const response = await fetch(`https://api.replicate.com/v1/models/${replicateModel}`, {
+    headers: { Authorization: `Bearer ${replicateToken}` },
+  })
+  const data = await response.json()
+  if (!response.ok || !data.latest_version?.id) {
+    throw new Error(`Could not find latest version for ${replicateModel}: ${data.detail || response.status}`)
+  }
+  cachedReplicateModelVersion = data.latest_version.id
+  return cachedReplicateModelVersion
 }
 
 async function pollReplicatePrediction(prediction) {
