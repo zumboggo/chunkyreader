@@ -40,6 +40,8 @@
     "generate:reward-images": "node scripts/generate-google-reward-images.mjs",
     "generate:reward-images:dry": "node scripts/generate-google-reward-images.mjs --dry-run",
     "generate:reward-images:test": "node scripts/generate-google-reward-images.mjs --limit 2",
+    "generate:words-ui-assets": "node scripts/generate-words-ui-assets.mjs",
+    "generate:words-ui-assets:dry": "node scripts/generate-words-ui-assets.mjs --dry-run",
     "import:pdf-story": "node scripts/import-pdf-story.mjs",
     "import:pdf-story:dry": "node scripts/import-pdf-story.mjs --dry-run",
     "generate:section-images": "node scripts/generate-section-images.mjs",
