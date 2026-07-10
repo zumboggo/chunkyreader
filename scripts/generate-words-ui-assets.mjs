@@ -13,10 +13,13 @@ try {
 const args = process.argv.slice(2)
 const dryRun = args.includes('--dry-run')
 const force = args.includes('--force')
-const model = process.env.GOOGLE_IMAGE_MODEL || 'gemini-2.5-flash-image'
+const provider = process.env.WORDS_IMAGE_PROVIDER || (process.env.REPLICATE_API_TOKEN ? 'replicate' : 'google')
+const googleModel = process.env.GOOGLE_IMAGE_MODEL || 'gemini-2.5-flash-image'
+const replicateModel = process.env.REPLICATE_WORDS_IMAGE_MODEL || 'black-forest-labs/flux-1.1-pro'
 const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || process.env.GOOGLE_CLOUD_API_KEY
 const credentialsPath = process.env.GOOGLE_APPLICATION_CREDENTIALS
 const googleLocation = process.env.GOOGLE_CLOUD_LOCATION || 'global'
+const replicateToken = process.env.REPLICATE_API_TOKEN
 const outputDir = path.join(root, 'public', 'assets', 'words')
 
 const assets = [
@@ -57,13 +60,23 @@ const assets = [
   },
 ]
 
-if (!dryRun && !apiKey && !credentialsPath) {
-  console.error('Set GEMINI_API_KEY or GOOGLE_APPLICATION_CREDENTIALS before generating Words UI assets.')
+if (!['google', 'replicate'].includes(provider)) {
+  console.error(`Unsupported WORDS_IMAGE_PROVIDER "${provider}". Use "google" or "replicate".`)
   process.exit(1)
 }
 
-console.log('Google Words UI asset generation')
-console.log(`Model: ${model}`)
+if (!dryRun && provider === 'google' && !apiKey && !credentialsPath) {
+  console.error('Set GEMINI_API_KEY or GOOGLE_APPLICATION_CREDENTIALS before generating Google Words UI assets.')
+  process.exit(1)
+}
+
+if (!dryRun && provider === 'replicate' && !replicateToken) {
+  console.error('Set REPLICATE_API_TOKEN before generating Replicate Words UI assets.')
+  process.exit(1)
+}
+
+console.log(`${provider === 'replicate' ? 'Replicate' : 'Google'} Words UI asset generation`)
+console.log(`Model: ${provider === 'replicate' ? replicateModel : googleModel}`)
 if (dryRun) console.log('Dry run: no API calls or files will be written.\n')
 
 let generated = 0
@@ -89,7 +102,9 @@ for (const asset of assets) {
   try {
     await fs.mkdir(outputDir, { recursive: true })
     console.log(`Generating ${asset.id}...`)
-    const image = await generateImageWithRetry(asset.prompt, asset.aspectRatio)
+    const image = provider === 'replicate'
+      ? await generateReplicateImage(asset.prompt, asset.aspectRatio)
+      : await generateImageWithRetry(asset.prompt, asset.aspectRatio)
     if (asset.transparent) {
       await saveChromaKeyCutout(image, outputPath, asset.width, asset.height)
     } else {
@@ -167,7 +182,7 @@ async function generateImage(prompt, aspectRatio) {
   const auth = credentialsPath
     ? await vertexAuth(credentialsPath)
     : {
-        endpoint: `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`,
+        endpoint: `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(googleModel)}:generateContent?key=${encodeURIComponent(apiKey)}`,
         headers: {},
       }
   const response = await fetch(auth.endpoint, {
@@ -196,6 +211,53 @@ async function generateImage(prompt, aspectRatio) {
   return Buffer.from(inlineData.data, 'base64')
 }
 
+async function generateReplicateImage(prompt, aspectRatio) {
+  const response = await fetch(`https://api.replicate.com/v1/models/${replicateModel}/predictions`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${replicateToken}`,
+      'Content-Type': 'application/json',
+      Prefer: 'wait=60',
+    },
+    body: JSON.stringify({
+      input: {
+        prompt,
+        aspect_ratio: aspectRatio,
+        output_format: 'webp',
+        output_quality: 90,
+        prompt_upsampling: true,
+      },
+    }),
+  })
+  const prediction = await response.json()
+  if (!response.ok) throw new Error(`Replicate request failed: ${prediction.detail || response.status}`)
+  const finished = ['starting', 'processing'].includes(prediction.status)
+    ? await pollReplicatePrediction(prediction)
+    : prediction
+  if (finished.status === 'failed' || finished.error) {
+    throw new Error(`Replicate prediction failed: ${finished.error || 'unknown error'}`)
+  }
+  const output = Array.isArray(finished.output) ? finished.output[0] : finished.output
+  const imageUrl = typeof output === 'string' ? output : output?.url
+  if (!imageUrl) throw new Error(`Replicate prediction did not return an image URL. Status: ${finished.status}`)
+  const image = await fetch(imageUrl)
+  if (!image.ok) throw new Error(`Could not download Replicate image: ${image.status}`)
+  return Buffer.from(await image.arrayBuffer())
+}
+
+async function pollReplicatePrediction(prediction) {
+  const getUrl = prediction.urls?.get
+  if (!getUrl) return prediction
+  for (let attempt = 0; attempt < 40; attempt += 1) {
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+    const response = await fetch(getUrl, { headers: { Authorization: `Bearer ${replicateToken}` } })
+    const next = await response.json()
+    if (!response.ok) throw new Error(`Replicate polling failed: ${next.detail || response.status}`)
+    if (!['starting', 'processing'].includes(next.status)) return next
+  }
+  throw new Error('Replicate image generation timed out.')
+}
+
 async function vertexAuth(filePath) {
   const credentials = JSON.parse(await fs.readFile(filePath, 'utf8'))
   const project = process.env.GOOGLE_CLOUD_PROJECT || credentials.project_id
@@ -206,7 +268,7 @@ async function vertexAuth(filePath) {
   return {
     endpoint:
       `https://${host}/v1/projects/${encodeURIComponent(project)}/locations/${encodeURIComponent(googleLocation)}` +
-      `/publishers/google/models/${encodeURIComponent(model)}:generateContent`,
+      `/publishers/google/models/${encodeURIComponent(googleModel)}:generateContent`,
     headers: { Authorization: `Bearer ${await googleAccessToken(credentials)}` },
   }
 }
