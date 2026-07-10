@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent, type ReactNode } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent, type ReactNode } from 'react'
 import {
   getInstalledAudioPackSummary,
   installAudioClipPack,
@@ -549,7 +549,13 @@ function App() {
     }
   }, [mathDifficulty, mathOperation, sourceActiveDeck])
   const currentCard = activeDeck?.cards[cardIndex % Math.max(1, activeDeck.cards.length)]
-  const isLessonActive = Boolean(profile && activeDeck && currentCard)
+  const isLessonActive = Boolean(
+    (profile || activeSection) &&
+    activeDeck &&
+    currentCard &&
+    activeSection !== 'stories' &&
+    !(activeSection === 'words' && growingView === 'collection'),
+  )
   const isSectionDashboard = !loading && !loadError && !activeSection && !profile
 
   useEffect(() => {
@@ -1936,8 +1942,29 @@ function LearningScreen({
     onDone()
   }
 
+  const lessonVisualVariant = isOlderReaderWords ? 'words' : 'default'
+  const lessonSectionLabel = isOlderReaderWords
+    ? 'Words'
+    : activeDeck.type === 'letters'
+      ? 'Letters'
+      : activeDeck.type === 'phonemes'
+        ? 'Sounds'
+        : activeDeck.type === 'math'
+          ? 'Math'
+          : activeDeck.type === 'chinese-vocab'
+            ? 'Chinese'
+            : activeDeck.title
+  const lessonVisualStyle = isOlderReaderWords
+    ? {
+        '--words-scene-image': `url("${import.meta.env.BASE_URL}assets/words/reading-garden.webp")`,
+      } as CSSProperties
+    : undefined
+
   return (
-    <section className="learning-screen lesson-focus">
+    <section
+      className={`learning-screen lesson-focus ${isOlderReaderWords ? 'words-lesson-shell' : ''}`}
+      style={lessonVisualStyle}
+    >
       <LessonMenu
         isOpen={menuOpen}
         onToggle={onMenuToggle}
@@ -1958,8 +1985,11 @@ function LearningScreen({
         lessonNumber={lessonNumber}
         progress={progress}
         total={progressTotal}
+        sectionLabel={lessonSectionLabel}
+        visualVariant={lessonVisualVariant}
+        menuOpen={menuOpen}
         onMenuToggle={onMenuToggle}
-        onHome={isOlderReaderWords && onGoHome ? onGoHome : undefined}
+        onHome={onGoHome}
       />
 
       {isSarahLetters ? (
@@ -2124,16 +2154,6 @@ function LessonMenu({
 
   return (
     <>
-      <button
-        type="button"
-        className="menu-button"
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        aria-controls="lesson-menu"
-        aria-label="Open menu"
-      >
-        Menu
-      </button>
       {isOpen && (
         <div
           id="lesson-menu"
@@ -2241,12 +2261,18 @@ function FocusLessonTopBar({
   lessonNumber,
   progress,
   total,
+  sectionLabel,
+  visualVariant = 'default',
+  menuOpen,
   onMenuToggle,
   onHome,
 }: {
   lessonNumber: number
   progress: number
   total: number
+  sectionLabel: string
+  visualVariant?: 'default' | 'words'
+  menuOpen: boolean
   onMenuToggle: () => void
   onHome?: () => void
 }) {
@@ -2254,27 +2280,43 @@ function FocusLessonTopBar({
   const filledDots = Math.ceil((progress / total) * dots)
 
   return (
-    <div className="focus-topbar">
-      <button
-        type="button"
-        className="menu-button-compact"
-        onClick={onMenuToggle}
-        aria-label="Menu"
-      >
-        Menu
-      </button>
-      {onHome && (
+    <div className={`focus-topbar focus-topbar-${visualVariant}`}>
+      <div className="focus-nav-actions">
         <button
           type="button"
-          className="home-button-compact"
-          onClick={onHome}
-          aria-label="Home"
+          className="menu-button-compact focus-icon-button"
+          onClick={onMenuToggle}
+          aria-label="Menu"
+          aria-expanded={menuOpen}
+          aria-controls="lesson-menu"
         >
-          <HomeIcon />
-          <span>Home</span>
+          <span className="menu-icon" aria-hidden="true"><i /><i /><i /></span>
         </button>
+        {onHome && (
+          <button
+            type="button"
+            className="home-button-compact focus-icon-button"
+            onClick={onHome}
+            aria-label="Home"
+          >
+            <HomeIcon />
+          </button>
+        )}
+      </div>
+      {visualVariant === 'words' && (
+        <img
+          className="words-header-panda"
+          src={`${import.meta.env.BASE_URL}assets/words/reading-panda.webp`}
+          alt=""
+          aria-hidden="true"
+          onError={(event) => {
+            event.currentTarget.onerror = null
+            event.currentTarget.src = `${import.meta.env.BASE_URL}assets/mascots/mascot-reading.png`
+          }}
+        />
       )}
       <div className="focus-progress">
+        <span className="focus-section-label">{sectionLabel}</span>
         <span className="lesson-label">Lesson {lessonNumber}</span>
         <div className="progress-dots" aria-label={`Progress ${progress} of ${total}`}>
           {Array.from({ length: dots }).map((_, i) => (
@@ -2923,6 +2965,7 @@ function OlderReaderLesson({
               </div>
               <div className={`focus-options ${retryLocked ? 'word-listen-locking' : ''}`} aria-label="Answer choices">
                 {activity.options.map((option, index) => {
+                  const optionText = optionLabel(option)
                   const isMissed = missedIds.includes(option.id)
                   const isSelectedCorrect = selected && option.id === activity.card.id
                   const stateClass = isSelectedCorrect
@@ -2934,13 +2977,13 @@ function OlderReaderLesson({
                     <button
                       key={option.id}
                       type="button"
-                      aria-label={`Choice ${choiceKeyLabel(index)}: ${optionLabel(option)}`}
-                      className={`focus-option squish ${stateClass}`}
+                      aria-label={`Choice ${choiceKeyLabel(index)}: ${optionText}`}
+                      className={`focus-option squish ${wordChoiceLengthClass(optionText)} ${stateClass}`}
                       disabled={Boolean(selected) || isMissed || retryLocked}
                       onClick={() => chooseByIndex(index)}
                     >
                       <span className="choice-key" aria-hidden="true">{choiceKeyLabel(index)}</span>
-                      <strong>{optionLabel(option)}</strong>
+                      <strong>{optionText}</strong>
                     </button>
                   )
                 })}
@@ -3119,6 +3162,7 @@ function OlderReaderLesson({
           </div>
           <div className={`focus-options ${retryLocked ? 'word-listen-locking' : ''}`} aria-label="Answer choices">
             {activity.options.map((option, index) => {
+              const optionText = optionLabel(option)
               const isMissed = missedIds.includes(option.id)
               const isSelectedCorrect = selected && option.id === activity.card.id
               const stateClass = isSelectedCorrect
@@ -3130,14 +3174,14 @@ function OlderReaderLesson({
                 <button
                   key={option.id}
                   type="button"
-                  aria-label={`Choice ${choiceKeyLabel(index)}: ${optionLabel(option)}`}
-                  className={`focus-option squish ${showOptionPictures ? 'picture-choice' : ''} ${stateClass}`}
+                  aria-label={`Choice ${choiceKeyLabel(index)}: ${optionText}`}
+                  className={`focus-option squish ${showOptionPictures ? 'picture-choice' : ''} ${wordChoiceLengthClass(optionText)} ${stateClass}`}
                   disabled={Boolean(selected) || isMissed || retryLocked}
                   onClick={() => chooseByIndex(index)}
                 >
                   <span className="choice-key" aria-hidden="true">{choiceKeyLabel(index)}</span>
                   {showOptionPictures && <Picture deck={deck} card={option} />}
-                  <strong>{optionLabel(option)}</strong>
+                  <strong>{optionText}</strong>
                   {!showOptionPictures && option.category && <small>{option.category}</small>}
                 </button>
               )
@@ -4544,6 +4588,12 @@ function wordChunk(card: LearningCard): string {
 
 function optionLabel(card: LearningCard): string {
   return card.word || card.displayText || card.grapheme || card.exampleWord || ''
+}
+
+function wordChoiceLengthClass(label: string): string {
+  if (label.length >= 11) return 'word-choice-extra-long'
+  if (label.length >= 8) return 'word-choice-long'
+  return ''
 }
 
 function optionSmallLabel(card: LearningCard): string {
