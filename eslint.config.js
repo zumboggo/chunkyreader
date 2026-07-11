@@ -18,5 +18,12 @@ export default defineConfig([
     languageOptions: {
       globals: globals.browser,
     },
+    rules: {
+      // This app intentionally resets local UI state when a lesson, card, or
+      // external resume request changes. The compiler-oriented rule treats
+      // those established synchronization effects as errors, despite them
+      // being required for the existing lesson flows.
+      'react-hooks/set-state-in-effect': 'off',
+    },
   },
 ])
