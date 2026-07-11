@@ -3145,6 +3145,34 @@ body.lesson-active {
   color: var(--purple-pop);
 }
 
+.primary-letter {
+  font-size: 1em;
+}
+
+.secondary-letter {
+  margin-left: 0.18em;
+  font-size: 0.5em;
+  opacity: 0.65;
+}
+
+.explore-letter {
+  width: min(100%, 330px);
+  margin-inline: auto;
+  border: 0;
+  cursor: pointer;
+}
+
+.explore-letter .picture-frame {
+  width: min(100%, 210px);
+  min-height: 110px;
+}
+
+.feedback-next {
+  min-width: 104px;
+  min-height: 52px;
+  margin-left: auto;
+}
+
 .prompt-letter {
   font-size: clamp(2.8rem, 12vw, 5.4rem);
   line-height: 1;

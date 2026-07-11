@@ -91,7 +91,7 @@ type SarahQuestionKind =
   | 'beginningSound'
   | 'wordToBeginningSound'
   | 'soundToWord'
-type SarahActivityKind = 'intro' | SarahQuestionKind | 'review'
+type SarahActivityKind = 'intro' | 'explore' | SarahQuestionKind | 'review'
 type SarahActivityStatus = 'idle' | 'try-again' | 'correct' | 'revealed'
 type StoryDifficultyFilter = 'easy' | 'growing' | 'longer'
 type OlderReaderQuestionKind =
@@ -191,18 +191,12 @@ function persistAnnaWordsIndex(deckId: string, index: number) {
 function readAnnaWordsIndex(deckId: string) {
   return parseInt(localStorage.getItem(annaWordsProgressKey(deckId)) ?? '0', 10) || 0
 }
-const SARAH_FINAL_REVIEW_SIZE = 6
-const SARAH_LESSON_ADVANCE = 2
+// Toddler letter visits move forward one sound at a time. The five-card slice is
+// retained as a reusable pocket for a single, familiar distractor.
+const SARAH_LESSON_ADVANCE = 1
 // 8 practice reps over 4 words (2 each) keeps lessons short for a 5-year-old
 // while still giving every word the two first-try chances mastery needs.
 const OLDER_READER_RECOGNITION_COUNT = 8
-const SARAH_REVIEW_VARIANTS: SarahQuestionKind[] = [
-  'wordToBeginningSound',
-  'soundToWord',
-  'beginningSound',
-  'upperLowerMatch',
-  'wordToBeginningSound',
-]
 const CONFUSABLES: Record<string, string[]> = {
   b: ['d', 'p', 'q'],
   d: ['b', 'p', 'q'],
@@ -1913,6 +1907,8 @@ function LearningScreen({
       : LESSON_SIZE
   const lessonCards = isOlderReaderWords
     ? selectedWordLessonCards
+    : isSarahLetters
+    ? sarahLetterPocket(lessonDeckCards, lessonStart)
     : lessonDeckCards.slice(lessonStart, lessonStart + lessonLength)
   const lessonIndex = isOlderReaderWords ? 0 : cardIndex - lessonStart
   const sarahActivities = useMemo(
@@ -2393,11 +2389,10 @@ function SarahLetterLesson({
   }, [activityIndex, onActivityChange])
 
   useEffect(() => {
-    if (!activity || completed) return
-    if (activity.kind !== 'intro') return
-    const timer = window.setTimeout(() => nextActivity(), 3000)
-    return () => window.clearTimeout(timer)
-  }, [activity, completed, nextActivity])
+    setStatus('idle')
+    setWrongChoice('')
+    setTries(0)
+  }, [activityIndex])
 
   function restartLesson() {
     onActivityChange(0)
@@ -2412,7 +2407,6 @@ function SarahLetterLesson({
       playSfx('correct')
       void playNarrationClip('feedback:great')
       void playSarahActivityAudio(deck, activity)
-      window.setTimeout(nextActivity, 850)
       return
     }
     setWrongChoice(answer)
@@ -2425,7 +2419,6 @@ function SarahLetterLesson({
     }
     setStatus('revealed')
     void playSarahActivityAudio(deck, activity)
-    window.setTimeout(nextActivity, 1450)
   }
 
   useEffect(() => {
@@ -2447,9 +2440,9 @@ function SarahLetterLesson({
         <Mascot mood="happy" />
         <div>
           <span className="prompt-topline">Lesson {lessonNumber} complete</span>
-          <h2>You practiced {lessonCards.length} sounds!</h2>
+          <h2>You practiced one sound!</h2>
           <div className="letter-review-row" aria-label="Letters practiced">
-            {lessonCards.map((card) => <strong key={card.id}>{card.displayText}</strong>)}
+            <strong>{lessonCards[0]?.lowercase ?? lessonCards[0]?.displayText}</strong>
           </div>
         </div>
         <div className="completion-actions">
@@ -2460,7 +2453,7 @@ function SarahLetterLesson({
     )
   }
 
-  const isIntro = activity.kind === 'intro'
+  const isIntro = activity.kind === 'intro' || activity.kind === 'explore'
   const mood: MascotMood =
     status === 'correct' ? 'happy' : status === 'try-again' || status === 'revealed' ? 'curious' : isIntro ? 'reading' : 'curious'
   const feedback = getSarahFeedback(status, activity)
@@ -2468,11 +2461,12 @@ function SarahLetterLesson({
   return (
     <section className={`focus-lesson ${isIntro ? 'intro' : 'question'} ${status}`}>
       <div className="focus-main">
-        {isIntro ? (
+        {activity.kind === 'explore' ? (
+          <SarahExploreView deck={deck} activity={activity} onNext={nextActivity} />
+        ) : isIntro ? (
           <SarahIntroView
             deck={deck}
             activity={activity}
-            activityIndex={activityIndex}
             onNext={nextActivity}
             showAdultDetails={showAdultDetails}
           />
@@ -2494,6 +2488,9 @@ function SarahLetterLesson({
           <strong>{feedback.title}</strong>
           <span>{feedback.detail}</span>
         </div>
+        {(status === 'correct' || status === 'revealed') && (
+          <button type="button" className="primary feedback-next" onClick={nextActivity}>Next</button>
+        )}
       </div>
     </section>
   )
@@ -2502,36 +2499,65 @@ function SarahLetterLesson({
 function SarahIntroView({
   deck,
   activity,
-  activityIndex,
   onNext,
   showAdultDetails,
 }: {
   deck: LearningDeck
   activity: SarahActivity
-  activityIndex: number
   onNext: () => void
   showAdultDetails: boolean
 }) {
   return (
     <div className="focus-intro">
       <div className="focus-prompt">
-        <span className="stage-label">Sound {Math.min(activityIndex + 1, 5)} of 5</span>
-        <h2>{activity.card.sound} like {activity.card.exampleWord}</h2>
+        <span className="stage-label">Listen and look</span>
+        <h2>This is {activity.card.sound}.</h2>
       </div>
       <div className="focus-visual">
         <div className="letter-display">
-          <strong>{activity.card.displayText}</strong>
+          <strong><span className="primary-letter">{activity.card.lowercase}</span><span className="secondary-letter">{activity.card.uppercase}</span></strong>
           {showAdultDetails && <span className="phonetic-detail">{activity.card.sound}</span>}
         </div>
         <Picture deck={deck} card={activity.card} />
         <span className="example-word">{activity.card.exampleWord}</span>
-        {activity.card.mouthCue && <span className="mouth-cue">{activity.card.mouthCue}</span>}
       </div>
       <div className="focus-actions">
         <AudioPromptButton
           onClick={() => playSarahActivityAudio(deck, activity)}
           label="Listen"
         />
+        <button type="button" className="primary" onClick={onNext}>Next</button>
+      </div>
+    </div>
+  )
+}
+
+function SarahExploreView({
+  deck,
+  activity,
+  onNext,
+}: {
+  deck: LearningDeck
+  activity: SarahActivity
+  onNext: () => void
+}) {
+  return (
+    <div className="focus-intro">
+      <div className="focus-prompt">
+        <span className="stage-label">Tap and listen</span>
+        <h2>Play with {activity.card.sound}.</h2>
+      </div>
+      <button
+        type="button"
+        className="letter-display explore-letter squish"
+        onClick={() => playCardAudio(deck, activity.card)}
+        aria-label={`Hear ${activity.card.sound}`}
+      >
+        <strong>{activity.card.lowercase}</strong>
+        <Picture deck={deck} card={activity.card} />
+      </button>
+      <div className="focus-actions">
+        <AudioPromptButton onClick={() => playCardAudio(deck, activity.card)} label="Hear it again" />
         <button type="button" className="primary" onClick={onNext}>Next</button>
       </div>
     </div>
@@ -2599,7 +2625,7 @@ function SarahQuestionView({
         {questionKind === 'soundToLetter' && (
           <>
             <span className="stage-label">Hear the sound</span>
-            <h2>Find {activity.card.sound}.</h2>
+            <h2>Tap {activity.card.sound}.</h2>
             <AudioPromptButton onClick={handleAudioClick} label="Tap to hear" />
             {showAdultDetails && <span className="phonetic-detail">{activity.card.sound}</span>}
           </>
@@ -2607,7 +2633,7 @@ function SarahQuestionView({
         {questionKind === 'letterToSound' && (
           <>
             <span className="stage-label">Say the sound</span>
-            <h2>Which sound starts {activity.card.exampleWord}?</h2>
+            <h2>Tap its sound.</h2>
             <div className="prompt-letter">{activity.card.displayText}</div>
           </>
         )}
@@ -2675,23 +2701,19 @@ function SarahQuestionView({
             const answer = option.id
             const isSoundQuestion = questionKind === 'letterToSound'
             const showPictureOption = questionKind === 'soundToWord'
-            const showSoundLabel =
-              questionKind === 'letterToSound' ||
-              questionKind === 'beginningSound' ||
-              questionKind === 'wordToBeginningSound'
             return (
               <button
                 key={option.id}
                 type="button"
-                aria-label={`Choice ${choiceKeyLabel(index)}: ${option.displayText}`}
+                aria-label={`Choice ${choiceKeyLabel(index)}: ${questionKind === 'soundToLetter' ? option.lowercase : option.displayText}`}
                 className={`focus-option squish ${showPictureOption ? 'picture-choice' : ''} ${choiceState(answer, correctAnswer, wrongChoice, status)}`}
                 disabled={disabled}
                 onClick={() => onChoose(answer, option)}
               >
                 <span className="choice-key" aria-hidden="true">{choiceKeyLabel(index)}</span>
                 {showPictureOption && <Picture deck={deck} card={option} />}
-                <strong>{showSoundLabel ? option.displayText : option.displayText}</strong>
-                {!isSoundQuestion && !showAdultDetails && option.exampleWord && !showPictureOption && (
+                <strong>{questionKind === 'soundToLetter' ? option.lowercase : option.displayText}</strong>
+                {!isSoundQuestion && questionKind !== 'soundToLetter' && !showAdultDetails && option.exampleWord && !showPictureOption && (
                   <small className="friendly-hint">{option.exampleWord}</small>
                 )}
                 {showPictureOption && <small className="friendly-hint">{option.exampleWord}</small>}
@@ -5242,50 +5264,16 @@ function getChoicePrompt(deck: LearningDeck, card: LearningCard, mode: LearningM
 }
 
 function buildSarahActivities(lessonCards: LearningCard[]): SarahActivity[] {
-  const intros = lessonCards.map((card): SarahActivity => ({ kind: 'intro', card }))
-  const wordToBeginningSound = lessonCards.map((card): SarahActivity => ({
-    kind: 'wordToBeginningSound',
-    card,
-    options: buildSarahOptions(lessonCards, card),
-  }))
-  const soundToWord = lessonCards.map((card): SarahActivity => ({
-    kind: 'soundToWord',
-    card,
-    options: buildSarahOptions(lessonCards, card),
-  }))
-  const upperLower = lessonCards.map((card, index): SarahActivity => {
-    const promptCase = index % 2 === 0 ? 'upper' : 'lower'
-    return {
-      kind: 'upperLowerMatch',
-      card,
-      promptCase,
-      textOptions: buildCaseOptions(lessonCards, card, promptCase),
-      correctText: promptCase === 'upper' ? card.lowercase : card.uppercase,
-    }
-  })
-  const review = lessonCards.map((card, index): SarahActivity => buildSarahReviewActivity(lessonCards, card, index))
-  return [...intros, ...wordToBeginningSound, ...soundToWord, ...upperLower, ...review]
-}
-
-function buildSarahReviewActivity(lessonCards: LearningCard[], card: LearningCard, index: number): SarahActivity {
-  const variant = SARAH_REVIEW_VARIANTS[index % SARAH_REVIEW_VARIANTS.length]
-  if (variant === 'upperLowerMatch') {
-    const promptCase = index % 2 === 0 ? 'upper' : 'lower'
-    return {
-      kind: 'review',
-      reviewVariant: variant,
-      card,
-      promptCase,
-      textOptions: buildCaseOptions(lessonCards, card, promptCase),
-      correctText: promptCase === 'upper' ? card.lowercase : card.uppercase,
-    }
-  }
-  return {
-    kind: 'review',
-    reviewVariant: variant,
-    card,
-    options: buildSarahOptions(lessonCards, card),
-  }
+  const card = lessonCards[0]
+  if (!card) return []
+  const options = buildSarahOptions(lessonCards, card)
+  return [
+    { kind: 'intro', card },
+    { kind: 'explore', card },
+    { kind: 'intro', card },
+    { kind: 'soundToLetter', card, options },
+    { kind: 'intro', card },
+  ]
 }
 
 function buildSarahOptions(lessonCards: LearningCard[], card: LearningCard): LearningCard[] {
@@ -5293,15 +5281,6 @@ function buildSarahOptions(lessonCards: LearningCard[], card: LearningCard): Lea
   return [card, distractor].sort(
     (a, b) => stableSort(`sarah:${card.id}:${a.id}`) - stableSort(`sarah:${card.id}:${b.id}`),
   )
-}
-
-function buildCaseOptions(lessonCards: LearningCard[], card: LearningCard, promptCase: 'upper' | 'lower'): string[] {
-  const distractor = bestDistractor(lessonCards, card)
-  const correct = promptCase === 'upper' ? card.lowercase : card.uppercase
-  const wrong = promptCase === 'upper' ? distractor.lowercase : distractor.uppercase
-  return [correct, wrong]
-    .filter((value): value is string => Boolean(value))
-    .sort((a, b) => stableSort(`case:${card.id}:${a}`) - stableSort(`case:${card.id}:${b}`))
 }
 
 function bestDistractor(lessonCards: LearningCard[], card: LearningCard): LearningCard {
@@ -5317,6 +5296,7 @@ function bestDistractor(lessonCards: LearningCard[], card: LearningCard): Learni
 }
 
 function getSarahQuestionKind(activity: SarahActivity): SarahQuestionKind | 'intro' {
+  if (activity.kind === 'explore') return 'intro'
   return activity.kind === 'review' ? activity.reviewVariant ?? 'soundToLetter' : activity.kind
 }
 
@@ -5326,7 +5306,7 @@ function getSarahCorrectAnswer(activity: SarahActivity): string {
 }
 
 function getSarahFeedback(status: SarahActivityStatus, activity: SarahActivity): { title: string; detail: string } {
-  if (activity.kind === 'intro') {
+  if (activity.kind === 'intro' || activity.kind === 'explore') {
     return { title: 'Listen with Chunky!', detail: `${activity.card.sound} like ${activity.card.exampleWord}.` }
   }
   if (status === 'correct') return { title: 'Yay!', detail: 'Great job!' }
@@ -5580,37 +5560,34 @@ function olderReaderPhonemeProgressKey(deckId: string): string {
 }
 
 function sarahLetterLessonCount(totalCards: number): number {
-  if (totalCards <= LESSON_SIZE) return 1
-  const normalCards = totalCards - SARAH_FINAL_REVIEW_SIZE
-  if (normalCards <= LESSON_SIZE) return 2
-  return Math.ceil((normalCards - LESSON_SIZE) / SARAH_LESSON_ADVANCE) + 2
-}
-
-function sarahFinalLessonStart(totalCards: number): number {
-  return Math.max(0, totalCards - SARAH_FINAL_REVIEW_SIZE)
+  return Math.max(1, totalCards)
 }
 
 function sarahLetterLessonStartForIndex(index: number, totalCards: number): number {
-  const finalStart = sarahFinalLessonStart(totalCards)
-  if (index >= finalStart) return finalStart
-  return Math.floor(index / SARAH_LESSON_ADVANCE) * SARAH_LESSON_ADVANCE
+  if (totalCards <= 0) return 0
+  return Math.max(0, Math.min(totalCards - 1, index))
 }
 
 function sarahLetterLessonStartForNumber(lessonIndex: number, totalCards: number): number {
-  const finalLessonIndex = sarahLetterLessonCount(totalCards) - 1
-  if (lessonIndex >= finalLessonIndex) return sarahFinalLessonStart(totalCards)
-  return lessonIndex * SARAH_LESSON_ADVANCE
+  if (totalCards <= 0) return 0
+  return Math.max(0, Math.min(totalCards - 1, lessonIndex * SARAH_LESSON_ADVANCE))
 }
 
 function sarahLetterLessonNumberForIndex(index: number, totalCards: number): number {
-  const finalStart = sarahFinalLessonStart(totalCards)
-  if (index >= finalStart) return sarahLetterLessonCount(totalCards)
-  return Math.floor(index / SARAH_LESSON_ADVANCE) + 1
+  return sarahLetterLessonStartForIndex(index, totalCards) + 1
 }
 
 function sarahLetterLessonSizeForStart(start: number, totalCards: number): number {
-  if (start >= sarahFinalLessonStart(totalCards)) return Math.min(SARAH_FINAL_REVIEW_SIZE, totalCards - start)
-  return Math.min(LESSON_SIZE, totalCards - start)
+  if (totalCards <= 0) return 0
+  return Math.min(LESSON_SIZE, totalCards)
+}
+
+function sarahLetterPocket(cards: LearningCard[], start: number): LearningCard[] {
+  if (!cards.length) return []
+  return Array.from(
+    { length: Math.min(LESSON_SIZE, cards.length) },
+    (_, offset) => cards[(start + offset) % cards.length],
+  )
 }
 
 function stableSort(value: string): number {
