@@ -28,6 +28,7 @@ export function saveFlashcardStates(deckId: string, states: Map<string, Flashcar
     localStorage.setItem(getFlashcardStorageKey(deckId), JSON.stringify(array))
     recordLocalProgressChange()
   } catch {
+    // Persistence is optional; the current learning session can continue.
   }
 }
 

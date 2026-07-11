@@ -61,7 +61,7 @@ import {
   type CloudSyncResult,
   type CloudSyncStatus,
 } from './cloudProgressSync'
-import { scheduleCard, sortCardsByDue, type FlashcardState, type Rating } from './fsrs'
+import { scheduleCard, type FlashcardState, type Rating } from './fsrs'
 import { loadFlashcardStates, saveFlashcardStates, getCardState } from './flashcardStorage'
 import {
   isHeartWord,
@@ -565,6 +565,10 @@ function App() {
     return () => {
       cancelled = true
     }
+  // Loading is an intentional one-time startup action; `chooseSection` is a
+  // component-local command and adding it here would reload the library on
+  // every render.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const visibleDecks = useMemo(
@@ -960,24 +964,6 @@ function App() {
     saveMathSelection(operation, difficulty)
   }
 
-  function chooseProfile(nextProfile: ProfileId) {
-    const firstDeck = decks.find((deck) => deck.profile === nextProfile) ?? decks[0]
-    setProfile(nextProfile)
-    /* setGrowingView('home') */
-    setActiveDeckId(firstDeck?.id ?? '')
-    setMode(nextProfile === 'anna' ? 'activeRecall' : 'listeningMode')
-    if (nextProfile === 'sarah' && firstDeck) {
-      const saved = localStorage.getItem(`sarah-progress-${firstDeck.id}`)
-      setCardIndex(saved ? parseInt(saved, 10) : 0)
-    } else {
-      setCardIndex(0)
-    }
-    setPhase('learn')
-    setSarahActivityIndex(0)
-    setMenuOpen(false)
-    /* setHundredLessonId('') */
-  }
-
   function choosePhonemesSection() {
     const firstDeck = decks.find((deck) => deck.profile === 'anna' && deck.type === 'phonemes') ?? decks.find(d => d.profile === 'anna')
     setActiveSection('words')
@@ -1059,15 +1045,6 @@ function App() {
     }
     setPhase(mode === 'listeningMode' ? 'learn' : 'question')
     setSarahActivityIndex(0)
-    setMenuOpen(false)
-  }
-
-  function finishCurrentPath() {
-    if (profile === 'anna') {
-      /* setGrowingView('home') */
-    } else {
-      setProfile(null)
-    }
     setMenuOpen(false)
   }
 
@@ -2410,16 +2387,16 @@ function SarahLetterLesson({
 
   useAutoplaySarahActivity(deck, completed ? undefined : activity, `${deck.id}:${lessonNumber}:${activityIndex}`)
 
+  const nextActivity = useCallback(() => {
+    onActivityChange(activityIndex + 1)
+  }, [activityIndex, onActivityChange])
+
   useEffect(() => {
     if (!activity || completed) return
     if (activity.kind !== 'intro') return
     const timer = window.setTimeout(() => nextActivity(), 3000)
     return () => window.clearTimeout(timer)
-  }, [activity, completed, activityIndex])
-
-  function nextActivity() {
-    onActivityChange(activityIndex + 1)
-  }
+  }, [activity, completed, nextActivity])
 
   function restartLesson() {
     onActivityChange(0)
@@ -3633,7 +3610,6 @@ function ExploreMode({
   onDone: () => void
 }) {
   useAutoplayCard(deck, card, `learn:${deck.id}:${card.id}`)
-  const mood: MascotMood = card.type === 'word' ? 'curious' : 'reading'
   const [showSentenceMeaning, setShowSentenceMeaning] = useState(false)
 
   if (card.type === 'sentence') {
@@ -3822,7 +3798,6 @@ function FlashcardMode({
   )
 }
 
-const SWIPE_THRESHOLD = 40
 const SWIPE_LABELS: Record<string, { text: string; color: string }> = {
   up: { text: 'Try More', color: '#7C4DFF' },
   left: { text: 'Almost', color: '#e65100' },
@@ -3947,7 +3922,7 @@ function MathLesson({
       return
     }
     onNext()
-  }, [onLessonComplete, onNext, questionNumber, totalQuestions])
+  }, [card.id, card.mathOperation, deck.cards, difficulty, onLessonComplete, onNext, questionNumber, totalQuestions])
 
   const chooseByIndex = useCallback((index: number) => {
     if (selected || gentleReveal || complete) return
@@ -3963,7 +3938,7 @@ function MathLesson({
       void playNarrationClip('feedback:let-me-help')
       window.setTimeout(finishQuestion, 1600)
     }
-  }, [card.id, complete, finishQuestion, gentleReveal, options, selected])
+  }, [card.equation, card.id, card.mathPrompt, complete, deck, finishQuestion, gentleReveal, options, selected])
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -4421,8 +4396,8 @@ function ChoiceMode({
   const correct = selected === card.id
   const mood: MascotMood = gentleReveal ? 'curious' : selected ? (correct ? 'happy' : 'curious') : 'curious'
 
-  function choose(cardId: string) {
-    if (gentleReveal) return
+  const choose = useCallback((cardId: string) => {
+    if (gentleReveal || selected) return
     setSelected(cardId)
     if (cardId === card.id) {
       markCardRecalled(deck.id, card.id)
@@ -4434,13 +4409,13 @@ function ChoiceMode({
       void playCardAudio(deck, card)
       window.setTimeout(onNext, 1800)
     }
-  }
+  }, [card, deck, gentleReveal, onNext, selected])
 
   const chooseByIndex = useCallback((index: number) => {
     if (gentleReveal || selected) return
     const option = options[index]
     if (option) choose(option.id)
-  }, [gentleReveal, options, selected])
+  }, [choose, gentleReveal, options, selected])
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -4748,15 +4723,6 @@ function Mascot({ size = 'large', mood = 'reading' }: { size?: 'small' | 'large'
       aria-label={`Chunky Learner panda mascot feeling ${mood}`}
       style={{ backgroundImage: `url(${src})` }}
     />
-  )
-}
-
-function ChunkyLogo({ compact = false }: { compact?: boolean }) {
-  return (
-    <div className={`chunky-logo ${compact ? 'compact' : ''}`} aria-label="Chunky Learner">
-      <span>Chunky</span>
-      <strong>Learner</strong>
-    </div>
   )
 }
 
@@ -5576,70 +5542,6 @@ function stableSort(value: string): number {
   return hash >>> 0
 }
 
-function StickerBook({ onClose }: { onClose: () => void }) {
-  const [annaLessons] = useState(() => parseInt(localStorage.getItem('completed-lessons-anna') || '0', 10))
-  const [sarahLessons] = useState(() => parseInt(localStorage.getItem('completed-lessons-sarah') || '0', 10))
-  const [hundredLessons] = useState(() => parseInt(localStorage.getItem('completed-lessons-100') || '0', 10))
-
-  function renderStickers(lessons: number, isAnna: boolean) {
-    const stickers = []
-    const totalSlots = Math.max(6, lessons + (3 - (lessons % 3 || 3)))
-    for (let i = 0; i < totalSlots; i++) {
-      const emojis = isAnna ? ['A1', 'A2', 'A3', 'A4'] : ['S1', 'S2', 'S3', 'S4']
-      stickers.push(i < lessons ? emojis[i % emojis.length] : '')
-    }
-    return stickers
-  }
-
-  function renderHundredLessonStickers(lessons: number) {
-    const stickers = []
-    const trophyStickers = ['100', 'WIN', 'BOOK', 'STAR']
-    const totalSlots = Math.max(6, lessons + (3 - (lessons % 3 || 3)))
-    for (let i = 0; i < totalSlots; i++) {
-      stickers.push(i < lessons ? trophyStickers[i % trophyStickers.length] : '')
-    }
-    return stickers
-  }
-
-  return (
-    <section className="sticker-book-overlay">
-      <div className="sticker-book-content">
-        <div className="sticker-book-header">
-          <h2>My Stickers</h2>
-          <button type="button" onClick={onClose} className="squish">Close</button>
-        </div>
-        
-        <h3 style={{marginTop: 0, color: 'var(--brand-dark)'}}>Older Reader ({annaLessons})</h3>
-        <div className="sticker-grid" style={{marginBottom: '2rem'}}>
-          {renderStickers(annaLessons, true).map((s, i) => (
-            <div key={i} className={`sticker-slot ${s ? 'earned pulse' : ''}`}>
-              {s}
-            </div>
-          ))}
-        </div>
-
-        <h3 style={{marginTop: 0, color: 'var(--brand-dark)'}}>Earliest Reader ({sarahLessons})</h3>
-        <div className="sticker-grid" style={{marginBottom: '2rem'}}>
-          {renderStickers(sarahLessons, false).map((s, i) => (
-            <div key={i} className={`sticker-slot ${s ? 'earned pulse' : ''}`}>
-              {s}
-            </div>
-          ))}
-        </div>
-
-        <h3 style={{marginTop: 0, color: 'var(--brand-dark)'}}>100 Lessons ({hundredLessons})</h3>
-        <div className="sticker-grid">
-          {renderHundredLessonStickers(hundredLessons).map((s, i) => (
-            <div key={i} className={`sticker-slot ${s ? 'earned pulse' : ''}`}>
-              {s}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function fireworksCelebration() {
   const duration = 5500
   const animationEnd = Date.now() + duration
@@ -5744,7 +5646,14 @@ function OlderReaderPhonemeLesson({
     onLessonComplete()
   }, [isComplete, onLessonComplete])
 
-  if (isComplete) {
+  const activity = activities[activityIndex]
+  useEffect(() => {
+    if (!activity || activity.kind !== 'intro') return
+    const card = activity.card
+    void playNarrationClip(card.id, card.speechCue, resolveAssetUrl(deck, card.audio))
+  }, [activity, deck])
+
+  if (isComplete || !activity) {
     return (
       <section className="lesson-complete">
         <div className="celebration-burst" aria-hidden="true" />
@@ -5767,18 +5676,11 @@ function OlderReaderPhonemeLesson({
   )
 }
 
-  const activity = activities[activityIndex]
   const card = activity.card
   const audioAsset = resolveAssetUrl(deck, card.audio)
   const exampleAudioAsset = resolveAssetUrl(deck, card.exampleAudio)
   const isIntro = activity.kind === 'intro'
   const options = activity.options || []
-
-  useEffect(() => {
-    if (isIntro) {
-      void playNarrationClip(card.id, card.speechCue, audioAsset)
-    }
-  }, [isIntro, audioAsset, card.speechCue, card.id])
 
   function handleSelect(optionCard: LearningCard) {
     if (status !== 'idle' && status !== 'try-again') return

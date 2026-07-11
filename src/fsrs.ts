@@ -209,7 +209,7 @@ function nextStability(s: number, d: number, elapsed_days: number, rating: Ratin
     return recallPenalty(s, d, elapsed_days)
   }
   if (is_relearning) {
-    return relearningStability(s, d, elapsed_days, rating)
+    return relearningStability(s, d, elapsed_days)
   }
   return recallStability(s, d, elapsed_days, rating)
 }
@@ -224,7 +224,7 @@ function recallPenalty(s: number, d: number, elapsed_days: number): number {
   return Math.max(0.1, DEFAULT_PARAMS[11] * Math.pow(d, -DEFAULT_PARAMS[12]) * (Math.pow(s + 1, DEFAULT_PARAMS[13]) - 1) * Math.exp((1 - REQUEST_RETENTION) * elapsed_days / s))
 }
 
-function relearningStability(s: number, d: number, elapsed_days: number, rating: Rating): number {
+function relearningStability(s: number, d: number, elapsed_days: number): number {
   return Math.max(0.1, DEFAULT_PARAMS[11] * Math.pow(d, -DEFAULT_PARAMS[12]) * (Math.pow(s + 1, DEFAULT_PARAMS[13]) - 1) * Math.exp((1 - REQUEST_RETENTION) * elapsed_days / s))
 }
 
