@@ -22,7 +22,7 @@ export interface PatternMastery {
 
 const STORAGE_PREFIX = 'chunky-reader:pattern-mastery:v1:'
 const RUNG_UP_STREAK = 2
-const NEAR_MISS_UNLOCK_CORRECT = 3
+const NEAR_MISS_UNLOCK_CORRECT = 1
 
 export function readPatternMastery(deckId: string, patternId: string): PatternMastery {
   try {

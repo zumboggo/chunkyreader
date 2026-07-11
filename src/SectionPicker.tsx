@@ -118,7 +118,14 @@ export function SectionPicker({
               <span>{section.cta}</span>
             </div>
             {section.id === 'words' ? (
-              <GreenEggsJourney mastered={greenEggs.mastered} total={greenEggs.total} compact />
+              <>
+                {greenEggs.mastered > 0 && (
+                  <span className="words-mastered-badge">
+                    {greenEggs.mastered} {greenEggs.mastered === 1 ? 'word' : 'words'} you can read!
+                  </span>
+                )}
+                <GreenEggsJourney mastered={greenEggs.mastered} total={greenEggs.total} compact />
+              </>
             ) : (
               <SectionProgressBadge count={getSectionProgress(section.id)} />
             )}
@@ -465,13 +472,29 @@ function RoomPanel({
     )
   }
 
+  const equippedWindowId = equipped['window']
+  const equippedWindow = equippedWindowId ? getRewardById(equippedWindowId) : undefined
+  const bgSrc = equippedWindow?.id === 'garden-background'
+    ? `${import.meta.env.BASE_URL}assets/rewards/garden-background.webp`
+    : `${import.meta.env.BASE_URL}assets/panda-room-bg.webp`
+  const equippedCount = Object.values(equipped).filter(Boolean).length
+
   return (
     <div className="room-scene-wrapper">
       <img
-        src={`${import.meta.env.BASE_URL}assets/panda-room-bg.webp`}
+        src={bgSrc}
         alt="Panda's cosy room"
         className="room-scene-bg"
+        onError={(e) => { e.currentTarget.style.display = 'none' }}
       />
+      <div className="room-panda-mascot" aria-hidden="true">
+        <img
+          src={`${import.meta.env.BASE_URL}assets/profiles/sarah-reading.png`}
+          alt=""
+          className="room-panda-sprite"
+        />
+        {equippedCount >= 6 && <span className="room-panda-sparkle">✨</span>}
+      </div>
       {ROOM_SLOTS.map(({ slot, emoji, label, top, left }) => {
         const equippedId = equipped[slot]
         const equippedItem = equippedId ? getRewardById(equippedId) : undefined

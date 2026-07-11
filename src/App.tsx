@@ -103,6 +103,7 @@ type OlderReaderQuestionKind =
   | 'review'
   | 'sentenceBridge'
   | 'readTogether'
+  | 'speedRound'
   // Pattern-first activities (explicit sound-spelling instruction):
   | 'meetPattern' // I do: show the pattern, play its sound, blend an example
   | 'tapPattern' // We do: "Tap the part that says /sh/" — 2 tap segments
@@ -2748,6 +2749,7 @@ function OlderReaderLesson({
   const isReadTogether = activity?.kind === 'readTogether'
   const isPatternSentence = activity?.kind === 'patternSentence'
   const isSentenceBridge = activity?.kind === 'sentenceBridge'
+  const isSpeedRound = activity?.kind === 'speedRound'
   const isTextChoice = activity?.kind === 'tapPattern' || activity?.kind === 'chainStep'
   const isPatternQuestion = Boolean(activity?.pattern) && !isMeetPattern && !isPatternSentence
   const showCompletion = complete || activityIndex >= activities.length
@@ -2770,6 +2772,13 @@ function OlderReaderLesson({
     showCompletion ? 'These words are growing!' : prompt,
     `${deck.id}:${lessonNumber}:${showCompletion ? 'complete' : activityIndex}`,
   )
+
+  // Speed round auto-advance timer
+  useEffect(() => {
+    if (!isSpeedRound || showCompletion || selected) return
+    const timer = window.setTimeout(() => finishActivity(), 2500)
+    return () => window.clearTimeout(timer)
+  }, [isSpeedRound, showCompletion, selected, activityIndex])
 
   useEffect(() => {
     markWordLessonIntroduced(deck.id, lessonCards, lessonId)
@@ -2806,7 +2815,16 @@ function OlderReaderLesson({
           ...counts,
           [activity.card.id]: (counts[activity.card.id] ?? 0) + 1,
         }))
-        setCarefulStreak((streak) => streak + 1)
+        setCarefulStreak((streak) => {
+          const next = streak + 1
+          if (next >= 3) {
+            window.setTimeout(() => {
+              markCardsRecalled(deck.id, lessonCards)
+              setComplete(true)
+            }, 1200)
+          }
+          return next
+        })
       }
       window.setTimeout(finishActivity, 650)
       return
@@ -3054,6 +3072,42 @@ function OlderReaderLesson({
           <div className="feedback-text">
             <strong>This word is</strong>
             <span>{optionLabel(activity.card)}</span>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (isSpeedRound && activity && !showCompletion) {
+    return (
+      <section className="focus-lesson older-reader-lesson speed-round-lesson">
+        <div className="focus-main">
+          <div className="peek-phase speed-round-phase">
+            <span className="stage-label">Speed round!</span>
+            <div className="peek-card">
+              <div className="peek-word speed-word">{optionLabel(activity.card)}</div>
+            </div>
+            <div className="speed-timer-bar">
+              <div className="speed-timer-fill" />
+            </div>
+            <button
+              type="button"
+              className="primary speed-tap-btn"
+              onClick={() => {
+                playSfx('correct')
+                void playCardAudio(deck, activity.card)
+                window.setTimeout(finishActivity, 800)
+              }}
+            >
+              I read it!
+            </button>
+          </div>
+        </div>
+        <div className="focus-feedback">
+          <Mascot mood="curious" size="small" />
+          <div className="feedback-text">
+            <strong>Quick! Read the word!</strong>
+            <span>Tap before time runs out</span>
           </div>
         </div>
       </section>
@@ -3414,11 +3468,13 @@ function OlderReaderLesson({
             <div className="focus-prompt">
               <span className="stage-label">Lesson {lessonNumber}</span>
               <h2>
-                {milestoneHit > 0
-                  ? `${milestoneHit} words closer to your book!`
-                  : bloomedWords > 0
-                    ? `${bloomedWords} ${bloomedWords === 1 ? 'word bloomed' : 'words bloomed'}!`
-                    : 'These words are sprouting!'}
+                {carefulStreak >= 3
+                  ? '3 perfect reads! Lesson done!'
+                  : milestoneHit > 0
+                    ? `${milestoneHit} words closer to your book!`
+                    : bloomedWords > 0
+                      ? `${bloomedWords} ${bloomedWords === 1 ? 'word bloomed' : 'words bloomed'}!`
+                      : 'These words are sprouting!'}
               </h2>
             </div>
             <GreenEggsJourney mastered={greenEggs.mastered} total={greenEggs.total} />
@@ -3829,6 +3885,8 @@ type FrontMode = 'text' | 'audio' | 'picture'
 function getFrontMode(deck: LearningDeck, card: LearningCard | undefined, index: number): FrontMode {
   if (!card || !card.image) return 'text'
   if (deck.type === 'reading-words') {
+    const seen = readWordRecognitionProgress(deck.id, card.id).successfulLessons > 0
+    if (seen) return 'audio'
     return stableHash(`${card.id}:${index}`) % 3 === 0 ? 'audio' : 'text'
   }
   const bucket = stableHash(`${card.id}:${index}`) % 10
@@ -4873,6 +4931,14 @@ function buildOlderReaderActivities(deckId: string, lessonCards: LearningCard[])
     options: [] as LearningCard[],
   }))
 
+  // Speed round for mastered words — quick recognition challenge
+  const masteredWords = wordCards.filter((card) => readWordRecognitionProgress(deckId, card.id).successfulLessons >= 2)
+  const speedRoundActivities: OlderReaderActivity[] = masteredWords.slice(0, 2).map((card) => ({
+    kind: 'speedRound' as OlderReaderQuestionKind,
+    card,
+    options: [] as LearningCard[],
+  }))
+
   const focus = selectFocusPattern(deckId, wordCards)
   const practice: OlderReaderActivity[] = []
 
@@ -4909,6 +4975,19 @@ function buildOlderReaderActivities(deckId: string, lessonCards: LearningCard[])
     options: buildOlderReaderOptions(wordCards, sentenceCard, 'sentenceBridge', false),
   })
 
+  // Extra sentence bridges for mastered words — real reading practice
+  for (const card of wordCards) {
+    if (card.id === sentenceCard.id) continue
+    if (!card.exampleSentence) continue
+    if (readWordRecognitionProgress(deckId, card.id).successfulLessons >= 2) {
+      practice.push({
+        kind: 'sentenceBridge',
+        card,
+        options: buildOlderReaderOptions(wordCards, card, 'sentenceBridge', true),
+      })
+    }
+  }
+
   // Keep lessons under ~4 minutes: cap practice length, pattern work first.
   const cappedPractice = practice.slice(0, OLDER_READER_RECOGNITION_COUNT + 2)
 
@@ -4918,6 +4997,7 @@ function buildOlderReaderActivities(deckId: string, lessonCards: LearningCard[])
 
   return [
     ...peekActivities,
+    ...speedRoundActivities,
     ...(focus ? [{ kind: 'meetPattern' as OlderReaderQuestionKind, card: focus.matches[0].card, options: [], pattern: focus.pattern }] : []),
     ...cappedPractice,
     finale,
