@@ -8587,3 +8587,230 @@ body.dark-mode .words-lesson-shell .completion-card h2 {
     min-height: 108px;
   }
 }
+
+/* Pattern-first Word Mode: a small, repeatable visual language for phonics
+   instruction. These pieces intentionally use the existing Words shell so
+   the teaching sequence feels like one story rather than a new game. */
+.words-lesson-shell .meet-pattern-phase {
+  justify-content: center;
+  min-height: min(390px, 52dvh);
+}
+
+.words-lesson-shell .pattern-tile {
+  display: grid;
+  place-items: center;
+  width: clamp(126px, 26vw, 176px);
+  aspect-ratio: 1;
+  border: 6px solid rgba(255, 255, 255, 0.94);
+  border-radius: 34px;
+  background: linear-gradient(145deg, #a983ea, #7857d2);
+  color: #fff;
+  font-size: clamp(3.4rem, 12vw, 5.8rem);
+  font-weight: 950;
+  letter-spacing: 0;
+  line-height: 1;
+  box-shadow: 0 0 0 10px rgba(190, 157, 245, 0.22), 0 16px 28px rgba(89, 65, 164, 0.26);
+  animation: pattern-soft-pulse 2.4s ease-in-out infinite;
+}
+
+.words-lesson-shell .pattern-tile:focus-visible,
+.words-lesson-shell .prompt-pattern:focus-visible {
+  outline: 4px solid #ffd76b;
+  outline-offset: 4px;
+}
+
+.words-lesson-shell .pattern-cue {
+  max-width: 22ch;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 244, 251, 0.9);
+  color: #695485;
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+  font-weight: 850;
+  text-align: center;
+}
+
+.words-lesson-shell .pattern-example {
+  padding: 7px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.words-lesson-shell .prompt-pattern,
+.words-lesson-shell .pattern-glow {
+  display: inline-block;
+  padding: 0 0.08em;
+  border-radius: 0.18em;
+  background: #ffe27c;
+  color: #5c3b95;
+  box-shadow: 0 3px 0 rgba(232, 182, 63, 0.35);
+}
+
+.words-lesson-shell .pattern-glow {
+  margin-inline: 0.02em;
+  animation: pattern-glow 1.25s ease-in-out infinite;
+}
+
+.words-lesson-shell .segment-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(100%, 500px);
+  margin-inline: auto;
+}
+
+.words-lesson-shell .older-reader-lesson .focus-option.segment-option {
+  display: grid;
+  min-height: clamp(108px, 17dvh, 144px);
+  grid-template-rows: 1fr;
+  align-items: center;
+  padding: 12px;
+}
+
+.words-lesson-shell .older-reader-lesson .focus-option.segment-option strong {
+  align-self: center;
+  min-height: 0;
+  padding: clamp(20px, 4dvh, 30px) 6px;
+  font-size: clamp(2.2rem, 9vw, 3.8rem);
+}
+
+.words-lesson-shell .older-reader-lesson .focus-option.letter-tile strong {
+  background: linear-gradient(145deg, #fff0b8, #ffda7b);
+  color: #714922;
+}
+
+.words-lesson-shell .older-reader-lesson .focus-option.pattern-hint {
+  border-color: #efd672;
+  background: #fffdf2;
+  box-shadow: 0 0 0 6px rgba(255, 220, 112, 0.24), 0 13px 28px rgba(91, 79, 126, 0.13);
+}
+
+.words-lesson-shell .older-reader-lesson .focus-option.pattern-hint strong {
+  background: #fff0ac;
+  color: #66457e;
+}
+
+.words-lesson-shell .chain-word {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  min-width: min(100%, 180px);
+  margin: 2px auto 0;
+  font-size: clamp(2.4rem, 10vw, 4.5rem);
+  font-weight: 950;
+  line-height: 1;
+  text-align: center;
+}
+
+.words-lesson-shell .chain-slot,
+.words-lesson-shell .chain-fixed {
+  display: grid;
+  place-items: center;
+  min-width: 1.1em;
+  padding: 0.12em 0.16em;
+  border: 4px solid rgba(255, 255, 255, 0.94);
+  background: #fff5c6;
+  color: #7650c8;
+  box-shadow: 0 6px 14px rgba(91, 79, 126, 0.12);
+}
+
+.words-lesson-shell .chain-slot {
+  border-radius: 16px 0 0 16px;
+  background: #ffd9e6;
+  color: #dc5484;
+}
+
+.words-lesson-shell .chain-slot.filled {
+  background: #dff7d7;
+  color: #2d8350;
+}
+
+.words-lesson-shell .chain-fixed {
+  border-left: 0;
+  border-radius: 0 16px 16px 0;
+}
+
+.words-lesson-shell .pattern-sentence-card {
+  min-height: min(360px, 50dvh);
+  align-content: center;
+}
+
+.words-lesson-shell .pattern-sentence-card h2 {
+  max-width: 17ch;
+  font-size: clamp(1.8rem, 7vw, 3.6rem);
+  line-height: 1.28;
+}
+
+.words-lesson-shell .sentence-word {
+  display: inline;
+}
+
+.words-lesson-shell .pattern-flower-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: min(100%, 360px);
+  margin: 12px auto 0;
+  padding: 9px 14px;
+  border: 3px solid rgba(255, 255, 255, 0.88);
+  border-radius: 999px;
+  background: rgba(246, 255, 231, 0.88);
+  box-shadow: 0 8px 18px rgba(91, 123, 73, 0.12);
+}
+
+.words-lesson-shell .pattern-flower {
+  flex: 0 0 auto;
+  font-size: 1.65rem;
+  line-height: 1;
+}
+
+.words-lesson-shell .pattern-flower-label {
+  color: #4e743f;
+  font-weight: 900;
+  text-align: left;
+}
+
+@keyframes pattern-soft-pulse {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.035); }
+}
+
+@keyframes pattern-glow {
+  0%, 100% { background: #ffe27c; }
+  50% { background: #fff2ab; }
+}
+
+@media (max-width: 520px) {
+  .words-lesson-shell .meet-pattern-phase {
+    min-height: min(320px, 47dvh);
+  }
+
+  .words-lesson-shell .pattern-tile {
+    width: clamp(112px, 34vw, 140px);
+    border-radius: 28px;
+  }
+
+  .words-lesson-shell .older-reader-lesson .focus-option.segment-option {
+    min-height: clamp(94px, 15dvh, 122px);
+  }
+
+  .words-lesson-shell .older-reader-lesson .focus-option.segment-option strong {
+    padding-block: 18px;
+    font-size: clamp(1.9rem, 9vw, 3rem);
+  }
+
+  .words-lesson-shell .pattern-sentence-card {
+    min-height: min(280px, 44dvh);
+  }
+
+  .words-lesson-shell .pattern-flower-row {
+    margin-top: 8px;
+    padding: 7px 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .words-lesson-shell .pattern-tile,
+  .words-lesson-shell .pattern-glow {
+    animation: none;
+  }
+}

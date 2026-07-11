@@ -33,6 +33,7 @@ const PREFIX_SYNC_KEYS = [
   'chunky-reader:older-reader-phonemes:',
   'chunky-reader:flashcard-states:',
   'chunky-reader:word-recognition:',
+  'chunky-reader:pattern-mastery:',
   'chunky-reader:green-eggs:milestones:',
 ]
 
@@ -328,6 +329,9 @@ function mergeStorageValue(
   if (key.startsWith('chunky-reader:word-recognition:')) {
     return mergeWordRecognitionValue(localValue, remoteValue, timeValue(local.localUpdatedAt) >= timeValue(remote.localUpdatedAt))
   }
+  if (key.startsWith('chunky-reader:pattern-mastery:')) {
+    return mergePatternMasteryValue(localValue, remoteValue, timeValue(local.localUpdatedAt) >= timeValue(remote.localUpdatedAt))
+  }
   if (key.startsWith('chunky-reader:green-eggs:milestones:')) {
     const localList = parseJson(localValue)
     const remoteList = parseJson(remoteValue)
@@ -338,6 +342,26 @@ function mergeStorageValue(
     return stringify([...merged].sort((a, b) => a - b))
   }
   return timeValue(local.localUpdatedAt) >= timeValue(remote.localUpdatedAt) ? localValue : remoteValue
+}
+
+// Pattern mastery merges by keeping the strongest evidence from either side,
+// so a taught pattern can never be un-learned by a stale cloud copy.
+function mergePatternMasteryValue(localValue: string, remoteValue: string, localNewer: boolean): string {
+  const local = parseJson(localValue)
+  const remote = parseJson(remoteValue)
+  if (!isRecord(local) || !isRecord(remote)) return localNewer ? localValue : remoteValue
+  const localRung = Number(local.rung || 0)
+  const remoteRung = Number(remote.rung || 0)
+  const winner = localRung >= remoteRung ? local : remote
+  const introducedCandidates = [Number(local.introducedAt || 0), Number(remote.introducedAt || 0)].filter((value) => value > 0)
+  return stringify({
+    rung: Math.max(localRung, remoteRung),
+    firstTryStreak: Number(winner.firstTryStreak || 0),
+    totalCorrect: Math.max(Number(local.totalCorrect || 0), Number(remote.totalCorrect || 0)),
+    totalAttempts: Math.max(Number(local.totalAttempts || 0), Number(remote.totalAttempts || 0)),
+    introducedAt: introducedCandidates.length ? Math.min(...introducedCandidates) : undefined,
+    lastPracticedAt: Math.max(Number(local.lastPracticedAt || 0), Number(remote.lastPracticedAt || 0)) || undefined,
+  })
 }
 
 // Word-recognition keys hold either per-word mastery objects or per-lesson
