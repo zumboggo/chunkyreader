@@ -16,10 +16,10 @@ export type ControllerKeyMap = Record<ControllerChoice, string>
 export const controllerChoices: ControllerChoice[] = ['A', 'B', 'C', 'D', 'E']
 
 export const defaultControllerKeys: ControllerKeyMap = {
-  A: '3',
-  B: '4',
-  C: '1',
-  D: '2',
+  A: '1',
+  B: '2',
+  C: '3',
+  D: '4',
   E: '5',
 }
 
