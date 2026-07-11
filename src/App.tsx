@@ -63,6 +63,23 @@ import {
 } from './cloudProgressSync'
 import { scheduleCard, sortCardsByDue, type FlashcardState, type Rating } from './fsrs'
 import { loadFlashcardStates, saveFlashcardStates, getCardState } from './flashcardStorage'
+import {
+  isHeartWord,
+  matchPattern,
+  patternsForWord,
+  patternTapSegments,
+  PHONICS_PATTERNS,
+  type PatternMatch,
+  type PhonicsPattern,
+} from './phonicsPatterns'
+import {
+  isNearMissUnlocked,
+  isPatternMastered,
+  patternFlowerStage,
+  readPatternMastery,
+  recordPatternAnswer,
+  recordPatternIntroduced,
+} from './patternMastery'
 type MascotMood = 'happy' | 'reading' | 'sad' | 'curious'
 type LessonPhase = 'learn' | 'question'
 type GrowingReaderView = 'words' | 'phonemes' | 'collection'
@@ -83,10 +100,17 @@ type OlderReaderQuestionKind =
   | 'wordToPicture'
   | 'audioToWord'
   | 'startsWithSound'
-  | 'wordFamily'
   | 'review'
   | 'sentenceBridge'
   | 'readTogether'
+  // Pattern-first activities (explicit sound-spelling instruction):
+  | 'meetPattern' // I do: show the pattern, play its sound, blend an example
+  | 'tapPattern' // We do: "Tap the part that says /sh/" — 2 tap segments
+  | 'patternToWord' // You do: "Which word has /sh/?" vs clearly-different word
+  | 'wordInFamily' // Harder: hear a word, both choices share the pattern
+  | 'containsPattern' // Mastery-tier: "Which word has <sh>?" (chunk shown + voiced)
+  | 'chainStep' // Word building: swap one letter tile to make the next word
+  | 'patternSentence' // Payoff: tiny decodable sentence with the pattern tinted
 
 type OlderReaderPhonemeActivityKind =
   | 'intro'
@@ -112,6 +136,18 @@ interface OlderReaderActivity {
   card: LearningCard
   options: LearningCard[]
   challenge?: boolean
+  /** The taught pattern this activity teaches or checks. */
+  pattern?: PhonicsPattern
+  /** tapPattern: the two tap targets, e.g. ['sh', 'ip']. */
+  segments?: [string, string]
+  /** tapPattern: which segment is the pattern. */
+  correctSegment?: 0 | 1
+  /** chainStep: the word being built, its fixed part and letter choices. */
+  chainWord?: string
+  chainFixed?: string
+  chainChoices?: [string, string]
+  chainCorrect?: string
+  chainPrev?: string
 }
 
 interface OlderReaderPhonemeActivity {
@@ -159,8 +195,6 @@ const SARAH_LESSON_ADVANCE = 2
 // 8 practice reps over 4 words (2 each) keeps lessons short for a 5-year-old
 // while still giving every word the two first-try chances mastery needs.
 const OLDER_READER_RECOGNITION_COUNT = 8
-const OLDER_READER_ACTIVITY_COUNT = OLDER_READER_WORD_LESSON_SIZE + OLDER_READER_RECOGNITION_COUNT + 1
-const OLDER_READER_PEEK_COUNT = OLDER_READER_WORD_LESSON_SIZE
 const SARAH_REVIEW_VARIANTS: SarahQuestionKind[] = [
   'wordToBeginningSound',
   'soundToWord',
@@ -2012,7 +2046,7 @@ function LearningScreen({
         />
       ) : isOlderReaderWords ? (
         <OlderReaderLesson
-          key={`${activeDeck.id}:${lessonNumber}:${sarahActivityIndex}`}
+          key={`${activeDeck.id}:${lessonNumber}`}
           deck={activeDeck}
           lessonCards={lessonCards}
           activities={olderReaderActivities}
@@ -2728,21 +2762,30 @@ function OlderReaderLesson({
   const [milestoneHit, setMilestoneHit] = useState(0)
   const [greenEggsBefore] = useState(() => getGreenEggsProgress([deck]))
   const completionRecordedRef = useRef(false)
-  const firstTryCorrectCountsRef = useRef<Record<string, number>>({})
+  const [firstTryCorrectCounts, setFirstTryCorrectCounts] = useState<Record<string, number>>({})
   const retryUnlockTimerRef = useRef<number | null>(null)
   const lessonId = `${deck.id}:lesson:${lessonNumber}`
   const correct = selected === activity?.card.id
   const isPeek = activity?.kind === 'peek'
+  const isMeetPattern = activity?.kind === 'meetPattern'
   const isReadTogether = activity?.kind === 'readTogether'
+  const isPatternSentence = activity?.kind === 'patternSentence'
   const isSentenceBridge = activity?.kind === 'sentenceBridge'
+  const isTextChoice = activity?.kind === 'tapPattern' || activity?.kind === 'chainStep'
+  const isPatternQuestion = Boolean(activity?.pattern) && !isMeetPattern && !isPatternSentence
   const showCompletion = complete || activityIndex >= activities.length
+  const focusPattern = useMemo(
+    () => activities.find((item) => item.kind === 'meetPattern')?.pattern,
+    [activities],
+  )
   const prompt = activity ? getOlderReaderPrompt(activity) : ''
+
   const promptNarration = useNarration(
     showCompletion
       ? 'older-reader:growing'
-      : isPeek
+      : isPeek || isMeetPattern
         ? undefined
-        : activity?.kind === 'audioToWord'
+        : activity?.kind === 'audioToWord' || activity?.kind === 'wordInFamily'
           ? undefined
           : activity
             ? `older-reader:prompt:${activity.kind}`
@@ -2771,23 +2814,30 @@ function OlderReaderLesson({
     if (!activity || selected || retryLocked || showCompletion) return
     const option = activity.options[index]
     if (!option || missedIds.includes(option.id)) return
+    const firstTap = missedIds.length === 0
     if (option.id === activity.card.id) {
       setSelected(option.id)
       playSfx('correct')
       void playNarrationClip('feedback:great')
       void playCardAudio(deck, activity.card)
-      const firstTry = missedIds.length === 0
-      updateCardProgress(deck.id, activity.card.id, { recalledAt: Date.now(), firstTryRecalled: firstTry })
-      if (firstTry) {
-        firstTryCorrectCountsRef.current[activity.card.id] = (firstTryCorrectCountsRef.current[activity.card.id] ?? 0) + 1
+      updateCardProgress(deck.id, activity.card.id, { recalledAt: Date.now(), firstTryRecalled: firstTap })
+      if (isPatternQuestion && activity.pattern) {
+        recordPatternAnswer(deck.id, activity.pattern.id, firstTap)
+      }
+      if (firstTap) {
+        setFirstTryCorrectCounts((counts) => ({
+          ...counts,
+          [activity.card.id]: (counts[activity.card.id] ?? 0) + 1,
+        }))
         setCarefulStreak((streak) => streak + 1)
       }
       window.setTimeout(finishActivity, 650)
       return
     }
     // Gentle retry: no reveal, no forced advance. The wrong option softly
-    // dims, the target word plays as a hint, and she taps again — so every
-    // question ends with her succeeding, never with watching the answer.
+    // dims, the taught pattern glows inside the right word, the sound and
+    // word replay as a hint, and she taps again — so every question ends
+    // with her succeeding, never with watching the answer.
     setCarefulStreak(0)
     setRetryLocked(true)
     if (retryUnlockTimerRef.current !== null) window.clearTimeout(retryUnlockTimerRef.current)
@@ -2797,9 +2847,62 @@ function OlderReaderLesson({
     }, 1400)
     setMissedIds((ids) => [...ids, option.id])
     void playNarrationClip('feedback:let-me-help')
-    void playCardAudio(deck, activity.card)
-    if (missedIds.length === 0) {
+    if (isPatternQuestion && activity.pattern) {
+      // Blend it back together: pattern sound first, then the whole word.
+      const pattern = activity.pattern
+      void playNarrationClip(`pattern:${pattern.id}`, pattern.soundTts)
+      window.setTimeout(() => void playCardAudio(deck, activity.card), 900)
+      if (firstTap) recordPatternAnswer(deck.id, pattern.id, false)
+    } else {
+      void playCardAudio(deck, activity.card)
+    }
+    if (firstTap) {
       updateCardProgress(deck.id, activity.card.id, { recalledAt: Date.now(), firstTryRecalled: false })
+    }
+  }, [activity, deck, finishActivity, isPatternQuestion, missedIds, retryLocked, selected, showCompletion])
+
+  // Tap-target activities (tap the pattern chunk, build the chain word) use
+  // text tiles instead of word cards, but keep the same kind retry flow.
+  const chooseTextByIndex = useCallback((index: number) => {
+    if (!activity || selected || retryLocked || showCompletion) return
+    const key = `text:${index}`
+    if (missedIds.includes(key)) return
+    const firstTap = missedIds.length === 0
+    const pattern = activity.pattern
+    const isCorrect = activity.kind === 'tapPattern'
+      ? index === activity.correctSegment
+      : activity.chainChoices?.[index] === activity.chainCorrect
+    if (isCorrect) {
+      setSelected(key)
+      playSfx('correct')
+      void playNarrationClip('feedback:great')
+      if (activity.kind === 'chainStep' && activity.chainWord) {
+        void playNarrationClip(
+          `word:${activity.chainWord}`,
+          activity.chainWord,
+          deckAudioPackPath(deck, `audio/words/anne-soft-female-v2/${activity.chainWord}.mp3`),
+        )
+      } else if (pattern) {
+        void playNarrationClip(`pattern:${pattern.id}`, pattern.soundTts)
+        window.setTimeout(() => void playCardAudio(deck, activity.card), 900)
+      }
+      if (pattern) recordPatternAnswer(deck.id, pattern.id, firstTap)
+      if (firstTap) setCarefulStreak((streak) => streak + 1)
+      window.setTimeout(finishActivity, activity.kind === 'chainStep' ? 1100 : 900)
+      return
+    }
+    setCarefulStreak(0)
+    setRetryLocked(true)
+    if (retryUnlockTimerRef.current !== null) window.clearTimeout(retryUnlockTimerRef.current)
+    retryUnlockTimerRef.current = window.setTimeout(() => {
+      setRetryLocked(false)
+      retryUnlockTimerRef.current = null
+    }, 1400)
+    setMissedIds((ids) => [...ids, key])
+    void playNarrationClip('feedback:let-me-help')
+    if (pattern) {
+      void playNarrationClip(`pattern:${pattern.id}`, pattern.soundTts)
+      if (firstTap) recordPatternAnswer(deck.id, pattern.id, false)
     }
   }, [activity, deck, finishActivity, missedIds, retryLocked, selected, showCompletion])
 
@@ -2811,12 +2914,56 @@ function OlderReaderLesson({
 
   useEffect(() => {
     if (!activity || showCompletion || isPeek || isReadTogether) return
-    if (activity.kind !== 'audioToWord') return
+    if (activity.kind !== 'audioToWord' && activity.kind !== 'wordInFamily') return
     const timer = window.setTimeout(() => {
       void playCardAudio(deck, activity.card)
     }, 250)
     return () => window.clearTimeout(timer)
   }, [activity, deck, showCompletion, isPeek, isReadTogether])
+
+  // "I do": meet the pattern — show it, say its sound, blend an example word,
+  // then move on. No question is asked before the sound has been taught.
+  useEffect(() => {
+    if (!activity || showCompletion || !isMeetPattern || !activity.pattern) return
+    const pattern = activity.pattern
+    recordPatternIntroduced(deck.id, pattern.id)
+    const soundTimer = window.setTimeout(() => {
+      void playNarrationClip(`pattern:${pattern.id}`, pattern.soundTts)
+    }, 350)
+    const wordTimer = window.setTimeout(() => {
+      void playCardAudio(deck, activity.card)
+    }, 1700)
+    const advanceTimer = window.setTimeout(() => {
+      finishActivity()
+    }, 3400)
+    return () => {
+      window.clearTimeout(soundTimer)
+      window.clearTimeout(wordTimer)
+      window.clearTimeout(advanceTimer)
+    }
+  }, [activity, deck, finishActivity, isMeetPattern, showCompletion])
+
+  // Pattern-question audio: play the taught sound before asking (audio-first).
+  useEffect(() => {
+    if (!activity || showCompletion) return
+    if (activity.kind !== 'tapPattern' && activity.kind !== 'patternToWord' && activity.kind !== 'containsPattern') return
+    const pattern = activity.pattern
+    if (!pattern) return
+    const timer = window.setTimeout(() => {
+      void playNarrationClip(`pattern:${pattern.id}`, pattern.soundTts)
+    }, 900)
+    return () => window.clearTimeout(timer)
+  }, [activity, showCompletion])
+
+  // Payoff: read the tiny decodable sentence together.
+  useEffect(() => {
+    if (!activity || showCompletion || !isPatternSentence || !activity.pattern) return
+    const pattern = activity.pattern
+    const timer = window.setTimeout(() => {
+      void playNarrationClip(`pattern-sentence:${pattern.id}`, pattern.sentence)
+    }, 350)
+    return () => window.clearTimeout(timer)
+  }, [activity, isPatternSentence, showCompletion])
 
   useEffect(() => {
     if (!activity || showCompletion || !isPeek) return
@@ -2840,7 +2987,7 @@ function OlderReaderLesson({
       window.clearTimeout(audioTimer)
       window.clearTimeout(advanceTimer)
     }
-  }, [activity, deck, finishActivity, showCompletion, isPeek])
+  }, [activity, activityIndex, deck, finishActivity, showCompletion, isPeek])
 
   useEffect(() => {
     if (!activity || showCompletion || !isReadTogether) return
@@ -2861,19 +3008,21 @@ function OlderReaderLesson({
       if (isChoiceKey(event, 'A')) {
         event.preventDefault()
         if (showCompletion) onNextLesson()
-        else if (isReadTogether) finishActivity()
-        else if (!isPeek) chooseByIndex(0)
+        else if (isReadTogether || isPatternSentence) finishActivity()
+        else if (isTextChoice) chooseTextByIndex(0)
+        else if (!isPeek && !isMeetPattern) chooseByIndex(0)
       }
       if (isChoiceKey(event, 'B')) {
         event.preventDefault()
         if (showCompletion) onDone()
-        else if (!isPeek && !isReadTogether) chooseByIndex(1)
+        else if (isTextChoice) chooseTextByIndex(1)
+        else if (!isPeek && !isMeetPattern && !isReadTogether && !isPatternSentence) chooseByIndex(1)
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [chooseByIndex, finishActivity, isPeek, isReadTogether, onDone, onNextLesson, showCompletion])
+  }, [chooseByIndex, chooseTextByIndex, finishActivity, isMeetPattern, isPatternSentence, isPeek, isReadTogether, isTextChoice, onDone, onNextLesson, showCompletion])
 
   useEffect(() => {
     if (showCompletion && !completionRecordedRef.current) {
@@ -2883,7 +3032,7 @@ function OlderReaderLesson({
       const currentProgress = parseInt(localStorage.getItem('completed-lessons-anna') || '0', 10)
       localStorage.setItem('completed-lessons-anna', (currentProgress + 1).toString())
       recordLocalProgressChange()
-      recordWordLessonResults(deck.id, lessonId, lessonCards, firstTryCorrectCountsRef.current)
+      recordWordLessonResults(deck.id, lessonId, lessonCards, firstTryCorrectCounts)
       // Advance the saved resume position NOW, so tapping Done or closing the
       // app still moves her forward — not only the "Next Lesson" button.
       persistAnnaWordsIndex(deck.id, lessonNumber * OLDER_READER_WORD_LESSON_SIZE)
@@ -2900,7 +3049,7 @@ function OlderReaderLesson({
       }
       onLessonComplete()
     }
-  }, [deck, lessonCards, lessonId, lessonNumber, onLessonComplete, showCompletion])
+  }, [deck, firstTryCorrectCounts, lessonCards, lessonId, lessonNumber, onLessonComplete, showCompletion])
 
   if (isPeek && activity && !showCompletion) {
     return (
@@ -2915,6 +3064,9 @@ function OlderReaderLesson({
                   Book word
                 </span>
               )}
+              {isHeartWord(optionLabel(activity.card)) && (
+                <span className="peek-heart-tag" title="We learn this word by heart">❤ heart word</span>
+              )}
               <div className="peek-word">{optionLabel(activity.card)}</div>
             </div>
             <div className="peek-hint">Listen and look</div>
@@ -2925,6 +3077,222 @@ function OlderReaderLesson({
           <div className="feedback-text">
             <strong>This word is</strong>
             <span>{optionLabel(activity.card)}</span>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (isMeetPattern && activity && !showCompletion && activity.pattern) {
+    const pattern = activity.pattern
+    const exampleWord = optionLabel(activity.card)
+    return (
+      <section className="focus-lesson older-reader-lesson">
+        <div className="focus-main">
+          <div className="peek-phase meet-pattern-phase">
+            <span className="stage-label">New sound</span>
+            <button
+              type="button"
+              className="pattern-tile"
+              onClick={() => void playNarrationClip(`pattern:${pattern.id}`, pattern.soundTts)}
+              aria-label={`Hear the sound ${pattern.grapheme}`}
+            >
+              {pattern.grapheme}
+            </button>
+            <div className="pattern-cue">{pattern.cue}</div>
+            <div className="peek-word pattern-example">{highlightPattern(exampleWord, pattern)}</div>
+            <div className="peek-hint">Listen and look</div>
+          </div>
+        </div>
+        <div className="focus-feedback">
+          <Mascot mood="reading" size="small" />
+          <div className="feedback-text">
+            <strong>This part says</strong>
+            <span>{pattern.grapheme} — like {exampleWord}</span>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (activity?.kind === 'tapPattern' && !showCompletion && activity.pattern && activity.segments) {
+    const pattern = activity.pattern
+    const chosenCorrect = selected === `text:${activity.correctSegment}`
+    return (
+      <section className="focus-lesson older-reader-lesson">
+        <div className="focus-main">
+          <div className="focus-question older-reader-question">
+            <div className="focus-prompt">
+              <span className="stage-label">Find the sound</span>
+              <h2>Tap the part that says <span className="prompt-pattern">{pattern.grapheme}</span></h2>
+              <AudioPromptButton
+                onClick={() => void playNarrationClip(`pattern:${pattern.id}`, pattern.soundTts)}
+                label="Hear the sound"
+              />
+            </div>
+            <div className={`focus-options segment-options ${retryLocked ? 'word-listen-locking' : ''}`} aria-label="Word parts">
+              {activity.segments.map((segment, index) => {
+                const key = `text:${index}`
+                const isMissed = missedIds.includes(key)
+                const isSelectedCorrect = chosenCorrect && index === activity.correctSegment
+                const showHint = missedIds.length > 0 && index === activity.correctSegment && !selected
+                const stateClass = isSelectedCorrect ? 'correct pulse' : isMissed ? 'missed-soft' : showHint ? 'pattern-hint' : ''
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    aria-label={`Choice ${choiceKeyLabel(index)}: ${segment}`}
+                    className={`focus-option segment-option squish ${stateClass}`}
+                    disabled={Boolean(selected) || isMissed || retryLocked}
+                    onClick={() => chooseTextByIndex(index)}
+                  >
+                    <span className="choice-key" aria-hidden="true">{choiceKeyLabel(index)}</span>
+                    <strong>{segment}</strong>
+                  </button>
+                )
+              })}
+            </div>
+            {retryLocked && <div className="word-listen-lock">Listen first, then tap.</div>}
+          </div>
+        </div>
+        <div className={`focus-feedback ${chosenCorrect ? 'happy' : missedIds.length ? 'try' : ''}`}>
+          <Mascot mood={chosenCorrect ? 'happy' : 'curious'} size="small" />
+          <div className="feedback-text">
+            {chosenCorrect ? (
+              <>
+                <strong>You found it!</strong>
+                <span>{pattern.grapheme} says its sound in {optionLabel(activity.card)}.</span>
+              </>
+            ) : missedIds.length ? (
+              <>
+                <strong>Listen again</strong>
+                <span>The glowing part says {pattern.grapheme}.</span>
+              </>
+            ) : (
+              <>
+                <strong>Listen, then tap</strong>
+                <span>Which part says {pattern.grapheme}?</span>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (activity?.kind === 'chainStep' && !showCompletion && activity.pattern && activity.chainChoices) {
+    const pattern = activity.pattern
+    const chosenIndex = selected.startsWith('text:') ? Number(selected.slice(5)) : -1
+    const chosenCorrect = chosenIndex >= 0 && activity.chainChoices[chosenIndex] === activity.chainCorrect
+    return (
+      <section className="focus-lesson older-reader-lesson">
+        <div className="focus-main">
+          <div className="focus-question older-reader-question">
+            <div className="focus-prompt">
+              <span className="stage-label">Word building</span>
+              <h2>Turn <em>{activity.chainPrev}</em> into <em>{activity.chainWord}</em></h2>
+              <div className="chain-word" aria-label={`Word so far: ${chosenCorrect ? activity.chainWord : `blank ${activity.chainFixed}`}`}>
+                <span className={`chain-slot ${chosenCorrect ? 'filled pulse' : ''}`}>
+                  {chosenCorrect ? activity.chainCorrect : '?'}
+                </span>
+                <span className="chain-fixed">{activity.chainFixed}</span>
+              </div>
+              <AudioPromptButton
+                onClick={() => void playNarrationClip(
+                  `word:${activity.chainWord}`,
+                  activity.chainWord,
+                  deckAudioPackPath(deck, `audio/words/anne-soft-female-v2/${activity.chainWord}.mp3`),
+                )}
+                label="Hear the word"
+              />
+            </div>
+            <div className={`focus-options segment-options ${retryLocked ? 'word-listen-locking' : ''}`} aria-label="Letter tiles">
+              {activity.chainChoices.map((letters, index) => {
+                const key = `text:${index}`
+                const isMissed = missedIds.includes(key)
+                const isSelectedCorrect = chosenCorrect && index === chosenIndex
+                const showHint = missedIds.length > 0 && letters === activity.chainCorrect && !selected
+                const stateClass = isSelectedCorrect ? 'correct pulse' : isMissed ? 'missed-soft' : showHint ? 'pattern-hint' : ''
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    aria-label={`Choice ${choiceKeyLabel(index)}: ${letters}`}
+                    className={`focus-option segment-option letter-tile squish ${stateClass}`}
+                    disabled={Boolean(selected) || isMissed || retryLocked}
+                    onClick={() => chooseTextByIndex(index)}
+                  >
+                    <span className="choice-key" aria-hidden="true">{choiceKeyLabel(index)}</span>
+                    <strong>{letters}</strong>
+                  </button>
+                )
+              })}
+            </div>
+            {retryLocked && <div className="word-listen-lock">Listen first, then tap.</div>}
+          </div>
+        </div>
+        <div className={`focus-feedback ${chosenCorrect ? 'happy' : missedIds.length ? 'try' : ''}`}>
+          <Mascot mood={chosenCorrect ? 'happy' : 'curious'} size="small" />
+          <div className="feedback-text">
+            {chosenCorrect ? (
+              <>
+                <strong>You made {activity.chainWord}!</strong>
+                <span>{activity.chainPrev} turned into {activity.chainWord}.</span>
+              </>
+            ) : missedIds.length ? (
+              <>
+                <strong>Almost!</strong>
+                <span>{activity.chainWord} starts another way.</span>
+              </>
+            ) : (
+              <>
+                <strong>Swap one tile</strong>
+                <span>Keep the {pattern.grapheme} part.</span>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (isPatternSentence && activity && !showCompletion && activity.pattern) {
+    const pattern = activity.pattern
+    const sentence = pattern.sentence
+    const words = sentence.split(/(\s+)/)
+    return (
+      <section className="focus-lesson older-reader-lesson">
+        <div className="focus-main">
+          <div className="read-together-card pattern-sentence-card">
+            <span className="stage-label">Read together</span>
+            <h2>
+              {words.map((word, index) => (
+                /^\s+$/.test(word)
+                  ? <span key={`space:${index}`}> </span>
+                  : <span key={`${word}:${index}`} className="sentence-word">{highlightPattern(word.replace(/[.,!?]/g, ''), pattern)}{/[.,!?]$/.test(word) ? word.slice(-1) : ''}</span>
+              ))}
+            </h2>
+            <div className="focus-actions">
+              <button
+                type="button"
+                className="choice-action"
+                onClick={() => void playNarrationClip(`pattern-sentence:${pattern.id}`, sentence)}
+              >
+                <PlayIcon />
+                Hear it
+              </button>
+              <button type="button" className="primary choice-action" onClick={finishActivity}>
+                <span>A</span>
+                Finish
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="focus-feedback">
+          <Mascot mood="reading" size="small" />
+          <div className="feedback-text">
+            <strong>You can read {pattern.grapheme} words!</strong>
+            <span>Listen and read along.</span>
           </div>
         </div>
       </section>
@@ -3061,7 +3429,7 @@ function OlderReaderLesson({
   if (!activity || showCompletion) {
     const greenEggs = greenEggsNow ?? greenEggsBefore
     const newBookWords = Math.max(0, greenEggs.mastered - greenEggsBefore.mastered)
-    const bloomedWords = lessonCards.filter((card) => (firstTryCorrectCountsRef.current[card.id] ?? 0) >= 2).length
+    const bloomedWords = lessonCards.filter((card) => (firstTryCorrectCounts[card.id] ?? 0) >= 2).length
     return (
       <section className="focus-lesson older-reader-lesson">
         <div className="focus-main">
@@ -3077,6 +3445,18 @@ function OlderReaderLesson({
               </h2>
             </div>
             <GreenEggsJourney mastered={greenEggs.mastered} total={greenEggs.total} />
+            {focusPattern && (
+              <div className="pattern-flower-row">
+                <span className="pattern-flower" aria-hidden="true">
+                  {['🌱', '🌿', '🌷', '🌸', '✨🌸✨'][patternFlowerStage(deck.id, focusPattern.id)]}
+                </span>
+                <span className="pattern-flower-label">
+                  {isPatternMastered(deck.id, focusPattern.id)
+                    ? `You know ${focusPattern.grapheme}!`
+                    : `Your ${focusPattern.grapheme} flower is growing!`}
+                </span>
+              </div>
+            )}
             {newBookWords > 0 && (
               <p className="green-eggs-delta">
                 🌟 {newBookWords === 1 ? '1 new book word' : `${newBookWords} new book words`} ready for Green Eggs and Ham!
@@ -3085,7 +3465,7 @@ function OlderReaderLesson({
             <div className="word-growth-strip">
               {lessonCards.map((card) => {
                 const mastered = isBookWord(card) && isWordMastered(deck.id, card.id)
-                const bloomed = (firstTryCorrectCountsRef.current[card.id] ?? 0) >= 2
+                const bloomed = (firstTryCorrectCounts[card.id] ?? 0) >= 2
                 return (
                   <div key={card.id} className={`word-growth-card ${bloomed ? 'blooming' : 'growing'} ${mastered ? 'book-mastered' : ''}`}>
                     <span className="growth-icon" aria-hidden="true">{mastered ? '🌟' : '⭐'}</span>
@@ -3132,13 +3512,16 @@ function OlderReaderLesson({
   const showWordQuestionPictures = false
   const hasMissed = missedIds.length > 0
   const mood: MascotMood = selected ? (correct ? 'happy' : 'curious') : activity.kind === 'audioToWord' ? 'reading' : 'curious'
+  const questionKinds: OlderReaderQuestionKind[] = ['peek', 'meetPattern', 'readTogether', 'patternSentence']
+  const practiceNumber = activities.slice(0, activityIndex + 1).filter((item) => !questionKinds.includes(item.kind)).length
+  const practiceTotal = activities.filter((item) => !questionKinds.includes(item.kind)).length
 
   return (
     <section className="focus-lesson older-reader-lesson">
       <div className="focus-main">
         <div className="focus-question older-reader-question">
           <div className="focus-prompt">
-            <span className="stage-label">Lesson {lessonNumber} - Practice {activityIndex - OLDER_READER_PEEK_COUNT + 1} of {OLDER_READER_RECOGNITION_COUNT}</span>
+            <span className="stage-label">Lesson {lessonNumber} - Practice {practiceNumber} of {practiceTotal}</span>
             <h2>{prompt}</h2>
             {carefulStreak >= 2 && !hasMissed && (
               <span className="careful-reader-pill">Careful reader x{carefulStreak}</span>
@@ -3153,7 +3536,22 @@ function OlderReaderLesson({
               </div>
             )}
             {activity.kind === 'wordToPicture' && <div className="word-display prompt-word">{optionLabel(activity.card)}</div>}
-            {activity.kind === 'wordFamily' && <div className="word-chunk">{wordChunk(activity.card)}</div>}
+            {activity.kind === 'containsPattern' && activity.pattern && (
+              <button
+                type="button"
+                className="word-chunk pattern-chunk"
+                onClick={() => void playNarrationClip(`pattern:${activity.pattern?.id}`, activity.pattern?.soundTts)}
+                aria-label={`Hear the sound ${activity.pattern.grapheme}`}
+              >
+                {activity.pattern.grapheme}
+              </button>
+            )}
+            {(activity.kind === 'patternToWord' || activity.kind === 'tapPattern') && activity.pattern && (
+              <AudioPromptButton
+                onClick={() => void playNarrationClip(`pattern:${activity.pattern?.id}`, activity.pattern?.soundTts)}
+                label="Hear the sound"
+              />
+            )}
             {showPromptPicture && showWordQuestionPictures && (
               <div className="focus-visual compact">
                 <Picture deck={deck} card={activity.card} />
@@ -3181,7 +3579,11 @@ function OlderReaderLesson({
                 >
                   <span className="choice-key" aria-hidden="true">{choiceKeyLabel(index)}</span>
                   {showOptionPictures && <Picture deck={deck} card={option} />}
-                  <strong>{optionText}</strong>
+                  <strong>
+                    {activity.pattern && (hasMissed || selected) && option.id === activity.card.id
+                      ? highlightPattern(optionText, activity.pattern)
+                      : optionText}
+                  </strong>
                   {!showOptionPictures && option.category && <small>{option.category}</small>}
                 </button>
               )
@@ -4468,6 +4870,33 @@ function buildOptions(cards: LearningCard[], card: LearningCard): LearningCard[]
   )
 }
 
+interface FocusPatternPlan {
+  pattern: PhonicsPattern
+  matches: { card: LearningCard; match: PatternMatch }[]
+}
+
+// Pick the lesson's focus pattern: a taught pattern carried by at least one
+// of the lesson's words. Unmastered patterns come first, then patterns that
+// cover more of the lesson's words, then earliest in the teaching order.
+function selectFocusPattern(deckId: string, wordCards: LearningCard[]): FocusPatternPlan | null {
+  const plans = new Map<string, FocusPatternPlan>()
+  for (const card of wordCards) {
+    for (const match of patternsForWord(optionLabel(card))) {
+      const plan = plans.get(match.pattern.id) ?? { pattern: match.pattern, matches: [] }
+      plan.matches.push({ card, match })
+      plans.set(match.pattern.id, plan)
+    }
+  }
+  if (!plans.size) return null
+  return [...plans.values()].sort((a, b) => {
+    const aMastered = isPatternMastered(deckId, a.pattern.id) ? 1 : 0
+    const bMastered = isPatternMastered(deckId, b.pattern.id) ? 1 : 0
+    if (aMastered !== bMastered) return aMastered - bMastered
+    if (a.matches.length !== b.matches.length) return b.matches.length - a.matches.length
+    return PHONICS_PATTERNS.indexOf(a.pattern) - PHONICS_PATTERNS.indexOf(b.pattern)
+  })[0]
+}
+
 function buildOlderReaderActivities(deckId: string, lessonCards: LearningCard[]): OlderReaderActivity[] {
   const wordCards = lessonCards.filter((card) => card.type === 'word')
   if (!wordCards.length) return []
@@ -4478,43 +4907,166 @@ function buildOlderReaderActivities(deckId: string, lessonCards: LearningCard[])
     options: [] as LearningCard[],
   }))
 
-  const practiceKinds: OlderReaderQuestionKind[] = [
-    'audioToWord',
-    'wordFamily',
-    'audioToWord',
-    'sentenceBridge',
-    'audioToWord',
-    'startsWithSound',
-    'audioToWord',
-    'audioToWord',
-  ]
-  const quizActivities: OlderReaderActivity[] = Array.from({ length: OLDER_READER_RECOGNITION_COUNT }, (_, index) => {
-    const card = wordCards[index % wordCards.length]
-    let kind = practiceKinds[index % practiceKinds.length]
-    // If no other word has a different starting sound, startsWithSound would produce an
-    // impossible question (both choices start with the same sound) — fall back to audioToWord
-    if (kind === 'startsWithSound' && !wordCards.some(c => c.id !== card.id && firstSound(c) !== firstSound(card))) {
-      kind = 'audioToWord'
-    }
-    // Brand-new words get clearly-different distractors; look-alike choices
-    // are saved for words she has already succeeded with once.
-    const isNewWord = readWordRecognitionProgress(deckId, card.id).successfulLessons === 0
-    return {
-      kind,
+  const focus = selectFocusPattern(deckId, wordCards)
+  const practice: OlderReaderActivity[] = []
+
+  const audioToWordFor = (card: LearningCard): OlderReaderActivity => ({
+    kind: 'audioToWord',
+    card,
+    options: buildOlderReaderOptions(
+      wordCards,
       card,
-      options: buildOlderReaderOptions(wordCards, card, kind, !isNewWord),
-    }
+      'audioToWord',
+      readWordRecognitionProgress(deckId, card.id).successfulLessons > 0,
+    ),
   })
+
+  if (focus) {
+    const rung = readPatternMastery(deckId, focus.pattern.id).rung
+    const patternQuestions = buildPatternLadder(deckId, wordCards, focus, rung)
+    // Teach before testing: I do (meetPattern) → We do (tapPattern) → You do.
+    practice.push(...patternQuestions)
+    const chainSteps = buildChainSteps(focus)
+    practice.push(...chainSteps)
+  }
+
+  // Every lesson word still gets its listening rep, heart words especially —
+  // they are learned by ear and sight, never through pattern questions.
+  for (const card of wordCards) {
+    practice.push(audioToWordFor(card))
+  }
+  // One tiny sentence bridge keeps meaning in the mix.
+  const sentenceCard = wordCards.find((card) => card.exampleSentence) ?? wordCards[0]
+  practice.push({
+    kind: 'sentenceBridge',
+    card: sentenceCard,
+    options: buildOlderReaderOptions(wordCards, sentenceCard, 'sentenceBridge', false),
+  })
+
+  // Keep lessons under ~4 minutes: cap practice length, pattern work first.
+  const cappedPractice = practice.slice(0, OLDER_READER_RECOGNITION_COUNT + 2)
+
+  const finale: OlderReaderActivity = focus
+    ? { kind: 'patternSentence', card: focus.matches[0].card, options: [], pattern: focus.pattern }
+    : { kind: 'readTogether', card: wordCards[0], options: [] }
 
   return [
     ...peekActivities,
-    ...quizActivities,
-    {
-      kind: 'readTogether',
-      card: wordCards[0],
-      options: [],
-    },
+    ...(focus ? [{ kind: 'meetPattern' as OlderReaderQuestionKind, card: focus.matches[0].card, options: [], pattern: focus.pattern }] : []),
+    ...cappedPractice,
+    finale,
   ]
+}
+
+// The stepping-stone ladder for the focus pattern. Anna's persisted rung caps
+// how hard the questions get; harder forms only appear after she has
+// succeeded at every easier form of the SAME pattern.
+function buildPatternLadder(
+  deckId: string,
+  wordCards: LearningCard[],
+  focus: FocusPatternPlan,
+  rung: number,
+): OlderReaderActivity[] {
+  const ladder: OlderReaderActivity[] = []
+  const { pattern } = focus
+  const nearMiss = isNearMissUnlocked(deckId, pattern.id)
+
+  // Rung 0 (always present as the "We do" step): tap the pattern in a word.
+  const tappable = focus.matches
+    .map(({ card, match }) => ({ card, split: patternTapSegments(match) }))
+    .find((entry) => entry.split)
+  if (tappable && tappable.split) {
+    ladder.push({
+      kind: 'tapPattern',
+      card: tappable.card,
+      options: [],
+      pattern,
+      segments: tappable.split.segments,
+      correctSegment: tappable.split.correctIndex,
+    })
+  }
+
+  // Rung 1: which word has the sound (vs a clearly different word).
+  if (rung >= 1 || !tappable) {
+    const card = focus.matches[0].card
+    ladder.push({
+      kind: 'patternToWord',
+      card,
+      options: buildPatternOptions(wordCards, card, pattern, false),
+      pattern,
+    })
+  }
+
+  // Rung 2: both choices share the pattern — she must read the whole word.
+  if (rung >= 2 && focus.matches.length >= 2) {
+    const card = focus.matches[1].card
+    const sibling = focus.matches.find((entry) => entry.card.id !== card.id)?.card
+    if (sibling) {
+      ladder.push({
+        kind: 'wordInFamily',
+        card,
+        options: sortOptionPair(card, sibling, 'wordInFamily'),
+        pattern,
+      })
+    }
+  }
+
+  // Rung 3: the pattern-identification question, earned — chunk shown AND
+  // voiced, near-miss distractors only after repeated success.
+  if (rung >= 3) {
+    const entry = focus.matches[focus.matches.length - 1]
+    ladder.push({
+      kind: 'containsPattern',
+      card: entry.card,
+      options: buildPatternOptions(wordCards, entry.card, pattern, nearMiss),
+      pattern,
+    })
+  }
+
+  return ladder
+}
+
+// Word-building play: change one letter tile to turn cat into hat. Uses the
+// registry's chain words (all recorded in the audio pack).
+function buildChainSteps(focus: FocusPatternPlan): OlderReaderActivity[] {
+  const chain = focus.pattern.chain
+  if (!chain || chain.length < 2 || focus.pattern.kind !== 'family') return []
+  const grapheme = focus.pattern.grapheme
+  const steps: OlderReaderActivity[] = []
+  for (let index = 1; index < chain.length && steps.length < 2; index += 1) {
+    const prev = chain[index - 1]
+    const next = chain[index]
+    if (!prev.endsWith(grapheme) || !next.endsWith(grapheme)) continue
+    const prevOnset = prev.slice(0, prev.length - grapheme.length)
+    const nextOnset = next.slice(0, next.length - grapheme.length)
+    if (!prevOnset || !nextOnset || prevOnset === nextOnset) continue
+    const flip = stableHash(`chain:${focus.pattern.id}:${next}`) % 2 === 0
+    steps.push({
+      kind: 'chainStep',
+      card: focus.matches[0].card,
+      options: [],
+      pattern: focus.pattern,
+      chainWord: next,
+      chainPrev: prev,
+      chainFixed: grapheme,
+      chainChoices: flip ? [nextOnset, prevOnset] : [prevOnset, nextOnset],
+      chainCorrect: nextOnset,
+    })
+  }
+  return steps
+}
+
+function buildPatternOptions(
+  wordCards: LearningCard[],
+  card: LearningCard,
+  pattern: PhonicsPattern,
+  preferNearMiss: boolean,
+): LearningCard[] {
+  const candidates = wordCards.filter((candidate) => candidate.id !== card.id)
+  const withoutPattern = candidates.filter((candidate) => !matchPattern(optionLabel(candidate), pattern))
+  const pool = withoutPattern.length ? withoutPattern : candidates
+  const distractor = pickDistractor(pool, card, 'patternToWord', preferNearMiss)
+  return sortOptionPair(card, distractor, 'patternToWord')
 }
 
 function buildOlderReaderOptions(
@@ -4526,11 +5078,20 @@ function buildOlderReaderOptions(
   const candidates = lessonCards.filter((candidate) => candidate.id !== card.id)
   const preferred = candidates.filter((candidate) => {
     if (kind === 'startsWithSound') return firstSound(candidate) !== firstSound(card)
-    if (kind === 'wordFamily') return wordChunk(candidate) !== wordChunk(card)
     return true
   })
   const pool = preferred.length ? preferred : candidates
-  const distractor = pool
+  const distractor = pickDistractor(pool, card, kind, preferNearMiss)
+  return sortOptionPair(card, distractor, kind)
+}
+
+function pickDistractor(
+  pool: LearningCard[],
+  card: LearningCard,
+  kind: OlderReaderQuestionKind,
+  preferNearMiss: boolean,
+): LearningCard {
+  return pool
     .map((candidate) => ({
       candidate,
       // Near-miss mode picks the most confusable candidate (discrimination
@@ -4543,7 +5104,9 @@ function buildOlderReaderOptions(
       if (a.score !== b.score) return b.score - a.score
       return stableSort(`older:${kind}:${card.id}:${a.candidate.id}`) - stableSort(`older:${kind}:${card.id}:${b.candidate.id}`)
     })[0]?.candidate ?? card
+}
 
+function sortOptionPair(card: LearningCard, distractor: LearningCard, kind: OlderReaderQuestionKind): LearningCard[] {
   return [card, distractor].sort(
     (a, b) => stableSort(`older-order:${kind}:${card.id}:${a.id}`) - stableSort(`older-order:${kind}:${card.id}:${b.id}`),
   )
@@ -4554,7 +5117,7 @@ function olderReaderDistractorScore(card: LearningCard, candidate: LearningCard,
   const other = optionLabel(candidate).toLowerCase()
   let score = 0
   if (firstSound(card) === firstSound(candidate)) score += kind === 'startsWithSound' ? -3 : 4
-  if (wordChunk(card) === wordChunk(candidate)) score += kind === 'wordFamily' ? -3 : 4
+  if (sharesTaughtPattern(word, other)) score += 4
   score += Math.max(0, 3 - Math.abs(word.length - other.length))
   if (isBookWord(candidate)) score += 2
   if (word[0] && word[0] === other[0]) score += 1
@@ -4562,15 +5125,23 @@ function olderReaderDistractorScore(card: LearningCard, candidate: LearningCard,
   return score
 }
 
+function sharesTaughtPattern(word: string, other: string): boolean {
+  const otherPatterns = new Set(patternsForWord(other).map((match) => match.pattern.id))
+  return patternsForWord(word).some((match) => otherPatterns.has(match.pattern.id))
+}
+
 function getOlderReaderPrompt(activity: OlderReaderActivity): string {
-  if (activity.kind === 'peek') return ''
+  if (activity.kind === 'peek' || activity.kind === 'meetPattern') return ''
   if (activity.kind === 'pictureToWord' || activity.kind === 'review') return 'What word matches the picture?'
   if (activity.kind === 'wordToPicture') return 'Which picture matches this word?'
-  if (activity.kind === 'audioToWord') return 'Which word did you hear?'
+  if (activity.kind === 'audioToWord' || activity.kind === 'wordInFamily') return 'Which word did you hear?'
   if (activity.kind === 'startsWithSound') return `Which word starts with ${firstSound(activity.card)}?`
-  if (activity.kind === 'wordFamily') return 'Which word has this chunk?'
+  if (activity.kind === 'tapPattern') return `Tap the part that says ${activity.pattern?.grapheme ?? ''}.`
+  if (activity.kind === 'patternToWord') return `Which word has ${activity.pattern?.grapheme ?? ''}?`
+  if (activity.kind === 'containsPattern') return `Which word has ${activity.pattern?.grapheme ?? ''}?`
+  if (activity.kind === 'chainStep') return `Make the word ${activity.chainWord ?? ''}.`
   if (activity.kind === 'sentenceBridge') return 'Which word fits?'
-  if (activity.kind === 'readTogether') return 'Read together.'
+  if (activity.kind === 'readTogether' || activity.kind === 'patternSentence') return 'Read together.'
   return 'Choose the word.'
 }
 
@@ -4580,10 +5151,19 @@ function firstSound(card: LearningCard): string {
   return digraph ? digraph : word[0] ?? ''
 }
 
-function wordChunk(card: LearningCard): string {
-  const word = optionLabel(card).toLowerCase()
-  if (word.length <= 2) return word
-  return word.slice(-2)
+// Render a word with its taught pattern softly highlighted, used for guided
+// retry and the decodable sentence payoff.
+function highlightPattern(word: string, pattern: PhonicsPattern | undefined): ReactNode {
+  if (!pattern) return word
+  const match = matchPattern(word, pattern)
+  if (!match) return word
+  return (
+    <>
+      {match.before}
+      <span className="pattern-glow">{match.match}</span>
+      {match.after}
+    </>
+  )
 }
 
 function optionLabel(card: LearningCard): string {
