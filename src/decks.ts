@@ -74,7 +74,14 @@ async function loadDeck(entry: DeckIndexEntry): Promise<LearningDeck> {
     ...entry,
     ...deck,
     assetBaseUrl: deck.assetBaseUrl ?? entry.assetBaseUrl ?? parentPath(entry.source),
-    cards: deck.cards.map((card) => ({ ...card, deckId: entry.id })),
+    cards: deck.cards.map((card) => ({
+      ...card,
+      // Chinese JSON decks use the more specific simpleMeaning field. Mirror
+      // it into the shared meaning field so every flashcard surface shows the
+      // English definition without duplicating data in the source deck.
+      meaning: card.meaning ?? card.simpleMeaning,
+      deckId: entry.id,
+    })),
   }
 }
 

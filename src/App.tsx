@@ -196,7 +196,7 @@ function readAnnaWordsIndex(deckId: string) {
 const SARAH_LESSON_ADVANCE = 1
 // 8 practice reps over 4 words (2 each) keeps lessons short for a 5-year-old
 // while still giving every word the two first-try chances mastery needs.
-const OLDER_READER_RECOGNITION_COUNT = 8
+const OLDER_READER_RECOGNITION_COUNT = 16
 const CONFUSABLES: Record<string, string[]> = {
   b: ['d', 'p', 'q'],
   d: ['b', 'p', 'q'],
@@ -5001,6 +5001,23 @@ function buildOlderReaderActivities(deckId: string, lessonCards: LearningCard[])
     options: buildOlderReaderOptions(wordCards, sentenceCard, 'sentenceBridge', false),
   })
 
+  // A second, slightly harder lap doubles the useful recognition practice:
+  // listen again with a closer distractor, then discriminate the first sound.
+  // Difficulty stays adaptive so brand-new words still receive an easy pair.
+  for (const card of wordCards) {
+    const hasPractice = readWordRecognitionProgress(deckId, card.id).successfulLessons > 0
+    practice.push({
+      kind: 'audioToWord',
+      card,
+      options: buildOlderReaderOptions(wordCards, card, 'audioToWord', hasPractice),
+    })
+    practice.push({
+      kind: 'startsWithSound',
+      card,
+      options: buildOlderReaderOptions(wordCards, card, 'startsWithSound', hasPractice),
+    })
+  }
+
   // Extra sentence bridges for mastered words — real reading practice
   for (const card of wordCards) {
     if (card.id === sentenceCard.id) continue
@@ -5014,7 +5031,8 @@ function buildOlderReaderActivities(deckId: string, lessonCards: LearningCard[])
     }
   }
 
-  // Keep lessons under ~4 minutes: cap practice length, pattern work first.
+  // Keep lessons under ~4 minutes while allowing roughly twice the previous
+  // recognition practice. Pattern instruction remains first.
   const cappedPractice = practice.slice(0, OLDER_READER_RECOGNITION_COUNT + 2)
 
   const finale: OlderReaderActivity = focus
