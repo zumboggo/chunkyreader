@@ -1,8 +1,7 @@
 # Storage review — September 9, 2026
 
-The code configures Supabase Auth and saves signed-in users' progress in
-`chunky_reader_progress`. This review inspected the source and supplied SQL,
-not the live database, deployed policies, or billing.
+The initial source review is preserved below. The implementation status section
+records the subsequent live database, policy, storage, and deployment work.
 
 ## What is stored where
 
@@ -105,8 +104,13 @@ Media migration completed September 9, 2026:
   Deduplicated original media remains in `.migration/upload/v1`. These are local,
   ignored backups and intentionally still use disk space.
 
-Git history cleanup follows the verified media cutover. Other existing checkouts
-must be coordinated before adopting rewritten history; preserve any unpushed work.
+Git history was then rewritten in an isolated copy to remove historical public
+MP3, PNG, WebP and JPG assets, except the app-install icon. The resulting current
+file tree exactly matched the tested checkout. The packed history fell from
+329.71 MiB to 3.63 MiB. Original history remains recoverable from the verified bundle.
+Existing checkouts should be freshly cloned, preserving any unpushed work first;
+do not merge the old media-heavy history back into main. Local backup files and
+Codex recovery references intentionally retain original data and disk usage.
 
 The project is on the Free plan, with 241,527,748 bytes of existing Storage
 before this migration. No plan upgrade or paid generation was enabled.
