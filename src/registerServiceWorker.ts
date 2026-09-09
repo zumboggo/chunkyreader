@@ -5,9 +5,11 @@ export function registerServiceWorker() {
     return
   }
 
-  window.addEventListener('load', () => {
+  const register = () => {
     navigator.serviceWorker.register(serviceWorkerUrl).catch((error: unknown) => {
       console.info('Chunky Reader offline mode is unavailable right now.', error)
     })
-  })
+  }
+  if (document.readyState === 'complete') register()
+  else window.addEventListener('load', register, { once: true })
 }

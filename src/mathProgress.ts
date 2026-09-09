@@ -1,3 +1,4 @@
+import { progressStorage } from './progressStorage.ts'
 export type MathOperation = 'add' | 'subtract' | 'both'
 export type MathDifficulty = 'easy' | 'medium' | 'hard' | 'very-hard'
 
@@ -21,7 +22,7 @@ const DEFAULT_PROGRESS: MathProgress = {
 
 export function loadMathProgress(): MathProgress {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
+    const raw = progressStorage.getItem(STORAGE_KEY)
     if (!raw) return { ...DEFAULT_PROGRESS, indexes: {} }
     const parsed = JSON.parse(raw) as Partial<MathProgress>
     return {
@@ -64,7 +65,7 @@ function mathProgressKey(operation: MathOperation, difficulty: MathDifficulty) {
 
 function saveMathProgress(progress: MathProgress) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress))
+    progressStorage.setItem(STORAGE_KEY, JSON.stringify(progress))
     window.dispatchEvent(new CustomEvent('chunkyReaderProgressChanged', { detail: { changedAt: Date.now() } }))
   } catch {
     // Math lessons remain usable when storage is unavailable.

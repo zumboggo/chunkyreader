@@ -1,3 +1,4 @@
+import { progressStorage } from './progressStorage'
 import { createNewCard, type FlashcardState } from './fsrs'
 import { recordLocalProgressChange } from './cloudProgressSync'
 
@@ -10,7 +11,7 @@ export function getFlashcardStorageKey(deckId: string): string {
 export function loadFlashcardStates(deckId: string): Map<string, FlashcardState> {
   const states = new Map<string, FlashcardState>()
   try {
-    const raw = localStorage.getItem(getFlashcardStorageKey(deckId))
+    const raw = progressStorage.getItem(getFlashcardStorageKey(deckId))
     if (!raw) return states
     const parsed = JSON.parse(raw) as FlashcardState[]
     for (const state of parsed) {
@@ -25,7 +26,7 @@ export function loadFlashcardStates(deckId: string): Map<string, FlashcardState>
 export function saveFlashcardStates(deckId: string, states: Map<string, FlashcardState>): void {
   try {
     const array = [...states.values()]
-    localStorage.setItem(getFlashcardStorageKey(deckId), JSON.stringify(array))
+    progressStorage.setItem(getFlashcardStorageKey(deckId), JSON.stringify(array))
     recordLocalProgressChange()
   } catch {
     // Persistence is optional; the current learning session can continue.

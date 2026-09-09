@@ -1,3 +1,4 @@
+import { progressStorage } from './progressStorage'
 import type { LearningCard } from './types'
 import { recordLocalProgressChange } from './cloudProgressSync'
 
@@ -59,11 +60,11 @@ export function recordWordLessonResults(
     const progress = readWordRecognitionProgress(deckId, card.id)
     const successful = (firstTryCorrectCounts[card.id] ?? 0) >= 2
     const successfulLessonIds = successful && !progress.successfulLessonIds.includes(lessonId)
-      ? [...progress.successfulLessonIds, lessonId]
+      ? [...progress.successfulLessonIds, lessonId].slice(-32)
       : progress.successfulLessonIds
     writeWordRecognitionProgress(deckId, card.id, {
       ...progress,
-      successfulLessons: successfulLessonIds.length,
+      successfulLessons: Math.max(progress.successfulLessons, successfulLessonIds.length),
       successfulLessonIds,
       lastPracticedAt: practicedAt,
       introducedAt: progress.introducedAt ?? practicedAt,
@@ -92,7 +93,7 @@ export function estimateWordLessonResumeIndex(deckId: string, cards: LearningCar
 
 export function readWordRecognitionProgress(deckId: string, cardId: string): WordRecognitionProgress {
   try {
-    const raw = localStorage.getItem(wordProgressKey(deckId, cardId))
+    const raw = progressStorage.getItem(wordProgressKey(deckId, cardId))
     if (!raw) return { successfulLessons: 0, successfulLessonIds: [] }
     const parsed = JSON.parse(raw) as Partial<WordRecognitionProgress>
     const successfulLessonIds = Array.isArray(parsed.successfulLessonIds)
@@ -121,7 +122,7 @@ function markWordsIntroduced(deckId: string, cards: LearningCard[], lessonId: st
     })
   }
   try {
-    localStorage.setItem(lessonStorageKey(deckId, lessonId), JSON.stringify(cards.map((card) => card.id)))
+    progressStorage.setItem(lessonStorageKey(deckId, lessonId), JSON.stringify(cards.map((card) => card.id)))
   } catch {
     // Lesson selection can still continue without storage.
   }
@@ -129,7 +130,7 @@ function markWordsIntroduced(deckId: string, cards: LearningCard[], lessonId: st
 
 function readStoredLessonIds(deckId: string, lessonId: string): string[] {
   try {
-    const raw = localStorage.getItem(lessonStorageKey(deckId, lessonId))
+    const raw = progressStorage.getItem(lessonStorageKey(deckId, lessonId))
     const parsed = raw ? JSON.parse(raw) : []
     return Array.isArray(parsed) ? parsed.filter((value): value is string => typeof value === 'string') : []
   } catch {
@@ -151,7 +152,7 @@ function compareReviewPriority(deckId: string, a: LearningCard, b: LearningCard)
 
 function writeWordRecognitionProgress(deckId: string, cardId: string, progress: WordRecognitionProgress) {
   try {
-    localStorage.setItem(wordProgressKey(deckId, cardId), JSON.stringify(progress))
+    progressStorage.setItem(wordProgressKey(deckId, cardId), JSON.stringify(progress))
     recordLocalProgressChange()
   } catch {
     // Recognition tracking should never block a lesson.

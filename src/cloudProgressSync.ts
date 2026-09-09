@@ -1,3 +1,4 @@
+import { progressStorage, ACCOUNT_CHANGED_EVENT, EXACT_PROGRESS_KEYS, PROGRESS_PREFIXES, LEARNER_SCOPES, learnerScope, isProgressKey, compactProgressKeys } from './progressStorage'
 import { createClient, type Session, type User } from '@supabase/supabase-js'
 import { defaultAppSettings, type AppSettings } from './appSettings'
 import { normalizeRewardProgress } from './rewards'
@@ -14,28 +15,9 @@ const SNAPSHOT_VERSION = 1
 const METADATA_KEY = 'chunky-reader:cloud-sync:metadata:v1'
 export const PROGRESS_CHANGED_EVENT = 'chunkyReaderProgressChanged'
 
-const EXACT_SYNC_KEYS = [
-  'chunkyLearnerProgress.v1',
-  'chunkyLearnerSettings.v1',
-  'chunkyLearnerContinue.v1',
-  'completed-lessons-anna',
-  'completed-lessons-sarah',
-  'completed-lessons-100',
-  '100-lessons-progress',
-  'chunky-learner:math-progress:v1',
-]
+const EXACT_SYNC_KEYS = EXACT_PROGRESS_KEYS
 
-const PREFIX_SYNC_KEYS = [
-  'sarah-progress-',
-  'anna-words-progress-',
-  'chunky-reader:story:',
-  'chunky-reader:card-progress:',
-  'chunky-reader:older-reader-phonemes:',
-  'chunky-reader:flashcard-states:',
-  'chunky-reader:word-recognition:',
-  'chunky-reader:pattern-mastery:',
-  'chunky-reader:green-eggs:milestones:',
-]
+const PREFIX_SYNC_KEYS = PROGRESS_PREFIXES
 
 const DEFAULT_APP_SETTINGS: AppSettings = {
   ...defaultAppSettings,
@@ -107,6 +89,7 @@ export async function getCloudAuthState(): Promise<CloudAuthState> {
   if (!supabase) return { configured: false, session: null, user: null }
   const { data, error } = await supabase.auth.getSession()
   if (error) throw error
+  activateProgressAccount(data.session?.user.id ?? null)
   return {
     configured: true,
     session: data.session,
@@ -121,6 +104,7 @@ export function onCloudAuthChange(callback: (state: CloudAuthState) => void): ()
   }
 
   const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+    activateProgressAccount(session?.user.id ?? null)
     callback({
       configured: true,
       session,
@@ -157,12 +141,33 @@ export async function signOutOfCloud(): Promise<void> {
 }
 
 let activeSync: Promise<CloudSyncResult> | null = null
+let activeSyncAccount = ''
+
+function activateProgressAccount(userId: string | null) {
+  if (progressStorage.activate(userId)) window.dispatchEvent(new Event(ACCOUNT_CHANGED_EVENT))
+}
+
+export function hasGuestProgress() {
+  return Object.keys(progressStorage.guestKeys()).some(key => key !== 'chunkyLearnerSettings.v1' && key !== 'chunkyLearnerContinue.v1')
+}
+
+export async function importGuestProgress() {
+  if (progressStorage.account === 'guest') throw new Error('Sign in before importing guest progress.')
+  const now = new Date().toISOString()
+  const guest = normalizeSnapshot({ keys: progressStorage.guestKeys(), capturedAt: now, localUpdatedAt: now }, now)
+  applyProgressSnapshot(mergeSnapshots(captureProgressSnapshot(loadSyncMetadata()), guest))
+  recordLocalProgressChange()
+  return syncNow()
+}
 
 export async function syncNow(): Promise<CloudSyncResult> {
-  if (activeSync) return activeSync
-  activeSync = runSyncNow().finally(() => {
-    activeSync = null
+  const account = progressStorage.account
+  if (activeSync && activeSyncAccount === account) return activeSync
+  activeSyncAccount = account
+  const run = runSyncNow().finally(() => {
+    if (activeSync === run) activeSync = null
   })
+  activeSync = run
   return activeSync
 }
 
@@ -170,23 +175,32 @@ async function runSyncNow(): Promise<CloudSyncResult> {
   if (!supabase) throw new Error('Supabase is not configured yet.')
   if (!navigator.onLine) throw new Error('Offline. Changes will sync when this device reconnects.')
 
+  const account = progressStorage.account
+  const epoch = progressStorage.epoch
+  const assertAccount = () => {
+    if (progressStorage.account !== account || progressStorage.epoch !== epoch) throw new Error('Account changed; this sync was stopped.')
+  }
   const { data: userData, error: userError } = await supabase.auth.getUser()
+  assertAccount()
   if (userError) throw userError
   const user = userData.user
   if (!user) throw new Error('Sign in before syncing.')
+  if (user.id !== account) throw new Error('Sign-in changed. Reload before syncing.')
 
   const metadata = loadSyncMetadata()
-  const localSnapshot = captureProgressSnapshot(metadata)
-  const remoteRow = await fetchRemoteSnapshot()
+  const remoteRow = await fetchRemoteSnapshot(user.id)
+  assertAccount()
   const syncedAt = new Date().toISOString()
 
   if (!remoteRow) {
-    await upsertSnapshot(user.id, localSnapshot)
+    const freshLocal = captureProgressSnapshot(loadSyncMetadata())
+    await upsertSnapshot(user.id, freshLocal)
+    assertAccount()
     saveSyncMetadata({
       userId: user.id,
-      lastLocalUpdatedAt: localSnapshot.localUpdatedAt,
+      lastLocalUpdatedAt: loadSyncMetadata().lastLocalUpdatedAt ?? freshLocal.localUpdatedAt,
       lastSyncedAt: syncedAt,
-      lastRemoteUpdatedAt: localSnapshot.capturedAt,
+      lastRemoteUpdatedAt: freshLocal.capturedAt,
     })
     return { pushedSnapshot: true, pulledSnapshot: false, mergedSnapshot: false, syncedAt }
   }
@@ -211,38 +225,49 @@ async function runSyncNow(): Promise<CloudSyncResult> {
   // per-card review), so a stale cloud copy can never revert lessons a child
   // just completed on this device. Blind replacement was the root cause of
   // progress "resetting to level one" whenever the cloud copy looked newer.
-  const mergedSnapshot = mergeSnapshots(localSnapshot, remoteSnapshot)
+  const mergedSnapshot = mergeSnapshots(captureProgressSnapshot(loadSyncMetadata()), remoteSnapshot)
   applyProgressSnapshot(mergedSnapshot)
   await upsertSnapshot(user.id, mergedSnapshot)
+  assertAccount()
   saveSyncMetadata({
     userId: user.id,
-    lastLocalUpdatedAt: mergedSnapshot.localUpdatedAt,
+    lastLocalUpdatedAt: loadSyncMetadata().lastLocalUpdatedAt ?? mergedSnapshot.localUpdatedAt,
     lastSyncedAt: syncedAt,
     lastRemoteUpdatedAt: mergedSnapshot.capturedAt,
   })
   return { pushedSnapshot: true, pulledSnapshot: true, mergedSnapshot: true, syncedAt }
 }
 
-async function fetchRemoteSnapshot(): Promise<CloudProgressRow | null> {
+async function fetchRemoteSnapshot(userId: string): Promise<CloudProgressRow | null> {
   if (!supabase) return null
   const { data, error } = await supabase
     .from('chunky_reader_progress')
     .select('user_id, progress_id, progress_data, updated_at')
-    .eq('progress_id', SNAPSHOT_ID)
-    .maybeSingle()
+    .eq('user_id', userId)
+    .in('progress_id', [SNAPSHOT_ID, ...LEARNER_SCOPES.map(scope => `chunky-reader-v2:${scope}`)])
   if (error) throw error
-  return (data as CloudProgressRow | null) ?? null
+  const rows = (data ?? []) as CloudProgressRow[]
+  const modern = rows.filter(row => row.progress_id.startsWith('chunky-reader-v2:'))
+  if (!modern.length) return rows.find(row => row.progress_id === SNAPSHOT_ID) ?? null
+  const updatedAt = modern.map(row => row.updated_at).sort().at(-1)!
+  return {
+    user_id: userId, progress_id: SNAPSHOT_ID, updated_at: updatedAt,
+    progress_data: normalizeSnapshot({
+      keys: Object.assign({}, ...modern.map(row => row.progress_data.keys)),
+      capturedAt: updatedAt, localUpdatedAt: updatedAt,
+    }, updatedAt),
+  }
 }
 
 async function upsertSnapshot(userId: string, snapshot: CloudProgressSnapshot): Promise<void> {
   if (!supabase) return
   const { error } = await supabase.from('chunky_reader_progress').upsert(
-    {
+    LEARNER_SCOPES.map(scope => ({
       user_id: userId,
-      progress_id: SNAPSHOT_ID,
-      progress_data: snapshot,
+      progress_id: `chunky-reader-v2:${scope}`,
+      progress_data: { ...snapshot, keys: Object.fromEntries(Object.entries(snapshot.keys).filter(([key]) => learnerScope(key) === scope)) },
       updated_at: snapshot.capturedAt,
-    },
+    })),
     { onConflict: 'user_id,progress_id' },
   )
   if (error) throw error
@@ -252,7 +277,7 @@ function captureProgressSnapshot(metadata: SyncMetadata): CloudProgressSnapshot 
   const capturedAt = new Date().toISOString()
   const keys: Record<string, string> = {}
   for (const key of trackedLocalStorageKeys()) {
-    const value = window.localStorage.getItem(key)
+    const value = progressStorage.getItem(key)
     if (value !== null) keys[key] = value
   }
 
@@ -261,17 +286,17 @@ function captureProgressSnapshot(metadata: SyncMetadata): CloudProgressSnapshot 
     id: SNAPSHOT_ID,
     capturedAt,
     localUpdatedAt: metadata.lastLocalUpdatedAt ?? capturedAt,
-    keys,
+    keys: compactProgressKeys(keys),
   }, capturedAt)
 }
 
 function applyProgressSnapshot(snapshot: CloudProgressSnapshot) {
   const trackedKeys = trackedLocalStorageKeys()
   for (const key of trackedKeys) {
-    if (!(key in snapshot.keys)) window.localStorage.removeItem(key)
+    if (!(key in snapshot.keys)) progressStorage.removeItem(key)
   }
   for (const [key, value] of Object.entries(snapshot.keys)) {
-    window.localStorage.setItem(key, value)
+    progressStorage.setItem(key, value)
   }
 }
 
@@ -379,7 +404,7 @@ function mergeWordRecognitionValue(localValue: string, remoteValue: string, loca
   const introducedCandidates = [Number(local.introducedAt || 0), Number(remote.introducedAt || 0)].filter((value) => value > 0)
   return stringify({
     successfulLessons: Math.max(Number(local.successfulLessons || 0), Number(remote.successfulLessons || 0), successfulLessonIds.length),
-    successfulLessonIds,
+    successfulLessonIds: successfulLessonIds.slice(-32),
     lastPracticedAt: Math.max(Number(local.lastPracticedAt || 0), Number(remote.lastPracticedAt || 0)) || undefined,
     introducedAt: introducedCandidates.length ? Math.min(...introducedCandidates) : undefined,
   })
@@ -525,8 +550,8 @@ function mergeFlashcardStates(localRaw: unknown, remoteRaw: unknown): FlashcardS
 
 function trackedLocalStorageKeys(): string[] {
   const keys = new Set(EXACT_SYNC_KEYS)
-  for (let index = 0; index < window.localStorage.length; index += 1) {
-    const key = window.localStorage.key(index)
+  for (let index = 0; index < progressStorage.length; index += 1) {
+    const key = progressStorage.key(index)
     if (key && PREFIX_SYNC_KEYS.some((prefix) => key.startsWith(prefix))) keys.add(key)
   }
   return [...keys]
@@ -534,14 +559,14 @@ function trackedLocalStorageKeys(): string[] {
 
 function normalizeSnapshot(snapshot: Partial<CloudProgressSnapshot>, fallbackUpdatedAt: string): CloudProgressSnapshot {
   const settings = normalizeSettingsValue(snapshot.keys?.['chunkyLearnerSettings.v1'])
-  const keys = { ...(snapshot.keys || {}) }
+  const keys = Object.fromEntries(Object.entries(snapshot.keys || {}).filter(([key, value]) => isProgressKey(key) && typeof value === 'string'))
   if (settings) keys['chunkyLearnerSettings.v1'] = settings
   return {
     version: SNAPSHOT_VERSION,
     id: SNAPSHOT_ID,
     capturedAt: snapshot.capturedAt || fallbackUpdatedAt,
     localUpdatedAt: snapshot.localUpdatedAt || snapshot.capturedAt || fallbackUpdatedAt,
-    keys,
+    keys: compactProgressKeys(keys),
   }
 }
 
@@ -553,7 +578,7 @@ function normalizeSettingsValue(value: string | undefined): string | undefined {
 
 function loadSyncMetadata(): SyncMetadata {
   try {
-    const raw = window.localStorage.getItem(METADATA_KEY)
+    const raw = progressStorage.getItem(METADATA_KEY)
     return raw ? JSON.parse(raw) as SyncMetadata : {}
   } catch {
     return {}
@@ -562,7 +587,7 @@ function loadSyncMetadata(): SyncMetadata {
 
 function saveSyncMetadata(metadata: SyncMetadata) {
   try {
-    window.localStorage.setItem(METADATA_KEY, JSON.stringify(metadata))
+    progressStorage.setItem(METADATA_KEY, JSON.stringify(metadata))
   } catch {
     // Cloud sync metadata is helpful, but local learning should never depend on it.
   }

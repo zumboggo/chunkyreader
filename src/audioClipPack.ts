@@ -1,3 +1,4 @@
+import { assetUrl, legacyAssetUrl } from './mediaAssets'
 import { useEffect, useRef, useState } from 'react'
 import { loadAppSettings } from './appSettings'
 
@@ -153,7 +154,8 @@ export async function installAudioClipPack(onProgress?: (progress: AudioPackInst
     const url = withBase(file)
     onProgress?.({ done, total: files.length, current: file })
     const response = await fetch(url)
-    if (response.ok) await cache.put(url, response)
+    if (!response.ok) throw new Error('An audio file could not be saved. Reconnect and try again.')
+    await cache.put(url, response)
     done += 1
     onProgress?.({ done, total: files.length, current: file })
   }
@@ -215,7 +217,7 @@ async function resolveInstalledOrNetworkUrl(path: string): Promise<string> {
   const url = withBase(path)
   if (!('caches' in window)) return url
   const cache = await caches.open(installedAudioCache)
-  const cached = await cache.match(url)
+  const cached = await cache.match(url) ?? await cache.match(legacyAssetUrl(path))
   if (!cached) return url
   const blob = await cached.blob()
   return URL.createObjectURL(blob)
@@ -231,7 +233,7 @@ function speakFallback(text: string) {
 }
 
 function withBase(path: string): string {
-  return `${import.meta.env.BASE_URL}${path}`.replace(/([^:]\/)\/+/gu, '$1')
+  return assetUrl(`${path}`).replace(/([^:]\/)\/+/gu, '$1')
 }
 
 function readAutoplayUnlocked() {

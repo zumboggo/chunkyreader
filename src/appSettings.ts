@@ -1,3 +1,4 @@
+import { progressStorage } from './progressStorage'
 import type { SectionId } from './types'
 
 export interface AppSettings {
@@ -33,7 +34,7 @@ export const defaultAppSettings: AppSettings = {
 
 export function loadAppSettings(): AppSettings {
   try {
-    const raw = localStorage.getItem(SETTINGS_KEY)
+    const raw = progressStorage.getItem(SETTINGS_KEY)
     if (!raw) return defaultAppSettings
     const parsed = JSON.parse(raw) as Partial<AppSettings>
     return {
@@ -51,7 +52,7 @@ export function loadAppSettings(): AppSettings {
 
 export function saveAppSettings(settings: AppSettings) {
   try {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings))
+    progressStorage.setItem(SETTINGS_KEY, JSON.stringify(settings))
     window.dispatchEvent(new CustomEvent('chunkyReaderProgressChanged', { detail: { changedAt: Date.now() } }))
     window.dispatchEvent(new CustomEvent('chunkyLearnerSettingsChanged', { detail: settings }))
   } catch {

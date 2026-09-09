@@ -1,4 +1,5 @@
 import { parseCsv, parseList, parseNumber, readColumn, stableId } from './csv'
+import { assetUrl, joinAssetPath } from './mediaAssets'
 import type {
   ClipManifestEntry,
   ClipPackManifest,
@@ -7,7 +8,6 @@ import type {
   LearningDeck,
 } from './types'
 
-const appBase = import.meta.env.BASE_URL
 
 export async function loadDeckLibrary(): Promise<LearningDeck[]> {
   const response = await fetch(withBase('decks/index.json'))
@@ -53,13 +53,11 @@ export function resolveAssetUrl(deck: LearningDeck, path?: string): string | und
   if (!path) return undefined
   if (/^(https?:|data:|blob:)/u.test(path)) return path
   if (path.startsWith('/')) return withBase(path.slice(1))
-  const base = deck.assetBaseUrl || deck.baseUrl
-  return withBase([base, path].filter(Boolean).join('/'))
+  return joinAssetPath(deck.assetBaseUrl || deck.baseUrl, path)
 }
 
 function withBase(path: string): string {
-  const joined = `${appBase}${path}`.replace(/([^:]\/)\/+/gu, '$1')
-  return joined
+  return assetUrl(path)
 }
 
 async function loadDeck(entry: DeckIndexEntry): Promise<LearningDeck> {

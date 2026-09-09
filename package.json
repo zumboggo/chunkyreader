@@ -8,7 +8,10 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "verify:decks": "node scripts/verify-decks.mjs",
+    "verify:decks": "node scripts/verify-decks.mjs && npm run verify:accounts && npm run verify:media && npm run verify:offline && npm run verify:math-levels",
+    "verify:accounts": "node --experimental-strip-types scripts/verify-account-storage.mts",
+    "verify:media": "node scripts/verify-media.mjs",
+    "verify:offline": "node scripts/verify-offline.mjs",
     "verify:stories": "node scripts/verify-stories.mjs",
     "verify:rewards": "node scripts/verify-rewards.mjs",
     "generate:audio": "node scripts/generate-azure-reading-clips.mjs",
@@ -58,7 +61,7 @@
     "generate:math-images:force": "node --env-file=.env scripts/generate-math-object-images.mjs --force"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.106.2",
+    "@supabase/supabase-js": "2.106.2",
     "canvas-confetti": "^1.9.4",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"

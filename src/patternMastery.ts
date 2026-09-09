@@ -1,3 +1,4 @@
+import { progressStorage } from './progressStorage'
 import { recordLocalProgressChange } from './cloudProgressSync'
 
 // Stepping-stone ladder for each taught phonics pattern. Question difficulty
@@ -26,7 +27,7 @@ const NEAR_MISS_UNLOCK_CORRECT = 1
 
 export function readPatternMastery(deckId: string, patternId: string): PatternMastery {
   try {
-    const raw = localStorage.getItem(patternKey(deckId, patternId))
+    const raw = progressStorage.getItem(patternKey(deckId, patternId))
     if (!raw) return emptyMastery()
     const parsed = JSON.parse(raw) as Partial<PatternMastery>
     return {
@@ -99,7 +100,7 @@ function clampRung(value: unknown): number {
 
 function writePatternMastery(deckId: string, patternId: string, mastery: PatternMastery) {
   try {
-    localStorage.setItem(patternKey(deckId, patternId), JSON.stringify(mastery))
+    progressStorage.setItem(patternKey(deckId, patternId), JSON.stringify(mastery))
     recordLocalProgressChange()
   } catch {
     // Pattern tracking must never block a lesson.

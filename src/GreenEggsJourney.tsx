@@ -1,3 +1,4 @@
+import { assetUrl } from './mediaAssets'
 const MILESTONE_STEP = 10
 
 /**
@@ -49,13 +50,13 @@ export function GreenEggsJourney({
           </span>
         ))}
         <img
-          src={`${import.meta.env.BASE_URL}assets/100-lessons/panda-walk-${frame}.png`}
+          src={assetUrl(`assets/100-lessons/panda-walk-${frame}.png`)}
           alt=""
           className="green-eggs-walker"
           style={{ left: `${progress * 100}%` }}
         />
         <img
-          src={`${import.meta.env.BASE_URL}assets/green-eggs-goal.png`}
+          src={assetUrl(`assets/green-eggs-goal.png`)}
           alt=""
           className="green-eggs-goal-img"
         />

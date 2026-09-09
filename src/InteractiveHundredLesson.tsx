@@ -1,3 +1,5 @@
+import { assetUrl } from './mediaAssets'
+import { progressStorage } from './progressStorage'
 import { useEffect, useMemo, useState } from 'react';
 import { playAudioUrl } from './audioClipPack';
 import { recordLocalProgressChange } from './cloudProgressSync';
@@ -18,11 +20,11 @@ type LessonActivity =
 function lessonAsset(path?: string) {
   if (!path) return undefined;
   if (/^(https?:|data:|blob:)/u.test(path)) return path;
-  return `${import.meta.env.BASE_URL}100-lessons/${path}`.replace(/([^:]\/)\/+/gu, '$1');
+  return assetUrl(`100-lessons/${path}`).replace(/([^:]\/)\/+/gu, '$1');
 }
 
 function hundredAsset(path: string) {
-  return `${import.meta.env.BASE_URL}assets/100-lessons/${path}`.replace(/([^:]\/)\/+/gu, '$1');
+  return assetUrl(`assets/100-lessons/${path}`).replace(/([^:]\/)\/+/gu, '$1');
 }
 
 function playLessonAudio(path?: string) {
@@ -36,7 +38,7 @@ function isChoiceKey(event: KeyboardEvent, choice: ControllerChoice): boolean {
 }
 
 function Mascot({ mood = 'reading' }: { mood?: MascotMood }) {
-  const src = `${import.meta.env.BASE_URL}assets/mascots/mascot-expressions.png`;
+  const src = assetUrl(`assets/mascots/mascot-expressions.png`);
   return (
     <span
       className={`mascot-sprite large mood-${mood}`}
@@ -549,8 +551,8 @@ function LessonComplete({ lessonNumber, sounds, onDone }: { lessonNumber: number
 
 function incrementHundredLessonStickers() {
   try {
-    const current = Number.parseInt(window.localStorage.getItem('completed-lessons-100') || '0', 10);
-    window.localStorage.setItem('completed-lessons-100', String((Number.isFinite(current) ? current : 0) + 1));
+    const current = Number.parseInt(progressStorage.getItem('completed-lessons-100') || '0', 10);
+    progressStorage.setItem('completed-lessons-100', String((Number.isFinite(current) ? current : 0) + 1));
     recordLocalProgressChange();
   } catch {
     // Stickers are a reward layer; lessons must still finish if storage is unavailable.
@@ -576,7 +578,7 @@ export function InteractiveHundredLessonScreen({
     setLesson(null);
     setActivityIndex(0);
     setJourneyStep(0);
-    fetch(`${import.meta.env.BASE_URL}100-lessons/${lessonId}.json`)
+    fetch(assetUrl(`100-lessons/${lessonId}.json`))
       .then((response) => {
         if (!response.ok) throw new Error(`Could not load ${lessonId}.json`);
         return response.json();
@@ -619,7 +621,7 @@ export function InteractiveHundredLessonScreen({
   };
   const advanceJourney = () => setJourneyStep((step) => Math.min(step + 1, journeyTotalSteps));
   const finishLesson = () => {
-    localStorage.setItem('100-lessons-progress', String(lesson.lessonNumber + 1));
+    progressStorage.setItem('100-lessons-progress', String(lesson.lessonNumber + 1));
     recordLocalProgressChange();
     incrementHundredLessonStickers();
     const rewardResult = markHundredLessonComplete(lesson.id);

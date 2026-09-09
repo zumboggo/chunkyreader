@@ -1,3 +1,4 @@
+import { progressStorage } from './progressStorage'
 import type { LearningCard, LearningDeck } from './types'
 import { isWordMastered, readWordRecognitionProgress } from './wordLessonProgress'
 import { recordLocalProgressChange } from './cloudProgressSync'
@@ -117,7 +118,7 @@ export function milestonesKey(deckId: string) {
 
 export function readCelebratedMilestones(deckId: string): number[] {
   try {
-    const parsed = JSON.parse(localStorage.getItem(milestonesKey(deckId)) || '[]')
+    const parsed = JSON.parse(progressStorage.getItem(milestonesKey(deckId)) || '[]')
     return Array.isArray(parsed) ? parsed.filter((value): value is number => typeof value === 'number') : []
   } catch {
     return []
@@ -128,7 +129,7 @@ export function markMilestoneCelebrated(deckId: string, milestone: number) {
   try {
     const current = readCelebratedMilestones(deckId)
     if (current.includes(milestone)) return
-    localStorage.setItem(milestonesKey(deckId), JSON.stringify([...current, milestone].sort((a, b) => a - b)))
+    progressStorage.setItem(milestonesKey(deckId), JSON.stringify([...current, milestone].sort((a, b) => a - b)))
     recordLocalProgressChange()
   } catch {
     // Celebration bookkeeping must never block a lesson.

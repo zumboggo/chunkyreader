@@ -1,3 +1,6 @@
+import { assetUrl } from './mediaAssets'
+import { PrivateLibrary } from './PrivateLibrary'
+import { progressStorage } from './progressStorage'
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent, type ReactNode } from 'react'
 import {
   getInstalledAudioPackSummary,
@@ -201,15 +204,15 @@ function wordLessonNumberForIndex(cardIndex: number) {
 
 function persistAnnaWordsIndex(deckId: string, index: number) {
   const key = annaWordsProgressKey(deckId)
-  const saved = parseInt(localStorage.getItem(key) ?? '0', 10) || 0
+  const saved = parseInt(progressStorage.getItem(key) ?? '0', 10) || 0
   if (index > saved) {
-    localStorage.setItem(key, String(index))
+    progressStorage.setItem(key, String(index))
     recordLocalProgressChange()
   }
 }
 
 function readAnnaWordsIndex(deckId: string) {
-  return parseInt(localStorage.getItem(annaWordsProgressKey(deckId)) ?? '0', 10) || 0
+  return parseInt(progressStorage.getItem(annaWordsProgressKey(deckId)) ?? '0', 10) || 0
 }
 // Toddler letter visits move forward one sound at a time. The five-card slice is
 // retained as a reusable pocket for a single, familiar distractor.
@@ -447,7 +450,7 @@ function WordCollection({
           <div className="book-words-heading">
             <img
               className="book-words-goal-art"
-              src={`${import.meta.env.BASE_URL}assets/green-eggs-goal.png`}
+              src={assetUrl(`assets/green-eggs-goal.png`)}
               alt=""
               aria-hidden="true"
             />
@@ -905,7 +908,7 @@ function App() {
     const state = { ...next }
     setContinueState(state)
     try {
-      localStorage.setItem(CONTINUE_KEY, JSON.stringify(state))
+      progressStorage.setItem(CONTINUE_KEY, JSON.stringify(state))
       recordLocalProgressChange()
     } catch {
       // Continue is a convenience; lessons still work without storage.
@@ -946,14 +949,14 @@ function App() {
       targetDeckId = currentDecks.find(d => d.type === 'letters' && d.profile === 'sarah')?.id ?? ''
       targetMode = 'listeningMode'
       if (targetDeckId) {
-        const saved = localStorage.getItem(`sarah-progress-${targetDeckId}`)
+        const saved = progressStorage.getItem(`sarah-progress-${targetDeckId}`)
         resumeIndex = saved ? parseInt(saved, 10) : 0
       }
     } else if (section === 'sounds') {
       targetDeckId = currentDecks.find(d => d.type === 'phonemes' && d.profile === 'sarah')?.id ?? ''
       targetMode = 'listeningMode'
       if (targetDeckId) {
-        const saved = localStorage.getItem(`sarah-progress-${targetDeckId}`)
+        const saved = progressStorage.getItem(`sarah-progress-${targetDeckId}`)
         resumeIndex = saved ? parseInt(saved, 10) : 0
       }
     } else if (section === 'words') {
@@ -1115,7 +1118,7 @@ function App() {
     const nextIndex = sarahLetterLessonStartForNumber(nextLesson, activeDeck.cards.length)
     setCardIndex(nextIndex)
     if (activeDeck.profile === 'sarah') {
-      localStorage.setItem(`sarah-progress-${activeDeck.id}`, String(nextIndex))
+      progressStorage.setItem(`sarah-progress-${activeDeck.id}`, String(nextIndex))
       recordLocalProgressChange()
     }
     setPhase('learn')
@@ -1494,6 +1497,7 @@ function ParentSettingsModal({
             </>
           )}
           <small className="cloud-sync-message">{cloudSync.message}</small>
+          {cloudUserEmail && <PrivateLibrary />}
         </section>
         <button type="button" className="danger-button" onClick={reset}>
           {confirmReset ? 'Tap again to reset progress' : 'Reset local progress'}
@@ -2035,7 +2039,7 @@ function LearningScreen({
             : activeDeck.title
   const lessonVisualStyle = isOlderReaderWords
     ? {
-        '--words-scene-image': `url("${import.meta.env.BASE_URL}assets/words/reading-garden.webp")`,
+        '--words-scene-image': `url("${assetUrl('assets/words/reading-garden.webp')}")`,
       } as CSSProperties
     : undefined
 
@@ -2397,12 +2401,12 @@ function FocusLessonTopBar({
       {visualVariant === 'words' && (
         <img
           className="words-header-panda"
-          src={`${import.meta.env.BASE_URL}assets/words/reading-panda.webp`}
+          src={assetUrl(`assets/words/reading-panda.webp`)}
           alt=""
           aria-hidden="true"
           onError={(event) => {
             event.currentTarget.onerror = null
-            event.currentTarget.src = `${import.meta.env.BASE_URL}assets/mascots/mascot-reading.png`
+            event.currentTarget.src = assetUrl(`assets/mascots/mascot-reading.png`)
           }}
         />
       )}
@@ -2513,8 +2517,8 @@ function SarahLetterLesson({
       completionRecordedRef.current = true
       playSfx('fireworks')
       fireworksCelebration()
-      const currentProgress = parseInt(localStorage.getItem('completed-lessons-sarah') || '0', 10)
-      localStorage.setItem('completed-lessons-sarah', (currentProgress + 1).toString())
+      const currentProgress = parseInt(progressStorage.getItem('completed-lessons-sarah') || '0', 10)
+      progressStorage.setItem('completed-lessons-sarah', (currentProgress + 1).toString())
       recordLocalProgressChange()
       onLessonComplete()
     }
@@ -2902,8 +2906,8 @@ function SarahPhonemeLesson({
       completionRecordedRef.current = true
       playSfx('fireworks')
       fireworksCelebration()
-      const currentProgress = parseInt(localStorage.getItem('completed-lessons-sarah') || '0', 10)
-      localStorage.setItem('completed-lessons-sarah', (currentProgress + 1).toString())
+      const currentProgress = parseInt(progressStorage.getItem('completed-lessons-sarah') || '0', 10)
+      progressStorage.setItem('completed-lessons-sarah', (currentProgress + 1).toString())
       recordLocalProgressChange()
       onLessonComplete()
     }
@@ -3551,8 +3555,8 @@ function OlderReaderLesson({
       completionRecordedRef.current = true
       playSfx('fireworks')
       fireworksCelebration()
-      const currentProgress = parseInt(localStorage.getItem('completed-lessons-anna') || '0', 10)
-      localStorage.setItem('completed-lessons-anna', (currentProgress + 1).toString())
+      const currentProgress = parseInt(progressStorage.getItem('completed-lessons-anna') || '0', 10)
+      progressStorage.setItem('completed-lessons-anna', (currentProgress + 1).toString())
       recordLocalProgressChange()
       recordWordLessonResults(deck.id, lessonId, lessonCards, firstTryCorrectCounts)
       // Advance the saved resume position NOW, so tapping Done or closing the
@@ -3582,7 +3586,7 @@ function OlderReaderLesson({
             <div className="peek-card">
               {isBookWord(activity.card) && (
                 <span className="peek-book-tag">
-                  <img src={`${import.meta.env.BASE_URL}assets/green-eggs-goal.png`} alt="" aria-hidden="true" />
+                  <img src={assetUrl(`assets/green-eggs-goal.png`)} alt="" aria-hidden="true" />
                   Book word
                 </span>
               )}
@@ -5146,7 +5150,7 @@ function ObjectImage({ object }: { object: string }) {
   return (
     <img
       className="math-obj-img"
-      src={`${import.meta.env.BASE_URL}math-objects/${object}.png`}
+      src={assetUrl(`math-objects/${object}.png`)}
       alt=""
       aria-hidden="true"
       onError={() => setFailed(true)}
@@ -5300,7 +5304,7 @@ function PictureFallback({ label }: { label: string }) {
 
 function Mascot({ size = 'large', mood = 'reading' }: { size?: 'small' | 'large'; mood?: MascotMood }) {
   const [failed, setFailed] = useState(false)
-  const src = `${import.meta.env.BASE_URL}assets/mascots/mascot-expressions.png`
+  const src = assetUrl(`assets/mascots/mascot-expressions.png`)
 
   useEffect(() => {
     const image = new Image()
@@ -6088,7 +6092,7 @@ function speakText(deck: LearningDeck, text?: string) {
 
 function readStoryProgress(storyId: string, pageCount: number): number {
   try {
-    const stored = window.localStorage.getItem(storyProgressKey(storyId))
+    const stored = progressStorage.getItem(storyProgressKey(storyId))
     const index = stored ? Number(stored) : 0
     return Number.isFinite(index) ? Math.max(0, Math.min(pageCount - 1, index)) : 0
   } catch {
@@ -6098,7 +6102,7 @@ function readStoryProgress(storyId: string, pageCount: number): number {
 
 function saveStoryProgress(storyId: string, pageIndex: number) {
   try {
-    window.localStorage.setItem(storyProgressKey(storyId), String(pageIndex))
+    progressStorage.setItem(storyProgressKey(storyId), String(pageIndex))
     recordLocalProgressChange()
   } catch {
     // Reading should never depend on storage support.
@@ -6111,7 +6115,7 @@ function storyProgressKey(storyId: string): string {
 
 function readContinueState(): ContinueLearningState | undefined {
   try {
-    const raw = localStorage.getItem(CONTINUE_KEY)
+    const raw = progressStorage.getItem(CONTINUE_KEY)
     if (!raw) return undefined
     const parsed = JSON.parse(raw) as ContinueLearningState
     return parsed.section ? parsed : undefined
@@ -6191,7 +6195,7 @@ function saveFlashcardChoice(deckId: string, cardId: string, choice: FlashcardCh
 
 function readCardProgress(deckId: string, cardId: string): CardProgress {
   try {
-    const raw = window.localStorage.getItem(cardProgressKey(deckId, cardId))
+    const raw = progressStorage.getItem(cardProgressKey(deckId, cardId))
     return raw ? JSON.parse(raw) as CardProgress : {}
   } catch {
     return {}
@@ -6201,7 +6205,7 @@ function readCardProgress(deckId: string, cardId: string): CardProgress {
 function updateCardProgress(deckId: string, cardId: string, patch: CardProgress) {
   try {
     const next = { ...readCardProgress(deckId, cardId), ...patch }
-    window.localStorage.setItem(cardProgressKey(deckId, cardId), JSON.stringify(next))
+    progressStorage.setItem(cardProgressKey(deckId, cardId), JSON.stringify(next))
     recordLocalProgressChange()
   } catch {
     // Review scheduling is helpful, but the lesson must keep working without storage.
@@ -6243,7 +6247,7 @@ interface OlderReaderPhonemeProgress {
 
 function readOlderReaderPhonemeProgress(deckId: string, totalCards: number): OlderReaderPhonemeProgress {
   try {
-    const raw = window.localStorage.getItem(olderReaderPhonemeProgressKey(deckId))
+    const raw = progressStorage.getItem(olderReaderPhonemeProgressKey(deckId))
     const parsed = raw ? JSON.parse(raw) as Partial<OlderReaderPhonemeProgress> : {}
     const nextIndex = Number.isFinite(parsed.nextIndex) ? Number(parsed.nextIndex) : 0
     return {
@@ -6274,7 +6278,7 @@ function completeOlderReaderPhonemeLesson(deck: LearningDeck, lessonCards: Learn
   }
 
   try {
-    window.localStorage.setItem(olderReaderPhonemeProgressKey(deck.id), JSON.stringify(nextProgress))
+    progressStorage.setItem(olderReaderPhonemeProgressKey(deck.id), JSON.stringify(nextProgress))
     recordLocalProgressChange()
   } catch {
     // Progress tracking should help the loop, but never block the reading lesson.

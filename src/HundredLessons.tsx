@@ -1,7 +1,9 @@
+import { assetUrl } from './mediaAssets'
+import { progressStorage } from './progressStorage'
 import { useState, useEffect } from 'react';
 
 function Mascot({ mood = 'reading' }: { mood?: 'happy' | 'reading' | 'sad' | 'curious' }) {
-  const src = `${import.meta.env.BASE_URL}assets/mascots/mascot-expressions.png`;
+  const src = assetUrl(`assets/mascots/mascot-expressions.png`);
   return (
     <span
       className={`mascot-sprite large mood-${mood}`}
@@ -31,11 +33,11 @@ export function HundredLessonsHome({
   const [chooserOpen, setChooserOpen] = useState(false);
 
   useEffect(() => {
-    fetch(`${import.meta.env.BASE_URL}100-lessons/index.json`)
+    fetch(assetUrl(`100-lessons/index.json`))
       .then(r => r.json())
       .then(data => {
         setLessons(data);
-        const saved = localStorage.getItem('100-lessons-progress');
+        const saved = progressStorage.getItem('100-lessons-progress');
         if (saved) {
           setNextLesson(parseInt(saved, 10));
         } else {
@@ -64,7 +66,7 @@ export function HundredLessonsHome({
       <div className="reader-hero hundred-lessons-hero">
         <img
           className="hundred-journey-map"
-          src={`${import.meta.env.BASE_URL}assets/100-lessons/reading-well-journey.png`}
+          src={assetUrl(`assets/100-lessons/reading-well-journey.png`)}
           alt=""
         />
         <div>

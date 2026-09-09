@@ -1,3 +1,5 @@
+import { assetUrl } from './mediaAssets'
+import { progressStorage } from './progressStorage'
 import { useState } from 'react'
 import confetti from 'canvas-confetti'
 import { LEARNING_SECTIONS } from './content/sections'
@@ -73,7 +75,7 @@ export function SectionPicker({
         {continueState?.section === 'words' ? (
           <img
             className="continue-hero-art"
-            src={`${import.meta.env.BASE_URL}assets/green-eggs-goal.png`}
+            src={assetUrl(`assets/green-eggs-goal.png`)}
             alt=""
             aria-hidden="true"
           />
@@ -104,7 +106,7 @@ export function SectionPicker({
             onClick={() => onChooseSection(section.id)}
           >
             <div className="section-image-container">
-              <img className="section-image" src={`${import.meta.env.BASE_URL}${section.image}`} alt="" />
+              <img className="section-image" src={assetUrl(`${section.image}`)} alt="" />
               <span className={`section-visual-badge badge-${section.id}`} aria-hidden="true">
                 {sectionBadge(section.id)}
               </span>
@@ -178,11 +180,11 @@ export function SectionPicker({
 
 function getPhonemeLearnedCount(): number {
   let count = 0
-  for (let index = 0; index < localStorage.length; index += 1) {
-    const key = localStorage.key(index)
+  for (let index = 0; index < progressStorage.length; index += 1) {
+    const key = progressStorage.key(index)
     if (!key || !key.startsWith('chunky-reader:older-reader-phonemes:')) continue
     try {
-      const parsed = JSON.parse(localStorage.getItem(key) || '{}')
+      const parsed = JSON.parse(progressStorage.getItem(key) || '{}')
       if (Array.isArray(parsed.learnedIds)) count += parsed.learnedIds.length
     } catch {
       // Ignore malformed entries; the badge is decorative.
@@ -475,8 +477,8 @@ function RoomPanel({
   const equippedWindowId = equipped['window']
   const equippedWindow = equippedWindowId ? getRewardById(equippedWindowId) : undefined
   const bgSrc = equippedWindow?.id === 'garden-background'
-    ? `${import.meta.env.BASE_URL}assets/rewards/garden-background.webp`
-    : `${import.meta.env.BASE_URL}assets/panda-room-bg.webp`
+    ? assetUrl(`assets/rewards/garden-background.webp`)
+    : assetUrl(`assets/panda-room-bg.webp`)
   const equippedCount = Object.values(equipped).filter(Boolean).length
 
   return (
@@ -489,7 +491,7 @@ function RoomPanel({
       />
       <div className="room-panda-mascot" aria-hidden="true">
         <img
-          src={`${import.meta.env.BASE_URL}assets/profiles/sarah-reading.png`}
+          src={assetUrl(`assets/profiles/sarah-reading.png`)}
           alt=""
           className="room-panda-sprite"
         />
@@ -569,7 +571,7 @@ function RewardBadge({ item, large = false }: { item: RewardItem; large?: boolea
 }
 
 function rewardImageUrl(item: RewardItem) {
-  return `${import.meta.env.BASE_URL}assets/rewards/${item.id}.webp`
+  return assetUrl(`assets/rewards/${item.id}.webp`)
 }
 
 function hideBrokenRewardImage(event: React.SyntheticEvent<HTMLImageElement>) {

@@ -1,3 +1,4 @@
+import { progressStorage } from './progressStorage'
 import type { LearnerProgress, SectionId } from './types'
 import { awardBoxesForCompletedLessons, normalizeRewardProgress, REWARD_SYSTEM_VERSION } from './rewards'
 import { recordLocalProgressChange } from './cloudProgressSync'
@@ -37,7 +38,7 @@ function getEmptyProgress(): LearnerProgress {
 
 export function loadProgress(): LearnerProgress {
   try {
-    const data = localStorage.getItem(PROGRESS_KEY)
+    const data = progressStorage.getItem(PROGRESS_KEY)
     if (!data) return getEmptyProgress()
     const parsed = JSON.parse(data)
     
@@ -58,7 +59,7 @@ export function loadProgress(): LearnerProgress {
 
 export function saveProgress(progress: LearnerProgress) {
   try {
-    localStorage.setItem(PROGRESS_KEY, JSON.stringify(normalizeRewardProgress(progress)))
+    progressStorage.setItem(PROGRESS_KEY, JSON.stringify(normalizeRewardProgress(progress)))
     recordLocalProgressChange()
   } catch (e) {
     console.error('Failed to save progress', e)
@@ -81,11 +82,11 @@ export function resetProgress() {
       '100-lessons-progress',
       'chunkyLearnerContinue.v1',
     ]
-    for (let index = localStorage.length - 1; index >= 0; index -= 1) {
-      const key = localStorage.key(index)
+    for (let index = progressStorage.length - 1; index >= 0; index -= 1) {
+      const key = progressStorage.key(index)
       if (!key) continue
       if (exactKeys.includes(key) || prefixes.some((prefix) => key.startsWith(prefix))) {
-        localStorage.removeItem(key)
+        progressStorage.removeItem(key)
       }
     }
     recordLocalProgressChange()

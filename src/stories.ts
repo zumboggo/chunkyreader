@@ -1,6 +1,5 @@
 import type { Story } from './types'
-
-const appBase = import.meta.env.BASE_URL
+import { assetUrl } from './mediaAssets'
 
 export async function loadAnneStories(): Promise<Story[]> {
   const response = await fetch(withBase('stories/anne-stories.json'))
@@ -16,5 +15,5 @@ export function resolveStoryAssetUrl(path?: string): string | undefined {
 }
 
 function withBase(path: string): string {
-  return `${appBase}${path}`.replace(/([^:]\/)\/+/gu, '$1')
+  return assetUrl(path)
 }
