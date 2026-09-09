@@ -7944,6 +7944,7 @@ body.dark-mode .heatmap-heavy {
 /* Persistent difficulty bar shown at the bottom of the math lesson screen */
 .math-diff-bar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
   padding: 8px 16px 14px;
@@ -7983,10 +7984,22 @@ body.dark-mode .heatmap-heavy {
 .math-op-toggle {
   display: flex;
   gap: 6px;
-  margin-right: 10px;
-  padding-right: 14px;
-  border-right: 2px solid rgba(0, 0, 0, 0.12);
+  width: 100%;
+  justify-content: center;
   align-items: center;
+}
+
+.math-range-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.math-range-hint {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
 }
 
 .math-op-btn {

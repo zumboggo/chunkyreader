@@ -21,16 +21,14 @@ import { LEARNING_SECTIONS } from './content/sections'
 import { markLessonComplete, markStoryComplete, resetProgress, updateStreakOnLesson, type CompletionRewardResult } from './progress'
 import { applyAppSettings, controllerChoices, loadAppSettings, saveAppSettings, type AppSettings, type ControllerChoice } from './appSettings'
 import {
-  filterMathCards,
   loadMathIndex,
   loadMathProgress,
   MATH_DIFFICULTIES,
-  MATH_DIFFICULTY_DETAILS,
   saveMathIndex,
-  saveMathSelection,
   type MathDifficulty,
   type MathOperation,
 } from './mathProgress'
+import { generateMathCards, MATH_LIMITS } from './mathQuestions'
 import {
   estimateWordLessonResumeIndex,
   isWordMastered,
@@ -566,6 +564,7 @@ function App() {
   const [showAdultDetails, setShowAdultDetails] = useState(false)
   const [mathOperation, setMathOperation] = useState<MathOperation>(() => loadMathProgress().operation)
   const [mathDifficulty, setMathDifficulty] = useState<MathDifficulty>(() => loadMathProgress().difficulty)
+  const [mathSession, setMathSession] = useState(0)
   const [settings, setSettings] = useState<AppSettings>(() => loadAppSettings())
   const [showSettings, setShowSettings] = useState(false)
   const [progressVersion, setProgressVersion] = useState(0)
@@ -642,9 +641,11 @@ function App() {
     if (!sourceActiveDeck || sourceActiveDeck.type !== 'math') return sourceActiveDeck
     return {
       ...sourceActiveDeck,
-      cards: filterMathCards(sourceActiveDeck.cards, mathOperation, mathDifficulty),
+      title: `${mathOperation === 'both' ? 'Addition & subtraction' : mathOperation === 'add' ? 'Addition' : 'Subtraction'} · numbers up to ${MATH_LIMITS[mathDifficulty]}`,
+      cards: generateMathCards(sourceActiveDeck.id, mathOperation, mathDifficulty)
+        .map((card) => ({ ...card, id: `${mathSession}:${card.id}` })),
     }
-  }, [mathDifficulty, mathOperation, sourceActiveDeck])
+  }, [mathDifficulty, mathOperation, sourceActiveDeck, mathSession])
   const currentCard = activeDeck?.cards[cardIndex % Math.max(1, activeDeck.cards.length)]
   const isLessonActive = Boolean(
     (profile || activeSection) &&
@@ -974,14 +975,8 @@ function App() {
       const mathDeck = currentDecks.find(d => d.type === 'math' && d.id.includes(savedMath.operation === 'add' ? 'addition' : 'subtraction'))?.id
         ?? currentDecks.find(d => d.type === 'math')?.id
         ?? ''
-      const mathPool = filterMathCards(
-        currentDecks.find((d) => d.id === mathDeck)?.cards ?? [],
-        savedMath.operation,
-        savedMath.difficulty,
-      )
-      const mathIdx = mathPool.length
-        ? loadMathIndex(savedMath.operation, savedMath.difficulty, mathPool.length)
-        : 0
+      const mathIdx = Math.floor(loadMathIndex(savedMath.operation, savedMath.difficulty, 100) / 5) * 5
+      setMathSession((session) => session + 1)
       resumeIndex = mathIdx
       targetDeckId = mathDeck
       targetMode = 'activeRecall'
@@ -1017,14 +1012,14 @@ function App() {
   function startMath(operation: MathOperation, difficulty: MathDifficulty) {
     const deck = decks.find((candidate) => candidate.type === 'math' && candidate.id.includes(operation === 'add' ? 'addition' : 'subtraction'))
     if (!deck) return
-    const pool = filterMathCards(deck.cards, operation, difficulty)
     setMathOperation(operation)
     setMathDifficulty(difficulty)
     setActiveDeckId(deck.id)
-    setCardIndex(loadMathIndex(operation, difficulty, pool.length))
+    setCardIndex(0)
+    setMathSession((session) => session + 1)
     setPhase('question')
     setSarahActivityIndex(0)
-    saveMathSelection(operation, difficulty)
+    saveMathIndex(operation, difficulty, 0)
   }
 
   function choosePhonemesSection() {
@@ -1054,6 +1049,7 @@ function App() {
   function moveWithinLesson() {
     if (!activeDeck?.cards.length) return
     if (activeDeck.type === 'math') {
+      if (cardIndex + 1 >= activeDeck.cards.length) setMathSession((session) => session + 1)
       setCardIndex((index) => {
         const next = (index + 1) % activeDeck.cards.length
         saveMathIndex(mathOperation, mathDifficulty, next)
@@ -1948,7 +1944,7 @@ function LearningScreen({
   const isSarahFocusLesson = isSarahLetters || isSarahPhonemes
   const isOlderReaderWords = activeDeck.profile === 'anna' && activeDeck.type === 'reading-words'
   const isOlderReaderPhonemes = activeDeck.profile === 'anna' && activeDeck.type === 'phonemes'
-  const lessonDeckCards = isSarahFocusLesson || isOlderReaderPhonemes ? activeDeck.cards : orderCardsForMode(activeDeck, mode)
+  const lessonDeckCards = isSarahFocusLesson || isOlderReaderPhonemes || activeDeck.type === 'math' ? activeDeck.cards : orderCardsForMode(activeDeck, mode)
   const wordLessonId = `${activeDeck.id}:lesson:${wordLessonNumberForIndex(cardIndex)}`
   const selectedWordLessonCards = useMemo(
     () => isOlderReaderWords
@@ -2134,7 +2130,7 @@ function LearningScreen({
         />
       ) : activeDeck.type === 'math' ? (
         <MathLesson
-          key={`${activeDeck.id}:${lessonNumber}:${activeCard.id}`}
+          key={`${activeDeck.id}:${mathOperation}:${mathDifficulty}:${lessonNumber}:${activeCard.id}`}
           deck={activeDeck}
           card={activeCard}
           lessonNumber={lessonNumber}
@@ -4492,13 +4488,16 @@ function MathLesson({
   const [gentleReveal, setGentleReveal] = useState(false)
   const [complete, setComplete] = useState(false)
   const completionRecorded = useRef(false)
+  const answerTimer = useRef<number | null>(null)
+  useEffect(() => () => {
+    if (answerTimer.current !== null) window.clearTimeout(answerTimer.current)
+  }, [])
   const options = useMemo(() => buildOptions([card], card), [card])
   const correct = selected === card.id
   useAutoplayCard(deck, card, `math:${deck.id}:${card.id}`)
 
   const finishQuestion = useCallback(() => {
     if (questionNumber >= totalQuestions) {
-      const operation = card.mathOperation === 'subtract' ? 'subtract' : 'add'
       const nextIndex = (deck.cards.findIndex((candidate) => candidate.id === card.id) + 1) % Math.max(1, deck.cards.length)
       saveMathIndex(operation, difficulty, nextIndex)
       setComplete(true)
@@ -4511,7 +4510,7 @@ function MathLesson({
       return
     }
     onNext()
-  }, [card.id, card.mathOperation, deck.cards, difficulty, onLessonComplete, onNext, questionNumber, totalQuestions])
+  }, [card.id, deck.cards, difficulty, operation, onLessonComplete, onNext, questionNumber, totalQuestions])
 
   const chooseByIndex = useCallback((index: number) => {
     if (selected || gentleReveal || complete) return
@@ -4520,14 +4519,14 @@ function MathLesson({
     setSelected(option.id)
     if (option.id === card.id) {
       playSfx('correct')
-      speakText(deck, `${card.equation?.replace('=', 'is') ?? card.mathPrompt}`)
-      window.setTimeout(finishQuestion, 1400)
+      speakText(deck, `${card.equation?.replace('= ?', `equals ${card.mathAnswer}`) ?? card.mathAnswer}`)
+      answerTimer.current = window.setTimeout(finishQuestion, 1400)
     } else {
       setGentleReveal(true)
       void playNarrationClip('feedback:let-me-help')
-      window.setTimeout(finishQuestion, 1600)
+      answerTimer.current = window.setTimeout(finishQuestion, 1600)
     }
-  }, [card.equation, card.id, card.mathPrompt, complete, deck, finishQuestion, gentleReveal, options, selected])
+  }, [card.equation, card.id, card.mathAnswer, complete, deck, finishQuestion, gentleReveal, options, selected])
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -4644,23 +4643,35 @@ function MathDiffBar({
         >
           −
         </button>
+        <button
+          type="button"
+          className={`math-op-btn ${operation === 'both' ? 'active' : ''}`}
+          onClick={() => onChangeOperation('both')}
+          aria-pressed={operation === 'both'}
+          aria-label="Adding and taking away"
+        >
+          +/−
+        </button>
       </div>
+      <div className="math-range-toggle" role="group" aria-label="Largest number in each problem">
       {MATH_DIFFICULTIES.map((level) => {
-        const details = MATH_DIFFICULTY_DETAILS[level]
+        const title = `Numbers up to ${MATH_LIMITS[level]}`
         return (
           <button
             key={level}
             type="button"
             className={`math-diff-btn math-diff-btn-${level} ${difficulty === level ? 'active' : ''}`}
             onClick={() => onChangeDifficulty(level)}
-            title={details.title}
-            aria-label={details.title}
+            title={title}
+            aria-label={title}
             aria-pressed={difficulty === level}
           >
-            <span aria-hidden="true">{details.icon}</span>
+            <span>{MATH_LIMITS[level]}</span>
           </button>
         )
       })}
+      </div>
+      <p className="math-range-hint">Numbers from 0 to {MATH_LIMITS[difficulty]}</p>
     </div>
   )
 }
@@ -5404,11 +5415,7 @@ function buildOptions(cards: LearningCard[], card: LearningCard): LearningCard[]
 
   if (card.type === 'math' && card.mathAnswerOptions && card.mathAnswer !== undefined) {
     const answer = card.mathAnswer
-    const offsets = [1, 2, -2, -1]
-    const offset = offsets[stableHash(card.id) % offsets.length]
-    const wrong = Math.max(0, answer + offset)
-    const options = wrong === answer ? [answer, answer + 1] : [wrong, answer]
-    return options.sort((a, b) => stableSort(`${card.id}:${a}`) - stableSort(`${card.id}:${b}`)).map(num => ({
+    return card.mathAnswerOptions.map(num => ({
       ...card,
       id: num === answer ? card.id : `${card.id}-wrong-${num}`,
       displayText: String(num),
@@ -5450,6 +5457,15 @@ function selectFocusPattern(deckId: string, wordCards: LearningCard[]): FocusPat
     if (a.matches.length !== b.matches.length) return b.matches.length - a.matches.length
     return PHONICS_PATTERNS.indexOf(a.pattern) - PHONICS_PATTERNS.indexOf(b.pattern)
   })[0]
+}
+
+function shuffleItems<T>(items: T[]): T[] {
+  const shuffled = [...items]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
 }
 
 function buildOlderReaderActivities(deckId: string, lessonCards: LearningCard[]): OlderReaderActivity[] {
@@ -5536,9 +5552,26 @@ function buildOlderReaderActivities(deckId: string, lessonCards: LearningCard[])
     }
   }
 
-  // Keep lessons under ~4 minutes while allowing roughly twice the previous
-  // recognition practice. Pattern instruction remains first.
+  // Preserve the introduction, then add enough varied practice for a lesson
+  // five times its previous activity count. Keep the same small word pocket.
   const cappedPractice = practice.slice(0, OLDER_READER_RECOGNITION_COUNT + 2)
+  const originalLength = peekActivities.length + speedRoundActivities.length
+    + (focus ? 1 : 0) + cappedPractice.length + 1
+  const extendedPractice = [...cappedPractice]
+  const extraCount = originalLength * 4
+  const recognitionKinds: OlderReaderQuestionKind[] = ['audioToWord', 'startsWithSound', 'sentenceBridge']
+  for (let round = 0; extendedPractice.length < cappedPractice.length + extraCount; round++) {
+    const shuffledWords = shuffleItems(wordCards)
+    for (const card of shuffledWords) {
+      if (extendedPractice.length >= cappedPractice.length + extraCount) break
+      let kind = recognitionKinds[round % recognitionKinds.length]
+      if (kind === 'sentenceBridge' && !card.exampleSentence) kind = 'audioToWord'
+      extendedPractice.push({
+        kind, card,
+        options: shuffleItems(buildOlderReaderOptions(wordCards, card, kind, true)),
+      })
+    }
+  }
 
   const finale: OlderReaderActivity = focus
     ? { kind: 'patternSentence', card: focus.matches[0].card, options: [], pattern: focus.pattern }
@@ -5548,7 +5581,7 @@ function buildOlderReaderActivities(deckId: string, lessonCards: LearningCard[])
     ...peekActivities,
     ...speedRoundActivities,
     ...(focus ? [{ kind: 'meetPattern' as OlderReaderQuestionKind, card: focus.matches[0].card, options: [], pattern: focus.pattern }] : []),
-    ...cappedPractice,
+    ...extendedPractice,
     finale,
   ]
 }
