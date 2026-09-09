@@ -7,6 +7,7 @@ const requireFiles = process.argv.includes('--require-files')
 const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'))
 const errors = []
 const warnings = []
+const mediaManifest = JSON.parse(fs.readFileSync(path.join(root, 'public/media-manifest.json'), 'utf8'))
 
 if (!Array.isArray(data.cards) || data.cards.length === 0) {
   errors.push('sarah-letter-images.json must contain a non-empty cards array.')
@@ -31,7 +32,8 @@ for (const card of data.cards ?? []) {
   for (const field of ['backgroundImage', 'finalCompositeImage']) {
     if (!card[field]) continue
     const filePath = path.join(root, 'public', card[field])
-    if (requireFiles && !fs.existsSync(filePath)) errors.push(`${card.id}: missing ${field} file ${card[field]}`)
+    const isRemote = mediaManifest.enabled && mediaManifest.files[card[field]]
+    if (requireFiles && !fs.existsSync(filePath) && !isRemote) errors.push(`${card.id}: missing ${field} file ${card[field]}`)
   }
 }
 

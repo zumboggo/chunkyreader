@@ -1,5 +1,5 @@
 {
-  "enabled": false,
+  "enabled": true,
   "baseUrl": "https://nvrofeaaewwdeefxtmqu.supabase.co/storage/v1/object/public/chunky-reader-media",
   "files": {
     "100-lessons/audio/lesson-50_c0_i0_ch-phoneme-phonics-sounds-v2.mp3": {

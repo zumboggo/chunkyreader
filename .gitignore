@@ -5,3 +5,9 @@ node_modules/
 .migration/
 supabase/.temp/
 supabase/.branches/
+# Generated shared media belongs in Storage, referenced by media-manifest.json.
+public/**/*.mp3
+public/**/*.png
+public/**/*.webp
+public/**/*.jpg
+!public/assets/mascots/mascot-reading.png

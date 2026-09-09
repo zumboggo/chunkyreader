@@ -86,15 +86,27 @@ Implemented September 9, 2026:
 - Added build checks for account isolation, media checksums, offline behavior,
   and randomized math, and pinned the Supabase dependency.
 
-Still pending:
+Media migration completed September 9, 2026:
 
-- The shared media upload and cutover. The exact inventory is 4,729 references
-  to 2,557 unique objects totaling 223,277,295 bytes. Verified local backup
-  copies are staged under `.migration/upload/v1` (ignored by Git).
-  `public/media-manifest.json` remains disabled until every remote checksum
-  has passed. The app continues to use its original bundled media.
-- Removal of migrated binaries and Git history cleanup. These follow verified
-  cutover; original assets and Git history remain intact for now.
+- Uploaded all 2,557 unique objects (223,277,295 bytes) through the authenticated
+  dashboard. Downloaded every object and verified its SHA-256 and byte count.
+- Enabled `public/media-manifest.json`, preserving all 4,729 original path
+  mappings. Shared content is generated once and reused, not duplicated per user.
+- Removed 4,728 backed-up binaries from the current tree. The app-install icon
+  stays local for the HTML favicon and web-app manifest. Generated image/audio
+  paths are ignored by Git to prevent renewed repository growth.
+  The public folder fell from about 253 MB to 9.2 MB on disk; the local production
+  output fell from about 277 MB to 12 MB (disk-use measurements, not initial downloads).
+- Verified remote home-screen and phonics artwork in the browser, the 90-activity
+  first Words lesson, and the math controls. Account isolation, offline-cache,
+  curriculum, 24,000 randomized math cases, lint and production build checks pass.
+- A complete pre-cleanup Git backup is stored at
+  `.migration/chunkyreader-before-media-cleanup.bundle` and passed `git bundle verify`.
+  Deduplicated original media remains in `.migration/upload/v1`. These are local,
+  ignored backups and intentionally still use disk space.
+
+Git history cleanup follows the verified media cutover. Other existing checkouts
+must be coordinated before adopting rewritten history; preserve any unpushed work.
 
 The project is on the Free plan, with 241,527,748 bytes of existing Storage
 before this migration. No plan upgrade or paid generation was enabled.
@@ -104,21 +116,21 @@ unrelated pre-existing findings were not modified.
 An attempted temporary upload helper was rejected by automatic approval review
 because it would expose a privileged endpoint using custom-token authentication.
 It was not deployed. The supported remaining path is authenticated CLI or
-dashboard upload; both currently require the user's Supabase sign-in.
+dashboard upload. The migration subsequently succeeded through signed-in dashboard upload.
 
-To resume with the CLI after signing in:
+To recheck remote media:
 
 ```sh
-node scripts/migrate-media.mjs upload
 node scripts/migrate-media.mjs verify
-node scripts/migrate-media.mjs cutover
 npm run verify:media
 npm run build
 ```
 
-Do not run `prepare` again during this migration: it resets the manifest's
-cutover flag. Before removing local binaries or rewriting history, validate
-all sections using the remote media and back up the complete Git history.
+Do not run `prepare` on the migrated checkout. It now refuses to replace an enabled
+catalog with a local-only inventory. To add generated shared content, retain the
+existing catalog, upload new checksum-addressed objects, and add their mappings
+only after verification. Keep generation scripts and SSML in Git. For local
+regeneration/compositing, restore required inputs from the backup first.
 
 Sources: [Supabase bucket access models](https://supabase.com/docs/guides/storage/buckets/fundamentals)
 and [serving Storage assets](https://supabase.com/docs/guides/storage/serving/downloads).

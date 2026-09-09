@@ -5,6 +5,7 @@ const root = process.cwd()
 const lessonsDir = path.join(root, 'public', '100-lessons')
 const indexPath = path.join(lessonsDir, 'index.json')
 const errors = []
+const mediaManifest = JSON.parse(await fs.readFile(path.join(root, 'public/media-manifest.json'), 'utf8'))
 
 const index = JSON.parse(await fs.readFile(indexPath, 'utf8'))
 
@@ -68,7 +69,10 @@ async function requirePublicFile(lessonId, relativePath, label) {
   try {
     await fs.access(filePath)
   } catch {
-    errors.push(`${label}: missing asset ${lessonId}/${relativePath}`)
+    const publicPath = path.relative(path.join(root, 'public'), filePath).split(path.sep).join('/')
+    if (!mediaManifest.enabled || !mediaManifest.files[publicPath]) {
+      errors.push(`${label}: missing asset ${lessonId}/${relativePath}`)
+    }
   }
 }
 

@@ -27,7 +27,7 @@ assert.equal(test("isSharedMedia(new URL('https://nvrofeaaewwdeefxtmqu.supabase.
 assert.equal(test("isSharedMedia(new URL(MEDIA_BASE+'v1/'+'a'.repeat(64)+'.mp3'))"),true)
 assert.equal(test("isSharedMedia(new URL(MEDIA_BASE+'v1/'+'a'.repeat(64)+'.mp3?token=y'))"),false)
 for (let i=0;i<390;i++) await test(`putBounded('https://example.test/item-${i}',new Response('abc'))`)
-assert.equal((await (await caches.open('chunky-learner-v13-runtime')).keys()).length,384)
+assert.equal((await (await caches.open(test('RUNTIME_CACHE'))).keys()).length,384)
 const partial = await test("mediaResponse(new Request('https://example.test/a',{headers:{range:'bytes=2-4'}}),new Response('abcdef'))")
 assert.equal(partial.status,206); assert.equal(await partial.text(),'cde')
 const invalid = await test("mediaResponse(new Request('https://example.test/a',{headers:{range:'bytes=99-100'}}),new Response('abcdef'))")
