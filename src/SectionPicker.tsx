@@ -491,9 +491,16 @@ function RoomPanel({
       />
       <div className="room-panda-mascot" aria-hidden="true">
         <img
+          src={assetUrl('assets/profiles/anna-red-shirt.png')}
+          alt=""
+          className="room-panda-sprite"
+          onError={(e) => { e.currentTarget.style.display = 'none' }}
+        />
+        <img
           src={assetUrl(`assets/profiles/sarah-reading.png`)}
           alt=""
           className="room-panda-sprite"
+          onError={(e) => { e.currentTarget.style.display = 'none' }}
         />
         {equippedCount >= 6 && <span className="room-panda-sparkle">✨</span>}
       </div>
