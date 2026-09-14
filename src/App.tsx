@@ -3346,16 +3346,8 @@ function OlderReaderLesson({
           ...counts,
           [activity.card.id]: (counts[activity.card.id] ?? 0) + 1,
         }))
-        setCarefulStreak((streak) => {
-          const next = streak + 1
-          if (next >= 3) {
-            window.setTimeout(() => {
-              markCardsRecalled(deck.id, lessonCards)
-              setComplete(true)
-            }, 1200)
-          }
-          return next
-        })
+        // Celebrate careful answers without skipping the rest of the lesson.
+        setCarefulStreak((streak) => streak + 1)
       }
       window.setTimeout(finishActivity, 650)
       return
@@ -3385,7 +3377,7 @@ function OlderReaderLesson({
     if (firstTap) {
       updateCardProgress(deck.id, activity.card.id, { recalledAt: Date.now(), firstTryRecalled: false })
     }
-  }, [activity, deck, finishActivity, isPatternQuestion, lessonCards, missedIds, retryLocked, selected, showCompletion])
+  }, [activity, deck, finishActivity, isPatternQuestion, missedIds, retryLocked, selected, showCompletion])
 
   // Tap-target activities (tap the pattern chunk, build the chain word) use
   // text tiles instead of word cards, but keep the same kind retry flow.

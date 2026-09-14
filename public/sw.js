@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-learner-v15'
+const CACHE_VERSION = 'chunky-learner-v16'
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`
 const AUDIO_CACHE = 'chunky-audio-pack-v2'
