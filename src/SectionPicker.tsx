@@ -13,7 +13,7 @@ import {
   rewardsBySlot,
 } from './rewards'
 import { getSectionProgress, loadProgress, saveProgress, getStreakInfo, getHeatmapData } from './progress'
-import { GreenEggsJourney } from './GreenEggsJourney'
+import { loadGuidedReadingState } from './guidedWordsStorage'
 import type { GreenEggsProgress } from './bookProgress'
 import type { RewardDrop, RewardItem, RewardRarity, RewardSlot, SectionId } from './types'
 
@@ -52,6 +52,8 @@ export function SectionPicker({
   const streakInfo = getStreakInfo()
   const heatmapData = getHeatmapData()
   const phonemesLearned = getPhonemeLearnedCount()
+  const readingState = loadGuidedReadingState('annas-reading-deck')
+  const independentlyReadWords = Object.values(readingState.words).filter(word => word.lastResult === 'independent').length
 
   return (
     <section className="home-screen">
@@ -121,12 +123,9 @@ export function SectionPicker({
             </div>
             {section.id === 'words' ? (
               <>
-                {greenEggs.mastered > 0 && (
-                  <span className="words-mastered-badge">
-                    {greenEggs.mastered} {greenEggs.mastered === 1 ? 'word' : 'words'} you can read!
-                  </span>
-                )}
-                <GreenEggsJourney mastered={greenEggs.mastered} total={greenEggs.total} compact />
+                <span className="words-mastered-badge">
+                  {independentlyReadWords > 0 ? `${independentlyReadWords} words read independently with a parent` : 'Four words · one little sentence'}
+                </span>
               </>
             ) : (
               <SectionProgressBadge count={getSectionProgress(section.id)} />
@@ -289,6 +288,9 @@ function sectionTitle(sectionId: SectionId) {
 }
 
 function continueDetail(state: ContinueLearningState, greenEggs?: GreenEggsProgress) {
+  if (state.section === 'words' && state.deckId === 'annas-reading-deck') {
+    return 'Blends, longer words, and a tiny sentence · about 3–4 minutes'
+  }
   if (state.section === 'words' && greenEggs) {
     return `${greenEggs.mastered} of ${greenEggs.total} words to Green Eggs and Ham`
   }

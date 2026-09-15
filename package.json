@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "verify:decks": "node scripts/verify-decks.mjs && npm run verify:accounts && npm run verify:media && npm run verify:offline && npm run verify:math-levels && npm run verify:word-completion",
-    "verify:word-completion": "node scripts/verify-word-completion.mjs",
+    "verify:word-completion": "node scripts/verify-word-completion.mjs && node scripts/verify-guided-words.mjs",
     "verify:accounts": "node --experimental-strip-types scripts/verify-account-storage.mts",
     "verify:media": "node scripts/verify-media.mjs",
     "verify:offline": "node scripts/verify-offline.mjs",

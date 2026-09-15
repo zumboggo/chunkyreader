@@ -1,0 +1,13 @@
+.guided-reading .guided-card { width: min(100%, 620px); padding: clamp(18px, 4vw, 32px); }
+.guided-reading .guided-word { font-size: clamp(2.8rem, 11vw, 4.8rem); overflow-wrap: anywhere; margin: 20px 0; }
+.guided-reading .guided-sentence { font-size: clamp(2rem, 7vw, 3.2rem); line-height: 1.5; text-align: left; margin: 22px 0; }
+.guided-reading .guided-parent-note { font-size: .9rem; line-height: 1.5; color: #515b63; margin: 18px 0; }
+.guided-reading .guided-parts { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.guided-parts span { background: #edf3e5; border-radius: 12px; padding: 8px 14px; font-size: 1.6rem; }
+.guided-reading .focus-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.guided-reading button { min-height: 48px; cursor: pointer; }
+.guided-reading button:disabled { opacity: .45; cursor: not-allowed; }
+.guided-reading button:focus-visible { outline: 3px solid #7657aa; outline-offset: 3px; }
+.guided-reading .guided-tile { font-size: 2rem; min-width: 90px; }
+.guided-reading .guided-theme { font-size: 2.5rem; }
+.guided-reading .guided-mascot { height: 110px; width: 110px; object-fit: contain; }

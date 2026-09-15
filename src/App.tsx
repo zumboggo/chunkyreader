@@ -1,6 +1,9 @@
 import { assetUrl } from './mediaAssets'
 import { PrivateLibrary } from './PrivateLibrary'
 import { progressStorage } from './progressStorage'
+import { GuidedWordsLesson } from './GuidedWordsLesson'
+import { loadGuidedReadingPlan } from './guidedWordsStorage'
+import { readingSteps } from './guidedWords'
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent, type ReactNode } from 'react'
 import {
   getInstalledAudioPackSummary,
@@ -1947,9 +1950,34 @@ function LearningScreen({
   const isSarahPhonemes = activeDeck.profile === 'sarah' && activeDeck.type === 'phonemes'
   const isSarahFocusLesson = isSarahLetters || isSarahPhonemes
   const isOlderReaderWords = activeDeck.profile === 'anna' && activeDeck.type === 'reading-words'
+  const isGuidedWords = isOlderReaderWords && activeDeck.id === 'annas-reading-deck'
   const isOlderReaderPhonemes = activeDeck.profile === 'anna' && activeDeck.type === 'phonemes'
   const lessonDeckCards = isSarahFocusLesson || isOlderReaderPhonemes || activeDeck.type === 'math' ? activeDeck.cards : orderCardsForMode(activeDeck, mode)
   const wordLessonId = `${activeDeck.id}:lesson:${wordLessonNumberForIndex(cardIndex)}`
+  const guidedPlan = useMemo(
+    () => isGuidedWords ? loadGuidedReadingPlan(activeDeck.id, wordLessonNumberForIndex(cardIndex)) : undefined,
+    [activeDeck.id, isGuidedWords, cardIndex],
+  )
+  const guidedAudioRequest = useRef(0)
+  useEffect(() => {
+    if (!isGuidedWords) return
+    const requestVersion = guidedAudioRequest
+    return () => {
+      requestVersion.current++
+      stopAudioPlayback()
+    }
+  }, [isGuidedWords, activeDeck.id, cardIndex, sarahActivityIndex])
+  const playGuidedText = useCallback((text: string) => {
+    const request = ++guidedAudioRequest.current
+    const existing = activeDeck.cards.find(card => (card.word || card.displayText).toLowerCase() === text.toLowerCase())
+    const url = existing?.audio ? resolveAssetUrl(activeDeck, existing.audio) : undefined
+    if (url) {
+      void playAudioUrl(url).catch(() => {
+        // A slow or failed clip must not reveal the answer on a later print-only check.
+        if (guidedAudioRequest.current === request) speakText(activeDeck, text)
+      })
+    } else speakText(activeDeck, text)
+  }, [activeDeck])
   const selectedWordLessonCards = useMemo(
     () => isOlderReaderWords
       ? selectWordLessonCards(activeDeck.id, activeDeck.cards, wordLessonId)
@@ -1990,8 +2018,8 @@ function LearningScreen({
     [isSarahPhonemes, lessonCards],
   )
   const olderReaderActivities = useMemo(
-    () => (isOlderReaderWords ? buildOlderReaderActivities(activeDeck.id, lessonCards) : []),
-    [activeDeck.id, isOlderReaderWords, lessonCards],
+    () => (isOlderReaderWords && !isGuidedWords ? buildOlderReaderActivities(activeDeck.id, lessonCards) : []),
+    [activeDeck.id, isGuidedWords, isOlderReaderWords, lessonCards],
   )
   const phonemeActivities = useMemo(
     () => (isOlderReaderPhonemes ? buildOlderReaderPhonemeActivities(lessonCards) : []),
@@ -2002,7 +2030,7 @@ function LearningScreen({
     : isSarahPhonemes
       ? sarahPhonemeActivities.length
       : isOlderReaderWords
-        ? olderReaderActivities.length
+        ? guidedPlan ? readingSteps(guidedPlan).length : olderReaderActivities.length
         : isOlderReaderPhonemes
           ? phonemeActivities.length
           : lessonCards.length
@@ -2104,6 +2132,26 @@ function LearningScreen({
           deck={activeDeck}
           onComplete={onDone}
           onSessionStateChange={setFsrsActive}
+        />
+      ) : isGuidedWords && guidedPlan ? (
+        <GuidedWordsLesson
+          key={`${activeDeck.id}:${lessonNumber}`}
+          deckId={activeDeck.id}
+          lessonNumber={lessonNumber}
+          plan={guidedPlan}
+          activityIndex={sarahActivityIndex}
+          onActivityChange={onSarahActivityChange}
+          playWord={playGuidedText}
+          onComplete={() => {
+            const count = parseInt(progressStorage.getItem('completed-lessons-anna') || '0', 10) || 0
+            progressStorage.setItem('completed-lessons-anna', String(count + 1))
+            persistAnnaWordsIndex(activeDeck.id, lessonNumber * OLDER_READER_WORD_LESSON_SIZE)
+            recordLocalProgressChange()
+            fireworksCelebration()
+            onLessonComplete()
+          }}
+          onNext={onAdvanceLesson}
+          onDone={onDone}
         />
       ) : isOlderReaderWords ? (
         <OlderReaderLesson

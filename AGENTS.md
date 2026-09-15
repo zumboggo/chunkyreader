@@ -13,6 +13,9 @@ Chunky Reader is a small, joyful reading app for young children. Keep it close t
 - Sarah Level 1 uses phonics-first ordering: `m s a t p`, `c r n d i`, `f b h g o`, `l k e u w`, then final tricky-sounds review `j y v z q x`.
 - Sarah Level 1 teaches phonetic sounds before letter names. Do not send bare letters to TTS; use SSML phoneme tags from `scripts/phonics-level-1.mjs`.
 - Questions should reinforce what was just shown, not ask the child to hold a lot in memory.
+- Growing Reader Words now uses `guidedWords.ts` and `GuidedWordsLesson.tsx` for the built-in Anna deck: about 3–4 minutes, four practice words, blends through longer words, and a final read-aloud sentence with a parent check.
+- Teach new words with audio, but NEVER autoplay answers during independent word or sentence checks. Due review words are checked before a new model. Parent-supplied help and audio help must not count as independent reading; both outcomes earn normal lesson rewards.
+- Keep the original guided curriculum separate from the 100 Easy Lessons book sequence. Preserve legacy word progress; guided parent checks have their own account-scoped records. Run `npm run verify:word-completion` after changing this flow.
 - Keep navigation obvious and child-sized. Avoid settings-heavy or LMS-style screens.
 
 ## Content Rules
