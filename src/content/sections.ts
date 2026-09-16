@@ -33,7 +33,7 @@ export const LEARNING_SECTIONS: LearningSection[] = [
     color: '#ffd8c5',
     eyebrow: 'Growing Reader',
     pocket: 'About 3–4 minutes',
-    helper: 'Practise blends and longer words. Finish with a little sentence and a parent check.',
+    helper: 'Listen to sounds and practise quietly on your own. Ask a parent for the final sentence.',
     cta: 'Read words',
     imagePrompt: 'Text-free premium children’s storybook illustration of a friendly panda at a cozy table with picture-only cards showing simple objects like apple, cat, sun, and tree. Gentle watercolor and gouache textures, warm cozy lighting, simple uncluttered app tile composition, no text, no letters, no numbers, no logo, no watermark.',
   },

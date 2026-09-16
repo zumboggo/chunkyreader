@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { stopAudioPlayback } from './audioClipPack'
 import { playSfx } from './audioEffects'
 import { assetUrl } from './mediaAssets'
@@ -6,6 +6,7 @@ import { progressStorage } from './progressStorage'
 import { applyReadingResult, buildReadingTile, readingSteps,
   type GuidedReadingPlan, type ReadingStep } from './guidedWords'
 import { guidedStateKey, guidedPlanKey, loadGuidedReadingState } from './guidedWordsStorage'
+import { guidedSoundUnits, playGuidedSounds, prepareGuidedSounds, stopGuidedSounds } from './guidedWordAudio'
 import './guidedWords.css'
 
 export function GuidedWordsLesson({ deckId, lessonNumber, plan, activityIndex, onActivityChange,
@@ -27,7 +28,7 @@ export function GuidedWordsLesson({ deckId, lessonNumber, plan, activityIndex, o
   useEffect(() => {
     try { progressStorage.setItem(guidedPlanKey(deckId, lessonNumber), JSON.stringify(plan)) }
     catch { setSaveWarning(true) }
-    return () => stopAudioPlayback()
+    return () => { stopAudioPlayback(); stopGuidedSounds() }
   }, [deckId, lessonNumber, plan])
 
   function advance(independent?: boolean) {
@@ -36,6 +37,7 @@ export function GuidedWordsLesson({ deckId, lessonNumber, plan, activityIndex, o
       setResults(old => ({ ...old, [step.word.text]: independent === true }))
     }
     stopAudioPlayback()
+    stopGuidedSounds()
     onActivityChange(index + 1)
   }
   function finish(independent: boolean) {
@@ -63,9 +65,8 @@ export function GuidedWordsLesson({ deckId, lessonNumber, plan, activityIndex, o
           <img className="guided-mascot" src={assetUrl('assets/mascots/mascot-reading.png')} alt="Reading panda" />
           <h2>{sentenceIndependent ? 'You read a sentence!' : 'You practised real reading!'}</h2>
           <p>{sentenceIndependent ? 'You put the words together all by yourself.' : 'Reading together counts. We can try these words again.'}</p>
-          <p>Talk together: what did your sentence tell you?</p>
-          <p className="guided-parent-note">Parent: {Object.values(results).filter(Boolean).length} of 4 words read independently.
-            {' '}Sentence: {sentenceIndependent ? 'independent' : 'with help'}. Both outcomes earn the lesson reward.</p>
+          <p className="guided-parent-note">She marked {Object.values(results).filter(Boolean).length} of 4 words “I knew it” (self-reported).
+            {' '}Sentence read aloud, confirmed by a parent: {sentenceIndependent ? 'independent' : 'with help'}. Both outcomes earn the lesson reward.</p>
           {saveWarning && <p role="status">Progress could not be saved on this device. You can still enjoy the lesson.</p>}
           <div className="focus-actions">
             <button className="primary choice-action" onClick={onDone}>Done for now</button>
@@ -87,8 +88,25 @@ function ReadingActivity({ step, index, plan, onAdvance, onFinish, playWord }: {
   const [built, setBuilt] = useState(false)
   const [retry, setRetry] = useState(false)
   const [parentCheck, setParentCheck] = useState(false)
+  const [activeSound, setActiveSound] = useState<number | null>(null)
+  const [soundUnavailable, setSoundUnavailable] = useState(false)
+  const [soundsPlayed, setSoundsPlayed] = useState(false)
   const played = useRef(false)
   const word = 'word' in step ? step.word : undefined
+  const modelSounds = useCallback(() => {
+    if (!word) return
+    stopAudioPlayback()
+    setSoundUnavailable(false)
+    setSoundsPlayed(false)
+    void playGuidedSounds(word.text, setActiveSound).then(status => {
+      if (status === 'unavailable') setSoundUnavailable(true)
+      if (status === 'played') setSoundsPlayed(true)
+    })
+  }, [word])
+  useEffect(() => {
+    if (step.kind === 'blend') modelSounds()
+    return () => stopGuidedSounds()
+  }, [step.kind, modelSounds])
   useEffect(() => {
     // No answer audio on independent word checks or the sentence finale.
     if (step.kind === 'welcome' && !played.current) {
@@ -109,12 +127,12 @@ function ReadingActivity({ step, index, plan, onAdvance, onFinish, playWord }: {
   if (step.kind === 'welcome') return <>
     <h2>{plan.title}</h2>
     <p>{plan.cue}</p>
-    <p className="guided-parent-note">Parent: model the sounds without adding “uh”, then let her blend them.
-      {' '}A blend keeps both sounds; a spelling such as sh represents one sound. This starts beyond simple three-letter words.</p>
-    <p>Our little helper word: <strong>is</strong>. Read it together before you start.</p>
+    <p>Listen to the sounds. Think the word, or whisper it. You do not need to say each sound.</p>
+    <p>Tap “I knew it” when you know a word, or “Help me” to hear it. Ask your parent only for the last sentence.</p>
+    <p>Our little helper word: <strong>is</strong>.</p>
     <div className="focus-actions">
       <button className="choice-action" onClick={() => playWord('is')}>Hear “is”</button>
-      <button className="primary choice-action" onClick={() => onAdvance()}>Let’s read</button>
+      <button className="primary choice-action" onClick={() => { prepareGuidedSounds(plan.words); onAdvance() }}>Let’s read</button>
     </div>
   </>
   if (step.kind === 'sentence') return <>
@@ -129,7 +147,7 @@ function ReadingActivity({ step, index, plan, onAdvance, onFinish, playWord }: {
       </div>
       <p className="guided-parent-note">Parent: let her try before using audio. Sounding it out and correcting herself count as independent reading.</p>
     </> : <>
-      <p className="guided-parent-note">Parent check: did she read the whole sentence without someone supplying a word?</p>
+      <p className="guided-parent-note">Parent check: did she read the whole sentence out loud? Choose how she read it. Only confirm after hearing her.</p>
       <div className="focus-actions">
         <button className="primary choice-action" disabled={helped} onClick={() => onFinish(true)}>Read independently</button>
         <button className="choice-action" onClick={() => onFinish(false)}>Read with help</button>
@@ -141,24 +159,23 @@ function ReadingActivity({ step, index, plan, onAdvance, onFinish, playWord }: {
   if (step.kind === 'read') return <>
     <h3>Your turn to read</h3>
     <h2 className="guided-word">{word.text}</h2>
-    <p>Read the whole word out loud.</p>
-    {!parentCheck ? <div className="focus-actions">
-      <button className="choice-action" onClick={hear}>Help me</button>
-      <button className="primary choice-action" onClick={() => setParentCheck(true)}>Parent check</button>
-    </div> : <>
-      <p className="guided-parent-note">Parent: sounding out is welcome. Did she do it without an answer or sound supplied?</p>
-      <div className="focus-actions">
-        <button className="primary choice-action" disabled={helped} onClick={() => onAdvance(true)}>Read independently</button>
-        <button className="choice-action" onClick={() => onAdvance(false)}>Read with help</button>
-      </div>
-    </>}
-    {helped && <p>Read it together: {word.parts.join(' · ')}</p>}
+    <p>Think the word, whisper it, or say the whole word softly.</p>
+    <div className="focus-actions">
+      {!helped ? <>
+        <button className="primary choice-action" onClick={() => onAdvance(true)}>I knew it</button>
+        <button className="choice-action" onClick={hear}>Help me</button>
+      </> : <>
+        <button className="choice-action" onClick={hear}>Hear again</button>
+        <button className="primary choice-action" onClick={() => onAdvance(false)}>Keep practising</button>
+      </>}
+    </div>
+    {helped && <p>Good choice asking for help. This word will come back for practice.</p>}
   </>
   if (step.kind === 'build') {
     const tile = buildReadingTile(word, index)
     return <>
       <h3>Build the word</h3>
-      <p>Listen, say the sounds, then choose the missing part.</p>
+      <p>Listen, think, then tap the missing part. No talking needed.</p>
       <button className="choice-action" onClick={() => playWord(word.text)}>Hear the word</button>
       <h2 className="guided-word" aria-label="Word with a missing part">{word.parts.map((part, i) => i === tile.position && !built ? ' __ ' : part).join('')}</h2>
       {!built ? <div className="focus-actions">{tile.choices.map(choice => <button className="choice-action guided-tile" key={choice}
@@ -169,17 +186,20 @@ function ReadingActivity({ step, index, plan, onAdvance, onFinish, playWord }: {
         <p>You checked the whole word!</p>
         <button className="primary choice-action" onClick={() => onAdvance()}>Keep reading</button>
       </>}
-      {retry && !built && <p role="status">Listen and try together. The missing part is “{tile.correct}”.</p>}
+      {retry && !built && <p role="status">Listen and try again. Look for “{tile.correct}”.</p>}
     </>
   }
   return <>
     <h3>{step.kind === 'teach' ? 'Meet a word' : 'Blend it together'}</h3>
     <h2 className="guided-word">{word.text}</h2>
-    <div className="guided-parts" aria-label="Reading parts">{word.parts.map((part, i) => <span key={i}>{part}</span>)}</div>
-    <p>{step.kind === 'teach' ? 'Listen, look, then say it together.' : 'Point to each part. Blend the whole word out loud.'}</p>
+    <div className="guided-parts" aria-label="Reading sounds">{guidedSoundUnits(word.text).map((unit, i) =>
+      <span key={i} className={activeSound === i ? 'sound-active' : ''}>{unit.spelling}</span>)}</div>
+    <p>{step.kind === 'teach' ? 'Listen and look. You can say just the whole word.' : 'Listen to each sound. Join them in your head, then whisper or say the whole word.'}</p>
+    {step.kind === 'blend' && soundsPlayed && <p role="status">Your turn! Think or say the whole word.</p>}
+    {soundUnavailable && <p role="status">Sound clips are unavailable. Reconnect and tap “Hear the sounds” to retry. We will not say letter names instead.</p>}
     <div className="focus-actions">
-      <button className="choice-action" onClick={() => playWord(word.text)}>Hear the word</button>
-      <button className="primary choice-action" onClick={() => onAdvance()}>{step.kind === 'teach' ? 'We said it' : 'We blended it'}</button>
+      <button className="choice-action" onClick={step.kind === 'blend' ? modelSounds : () => playWord(word.text)}>{step.kind === 'blend' ? 'Hear the sounds' : 'Hear the word'}</button>
+      <button className="primary choice-action" onClick={() => onAdvance()}>{step.kind === 'teach' ? 'Got it' : 'I blended it'}</button>
     </div>
   </>
 }

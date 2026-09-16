@@ -29,15 +29,16 @@ export const READING_POCKETS: ReadingPocket[] = [
 
 export interface WordReadingRecord {
   independentDays: string[]
+  selfReportedDays?: string[]
   dueAt: number
   lastAt: number
-  lastResult: 'independent' | 'helped'
+  lastResult: 'independent' | 'self-reported' | 'helped'
 }
 export interface GuidedReadingState {
   stage: number
   words: Record<string, WordReadingRecord>
   completedSessions: string[]
-  sentences: { session: string; text: string; independent: boolean; at: number }[]
+  sentences: { session: string; text: string; independent: boolean; readAloud?: boolean; at: number }[]
 }
 export interface GuidedReadingPlan {
   stage: number
@@ -64,7 +65,7 @@ export function makeReadingPlan(state: GuidedReadingState, now = Date.now()): Gu
   // Review a previously introduced word only when it is due, not every easy word every day.
   const previous = READING_POCKETS.slice(0, stage).flatMap(p => p.words)
   const review = previous.filter(w => state.words[w.text] && state.words[w.text].dueAt <= now)
-    .sort((a, b) => Number(state.words[a.text].lastResult === 'independent') - Number(state.words[b.text].lastResult === 'independent')
+    .sort((a, b) => Number(state.words[a.text].lastResult !== 'helped') - Number(state.words[b.text].lastResult !== 'helped')
       || state.words[a.text].dueAt - state.words[b.text].dueAt)[0]
   const words = review ? [...current.words.slice(0, 3), review] : current.words
   // Function words are supported explicitly before the final independent attempt.
@@ -99,19 +100,19 @@ export function applyReadingResult(
   for (const word of plan.words) {
     const old = words[word.text]
     const independent = results[word.text] === true
-    const independentDays = independent
-      ? [...new Set([...(old?.independentDays ?? []), day])].slice(-8)
-      : old?.independentDays ?? []
-    const days = independent ? [1, 3, 7][Math.min(2, Math.max(0, independentDays.length - 1))] : 1
-    words[word.text] = { independentDays, dueAt: now + days * DAY, lastAt: now,
-      lastResult: independent ? 'independent' : 'helped' }
+    const selfReportedDays = independent
+      ? [...new Set([...(old?.selfReportedDays ?? []), day])].slice(-8)
+      : old?.selfReportedDays ?? []
+    const days = independent ? [1, 3, 7][Math.min(2, Math.max(0, selfReportedDays.length - 1))] : 1
+    words[word.text] = { independentDays: old?.independentDays ?? [], selfReportedDays, dueAt: now + days * DAY, lastAt: now,
+      lastResult: independent ? 'self-reported' : 'helped' }
   }
   const ready = sentenceIndependent && plan.words.filter(w => results[w.text]).length >= 3
   return {
     stage: ready ? Math.max(state.stage, Math.min(READING_POCKETS.length - 1, plan.stage + 1)) : state.stage,
     words,
     completedSessions: [...state.completedSessions, session].slice(-32),
-    sentences: [...state.sentences, { session, text: plan.sentence, independent: sentenceIndependent, at: now }].slice(-20),
+    sentences: [...state.sentences, { session, text: plan.sentence, independent: sentenceIndependent, readAloud: true, at: now }].slice(-20),
   }
 }
 

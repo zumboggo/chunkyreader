@@ -53,7 +53,7 @@ export function SectionPicker({
   const heatmapData = getHeatmapData()
   const phonemesLearned = getPhonemeLearnedCount()
   const readingState = loadGuidedReadingState('annas-reading-deck')
-  const independentlyReadWords = Object.values(readingState.words).filter(word => word.lastResult === 'independent').length
+  const practisedWords = Object.keys(readingState.words).length
 
   return (
     <section className="home-screen">
@@ -124,7 +124,7 @@ export function SectionPicker({
             {section.id === 'words' ? (
               <>
                 <span className="words-mastered-badge">
-                  {independentlyReadWords > 0 ? `${independentlyReadWords} words read independently with a parent` : 'Four words · one little sentence'}
+                  {practisedWords > 0 ? `${practisedWords} words practised · parent check for the sentence` : 'Four words · one little sentence'}
                 </span>
               </>
             ) : (

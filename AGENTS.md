@@ -16,6 +16,8 @@ Chunky Reader is a small, joyful reading app for young children. Keep it close t
 - Growing Reader Words now uses `guidedWords.ts` and `GuidedWordsLesson.tsx` for the built-in Anna deck: about 3–4 minutes, four practice words, blends through longer words, and a final read-aloud sentence with a parent check.
 - Teach new words with audio, but NEVER autoplay answers during independent word or sentence checks. Due review words are checked before a new model. Parent-supplied help and audio help must not count as independent reading; both outcomes earn normal lesson rewards.
 - Keep the original guided curriculum separate from the 100 Easy Lessons book sequence. Preserve legacy word progress; guided parent checks have their own account-scoped records. Run `npm run verify:word-completion` after changing this flow.
+- Guided Words is child-led until the final sentence: individual words use “I knew it” / “Help me”, tracked as self-reports, not parent-verified reading. Quiet thinking or whispering is welcome; only the final sentence needs a parent to confirm reading aloud.
+- Guided sound models reuse IPA-controlled recordings through `guidedWordAudio.ts` and `content/guided-sounds.json`. Never send isolated letters/digraphs to browser TTS. The timing map selects one pronunciation from each source clip; if sound audio fails, offer retry instead of letter-name speech.
 - Keep navigation obvious and child-sized. Avoid settings-heavy or LMS-style screens.
 
 ## Content Rules

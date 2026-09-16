@@ -1,0 +1,182 @@
+{
+  "m": {
+    "path": "100-lessons/audio/lesson-60_c0_i0_m-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "m",
+    "start": 0.1,
+    "duration": 0.19
+  },
+  "s": {
+    "path": "100-lessons/audio/lesson-60_c0_i1_s-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "s",
+    "start": 0.1,
+    "duration": 0.24
+  },
+  "a": {
+    "path": "100-lessons/audio/lesson-53_c0_i2_a-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "æ",
+    "start": 0.11,
+    "duration": 0.39
+  },
+  "t": {
+    "path": "100-lessons/audio/lesson-60_c0_i3_t-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "t",
+    "start": 0.12,
+    "duration": 0.17
+  },
+  "p": {
+    "path": "100-lessons/audio/lesson-50_c0_i1_p-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "p",
+    "start": 0.11,
+    "duration": 0.16
+  },
+  "c": {
+    "path": "100-lessons/audio/lesson-61_c0_i4_c-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "k",
+    "start": 0.11,
+    "duration": 0.19
+  },
+  "r": {
+    "path": "100-lessons/audio/lesson-61_c0_i1_r-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "ɹ",
+    "start": 0.11,
+    "duration": 0.31
+  },
+  "n": {
+    "path": "100-lessons/audio/lesson-61_c0_i0_n-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "n",
+    "start": 0.11,
+    "duration": 0.2
+  },
+  "d": {
+    "path": "100-lessons/audio/lesson-61_c0_i3_d-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "d",
+    "start": 0.11,
+    "duration": 0.16
+  },
+  "i": {
+    "path": "100-lessons/audio/lesson-58_c0_i0_i-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "ɪ",
+    "start": 0.1,
+    "duration": 0.31
+  },
+  "f": {
+    "path": "100-lessons/audio/lesson-50_c0_i4_f-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "f",
+    "start": 0.1,
+    "duration": 0.25
+  },
+  "b": {
+    "path": "100-lessons/audio/lesson-54_c0_i2_b-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "b",
+    "start": 0.12,
+    "duration": 0.16
+  },
+  "h": {
+    "path": "100-lessons/audio/lesson-50_c0_i5_h-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "h",
+    "start": 0.11,
+    "duration": 0.24
+  },
+  "g": {
+    "path": "100-lessons/audio/lesson-57_c0_i0_g-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "g",
+    "start": 0.11,
+    "duration": 0.16
+  },
+  "o": {
+    "path": "100-lessons/audio/lesson-52_c0_i5_o-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "ɑ",
+    "start": 0.11,
+    "duration": 0.38
+  },
+  "l": {
+    "path": "100-lessons/audio/lesson-63_c0_i0_l-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "l",
+    "start": 0.11,
+    "duration": 0.22
+  },
+  "k": {
+    "path": "100-lessons/audio/lesson-51_c0_i5_k-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "k",
+    "start": 0.11,
+    "duration": 0.19
+  },
+  "e": {
+    "path": "100-lessons/audio/lesson-52_c0_i0_e-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "ɛ",
+    "start": 0.11,
+    "duration": 0.36
+  },
+  "u": {
+    "path": "100-lessons/audio/lesson-63_c0_i3_u-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "ʌ",
+    "start": 0.11,
+    "duration": 0.39
+  },
+  "w": {
+    "path": "100-lessons/audio/lesson-63_c0_i4_w-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "w",
+    "start": 0.12,
+    "duration": 0.21
+  },
+  "j": {
+    "path": "100-lessons/audio/lesson-64_c0_i0_j-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "dʒ",
+    "start": 0.1,
+    "duration": 0.19
+  },
+  "y": {
+    "path": "100-lessons/audio/lesson-64_c0_i1_y-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "j",
+    "start": 0.1,
+    "duration": 0.28
+  },
+  "v": {
+    "path": "100-lessons/audio/lesson-51_c0_i4_v-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "v",
+    "start": 0.1,
+    "duration": 0.18
+  },
+  "z": {
+    "path": "100-lessons/audio/lesson-64_c0_i3_z-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "z",
+    "start": 0.1,
+    "duration": 0.21
+  },
+  "q": {
+    "path": "100-lessons/audio/lesson-64_c0_i4_q-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "kw",
+    "start": 0.11,
+    "duration": 0.37
+  },
+  "sh": {
+    "path": "100-lessons/audio/lesson-50_c0_i2_sh-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "ʃ",
+    "start": 0.11,
+    "duration": 0.25
+  },
+  "ch": {
+    "path": "100-lessons/audio/lesson-50_c0_i0_ch-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "tʃ",
+    "start": 0.1,
+    "duration": 0.2
+  },
+  "th": {
+    "path": "100-lessons/audio/lesson-50_c0_i3_th-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "θ",
+    "start": 0.1,
+    "duration": 0.19
+  },
+  "ng": {
+    "path": "100-lessons/audio/lesson-65_c0_i3_ng-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "ŋ",
+    "start": 0.1,
+    "duration": 0.25
+  },
+  "ing": {
+    "path": "100-lessons/audio/lesson-56_c0_i0_ing-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "ɪŋ",
+    "start": 0.11,
+    "duration": 0.37
+  }
+}

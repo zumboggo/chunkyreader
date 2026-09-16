@@ -4,6 +4,7 @@
 .guided-reading .guided-parent-note { font-size: .9rem; line-height: 1.5; color: #515b63; margin: 18px 0; }
 .guided-reading .guided-parts { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
 .guided-parts span { background: #edf3e5; border-radius: 12px; padding: 8px 14px; font-size: 1.6rem; }
+.guided-parts span.sound-active { background: #ffe2a9; box-shadow: 0 0 0 3px #b68126; }
 .guided-reading .focus-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .guided-reading button { min-height: 48px; cursor: pointer; }
 .guided-reading button:disabled { opacity: .45; cursor: not-allowed; }
