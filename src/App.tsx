@@ -556,6 +556,7 @@ function App() {
   const [decks, setDecks] = useState<LearningDeck[]>([])
   const [stories, setStories] = useState<Story[]>([])
   const [activeSection, setActiveSection] = useState<SectionId | null>(null)
+  const [homeRequested, setHomeRequested] = useState(false)
   const [profile, setProfile] = useState<ProfileId | null>(null)
   const [growingView, setGrowingView] = useState<GrowingReaderView>('words')
   const [showCloset, setShowCloset] = useState(false)
@@ -827,6 +828,7 @@ function App() {
   }, [activeDeck?.title, activeDeckId, activeSection, cardIndex, mode])
 
   function updateSettings(patch: Partial<AppSettings>) {
+    if (patch.lockedSection !== undefined) setHomeRequested(false)
     setSettings((current) => {
       const next = { ...current, ...patch }
       saveAppSettings(next)
@@ -938,7 +940,18 @@ function App() {
     if (typeof state.cardIndex === 'number' && state.section !== 'words') setCardIndex(state.cardIndex)
   }
 
+  function goHome() {
+    stopAudioPlayback()
+    window.speechSynthesis?.cancel()
+    setHomeRequested(true)
+    setActiveSection(null)
+    setProfile(null)
+    setGrowingView('words')
+    setMenuOpen(false)
+  }
+
   function chooseSection(section: SectionId, currentDecks = decks) {
+    setHomeRequested(false)
     setActiveSection(section)
     setPhase('learn')
     setSarahActivityIndex(0)
@@ -998,12 +1011,12 @@ function App() {
   }
 
   useEffect(() => {
-    if (!activeSection && settings.lockedSection) {
+    if (!activeSection && settings.lockedSection && !homeRequested) {
       chooseSection(settings.lockedSection)
     }
   // chooseSection reads `decks` via closure; re-run when decks load or lock changes
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSection, settings.lockedSection, decks.length])
+  }, [activeSection, settings.lockedSection, decks.length, homeRequested])
 
   function chooseFlashcards() {
     setActiveSection('words')
@@ -1151,22 +1164,7 @@ function App() {
     <main className={`app-shell ${isLessonActive ? 'lesson-active' : ''} ${isSectionDashboard ? 'section-dashboard-active' : ''}`}>
       <RotateOverlay />
       <header className="topbar">
-        <button
-          className="brand-button squish"
-          type="button"
-          onClick={() => {
-            setActiveSection(null)
-            setProfile(null)
-            /* setGrowingView('home') */
-            setMenuOpen(false)
-            /* setHundredLessonId('') */
-          }}
-        >
-          <Mascot size="small" mood="reading" />
-          <span>
-            <strong>Home</strong>
-          </span>
-        </button>
+        <HomeButton onClick={goHome} />
       </header>
 
       {showCloset && <PandaCloset onClose={() => setShowCloset(false)} />}
@@ -1222,7 +1220,7 @@ function App() {
       ) : activeSection === 'stories' ? (
         <StorySection
           stories={stories}
-          onBack={() => setActiveSection(null)}
+          onBack={goHome}
           startRequest={storyStartRequest}
           onStartConsumed={() => setStoryStartRequest(null)}
           onRememberContinue={rememberContinue}
@@ -1280,10 +1278,7 @@ function App() {
             setGrowingView('words')
             setActiveSection(null)
           }}
-          onGoHome={settings.lockedSection ? undefined : () => {
-            setGrowingView('words')
-            setActiveSection(null)
-          }}
+          onGoHome={goHome}
           onToggleAdultDetails={() => setShowAdultDetails((v) => !v)}
           mathDifficulty={mathDifficulty}
           onChangeMathDifficulty={(diff) => startMath(mathOperation, diff)}
@@ -1410,7 +1405,7 @@ function ParentSettingsModal({
           <section className="toddler-lock-settings" aria-label="Toddler lock">
             <div className="toddler-lock-heading">
               <strong>Toddler lock</strong>
-              <small>Locks the app to one section — hides back navigation so little fingers can't wander away.</small>
+              <small>Starts in one section and hides extra lesson navigation. Home is always available.</small>
             </div>
             <div className="toddler-lock-grid">
               <button
@@ -2054,7 +2049,7 @@ function LearningScreen({
     onDone()
   }
 
-  const lessonVisualVariant = isOlderReaderWords ? 'words' : 'default'
+  const lessonVisualVariant = isOlderReaderWords ? 'words' : activeDeck.type === 'math' ? 'math' : 'default'
   const lessonSectionLabel = isOlderReaderWords
     ? 'Words'
     : activeDeck.type === 'letters'
@@ -2074,7 +2069,7 @@ function LearningScreen({
 
   return (
     <section
-      className={`learning-screen lesson-focus ${isOlderReaderWords ? 'words-lesson-shell' : ''}`}
+      className={`learning-screen lesson-focus ${isOlderReaderWords ? 'words-lesson-shell' : activeDeck.type === 'math' ? 'math-lesson-shell' : ''}`}
       style={lessonVisualStyle}
     >
       <LessonMenu
@@ -2415,7 +2410,7 @@ function FocusLessonTopBar({
   progress: number
   total: number
   sectionLabel: string
-  visualVariant?: 'default' | 'words'
+  visualVariant?: 'default' | 'words' | 'math'
   menuOpen: boolean
   onMenuToggle: () => void
   onHome?: () => void
@@ -2436,17 +2431,9 @@ function FocusLessonTopBar({
         >
           <span className="menu-icon" aria-hidden="true"><i /><i /><i /></span>
         </button>
-        {onHome && (
-          <button
-            type="button"
-            className="home-button-compact focus-icon-button"
-            onClick={onHome}
-            aria-label="Home"
-          >
-            <HomeIcon />
-          </button>
-        )}
+        {onHome && <HomeButton onClick={onHome} />}
       </div>
+      {visualVariant === 'math' && <div className="math-garden-title"><strong>Number garden</strong><span>Let’s grow your number skills</span></div>}
       {visualVariant === 'words' && (
         <img
           className="words-header-panda"
@@ -4623,7 +4610,7 @@ function MathLesson({
             <h2>{card.mathPrompt || card.displayText}</h2>
             <AudioPromptButton onClick={() => playCardAudio(deck, card)} label="Listen" />
           </div>
-          <MathVisual card={card} isEasy={isEasy} />
+          <div className="math-counting-garden"><MathVisual card={card} isEasy={isEasy} /></div>
           <div className={`focus-options ${isEasy ? 'focus-options-easy' : ''}`} aria-label="Answer choices">
             {options.map((option, index) => {
               const isCorrectOption = gentleReveal && option.id === card.id
@@ -4647,8 +4634,8 @@ function MathLesson({
       <div className={`focus-feedback ${selected ? 'happy' : ''}`}>
         <Mascot mood={selected ? 'happy' : 'curious'} size="small" />
         <div className="feedback-text">
-          <strong>{gentleReveal ? "Let's count together" : selected && correct ? "Great thinking!" : "Choose one"}</strong>
-          <span>{gentleReveal ? `The answer is ${card.mathAnswer}.` : "A or B"}</span>
+          <strong>{gentleReveal ? "Let's count together" : selected && correct ? "Great thinking!" : "Take your time."}</strong>
+          <span>{gentleReveal ? `The answer is ${card.mathAnswer}.` : "Count with me. Choose an answer."}</span>
         </div>
       </div>
       <MathDiffBar difficulty={difficulty} onChangeDifficulty={onChangeDifficulty} operation={operation} onChangeOperation={onChangeOperation} />
@@ -5373,6 +5360,12 @@ function Mascot({ size = 'large', mood = 'reading' }: { size?: 'small' | 'large'
 
 function PlayIcon() {
   return <span className="play-icon" aria-hidden="true" />
+}
+
+function HomeButton({ onClick }: { onClick: () => void }) {
+  return <button type="button" className="section-home-button" onClick={onClick} aria-label="Home">
+    <HomeIcon /><span>Home</span>
+  </button>
 }
 
 function HomeIcon() {

@@ -29,7 +29,7 @@ export function installFourButtonController() {
       .filter(element => visible(element) && !element.matches(':disabled, [aria-disabled="true"]'))
     // Keep the learning choices first; navigation remains reachable through More.
     const priority = (el: HTMLElement) => el.matches('.focus-option, .choice-button, .fsrs-btn') ? 0
-      : el.matches('.choice-action, .path-start-button, .primary, .rating-button') ? 1 : 2
+      : el.matches('.choice-action, .path-start-button, .primary, .rating-button, .audio-prompt-button') ? 1 : 2
     candidates.sort((a, b) => priority(a) - priority(b))
     if (candidates.length !== previous.length || candidates.some((el, i) => el !== previous[i])) page = 0
     previous = candidates

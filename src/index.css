@@ -9014,3 +9014,106 @@ body { padding-bottom: 96px; }
 .room-placed-items { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; }
 .room-placed-items > span:not(.room-spot-name) { width: 26px; }
 .room-placed-items .reward-badge { max-width: 26px; max-height: 38px; }
+
+/* Shared route home control: visible label and house on every section. */
+.section-home-button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  min-height: 48px; padding: 10px 18px; border: 2px solid white;
+  border-radius: 18px; background: #eaf4e7; color: #303950;
+  font: inherit; font-weight: 850; box-shadow: 0 3px 10px #38492c12;
+  cursor: pointer; flex-shrink: 0;
+}
+.section-home-button .home-icon { flex-shrink: 0; }
+.section-home-button:hover { background: #dceece; }
+.section-home-button:focus-visible { outline: 3px solid #8960cd; outline-offset: 3px; }
+
+/* Number garden, based on output/math-redesign/math-concept.png. */
+body:has(.math-lesson-shell) { background: #fffaf3; }
+.math-lesson-shell { max-width: 1120px; margin: 0 auto; gap: 14px; }
+.math-lesson-shell .focus-topbar {
+  border: 0; background: transparent; box-shadow: none; padding: 2px 0;
+  display: flex; justify-content: space-between; gap: 12px;
+}
+.math-garden-title { display: grid; text-align: center; gap: 3px; }
+.math-garden-title strong { font-size: clamp(22px, 3vw, 32px); color: #2d3553; letter-spacing: -.7px; }
+.math-garden-title strong::before, .math-garden-title strong::after { content: '🌱'; font-size: .65em; margin: 0 8px; }
+.math-garden-title span { color: #7b7b8c; font-size: 12px; }
+.math-lesson-shell .focus-topbar .focus-section-label,
+.math-lesson-shell .focus-topbar .lesson-label { display: none; }
+.math-lesson-shell .progress-dots { padding: 12px; border-radius: 30px; background: white; }
+.math-lesson-shell .progress-dots span { width: 12px; height: 12px; background: #ded8e8; }
+.math-lesson-shell .progress-dots span.filled { background: #9c79e4; box-shadow: none; }
+.math-focus-lesson {
+  display: grid; gap: 10px; width: min(100%, 980px); margin: 0 auto;
+  padding: 22px clamp(16px, 5vw, 70px) 16px; border: 2px solid white;
+  border-radius: 36px; background: #fff; box-shadow: 0 14px 45px #6851380c;
+}
+.math-focus-lesson .focus-main { display: block; }
+.math-focus-lesson .focus-question { display: grid; gap: 12px; padding: 0; }
+.math-focus-lesson .focus-prompt { gap: 8px; }
+.math-focus-lesson .stage-label { background: #f0e9fa; color: #786194; padding: 5px 16px; border-radius: 24px; font-size: 12px; }
+.math-focus-lesson .focus-prompt h2 { font-size: clamp(24px, 3vw, 38px); line-height: 1.15; margin: 0; color: #2d3553; }
+.math-focus-lesson .audio-prompt-button {
+  display: inline-flex; flex-direction: row; gap: 10px; padding: 10px 22px;
+  min-height: 44px; border-radius: 26px; background: #eee3ff; border: 0;
+  box-shadow: none; color: #523c7e; font-size: 16px;
+}
+.math-focus-lesson .audio-icon { height: 20px; }
+.math-counting-garden { padding: 6px 12px; background: #edf6ea; border-radius: 28px; }
+.math-counting-garden .math-count-easy { min-height: 105px; padding: 12px 0; }
+.math-counting-garden .math-count-op { color: #303950; }
+.math-counting-garden .math-count-zero { color: #9697a6; opacity: 1; }
+.math-focus-lesson .focus-options { gap: 14px; }
+.math-focus-lesson .focus-option {
+  min-height: 82px !important; padding: 12px; border-radius: 25px !important;
+  background: #eadcfc; border: 2px solid #d6bdf4; color: #513071;
+  box-shadow: 0 5px 0 #d6bdf470; font-size: clamp(32px, 5vw, 48px) !important;
+}
+.math-focus-lesson .focus-option:nth-child(2) { background: #ffe3cd; border-color: #f5c7a4; color: #733d26; box-shadow: 0 5px 0 #f5c7a470; }
+.math-focus-lesson .focus-option.correct { background: #d9efcb; border-color: #83b969; color: #31532c; }
+.math-focus-lesson .focus-option.selected-soft { background: #f4eeda; border-color: #decd9c; }
+.math-focus-lesson .focus-option:disabled { opacity: 1; }
+.math-focus-lesson .focus-option .choice-key { display: none; }
+.math-focus-lesson .focus-feedback {
+  min-height: 48px; width: auto; justify-self: start; padding: 4px 12px 4px 4px;
+  background: #fff7f0; border: 0; border-radius: 28px; box-shadow: none;
+}
+.math-focus-lesson .focus-feedback .feedback-text strong { color: #3a4261; }
+.math-focus-lesson .focus-feedback .mascot-sprite { width: 48px; height: 48px; }
+.math-lesson-shell .math-diff-bar { padding: 2px 0; align-items: center; gap: 8px 20px; }
+.math-lesson-shell .math-op-toggle { width: auto; }
+.math-lesson-shell .math-range-toggle { gap: 6px; }
+.math-lesson-shell .math-op-btn, .math-lesson-shell .math-diff-btn {
+  width: 44px; height: 44px; border: 2px solid transparent; border-radius: 16px;
+  background: #f2ecf8; color: #605279; box-shadow: none; font-size: 18px;
+}
+.math-lesson-shell .math-op-btn.active { background: #ffdfc4; border-color: #efbb94; color: #824b25; transform: none; }
+.math-lesson-shell .math-diff-btn.active { background: #e0efd6; border-color: #a8ca99; color: #3b652f; transform: none; }
+.math-lesson-shell .math-range-hint { font-size: 11px; color: #827988; }
+.math-lesson-shell .math-equation-card, .math-lesson-shell .math-visual-card { background: transparent; border: 0; box-shadow: none; padding: 8px; }
+body:has(.math-lesson-shell) .four-button-controller { background: #fffaf3; border-top: 1px solid #ebe3ef; }
+body:has(.math-lesson-shell) .four-button-controller button { background: #f1eafa; border-color: #d7c6e9; }
+@media (max-width: 620px) {
+  .math-lesson-shell { gap: 8px; }
+  .math-lesson-shell .focus-topbar { flex-wrap: wrap; }
+  .math-garden-title { order: 3; width: 100%; }
+  .math-garden-title span { display: none; }
+  .math-focus-lesson { padding: 14px 12px; border-radius: 26px; }
+  .math-counting-garden .math-count-easy { min-height: 90px; }
+  .math-focus-lesson .focus-option { min-height: 70px !important; }
+  .math-lesson-shell .math-diff-bar { gap: 8px; }
+}
+body.dark-mode:has(.math-lesson-shell) { background: #252333; }
+body.dark-mode .math-focus-lesson { background: #343144; border-color: #454054; }
+body.dark-mode .math-garden-title strong, body.dark-mode .math-focus-lesson .focus-prompt h2 { color: #f7f1ff; }
+body.dark-mode .math-counting-garden { background: #e2edda; }
+.math-lesson-shell { width: 100%; flex: 0 0 auto; }
+.math-lesson-shell::before { display: none; }
+.math-lesson-shell .focus-topbar { display: grid; grid-template-columns: auto 1fr auto; }
+.math-focus-lesson { flex: 0 0 auto; grid-template-rows: auto auto auto; align-content: start; }
+.math-focus-lesson .focus-main { flex: none; }
+.math-lesson-shell .focus-progress { flex: none; }
+@media (max-width: 620px) {
+  .math-lesson-shell .focus-topbar { grid-template-columns: 1fr auto; }
+  .math-garden-title { grid-column: 1 / -1; }
+}
