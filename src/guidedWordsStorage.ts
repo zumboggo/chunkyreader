@@ -18,3 +18,12 @@ export function loadGuidedReadingPlan(deckId: string, lesson: number): GuidedRea
   } catch { /* Use the current curriculum pocket. */ }
   return makeReadingPlan(loadGuidedReadingState(deckId))
 }
+
+// Recover the resume pointer even if a previous save stopped after recording results.
+export function guidedCompletedLessonNumber(deckId: string): number {
+  const prefix = `${deckId}:`
+  return loadGuidedReadingState(deckId).completedSessions.reduce((latest, session) => {
+    const number = session.startsWith(prefix) ? Number(session.slice(prefix.length)) : 0
+    return Number.isSafeInteger(number) && number > latest ? number : latest
+  }, 0)
+}

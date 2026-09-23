@@ -442,11 +442,12 @@ function RoomPanel({
   ownedBySlot: Record<RewardSlot, RewardItem[]>
   onEquip: (item: RewardItem) => void
 }) {
+  const owned = getOwnedRewards(progress)
   const equipped = progress.equippedRewards || {}
   const [selectedSlot, setSelectedSlot] = useState<RewardSlot | null>(null)
 
   if (selectedSlot !== null) {
-    const items = ownedBySlot[selectedSlot]
+    const items = owned.filter(item => progress.roomPlacements?.[item.id] === selectedSlot || item.slot === selectedSlot)
     const slotInfo = ROOM_SLOTS.find(s => s.slot === selectedSlot)!
     const equippedId = equipped[selectedSlot]
     return (
@@ -481,7 +482,7 @@ function RoomPanel({
   const bgSrc = equippedWindow?.id === 'garden-background'
     ? assetUrl(`assets/rewards/garden-background.webp`)
     : assetUrl(`assets/panda-room-bg.webp`)
-  const equippedCount = Object.values(equipped).filter(Boolean).length
+  const equippedCount = Object.keys(progress.roomPlacements || {}).length
 
   return (
     <div className="room-scene-wrapper">
@@ -509,17 +510,23 @@ function RoomPanel({
       {ROOM_SLOTS.map(({ slot, emoji, label, top, left }) => {
         const equippedId = equipped[slot]
         const equippedItem = equippedId ? getRewardById(equippedId) : undefined
-        const hasItems = ownedBySlot[slot].length > 0
+        const placedItems = owned.filter(item => progress.roomPlacements?.[item.id] === slot)
+        const hasItems = ownedBySlot[slot].length > 0 || placedItems.length > 0
         return (
           <button
             key={slot}
             type="button"
             style={{ top, left }}
-            className={`room-spot ${hasItems ? 'has-items' : 'locked'} ${equippedItem ? 'equipped' : ''}`}
+            className={`room-spot ${hasItems ? 'has-items' : 'locked'} ${placedItems.length ? 'equipped' : ''}`}
             onClick={() => setSelectedSlot(slot)}
-            aria-label={equippedItem ? `${label}: ${equippedItem.name}` : label}
+            aria-label={placedItems.length ? `${label}: ${placedItems.map(item => item.name).join(", ")}` : label}
           >
-            {equippedItem ? (
+            {placedItems.length > 0 ? (
+              <span className="room-placed-items">
+                {placedItems.slice(0, 4).map(item => <span key={item.id} title={item.name}><RewardBadge item={item} /></span>)}
+                <span className="room-spot-name">{label} · {placedItems.length}</span>
+              </span>
+            ) : equippedItem ? (
               <>
                 <RewardBadge item={equippedItem} />
                 <span className="room-spot-name">{equippedItem.name}</span>

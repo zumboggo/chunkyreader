@@ -103,3 +103,19 @@ const epicPity = openPandaBox(baseProgress({ unopenedBoxes: 1, epicPityCount: 60
 assert(['epic', 'legendary'].includes(epicPity.item.rarity), 'Epic pity should force Epic or better.')
 
 console.log('Verified Panda reward catalog and loot box rules.')
+
+let furnished = baseProgress({ rewardInventory: Object.fromEntries(REWARD_CATALOG.map(item => [item.id, 1])) })
+for (const item of REWARD_CATALOG) {
+  furnished = rewards.autoPlaceReward(furnished, item.id)
+}
+const slots = Object.keys(rewards.rewardsBySlot([]))
+const counts = slots.map(slot => Object.values(furnished.roomPlacements).filter(value => value === slot).length)
+assert(Math.max(...counts) - Math.min(...counts) <= 1, 'Automatic placement balances all room areas without replacing prizes.')
+assert(Object.keys(furnished.roomPlacements).length === REWARD_CATALOG.length, 'Every prize has its own placement.')
+const again = rewards.autoPlaceReward(furnished, REWARD_CATALOG[0].id)
+assert(JSON.stringify(again.roomPlacements) === JSON.stringify(furnished.roomPlacements), 'Duplicate prizes preserve placement.')
+assert(firstOpen.progress.roomPlacements[firstOpen.item.id], 'Closing immediately after opening cannot lose placement.')
+const manual = equipReward(furnished, REWARD_CATALOG[0].id)
+assert(manual.roomPlacements[REWARD_CATALOG[0].id] === REWARD_CATALOG[0].slot, 'Manual placement overrides automatic placement.')
+assert(JSON.stringify(normalizeRewardProgress(manual).roomPlacements) === JSON.stringify(manual.roomPlacements), 'Saved placement survives reload.')
+console.log('Room placement: balanced areas, full rooms, duplicates, manual placement, and reload passed.')

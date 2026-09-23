@@ -93,6 +93,7 @@ function cloneProgress(progress: LearnerProgress): LearnerProgress {
     unlockedRewards: [...(progress.unlockedRewards || [])],
     storyCompletions: { ...progress.storyCompletions },
     rewardInventory: { ...(progress.rewardInventory || {}) },
+    roomPlacements: { ...(progress.roomPlacements || {}) },
     equippedRewards: { ...(progress.equippedRewards || {}) },
     rewardHistory: [...(progress.rewardHistory || [])],
   }
@@ -121,6 +122,10 @@ export function normalizeRewardProgress(progress: LearnerProgress): LearnerProgr
     normalized.rewardSystemVersion = REWARD_SYSTEM_VERSION
   }
 
+  normalized.roomPlacements ||= {}
+  for (const [slot, id] of Object.entries(normalized.equippedRewards || {})) {
+    if (id && !normalized.roomPlacements[id]) normalized.roomPlacements[id] = slot as RewardSlot
+  }
   return normalized
 }
 
@@ -153,6 +158,7 @@ export function equipReward(progress: LearnerProgress, rewardId: string): Learne
   const next = normalizeRewardProgress(progress)
   const reward = getRewardById(rewardId)
   if (!reward || !next.rewardInventory?.[rewardId]) return next
+  next.roomPlacements = { ...next.roomPlacements, [rewardId]: reward.slot }
   next.equippedRewards = {
     ...(next.equippedRewards || {}),
     [reward.slot]: rewardId,
@@ -218,7 +224,7 @@ export function openPandaBox(progress: LearnerProgress, random = Math.random): {
   next.rarePityCount = RARITY_RANK[item.rarity] >= RARITY_RANK.rare ? 0 : (next.rarePityCount || 0) + 1
   next.epicPityCount = RARITY_RANK[item.rarity] >= RARITY_RANK.epic ? 0 : (next.epicPityCount || 0) + 1
 
-  return { progress: next, drop, item }
+  return { progress: autoPlaceReward(next, item.id), drop, item }
 }
 
 export function rarityRank(rarity: RewardRarity): number {
@@ -240,4 +246,15 @@ export function rewardsBySlot(rewards: RewardItem[]): Record<RewardSlot, RewardI
     grouped[reward.slot].push(reward)
   }
   return grouped
+}
+
+/** Save a prize immediately so closing the box or app cannot leave it unplaced. */
+export function autoPlaceReward(progress: LearnerProgress, rewardId: string): LearnerProgress {
+  const next = normalizeRewardProgress(progress)
+  if (!getRewardById(rewardId) || !next.rewardInventory?.[rewardId] || next.roomPlacements?.[rewardId]) return next
+  const slots = Object.keys(rewardsBySlot([])) as RewardSlot[]
+  const counts = (slot: RewardSlot) => Object.values(next.roomPlacements || {}).filter(value => value === slot).length
+  const slot = slots.reduce((least, candidate) => counts(candidate) < counts(least) ? candidate : least)
+  next.roomPlacements = { ...next.roomPlacements, [rewardId]: slot }
+  return next
 }

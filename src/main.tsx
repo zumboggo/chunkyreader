@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { flushSync } from 'react-dom'
 import './index.css'
 import App from './App'
+import { installFourButtonController } from './fourButtonController'
 import { registerServiceWorker } from './registerServiceWorker'
 import { getCloudAuthState } from './cloudProgressSync'
 import { ACCOUNT_CHANGED_EVENT, progressStorage } from './progressStorage'
@@ -20,6 +21,7 @@ async function start() {
     flushSync(render)
   })
   render()
+  installFourButtonController()
   registerServiceWorker()
 }
 void start().catch(() => {

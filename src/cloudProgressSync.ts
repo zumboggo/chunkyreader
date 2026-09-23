@@ -440,6 +440,7 @@ function mergeLearnerProgress(localRaw: unknown, remoteRaw: unknown): LearnerPro
     rewardedCompletionCount: Math.max(local.rewardedCompletionCount || 0, remote.rewardedCompletionCount || 0),
     sparklePoints: Math.max(local.sparklePoints || 0, remote.sparklePoints || 0),
     rewardInventory: mergeNumberRecords(local.rewardInventory, remote.rewardInventory),
+    roomPlacements: { ...(local.roomPlacements || {}), ...(remote.roomPlacements || {}) },
     equippedRewards: { ...(local.equippedRewards || {}), ...(remote.equippedRewards || {}) },
     rewardHistory: mergeRewardHistory(local.rewardHistory, remote.rewardHistory),
     rarePityCount: Math.max(local.rarePityCount || 0, remote.rarePityCount || 0),

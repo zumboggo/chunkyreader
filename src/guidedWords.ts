@@ -107,9 +107,9 @@ export function applyReadingResult(
     words[word.text] = { independentDays: old?.independentDays ?? [], selfReportedDays, dueAt: now + days * DAY, lastAt: now,
       lastResult: independent ? 'self-reported' : 'helped' }
   }
-  const ready = sentenceIndependent && plan.words.filter(w => results[w.text]).length >= 3
   return {
-    stage: ready ? Math.max(state.stage, Math.min(READING_POCKETS.length - 1, plan.stage + 1)) : state.stage,
+    // Completion advances the lesson; help remains recorded for spaced review.
+    stage: Math.max(state.stage, Math.min(READING_POCKETS.length - 1, plan.stage + 1)),
     words,
     completedSessions: [...state.completedSessions, session].slice(-32),
     sentences: [...state.sentences, { session, text: plan.sentence, independent: sentenceIndependent, readAloud: true, at: now }].slice(-20),

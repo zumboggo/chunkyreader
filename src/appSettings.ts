@@ -11,17 +11,16 @@ export interface AppSettings {
 
 const SETTINGS_KEY = 'chunkyLearnerSettings.v1'
 
-export type ControllerChoice = 'A' | 'B' | 'C' | 'D' | 'E'
+export type ControllerChoice = 'A' | 'B' | 'C' | 'D'
 export type ControllerKeyMap = Record<ControllerChoice, string>
 
-export const controllerChoices: ControllerChoice[] = ['A', 'B', 'C', 'D', 'E']
+export const controllerChoices: ControllerChoice[] = ['A', 'B', 'C', 'D']
 
 export const defaultControllerKeys: ControllerKeyMap = {
   A: '1',
   B: '2',
   C: '3',
   D: '4',
-  E: '5',
 }
 
 export const defaultAppSettings: AppSettings = {

@@ -196,6 +196,7 @@ export interface LearnerProgress {
   rewardedCompletionCount?: number
   sparklePoints?: number
   rewardInventory?: Record<string, number>
+  roomPlacements?: Record<string, RewardSlot>
   equippedRewards?: Partial<Record<RewardSlot, string>>
   rewardHistory?: RewardDrop[]
   rarePityCount?: number

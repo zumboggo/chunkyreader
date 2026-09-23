@@ -57,7 +57,7 @@ for (let stage = 0; stage < READING_POCKETS.length; stage++) {
 const plan = makeReadingPlan(emptyReadingState(), now)
 const correct = Object.fromEntries(plan.words.map(w => [w.text, true]))
 const helped = applyReadingResult(emptyReadingState(), plan, 'first', correct, false, now)
-assert.equal(helped.stage, 0, 'A helped sentence must not advance the curriculum')
+assert.equal(helped.stage, 1, 'Completing with help advances to the next lesson')
 const independent = applyReadingResult(emptyReadingState(), plan, 'first', correct, true, now)
 assert.equal(independent.stage, 1)
 assert.equal(applyReadingResult(independent, plan, 'first', correct, true, now), independent, 'Completion is idempotent')
@@ -77,7 +77,8 @@ assert.notEqual(makeReadingPlan(helped, now).sentence, plan.sentence, 'Repeat le
 const notDue = makeReadingPlan(independent, now)
 assert(!notDue.words.some(w => plan.words.some(old => old.text === w.text)))
 const unverified = applyReadingResult(emptyReadingState(), plan, 'missing', {}, true, now)
-assert.equal(unverified.stage, 0, 'A sentence tap cannot substitute for word-reading evidence')
+assert.equal(unverified.stage, 1, 'Completion advances without claiming independent reading')
+assert.equal(unverified.words.stop.lastResult, 'helped')
 assert.equal(unverified.words.stop.lastResult, 'helped')
 
 // Exercise real activity UI callbacks and audio effects without browser globals or new dependencies.
@@ -179,3 +180,9 @@ assert.equal(scheduled.length, 7, 'sh is one sound, not two letter names')
 scheduled.at(-1).onended()
 assert.equal(await sh, 'played')
 console.log('Guided Words: all curriculum pockets, review spacing, parent checks, silent reading, and help tracking passed.')
+
+const resumeStorage = load('src/guidedWordsStorage.ts', {
+  './progressStorage': { progressStorage: { getItem: () => JSON.stringify({ ...emptyReadingState(), completedSessions: ['annas-reading-deck:2', 'annas-reading-deck:7', 'other-deck:99'] }) } },
+  './guidedWords': curriculum,
+})
+assert.equal(resumeStorage.guidedCompletedLessonNumber('annas-reading-deck'), 7, 'Completed sessions repair a stale resume pointer without using another deck')

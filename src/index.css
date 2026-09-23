@@ -8995,3 +8995,22 @@ body.dark-mode .words-lesson-shell .completion-card h2 {
     animation: none;
   }
 }
+
+/* The same four large controls remain available on lessons, menus and dialogs. */
+body { padding-bottom: 96px; }
+.four-button-controller {
+  position: fixed; z-index: 10000; bottom: 0; left: 0; right: 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px;
+  padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+  background: #fff5ef; border-top: 2px solid #e6d7ed;
+}
+.four-button-controller button {
+  min-height: 60px; border: 2px solid #bda3cc; border-radius: 16px;
+  color: #382d49; background: #eee3fa; font: inherit; font-size: 13px;
+  font-weight: 700; padding: 6px; overflow-wrap: anywhere;
+}
+.four-button-controller button:disabled { opacity: .45; }
+.modal-overlay { padding-bottom: 100px; }
+.room-placed-items { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; }
+.room-placed-items > span:not(.room-spot-name) { width: 26px; }
+.room-placed-items .reward-badge { max-width: 26px; max-height: 38px; }

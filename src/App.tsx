@@ -2,7 +2,7 @@ import { assetUrl } from './mediaAssets'
 import { PrivateLibrary } from './PrivateLibrary'
 import { progressStorage } from './progressStorage'
 import { GuidedWordsLesson } from './GuidedWordsLesson'
-import { loadGuidedReadingPlan } from './guidedWordsStorage'
+import { guidedCompletedLessonNumber, loadGuidedReadingPlan } from './guidedWordsStorage'
 import { readingSteps } from './guidedWords'
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent, type ReactNode } from 'react'
 import {
@@ -971,7 +971,8 @@ function App() {
         // Self-heal: devices stuck at index 0 while words were already being
         // introduced resume at a fresh lesson instead of the cached lesson 1.
         const estimated = estimateWordLessonResumeIndex(wordsDeck.id, wordsDeck.cards, OLDER_READER_WORD_LESSON_SIZE)
-        resumeIndex = Math.max(readAnnaWordsIndex(wordsDeck.id), estimated)
+        resumeIndex = Math.max(readAnnaWordsIndex(wordsDeck.id), estimated,
+          guidedCompletedLessonNumber(wordsDeck.id) * OLDER_READER_WORD_LESSON_SIZE)
         persistAnnaWordsIndex(wordsDeck.id, resumeIndex)
       }
     } else if (section === 'math') {
@@ -1390,7 +1391,7 @@ function ParentSettingsModal({
           <section className="controller-key-settings" aria-label="Controller choice keys">
             <div>
               <strong>Controller keys</strong>
-              <small>Use five buttons for choices, flashcards, and simple navigation.</small>
+              <small>Use four buttons everywhere. Match the labels at the bottom; More buttons reaches extra actions.</small>
             </div>
             <div className="controller-key-grid">
               {controllerChoices.map((choice) => (
