@@ -186,3 +186,16 @@ const resumeStorage = load('src/guidedWordsStorage.ts', {
   './guidedWords': curriculum,
 })
 assert.equal(resumeStorage.guidedCompletedLessonNumber('annas-reading-deck'), 7, 'Completed sessions repair a stale resume pointer without using another deck')
+
+const planStorage = load('src/guidedWordsStorage.ts', {
+  './progressStorage': { progressStorage: { getItem: key => key.includes(':lesson:')
+    ? JSON.stringify({ ...plan, stage: 0 })
+    : JSON.stringify({ ...emptyReadingState(), stage: 0 }) } },
+  './guidedWords': curriculum,
+})
+for (let lesson = 1; lesson <= READING_POCKETS.length; lesson++) {
+  const selected = planStorage.loadGuidedReadingPlan('annas-reading-deck', lesson)
+  assert.equal(selected.stage, lesson - 1, 'Each number selects its own content even with stale state/cache')
+  assert.equal(selected.title, READING_POCKETS[lesson - 1].title)
+}
+console.log('Numbered Words lessons ignore stale cached content and select all 14 curriculum pockets correctly.')

@@ -3,7 +3,7 @@ import { PrivateLibrary } from './PrivateLibrary'
 import { progressStorage } from './progressStorage'
 import { GuidedWordsLesson } from './GuidedWordsLesson'
 import { guidedCompletedLessonNumber, loadGuidedReadingPlan } from './guidedWordsStorage'
-import { readingSteps } from './guidedWords'
+import { READING_POCKETS, readingSteps } from './guidedWords'
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent, type ReactNode } from 'react'
 import {
   getInstalledAudioPackSummary,
@@ -986,6 +986,7 @@ function App() {
         const estimated = estimateWordLessonResumeIndex(wordsDeck.id, wordsDeck.cards, OLDER_READER_WORD_LESSON_SIZE)
         resumeIndex = Math.max(readAnnaWordsIndex(wordsDeck.id), estimated,
           guidedCompletedLessonNumber(wordsDeck.id) * OLDER_READER_WORD_LESSON_SIZE)
+        if (wordsDeck.id === 'annas-reading-deck') resumeIndex = Math.min(resumeIndex, (READING_POCKETS.length - 1) * OLDER_READER_WORD_LESSON_SIZE)
         persistAnnaWordsIndex(wordsDeck.id, resumeIndex)
       }
     } else if (section === 'math') {
@@ -1263,14 +1264,15 @@ function App() {
           }}
           onRestartLesson={restartLesson}
           onModeChange={changeMode}
-          onModeToggle={(nextMode) => {
-            setMode(nextMode)
-            setPhase(nextMode === 'listeningMode' ? 'learn' : 'question')
-            setMenuOpen(false)
-          }}
           onNextLesson={() => {
             completeActiveLesson()
             moveNextLessonFromCurrent()
+          }}
+          onChooseWordLesson={(lesson) => {
+            setCardIndex((lesson - 1) * OLDER_READER_WORD_LESSON_SIZE)
+            setSarahActivityIndex(0)
+            setMode('activeRecall')
+            setMenuOpen(false)
           }}
           onAdvanceLesson={moveNextLessonFromCurrent}
           onLessonComplete={completeActiveLesson}
@@ -1386,7 +1388,7 @@ function ParentSettingsModal({
           <section className="controller-key-settings" aria-label="Controller choice keys">
             <div>
               <strong>Controller keys</strong>
-              <small>Use four buttons everywhere. Match the labels at the bottom; More buttons reaches extra actions.</small>
+              <small>Buttons select answers and continue within a lesson. They never open Home or menus.</small>
             </div>
             <div className="controller-key-grid">
               {controllerChoices.map((choice) => (
@@ -1897,9 +1899,9 @@ function LearningScreen({
   onBackToPath,
   onRestartLesson,
   onModeChange,
-  onModeToggle,
   onNextLesson,
   onAdvanceLesson,
+  onChooseWordLesson,
   onLessonComplete,
   onDone,
   onGoHome,
@@ -1928,9 +1930,9 @@ function LearningScreen({
   onBackToPath?: () => void
   onRestartLesson: () => void
   onModeChange: (mode: LearningMode) => void
-  onModeToggle: (mode: LearningMode) => void
   onNextLesson: () => void
   onAdvanceLesson: () => void
+  onChooseWordLesson: (lesson: number) => void
   onLessonComplete: () => void
   onDone: () => void
   onGoHome?: () => void
@@ -1941,7 +1943,6 @@ function LearningScreen({
   onChangeMathOperation: (o: MathOperation) => void
   onShowCollection?: () => void
 }) {
-  const [fsrsActive, setFsrsActive] = useState(false)
   const isSarahLetters = activeDeck.profile === 'sarah' && activeDeck.type === 'letters'
   const isSarahPhonemes = activeDeck.profile === 'sarah' && activeDeck.type === 'phonemes'
   const isSarahFocusLesson = isSarahLetters || isSarahPhonemes
@@ -2072,7 +2073,7 @@ function LearningScreen({
       className={`learning-screen lesson-focus ${isOlderReaderWords ? 'words-lesson-shell' : activeDeck.type === 'math' ? 'math-lesson-shell' : ''}`}
       style={lessonVisualStyle}
     >
-      <LessonMenu
+      {!isGuidedWords && <LessonMenu
         isOpen={menuOpen}
         onToggle={onMenuToggle}
         decks={decks}
@@ -2086,9 +2087,14 @@ function LearningScreen({
         onModeChange={onModeChange}
         showAdultDetails={showAdultDetails}
         onToggleAdultDetails={onToggleAdultDetails}
-      />
+      />}
 
-      <FocusLessonTopBar
+      {isGuidedWords ? <div className="words-simple-header">
+        <label htmlFor="word-lesson-select">Words · Choose a lesson</label>
+        <select id="word-lesson-select" value={lessonNumber} onChange={event => onChooseWordLesson(Number(event.target.value))}>
+          {READING_POCKETS.map((pocket, index) => <option key={pocket.title} value={index + 1}>{index + 1}. {pocket.title}</option>)}
+        </select>
+      </div> : <FocusLessonTopBar
         lessonNumber={lessonNumber}
         progress={progress}
         total={progressTotal}
@@ -2097,7 +2103,7 @@ function LearningScreen({
         menuOpen={menuOpen}
         onMenuToggle={onMenuToggle}
         onHome={onGoHome}
-      />
+      />}
 
       {isSarahLetters ? (
         <SarahLetterLesson
@@ -2123,11 +2129,10 @@ function LearningScreen({
           onLessonComplete={onLessonComplete}
           showAdultDetails={showAdultDetails}
         />
-      ) : mode === 'flashcardMode' ? (
+      ) : mode === 'flashcardMode' && !isOlderReaderWords ? (
         <FsrsFlashcardMode
           deck={activeDeck}
           onComplete={onDone}
-          onSessionStateChange={setFsrsActive}
         />
       ) : isGuidedWords && guidedPlan ? (
         <GuidedWordsLesson
@@ -2146,8 +2151,7 @@ function LearningScreen({
             fireworksCelebration()
             onLessonComplete()
           }}
-          onNext={onAdvanceLesson}
-          onDone={onDone}
+          onNext={() => onChooseWordLesson(lessonNumber < READING_POCKETS.length ? lessonNumber + 1 : 1)}
         />
       ) : isOlderReaderWords ? (
         <OlderReaderLesson
@@ -2219,24 +2223,7 @@ function LearningScreen({
           onNext={onNext}
         />
       )}
-      {isOlderReaderWords && (mode !== 'flashcardMode' || fsrsActive) && (
-        <div className="mode-toggle-bar">
-          <button
-            type="button"
-            className={mode === 'flashcardMode' ? 'active' : ''}
-            onClick={() => onModeToggle('flashcardMode')}
-          >
-            Flashcards
-          </button>
-          <button
-            type="button"
-            className={mode === 'activeRecall' ? 'active' : ''}
-            onClick={() => onModeToggle('activeRecall')}
-          >
-            Active Recall
-          </button>
-        </div>
-      )}
+
     </section>
   )
 }

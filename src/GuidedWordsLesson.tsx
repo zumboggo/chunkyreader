@@ -3,17 +3,17 @@ import { stopAudioPlayback } from './audioClipPack'
 import { playSfx } from './audioEffects'
 import { assetUrl } from './mediaAssets'
 import { progressStorage } from './progressStorage'
-import { applyReadingResult, buildReadingTile, readingSteps,
+import { applyReadingResult, buildReadingTile, readingSteps, READING_POCKETS,
   type GuidedReadingPlan, type ReadingStep } from './guidedWords'
 import { guidedStateKey, guidedPlanKey, loadGuidedReadingState } from './guidedWordsStorage'
 import { guidedSoundUnits, playGuidedSounds, prepareGuidedSounds, stopGuidedSounds } from './guidedWordAudio'
 import './guidedWords.css'
 
 export function GuidedWordsLesson({ deckId, lessonNumber, plan, activityIndex, onActivityChange,
-  onComplete, onNext, onDone, playWord }: {
+  onComplete, onNext, playWord }: {
   deckId: string; lessonNumber: number; plan: GuidedReadingPlan; activityIndex: number
   onActivityChange: (index: number) => void
-  onComplete: () => void; onNext: () => void; onDone: () => void
+  onComplete: () => void; onNext: () => void
   playWord: (word: string) => void
 }) {
   const steps = readingSteps(plan)
@@ -69,8 +69,7 @@ export function GuidedWordsLesson({ deckId, lessonNumber, plan, activityIndex, o
             {' '}Sentence read aloud, confirmed by a parent: {sentenceIndependent ? 'independent' : 'with help'}. Both outcomes earn the lesson reward.</p>
           {saveWarning && <p role="status">Progress could not be saved on this device. You can still enjoy the lesson.</p>}
           <div className="focus-actions">
-            <button className="primary choice-action" onClick={onDone}>Done for now</button>
-            <button className="choice-action" onClick={onNext}>Another little lesson</button>
+            <button className="primary choice-action" onClick={onNext}>{lessonNumber < READING_POCKETS.length ? `Next lesson: ${lessonNumber + 1}` : "All lessons finished! Practise lesson 1"}</button>
           </div>
         </> : <ReadingActivity key={index} step={steps[index]} index={index} plan={plan}
           onAdvance={advance} onFinish={finish} playWord={playWord} />}

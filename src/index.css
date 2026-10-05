@@ -8996,21 +8996,6 @@ body.dark-mode .words-lesson-shell .completion-card h2 {
   }
 }
 
-/* The same four large controls remain available on lessons, menus and dialogs. */
-body { padding-bottom: 96px; }
-.four-button-controller {
-  position: fixed; z-index: 10000; bottom: 0; left: 0; right: 0;
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px;
-  padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
-  background: #fff5ef; border-top: 2px solid #e6d7ed;
-}
-.four-button-controller button {
-  min-height: 60px; border: 2px solid #bda3cc; border-radius: 16px;
-  color: #382d49; background: #eee3fa; font: inherit; font-size: 13px;
-  font-weight: 700; padding: 6px; overflow-wrap: anywhere;
-}
-.four-button-controller button:disabled { opacity: .45; }
-.modal-overlay { padding-bottom: 100px; }
 .room-placed-items { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; }
 .room-placed-items > span:not(.room-spot-name) { width: 26px; }
 .room-placed-items .reward-badge { max-width: 26px; max-height: 38px; }
@@ -9091,8 +9076,6 @@ body:has(.math-lesson-shell) { background: #fffaf3; }
 .math-lesson-shell .math-diff-btn.active { background: #e0efd6; border-color: #a8ca99; color: #3b652f; transform: none; }
 .math-lesson-shell .math-range-hint { font-size: 11px; color: #827988; }
 .math-lesson-shell .math-equation-card, .math-lesson-shell .math-visual-card { background: transparent; border: 0; box-shadow: none; padding: 8px; }
-body:has(.math-lesson-shell) .four-button-controller { background: #fffaf3; border-top: 1px solid #ebe3ef; }
-body:has(.math-lesson-shell) .four-button-controller button { background: #f1eafa; border-color: #d7c6e9; }
 @media (max-width: 620px) {
   .math-lesson-shell { gap: 8px; }
   .math-lesson-shell .focus-topbar { flex-wrap: wrap; }
@@ -9117,3 +9100,9 @@ body.dark-mode .math-counting-garden { background: #e2edda; }
   .math-lesson-shell .focus-topbar { grid-template-columns: 1fr auto; }
   .math-garden-title { grid-column: 1 / -1; }
 }
+/* Activity controls are inline; no floating controller or reserved space. */
+body { padding-bottom: 0; }
+.modal-overlay { padding-bottom: 16px; }
+.words-simple-header { display: grid; gap: 6px; max-width: 580px; width: 100%; margin: 0 auto 12px; }
+.words-simple-header label { font-weight: 800; color: var(--ink); }
+.words-simple-header select { width: 100%; min-height: 48px; padding: 10px 14px; border: 2px solid #d5c3e7; border-radius: 14px; background: #fffaf4; color: #34334c; font: inherit; }

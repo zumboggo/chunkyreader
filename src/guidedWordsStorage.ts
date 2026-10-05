@@ -1,5 +1,5 @@
 import { progressStorage } from './progressStorage'
-import { emptyReadingState, makeReadingPlan, type GuidedReadingPlan, type GuidedReadingState } from './guidedWords'
+import { emptyReadingState, makeReadingPlan, READING_POCKETS, type GuidedReadingPlan, type GuidedReadingState } from './guidedWords'
 
 export const guidedStateKey = (deckId: string) => `chunky-reader:word-recognition:v2:guided:${deckId}`
 export const guidedPlanKey = (deckId: string, lesson: number) => `${guidedStateKey(deckId)}:lesson:${lesson}`
@@ -12,11 +12,12 @@ export function loadGuidedReadingState(deckId: string): GuidedReadingState {
   return emptyReadingState()
 }
 export function loadGuidedReadingPlan(deckId: string, lesson: number): GuidedReadingPlan {
+  const stage = Math.max(0, Math.min(READING_POCKETS.length - 1, lesson - 1))
   try {
     const cached = JSON.parse(progressStorage.getItem(guidedPlanKey(deckId, lesson)) ?? 'null')
-    if (cached && Array.isArray(cached.words) && cached.words.length === 4 && cached.sentence) return cached
+    if (cached && cached.stage === stage && Array.isArray(cached.words) && cached.words.length === 4 && cached.sentence) return cached
   } catch { /* Use the current curriculum pocket. */ }
-  return makeReadingPlan(loadGuidedReadingState(deckId))
+  return makeReadingPlan({ ...loadGuidedReadingState(deckId), stage })
 }
 
 // Recover the resume pointer even if a previous save stopped after recording results.
