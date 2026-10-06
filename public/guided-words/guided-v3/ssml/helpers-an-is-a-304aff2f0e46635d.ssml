@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural">
+    <prosody rate="-12%" pitch="+2%">
+      <phoneme alphabet="ipa" ph="ən">an</phoneme>.<break time="200ms"/>An means one, before a vowel sound.<break time="300ms"/><phoneme alphabet="ipa" ph="ɪz">is</phoneme>.<break time="200ms"/>In is, s spells the buzzing /z/ sound.<break time="300ms"/><phoneme alphabet="ipa" ph="ə">a</phoneme>.<break time="200ms"/>A means one. In a sentence it often sounds like “uh”.
+    </prosody>
+  </voice>
+</speak>

@@ -1,0 +1,1964 @@
+{
+  "stop": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/stop.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/stop-6c45cb72a36e63d5.ssml"
+  },
+  "model:stop": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-stop-29b3376895606cf0.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-stop-f5d76060d2c5f9e6.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-stop-29b3376895606cf0.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "spin": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/spin.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/spin-a5a2729ffa0eeacc.ssml"
+  },
+  "model:spin": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-spin-61a5bf4f6e290784.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-spin-b5312f42faff14d6.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-spin-61a5bf4f6e290784.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "spot": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/spot.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/spot-be2bdbb3100e4119.ssml"
+  },
+  "model:spot": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-spot-f3f87cc4b2152f7a.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-spot-2cdd9e78f04116d2.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-spot-f3f87cc4b2152f7a.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "step": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/step.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/step-3e64cc41cf8e07b4.ssml"
+  },
+  "model:step": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-step-b8931b369ae2c2c0.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-step-634be6beb21a898e.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-step-b8931b369ae2c2c0.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "flag": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/flag.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/flag-807d0fbcae7c4b20.ssml"
+  },
+  "model:flag": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-flag-d8a6e0501065cce2.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-flag-16f97e832d8759b9.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-flag-d8a6e0501065cce2.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "flat": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/flat.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/flat-5dc27af287fa554a.ssml"
+  },
+  "model:flat": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-flat-cd2f1074ae1854e8.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-flat-623853ee1956b0f2.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-flat-cd2f1074ae1854e8.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "clap": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/clap.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/clap-8cceaf5c89e63591.ssml"
+  },
+  "model:clap": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-clap-16b5ef0620f45ea7.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-clap-ab6d4b996b85d1f0.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-clap-16b5ef0620f45ea7.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "slip": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/slip.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/slip-1c1480e67eee52c1.ssml"
+  },
+  "model:slip": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-slip-2bc91d1930ed5f99.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-slip-c4ace13223664803.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-slip-2bc91d1930ed5f99.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "frog": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/frog.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/frog-74fa5327cc0f4e94.ssml"
+  },
+  "model:frog": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-frog-d17246ef236b26dd.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-frog-95acec3e4bdfdc9a.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-frog-d17246ef236b26dd.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "drip": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/drip-534542f1d70a6140.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/drip-66780f1fb0171bd8.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/drip-534542f1d70a6140.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:drip": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-drip-4f716e326379066c.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-drip-ea4c54edfb3ae2e1.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-drip-4f716e326379066c.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "trap": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/trap.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/trap-11ba65852271cd24.ssml"
+  },
+  "model:trap": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-trap-81e414eee9481571.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-trap-2b1f0ad936ce9e71.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-trap-81e414eee9481571.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "grin": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/grin.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/grin-8fa6c2d2e923a33a.ssml"
+  },
+  "model:grin": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-grin-dda83541937ad748.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-grin-fb03cdb0118b533a.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-grin-dda83541937ad748.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "tent": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/tent-f59984c223a96234.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/tent-2a9810cb71316c9a.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/tent-f59984c223a96234.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:tent": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-tent-07dda61f21bcb26e.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-tent-180d89cc7d47bc9d.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-tent-07dda61f21bcb26e.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "bend": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/bend-24eb554d8f9f8fc1.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/bend-36e110819a318ddd.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/bend-24eb554d8f9f8fc1.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:bend": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-bend-7820beac7a9dc5a9.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-bend-7624954de58dae48.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-bend-7820beac7a9dc5a9.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "hand": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/hand-4f3f60a982cbd9f5.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/hand-1b001706a418bdfc.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/hand-4f3f60a982cbd9f5.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:hand": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-hand-df2e4c78b23781fd.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-hand-e5b9aac7dd053928.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-hand-df2e4c78b23781fd.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "sand": {
+    "path": "100-lessons/audio/lesson-50_c1_i5_sand.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/sand-f79d7d24558304d8.ssml"
+  },
+  "model:sand": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-sand-2da6aefa0bb83b24.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-sand-a229e5187957ce25.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-sand-2da6aefa0bb83b24.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "milk": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/milk-6fd4815db36cca69.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/milk-8825e76530f87ff5.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/milk-6fd4815db36cca69.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:milk": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-milk-4af2445e3db614c1.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-milk-e3314e0463923342.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-milk-4af2445e3db614c1.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "help": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/help-73d9628021541458.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/help-106a5842fc5fce6f.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/help-73d9628021541458.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:help": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-help-f1d36479604bb5a5.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-help-3a67d386b79df576.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-help-f1d36479604bb5a5.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "jump": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/jump-2ecda2a73125e121.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/jump-6bdaf554e42029bd.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/jump-2ecda2a73125e121.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:jump": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-jump-7d41f8e62003ef04.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-jump-c31ef6a0b5f93f0f.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-jump-7d41f8e62003ef04.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "lamp": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/lamp-cfb88c07dd4d1d95.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/lamp-c98e85f249002f03.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/lamp-cfb88c07dd4d1d95.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:lamp": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-lamp-bc46983c67da7cd7.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-lamp-3ede302b1f325225.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-lamp-bc46983c67da7cd7.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "stamp": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/stamp-8f019f285df5363c.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/stamp-e0afcdbf6ad4adf5.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/stamp-8f019f285df5363c.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:stamp": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-stamp-7bc388524d24cbba.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-stamp-47b6e43a39603bcf.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-stamp-7bc388524d24cbba.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "plant": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/plant-7e7b691e3493c8e5.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/plant-96044d9734b60441.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/plant-7e7b691e3493c8e5.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:plant": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-plant-f5534a38d65caf9b.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-plant-768305c39f467c96.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-plant-f5534a38d65caf9b.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "crisp": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/crisp-extracted-4681a3cee8fdface.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/crisp-06df90ccef78b500.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/crisp-extracted-4681a3cee8fdface.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:crisp": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-crisp-4681a3cee8fdface.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-crisp-252dad92a4f97b4b.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-crisp-4681a3cee8fdface.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "blend": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/blend-613824c08a49693b.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/blend-727c1e414b34819f.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/blend-613824c08a49693b.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:blend": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-blend-e90800fcbb80032f.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-blend-c428de20648f408a.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-blend-e90800fcbb80032f.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "ship": {
+    "path": "decks/anna-phonemes/audio/words/ship.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/ship-e5d5b971139eefeb.ssml"
+  },
+  "model:ship": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-ship-082c7ffcfcacdb76.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-ship-2f5ac230507c387b.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-ship-082c7ffcfcacdb76.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "shop": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/shop.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/shop-8d9001d32c6a703d.ssml"
+  },
+  "model:shop": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-shop-bb4abbb83884d8b8.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-shop-7b08c2fb3cd2c069.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-shop-bb4abbb83884d8b8.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "fish": {
+    "path": "decks/sarah-levels/audio/words/fish.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/fish-b474a99a2705e23c.ssml"
+  },
+  "model:fish": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-fish-6c9d51ebf1b8b37f.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-fish-e9fa6bfa8c283504.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-fish-6c9d51ebf1b8b37f.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "dish": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/dish.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/dish-edcf27a66a5453a8.ssml"
+  },
+  "model:dish": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-dish-6309e3cd56dcd5e8.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-dish-03a774145d9d457a.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-dish-6309e3cd56dcd5e8.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "chip": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/chip.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/chip-d7cea7305a333d5c.ssml"
+  },
+  "model:chip": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-chip-6206ed7897aeba7a.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-chip-504f2e29ab22fe44.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-chip-6206ed7897aeba7a.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "chop": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/chop.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/chop-5744323314533d25.ssml"
+  },
+  "model:chop": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-chop-785e0c7cdb953184.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-chop-9e60a10415492ab2.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-chop-785e0c7cdb953184.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "chin": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/chin.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/chin-4beeb72de58b9de8.ssml"
+  },
+  "model:chin": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-chin-cb88f3cf93694450.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-chin-739fb2a64cbb5aae.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-chin-cb88f3cf93694450.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "chat": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/chat.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/chat-31e06f7d89feb99a.ssml"
+  },
+  "model:chat": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-chat-b0beae9acc4665a0.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-chat-871924303f36d61c.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-chat-b0beae9acc4665a0.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "thin": {
+    "path": "decks/sarah-levels/audio/words/thin.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/thin-1a0dc227b5aa78f8.ssml"
+  },
+  "model:thin": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-thin-844cd37b8985ada7.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-thin-c1d377caef8417b4.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-thin-844cd37b8985ada7.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "thud": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/thud-5486f4f916103f39.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/thud-7841ddbc63d41539.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/thud-5486f4f916103f39.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:thud": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-thud-60871b7462d4d265.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-thud-d6d17d4b680f9192.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-thud-60871b7462d4d265.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "moth": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/moth-9d9112590d263f22.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/moth-19c3d6e4f5c8b0da.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/moth-9d9112590d263f22.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:moth": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-moth-4693f0f8f6844c48.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-moth-7eba98dc34f899bc.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-moth-4693f0f8f6844c48.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "bath": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/bath.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/bath-0de8ab6315488d30.ssml"
+  },
+  "model:bath": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-bath-68b95d4a6530cf74.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-bath-a1949636a7880e1c.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-bath-68b95d4a6530cf74.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "sing": {
+    "path": "decks/anna-phonemes/audio/words/sing.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/sing-6342d0648a746457.ssml"
+  },
+  "model:sing": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-sing-135dd34ae55a29a5.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-sing-e7f6a51ce77677a7.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-sing-135dd34ae55a29a5.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "ring": {
+    "path": "decks/sarah-levels/audio/words/ring.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/ring-16b974583155fdcb.ssml"
+  },
+  "model:ring": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-ring-24a58ae8d11105ce.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-ring-1fa423df0e7d5148.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-ring-24a58ae8d11105ce.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "long": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/long.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/long-fc66f021c67d064c.ssml"
+  },
+  "model:long": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-long-12558aec0c96ba08.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-long-69345a3f1b04b50e.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-long-12558aec0c96ba08.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "song": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/song.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/song-63f75c890b05405e.ssml"
+  },
+  "model:song": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-song-d1f9475153108e23.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-song-fb3c7ef40a98ed57.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-song-d1f9475153108e23.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "jumping": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/jumping-e1ec152bd7e51c9c.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/jumping-da7efaf6535bfaf6.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/jumping-e1ec152bd7e51c9c.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:jumping": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-jumping-d9078c6fa5bdc7b7.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-jumping-d294da1a175a4d5f.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-jumping-d9078c6fa5bdc7b7.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "helping": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/helping-5d39ad79ca713dcc.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/helping-39c42dbad94bee80.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/helping-5d39ad79ca713dcc.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:helping": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-helping-ab334d82681aea7d.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-helping-1788afddf06137b5.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-helping-ab334d82681aea7d.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "running": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/running-74c33eca8b71facd.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/running-c071cf5f5ed6f884.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/running-74c33eca8b71facd.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:running": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-running-21c4c3555468737b.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-running-b92ac427f8279929.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-running-21c4c3555468737b.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "sitting": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/sitting-464ee2b46b9b65f4.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/sitting-558413b70f8c6bbb.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/sitting-464ee2b46b9b65f4.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:sitting": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-sitting-66f7d56a9a386f0c.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-sitting-1fb83f36406b7d00.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-sitting-66f7d56a9a386f0c.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "sunset": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/sunset-336638c9f82faa3b.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/sunset-0829103205fbe796.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/sunset-336638c9f82faa3b.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:sunset": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-sunset-d0838e3f729b4e01.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-sunset-f2b8dc2a6b30b777.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-sunset-d0838e3f729b4e01.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "picnic": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/picnic-4583d9709e7740c2.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/picnic-e878b5219508b0e1.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/picnic-4583d9709e7740c2.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:picnic": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-picnic-87139661cad8231e.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-picnic-4096e31a048409dd.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-picnic-87139661cad8231e.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "rabbit": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/rabbit-00de71e957d7a84c.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/rabbit-d37d96b42ad43384.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/rabbit-00de71e957d7a84c.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:rabbit": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-rabbit-69800656c8e9e128.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-rabbit-093f25239c746757.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-rabbit-69800656c8e9e128.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "napkin": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/napkin-ac246ebbc0a3c88d.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/napkin-9db44611cf4a08a8.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/napkin-ac246ebbc0a3c88d.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:napkin": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-napkin-c44fe3093a46be24.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-napkin-d9243ba36d4b44ba.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-napkin-c44fe3093a46be24.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "catnip": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/catnip-145bf45d7ab0b30b.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/catnip-eb1b94cfd6971df4.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/catnip-145bf45d7ab0b30b.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:catnip": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-catnip-d2870c3b4f3f4f1b.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-catnip-2cd132b5bc718c74.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-catnip-d2870c3b4f3f4f1b.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "catnap": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/catnap-55fe180e4e5bf0b3.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/catnap-e32fcc5db33462b7.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/catnap-55fe180e4e5bf0b3.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:catnap": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-catnap-e53a0c0a026d4acd.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-catnap-ceb34bddbf2e2e2d.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-catnap-e53a0c0a026d4acd.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "bedbug": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/bedbug-00994377c7559d30.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/bedbug-55870e6e06e2f009.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/bedbug-00994377c7559d30.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:bedbug": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-bedbug-2beefc475d043365.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-bedbug-246bc2b5370e9095.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-bedbug-2beefc475d043365.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "sunlit": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/sunlit-c9fa7b3583d138a1.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/sunlit-c4658211172a6ef1.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/sunlit-c9fa7b3583d138a1.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:sunlit": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-sunlit-7ddf4f223464629f.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-sunlit-710a6088839b2b93.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-sunlit-7ddf4f223464629f.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "dentist": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/dentist-ffaf129d519d8884.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/dentist-f62e610834f27439.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/dentist-ffaf129d519d8884.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:dentist": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-dentist-7952384126036849.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-dentist-372d30654e1177f2.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-dentist-7952384126036849.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "cactus": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/cactus-774b2e273c8347d1.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/cactus-caaeac3184e90c7f.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/cactus-774b2e273c8347d1.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:cactus": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-cactus-59fc6a0cb53d48f9.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-cactus-cb98b624aeff635b.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-cactus-59fc6a0cb53d48f9.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "velvet": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/velvet-19893efcca8aef81.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/velvet-f4c44266a2dfad98.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/velvet-19893efcca8aef81.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:velvet": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-velvet-e701c251d2c058e9.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-velvet-2501eab5428d11aa.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-velvet-e701c251d2c058e9.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "insect": {
+    "path": "decks/anna-phonemes/audio/words/insect.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/insect-db7304319ed7d941.ssml"
+  },
+  "model:insect": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-insect-711743dd4d62ad84.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-insect-9a6b57b1b3bec37d.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-insect-711743dd4d62ad84.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "duck": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/duck.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/duck-2d2370db2447ff8c.ssml"
+  },
+  "model:duck": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-duck-d33eb42b46a639f5.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-duck-9a1616ec7d17ea5b.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-duck-d33eb42b46a639f5.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "sock": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/sock.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/sock-06efe37f5e983469.ssml"
+  },
+  "model:sock": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-sock-8f0b6506b8ecdd24.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-sock-f7076104065bb38f.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-sock-8f0b6506b8ecdd24.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "neck": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/neck-0057d7e118e79363.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/neck-f14896d8de9dc788.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/neck-0057d7e118e79363.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:neck": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-neck-18a9eed2b1a6ddc2.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-neck-202c51aec0609740.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-neck-18a9eed2b1a6ddc2.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "back": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/back.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/back-3c482346f3750276.ssml"
+  },
+  "model:back": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-back-d20597c43b2b3487.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-back-944c53b8e407cec0.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-back-d20597c43b2b3487.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "bell": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/bell-a35f658073745136.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/bell-f683740cded6680d.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/bell-a35f658073745136.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:bell": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-bell-7cf9f0b996f12259.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-bell-5dc0cb7531835e38.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-bell-7cf9f0b996f12259.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "hill": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/hill-d4ee7889470aad28.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/hill-f77fcbb21ddefc82.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/hill-d4ee7889470aad28.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:hill": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-hill-f1208e3e20afcd12.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-hill-71db0c5d772386b9.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-hill-f1208e3e20afcd12.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "puff": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/puff-c5df0debdc59b8d3.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/puff-5668e7edcd8a3ef8.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/puff-c5df0debdc59b8d3.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:puff": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-puff-67a49aacc8a5d2e2.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-puff-95bb5d49624fd17e.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-puff-67a49aacc8a5d2e2.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "mess": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/mess-fe1b19612e9fd9e7.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/mess-7d64084076881eb2.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/mess-fe1b19612e9fd9e7.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:mess": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-mess-6197bf3699a54125.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-mess-d42b635e7bc474e1.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-mess-6197bf3699a54125.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "feet": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/feet.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/feet-a5add13655291fd6.ssml"
+  },
+  "model:feet": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-feet-5a4073c185da3518.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-feet-35bda4cae3550048.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-feet-5a4073c185da3518.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "seed": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/seed.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/seed-19b25856e1c150ca.ssml"
+  },
+  "model:seed": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-seed-d012dfcf21b27024.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-seed-1206c00d2d4a5ca9.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-seed-d012dfcf21b27024.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "tree": {
+    "path": "decks/anna-phonemes/audio/words/tree.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/tree-dc9c5edb8b2d479e.ssml"
+  },
+  "model:tree": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-tree-cf71e5eea6d79948.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-tree-9aac28e401a6052d.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-tree-cf71e5eea6d79948.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "green": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/green.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/green-ba4788b226aa8dc2.ssml"
+  },
+  "model:green": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-green-76430e6e4c026d90.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-green-a0beaeccf09804cf.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-green-76430e6e4c026d90.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "rain": {
+    "path": "decks/sarah-levels/audio/words/rain.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/rain-319b44c570a417ff.ssml"
+  },
+  "model:rain": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-rain-8df799dd66e8155e.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-rain-09e3a64a629be21e.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-rain-8df799dd66e8155e.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "tail": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/tail.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/tail-0c62f876ef1dea83.ssml"
+  },
+  "model:tail": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-tail-b6fac7679788d59a.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-tail-3fcb92d1da5ba03e.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-tail-b6fac7679788d59a.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "mail": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/mail.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/mail-00d8d3f11739d2f3.ssml"
+  },
+  "model:mail": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-mail-966a6af04dad08a6.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-mail-c739d1380cf9bd1a.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-mail-966a6af04dad08a6.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "sail": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/sail.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/sail-d0350a6064de8404.ssml"
+  },
+  "model:sail": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-sail-0e02d42475891e6f.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-sail-2866ac767bf5a3cc.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-sail-0e02d42475891e6f.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "boat": {
+    "path": "decks/sarah-levels/audio/words/boat.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/boat-25cdb46d8d2115a2.ssml"
+  },
+  "model:boat": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-boat-d8495f15cebfc8cf.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-boat-ae6e2ef47db493ab.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-boat-d8495f15cebfc8cf.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "coat": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/coat.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/coat-8218f3d6780abf45.ssml"
+  },
+  "model:coat": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-coat-7fa978b501574ac5.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-coat-91342ae4a85beba3.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-coat-7fa978b501574ac5.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "goat": {
+    "path": "decks/sarah-levels/audio/words/goat.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/goat-5480f08f35968440.ssml"
+  },
+  "model:goat": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-goat-338f415bfa5c8da2.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-goat-639fd86e7a3549ff.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-goat-338f415bfa5c8da2.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "soap": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/soap.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/soap-736bc2d4e0945110.ssml"
+  },
+  "model:soap": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-soap-790b841572a9c723.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-soap-77c5913717ddee51.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-soap-790b841572a9c723.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "cat": {
+    "path": "decks/sarah-levels/audio/words/cat.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/cat-77af778b51abd4a3.ssml"
+  },
+  "can": {
+    "path": "100-lessons/audio/lesson-61_c1_i3_can.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/can-9f584196e7fe6de8.ssml"
+  },
+  "dog": {
+    "path": "decks/sarah-levels/audio/words/dog.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/dog-cd6357efdd966de8.ssml"
+  },
+  "flap": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/flap-145a30c84e793fed.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/flap-22917db8acdcd33e.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/flap-145a30c84e793fed.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "hop": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/hop.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/hop-87a0acaec00fa34a.ssml"
+  },
+  "ant": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/ant-82bbce5bf1cc49bb.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/ant-67a333356cdc566e.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/ant-82bbce5bf1cc49bb.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "in": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/in.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/in-582967534d0f909d.ssml"
+  },
+  "on": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/on.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/on-b8d31e852725afb1.ssml"
+  },
+  "pot": {
+    "path": "100-lessons/audio/lesson-50_c1_i7_pot.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/pot-74a51c3ce9ff0255.ssml"
+  },
+  "bag": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/bag.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/bag-c018019b6a8b01ab.ssml"
+  },
+  "fun": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/fun.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/fun-00c4285274fcc5d6.ssml"
+  },
+  "at": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/at.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/at-b1d6b91b67c2afa5.ssml"
+  },
+  "bed": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/bed.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/bed-c5052532c2206140.ssml"
+  },
+  "pond": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/pond-2021f0b97be03124.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/pond-4e7914b0df8068b7.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/pond-2021f0b97be03124.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "desk": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/desk-38f0341fd4a49346.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/desk-49be417ad74080a0.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/desk-38f0341fd4a49346.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "cake": {
+    "path": "decks/anna-phonemes/audio/words/cake.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/cake-32cdb61919620005.ssml"
+  },
+  "model:cake": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-cake-4125b829bd9d4986.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-cake-a00e68d797fd63f4.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-cake-4125b829bd9d4986.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "lake": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/lake.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/lake-6f021f0268d5dd0d.ssml"
+  },
+  "model:lake": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-lake-027987ad031aa764.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-lake-a900b2e2e0521f59.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-lake-027987ad031aa764.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "gate": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/gate-228bdd5e54a41929.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/gate-c974e17b8e7321ce.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/gate-228bdd5e54a41929.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:gate": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-gate-883ea68552dde195.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-gate-02d6601427f66bc0.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-gate-883ea68552dde195.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "name": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/name.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/name-82a3537ff0dbce7e.ssml"
+  },
+  "model:name": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-name-b70c427c8761d945.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-name-a0851aea8580738d.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-name-b70c427c8761d945.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "bike": {
+    "path": "decks/anna-phonemes/audio/words/bike.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/bike-163c18e0068f0a59.ssml"
+  },
+  "model:bike": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-bike-3ba3655360eee4e6.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-bike-ba1a7c5762c79527.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-bike-3ba3655360eee4e6.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "kite": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/kite-8af83b17f22de3a6.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/kite-8e8c7d42b456c9e4.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/kite-8af83b17f22de3a6.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "model:kite": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-kite-63c96029efa9ee8f.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-kite-5d1d35b8ab9930ef.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-kite-63c96029efa9ee8f.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "five": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/five.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/five-222b0bd51fcef7e6.ssml"
+  },
+  "model:five": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-five-367e28da412ec398.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-five-1a0098002d013a08.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-five-367e28da412ec398.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "time": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/time.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/time-336074805fc85398.ssml"
+  },
+  "model:time": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-time-53d0227327046d54.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-time-87d719b1faa4eb18.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-time-53d0227327046d54.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "home": {
+    "path": "decks/anna-phonemes/audio/words/home.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/home-4ea140588150773c.ssml"
+  },
+  "model:home": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-home-1f3fc674a62d826a.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-home-ac726b293b481a5c.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-home-1f3fc674a62d826a.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "rope": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/rope.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/rope-fe4d55b9ffa53044.ssml"
+  },
+  "model:rope": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-rope-6084565eaa4be244.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-rope-7baf9599e43f5548.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-rope-6084565eaa4be244.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "nose": {
+    "path": "decks/sarah-levels/audio/words/nose.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/nose-d77e22123e64d3d8.ssml"
+  },
+  "model:nose": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-nose-231575d04d925ac1.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-nose-723a7fa338f04fb2.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-nose-231575d04d925ac1.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "bone": {
+    "path": "clip-packs/annas-reading-deck/audio/words/anne-soft-female-v2/bone.mp3",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/bone-c8dacf657fe92b60.ssml"
+  },
+  "model:bone": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/model-bone-42a3ec8a279c053e.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/model-bone-8c575c71ae54d707.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-bone-42a3ec8a279c053e.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "plate": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/plate-d610ddd077b89eff.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/plate-3b56c3520006aaeb.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/plate-d610ddd077b89eff.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A cat can spin.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-can-spin-d764d4a88138a3d8.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-cat-can-spin-ae0006d511b8cd1b.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-can-spin-d764d4a88138a3d8.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "helpers:a,can": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/helpers-a-can-3dc32cdbd8538203.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/helpers-a-can-e2e421e9ae042ea9.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/helpers-a-can-3dc32cdbd8538203.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A dog can stop.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-dog-can-stop-5616c49a19672cdc.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-dog-can-stop-fdcb76ed8eb3d001.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-dog-can-stop-5616c49a19672cdc.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A flag can flap.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-flag-can-flap-133fc654ca754dd0.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-flag-can-flap-3441ebf9de818f90.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-flag-can-flap-133fc654ca754dd0.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A cat can clap.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-can-clap-ae5e53558a050041.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-cat-can-clap-c76a987b4833eae7.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-can-clap-ae5e53558a050041.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A frog can hop.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-frog-can-hop-11d3e136f2c03e0c.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-frog-can-hop-cf4d87d87d870df9.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-frog-can-hop-11d3e136f2c03e0c.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A frog can grin.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-frog-can-grin-f638691a69ed5fdc.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-frog-can-grin-d40cac25ee6de389.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-frog-can-grin-f638691a69ed5fdc.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "An ant is in a tent.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/an-ant-is-in-a-tent-9b53f300be02b075.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/an-ant-is-in-a-tent-78b5e91a1c91d5cc.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/an-ant-is-in-a-tent-9b53f300be02b075.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "helpers:an,is,a": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/helpers-an-is-a-9b28ee00b80e4ba2.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/helpers-an-is-a-304aff2f0e46635d.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/helpers-an-is-a-9b28ee00b80e4ba2.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "An ant is on a hand.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/an-ant-is-on-a-hand-75d34c949a07d7f6.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/an-ant-is-on-a-hand-452b782cd5664a72.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/an-ant-is-on-a-hand-75d34c949a07d7f6.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A frog can jump.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-frog-can-jump-916ced6304cbc4df.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-frog-can-jump-dbdfc14c55e37b75.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-frog-can-jump-916ced6304cbc4df.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A cat can jump.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-can-jump-5d2966580a8a0205.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-cat-can-jump-27171c39b71ef3b1.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-can-jump-5d2966580a8a0205.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A plant is in a pot.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-plant-is-in-a-pot-ed3b592d739906d2.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-plant-is-in-a-pot-d2ce0b87f38cd9fe.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-plant-is-in-a-pot-ed3b592d739906d2.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "helpers:a,is": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/helpers-a-is-fa5aa56e9e441401.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/helpers-a-is-4407b7428d107c15.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/helpers-a-is-fa5aa56e9e441401.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A stamp is on a bag.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-stamp-is-on-a-bag-77904e31c24e1c32.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-stamp-is-on-a-bag-89ebb54260b454bc.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-stamp-is-on-a-bag-77904e31c24e1c32.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A fish is in a dish.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-fish-is-in-a-dish-8213abc269ee852f.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-fish-is-in-a-dish-819788be162cabda.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-fish-is-in-a-dish-8213abc269ee852f.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A fish is in a ship.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-fish-is-in-a-ship-4539bd7c999f40ec.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-fish-is-in-a-ship-46c07481d91781ff.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-fish-is-in-a-ship-4539bd7c999f40ec.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A chip is in a bag.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-chip-is-in-a-bag-35b74830018af267.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-chip-is-in-a-bag-b83393766ef5f0d5.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-chip-is-in-a-bag-35b74830018af267.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A chip is in a dish.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-chip-is-in-a-dish-6706a57b2239a8d6.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-chip-is-in-a-dish-b0ab7d070795274e.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-chip-is-in-a-dish-6706a57b2239a8d6.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A moth is in a bath.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-moth-is-in-a-bath-96e900a0972a610e.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-moth-is-in-a-bath-ad8a211fc22cda04.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-moth-is-in-a-bath-96e900a0972a610e.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A thin cat is in a bath.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-thin-cat-is-in-a-bath-5729d3c27785add7.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-thin-cat-is-in-a-bath-c1b01592690f40fa.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-thin-cat-is-in-a-bath-5729d3c27785add7.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A long song is fun.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-long-song-is-fun-ba34b0f111bf8e57.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-long-song-is-fun-e32c5edf7854d081.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-long-song-is-fun-ba34b0f111bf8e57.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A long song can help.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-long-song-can-help-56bef28b543a42e7.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-long-song-can-help-f9a157f2283a4f99.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-long-song-can-help-56bef28b543a42e7.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A cat is jumping.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-is-jumping-ec54a8a125889b0c.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-cat-is-jumping-b3707494f13a6e89.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-is-jumping-ec54a8a125889b0c.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A frog is jumping.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-frog-is-jumping-94a34ccfa9d8cdf0.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-frog-is-jumping-a3bd90dd0a150c05.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-frog-is-jumping-94a34ccfa9d8cdf0.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A rabbit can hop.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-rabbit-can-hop-5749101adc77c1f0.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-rabbit-can-hop-f8035d3a3eef2600.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-rabbit-can-hop-5749101adc77c1f0.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A rabbit is at a picnic.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-rabbit-is-at-a-picnic-babbb37bd407559b.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-rabbit-is-at-a-picnic-61e650f5247ef7e2.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-rabbit-is-at-a-picnic-babbb37bd407559b.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A bedbug is on a bed.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-bedbug-is-on-a-bed-854d74c6a65d23e6.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-bedbug-is-on-a-bed-aaf8a9120071a9e9.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-bedbug-is-on-a-bed-854d74c6a65d23e6.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A cat is on a sunlit bed.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-is-on-a-sunlit-bed-5c8bd8d81a001705.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-cat-is-on-a-sunlit-bed-696bf3144b8a778f.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-is-on-a-sunlit-bed-5c8bd8d81a001705.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "An insect is on a cactus.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/an-insect-is-on-a-cactus-c02839f1787bd87e.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/an-insect-is-on-a-cactus-53de47cfa43231a7.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/an-insect-is-on-a-cactus-c02839f1787bd87e.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A dentist can help.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-dentist-can-help-6425357f0b4b3070.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-dentist-can-help-45b493b6f649e0d0.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-dentist-can-help-6425357f0b4b3070.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A duck is in a pond.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-duck-is-in-a-pond-e5da00412068a804.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-duck-is-in-a-pond-f159a8eb22997bfd.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-duck-is-in-a-pond-e5da00412068a804.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A sock is on a bed.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-sock-is-on-a-bed-f0e3856620da24b3.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-sock-is-on-a-bed-d7a541ffed673cd4.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-sock-is-on-a-bed-f0e3856620da24b3.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A bell is on a desk.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-bell-is-on-a-desk-223afcd1c5e03dfc.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-bell-is-on-a-desk-61eb7b59359f2f37.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-bell-is-on-a-desk-223afcd1c5e03dfc.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A cat is on a hill.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-is-on-a-hill-824e6f301a59b9de.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-cat-is-on-a-hill-b338bb3a1c23d772.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-is-on-a-hill-824e6f301a59b9de.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A cake is on a plate.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-cake-is-on-a-plate-fa3b3dfaabef7a43.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-cake-is-on-a-plate-28405b866954504f.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-cake-is-on-a-plate-fa3b3dfaabef7a43.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A name is on a gate.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-name-is-on-a-gate-8f1a2c335a280465.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-name-is-on-a-gate-b5c49f4ea3d6c277.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-name-is-on-a-gate-8f1a2c335a280465.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A kite is on a hill.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-kite-is-on-a-hill-9dcfafd41402d473.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-kite-is-on-a-hill-ca262d51e887c03f.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-kite-is-on-a-hill-9dcfafd41402d473.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A bike is at a gate.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-bike-is-at-a-gate-1d4e7719c0934962.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-bike-is-at-a-gate-ccfa2159b3511392.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-bike-is-at-a-gate-1d4e7719c0934962.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A dog has a bone.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-dog-has-a-bone-36d23413b5983c22.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-dog-has-a-bone-94eed4b4d6a8e042.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-dog-has-a-bone-36d23413b5983c22.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "helpers:a,has": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/helpers-a-has-b81bd34fb205d487.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/helpers-a-has-267df649e1fea635.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/helpers-a-has-b81bd34fb205d487.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A rope is on a gate.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-rope-is-on-a-gate-58b70e863bc0d975.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-rope-is-on-a-gate-3e480a34213158c5.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-rope-is-on-a-gate-58b70e863bc0d975.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A kite is at home.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-kite-is-at-home-33e198db48bf9162.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-kite-is-at-home-b0d6038fdd39dada.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-kite-is-at-home-33e198db48bf9162.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A rope is in a lake.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-rope-is-in-a-lake-17603236cbf4f30d.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-rope-is-in-a-lake-238cd160b4660b30.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-rope-is-in-a-lake-17603236cbf4f30d.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A seed is in a pot.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-seed-is-in-a-pot-dfe8258a4805369b.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-seed-is-in-a-pot-251a2cce5f8bcdfc.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-seed-is-in-a-pot-dfe8258a4805369b.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A tree is green.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-tree-is-green-8e50f23475e1e292.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-tree-is-green-2d13a44eb9eb7c7d.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-tree-is-green-8e50f23475e1e292.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "Rain is on a green tree.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/rain-is-on-a-green-tree-48f4c99d33479fd7.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/rain-is-on-a-green-tree-48b53c490d9a7ecb.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/rain-is-on-a-green-tree-48f4c99d33479fd7.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "helpers:is,a": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/helpers-is-a-903d2f9a00b2eeb7.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/helpers-is-a-e58620fddea547e2.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/helpers-is-a-903d2f9a00b2eeb7.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A dog has a tail.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-dog-has-a-tail-02337b35cba64635.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-dog-has-a-tail-42b4028bbdc5300f.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-dog-has-a-tail-02337b35cba64635.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A goat is on a boat.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-goat-is-on-a-boat-25b136a03a6b1aa6.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-goat-is-on-a-boat-685363004f1456d5.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-goat-is-on-a-boat-25b136a03a6b1aa6.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "Soap is in a dish.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/soap-is-in-a-dish-e8cf23fcceeb0f5b.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/soap-is-in-a-dish-bfe1d9e376a9a878.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/soap-is-in-a-dish-e8cf23fcceeb0f5b.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "A goat is in a boat.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/a-goat-is-in-a-boat-1e0152ff343abc5e.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/a-goat-is-in-a-boat-8b2751fc21be9705.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/a-goat-is-in-a-boat-1e0152ff343abc5e.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "Rain is on a seed.": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/rain-is-on-a-seed-07d6c5af666af10c.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/rain-is-on-a-seed-544fb6da82d3fe63.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/rain-is-on-a-seed-07d6c5af666af10c.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  },
+  "phoneme:schwa": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/phoneme-schwa-bd4c2d3bd19fa66e.m4a",
+    "ready": true,
+    "ssmlPath": "guided-words/guided-v3/ssml/phoneme-schwa-31a48d7b864751dc.ssml",
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/phoneme-schwa-bd4c2d3bd19fa66e.json",
+    "provider": "replicate",
+    "model": "google/gemini-3.1-flash-tts",
+    "voice": "Sulafat"
+  }
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural">
+    <prosody rate="-12%" pitch="+2%">
+      <phoneme alphabet="ipa" ph="ə">a</phoneme>.<break time="200ms"/>A means one. In a sentence it often sounds like “uh”.<break time="300ms"/><phoneme alphabet="ipa" ph="kən">can</phoneme>.<break time="200ms"/>Can means able to. Its vowel is often relaxed in a sentence.
+    </prosody>
+  </voice>
+</speak>

@@ -1,16 +1,13 @@
 import clips from './content/guided-sounds.json'
 import { assetUrl } from './mediaAssets'
 
-export interface SoundUnit { spelling: string; sound: keyof typeof clips }
-/** Digraphs and doubled consonants are single sounds, never letter names. */
+import { READING_LEXICON, type SoundUnit } from './guidedWords'
 export function guidedSoundUnits(text: string): SoundUnit[] {
-  const units = text.toLowerCase().match(/ing|sh|ch|th|ng|ck|bb|nn|tt|[a-z]/g) ?? []
-  return units.map(spelling => {
-    const sound = ({ bb: 'b', nn: 'n', tt: 't', ck: 'k' } as Record<string, string>)[spelling] ?? spelling
-    if (!(sound in clips)) throw new Error(`No phonetic recording for ${spelling}`)
-    return { spelling, sound: sound as keyof typeof clips }
-  })
+  const word = READING_LEXICON[text.toLowerCase()]
+  if (!word) throw new Error(`No explicit pronunciation mapping for ${text}`)
+  return word.sounds
 }
+const soundClips: Record<string, { path: string; start: number; duration: number }> = clips
 
 let context: AudioContext | undefined
 const decoded = new Map<string, Promise<AudioBuffer>>()
@@ -19,9 +16,9 @@ let nodes: AudioBufferSourceNode[] = []
 let timers: ReturnType<typeof setTimeout>[] = []
 let cancelPending: (() => void) | undefined
 function audioContext() { return context ??= new AudioContext() }
-async function buffer(sound: keyof typeof clips) {
+async function buffer(sound: string) {
   if (!decoded.has(sound)) {
-    const promise = cachedSound(assetUrl(clips[sound].path))
+    const promise = cachedSound(assetUrl(soundClips[sound].path))
       .then(response => { if (!response.ok) throw new Error('Sound unavailable'); return response.arrayBuffer() })
       .then(bytes => audioContext().decodeAudioData(bytes))
       .catch(error => { decoded.delete(sound); throw error })
@@ -51,7 +48,7 @@ export function prepareGuidedSounds(words: { text: string }[]) {
     const sounds = new Set(words.flatMap(word => guidedSoundUnits(word.text).map(unit => unit.sound)))
     void Promise.all([...sounds].map(buffer)).then(async () => {
       // Prepare later lessons too, without recording any learner information in the audio cache.
-      for (const sound of Object.keys(clips) as (keyof typeof clips)[]) await buffer(sound)
+      for (const sound of Object.keys(clips) as (string)[]) await buffer(sound)
     }).catch(() => {})
   } catch { /* Replay will show a helpful message if audio is unavailable. */ }
 }
@@ -63,7 +60,7 @@ export function stopGuidedSounds() {
   cancelPending?.(); cancelPending = undefined
 }
 
-export async function playGuidedSounds(text: string, onSound: (index: number | null) => void): Promise<'played' | 'cancelled' | 'unavailable'> {
+export async function playGuidedSounds(text: string, onSound: (index: number | null) => void, onlyUnit?: number): Promise<'played' | 'cancelled' | 'unavailable'> {
   stopGuidedSounds()
   const request = generation
   try {
@@ -71,7 +68,8 @@ export async function playGuidedSounds(text: string, onSound: (index: number | n
     await ctx.resume()
     if (request !== generation) return 'cancelled'
     if (ctx.state !== 'running') return 'unavailable'
-    const units = guidedSoundUnits(text)
+    const allUnits = guidedSoundUnits(text)
+    const units = onlyUnit === undefined ? allUnits : [allUnits[onlyUnit]]
     if (!units.length) return 'unavailable'
     const buffers = await Promise.all(units.map(unit => buffer(unit.sound)))
     if (request !== generation) return 'cancelled'
@@ -79,7 +77,7 @@ export async function playGuidedSounds(text: string, onSound: (index: number | n
       cancelPending = () => resolve('cancelled')
       let offset = .04
       units.forEach((unit, index) => {
-        const clip = clips[unit.sound]
+        const clip = soundClips[unit.sound]
         const node = ctx.createBufferSource()
         node.buffer = buffers[index]
         node.connect(ctx.destination)

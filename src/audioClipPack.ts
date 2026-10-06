@@ -44,6 +44,7 @@ const autoplayUnlockedKey = 'chunky-reader:audio-pack:autoplay-unlocked'
 
 let manifestPromise: Promise<AudioClipPackManifest | undefined> | undefined
 let activeAudio: HTMLAudioElement | null = null
+let playbackGeneration = 0
 let autoplayUnlocked = readAutoplayUnlocked()
 
 export function audioPackManifestUrl() {
@@ -188,6 +189,7 @@ export function getInstalledAudioPackSummary(): { version?: string; clipCount?: 
 }
 
 export function stopAudioPlayback() {
+  playbackGeneration++
   if ('speechSynthesis' in window) window.speechSynthesis.cancel()
   if (activeAudio) {
     activeAudio.pause()
@@ -242,4 +244,16 @@ function readAutoplayUnlocked() {
   } catch {
     return false
   }
+}
+
+/** Recorded-only playback. A slow cache lookup cannot start audio after leaving a quiet check. */
+export async function playRecordedClip(path: string): Promise<boolean> {
+  stopAudioPlayback()
+  const request = playbackGeneration
+  try {
+    const url = await resolveInstalledOrNetworkUrl(path)
+    if (request !== playbackGeneration) return false
+    await playAudioUrl(url)
+    return true
+  } catch { return false }
 }

@@ -30,7 +30,11 @@ export function compactProgressKeys(keys: Record<string, string>) {
     const match = /^(chunky-reader:word-recognition:.*:lesson:)(\d+)$/.exec(key)
     if (match) {
       const group = lessons.get(match[1]) ?? []
-      group.push({ key, number: Number(match[2]) }); lessons.set(match[1], group)
+      let order = Number(match[2])
+      if (match[1].includes(':guided:')) {
+        try { const plan = JSON.parse(result[key]); if (Number.isFinite(plan.savedAt)) order = plan.savedAt } catch { /* Legacy numeric ordering. */ }
+      }
+      group.push({ key, number: order }); lessons.set(match[1], group)
     }
     if (key.startsWith('chunky-reader:word-recognition:') && !match) {
       try {

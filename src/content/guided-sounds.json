@@ -178,5 +178,41 @@
     "ipa": "ɪŋ",
     "start": 0.11,
     "duration": 0.37
+  },
+  "long-a": {
+    "path": "100-lessons/audio/lesson-67_c0_i0_ai-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "eɪ",
+    "start": 0.11,
+    "duration": 0.4
+  },
+  "long-e": {
+    "path": "100-lessons/audio/lesson-66_c0_i4_ee-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "iː",
+    "start": 0.06,
+    "duration": 0.33
+  },
+  "long-i": {
+    "path": "100-lessons/audio/lesson-67_c0_i4_igh-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "aɪ",
+    "start": 0.12,
+    "duration": 0.46
+  },
+  "long-o": {
+    "path": "100-lessons/audio/lesson-67_c0_i1_oa-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "oʊ",
+    "start": 0.12,
+    "duration": 0.46
+  },
+  "aw": {
+    "path": "100-lessons/audio/lesson-69_c0_i2_aw-phoneme-phonics-sounds-v2.mp3",
+    "ipa": "ɔ",
+    "start": 0.11,
+    "duration": 0.42
+  },
+  "schwa": {
+    "path": "guided-words/gemini-3.1-sulafat-guided-v1/phoneme-schwa-bd4c2d3bd19fa66e.m4a",
+    "ipa": "ə",
+    "start": 0.34,
+    "duration": 0.23
   }
 }

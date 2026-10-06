@@ -1,8 +1,10 @@
+import guidedAudio from './content/guided-audio.json'
+import { playRecordedClip } from './audioClipPack'
 import { assetUrl } from './mediaAssets'
 import { PrivateLibrary } from './PrivateLibrary'
 import { progressStorage } from './progressStorage'
 import { GuidedWordsLesson } from './GuidedWordsLesson'
-import { guidedCompletedLessonNumber, loadGuidedReadingPlan } from './guidedWordsStorage'
+import { guidedCompletedLessonNumber, guidedResumeLessonNumber, loadGuidedReadingPlan } from './guidedWordsStorage'
 import { READING_POCKETS, readingSteps } from './guidedWords'
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent, type ReactNode } from 'react'
 import {
@@ -898,7 +900,7 @@ function App() {
 
   function handleCompletionReward(result: CompletionRewardResult) {
     setProgressVersion((version) => version + 1)
-    if (result.boxesAwarded > 0) {
+    if (result.boxesAwarded > 0 && activeSection !== 'words') {
       setRewardNoticeBoxes((count) => count + result.boxesAwarded)
     }
   }
@@ -986,7 +988,10 @@ function App() {
         const estimated = estimateWordLessonResumeIndex(wordsDeck.id, wordsDeck.cards, OLDER_READER_WORD_LESSON_SIZE)
         resumeIndex = Math.max(readAnnaWordsIndex(wordsDeck.id), estimated,
           guidedCompletedLessonNumber(wordsDeck.id) * OLDER_READER_WORD_LESSON_SIZE)
-        if (wordsDeck.id === 'annas-reading-deck') resumeIndex = Math.min(resumeIndex, (READING_POCKETS.length - 1) * OLDER_READER_WORD_LESSON_SIZE)
+        if (wordsDeck.id === 'annas-reading-deck') {
+          const selected = guidedResumeLessonNumber(wordsDeck.id)
+          resumeIndex = selected ? (selected - 1) * OLDER_READER_WORD_LESSON_SIZE : Math.min(resumeIndex, (READING_POCKETS.length - 1) * OLDER_READER_WORD_LESSON_SIZE)
+        }
         persistAnnaWordsIndex(wordsDeck.id, resumeIndex)
       }
     } else if (section === 'math') {
@@ -1169,7 +1174,7 @@ function App() {
       </header>
 
       {showCloset && <PandaCloset onClose={() => setShowCloset(false)} />}
-      {rewardNoticeBoxes > 0 && (
+      {rewardNoticeBoxes > 0 && activeSection !== 'words' && (
         <RewardBoxNotice
           boxes={rewardNoticeBoxes}
           onOpen={() => {
@@ -1955,26 +1960,10 @@ function LearningScreen({
     () => isGuidedWords ? loadGuidedReadingPlan(activeDeck.id, wordLessonNumberForIndex(cardIndex)) : undefined,
     [activeDeck.id, isGuidedWords, cardIndex],
   )
-  const guidedAudioRequest = useRef(0)
-  useEffect(() => {
-    if (!isGuidedWords) return
-    const requestVersion = guidedAudioRequest
-    return () => {
-      requestVersion.current++
-      stopAudioPlayback()
-    }
-  }, [isGuidedWords, activeDeck.id, cardIndex, sarahActivityIndex])
-  const playGuidedText = useCallback((text: string) => {
-    const request = ++guidedAudioRequest.current
-    const existing = activeDeck.cards.find(card => (card.word || card.displayText).toLowerCase() === text.toLowerCase())
-    const url = existing?.audio ? resolveAssetUrl(activeDeck, existing.audio) : undefined
-    if (url) {
-      void playAudioUrl(url).catch(() => {
-        // A slow or failed clip must not reveal the answer on a later print-only check.
-        if (guidedAudioRequest.current === request) speakText(activeDeck, text)
-      })
-    } else speakText(activeDeck, text)
-  }, [activeDeck])
+  const playGuidedText = useCallback(async (text: string): Promise<boolean> => {
+    const clip = (guidedAudio as Record<string, { path: string; ready: boolean }>)[text]
+    return clip?.ready ? playRecordedClip(clip.path) : false
+  }, [])
   const selectedWordLessonCards = useMemo(
     () => isOlderReaderWords
       ? selectWordLessonCards(activeDeck.id, activeDeck.cards, wordLessonId)

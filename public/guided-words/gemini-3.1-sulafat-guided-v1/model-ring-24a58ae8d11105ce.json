@@ -1,0 +1,9 @@
+{
+  "model": "google/gemini-3.1-flash-tts",
+  "input": {
+    "text": "ring. [short pause] A little circle you can wear.",
+    "prompt": "You are a warm, clear female reading teacher speaking standard US English to a young child. Speak only the supplied text, without introductions, music, or extra words. Use a calm, natural pace, a little slower than conversation; do not stretch or chant words. Keep consonants precise. In sentences use natural connected speech: the article a is unstressed schwa /ə/, an is /ən/, can is /kən/, is is /ɪz/, has is /hæz/. Never spell out a word or say letter names.",
+    "voice": "Sulafat",
+    "language_code": "en-US"
+  }
+}

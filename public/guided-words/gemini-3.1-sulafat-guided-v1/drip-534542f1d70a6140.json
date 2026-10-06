@@ -1,0 +1,9 @@
+{
+  "model": "google/gemini-3.1-flash-tts",
+  "input": {
+    "text": "drip.",
+    "prompt": "Say only the supplied text in a warm, clear female voice with a standard American English accent. Read naturally, a little slower than conversation, as a kind reading teacher.",
+    "voice": "Sulafat",
+    "language_code": "en-US"
+  }
+}

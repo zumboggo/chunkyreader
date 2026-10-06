@@ -1,5 +1,5 @@
 import { progressStorage } from './progressStorage'
-import { emptyReadingState, makeReadingPlan, READING_POCKETS, type GuidedReadingPlan, type GuidedReadingState } from './guidedWords'
+import { emptyReadingState, makeReadingPlan, GUIDED_PLAN_VERSION, READING_POCKETS, type GuidedReadingPlan, type GuidedReadingState } from './guidedWords'
 
 export const guidedStateKey = (deckId: string) => `chunky-reader:word-recognition:v2:guided:${deckId}`
 export const guidedPlanKey = (deckId: string, lesson: number) => `${guidedStateKey(deckId)}:lesson:${lesson}`
@@ -15,7 +15,10 @@ export function loadGuidedReadingPlan(deckId: string, lesson: number): GuidedRea
   const stage = Math.max(0, Math.min(READING_POCKETS.length - 1, lesson - 1))
   try {
     const cached = JSON.parse(progressStorage.getItem(guidedPlanKey(deckId, lesson)) ?? 'null')
-    if (cached && cached.stage === stage && Array.isArray(cached.words) && cached.words.length === 4 && cached.sentence) return cached
+    if (cached?.version === GUIDED_PLAN_VERSION && cached.stage === stage && cached.attemptId
+      && Array.isArray(cached.words) && cached.words.length >= 4 && cached.words.length <= 5
+      && cached.checkOrder?.length === 4 && cached.sentence
+      && !loadGuidedReadingState(deckId).completedAttempts?.includes(cached.attemptId)) return cached
   } catch { /* Use the current curriculum pocket. */ }
   return makeReadingPlan({ ...loadGuidedReadingState(deckId), stage })
 }
@@ -27,4 +30,18 @@ export function guidedCompletedLessonNumber(deckId: string): number {
     const number = session.startsWith(prefix) ? Number(session.slice(prefix.length)) : 0
     return Number.isSafeInteger(number) && number > latest ? number : latest
   }, 0)
+}
+
+export const guidedSelectedLessonKey = (deckId: string) => `${guidedStateKey(deckId)}:selected`
+/** Explicit dropdown choices and unfinished replays take precedence over the legacy high-water mark. */
+export function guidedResumeLessonNumber(deckId: string): number | undefined {
+  const selected = Number(progressStorage.getItem(guidedSelectedLessonKey(deckId)))
+  if (!Number.isInteger(selected) || selected < 1 || selected > READING_POCKETS.length) return undefined
+  try {
+    const plan = JSON.parse(progressStorage.getItem(guidedPlanKey(deckId, selected)) ?? 'null')
+    if (plan?.attemptId && loadGuidedReadingState(deckId).completedAttempts?.includes(plan.attemptId)) {
+      return Math.min(selected + 1, READING_POCKETS.length)
+    }
+  } catch { /* Keep the explicit selection; only rebuild its plan. */ }
+  return selected
 }

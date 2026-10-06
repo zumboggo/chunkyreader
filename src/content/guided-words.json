@@ -1,0 +1,4372 @@
+{
+  "lexicon": {
+    "stop": {
+      "text": "stop",
+      "parts": [
+        "s",
+        "t",
+        "o",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "o",
+          "sound": "o",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Stay still."
+    },
+    "spin": {
+      "text": "spin",
+      "parts": [
+        "s",
+        "p",
+        "i",
+        "n"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Turn around and around."
+    },
+    "spot": {
+      "text": "spot",
+      "parts": [
+        "s",
+        "p",
+        "o",
+        "t"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "o",
+          "sound": "o",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "A small mark."
+    },
+    "step": {
+      "text": "step",
+      "parts": [
+        "s",
+        "t",
+        "e",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Move one foot forward."
+    },
+    "flag": {
+      "text": "flag",
+      "parts": [
+        "f",
+        "l",
+        "a",
+        "g"
+      ],
+      "sounds": [
+        {
+          "spelling": "f",
+          "sound": "f",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "g",
+          "sound": "g",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Cloth that waves on a pole."
+    },
+    "flat": {
+      "text": "flat",
+      "parts": [
+        "f",
+        "l",
+        "a",
+        "t"
+      ],
+      "sounds": [
+        {
+          "spelling": "f",
+          "sound": "f",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Smooth and level."
+    },
+    "clap": {
+      "text": "clap",
+      "parts": [
+        "c",
+        "l",
+        "a",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "c",
+          "sound": "k",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Bring your hands together."
+    },
+    "slip": {
+      "text": "slip",
+      "parts": [
+        "s",
+        "l",
+        "i",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Slide by accident."
+    },
+    "frog": {
+      "text": "frog",
+      "parts": [
+        "f",
+        "r",
+        "o",
+        "g"
+      ],
+      "sounds": [
+        {
+          "spelling": "f",
+          "sound": "f",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "r",
+          "sound": "r",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "o",
+          "sound": "o",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "g",
+          "sound": "g",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "A hopping animal."
+    },
+    "drip": {
+      "text": "drip",
+      "parts": [
+        "d",
+        "r",
+        "i",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "r",
+          "sound": "r",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "A drop falling."
+    },
+    "trap": {
+      "text": "trap",
+      "parts": [
+        "t",
+        "r",
+        "a",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "r",
+          "sound": "r",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Something that catches."
+    },
+    "grin": {
+      "text": "grin",
+      "parts": [
+        "g",
+        "r",
+        "i",
+        "n"
+      ],
+      "sounds": [
+        {
+          "spelling": "g",
+          "sound": "g",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "r",
+          "sound": "r",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "A big smile."
+    },
+    "tent": {
+      "text": "tent",
+      "parts": [
+        "t",
+        "e",
+        "n",
+        "t"
+      ],
+      "sounds": [
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "A little cloth shelter."
+    },
+    "bend": {
+      "text": "bend",
+      "parts": [
+        "b",
+        "e",
+        "n",
+        "d"
+      ],
+      "sounds": [
+        {
+          "spelling": "b",
+          "sound": "b",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Make something curve."
+    },
+    "hand": {
+      "text": "hand",
+      "parts": [
+        "h",
+        "a",
+        "n",
+        "d"
+      ],
+      "sounds": [
+        {
+          "spelling": "h",
+          "sound": "h",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "The end of your arm."
+    },
+    "sand": {
+      "text": "sand",
+      "parts": [
+        "s",
+        "a",
+        "n",
+        "d"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Tiny grains at a beach."
+    },
+    "milk": {
+      "text": "milk",
+      "parts": [
+        "m",
+        "i",
+        "l",
+        "k"
+      ],
+      "sounds": [
+        {
+          "spelling": "m",
+          "sound": "m",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "k",
+          "sound": "k",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "A drink."
+    },
+    "help": {
+      "text": "help",
+      "parts": [
+        "h",
+        "e",
+        "l",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "h",
+          "sound": "h",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Make something easier for someone."
+    },
+    "jump": {
+      "text": "jump",
+      "parts": [
+        "j",
+        "u",
+        "m",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "j",
+          "sound": "j",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "u",
+          "sound": "u",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "m",
+          "sound": "m",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Push off the ground."
+    },
+    "lamp": {
+      "text": "lamp",
+      "parts": [
+        "l",
+        "a",
+        "m",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "m",
+          "sound": "m",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "A light."
+    },
+    "stamp": {
+      "text": "stamp",
+      "parts": [
+        "s",
+        "t",
+        "a",
+        "m",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "m",
+          "sound": "m",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            4
+          ]
+        }
+      ],
+      "meaning": "A small picture used to send mail."
+    },
+    "plant": {
+      "text": "plant",
+      "parts": [
+        "p",
+        "l",
+        "a",
+        "n",
+        "t"
+      ],
+      "sounds": [
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            4
+          ]
+        }
+      ],
+      "meaning": "A living thing with leaves."
+    },
+    "crisp": {
+      "text": "crisp",
+      "parts": [
+        "c",
+        "r",
+        "i",
+        "s",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "c",
+          "sound": "k",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "r",
+          "sound": "r",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            4
+          ]
+        }
+      ],
+      "meaning": "Firm and crunchy."
+    },
+    "blend": {
+      "text": "blend",
+      "parts": [
+        "b",
+        "l",
+        "e",
+        "n",
+        "d"
+      ],
+      "sounds": [
+        {
+          "spelling": "b",
+          "sound": "b",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            4
+          ]
+        }
+      ],
+      "meaning": "Join together."
+    },
+    "ship": {
+      "text": "ship",
+      "parts": [
+        "sh",
+        "i",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "sh",
+          "sound": "sh",
+          "positions": [
+            0,
+            1
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "A large boat."
+    },
+    "shop": {
+      "text": "shop",
+      "parts": [
+        "sh",
+        "o",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "sh",
+          "sound": "sh",
+          "positions": [
+            0,
+            1
+          ]
+        },
+        {
+          "spelling": "o",
+          "sound": "o",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "A place to buy things."
+    },
+    "fish": {
+      "text": "fish",
+      "parts": [
+        "f",
+        "i",
+        "sh"
+      ],
+      "sounds": [
+        {
+          "spelling": "f",
+          "sound": "f",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "sh",
+          "sound": "sh",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "An animal that swims."
+    },
+    "dish": {
+      "text": "dish",
+      "parts": [
+        "d",
+        "i",
+        "sh"
+      ],
+      "sounds": [
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "sh",
+          "sound": "sh",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "A plate or bowl."
+    },
+    "chip": {
+      "text": "chip",
+      "parts": [
+        "ch",
+        "i",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "ch",
+          "sound": "ch",
+          "positions": [
+            0,
+            1
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "A small crunchy snack."
+    },
+    "chop": {
+      "text": "chop",
+      "parts": [
+        "ch",
+        "o",
+        "p"
+      ],
+      "sounds": [
+        {
+          "spelling": "ch",
+          "sound": "ch",
+          "positions": [
+            0,
+            1
+          ]
+        },
+        {
+          "spelling": "o",
+          "sound": "o",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Cut into pieces."
+    },
+    "chin": {
+      "text": "chin",
+      "parts": [
+        "ch",
+        "i",
+        "n"
+      ],
+      "sounds": [
+        {
+          "spelling": "ch",
+          "sound": "ch",
+          "positions": [
+            0,
+            1
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Below your mouth."
+    },
+    "chat": {
+      "text": "chat",
+      "parts": [
+        "ch",
+        "a",
+        "t"
+      ],
+      "sounds": [
+        {
+          "spelling": "ch",
+          "sound": "ch",
+          "positions": [
+            0,
+            1
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "A friendly talk."
+    },
+    "thin": {
+      "text": "thin",
+      "parts": [
+        "th",
+        "i",
+        "n"
+      ],
+      "sounds": [
+        {
+          "spelling": "th",
+          "sound": "th",
+          "positions": [
+            0,
+            1
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Not very thick."
+    },
+    "thud": {
+      "text": "thud",
+      "parts": [
+        "th",
+        "u",
+        "d"
+      ],
+      "sounds": [
+        {
+          "spelling": "th",
+          "sound": "th",
+          "positions": [
+            0,
+            1
+          ]
+        },
+        {
+          "spelling": "u",
+          "sound": "u",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "A low bumping sound."
+    },
+    "moth": {
+      "text": "moth",
+      "parts": [
+        "m",
+        "o",
+        "th"
+      ],
+      "sounds": [
+        {
+          "spelling": "m",
+          "sound": "m",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "o",
+          "sound": "aw",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "th",
+          "sound": "th",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "An insect with wings."
+    },
+    "bath": {
+      "text": "bath",
+      "parts": [
+        "b",
+        "a",
+        "th"
+      ],
+      "sounds": [
+        {
+          "spelling": "b",
+          "sound": "b",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "th",
+          "sound": "th",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "Washing in a tub."
+    },
+    "sing": {
+      "text": "sing",
+      "parts": [
+        "s",
+        "i",
+        "ng"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "ng",
+          "sound": "ng",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "Make music with your voice."
+    },
+    "ring": {
+      "text": "ring",
+      "parts": [
+        "r",
+        "i",
+        "ng"
+      ],
+      "sounds": [
+        {
+          "spelling": "r",
+          "sound": "r",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "ng",
+          "sound": "ng",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "A little circle you can wear."
+    },
+    "long": {
+      "text": "long",
+      "parts": [
+        "l",
+        "o",
+        "ng"
+      ],
+      "sounds": [
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "o",
+          "sound": "aw",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "ng",
+          "sound": "ng",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "Stretching a good way."
+    },
+    "song": {
+      "text": "song",
+      "parts": [
+        "s",
+        "o",
+        "ng"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "o",
+          "sound": "aw",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "ng",
+          "sound": "ng",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "Music with words."
+    },
+    "jumping": {
+      "text": "jumping",
+      "parts": [
+        "jump",
+        "ing"
+      ],
+      "sounds": [
+        {
+          "spelling": "j",
+          "sound": "j",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "u",
+          "sound": "u",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "m",
+          "sound": "m",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "ng",
+          "sound": "ng",
+          "positions": [
+            5,
+            6
+          ]
+        }
+      ],
+      "meaning": "Making jumps."
+    },
+    "helping": {
+      "text": "helping",
+      "parts": [
+        "help",
+        "ing"
+      ],
+      "sounds": [
+        {
+          "spelling": "h",
+          "sound": "h",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "ng",
+          "sound": "ng",
+          "positions": [
+            5,
+            6
+          ]
+        }
+      ],
+      "meaning": "Giving someone help."
+    },
+    "running": {
+      "text": "running",
+      "parts": [
+        "run",
+        "ning"
+      ],
+      "sounds": [
+        {
+          "spelling": "r",
+          "sound": "r",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "u",
+          "sound": "u",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "nn",
+          "sound": "n",
+          "positions": [
+            2,
+            3
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "ng",
+          "sound": "ng",
+          "positions": [
+            5,
+            6
+          ]
+        }
+      ],
+      "meaning": "Moving fast on your feet."
+    },
+    "sitting": {
+      "text": "sitting",
+      "parts": [
+        "sit",
+        "ting"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "tt",
+          "sound": "t",
+          "positions": [
+            2,
+            3
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "ng",
+          "sound": "ng",
+          "positions": [
+            5,
+            6
+          ]
+        }
+      ],
+      "meaning": "Resting on a seat."
+    },
+    "sunset": {
+      "text": "sunset",
+      "parts": [
+        "sun",
+        "set"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "u",
+          "sound": "u",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            5
+          ]
+        }
+      ],
+      "meaning": "When the sun goes down."
+    },
+    "picnic": {
+      "text": "picnic",
+      "parts": [
+        "pic",
+        "nic"
+      ],
+      "sounds": [
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "c",
+          "sound": "k",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "c",
+          "sound": "k",
+          "positions": [
+            5
+          ]
+        }
+      ],
+      "meaning": "A meal outside."
+    },
+    "rabbit": {
+      "text": "rabbit",
+      "parts": [
+        "rab",
+        "bit"
+      ],
+      "sounds": [
+        {
+          "spelling": "r",
+          "sound": "r",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "bb",
+          "sound": "b",
+          "positions": [
+            2,
+            3
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            5
+          ]
+        }
+      ],
+      "meaning": "A furry animal with long ears."
+    },
+    "napkin": {
+      "text": "napkin",
+      "parts": [
+        "nap",
+        "kin"
+      ],
+      "sounds": [
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "k",
+          "sound": "k",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            5
+          ]
+        }
+      ],
+      "meaning": "A cloth or paper for wiping."
+    },
+    "catnip": {
+      "text": "catnip",
+      "parts": [
+        "cat",
+        "nip"
+      ],
+      "sounds": [
+        {
+          "spelling": "c",
+          "sound": "k",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            5
+          ]
+        }
+      ],
+      "meaning": "A plant some cats enjoy."
+    },
+    "catnap": {
+      "text": "catnap",
+      "parts": [
+        "cat",
+        "nap"
+      ],
+      "sounds": [
+        {
+          "spelling": "c",
+          "sound": "k",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            5
+          ]
+        }
+      ],
+      "meaning": "A short sleep."
+    },
+    "bedbug": {
+      "text": "bedbug",
+      "parts": [
+        "bed",
+        "bug"
+      ],
+      "sounds": [
+        {
+          "spelling": "b",
+          "sound": "b",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "b",
+          "sound": "b",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "u",
+          "sound": "u",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "g",
+          "sound": "g",
+          "positions": [
+            5
+          ]
+        }
+      ],
+      "meaning": "A tiny insect."
+    },
+    "sunlit": {
+      "text": "sunlit",
+      "parts": [
+        "sun",
+        "lit"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "u",
+          "sound": "u",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            5
+          ]
+        }
+      ],
+      "meaning": "Lit up by the sun."
+    },
+    "dentist": {
+      "text": "dentist",
+      "parts": [
+        "den",
+        "tist"
+      ],
+      "sounds": [
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            5
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            6
+          ]
+        }
+      ],
+      "meaning": "A person who cares for teeth."
+    },
+    "cactus": {
+      "text": "cactus",
+      "parts": [
+        "cac",
+        "tus"
+      ],
+      "sounds": [
+        {
+          "spelling": "c",
+          "sound": "k",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "c",
+          "sound": "k",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "u",
+          "sound": "schwa",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            5
+          ]
+        }
+      ],
+      "meaning": "A plant often covered with spines."
+    },
+    "velvet": {
+      "text": "velvet",
+      "parts": [
+        "vel",
+        "vet"
+      ],
+      "sounds": [
+        {
+          "spelling": "v",
+          "sound": "v",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "v",
+          "sound": "v",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "schwa",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            5
+          ]
+        }
+      ],
+      "meaning": "A soft fabric."
+    },
+    "insect": {
+      "text": "insect",
+      "parts": [
+        "in",
+        "sect"
+      ],
+      "sounds": [
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            3
+          ]
+        },
+        {
+          "spelling": "c",
+          "sound": "k",
+          "positions": [
+            4
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            5
+          ]
+        }
+      ],
+      "meaning": "A small animal with six legs."
+    },
+    "duck": {
+      "text": "duck",
+      "parts": [
+        "duck"
+      ],
+      "sounds": [
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "u",
+          "sound": "u",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "ck",
+          "sound": "k",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "A bird that swims."
+    },
+    "sock": {
+      "text": "sock",
+      "parts": [
+        "sock"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "o",
+          "sound": "o",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "ck",
+          "sound": "k",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "Clothing for a foot."
+    },
+    "neck": {
+      "text": "neck",
+      "parts": [
+        "neck"
+      ],
+      "sounds": [
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "ck",
+          "sound": "k",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "Between your head and shoulders."
+    },
+    "back": {
+      "text": "back",
+      "parts": [
+        "back"
+      ],
+      "sounds": [
+        {
+          "spelling": "b",
+          "sound": "b",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "ck",
+          "sound": "k",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "The rear of your body."
+    },
+    "bell": {
+      "text": "bell",
+      "parts": [
+        "bell"
+      ],
+      "sounds": [
+        {
+          "spelling": "b",
+          "sound": "b",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "ll",
+          "sound": "l",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "Something that rings."
+    },
+    "hill": {
+      "text": "hill",
+      "parts": [
+        "hill"
+      ],
+      "sounds": [
+        {
+          "spelling": "h",
+          "sound": "h",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "ll",
+          "sound": "l",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "A rise in the ground."
+    },
+    "puff": {
+      "text": "puff",
+      "parts": [
+        "puff"
+      ],
+      "sounds": [
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "u",
+          "sound": "u",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "ff",
+          "sound": "f",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "A little burst of air."
+    },
+    "mess": {
+      "text": "mess",
+      "parts": [
+        "mess"
+      ],
+      "sounds": [
+        {
+          "spelling": "m",
+          "sound": "m",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "ss",
+          "sound": "s",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "Things all scattered."
+    },
+    "feet": {
+      "text": "feet",
+      "parts": [
+        "feet"
+      ],
+      "sounds": [
+        {
+          "spelling": "f",
+          "sound": "f",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "ee",
+          "sound": "long-e",
+          "positions": [
+            1,
+            2
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "More than one foot."
+    },
+    "seed": {
+      "text": "seed",
+      "parts": [
+        "seed"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "ee",
+          "sound": "long-e",
+          "positions": [
+            1,
+            2
+          ]
+        },
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Something a new plant can grow from."
+    },
+    "tree": {
+      "text": "tree",
+      "parts": [
+        "tree"
+      ],
+      "sounds": [
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "r",
+          "sound": "r",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "ee",
+          "sound": "long-e",
+          "positions": [
+            2,
+            3
+          ]
+        }
+      ],
+      "meaning": "A tall plant with a trunk."
+    },
+    "green": {
+      "text": "green",
+      "parts": [
+        "green"
+      ],
+      "sounds": [
+        {
+          "spelling": "g",
+          "sound": "g",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "r",
+          "sound": "r",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "ee",
+          "sound": "long-e",
+          "positions": [
+            2,
+            3
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            4
+          ]
+        }
+      ],
+      "meaning": "A color."
+    },
+    "rain": {
+      "text": "rain",
+      "parts": [
+        "rain"
+      ],
+      "sounds": [
+        {
+          "spelling": "r",
+          "sound": "r",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "ai",
+          "sound": "long-a",
+          "positions": [
+            1,
+            2
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Water falling from clouds."
+    },
+    "tail": {
+      "text": "tail",
+      "parts": [
+        "tail"
+      ],
+      "sounds": [
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "ai",
+          "sound": "long-a",
+          "positions": [
+            1,
+            2
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "The part behind an animal."
+    },
+    "mail": {
+      "text": "mail",
+      "parts": [
+        "mail"
+      ],
+      "sounds": [
+        {
+          "spelling": "m",
+          "sound": "m",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "ai",
+          "sound": "long-a",
+          "positions": [
+            1,
+            2
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Letters that are delivered."
+    },
+    "sail": {
+      "text": "sail",
+      "parts": [
+        "sail"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "ai",
+          "sound": "long-a",
+          "positions": [
+            1,
+            2
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Cloth that catches wind on a boat."
+    },
+    "boat": {
+      "text": "boat",
+      "parts": [
+        "boat"
+      ],
+      "sounds": [
+        {
+          "spelling": "b",
+          "sound": "b",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "oa",
+          "sound": "long-o",
+          "positions": [
+            1,
+            2
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Something that carries people on water."
+    },
+    "coat": {
+      "text": "coat",
+      "parts": [
+        "coat"
+      ],
+      "sounds": [
+        {
+          "spelling": "c",
+          "sound": "k",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "oa",
+          "sound": "long-o",
+          "positions": [
+            1,
+            2
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Clothing to keep you warm."
+    },
+    "goat": {
+      "text": "goat",
+      "parts": [
+        "goat"
+      ],
+      "sounds": [
+        {
+          "spelling": "g",
+          "sound": "g",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "oa",
+          "sound": "long-o",
+          "positions": [
+            1,
+            2
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "An animal that often has horns."
+    },
+    "soap": {
+      "text": "soap",
+      "parts": [
+        "soap"
+      ],
+      "sounds": [
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "oa",
+          "sound": "long-o",
+          "positions": [
+            1,
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ],
+      "meaning": "Something used for washing."
+    },
+    "cat": {
+      "text": "cat",
+      "parts": [
+        "cat"
+      ],
+      "sounds": [
+        {
+          "spelling": "c",
+          "sound": "k",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            2
+          ]
+        }
+      ]
+    },
+    "can": {
+      "text": "can",
+      "parts": [
+        "can"
+      ],
+      "sounds": [
+        {
+          "spelling": "c",
+          "sound": "k",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            2
+          ]
+        }
+      ]
+    },
+    "dog": {
+      "text": "dog",
+      "parts": [
+        "dog"
+      ],
+      "sounds": [
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "o",
+          "sound": "o",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "g",
+          "sound": "g",
+          "positions": [
+            2
+          ]
+        }
+      ]
+    },
+    "flap": {
+      "text": "flap",
+      "parts": [
+        "flap"
+      ],
+      "sounds": [
+        {
+          "spelling": "f",
+          "sound": "f",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            3
+          ]
+        }
+      ]
+    },
+    "hop": {
+      "text": "hop",
+      "parts": [
+        "hop"
+      ],
+      "sounds": [
+        {
+          "spelling": "h",
+          "sound": "h",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "o",
+          "sound": "o",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            2
+          ]
+        }
+      ]
+    },
+    "ant": {
+      "text": "ant",
+      "parts": [
+        "ant"
+      ],
+      "sounds": [
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            2
+          ]
+        }
+      ]
+    },
+    "in": {
+      "text": "in",
+      "parts": [
+        "in"
+      ],
+      "sounds": [
+        {
+          "spelling": "i",
+          "sound": "i",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            1
+          ]
+        }
+      ]
+    },
+    "on": {
+      "text": "on",
+      "parts": [
+        "on"
+      ],
+      "sounds": [
+        {
+          "spelling": "o",
+          "sound": "o",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            1
+          ]
+        }
+      ]
+    },
+    "pot": {
+      "text": "pot",
+      "parts": [
+        "pot"
+      ],
+      "sounds": [
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "o",
+          "sound": "o",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            2
+          ]
+        }
+      ]
+    },
+    "bag": {
+      "text": "bag",
+      "parts": [
+        "bag"
+      ],
+      "sounds": [
+        {
+          "spelling": "b",
+          "sound": "b",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "g",
+          "sound": "g",
+          "positions": [
+            2
+          ]
+        }
+      ]
+    },
+    "fun": {
+      "text": "fun",
+      "parts": [
+        "fun"
+      ],
+      "sounds": [
+        {
+          "spelling": "f",
+          "sound": "f",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "u",
+          "sound": "u",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            2
+          ]
+        }
+      ]
+    },
+    "at": {
+      "text": "at",
+      "parts": [
+        "at"
+      ],
+      "sounds": [
+        {
+          "spelling": "a",
+          "sound": "a",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            1
+          ]
+        }
+      ]
+    },
+    "bed": {
+      "text": "bed",
+      "parts": [
+        "bed"
+      ],
+      "sounds": [
+        {
+          "spelling": "b",
+          "sound": "b",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            2
+          ]
+        }
+      ]
+    },
+    "pond": {
+      "text": "pond",
+      "parts": [
+        "pond"
+      ],
+      "sounds": [
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "o",
+          "sound": "o",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            3
+          ]
+        }
+      ]
+    },
+    "desk": {
+      "text": "desk",
+      "parts": [
+        "desk"
+      ],
+      "sounds": [
+        {
+          "spelling": "d",
+          "sound": "d",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "e",
+          "sound": "e",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "s",
+          "sound": "s",
+          "positions": [
+            2
+          ]
+        },
+        {
+          "spelling": "k",
+          "sound": "k",
+          "positions": [
+            3
+          ]
+        }
+      ]
+    },
+    "cake": {
+      "text": "cake",
+      "parts": [
+        "cake"
+      ],
+      "sounds": [
+        {
+          "spelling": "c",
+          "sound": "k",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a_e",
+          "sound": "long-a",
+          "positions": [
+            1,
+            3
+          ]
+        },
+        {
+          "spelling": "k",
+          "sound": "k",
+          "positions": [
+            2
+          ]
+        }
+      ],
+      "meaning": "A sweet baked treat."
+    },
+    "lake": {
+      "text": "lake",
+      "parts": [
+        "lake"
+      ],
+      "sounds": [
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a_e",
+          "sound": "long-a",
+          "positions": [
+            1,
+            3
+          ]
+        },
+        {
+          "spelling": "k",
+          "sound": "k",
+          "positions": [
+            2
+          ]
+        }
+      ],
+      "meaning": "A large area of water."
+    },
+    "gate": {
+      "text": "gate",
+      "parts": [
+        "gate"
+      ],
+      "sounds": [
+        {
+          "spelling": "g",
+          "sound": "g",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a_e",
+          "sound": "long-a",
+          "positions": [
+            1,
+            3
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            2
+          ]
+        }
+      ],
+      "meaning": "A door in a fence."
+    },
+    "name": {
+      "text": "name",
+      "parts": [
+        "name"
+      ],
+      "sounds": [
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "a_e",
+          "sound": "long-a",
+          "positions": [
+            1,
+            3
+          ]
+        },
+        {
+          "spelling": "m",
+          "sound": "m",
+          "positions": [
+            2
+          ]
+        }
+      ],
+      "meaning": "What someone or something is called."
+    },
+    "bike": {
+      "text": "bike",
+      "parts": [
+        "bike"
+      ],
+      "sounds": [
+        {
+          "spelling": "b",
+          "sound": "b",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "i_e",
+          "sound": "long-i",
+          "positions": [
+            1,
+            3
+          ]
+        },
+        {
+          "spelling": "k",
+          "sound": "k",
+          "positions": [
+            2
+          ]
+        }
+      ],
+      "meaning": "A bicycle."
+    },
+    "kite": {
+      "text": "kite",
+      "parts": [
+        "kite"
+      ],
+      "sounds": [
+        {
+          "spelling": "k",
+          "sound": "k",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "i_e",
+          "sound": "long-i",
+          "positions": [
+            1,
+            3
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            2
+          ]
+        }
+      ],
+      "meaning": "A toy that flies on a string."
+    },
+    "five": {
+      "text": "five",
+      "parts": [
+        "five"
+      ],
+      "sounds": [
+        {
+          "spelling": "f",
+          "sound": "f",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "i_e",
+          "sound": "long-i",
+          "positions": [
+            1,
+            3
+          ]
+        },
+        {
+          "spelling": "v",
+          "sound": "v",
+          "positions": [
+            2
+          ]
+        }
+      ],
+      "meaning": "One more than four."
+    },
+    "time": {
+      "text": "time",
+      "parts": [
+        "time"
+      ],
+      "sounds": [
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "i_e",
+          "sound": "long-i",
+          "positions": [
+            1,
+            3
+          ]
+        },
+        {
+          "spelling": "m",
+          "sound": "m",
+          "positions": [
+            2
+          ]
+        }
+      ],
+      "meaning": "When something happens."
+    },
+    "home": {
+      "text": "home",
+      "parts": [
+        "home"
+      ],
+      "sounds": [
+        {
+          "spelling": "h",
+          "sound": "h",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "o_e",
+          "sound": "long-o",
+          "positions": [
+            1,
+            3
+          ]
+        },
+        {
+          "spelling": "m",
+          "sound": "m",
+          "positions": [
+            2
+          ]
+        }
+      ],
+      "meaning": "Where you live."
+    },
+    "rope": {
+      "text": "rope",
+      "parts": [
+        "rope"
+      ],
+      "sounds": [
+        {
+          "spelling": "r",
+          "sound": "r",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "o_e",
+          "sound": "long-o",
+          "positions": [
+            1,
+            3
+          ]
+        },
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            2
+          ]
+        }
+      ],
+      "meaning": "A thick strong cord."
+    },
+    "nose": {
+      "text": "nose",
+      "parts": [
+        "nose"
+      ],
+      "sounds": [
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "o_e",
+          "sound": "long-o",
+          "positions": [
+            1,
+            3
+          ]
+        },
+        {
+          "spelling": "s",
+          "sound": "z",
+          "positions": [
+            2
+          ]
+        }
+      ],
+      "meaning": "What you smell with."
+    },
+    "bone": {
+      "text": "bone",
+      "parts": [
+        "bone"
+      ],
+      "sounds": [
+        {
+          "spelling": "b",
+          "sound": "b",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "o_e",
+          "sound": "long-o",
+          "positions": [
+            1,
+            3
+          ]
+        },
+        {
+          "spelling": "n",
+          "sound": "n",
+          "positions": [
+            2
+          ]
+        }
+      ],
+      "meaning": "A hard part inside a body."
+    },
+    "plate": {
+      "text": "plate",
+      "parts": [
+        "plate"
+      ],
+      "sounds": [
+        {
+          "spelling": "p",
+          "sound": "p",
+          "positions": [
+            0
+          ]
+        },
+        {
+          "spelling": "l",
+          "sound": "l",
+          "positions": [
+            1
+          ]
+        },
+        {
+          "spelling": "a_e",
+          "sound": "long-a",
+          "positions": [
+            2,
+            4
+          ]
+        },
+        {
+          "spelling": "t",
+          "sound": "t",
+          "positions": [
+            3
+          ]
+        }
+      ]
+    }
+  },
+  "helpers": {
+    "a": {
+      "ipa": "\u0259",
+      "note": "A means one. In a sentence it often sounds like \u201cuh\u201d."
+    },
+    "an": {
+      "ipa": "\u0259n",
+      "note": "An means one, before a vowel sound."
+    },
+    "is": {
+      "ipa": "\u026az",
+      "note": "In is, s spells the buzzing /z/ sound."
+    },
+    "has": {
+      "ipa": "h\u00e6z",
+      "note": "Has means owns or holds. Its s spells /z/."
+    },
+    "can": {
+      "ipa": "k\u0259n",
+      "note": "Can means able to. Its vowel is often relaxed in a sentence."
+    }
+  },
+  "lessons": [
+    {
+      "title": "Keep both starting sounds",
+      "cue": "Slide through each sound. Keep both sounds at the start.",
+      "words": [
+        "stop",
+        "spin",
+        "spot",
+        "step"
+      ],
+      "sentence": "A cat can spin.",
+      "alternateSentence": "A dog can stop.",
+      "meaningPrompts": [
+        {
+          "question": "What can a cat do?",
+          "answer": "Spin."
+        },
+        {
+          "question": "What can a dog do?",
+          "answer": "Stop."
+        }
+      ]
+    },
+    {
+      "title": "Little l blends",
+      "cue": "Keep the l sound as you blend the whole word.",
+      "words": [
+        "flag",
+        "flat",
+        "clap",
+        "slip"
+      ],
+      "sentence": "A flag can flap.",
+      "alternateSentence": "A cat can clap.",
+      "meaningPrompts": [
+        {
+          "question": "What can a flag do?",
+          "answer": "Flap."
+        },
+        {
+          "question": "What can a cat do?",
+          "answer": "Clap."
+        }
+      ]
+    },
+    {
+      "title": "Little r blends",
+      "cue": "Say both starting sounds, then blend to the end.",
+      "words": [
+        "frog",
+        "drip",
+        "trap",
+        "grin"
+      ],
+      "sentence": "A frog can hop.",
+      "alternateSentence": "A frog can grin.",
+      "meaningPrompts": [
+        {
+          "question": "What can a frog do?",
+          "answer": "Hop."
+        },
+        {
+          "question": "What can a frog do?",
+          "answer": "Grin."
+        }
+      ]
+    },
+    {
+      "title": "Keep the ending",
+      "cue": "Read right to the last sound. Do not leave the ending behind.",
+      "words": [
+        "tent",
+        "bend",
+        "hand",
+        "sand"
+      ],
+      "sentence": "An ant is in a tent.",
+      "alternateSentence": "An ant is on a hand.",
+      "meaningPrompts": [
+        {
+          "question": "Where is an ant?",
+          "answer": "In a tent."
+        },
+        {
+          "question": "Where is an ant?",
+          "answer": "On a hand."
+        }
+      ]
+    },
+    {
+      "title": "More ending blends",
+      "cue": "Keep both sounds at the end.",
+      "words": [
+        "milk",
+        "help",
+        "jump",
+        "lamp"
+      ],
+      "sentence": "A frog can jump.",
+      "alternateSentence": "A cat can jump.",
+      "meaningPrompts": [
+        {
+          "question": "What can a frog do?",
+          "answer": "Jump."
+        },
+        {
+          "question": "What can a cat do?",
+          "answer": "Jump."
+        }
+      ]
+    },
+    {
+      "title": "Blends at both ends",
+      "cue": "Blend all the way through, from the first sound to the last.",
+      "words": [
+        "stamp",
+        "plant",
+        "crisp",
+        "blend"
+      ],
+      "sentence": "A plant is in a pot.",
+      "alternateSentence": "A stamp is on a bag.",
+      "meaningPrompts": [
+        {
+          "question": "Where is a plant?",
+          "answer": "In a pot."
+        },
+        {
+          "question": "Where is a stamp?",
+          "answer": "On a bag."
+        }
+      ]
+    },
+    {
+      "title": "Two letters, one sh sound",
+      "cue": "In these words, s and h work together to spell one sound.",
+      "words": [
+        "ship",
+        "shop",
+        "fish",
+        "dish"
+      ],
+      "sentence": "A fish is in a dish.",
+      "alternateSentence": "A fish is in a ship.",
+      "meaningPrompts": [
+        {
+          "question": "Where is a fish?",
+          "answer": "In a dish."
+        },
+        {
+          "question": "Where is a fish?",
+          "answer": "In a ship."
+        }
+      ]
+    },
+    {
+      "title": "Two letters, one ch sound",
+      "cue": "In these words, c and h work together to spell one sound.",
+      "words": [
+        "chip",
+        "chop",
+        "chin",
+        "chat"
+      ],
+      "sentence": "A chip is in a bag.",
+      "alternateSentence": "A chip is in a dish.",
+      "meaningPrompts": [
+        {
+          "question": "Where is a chip?",
+          "answer": "In a bag."
+        },
+        {
+          "question": "Where is a chip?",
+          "answer": "In a dish."
+        }
+      ]
+    },
+    {
+      "title": "Two letters, one th sound",
+      "cue": "Listen to the beginning of thin. The two letters spell one sound.",
+      "words": [
+        "thin",
+        "thud",
+        "moth",
+        "bath"
+      ],
+      "sentence": "A moth is in a bath.",
+      "alternateSentence": "A thin cat is in a bath.",
+      "meaningPrompts": [
+        {
+          "question": "Where is a moth?",
+          "answer": "In a bath."
+        },
+        {
+          "question": "Where is a thin cat?",
+          "answer": "In a bath."
+        }
+      ]
+    },
+    {
+      "title": "Listen for ng",
+      "cue": "At the end of sing, n and g work together to spell one sound.",
+      "words": [
+        "sing",
+        "ring",
+        "long",
+        "song"
+      ],
+      "sentence": "A long song is fun.",
+      "alternateSentence": "A long song can help.",
+      "meaningPrompts": [
+        {
+          "question": "What does the sentence tell us?",
+          "answer": "A long song is fun."
+        },
+        {
+          "question": "What can a long song do?",
+          "answer": "Help."
+        }
+      ]
+    },
+    {
+      "title": "Read the ing ending",
+      "cue": "Read the base word, then add ing. An extra consonant keeps the vowel short.",
+      "words": [
+        "jumping",
+        "helping",
+        "running",
+        "sitting"
+      ],
+      "sentence": "A cat is jumping.",
+      "alternateSentence": "A frog is jumping.",
+      "meaningPrompts": [
+        {
+          "question": "What does the sentence tell us?",
+          "answer": "A cat is jumping."
+        },
+        {
+          "question": "What does the sentence tell us?",
+          "answer": "A frog is jumping."
+        }
+      ]
+    },
+    {
+      "title": "Two small parts",
+      "cue": "Read each part, then put the parts together into one word.",
+      "words": [
+        "sunset",
+        "picnic",
+        "rabbit",
+        "napkin"
+      ],
+      "sentence": "A rabbit can hop.",
+      "alternateSentence": "A rabbit is at a picnic.",
+      "meaningPrompts": [
+        {
+          "question": "What can a rabbit do?",
+          "answer": "Hop."
+        },
+        {
+          "question": "Where is a rabbit?",
+          "answer": "At a picnic."
+        }
+      ]
+    },
+    {
+      "title": "Longer words you can build",
+      "cue": "Find the two readable parts, then blend them together.",
+      "words": [
+        "catnip",
+        "catnap",
+        "bedbug",
+        "sunlit"
+      ],
+      "sentence": "A bedbug is on a bed.",
+      "alternateSentence": "A cat is on a sunlit bed.",
+      "meaningPrompts": [
+        {
+          "question": "Where is a bedbug?",
+          "answer": "On a bed."
+        },
+        {
+          "question": "Where is a cat?",
+          "answer": "On a sunlit bed."
+        }
+      ]
+    },
+    {
+      "title": "Longer word adventure",
+      "cue": "Read each part carefully. Say the whole word naturally.",
+      "words": [
+        "dentist",
+        "cactus",
+        "velvet",
+        "insect"
+      ],
+      "sentence": "An insect is on a cactus.",
+      "alternateSentence": "A dentist can help.",
+      "meaningPrompts": [
+        {
+          "question": "Where is an insect?",
+          "answer": "On a cactus."
+        },
+        {
+          "question": "What can a dentist do?",
+          "answer": "Help."
+        }
+      ]
+    },
+    {
+      "title": "Final ck",
+      "cue": "After a short vowel, ck spells one sound.",
+      "words": [
+        "duck",
+        "sock",
+        "neck",
+        "back"
+      ],
+      "sentence": "A duck is in a pond.",
+      "alternateSentence": "A sock is on a bed.",
+      "meaningPrompts": [
+        {
+          "question": "Where is a duck?",
+          "answer": "In a pond."
+        },
+        {
+          "question": "Where is a sock?",
+          "answer": "On a bed."
+        }
+      ]
+    },
+    {
+      "title": "Doubled endings",
+      "cue": "Two matching letters can spell one ending sound.",
+      "words": [
+        "bell",
+        "hill",
+        "puff",
+        "mess"
+      ],
+      "sentence": "A bell is on a desk.",
+      "alternateSentence": "A cat is on a hill.",
+      "meaningPrompts": [
+        {
+          "question": "Where is a bell?",
+          "answer": "On a desk."
+        },
+        {
+          "question": "Where is a cat?",
+          "answer": "On a hill."
+        }
+      ]
+    },
+    {
+      "title": "Long a with silent e",
+      "cue": "The a and final e work together. Hear the long a.",
+      "words": [
+        "cake",
+        "lake",
+        "gate",
+        "name"
+      ],
+      "sentence": "A cake is on a plate.",
+      "alternateSentence": "A name is on a gate.",
+      "meaningPrompts": [
+        {
+          "question": "Where is a cake?",
+          "answer": "On a plate."
+        },
+        {
+          "question": "Where is a name?",
+          "answer": "On a gate."
+        }
+      ]
+    },
+    {
+      "title": "Long i with silent e",
+      "cue": "The i and final e work together. Hear the long i.",
+      "words": [
+        "bike",
+        "kite",
+        "five",
+        "time"
+      ],
+      "sentence": "A kite is on a hill.",
+      "alternateSentence": "A bike is at a gate.",
+      "meaningPrompts": [
+        {
+          "question": "Where is a kite?",
+          "answer": "On a hill."
+        },
+        {
+          "question": "Where is a bike?",
+          "answer": "At a gate."
+        }
+      ]
+    },
+    {
+      "title": "Long o with silent e",
+      "cue": "The o and final e work together. Hear the long o.",
+      "words": [
+        "home",
+        "rope",
+        "nose",
+        "bone"
+      ],
+      "sentence": "A dog has a bone.",
+      "alternateSentence": "A rope is on a gate.",
+      "meaningPrompts": [
+        {
+          "question": "What does a dog have?",
+          "answer": "A bone."
+        },
+        {
+          "question": "Where is a rope?",
+          "answer": "On a gate."
+        }
+      ]
+    },
+    {
+      "title": "Silent-e mix",
+      "cue": "Look for the vowel and its partner e. Blend the whole word.",
+      "words": [
+        "cake",
+        "kite",
+        "home",
+        "rope"
+      ],
+      "sentence": "A kite is at home.",
+      "alternateSentence": "A rope is in a lake.",
+      "meaningPrompts": [
+        {
+          "question": "Where is a kite?",
+          "answer": "At home."
+        },
+        {
+          "question": "Where is a rope?",
+          "answer": "In a lake."
+        }
+      ]
+    },
+    {
+      "title": "Two e letters",
+      "cue": "The ee team spells one long e sound.",
+      "words": [
+        "feet",
+        "seed",
+        "tree",
+        "green"
+      ],
+      "sentence": "A seed is in a pot.",
+      "alternateSentence": "A tree is green.",
+      "meaningPrompts": [
+        {
+          "question": "Where is a seed?",
+          "answer": "In a pot."
+        },
+        {
+          "question": "What does the sentence tell us?",
+          "answer": "A tree is green."
+        }
+      ]
+    },
+    {
+      "title": "The ai team",
+      "cue": "The ai team spells one long a sound.",
+      "words": [
+        "rain",
+        "tail",
+        "mail",
+        "sail"
+      ],
+      "sentence": "Rain is on a green tree.",
+      "alternateSentence": "A dog has a tail.",
+      "meaningPrompts": [
+        {
+          "question": "Where is rain?",
+          "answer": "On a green tree."
+        },
+        {
+          "question": "What does a dog have?",
+          "answer": "A tail."
+        }
+      ]
+    },
+    {
+      "title": "The oa team",
+      "cue": "The oa team spells one long o sound.",
+      "words": [
+        "boat",
+        "coat",
+        "goat",
+        "soap"
+      ],
+      "sentence": "A goat is on a boat.",
+      "alternateSentence": "Soap is in a dish.",
+      "meaningPrompts": [
+        {
+          "question": "Where is a goat?",
+          "answer": "On a boat."
+        },
+        {
+          "question": "Where is soap?",
+          "answer": "In a dish."
+        }
+      ]
+    },
+    {
+      "title": "Vowel-team mix",
+      "cue": "Spot the team, then blend the whole word.",
+      "words": [
+        "seed",
+        "rain",
+        "boat",
+        "goat"
+      ],
+      "sentence": "A goat is in a boat.",
+      "alternateSentence": "Rain is on a seed.",
+      "meaningPrompts": [
+        {
+          "question": "Where is a goat?",
+          "answer": "In a boat."
+        },
+        {
+          "question": "Where is rain?",
+          "answer": "On a seed."
+        }
+      ]
+    }
+  ]
+}

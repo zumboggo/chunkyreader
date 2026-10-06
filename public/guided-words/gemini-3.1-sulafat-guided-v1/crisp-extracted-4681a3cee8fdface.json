@@ -1,0 +1,13 @@
+{
+  "model": "google/gemini-3.1-flash-tts",
+  "input": {
+    "text": "crisp"
+  },
+  "derivedFrom": {
+    "sourcePath": "guided-words/gemini-3.1-sulafat-guided-v1/model-crisp-4681a3cee8fdface.json",
+    "audioPath": "guided-words/gemini-3.1-sulafat-guided-v1/model-crisp-4681a3cee8fdface.wav",
+    "startSeconds": 0,
+    "endSeconds": 1.2,
+    "method": "PCM sample-accurate crop before the 1.25-second inter-word pause"
+  }
+}

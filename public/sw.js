@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-learner-v18'
+const CACHE_VERSION = 'chunky-learner-v19'
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`
 const AUDIO_CACHE = 'chunky-audio-pack-v2'
@@ -8,6 +8,7 @@ const MEDIA_BASE = 'https://nvrofeaaewwdeefxtmqu.supabase.co/storage/v1/object/p
 const CORE_ASSETS = [
   './',
   'media-manifest.json',
+  'guided-words/media-manifest.json',
   'manifest.webmanifest',
   'assets/mascots/mascot-reading.png',
   'assets/mascots/mascot-expressions.png',

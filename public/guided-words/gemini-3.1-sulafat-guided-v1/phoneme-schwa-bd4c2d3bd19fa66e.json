@@ -1,0 +1,9 @@
+{
+  "model": "google/gemini-3.1-flash-tts",
+  "input": {
+    "text": "uh [long pause] uh",
+    "prompt": "Make only the relaxed short neutral vowel schwa, IPA /ə/, twice with a one-second silent pause between. This is the unstressed vowel at the start of about, NOT a stressed /ʌ/ or /ɑ/ or a letter name. Short, gentle, mid-central vowel; no consonants, no explanation, no introduction. Standard American English, clear female voice.",
+    "voice": "Sulafat",
+    "language_code": "en-US"
+  }
+}

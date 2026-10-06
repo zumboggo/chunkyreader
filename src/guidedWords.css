@@ -12,3 +12,27 @@
 .guided-reading .guided-tile { font-size: 2rem; min-width: 90px; }
 .guided-reading .guided-theme { font-size: 2.5rem; }
 .guided-reading .guided-mascot { height: 110px; width: 110px; object-fit: contain; }
+.guided-letter-map span { border-radius: 8px; }
+.guided-letter-map .sound-active { background: #ffe2a9; box-shadow: 0 3px 0 #b68126; }
+.guided-reading .guided-parent-note p { margin: 8px 0; }
+.guided-reading .focus-actions > button { flex: 1 1 120px; }
+/* Guided lessons use the phone's full width, including landscape. */
+.app-shell.lesson-active:has(.guided-reading) { width: 100%; max-width: 960px; margin-inline: auto; }
+.words-lesson-shell .guided-reading .guided-card { width: min(100%, 740px); gap: 8px; padding: 18px; }
+.words-lesson-shell .guided-reading .guided-card p { margin: 4px 0; }
+.words-lesson-shell .guided-reading .guided-card h3 { margin: 4px 0; }
+.words-lesson-shell .guided-reading .guided-word { margin: 8px 0; font-size: clamp(2.8rem, 7vw, 4.2rem); }
+.words-lesson-shell .guided-reading .focus-actions { width: 100%; }
+@media (orientation: landscape) and (max-height: 500px) {
+  .app-shell.lesson-active:has(.guided-reading) { padding: 6px 12px; }
+  .words-lesson-shell:has(.guided-reading) { padding: 8px; }
+  .words-lesson-shell:has(.guided-reading) .words-simple-header { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; max-width: 740px; }
+  .words-simple-header label { font-size: .8rem; flex: 0 0 140px; }
+  .words-lesson-shell .guided-reading .guided-card { gap: 4px; padding: 10px 18px; }
+  .words-lesson-shell .guided-reading .guided-word { margin: 4px 0; font-size: 2.8rem; }
+  .words-lesson-shell .guided-reading .guided-card p { font-size: .9rem; }
+  .words-lesson-shell .guided-reading .guided-parent-note { font-size: .8rem; margin: 4px 0; }
+  .words-lesson-shell .guided-reading .stage-label { min-height: 0; padding: 3px 10px; }
+}
+/* This reading routine fits portrait phones; no rotation gate is needed. */
+.app-shell:has(.guided-reading) .rotate-overlay { display: none; }

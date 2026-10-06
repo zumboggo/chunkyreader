@@ -1,0 +1,737 @@
+{
+  "version": 1,
+  "files": {
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-stop-29b3376895606cf0.m4a": {
+      "bytes": 45073,
+      "sha256": "8d24824bf80da5cab632af38e0e71185a67e630eaea0227eebb6676e08eab4d2"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-spin-61a5bf4f6e290784.m4a": {
+      "bytes": 37318,
+      "sha256": "cbf092f98ad71eb6cb6271874d61c000afa2cc006b3b03da268a44bbe4db8dd1"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-spot-f3f87cc4b2152f7a.m4a": {
+      "bytes": 34035,
+      "sha256": "7c2c8d4e4933783bc8fb93cf99ea303c2e4fa60858c5c270c1bcb266c95e8542"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-step-b8931b369ae2c2c0.m4a": {
+      "bytes": 34259,
+      "sha256": "2425b20e1ac3d066dca5e58fd2ea5ae477f33573b022c9720634392edd1052bd"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-flag-d8a6e0501065cce2.m4a": {
+      "bytes": 36903,
+      "sha256": "a2dd33fbee213162e87870602ab25f6942f30bce7bdc081918f6429cdcddca74"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-flat-cd2f1074ae1854e8.m4a": {
+      "bytes": 37587,
+      "sha256": "147c31009a2eb1cbcfe7e4263f7a53f28984e15c9f1536d32d3c57f0ee83c76d"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-clap-16b5ef0620f45ea7.m4a": {
+      "bytes": 34052,
+      "sha256": "c138feccdd7c68b4b1b5a67a21ef20b11f56812da1f10b93faca8ef6bc15f465"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-slip-2bc91d1930ed5f99.m4a": {
+      "bytes": 34439,
+      "sha256": "21607711d343006f1bc1b7c77eccc39760be4b01c3024a78954f1564ee6a1c3e"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-frog-d17246ef236b26dd.m4a": {
+      "bytes": 27374,
+      "sha256": "4d3915d4305ec855f8d370177bfa212e6ff0e1384fb166adf4738938f94a6b17"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/drip-534542f1d70a6140.m4a": {
+      "bytes": 12708,
+      "sha256": "89f45c7a917fc31c280aa9b575cfd7ee4b571489997f7fc2a1efe64a1301463b"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-drip-4f716e326379066c.m4a": {
+      "bytes": 28459,
+      "sha256": "f871f2141af96476fe11b05645178b32426dfa593ca4405d0a17cc12604d5d24"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-trap-81e414eee9481571.m4a": {
+      "bytes": 33453,
+      "sha256": "422edba7d05ee73b00972ae9d1a8521f04b850356dfe91f45415dc70cdef3593"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-grin-dda83541937ad748.m4a": {
+      "bytes": 38588,
+      "sha256": "a016b92071e2f4958c549993e9240c7fd2b76017d21ec8e12c8877baabe54b91"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/tent-f59984c223a96234.m4a": {
+      "bytes": 12233,
+      "sha256": "0e6ef5ac336838dac00921e1c504030ad472d7257db7659abee384aa18ea7457"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-tent-07dda61f21bcb26e.m4a": {
+      "bytes": 28954,
+      "sha256": "0920741b0eced337a72f1ffec8df2f37478a5fc6f137644741e63820ed78b601"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/bend-24eb554d8f9f8fc1.m4a": {
+      "bytes": 13027,
+      "sha256": "6cf36820568bc29c71605f09f620778a133e265eb72fcab982ab7dd71e4f4ace"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-bend-7820beac7a9dc5a9.m4a": {
+      "bytes": 30717,
+      "sha256": "d8cfe7dc1b0ff0ef14b537bdb6497406f82f93a68e4cf548c52e197b767cbdfc"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/hand-4f3f60a982cbd9f5.m4a": {
+      "bytes": 13324,
+      "sha256": "5fc71316164e3f83d75018d6c7d8d1d37ebeb68248265f93a6470320ffc14075"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-hand-df2e4c78b23781fd.m4a": {
+      "bytes": 43692,
+      "sha256": "33270a133aef105cb260717ed9a37329b2778cb3c523beb7a37f0864f7a9a0a1"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-sand-2da6aefa0bb83b24.m4a": {
+      "bytes": 39728,
+      "sha256": "a5e7d89743aec11736fdf3ba48025da15564439122f5770d3b24dc3a30e3e8f7"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/milk-6fd4815db36cca69.m4a": {
+      "bytes": 12775,
+      "sha256": "fac0bf5e9e36b16fc419ccb2dbf34ddb11c978c33d692ae4accfa34dfb5e455e"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-milk-4af2445e3db614c1.m4a": {
+      "bytes": 30432,
+      "sha256": "8a0f195c846e183369fee32ee522eaf87434d22431e31b1a9f61315037efe782"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/help-73d9628021541458.m4a": {
+      "bytes": 12601,
+      "sha256": "4db33261e3818910e9a109aef5e0ffaf59771abaeb7543aba71f6f6c4e1f825f"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-help-f1d36479604bb5a5.m4a": {
+      "bytes": 33701,
+      "sha256": "55be03fa48f330b6498a7c8bc28769269366bec5b437abc37615aa245bc7dc72"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/jump-2ecda2a73125e121.m4a": {
+      "bytes": 12984,
+      "sha256": "5f2810177141d7aa120e470ce11765681e3f957105b9205b67e5e4a0015c7a97"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-jump-7d41f8e62003ef04.m4a": {
+      "bytes": 29537,
+      "sha256": "6707c992ce5ac1601bad221bf21b263b0eafd916bbdfa78dbc56a4235163fa21"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/lamp-cfb88c07dd4d1d95.m4a": {
+      "bytes": 13151,
+      "sha256": "b78acaf4aeca0bde8a227096483e19ec2452a84d2f067bbe5f557ef40593d57e"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-lamp-bc46983c67da7cd7.m4a": {
+      "bytes": 30890,
+      "sha256": "8a5a842780d962ee8206353cf03288d1ca713a5df2deda8b82d69ed16e71de50"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/stamp-8f019f285df5363c.m4a": {
+      "bytes": 14177,
+      "sha256": "ef9f4801a4b2ab11d81b28d766c8d7a2ef47728ed258dc73e9c0aae7418303d9"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-stamp-7bc388524d24cbba.m4a": {
+      "bytes": 40693,
+      "sha256": "a22cf463002612957e64ef1d00dbbf79a5eb5030a5ff49f8b72c5c21175cc900"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/plant-7e7b691e3493c8e5.m4a": {
+      "bytes": 12413,
+      "sha256": "27af1f9217b1479877201ea34a530220c9ee8c5c4f844342d8e77c1462a9f8c2"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-plant-f5534a38d65caf9b.m4a": {
+      "bytes": 34053,
+      "sha256": "8bc3f1a63fbc8441ead8b765d44ab95b7e504909f119d11fba427ae8a8070c59"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/crisp-extracted-4681a3cee8fdface.m4a": {
+      "bytes": 12227,
+      "sha256": "96c9585038ef781151338fc79a0f7eab6181b3341f5f4f2a80e6105f79f4b6e6"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-crisp-4681a3cee8fdface.m4a": {
+      "bytes": 34305,
+      "sha256": "24659466d73f8c68eb4039d687436ccd74cbd913ace8e14176a010b69db41070"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/blend-613824c08a49693b.m4a": {
+      "bytes": 12453,
+      "sha256": "5e77586cd77c10ef27b931c7a5038b0d58cb8b4f7811b660ef3d2f71387e61ee"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-blend-e90800fcbb80032f.m4a": {
+      "bytes": 27021,
+      "sha256": "632065ed79775dee8bdf183001b160e78462cd28b6a9d4d15ee6a1316f29d751"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-ship-082c7ffcfcacdb76.m4a": {
+      "bytes": 30081,
+      "sha256": "3f3b6e4b8f3a5cd7f0e0e4aa2573a4687a0f6022dcbea99ce0ffd560dc5c217f"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-shop-bb4abbb83884d8b8.m4a": {
+      "bytes": 30849,
+      "sha256": "61707da18eef07b8ddbbe421f4f6d00065863448d23d871ddf9cb8210659388a"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-fish-6c9d51ebf1b8b37f.m4a": {
+      "bytes": 38458,
+      "sha256": "f7be3b58aea3c2737a6bd0aa749e3dae67869a41ecfbe1eaf0eec7f16b5a3593"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-dish-6309e3cd56dcd5e8.m4a": {
+      "bytes": 32148,
+      "sha256": "9e7f6ccf1269e887af39bb2114aa7654a62a71d31b34746dbc524892c32773d0"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-chip-6206ed7897aeba7a.m4a": {
+      "bytes": 33988,
+      "sha256": "bbbcb38a757617db9f97c6c1cc5e2f8120fa29e16c996c280a910570514bd05c"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-chop-785e0c7cdb953184.m4a": {
+      "bytes": 30428,
+      "sha256": "bdca0cea8f062ab007d3b83a94cfca8de5d676b2e534692a0be155ac9c8aea85"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-chin-cb88f3cf93694450.m4a": {
+      "bytes": 34157,
+      "sha256": "f85bec51eaca59a2aa138b7e6e1d6d4c51d6262c04ecf1a0a39d6216a72af055"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-chat-b0beae9acc4665a0.m4a": {
+      "bytes": 38671,
+      "sha256": "b2969f4c4b5c1264485435033ae7748a1ca2e22d4fc7c9a1078277abfbb813fe"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-thin-844cd37b8985ada7.m4a": {
+      "bytes": 28910,
+      "sha256": "d25c6bab7d53919bfc89da0d0e39b2cd3ff3fe45ac32928191d76a7f5aaf7654"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/thud-5486f4f916103f39.m4a": {
+      "bytes": 13032,
+      "sha256": "b2e9297984b8eb1852edc51c764ec0fcd3d2cfda41cd38f59a79537ed0d6eb20"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-thud-60871b7462d4d265.m4a": {
+      "bytes": 37614,
+      "sha256": "045434b8f9824af345972a1c53da4e74a3e3f71aae4b6c4a31bffaab4c21158e"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/moth-9d9112590d263f22.m4a": {
+      "bytes": 13786,
+      "sha256": "1f4ab13b74139bf02cfb9a6ffe5d340f0ddbc64ac2b7592a9895b633c68f52c6"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-moth-4693f0f8f6844c48.m4a": {
+      "bytes": 39559,
+      "sha256": "2ebdaf110653a4724b9f38e166dc06c46fe0927dac0634dc815f328412b2a17a"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-bath-68b95d4a6530cf74.m4a": {
+      "bytes": 35738,
+      "sha256": "f12aefff3aff8a577c6a0fb0e8535c9601784a28b50cc0569fdff7a9bcf6d133"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-sing-135dd34ae55a29a5.m4a": {
+      "bytes": 35252,
+      "sha256": "1d3c69519f6f8f0f2e9496131792e60daac3d7fa818d8295e4b2c4e393eedffd"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-ring-24a58ae8d11105ce.m4a": {
+      "bytes": 38220,
+      "sha256": "5800d1a80be2796bb6b98f38c6e9839588be00ca8bd0efdcf14568518e15b324"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-long-12558aec0c96ba08.m4a": {
+      "bytes": 35043,
+      "sha256": "40c704e55682800e8a2191b113c8a0662dfa7f82d7185d378ac67593593ed486"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-song-d1f9475153108e23.m4a": {
+      "bytes": 33740,
+      "sha256": "9f3710ea52ffc2fea98f8800350a82710a673ad60bc638e945a1791a94ca63ff"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/jumping-e1ec152bd7e51c9c.m4a": {
+      "bytes": 13394,
+      "sha256": "28736385e47bfcbc6e411b811521b1de86e88d9d7e3298f40fa9efe1caa3f461"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-jumping-d9078c6fa5bdc7b7.m4a": {
+      "bytes": 34159,
+      "sha256": "05d210d40206eb61d0bb0f26c802c1a5265da7c0b71b9043f894deef44a67592"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/helping-5d39ad79ca713dcc.m4a": {
+      "bytes": 13401,
+      "sha256": "043a5869cdbb0be1a384a13836718a12d952634a4ab279b3c0df880f86f40e35"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-helping-ab334d82681aea7d.m4a": {
+      "bytes": 31001,
+      "sha256": "c054daf1394ee5a2907a81993c9d58ea60cb4685134b5b6e8a7cb47c90adfe40"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/running-74c33eca8b71facd.m4a": {
+      "bytes": 16475,
+      "sha256": "03fba697ad4e86ee9feb12caefbd695f1808ce6b806fa210aef57509c013f2ef"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-running-21c4c3555468737b.m4a": {
+      "bytes": 40258,
+      "sha256": "ad0fa7a1a824ec510dff4e16c8d2334aed91669bf57874ff9bff62b9e2301f5a"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/sitting-464ee2b46b9b65f4.m4a": {
+      "bytes": 13400,
+      "sha256": "002c9aad1a6d825364a64ac87b5f032d2c0cb1d76be0992219d7013791e6af8a"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-sitting-66f7d56a9a386f0c.m4a": {
+      "bytes": 43085,
+      "sha256": "972c90c24846525641d193b093cc0fb9bc2d24bd97512c5edbca233e31096406"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/sunset-336638c9f82faa3b.m4a": {
+      "bytes": 16420,
+      "sha256": "3b2a87bbb257a65f25c25a760eb66808037eeddb3f3fb26b40c9e55ec63366f9"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-sunset-d0838e3f729b4e01.m4a": {
+      "bytes": 34247,
+      "sha256": "1a011694a4379de107804e247f46c53db51e71b949e79329c412755aa9e70a93"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/picnic-4583d9709e7740c2.m4a": {
+      "bytes": 14004,
+      "sha256": "a80cde39734f4e62572158bbcc4bd372641ccbe6b8e015c9cc09fd376ba5b154"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-picnic-87139661cad8231e.m4a": {
+      "bytes": 30942,
+      "sha256": "1602212f599b63e853d3cc8f24327725791a58b0a4dd0779672d536648e10e3d"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/rabbit-00de71e957d7a84c.m4a": {
+      "bytes": 14664,
+      "sha256": "7c49c6c88dbe519aca4a7b180a2bd42961359f87bb51b1217035bcb2e27649c5"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-rabbit-69800656c8e9e128.m4a": {
+      "bytes": 39861,
+      "sha256": "2b0eea8f41b05627d818c3184c117b85aeda48dd24c5f6a9e92796b3a94906d8"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/napkin-ac246ebbc0a3c88d.m4a": {
+      "bytes": 14321,
+      "sha256": "1eb85f5d74c265761829182b1cea1a02547c9ed3cb990eaf1363b7d1e53984cb"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-napkin-c44fe3093a46be24.m4a": {
+      "bytes": 35414,
+      "sha256": "2cac0ec314456617b32a5ebf176f911b950b10187f900f15133c126d45005685"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/catnip-145bf45d7ab0b30b.m4a": {
+      "bytes": 13783,
+      "sha256": "79885590a9effdfe5c10e265d1c5dc5b97c112caebb150dbd34c28b5d80e9a29"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-catnip-d2870c3b4f3f4f1b.m4a": {
+      "bytes": 37185,
+      "sha256": "22545d2a6a679e1e22ec2382eff13cb594d17969dcbeef915e562d8d041f5efe"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/catnap-55fe180e4e5bf0b3.m4a": {
+      "bytes": 15124,
+      "sha256": "49100e97efdd02cc9ac54ba50edbe9b9df2221a90774b6f9470a2cee858f6cd9"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-catnap-e53a0c0a026d4acd.m4a": {
+      "bytes": 32516,
+      "sha256": "6bc49f3d63fa807a7fdb33246e9d87ca46637240d8e6439d7a85777158e0cee8"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/bedbug-00994377c7559d30.m4a": {
+      "bytes": 13632,
+      "sha256": "0a78a02df54e81412956586d069566fa892eb9de8ebcf617cc474d2440bf6276"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-bedbug-2beefc475d043365.m4a": {
+      "bytes": 34402,
+      "sha256": "ac4b9fcb7c0a43d515a794beb05dc5bd15ac1dc12b792d7c043152ed216d76c2"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/sunlit-c9fa7b3583d138a1.m4a": {
+      "bytes": 14710,
+      "sha256": "903baa8d0c30039c8751bfddce2c8819d1fde15a1c666f300644e8b714750f53"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-sunlit-7ddf4f223464629f.m4a": {
+      "bytes": 37194,
+      "sha256": "7cc97cf5f8e3ff7ba37c7aa8ba1d31e8dce85510aff8caad8e8029a215f4c585"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/dentist-ffaf129d519d8884.m4a": {
+      "bytes": 13772,
+      "sha256": "20142062d405bbe291ec35094bc50f628c3f78836bfe9eea4ef9d8c167c925bb"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-dentist-7952384126036849.m4a": {
+      "bytes": 40613,
+      "sha256": "e08e31c8768d15babb2be009a48e98665bb3854eb434766367da362818ab7348"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/cactus-774b2e273c8347d1.m4a": {
+      "bytes": 13803,
+      "sha256": "04bfeea98f95187f29f4658aaa74119df36418e5355d6e5814d6930dd790f18d"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-cactus-59fc6a0cb53d48f9.m4a": {
+      "bytes": 42062,
+      "sha256": "e555863f7a054eba3d08c4d193094869bf358ca37e210bc33078a872bfbac135"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/velvet-19893efcca8aef81.m4a": {
+      "bytes": 14121,
+      "sha256": "fbf1dd1f327a411bc725f7a9d17555519a1cb63c2506f63a43690d73118bfad7"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-velvet-e701c251d2c058e9.m4a": {
+      "bytes": 33416,
+      "sha256": "43fd263af619035f7ad2d5e903ce65c8894dd4e32f9460b72af42c5992471726"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-insect-711743dd4d62ad84.m4a": {
+      "bytes": 41101,
+      "sha256": "5f0d692a014089ca73e8cd79af00130ece85c4c6c71c218b53cab908f937cae3"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-duck-d33eb42b46a639f5.m4a": {
+      "bytes": 32902,
+      "sha256": "1bc9fc444d705d5e3d14e0641ab63d4c395f57492ce1b9c167a4e6722dde846b"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-sock-8f0b6506b8ecdd24.m4a": {
+      "bytes": 36874,
+      "sha256": "27d7bf9159ce640bf3fa7ea7cbadb83e81346fe9f7bfbc5bbf05a77145a9d0c7"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/neck-0057d7e118e79363.m4a": {
+      "bytes": 12370,
+      "sha256": "8034d35d7269e9550365824f02876251e1d338824d8318007bc79880ee1ed38f"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-neck-18a9eed2b1a6ddc2.m4a": {
+      "bytes": 42114,
+      "sha256": "459de20a4f13d1d053e9a605069d3836584ad58519b724706f35ea2bdf1ae2a0"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-back-d20597c43b2b3487.m4a": {
+      "bytes": 39854,
+      "sha256": "f284d7884c20d0b861162a9057682b137c3f28c53246bb22feb1b3a698bdb092"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/bell-a35f658073745136.m4a": {
+      "bytes": 11852,
+      "sha256": "5dbeeafdc8f7d1f3b1df8e17e3d276d83f02b7d77374a88c5a472bd9bb8e2259"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-bell-7cf9f0b996f12259.m4a": {
+      "bytes": 27723,
+      "sha256": "c7400d10f371e2d8216e7d3ad88ae02748f7f56e90c5b2dd701276678317d8b1"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/hill-d4ee7889470aad28.m4a": {
+      "bytes": 12996,
+      "sha256": "275a614645e992b22474f2657c627bfb1f491a81cb0e5427fa782569e09e34c9"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-hill-f1208e3e20afcd12.m4a": {
+      "bytes": 30683,
+      "sha256": "71a28aea6e30500228a2536878ce8092abbe9bfa02bcb27582ae1a67b2424164"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/puff-c5df0debdc59b8d3.m4a": {
+      "bytes": 12030,
+      "sha256": "09ec1000d55cca3508f51ecb672784ef422286acb11cd64f3377515d4883f6e1"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-puff-67a49aacc8a5d2e2.m4a": {
+      "bytes": 34383,
+      "sha256": "5d21f9d8e01db82bf87aaa7fd824e07f66b4216972039e9c64c46d8da505cc44"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/mess-fe1b19612e9fd9e7.m4a": {
+      "bytes": 15191,
+      "sha256": "50fe10a275b328d18fc86315544838c05dbd8c62831c29348dc1fd83904973bd"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-mess-6197bf3699a54125.m4a": {
+      "bytes": 35710,
+      "sha256": "49b18521982123fe40592d9835fa5e6b39be4606e045adf6a2670ffc5563b1a4"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-feet-5a4073c185da3518.m4a": {
+      "bytes": 33229,
+      "sha256": "a4e106f7acd27fb199f1626645172ba2e581ebd02566e00f8305389ea16aba64"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-seed-d012dfcf21b27024.m4a": {
+      "bytes": 38062,
+      "sha256": "ad369df1a74b5bcfd7df52acd80f5ad1943a04c7ea64ac0758e50276285c909e"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-tree-cf71e5eea6d79948.m4a": {
+      "bytes": 39190,
+      "sha256": "dea1f891f0588bd22cb052d2843d9b04d54b4f53bf0833e2983bd4d7d1edc2e2"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-green-76430e6e4c026d90.m4a": {
+      "bytes": 23131,
+      "sha256": "8482708f40566648036d0393f5bdc7b6ee038c8c61d9bf7b2abe125a2916eb34"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-rain-8df799dd66e8155e.m4a": {
+      "bytes": 35127,
+      "sha256": "3e00b02da30a73e34d9d293671723c73e4571f36bd645b4e68ae36749915b2cf"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-tail-b6fac7679788d59a.m4a": {
+      "bytes": 32426,
+      "sha256": "9d14acc6910e688dcf6e0f4477aba97eed48204be835b89464f383b571689f4e"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-mail-966a6af04dad08a6.m4a": {
+      "bytes": 34166,
+      "sha256": "bc9b5e2ecd85efd5952c06730bc712b7b80236d326a334ea72a1492f84bf75ce"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-sail-0e02d42475891e6f.m4a": {
+      "bytes": 41514,
+      "sha256": "9da77f0879aaec90a299954af5d6a75940db8ea27909dba45b08f537bdd082cc"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-boat-d8495f15cebfc8cf.m4a": {
+      "bytes": 37024,
+      "sha256": "08bf94c30fe41d86bbc10da26fe37194e4cdf22bded307f6db465cf1b90c484a"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-coat-7fa978b501574ac5.m4a": {
+      "bytes": 42189,
+      "sha256": "5818c607307568d9e87dcf89db57c231cd987d5e7fbfda9a3cd25f01cd239d32"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-goat-338f415bfa5c8da2.m4a": {
+      "bytes": 43021,
+      "sha256": "6b85c16df972e83099451971e817532b44dabc11961015c1eac3f843bdb0d76e"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-soap-790b841572a9c723.m4a": {
+      "bytes": 36364,
+      "sha256": "9ea358ea77f28eace9f503ebb03661d32ccb40ce77502a3b1d91c1be048e9263"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/flap-145a30c84e793fed.m4a": {
+      "bytes": 12470,
+      "sha256": "e5e7326a69da1f5a71a23068bd2bc9505dd3832ad3813e156b3f1d87b120a8bd"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/ant-82bbce5bf1cc49bb.m4a": {
+      "bytes": 12437,
+      "sha256": "d636aef85592666ff0c51b72ccbe58ce9523fa3e585f3cdc4ad22fe1cac22fd1"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/pond-2021f0b97be03124.m4a": {
+      "bytes": 13249,
+      "sha256": "0a81a6161b493d18daa40110cb96f41f6d6adc5aaae08bcb6d8dd089d88f119e"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/desk-38f0341fd4a49346.m4a": {
+      "bytes": 12760,
+      "sha256": "c532b5ca29574c668b8f58f32f7a35cbc3ccaf6ae95a717fe96b6a25b88659c4"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-cake-4125b829bd9d4986.m4a": {
+      "bytes": 47887,
+      "sha256": "eb912b988d0ee8a71ed0426efbb990ef39b9a5d4e2d759451abf2722fe147b1c"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-lake-027987ad031aa764.m4a": {
+      "bytes": 35191,
+      "sha256": "b199b0f8ea599efc239a89cc61214219c2a2c3aa9a6d33a1b3e6709bda03308b"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/gate-228bdd5e54a41929.m4a": {
+      "bytes": 22232,
+      "sha256": "13cd6c6f761b1d63457dd08fe0d46da4a98ee203bffeb0fc8d34e231cbb8b95f"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-gate-883ea68552dde195.m4a": {
+      "bytes": 31580,
+      "sha256": "6db8c791b454b88e95a586a29ca4747cb57a78e91af260c63c76357187314a74"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-name-b70c427c8761d945.m4a": {
+      "bytes": 42708,
+      "sha256": "ece03b8c384cd0d158138f3f95d9279a929e519fd927e513ac4cd32a043c5020"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-bike-3ba3655360eee4e6.m4a": {
+      "bytes": 28087,
+      "sha256": "96a77458f1e8c0b6cc2d756234c01ce47fed70a8a7819dee2bf8c1ad87066968"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/kite-8af83b17f22de3a6.m4a": {
+      "bytes": 12173,
+      "sha256": "968ad479ba8887b3db511ddbc4a788000521dc5e74baac28fab87c1857b4bc95"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-kite-63c96029efa9ee8f.m4a": {
+      "bytes": 37014,
+      "sha256": "78a3914a5737337635225e6cb650438ab49131d2739216a52fc6973e936e0704"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-five-367e28da412ec398.m4a": {
+      "bytes": 35168,
+      "sha256": "5c5a38bc1341e5c6591f02555bf8d93f7c8eebd3d1f97e4138399d210f9a74ac"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-time-53d0227327046d54.m4a": {
+      "bytes": 30465,
+      "sha256": "cb6c22e6d5d8f4c04c156f6a07f9a97244c408a19cf167f7fb24eb168ec5149b"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-home-1f3fc674a62d826a.m4a": {
+      "bytes": 24949,
+      "sha256": "b183e8ac4b01f914ce2844593a28d8fe6622bdbd781d29c82fb3af17b69034c8"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-rope-6084565eaa4be244.m4a": {
+      "bytes": 37246,
+      "sha256": "6b6284d816ef42c198d1f2a291be0663510fcd7bf59a34cd253cd4c8f8e8dbd0"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-nose-231575d04d925ac1.m4a": {
+      "bytes": 31141,
+      "sha256": "22c0a5bfdb0554ffc95456ea407a52ea62b3f660a9562cbaa4a86573c2661ba5"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/model-bone-42a3ec8a279c053e.m4a": {
+      "bytes": 40443,
+      "sha256": "f80bb63e17ba49bfc881618c22c9a43a9576cd7fa04068201a4a7543dd38a398"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/plate-d610ddd077b89eff.m4a": {
+      "bytes": 14241,
+      "sha256": "303c22dddb3d4d6ae329bedb5be8ce31a16bfd66ac1cde593223cb44349ecdbe"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-can-spin-d764d4a88138a3d8.m4a": {
+      "bytes": 26266,
+      "sha256": "ec6dbe34da37f69105fdf12c5c2df3f95cf4f2ee7f9ab3559c9e9f2a7b2042c3"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/helpers-a-can-3dc32cdbd8538203.m4a": {
+      "bytes": 115474,
+      "sha256": "c50615fca366597aa9e5770c2abbb37563b730db1ed0fb8f5263ee09d0a72e8d"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-dog-can-stop-5616c49a19672cdc.m4a": {
+      "bytes": 31457,
+      "sha256": "f44f16664b4ea1f1a0cb886926b683a2f7da57ac439560f05049cddfe9445c95"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-flag-can-flap-133fc654ca754dd0.m4a": {
+      "bytes": 25388,
+      "sha256": "caf9a561623d3c963c1023a0d2ba0882c54419cee5f29ea597e10543fb3f8b96"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-can-clap-ae5e53558a050041.m4a": {
+      "bytes": 25250,
+      "sha256": "4760ee5776d4b279cabd0530fba39df231978008e5420f56ae1b0c5319f46fb5"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-frog-can-hop-11d3e136f2c03e0c.m4a": {
+      "bytes": 22529,
+      "sha256": "a50322827bb06c0862a3fe1df95ca41974ff8bf3268b6eacf1130c734b70d75b"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-frog-can-grin-f638691a69ed5fdc.m4a": {
+      "bytes": 27257,
+      "sha256": "bd9eb35b29acc28f33802ab48a22a6643444a7f83653aae3377aef02477fab28"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/an-ant-is-in-a-tent-9b53f300be02b075.m4a": {
+      "bytes": 35394,
+      "sha256": "bae37798b3ec4746a63f043a0dc2d8ed05f153db9944ec4d1adf833fc7a4ab6d"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/helpers-an-is-a-9b28ee00b80e4ba2.m4a": {
+      "bytes": 134462,
+      "sha256": "8dfc6408ae23ebe2af977e62d6730093fedd97ae7d7cb8b33253243d29adaf5d"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/an-ant-is-on-a-hand-75d34c949a07d7f6.m4a": {
+      "bytes": 34152,
+      "sha256": "198abad356db35b46f2909fb3cf713314f46de820a5080314cba22a36759e95f"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-frog-can-jump-916ced6304cbc4df.m4a": {
+      "bytes": 20730,
+      "sha256": "6e98a0983e8c7d9725495ad9e0ed0fdfb57ab864d886e7c437f35d06557fdab5"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-can-jump-5d2966580a8a0205.m4a": {
+      "bytes": 23045,
+      "sha256": "29467af339a95d0564c77e6a8cc705d6b5a2a7f4910410f6e5a19521ef3cb632"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-plant-is-in-a-pot-ed3b592d739906d2.m4a": {
+      "bytes": 27878,
+      "sha256": "9a0048e6f582362d98fd12f17400dd2d656abd2bbd4a33cb8eb5ffc10293ea4d"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/helpers-a-is-fa5aa56e9e441401.m4a": {
+      "bytes": 102029,
+      "sha256": "fe3b37d31cc61959be277e1634ac11bca5ab943c4d97e70bf331c26d7da8cc8f"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-stamp-is-on-a-bag-77904e31c24e1c32.m4a": {
+      "bytes": 29803,
+      "sha256": "ea8ae2b6fabc2efee787eca0be63b1ae98902bb4640b024d62cc457c4d21736f"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-fish-is-in-a-dish-8213abc269ee852f.m4a": {
+      "bytes": 31848,
+      "sha256": "b65af86bf5b3a3d8fe213cf09bb3717f147cf9fd033a7a4edbd45c4680188354"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-fish-is-in-a-ship-4539bd7c999f40ec.m4a": {
+      "bytes": 32205,
+      "sha256": "f726afa405dd45568179ef850acb2c52dd323f98d17897f34aae13f848c71482"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-chip-is-in-a-bag-35b74830018af267.m4a": {
+      "bytes": 32500,
+      "sha256": "7cc168f34d6cb47341c2d527b024f0ea97d224755fc08b0650b2cffb4cc4922a"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-chip-is-in-a-dish-6706a57b2239a8d6.m4a": {
+      "bytes": 30652,
+      "sha256": "3ca373e74d0e9218d40d27c00972df0ac54ed176db65152c92f7af009093795c"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-moth-is-in-a-bath-96e900a0972a610e.m4a": {
+      "bytes": 27390,
+      "sha256": "44316c8c730deea175d6993ebb1ccfbf39f7608a49d89fd27ae5ffebf095087f"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-thin-cat-is-in-a-bath-5729d3c27785add7.m4a": {
+      "bytes": 34804,
+      "sha256": "2a03476a61ad631a3ea3894cb5aa6747da616c652c37b083a3638ce335ec77c0"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-long-song-is-fun-ba34b0f111bf8e57.m4a": {
+      "bytes": 25580,
+      "sha256": "abb540d26a43f3b82706debaec1a0a7c222fb139cfa505b63eeaf59c43b1487e"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-long-song-can-help-56bef28b543a42e7.m4a": {
+      "bytes": 25887,
+      "sha256": "05d1a44ac1f16b67de007d5d7ea15f02d50e804f21f952ab238880cf3b32f4f1"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-is-jumping-ec54a8a125889b0c.m4a": {
+      "bytes": 23244,
+      "sha256": "c35beeb8e4e26ffb65ac55cb2cb1bad1bf14e51c2d7b9f1ddb7d5d2fb3d8f29b"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-frog-is-jumping-94a34ccfa9d8cdf0.m4a": {
+      "bytes": 24216,
+      "sha256": "17bf2eb11da1a1ee50d824e13550e42b644600c4acf969634efabceab46baa3d"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-rabbit-can-hop-5749101adc77c1f0.m4a": {
+      "bytes": 25413,
+      "sha256": "3319cba8495b87007bf38c3c396e26cbad5466e252b6ca28715a63c35635dcdb"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-rabbit-is-at-a-picnic-babbb37bd407559b.m4a": {
+      "bytes": 32534,
+      "sha256": "2ae3691b014f52f4e276c48075b7e76d0f01b22144d3f9203e8b2c00bdb8c6b2"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-bedbug-is-on-a-bed-854d74c6a65d23e6.m4a": {
+      "bytes": 31854,
+      "sha256": "5f6fde908bf813c561814673757250755df5574eef756286d4755ba6acc9fc15"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-is-on-a-sunlit-bed-5c8bd8d81a001705.m4a": {
+      "bytes": 32799,
+      "sha256": "e2592b73f466977a25b41e8d06fa63859296af57b8551e9134a2d88fdfd20d9a"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/an-insect-is-on-a-cactus-c02839f1787bd87e.m4a": {
+      "bytes": 32942,
+      "sha256": "f61b6f4932df82611c8594b87e159546b6624a448e4b85abeeb7e4bc03277553"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-dentist-can-help-6425357f0b4b3070.m4a": {
+      "bytes": 21004,
+      "sha256": "30c41813610ac4fa5182d313f6463f15c401d95f42dac5884ba65bf97d802b83"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-duck-is-in-a-pond-e5da00412068a804.m4a": {
+      "bytes": 26646,
+      "sha256": "b3e2493ce3b3e6de752789b631ad3ef2c2218865a161dd4d8aaddbbfdc518dea"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-sock-is-on-a-bed-f0e3856620da24b3.m4a": {
+      "bytes": 26846,
+      "sha256": "4cce54b92441696f87ead785e1894585dd6682e6c04632239550ed55cda5be7b"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-bell-is-on-a-desk-223afcd1c5e03dfc.m4a": {
+      "bytes": 29426,
+      "sha256": "aaa4aa76f5ba1047112368c32f8f26a5d51cd7effae70a2bf7906b5aa7489ea1"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-cat-is-on-a-hill-824e6f301a59b9de.m4a": {
+      "bytes": 29322,
+      "sha256": "4ab9529452f22ec58c697a77f2849022d9220d8a395f7e153a79c997f33088e9"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-cake-is-on-a-plate-fa3b3dfaabef7a43.m4a": {
+      "bytes": 32070,
+      "sha256": "72c31c207f93cb36915b9391649275a13983af2647f11a699a83716e295fde12"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-name-is-on-a-gate-8f1a2c335a280465.m4a": {
+      "bytes": 25364,
+      "sha256": "b15105efd909ee1778bc7a6ffdaa040c612a0862a57f00ed0881e627fe609038"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-kite-is-on-a-hill-9dcfafd41402d473.m4a": {
+      "bytes": 25289,
+      "sha256": "bea76af29c5c188295555d84f52358c11a13126de5838004c97053b02af8b109"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-bike-is-at-a-gate-1d4e7719c0934962.m4a": {
+      "bytes": 30001,
+      "sha256": "c960685e6ee43405101d96c72772df4a3ab930f06868f8d5b9950c14b507827b"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-dog-has-a-bone-36d23413b5983c22.m4a": {
+      "bytes": 27047,
+      "sha256": "d2e2b958949c824852299539723700976862c1e79b3d20a23a2560b5183bcfb4"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/helpers-a-has-b81bd34fb205d487.m4a": {
+      "bytes": 125966,
+      "sha256": "696a1e19e9e310389195f096d462b14eed32e962e3f24ea5402de722ec9c0e11"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-rope-is-on-a-gate-58b70e863bc0d975.m4a": {
+      "bytes": 29173,
+      "sha256": "f35455de81691fae24d0cc9e4953062a79de2055962ae778ce1089011a29be4c"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-kite-is-at-home-33e198db48bf9162.m4a": {
+      "bytes": 22473,
+      "sha256": "217159270c02fcdfc464f9de03d46c2bf7c8b32b9dd836ff3d80877bbe3f4687"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-rope-is-in-a-lake-17603236cbf4f30d.m4a": {
+      "bytes": 30006,
+      "sha256": "7717ea6903f7592342db54aabd880c9c92fffa8a3cdaef69a08684bb9839728b"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-seed-is-in-a-pot-dfe8258a4805369b.m4a": {
+      "bytes": 27099,
+      "sha256": "624fb918c52df8a87e2f3f3ce6578f8af0d4d373ab6eb86f9af3459d13ef7394"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-tree-is-green-8e50f23475e1e292.m4a": {
+      "bytes": 23835,
+      "sha256": "d8edddc6e91a2988c85353231c52e1a697cfbaaf466498ecdc9ca08386fc3f95"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/rain-is-on-a-green-tree-48f4c99d33479fd7.m4a": {
+      "bytes": 32996,
+      "sha256": "1f11e261ab144859630636e50d18d8b243e7698bc572f830d6f2c17c70bde65e"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/helpers-is-a-903d2f9a00b2eeb7.m4a": {
+      "bytes": 110772,
+      "sha256": "63e07308e30a2beaf9c851905ba04f9c01e783d7b366eaa4b8e62a11b1c89822"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-dog-has-a-tail-02337b35cba64635.m4a": {
+      "bytes": 26690,
+      "sha256": "3f579d901af90e210c9e6e50817e11df66f4b2414fc566596ef52ca4c32f8314"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-goat-is-on-a-boat-25b136a03a6b1aa6.m4a": {
+      "bytes": 32350,
+      "sha256": "07c4d8998268b544402e15872f9a123f263c0cbd8d29849d144645195f6f337e"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/soap-is-in-a-dish-e8cf23fcceeb0f5b.m4a": {
+      "bytes": 29743,
+      "sha256": "54f1f75ddcfaf076a16b5d6d4ba1a38767e2ab93b23e2cf565a902a0ca78585e"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/a-goat-is-in-a-boat-1e0152ff343abc5e.m4a": {
+      "bytes": 27327,
+      "sha256": "9b0418276f69067343925227c92edd1cd83c7413faf8a681d84ce9aa1ee582dd"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/rain-is-on-a-seed-07d6c5af666af10c.m4a": {
+      "bytes": 28759,
+      "sha256": "bb7239a25a688768838a550c22192368029431c7cc28993214a239b6ad7a68dd"
+    },
+    "guided-words/gemini-3.1-sulafat-guided-v1/phoneme-schwa-bd4c2d3bd19fa66e.m4a": {
+      "bytes": 30633,
+      "sha256": "c238ec55851fff0c856e3a45012ea1377d21be5b82e276273e3c48e1e91466ae"
+    }
+  }
+}

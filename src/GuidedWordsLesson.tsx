@@ -3,202 +3,190 @@ import { stopAudioPlayback } from './audioClipPack'
 import { playSfx } from './audioEffects'
 import { assetUrl } from './mediaAssets'
 import { progressStorage } from './progressStorage'
-import { applyReadingResult, buildReadingTile, readingSteps, READING_POCKETS,
+import { recordLocalProgressChange } from './cloudProgressSync'
+import { applyReadingResult, buildReadingTile, readingSteps, READING_POCKETS, READING_HELPERS,
   type GuidedReadingPlan, type ReadingStep } from './guidedWords'
-import { guidedStateKey, guidedPlanKey, loadGuidedReadingState } from './guidedWordsStorage'
-import { guidedSoundUnits, playGuidedSounds, prepareGuidedSounds, stopGuidedSounds } from './guidedWordAudio'
+import { guidedStateKey, guidedPlanKey, guidedSelectedLessonKey, loadGuidedReadingState } from './guidedWordsStorage'
+import { playGuidedSounds, prepareGuidedSounds, stopGuidedSounds } from './guidedWordAudio'
 import './guidedWords.css'
 
+type PlayWord = (text: string) => Promise<boolean>
 export function GuidedWordsLesson({ deckId, lessonNumber, plan, activityIndex, onActivityChange,
   onComplete, onNext, playWord }: {
   deckId: string; lessonNumber: number; plan: GuidedReadingPlan; activityIndex: number
-  onActivityChange: (index: number) => void
-  onComplete: () => void; onNext: () => void
-  playWord: (word: string) => void
+  onActivityChange: (index: number) => void; onComplete: () => void; onNext: () => void; playWord: PlayWord
 }) {
   const steps = readingSteps(plan)
-  const index = Math.min(Math.max(0, activityIndex), steps.length - 1)
-  const session = `${deckId}:${lessonNumber}`
-  const [results, setResults] = useState<Record<string, boolean>>({})
+  const [index, setIndex] = useState(() => Math.min(plan.progress?.index ?? activityIndex, steps.length - 1))
+  const [results, setResults] = useState<Record<string, boolean>>(plan.progress?.results ?? {})
+  const [helped, setHelped] = useState(plan.progress?.helped ?? false)
   const [finished, setFinished] = useState(false)
   const [sentenceIndependent, setSentenceIndependent] = useState(false)
   const [saveWarning, setSaveWarning] = useState(false)
   const completed = useRef(false)
-
-  useEffect(() => {
-    try { progressStorage.setItem(guidedPlanKey(deckId, lessonNumber), JSON.stringify(plan)) }
+  const session = `${deckId}:${lessonNumber}`
+  const save = useCallback((nextIndex: number, nextResults: Record<string, boolean>, nextHelped: boolean) => {
+    try { progressStorage.setItem(guidedSelectedLessonKey(deckId), String(lessonNumber)); progressStorage.setItem(guidedPlanKey(deckId, lessonNumber), JSON.stringify({ ...plan,
+      savedAt: Date.now(), progress: { index: nextIndex, results: nextResults, helped: nextHelped } })); recordLocalProgressChange() }
     catch { setSaveWarning(true) }
-    return () => { stopAudioPlayback(); stopGuidedSounds() }
   }, [deckId, lessonNumber, plan])
-
+  useEffect(() => {
+    save(index, results, helped)
+  }, [save, index, results, helped])
   function advance(independent?: boolean) {
     const step = steps[index]
-    if ('word' in step && step.kind === 'read') {
-      setResults(old => ({ ...old, [step.word.text]: independent === true }))
-    }
-    stopAudioPlayback()
-    stopGuidedSounds()
-    onActivityChange(index + 1)
+    const nextResults = step.kind === 'read' ? { ...results, [step.word.text]: independent === true && !helped } : results
+    // Save synchronously before the next screen (and before a possible reload).
+    save(index + 1, nextResults, false)
+    setResults(nextResults); setHelped(false); setIndex(index + 1)
+    stopAudioPlayback(); stopGuidedSounds(); onActivityChange(index + 1)
   }
+  function markHelped() { save(index, results, true); setHelped(true) }
   function finish(independent: boolean) {
     if (completed.current) return
     completed.current = true
     const state = loadGuidedReadingState(deckId)
     const alreadyCompleted = state.completedSessions.includes(session)
-    try {
-      progressStorage.setItem(guidedStateKey(deckId), JSON.stringify(applyReadingResult(state, plan, session, results, independent)))
-    } catch { setSaveWarning(true) }
-    stopAudioPlayback()
-    setSentenceIndependent(independent)
-    setFinished(true)
-    if (!alreadyCompleted) {
-      playSfx('fireworks')
-      onComplete()
-    }
+    const unassisted = independent && !helped
+    try { progressStorage.setItem(guidedStateKey(deckId), JSON.stringify(applyReadingResult(state, plan, session, results, unassisted))); recordLocalProgressChange() }
+    catch { setSaveWarning(true) }
+    stopAudioPlayback(); stopGuidedSounds(); setSentenceIndependent(unassisted); setFinished(true)
+    playSfx('fireworks')
+    if (!alreadyCompleted) onComplete()
   }
-
   return <section className="focus-lesson older-reader-lesson guided-reading">
-    <div className="focus-main">
-      <div className="read-together-card guided-card">
-        <span className="stage-label">Words · {finished ? 'Lesson complete' : `${index + 1} of ${steps.length}`} · about 3–4 minutes</span>
-        {finished ? <>
-          <img className="guided-mascot" src={assetUrl('assets/mascots/mascot-reading.png')} alt="Reading panda" />
-          <h2>{sentenceIndependent ? 'You read a sentence!' : 'You practised real reading!'}</h2>
-          <p>{sentenceIndependent ? 'You put the words together all by yourself.' : 'Reading together counts. We can try these words again.'}</p>
-          <p className="guided-parent-note">She marked {Object.values(results).filter(Boolean).length} of 4 words “I knew it” (self-reported).
-            {' '}Sentence read aloud, confirmed by a parent: {sentenceIndependent ? 'independent' : 'with help'}. Both outcomes earn the lesson reward.</p>
-          {saveWarning && <p role="status">Progress could not be saved on this device. You can still enjoy the lesson.</p>}
-          <div className="focus-actions">
-            <button className="primary choice-action" onClick={onNext}>{lessonNumber < READING_POCKETS.length ? `Next lesson: ${lessonNumber + 1}` : "All lessons finished! Practise lesson 1"}</button>
-          </div>
-        </> : <ReadingActivity key={index} step={steps[index]} index={index} plan={plan}
-          onAdvance={advance} onFinish={finish} playWord={playWord} />}
-      </div>
-    </div>
+    <div className="focus-main"><div className="read-together-card guided-card">
+      <span className="stage-label">Words · {finished ? 'Lesson complete' : `${index + 1} of ${steps.length}`} · about 3–4 minutes</span>
+      {finished ? <>
+        <img className="guided-mascot" src={assetUrl('assets/mascots/mascot-reading.png')} alt="Reading panda" />
+        <h2>{sentenceIndependent ? 'You read a sentence!' : 'You practised real reading!'}</h2>
+        <p>{sentenceIndependent ? 'You put the words together all by yourself.' : 'Reading together counts. We can try these words again.'}</p>
+        <p className="guided-parent-note">She marked {plan.words.slice(0, 4).filter(w => results[w.text]).length} of 4 target words “I knew it” (self-reported).
+          {' '}Sentence read aloud, confirmed by a parent: {sentenceIndependent ? 'independent' : 'with help'}. This records practice, not mastery.
+          {' '}Both outcomes earn the first-completion reward; replays add practice.</p>
+        <div className="focus-actions"><button className="primary choice-action" onClick={onNext}>
+          {lessonNumber < READING_POCKETS.length ? `Next lesson: ${lessonNumber + 1}` : 'All lessons finished! Practise lesson 1'}
+        </button></div>
+      </> : <ReadingActivity key={index} step={steps[index]} index={index} plan={plan} initialHelped={helped}
+        onHelp={markHelped} onAdvance={advance} onFinish={finish} playWord={playWord} />}
+      {saveWarning && <p role="status">Progress could not be saved on this device. You can still enjoy the lesson.</p>}
+    </div></div>
   </section>
 }
 
-function ReadingActivity({ step, index, plan, onAdvance, onFinish, playWord }: {
-  step: ReadingStep; index: number; plan: GuidedReadingPlan
-  onAdvance: (independent?: boolean) => void; onFinish: (independent: boolean) => void
-  playWord: (word: string) => void
+function ReadingActivity({ step, index, plan, initialHelped, onHelp, onAdvance, onFinish, playWord }: {
+  step: ReadingStep; index: number; plan: GuidedReadingPlan; initialHelped: boolean; onHelp: () => void
+  onAdvance: (independent?: boolean) => void; onFinish: (independent: boolean) => void; playWord: PlayWord
 }) {
-  const [helped, setHelped] = useState(false)
-  const [built, setBuilt] = useState(false)
+  const [helped, setHelped] = useState(initialHelped)
+  const [position, setPosition] = useState(0)
   const [retry, setRetry] = useState(false)
   const [parentCheck, setParentCheck] = useState(false)
   const [activeSound, setActiveSound] = useState<number | null>(null)
-  const [soundUnavailable, setSoundUnavailable] = useState(false)
-  const [soundsPlayed, setSoundsPlayed] = useState(false)
-  const played = useRef(false)
+  const [unavailable, setUnavailable] = useState(false)
+  const sequence = useRef(0)
+  const playRequest = useRef(0)
   const word = 'word' in step ? step.word : undefined
-  const modelSounds = useCallback(() => {
+  const play = useCallback(async (text: string) => {
+    const request = sequence.current
+    const audioRequest = ++playRequest.current
+    const ok = await playWord(text)
+    if (!ok && request === sequence.current && audioRequest === playRequest.current) setUnavailable(true)
+    return ok
+  }, [playWord])
+  const model = useCallback(async () => {
     if (!word) return
-    stopAudioPlayback()
-    setSoundUnavailable(false)
-    setSoundsPlayed(false)
-    void playGuidedSounds(word.text, setActiveSound).then(status => {
-      if (status === 'unavailable') setSoundUnavailable(true)
-      if (status === 'played') setSoundsPlayed(true)
-    })
-  }, [word])
+    const request = ++sequence.current
+    setUnavailable(false); stopGuidedSounds(); stopAudioPlayback()
+    if (!await play(`model:${word.text}`) || request !== sequence.current) return
+    const status = await playGuidedSounds(word.text, setActiveSound)
+    if (request !== sequence.current) return
+    if (status === 'unavailable') setUnavailable(true)
+    if (status === 'played') await play(word.text)
+  }, [word, play])
   useEffect(() => {
-    if (step.kind === 'blend') modelSounds()
-    return () => stopGuidedSounds()
-  }, [step.kind, modelSounds])
-  useEffect(() => {
-    // No answer audio on independent word checks or the sentence finale.
-    if (step.kind === 'welcome' && !played.current) {
-      played.current = true
-      playWord('is')
-      return
+    const playback = sequence
+    if (step.kind === 'teach') void model()
+    if (step.kind === 'welcome') void play(`helpers:${plan.support.join(',')}`)
+    if (step.kind === 'build' && word) {
+      const request = playback.current
+      void play(word.text).then(ok => {
+        if (ok && request === playback.current) void playGuidedSounds(word.text, setActiveSound, 0).then(s => setUnavailable(s === 'unavailable'))
+      })
     }
-    if ((step.kind !== 'teach' && step.kind !== 'build') || !word || played.current) return
-    played.current = true
-    playWord(word.text)
-  }, [step.kind, word, playWord])
-
+    return () => { playback.current++; stopGuidedSounds(); stopAudioPlayback() }
+  }, [step.kind, word, model, play, plan.support])
   function hear() {
-    setHelped(true)
-    if (word) playWord(word.text)
-    else playWord(plan.sentence)
+    setHelped(true); onHelp(); setUnavailable(false)
+    void play(word?.text ?? plan.sentence)
   }
+  const audioNotice = unavailable ? <p role="status">Audio is unavailable. Reconnect and tap Hear again to retry.</p> : null
   if (step.kind === 'welcome') return <>
-    <h2>{plan.title}</h2>
-    <p>{plan.cue}</p>
-    <p>Listen to the sounds. Think the word, or whisper it. You do not need to say each sound.</p>
-    <p>Tap “I knew it” when you know a word, or “Help me” to hear it. Ask your parent only for the last sentence.</p>
-    <p>Our little helper word: <strong>is</strong>.</p>
+    <h2>{plan.title}</h2><p>{plan.cue}</p>
+    <p>Think or whisper each word. Tap “I knew it” or “Help me”. Ask your parent for the last sentence.</p>
+    <div className="guided-parent-note">{plan.support.map(helper => <p key={helper}><strong>{helper}</strong> — {READING_HELPERS[helper].note}</p>)}</div>
+    {audioNotice}
     <div className="focus-actions">
-      <button className="choice-action" onClick={() => playWord('is')}>Hear “is”</button>
+      <button className="choice-action" onClick={() => { setUnavailable(false); void play(`helpers:${plan.support.join(',')}`) }}>Hear again</button>
       <button className="primary choice-action" onClick={() => { prepareGuidedSounds(plan.words); onAdvance() }}>Let’s read</button>
     </div>
   </>
   if (step.kind === 'sentence') return <>
-    <span className="guided-theme" aria-hidden="true">🌷</span>
-    <h3>Your tiny sentence</h3>
-    <h2 className="guided-sentence">{plan.sentence}</h2>
-    <p>Read it out loud. Take your time.</p>
+    <span className="guided-theme" aria-hidden="true">🌷</span><h3>Your tiny sentence</h3>
+    <h2 className="guided-sentence">{plan.sentence}</h2><p>Read it out loud. Take your time.</p>
     {!parentCheck ? <>
-      <div className="focus-actions">
-        <button className="choice-action" onClick={hear}>Help me hear it</button>
-        <button className="primary choice-action" onClick={() => setParentCheck(true)}>Ready for parent check</button>
-      </div>
-      <p className="guided-parent-note">Parent: let her try before using audio. Sounding it out and correcting herself count as independent reading.</p>
+      <div className="focus-actions"><button className="choice-action" onClick={hear}>Help me hear it</button>
+        <button className="primary choice-action" onClick={() => setParentCheck(true)}>Ready for parent check</button></div>
+      <p className="guided-parent-note">Parent: let her try before using audio. Sounding out and self-correction count as independent. Any supplied word or audio counts as help.</p>
     </> : <>
-      <p className="guided-parent-note">Parent check: did she read the whole sentence out loud? Choose how she read it. Only confirm after hearing her.</p>
-      <div className="focus-actions">
-        <button className="primary choice-action" disabled={helped} onClick={() => onFinish(true)}>Read independently</button>
-        <button className="choice-action" onClick={() => onFinish(false)}>Read with help</button>
-      </div>
+      <div className="guided-parent-note"><p>Parent: after listening, ask “{plan.meaningPrompt.question}”</p>
+        <p>Suggested answer: {plan.meaningPrompt.answer} Accept her own words; talk it through together. There is no comprehension score.</p>
+        <p>How did she read the sentence aloud?</p></div>
+      <div className="focus-actions"><button className="primary choice-action" disabled={helped} onClick={() => onFinish(true)}>Read independently</button>
+        <button className="choice-action" onClick={() => onFinish(false)}>Read with help</button></div>
       {helped && <p>We listened together this time. Choose “Read with help”.</p>}
-    </>}
+    </>}{audioNotice}
   </>
   if (!word) return null
   if (step.kind === 'read') return <>
-    <h3>Your turn to read</h3>
-    <h2 className="guided-word">{word.text}</h2>
-    <p>Think the word, whisper it, or say the whole word softly.</p>
-    <div className="focus-actions">
-      {!helped ? <>
-        <button className="primary choice-action" onClick={() => onAdvance(true)}>I knew it</button>
-        <button className="choice-action" onClick={hear}>Help me</button>
-      </> : <>
-        <button className="choice-action" onClick={hear}>Hear again</button>
-        <button className="primary choice-action" onClick={() => onAdvance(false)}>Keep practising</button>
-      </>}
-    </div>
-    {helped && <p>Good choice asking for help. This word will come back for practice.</p>}
+    <h3>{word.text === plan.reviewWord ? 'A word from before' : 'Your turn to read'}</h3>
+    <h2 className="guided-word">{word.text}</h2><p>Think the word, whisper it, or say it softly.</p>
+    <div className="focus-actions">{!helped ? <>
+      <button className="primary choice-action" onClick={() => onAdvance(true)}>I knew it</button>
+      <button className="choice-action" onClick={hear}>Help me</button>
+    </> : <><button className="choice-action" onClick={hear}>Hear again</button>
+      <button className="primary choice-action" onClick={() => onAdvance(false)}>Keep practising</button></>}</div>
+    {helped && <p>Good choice asking for help. This word will come back for practice.</p>}{audioNotice}
   </>
   if (step.kind === 'build') {
-    const tile = buildReadingTile(word, index)
+    const built = position === word.sounds.length
+    const tile = built ? null : buildReadingTile(word, position, index)
+    const filled = new Set(word.sounds.slice(0, position).flatMap(u => u.positions))
     return <>
-      <h3>Build the word</h3>
-      <p>Listen, think, then tap the missing part. No talking needed.</p>
-      <button className="choice-action" onClick={() => playWord(word.text)}>Hear the word</button>
-      <h2 className="guided-word" aria-label="Word with a missing part">{word.parts.map((part, i) => i === tile.position && !built ? ' __ ' : part).join('')}</h2>
-      {!built ? <div className="focus-actions">{tile.choices.map(choice => <button className="choice-action guided-tile" key={choice}
-        onClick={() => {
-          if (choice === tile.correct) { setBuilt(true); playSfx('correct'); playWord(word.text) }
-          else { setRetry(true); playWord(word.text) }
-        }}>{choice}</button>)}</div> : <>
-        <p>You checked the whole word!</p>
-        <button className="primary choice-action" onClick={() => onAdvance()}>Keep reading</button>
-      </>}
-      {retry && !built && <p role="status">Listen and try again. Look for “{tile.correct}”.</p>}
+      <h3>Build the word, sound by sound</h3><p>Listen to the word. Choose the spelling for each sound.</p>
+      <h2 className="guided-word" aria-label="Your spelling">{[...word.text].map((letter, i) => filled.has(i) ? letter : '＿').join('')}</h2>
+      {unavailable ? <><p>Reconnect to hear the word and sound.</p><button className="choice-action" onClick={() => { setUnavailable(false); void play(word.text).then(ok => { if (ok && !built) void playGuidedSounds(word.text, setActiveSound, position).then(s => setUnavailable(s === 'unavailable')) }) }}>Hear again</button></> : built ? <><p>You built {word.text}! This was supported spelling practice.</p>
+        <button className="primary choice-action" onClick={() => onAdvance()}>Keep reading</button></> : retry ? <>
+        <p role="status">This sound is spelled <strong>{tile!.correct}</strong>. Listen, then try that sound again.</p>
+        <button className="primary choice-action" onClick={() => { setRetry(false); void playGuidedSounds(word.text, setActiveSound, position).then(s => setUnavailable(s === 'unavailable')) }}>Try again</button>
+      </> : <>
+        <p>Sound {position + 1} of {word.sounds.length}{tile!.unit.positions.length > 1 && tile!.correct.includes('_') ? ' — put these letters around the middle sound.' : ''}</p>
+        <div className="focus-actions">{tile!.choices.map(choice => <button className="choice-action guided-tile" key={choice} onClick={() => {
+          if (choice !== tile!.correct) { setRetry(true); void playGuidedSounds(word.text, setActiveSound, position).then(s => setUnavailable(s === 'unavailable')); return }
+          setPosition(position + 1); playSfx('correct')
+          if (position + 1 === word.sounds.length) void play(word.text)
+          else void playGuidedSounds(word.text, setActiveSound, position + 1).then(s => setUnavailable(s === 'unavailable'))
+        }}>{choice}</button>)}</div>
+      </>}{audioNotice}
     </>
   }
+  const activePositions = activeSound === null ? [] : word.sounds[activeSound].positions
   return <>
-    <h3>{step.kind === 'teach' ? 'Meet a word' : 'Blend it together'}</h3>
-    <h2 className="guided-word">{word.text}</h2>
-    <div className="guided-parts" aria-label="Reading sounds">{guidedSoundUnits(word.text).map((unit, i) =>
-      <span key={i} className={activeSound === i ? 'sound-active' : ''}>{unit.spelling}</span>)}</div>
-    <p>{step.kind === 'teach' ? 'Listen and look. You can say just the whole word.' : 'Listen to each sound. Join them in your head, then whisper or say the whole word.'}</p>
-    {step.kind === 'blend' && soundsPlayed && <p role="status">Your turn! Think or say the whole word.</p>}
-    {soundUnavailable && <p role="status">Sound clips are unavailable. Reconnect and tap “Hear the sounds” to retry. We will not say letter names instead.</p>}
-    <div className="focus-actions">
-      <button className="choice-action" onClick={step.kind === 'blend' ? modelSounds : () => playWord(word.text)}>{step.kind === 'blend' ? 'Hear the sounds' : 'Hear the word'}</button>
-      <button className="primary choice-action" onClick={() => onAdvance()}>{step.kind === 'teach' ? 'Got it' : 'I blended it'}</button>
-    </div>
+    <h3>Meet and blend a word</h3>
+    <h2 className="guided-word guided-letter-map">{[...word.text].map((letter, i) => <span key={i} className={activePositions.includes(i) ? 'sound-active' : ''}>{letter}</span>)}</h2>
+    <p>{word.meaning}</p><p>Hear the sounds join together. Think or whisper the whole word.</p>
+    {word.parts.some(p => p.length > 2) && word.parts.length > 1 && <p className="guided-parent-note">Word parts: {word.parts.join(' · ')}. Each part can contain several sounds.</p>}
+    {audioNotice}<div className="focus-actions"><button className="choice-action" onClick={() => void model()}>Hear again</button>
+      <button className="primary choice-action" onClick={() => onAdvance()}>Got it</button></div>
   </>
 }
