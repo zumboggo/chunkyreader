@@ -275,7 +275,8 @@ function soundSsmlBody(deck, card) {
   const example = escapeXml(card.exampleWord || '')
   const soundText = card.ssmlSound
   const cue = card.mouthCue ? ` <break time="250ms"/> ${escapeXml(card.mouthCue)}` : ''
-  return `Listen. ${soundText}. <break time="250ms"/> ${example} starts with ${soundText}.${cue}`
+  const position = card.lowercase === 'x' ? 'ends with' : 'starts with'
+  return `Listen. ${soundText}. <break time="250ms"/> ${example} ${position} ${soundText}.${cue}`
 }
 
 function createSsml(clip) {

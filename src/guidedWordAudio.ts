@@ -61,6 +61,17 @@ export function stopGuidedSounds() {
 }
 
 export async function playGuidedSounds(text: string, onSound: (index: number | null) => void, onlyUnit?: number): Promise<'played' | 'cancelled' | 'unavailable'> {
+  try {
+    const allUnits = guidedSoundUnits(text)
+    return playReadingSounds((onlyUnit === undefined ? allUnits : [allUnits[onlyUnit]]).map(unit => unit.sound), onSound)
+  } catch {
+    stopGuidedSounds(); onSound(null)
+    return 'unavailable'
+  }
+}
+
+/** Shared IPA-controlled sound models for Letters, Sounds, and word blending. */
+export async function playReadingSounds(sounds: string[], onSound: (index: number | null) => void = () => {}): Promise<'played' | 'cancelled' | 'unavailable'> {
   stopGuidedSounds()
   const request = generation
   try {
@@ -68,8 +79,7 @@ export async function playGuidedSounds(text: string, onSound: (index: number | n
     await ctx.resume()
     if (request !== generation) return 'cancelled'
     if (ctx.state !== 'running') return 'unavailable'
-    const allUnits = guidedSoundUnits(text)
-    const units = onlyUnit === undefined ? allUnits : [allUnits[onlyUnit]]
+    const units = sounds.map(sound => ({ sound }))
     if (!units.length) return 'unavailable'
     const buffers = await Promise.all(units.map(unit => buffer(unit.sound)))
     if (request !== generation) return 'cancelled'

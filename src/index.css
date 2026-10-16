@@ -9106,3 +9106,7 @@ body { padding-bottom: 0; }
 .words-simple-header { display: grid; gap: 6px; max-width: 580px; width: 100%; margin: 0 auto 12px; }
 .words-simple-header label { font-weight: 800; color: var(--ink); }
 .words-simple-header select { width: 100%; min-height: 48px; padding: 10px 14px; border: 2px solid #d5c3e7; border-radius: 14px; background: #fffaf4; color: #34334c; font: inherit; }
+
+.early-sound-boxes { display: flex; justify-content: center; gap: .65rem; margin: 1.2rem 0; }
+.early-sound-boxes span { display: grid; place-items: center; min-width: 3.7rem; min-height: 4.5rem; border: 3px solid #b8d8cc; border-radius: 1rem; background: #fffaf0; font-size: 2.6rem; font-weight: 800; }
+.early-sound-boxes .active { background: #d2f5df; border-color: #3d856a; transform: translateY(-4px); }

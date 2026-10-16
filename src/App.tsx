@@ -1,4 +1,7 @@
 import guidedAudio from './content/guided-audio.json'
+import soundModels from './content/guided-sounds.json'
+import { earlyReadingProgressKey, migrateSoundResume, earlyReadingPocket, earlyReadingContrast, earlyReadingWord, soundPosition } from './earlyReading'
+import { playGuidedSounds, playReadingSounds, stopGuidedSounds } from './guidedWordAudio'
 import { playRecordedClip } from './audioClipPack'
 import { assetUrl } from './mediaAssets'
 import { PrivateLibrary } from './PrivateLibrary'
@@ -97,12 +100,9 @@ type SarahQuestionKind =
   | 'beginningSound'
   | 'wordToBeginningSound'
   | 'soundToWord'
-type SarahActivityKind = 'intro' | 'explore' | SarahQuestionKind | 'review'
-// Sarah Level 2 (Sounds) follows the research-backed pattern used by the most
-// popular learn-to-read apps (Teach Your Monster to Read, Reading Eggs,
-// Endless Alphabet, Khan Academy Kids): anchor one sound to one keyword
-// picture, let the child echo it back, play with it cause-and-effect style,
-// then check with tiny two-choice questions and an oral-blending payoff.
+type SarahActivityKind = 'intro' | 'explore' | 'blend' | SarahQuestionKind | 'review'
+// Explicit sound-spelling models, cumulative practice, and decodable blending.
+// Design rationale and evidence: docs/early-reading.md.
 type SarahPhonemeQuestionKind =
   | 'soundToGrapheme' // Hear /m/, tap the matching spelling.
   | 'graphemeToSound' // See the spelling, tap the card that says its sound.
@@ -112,7 +112,7 @@ type SarahPhonemeActivityKind =
   | 'intro' // I do: hear + see the sound with its keyword before any question.
   | 'echo' // We do: "Your turn!" playful imitation prompt (no validation).
   | 'explore' // Play: squishy tap-to-hear cause-and-effect card.
-  | 'blend' // Payoff: stretch the sound into the keyword and blend it together.
+  | 'blend' // Combine every sound in a word using taught spellings.
   | SarahPhonemeQuestionKind
 type SarahActivityStatus = 'idle' | 'try-again' | 'correct' | 'revealed'
 type StoryDifficultyFilter = 'easy' | 'growing' | 'longer'
@@ -225,65 +225,6 @@ const SARAH_LESSON_ADVANCE = 1
 // 8 practice reps over 4 words (2 each) keeps lessons short for a 5-year-old
 // while still giving every word the two first-try chances mastery needs.
 const OLDER_READER_RECOGNITION_COUNT = 16
-const CONFUSABLES: Record<string, string[]> = {
-  b: ['d', 'p', 'q'],
-  d: ['b', 'p', 'q'],
-  p: ['b', 'd', 'q'],
-  q: ['b', 'd', 'p'],
-  m: ['n'],
-  n: ['m', 'u', 'h'],
-  u: ['n'],
-  i: ['l'],
-  l: ['i'],
-  c: ['o'],
-  o: ['c'],
-  f: ['t'],
-  t: ['f'],
-  h: ['n'],
-}
-
-// Sounds lessons pick distractors that are easy to mix up acoustically or
-// visually, so the two-choice questions train real sound discrimination
-// instead of lucky guesses. Keyed by grapheme to keep the data readable.
-const PHONEME_CONFUSABLES: Record<string, string[]> = {
-  m: ['n'],
-  n: ['m'],
-  p: ['b'],
-  b: ['p', 'd'],
-  t: ['d'],
-  d: ['t', 'b'],
-  c: ['g'],
-  g: ['c'],
-  f: ['v'],
-  v: ['f'],
-  s: ['z', 'sh'],
-  z: ['s'],
-  sh: ['ch', 's'],
-  ch: ['sh', 'j'],
-  j: ['ch'],
-  h: ['w'],
-  w: ['h', 'r'],
-  r: ['w', 'l'],
-  l: ['r'],
-  y: ['w'],
-  th: ['f'],
-  a: ['e', 'o'],
-  e: ['a', 'i'],
-  i: ['e', 'a'],
-  o: ['a', 'u'],
-  u: ['o', 'a'],
-  ee: ['ay', 'ie'],
-  ay: ['ee', 'ie'],
-  ie: ['ay', 'ee'],
-  oa: ['oo', 'ow'],
-  oo: ['oa', 'ow'],
-  ow: ['oy', 'oa'],
-  oy: ['ow'],
-  er: ['aw'],
-  aw: ['er', 'o'],
-  ng: ['n'],
-}
-
 const encouragement = [
   'Great job!',
   'You found it!',
@@ -939,7 +880,7 @@ function App() {
     }
     // For words, chooseSection already restored the saved monotonic index —
     // the continue snapshot must not override it with a stale position.
-    if (typeof state.cardIndex === 'number' && state.section !== 'words') setCardIndex(state.cardIndex)
+    if (typeof state.cardIndex === 'number' && state.section !== 'words' && state.section !== 'sounds') setCardIndex(state.cardIndex)
   }
 
   function goHome() {
@@ -967,15 +908,17 @@ function App() {
       targetDeckId = currentDecks.find(d => d.type === 'letters' && d.profile === 'sarah')?.id ?? ''
       targetMode = 'listeningMode'
       if (targetDeckId) {
-        const saved = progressStorage.getItem(`sarah-progress-${targetDeckId}`)
+        const saved = progressStorage.getItem(earlyReadingProgressKey(targetDeckId))
         resumeIndex = saved ? parseInt(saved, 10) : 0
       }
     } else if (section === 'sounds') {
       targetDeckId = currentDecks.find(d => d.type === 'phonemes' && d.profile === 'sarah')?.id ?? ''
       targetMode = 'listeningMode'
       if (targetDeckId) {
-        const saved = progressStorage.getItem(`sarah-progress-${targetDeckId}`)
-        resumeIndex = saved ? parseInt(saved, 10) : 0
+        const saved = progressStorage.getItem(earlyReadingProgressKey(targetDeckId))
+        const legacy = Number(progressStorage.getItem(`sarah-progress-${targetDeckId}`) ?? 0)
+        const soundDeck = currentDecks.find(d => d.id === targetDeckId)!
+        resumeIndex = saved ? parseInt(saved, 10) : migrateSoundResume(soundDeck.cards, legacy)
       }
     } else if (section === 'words') {
       const wordsDeck = currentDecks.find(d => d.type === 'reading-words' && d.profile === 'anna')
@@ -1141,7 +1084,7 @@ function App() {
     const nextIndex = sarahLetterLessonStartForNumber(nextLesson, activeDeck.cards.length)
     setCardIndex(nextIndex)
     if (activeDeck.profile === 'sarah') {
-      progressStorage.setItem(`sarah-progress-${activeDeck.id}`, String(nextIndex))
+      progressStorage.setItem(earlyReadingProgressKey(activeDeck.id), String(nextIndex))
       recordLocalProgressChange()
     }
     setPhase('learn')
@@ -2357,7 +2300,7 @@ function LessonMenu({
             </div>
               {activeDeck.type === 'letters' && (
                 <div className="menu-note parent-note">
-                  This section teaches letter sounds before letter names. The goal is hearing, saying, and matching sounds.
+                  Short sound-first practice: listen, say, match, and blend. Help her say the sound without adding “uh”. Trace letters together on paper, and keep sharing stories every day. Matching choices is practice, not proof of independent reading.
                 </div>
               )}
             {onGoHome && (
@@ -2439,17 +2382,20 @@ function AudioPromptButton({
   onClick,
   label = 'Listen',
 }: {
-  onClick: () => void
+  onClick: () => unknown
   label?: string
 }) {
+  const [unavailable, setUnavailable] = useState(false)
   return (
-    <button type="button" className="audio-prompt-button" onClick={onClick}>
+    <button type="button" className="audio-prompt-button" onClick={async () => {
+      try { setUnavailable(await onClick() === 'unavailable') } catch { setUnavailable(true) }
+    }}>
       <span className="audio-icon" aria-hidden="true">
         <span className="audio-wave" />
         <span className="audio-wave" />
         <span className="audio-wave" />
       </span>
-      <span className="audio-label">{label}</span>
+      <span className="audio-label">{unavailable ? 'Try audio again' : label}</span>
     </button>
   )
 }
@@ -2512,6 +2458,7 @@ function SarahLetterLesson({
       return
     }
     setWrongChoice(answer)
+    setHadHelp(true)
     if (tries === 0) {
       setTries(1)
       setStatus('try-again')
@@ -2543,7 +2490,7 @@ function SarahLetterLesson({
         <Mascot mood="happy" />
         <div>
           <span className="prompt-topline">Lesson {lessonNumber} complete</span>
-          <h2>{hadHelp ? 'Let’s practice this sound once more!' : 'You know this sound!'}</h2>
+          <h2>{hadHelp ? 'Let’s practice this sound once more!' : 'You practiced your sounds!'}</h2>
           <div className="letter-review-row" aria-label="Letters practiced">
             <strong>{lessonCards[0]?.lowercase ?? lessonCards[0]?.displayText}</strong>
           </div>
@@ -2556,7 +2503,7 @@ function SarahLetterLesson({
     )
   }
 
-  const isIntro = activity.kind === 'intro' || activity.kind === 'explore'
+  const isIntro = activity.kind === 'intro' || activity.kind === 'explore' || activity.kind === 'blend'
   const mood: MascotMood =
     status === 'correct' ? 'happy' : status === 'try-again' || status === 'revealed' ? 'curious' : isIntro ? 'reading' : 'curious'
   const feedback = getSarahFeedback(status, activity)
@@ -2564,7 +2511,9 @@ function SarahLetterLesson({
   return (
     <section className={`focus-lesson ${isIntro ? 'intro' : 'question'} ${status}`}>
       <div className="focus-main">
-        {activity.kind === 'explore' ? (
+        {activity.kind === 'blend' ? (
+          <EarlyReadingBlend key={activityIndex} cards={lessonCards} onNext={nextActivity} />
+        ) : activity.kind === 'explore' ? (
           <SarahExploreView deck={deck} activity={activity} onNext={nextActivity} />
         ) : isIntro ? (
           <SarahIntroView
@@ -2688,9 +2637,9 @@ function SarahQuestionView({
 
   function handleAudioClick() {
     if (questionKind === 'upperLowerMatch') {
-      void playCardAudio(deck, activity.card)
+      return playCardAudio(deck, activity.card)
     } else {
-      void playCardAudio(deck, activity.card)
+      return playCardAudio(deck, activity.card)
     }
   }
 
@@ -2728,7 +2677,7 @@ function SarahQuestionView({
         {questionKind === 'soundToLetter' && (
           <>
             <span className="stage-label">Hear the sound</span>
-            <h2>Tap {activity.card.sound}.</h2>
+            <h2>Which letter makes this sound?</h2>
             <AudioPromptButton onClick={handleAudioClick} label="Tap to hear" />
             {showAdultDetails && <span className="phonetic-detail">{activity.card.sound}</span>}
           </>
@@ -2744,9 +2693,7 @@ function SarahQuestionView({
           <>
             <span className="stage-label">Match big and little</span>
             <h2>
-              {activity.promptCase === 'upper'
-                ? `Find little ${activity.card.lowercase}.`
-                : `Find big ${activity.card.uppercase}.`}
+              {activity.promptCase === 'upper' ? 'Find its little letter.' : 'Find its big letter.'}
             </h2>
             <div className="prompt-letter case-prompt-display">
               {activity.promptCase === 'upper' ? activity.card.uppercase : activity.card.lowercase}
@@ -2755,8 +2702,8 @@ function SarahQuestionView({
         )}
         {questionKind === 'beginningSound' && (
           <>
-            <span className="stage-label">Starting sound</span>
-            <h2>Tap the sound for {activity.card.exampleWord}.</h2>
+            <span className="stage-label">Listen inside the word</span>
+            <h2>Which sound is at the {soundPosition(activity.card)} of {activity.card.exampleWord}?</h2>
             <div className="focus-visual compact">
               <Picture deck={deck} card={activity.card} />
               <span className="example-word">{activity.card.exampleWord}</span>
@@ -2766,8 +2713,8 @@ function SarahQuestionView({
         )}
         {questionKind === 'wordToBeginningSound' && (
           <>
-            <span className="stage-label">Starting sound</span>
-            <h2>Tap the sound for {activity.card.exampleWord}.</h2>
+            <span className="stage-label">Listen inside the word</span>
+            <h2>Which sound is at the {soundPosition(activity.card)} of {activity.card.exampleWord}?</h2>
             <div className="focus-visual compact">
               <Picture deck={deck} card={activity.card} />
               <span className="example-word">{activity.card.exampleWord}</span>
@@ -2832,18 +2779,7 @@ function SarahQuestionView({
   )
 }
 
-// ---------------------------------------------------------------------------
-// Sarah Level 2 "Sounds" lesson.
-// One speech sound per lesson, anchored to one keyword picture, taught the way
-// the most popular evidence-based reading apps do it (Teach Your Monster to
-// Read / Reading Eggs / Endless Alphabet / Khan Academy Kids):
-//   1. hear + see the sound with its keyword (embedded picture mnemonic)
-//   2. echo it back playfully (phonemic awareness, zero pressure)
-//   3. tap-to-hear cause-and-effect play (Endless Alphabet style)
-//   4. tiny two-choice checks: sound->spelling, spelling->sound, first sound
-//   5. oral blending payoff: stretch the sound into the keyword
-// ---------------------------------------------------------------------------
-
+// Sarah Level 2: explicit models, varied cumulative checks, and word blending.
 function SarahPhonemeLesson({
   deck,
   lessonCards,
@@ -2901,6 +2837,7 @@ function SarahPhonemeLesson({
       return
     }
     setWrongChoice(answer)
+    setHadHelp(true)
     if (tries === 0) {
       setTries(1)
       setStatus('try-again')
@@ -2932,7 +2869,7 @@ function SarahPhonemeLesson({
         <Mascot mood="happy" />
         <div>
           <span className="prompt-topline">Lesson {lessonNumber} complete</span>
-          <h2>{hadHelp ? 'Let’s practice this sound once more!' : 'You know this sound!'}</h2>
+          <h2>{hadHelp ? 'Let’s practice this sound once more!' : 'You practiced your sounds!'}</h2>
           <div className="letter-review-row" aria-label="Sound practiced">
             <strong>{lessonCards[0]?.grapheme ?? lessonCards[0]?.displayText}</strong>
             <span className="review-keyword">{lessonCards[0]?.exampleWord}</span>
@@ -2969,7 +2906,7 @@ function SarahPhonemeLesson({
         ) : activity.kind === 'explore' ? (
           <SarahPhonemeExploreView deck={deck} activity={activity} onNext={nextActivity} />
         ) : activity.kind === 'blend' ? (
-          <SarahPhonemeBlendView deck={deck} activity={activity} onNext={nextActivity} />
+          <EarlyReadingBlend key={activityIndex} cards={lessonCards} onNext={nextActivity} />
         ) : (
           <SarahPhonemeQuestionView
             deck={deck}
@@ -3022,7 +2959,7 @@ function SarahPhonemeIntroView({
         <span className="example-word">{activity.card.exampleWord}</span>
       </div>
       <div className="focus-actions">
-        <AudioPromptButton onClick={() => void playPhonemeSoundThenWord(deck, activity.card)} label="Listen" />
+        <AudioPromptButton onClick={() => playPhonemeSoundThenWord(deck, activity.card)} label="Listen" />
         <button type="button" className="primary" onClick={onNext}>Next</button>
       </div>
     </div>
@@ -3047,7 +2984,7 @@ function SarahPhonemeEchoView({
       <button
         type="button"
         className="echo-stage squish"
-        onClick={() => void playPhonemeSound(deck, activity.card)}
+        onClick={() => playPhonemeSound(deck, activity.card)}
         aria-label={`Hear ${phonemeSoundLabel(activity.card)} again`}
       >
         <span className="echo-ring ring-one" aria-hidden="true" />
@@ -3056,7 +2993,7 @@ function SarahPhonemeEchoView({
         <strong className="echo-letter">{activity.card.grapheme ?? activity.card.displayText}</strong>
       </button>
       <div className="focus-actions">
-        <AudioPromptButton onClick={() => void playPhonemeSound(deck, activity.card)} label="Hear it again" />
+        <AudioPromptButton onClick={() => playPhonemeSound(deck, activity.card)} label="Hear it again" />
         <button type="button" className="primary" onClick={onNext}>I said it!</button>
       </div>
     </div>
@@ -3081,54 +3018,54 @@ function SarahPhonemeExploreView({
       <button
         type="button"
         className="letter-display explore-letter squish"
-        onClick={() => void playPhonemeSound(deck, activity.card)}
+        onClick={() => playPhonemeSound(deck, activity.card)}
         aria-label={`Hear ${phonemeSoundLabel(activity.card)}`}
       >
         <strong>{activity.card.grapheme ?? activity.card.displayText}</strong>
         <Picture deck={deck} card={activity.card} />
       </button>
       <div className="focus-actions">
-        <AudioPromptButton onClick={() => void playPhonemeSound(deck, activity.card)} label="Hear it again" />
+        <AudioPromptButton onClick={() => playPhonemeSound(deck, activity.card)} label="Hear it again" />
         <button type="button" className="primary" onClick={onNext}>Next</button>
       </div>
     </div>
   )
 }
 
-function SarahPhonemeBlendView({
-  deck,
-  activity,
-  onNext,
-}: {
-  deck: LearningDeck
-  activity: SarahPhonemeActivity
-  onNext: () => void
-}) {
-  return (
-    <div className="focus-intro phoneme-blend">
-      <div className="focus-prompt">
-        <span className="stage-label">Stretch and blend</span>
-        <h2>{phonemeSoundLabel(activity.card)}… {activity.card.exampleWord}!</h2>
-      </div>
-      <button
-        type="button"
-        className="blend-stage squish"
-        onClick={() => void playPhonemeSoundThenWord(deck, activity.card)}
-        aria-label={`Hear the sound blend into ${activity.card.exampleWord}`}
-      >
-        <span className="blend-chip blend-sound">{activity.card.grapheme ?? activity.card.displayText}</span>
-        <span className="blend-spark" aria-hidden="true">✦</span>
-        <span className="blend-chip blend-word">
-          <Picture deck={deck} card={activity.card} />
-          <strong>{activity.card.exampleWord}</strong>
-        </span>
-      </button>
-      <div className="focus-actions">
-        <AudioPromptButton onClick={() => void playPhonemeSoundThenWord(deck, activity.card)} label="Hear it again" />
-        <button type="button" className="primary" onClick={onNext}>Next</button>
-      </div>
+function EarlyReadingBlend({ cards, onNext }: { cards: LearningCard[]; onNext: () => void }) {
+  const word = earlyReadingWord(cards)
+  const [active, setActive] = useState<number | null>(null)
+  const [unavailable, setUnavailable] = useState(false)
+  const request = useRef(0)
+  const model = useCallback(async () => {
+    if (!word) return
+    const id = ++request.current
+    stopAudioPlayback()
+    setUnavailable(false)
+    const result = await playGuidedSounds(word.text, setActive)
+    if (id !== request.current) return
+    if (result === 'unavailable') { setUnavailable(true); return }
+    const clip = (guidedAudio as Record<string, { path: string }>)[word.text]
+    if (result === 'played' && clip) {
+      try { await playAudioUrl(assetUrl(clip.path)) } catch { if (id === request.current) setUnavailable(true) }
+    }
+  }, [word])
+  useEffect(() => {
+    const playback = request
+    const timer = window.setTimeout(() => void model(), 250)
+    return () => { window.clearTimeout(timer); playback.current++; stopGuidedSounds(); stopAudioPlayback() }
+  }, [model])
+  if (!word) return null
+  return <div className="focus-intro">
+    <div className="focus-prompt"><span className="stage-label">Listen, then join in</span><h2>Slide the sounds together.</h2></div>
+    <div className="early-sound-boxes" aria-label={`Sounds in ${word.text}`}>
+      {word.sounds.map((unit, i) => <span key={i} className={active === i ? 'active' : ''}>{unit.spelling}</span>)}
     </div>
-  )
+    <p>Say {word.text}. Tap one finger for each sound, then say the whole word.</p>
+    <p>With a grown-up: say the sounds as you write the word.</p>
+    {unavailable && <p role="status">We couldn’t play the sound. Tap Listen to try again.</p>}
+    <div className="focus-actions"><AudioPromptButton onClick={() => void model()} /><button className="primary" onClick={onNext}>Next</button></div>
+  </div>
 }
 
 function SarahPhonemeQuestionView({
@@ -3155,7 +3092,7 @@ function SarahPhonemeQuestionView({
       void playPhonemeWord(deck, activity.card)
       return
     }
-    void playPhonemeSound(deck, activity.card)
+    return playPhonemeSound(deck, activity.card)
   }
 
   const chooseByIndex = useCallback((index: number) => {
@@ -3187,7 +3124,7 @@ function SarahPhonemeQuestionView({
         {kind === 'soundToGrapheme' && (
           <>
             <span className="stage-label">Hear the sound</span>
-            <h2>Tap {phonemeSoundLabel(activity.card)}.</h2>
+            <h2>Which spelling makes this sound?</h2>
             <AudioPromptButton onClick={handleAudioClick} label="Tap to hear" />
             {showAdultDetails && <span className="phonetic-detail">{activity.card.phoneme}</span>}
           </>
@@ -3201,8 +3138,8 @@ function SarahPhonemeQuestionView({
         )}
         {kind === 'beginningSound' && (
           <>
-            <span className="stage-label">Starting sound</span>
-            <h2>Tap the sound for {activity.card.exampleWord}.</h2>
+            <span className="stage-label">Listen inside the word</span>
+            <h2>Which sound is at the {soundPosition(activity.card)} of {activity.card.exampleWord}?</h2>
             <div className="focus-visual compact">
               <Picture deck={deck} card={activity.card} />
               <span className="example-word">{activity.card.exampleWord}</span>
@@ -5409,6 +5346,10 @@ function useAutoplayCard(deck: LearningDeck, card: LearningCard, key: string) {
 }
 
 async function playCardAudio(deck: LearningDeck, card: LearningCard) {
+  if (card.avoidTtsLetterName) {
+    stopAudioPlayback()
+    return playReadingSounds(card.lowercase === 'x' ? ['k', 's'] : [card.lowercase ?? ''])
+  }
   const audioPath = card.audio || card.exampleAudio || card.letterNameAudio
   const audioUrl = resolveAssetUrl(deck, audioPath)
   if (audioUrl) {
@@ -5420,6 +5361,7 @@ async function playCardAudio(deck: LearningDeck, card: LearningCard) {
     }
   }
 
+  if (card.avoidTtsLetterName) return
   const text = card.ttsText || card.speechCue || card.mathPrompt || card.exampleWord || card.word || card.displayText
   speakText(deck, text)
 }
@@ -5840,38 +5782,22 @@ function getChoicePrompt(deck: LearningDeck, card: LearningCard, mode: LearningM
 function buildSarahActivities(lessonCards: LearningCard[]): SarahActivity[] {
   const card = lessonCards[0]
   if (!card) return []
-  const choices = (repetition: number) => buildSarahOptions(lessonCards, card, repetition)
-  return [
-    { kind: 'intro', card },
-    { kind: 'explore', card },
-    { kind: 'intro', card },
-    { kind: 'soundToLetter', card, options: choices(1) },
-    { kind: 'intro', card },
-    { kind: 'soundToWord', card, options: choices(2) },
-    { kind: 'intro', card },
-    { kind: 'soundToLetter', card, options: choices(3) },
-    { kind: 'explore', card },
-    { kind: 'intro', card },
-    { kind: 'wordToBeginningSound', card, options: choices(4) },
-    { kind: 'intro', card },
-    {
-      kind: 'upperLowerMatch',
-      card,
-      promptCase: 'lower',
-      textOptions: buildCaseOptions(lessonCards, card, 'lower', 5),
-      correctText: card.uppercase,
-    },
-    { kind: 'intro', card },
-    { kind: 'soundToLetter', card, options: choices(6) },
-    { kind: 'intro', card },
-    { kind: 'beginningSound', card, options: choices(7) },
-    { kind: 'intro', card },
-    { kind: 'soundToLetter', card, options: choices(8) },
-  ]
+  const activities: SarahActivity[] = lessonCards.map(card => ({ kind: 'intro', card }))
+  activities.push({ kind: 'explore', card })
+  for (const [repetition, target] of [card, ...lessonCards.slice(1, 3), card].entries()) {
+    if (!earlyReadingContrast(lessonCards, target, repetition)) continue
+    activities.push({ kind: 'soundToLetter', card: target, options: buildSarahOptions(lessonCards, target, repetition) })
+  }
+  activities.push({ kind: 'intro', card }, {
+    kind: 'upperLowerMatch', card, promptCase: 'lower',
+    textOptions: buildCaseOptions(lessonCards, card, 'lower', 5), correctText: card.uppercase,
+  })
+  if (earlyReadingWord(lessonCards)) activities.push({ kind: 'blend', card })
+  return activities
 }
 
 function buildSarahOptions(lessonCards: LearningCard[], card: LearningCard, repetition = 0): LearningCard[] {
-  const distractor = bestDistractor(lessonCards, card)
+  const distractor = earlyReadingContrast(lessonCards, card, repetition) ?? card
   return [card, distractor].sort(
     (a, b) => stableSort(`sarah:${card.id}:${repetition}:${a.id}`) - stableSort(`sarah:${card.id}:${repetition}:${b.id}`),
   )
@@ -5883,7 +5809,7 @@ function buildCaseOptions(
   promptCase: 'upper' | 'lower',
   repetition = 0,
 ): string[] {
-  const distractor = bestDistractor(lessonCards, card)
+  const distractor = earlyReadingContrast(lessonCards, card, repetition) ?? card
   const correct = promptCase === 'upper' ? card.lowercase : card.uppercase
   const wrong = promptCase === 'upper' ? distractor.lowercase : distractor.uppercase
   return [correct, wrong]
@@ -5891,20 +5817,8 @@ function buildCaseOptions(
     .sort((a, b) => stableSort(`case:${card.id}:${repetition}:${a}`) - stableSort(`case:${card.id}:${repetition}:${b}`))
 }
 
-function bestDistractor(lessonCards: LearningCard[], card: LearningCard): LearningCard {
-  const lower = card.lowercase ?? ''
-  const confusable = CONFUSABLES[lower] ?? []
-  const match = lessonCards.find((candidate) => candidate.id !== card.id && confusable.includes(candidate.lowercase ?? ''))
-  if (match) return match
-  return (
-    lessonCards
-      .filter((candidate) => candidate.id !== card.id)
-      .sort((a, b) => stableSort(`distractor:${card.id}:${a.id}`) - stableSort(`distractor:${card.id}:${b.id}`))[0] ?? card
-  )
-}
-
 function getSarahQuestionKind(activity: SarahActivity): SarahQuestionKind | 'intro' {
-  if (activity.kind === 'explore') return 'intro'
+  if (activity.kind === 'explore' || activity.kind === 'blend') return 'intro'
   return activity.kind === 'review' ? activity.reviewVariant ?? 'soundToLetter' : activity.kind
 }
 
@@ -5917,8 +5831,9 @@ function getSarahFeedback(status: SarahActivityStatus, activity: SarahActivity):
   if (activity.kind === 'intro' || activity.kind === 'explore') {
     return { title: 'Listen with Chunky!', detail: `${activity.card.sound} like ${activity.card.exampleWord}.` }
   }
+  if (activity.kind === 'blend') return { title: 'Join in!', detail: 'Listen, blend, and try writing with a grown-up.' }
   if (status === 'correct') return { title: 'Yay!', detail: 'Great job!' }
-  if (status === 'try-again') return { title: 'Almost!', detail: 'Try one more time.' }
+  if (status === 'try-again') return { title: 'Let’s listen again.', detail: 'Hear the sound, then try again.' }
   if (status === 'revealed') return { title: 'Here it is!', detail: `It was ${sarahAnswerText(activity)}.` }
   return { title: 'Hmm...', detail: 'Tap one choice.' }
 }
@@ -5940,22 +5855,20 @@ function useAutoplaySarahActivity(deck: LearningDeck, activity: SarahActivity | 
   const lastKey = useRef('')
 
   useEffect(() => {
-    if (!activity || lastKey.current === key) return
-    lastKey.current = key
+    if (!activity || activity.kind === 'blend' || lastKey.current === key) return
     const timer = window.setTimeout(() => {
+      lastKey.current = key
       void playSarahActivityAudio(deck, activity)
     }, 250)
-    return () => window.clearTimeout(timer)
+    return () => { window.clearTimeout(timer); stopGuidedSounds(); stopAudioPlayback() }
   }, [activity, deck, key])
 }
 
 async function playSarahActivityAudio(deck: LearningDeck, activity: SarahActivity) {
-  const kind = getSarahQuestionKind(activity)
-  if (kind === 'upperLowerMatch') {
-    await playCardAudio(deck, activity.card)
-    return
-  }
-  await playCardAudio(deck, activity.card)
+  const result = await playCardAudio(deck, activity.card)
+  if (result === 'cancelled' || result === 'unavailable') return result
+  if (activity.kind === 'intro' || activity.kind === 'explore') await playPhonemeWord(deck, activity.card)
+  return result
 }
 
 // --- Sarah Level 2 Sounds lesson helpers ----------------------------------
@@ -5963,49 +5876,26 @@ async function playSarahActivityAudio(deck: LearningDeck, activity: SarahActivit
 // Kid-facing sound labels use the friendly "/sh/"-style grapheme spelling (the
 // same convention as Level 1 letters); strict IPA stays an adult-only detail.
 function phonemeSoundLabel(card: LearningCard): string {
-  return `/${card.grapheme ?? card.displayText}/`
+  const vowels: Record<string, string> = { 'short-a': 'ă', 'short-e': 'ĕ', 'short-i': 'ĭ', 'short-o': 'ŏ', 'short-u': 'ŭ' }
+  return `/${vowels[card.id.replace('phoneme-', '')] ?? card.grapheme ?? card.displayText}/`
 }
 
 function buildSarahPhonemeActivities(lessonCards: LearningCard[]): SarahPhonemeActivity[] {
   const card = lessonCards[0]
   if (!card) return []
-  const choices = (repetition: number) => buildSarahPhonemeOptions(lessonCards, card, repetition)
-  // Hear + see the answer again before every question, exactly like the
-  // letters flow: questions reinforce what was just shown, never memory tests.
-  return [
-    { kind: 'intro', card },
-    { kind: 'echo', card },
-    { kind: 'explore', card },
-    { kind: 'soundToGrapheme', card, options: choices(1) },
-    { kind: 'intro', card },
-    { kind: 'graphemeToSound', card, options: choices(2) },
-    { kind: 'intro', card },
-    { kind: 'beginningSound', card, options: choices(3) },
-    { kind: 'blend', card },
-    { kind: 'soundToWord', card, options: choices(4) },
-    { kind: 'intro', card },
-    { kind: 'soundToGrapheme', card, options: choices(5) },
-  ]
-}
-
-function buildSarahPhonemeOptions(lessonCards: LearningCard[], card: LearningCard, repetition = 0): LearningCard[] {
-  const distractor = bestPhonemeDistractor(lessonCards, card, repetition)
-  return [card, distractor].sort(
-    (a, b) => stableSort(`sarah-phoneme:${card.id}:${repetition}:${a.id}`) - stableSort(`sarah-phoneme:${card.id}:${repetition}:${b.id}`),
-  )
-}
-
-function bestPhonemeDistractor(lessonCards: LearningCard[], card: LearningCard, repetition = 0): LearningCard {
-  const grapheme = card.grapheme ?? card.displayText
-  const confusable = PHONEME_CONFUSABLES[grapheme] ?? []
-  const candidates = lessonCards.filter((candidate) => candidate.id !== card.id)
-  const match = candidates.find((candidate) => confusable.includes(candidate.grapheme ?? candidate.displayText))
-  if (match) return match
-  return (
-    candidates.sort(
-      (a, b) => stableSort(`phoneme-distractor:${card.id}:${repetition}:${a.id}`) - stableSort(`phoneme-distractor:${card.id}:${repetition}:${b.id}`),
-    )[0] ?? card
-  )
+  const activities: SarahPhonemeActivity[] = lessonCards.map(card => ({ kind: 'intro', card }))
+  activities.push({ kind: 'echo', card })
+  for (const [repetition, target] of [card, ...lessonCards.slice(1, 3), card].entries()) {
+    const contrast = earlyReadingContrast(lessonCards, target, repetition)
+    if (!contrast) continue
+    const options = [target, contrast].sort((a, b) => stableSort(`sound:${repetition}:${a.id}`) - stableSort(`sound:${repetition}:${b.id}`))
+    activities.push({ kind: 'soundToGrapheme', card: target, options })
+  }
+  // Sound position matters: /ng/ in ring is final, /er/ in bird is medial.
+  const contrast = earlyReadingContrast(lessonCards, card)
+  if (contrast) activities.push({ kind: 'intro', card }, { kind: 'beginningSound', card, options: [contrast, card] })
+  if (earlyReadingWord(lessonCards)) activities.push({ kind: 'blend', card })
+  return activities
 }
 
 function getSarahPhonemeFeedback(status: SarahActivityStatus, activity: SarahPhonemeActivity): { title: string; detail: string } {
@@ -6018,10 +5908,10 @@ function getSarahPhonemeFeedback(status: SarahActivityStatus, activity: SarahPho
     return { title: 'Your turn!', detail: `Say ${sound} like ${word}.` }
   }
   if (activity.kind === 'blend') {
-    return { title: 'Blend it!', detail: `${sound}… ${word}!` }
+    return { title: 'Blend it!', detail: 'Join the sounds, then say the word.' }
   }
   if (status === 'correct') return { title: 'Yay!', detail: 'Great job!' }
-  if (status === 'try-again') return { title: 'Almost!', detail: 'Try one more time.' }
+  if (status === 'try-again') return { title: 'Let’s listen again.', detail: 'Hear the sound, then try again.' }
   if (status === 'revealed') return { title: 'Here it is!', detail: `It was ${sarahPhonemeAnswerText(activity)}.` }
   return { title: 'Hmm...', detail: 'Tap one choice.' }
 }
@@ -6035,38 +5925,40 @@ function useAutoplaySarahPhonemeActivity(deck: LearningDeck, activity: SarahPhon
   const lastKey = useRef('')
 
   useEffect(() => {
-    if (!activity || lastKey.current === key) return
-    lastKey.current = key
+    if (!activity || activity.kind === 'blend' || lastKey.current === key) return
     const timer = window.setTimeout(() => {
+      lastKey.current = key
       void playSarahPhonemeActivityAudio(deck, activity)
     }, 250)
-    return () => window.clearTimeout(timer)
+    return () => { window.clearTimeout(timer); stopGuidedSounds(); stopAudioPlayback() }
   }, [activity, deck, key])
 }
 
 async function playSarahPhonemeActivityAudio(deck: LearningDeck, activity: SarahPhonemeActivity) {
   if (activity.kind === 'intro' || activity.kind === 'blend') {
-    await playPhonemeSoundThenWord(deck, activity.card)
-    return
+    return playPhonemeSoundThenWord(deck, activity.card)
   }
   if (activity.kind === 'beginningSound') {
-    await playPhonemeWord(deck, activity.card)
-    return
+    return playPhonemeWord(deck, activity.card)
   }
-  await playPhonemeSound(deck, activity.card)
+  return playPhonemeSound(deck, activity.card)
 }
 
 async function playPhonemeSound(deck: LearningDeck, card: LearningCard) {
+  const ipa = (card.phoneme ?? card.ipa ?? '').replaceAll('/', '')
+  const sound = Object.entries(soundModels).find(([, clip]) => clip.ipa === ipa)?.[0]
+  if (sound) { stopAudioPlayback(); return playReadingSounds([sound]) }
   const url = resolveAssetUrl(deck, card.audio)
   if (url) {
     try {
       await playAudioUrl(url)
       return
     } catch {
-      // Missing or blocked clips fall back to browser speech below.
+      // The child can retry this recording without a letter-name fallback.
     }
   }
-  speakText(deck, card.speechCue ?? card.exampleWord ?? card.displayText)
+  // Keep the Listen button available for retry; never substitute a letter name.
+  return 'unavailable' as const
 }
 
 async function playPhonemeWord(deck: LearningDeck, card: LearningCard) {
@@ -6082,12 +5974,12 @@ async function playPhonemeWord(deck: LearningDeck, card: LearningCard) {
   speakText(deck, card.exampleWord ?? card.displayText)
 }
 
-// The blending anchor: hear the stretched sound, then the whole keyword, just
-// like the sound -> word moments in the top phonics apps.
+// Keyword model, distinct from decoding a complete word sound by sound.
 async function playPhonemeSoundThenWord(deck: LearningDeck, card: LearningCard) {
-  await playPhonemeSound(deck, card)
-  await new Promise((resolve) => window.setTimeout(resolve, 160))
+  const result = await playPhonemeSound(deck, card)
+  if (result === 'cancelled' || result === 'unavailable') return result
   await playPhonemeWord(deck, card)
+  return result
 }
 
 
@@ -6325,11 +6217,7 @@ function sarahLetterLessonSizeForStart(start: number, totalCards: number): numbe
 }
 
 function sarahLetterPocket(cards: LearningCard[], start: number): LearningCard[] {
-  if (!cards.length) return []
-  return Array.from(
-    { length: Math.min(LESSON_SIZE, cards.length) },
-    (_, offset) => cards[(start + offset) % cards.length],
-  )
+  return earlyReadingPocket(cards, start)
 }
 
 function stableSort(value: string): number {
