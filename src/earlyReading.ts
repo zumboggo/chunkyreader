@@ -2,17 +2,20 @@ import soundModels from './content/guided-sounds.json'
 import type { LearningCard } from './types'
 import { READING_LEXICON, type ReadingWord } from './guidedWords'
 
-/** One focus item and up to four previously visited items; never look ahead. */
+/** Two sounds per toddler visit: one focus and one familiar contrast. */
 export function earlyReadingPocket(cards: LearningCard[], start: number): LearningCard[] {
   if (!cards.length) return []
   const index = Math.max(0, Math.min(cards.length - 1, start))
-  // The first visit teaches a contrast explicitly before asking any questions.
   if (index === 0) return cards.slice(0, 2)
-  const known = cards.slice(0, index + 1)
-  const word = earlyReadingWord([cards[index], ...known.filter(c => c.id !== cards[index].id)])
-  const blendCards = word?.sounds.map(unit => known.find(c => spelling(c) === unit.spelling)!) ?? []
-  return [...new Map([cards[index], ...blendCards, cards[index - 1], cards[0], cards[Math.floor(index / 2)]]
-    .map(card => [card.id, card])).values()].slice(0, 5)
+  const card = cards[index]
+  // M, S, A and P are already familiar to Sarah. Prefer one as a reassuring anchor.
+  const earlier = cards.slice(0, index)
+  const familiar = earlier.filter(c => ['m', 's', 'a', 'p'].includes(spelling(c)))
+  const word = earlyReadingWord([card, ...earlier])
+  const partner = word?.sounds.length === 2 && word.sounds.some(unit => unit.spelling === spelling(card))
+    ? earlier.find(c => word.sounds.some(unit => unit.spelling === spelling(c))) : undefined
+  const contrast = partner ?? earlyReadingContrast(familiar, card, index) ?? earlyReadingContrast(earlier, card)
+  return contrast ? [card, contrast] : [card]
 }
 
 const spelling = (card: LearningCard) => card.lowercase ?? card.grapheme ?? card.displayText

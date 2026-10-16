@@ -5,11 +5,11 @@ Chunky Reader is a small, joyful reading app for young children. Keep it close t
 ## Learning Flow Rules
 
 - Keep lessons to 4 minutes or less.
-- Show only 5 words, letters, or sounds in a lesson pocket.
+- Show only 5 words, letters, or sounds in a lesson pocket; Sarah’s toddler Letters/Sounds visits use just two sounds.
 - Keep a maximum of two choices visible at any time.
 - Always let the child hear and see the answer before any question.
 - Autoplay audio every time a new word, letter, or sound is introduced.
-- Sarah Level 1 letter lessons derive about 25 tiny activities from each 5-letter chunk: intro, sound-to-letter, uppercase/lowercase matching, beginning-sound, and mixed review.
+- Sarah is two years old. Letters/Sounds visits model two sounds, invite copying/tapping, and offer only two supported matching turns (about 30–60 seconds of shared play). No required case conversion, sound-position quizzes, writing, or blending. Optional word play needs an adult’s explicit Listen together tap and an equally rewarded All done exit. Keep familiar M/S/A/P anchors and simple opening pictures (moon, sun, apple, tree, pig). Do not assume whether parent-reported “hard E” means long or short E without clarification.
 - Sarah Level 1 uses phonics-first ordering: `m s a t p`, `c r n d i`, `f b h g o`, `l k e u w`, then final tricky-sounds review `j y v z q x`.
 - Sarah Level 1 teaches phonetic sounds before letter names. Do not send bare letters to TTS; use SSML phoneme tags from `scripts/phonics-level-1.mjs`.
 - Questions should reinforce what was just shown, not ask the child to hold a lot in memory.

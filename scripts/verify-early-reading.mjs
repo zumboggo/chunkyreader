@@ -17,18 +17,20 @@ function extract(name) {
   assert(start >= 0 && end > start)
   return app.slice(start, end)
 }
-const builders = load(`const { earlyReadingContrast, earlyReadingWord } = require('helpers');\n${['buildSarahActivities', 'buildSarahOptions', 'buildCaseOptions', 'buildSarahPhonemeActivities', 'stableSort'].map(extract).join('\n')}\nexport { buildSarahActivities, buildSarahPhonemeActivities };`, { helpers })
+const builders = load(`const { earlyReadingContrast, earlyReadingWord } = require('helpers');\n${['buildSarahActivities', 'buildSarahOptions', 'buildSarahPhonemeActivities', 'stableSort'].map(extract).join('\n')}\nexport { buildSarahActivities, buildSarahPhonemeActivities };`, { helpers })
 let blends = 0
 for (const [file, build] of [['sarah-letters-level-1', builders.buildSarahActivities], ['sarah-phonemes-level-2', builders.buildSarahPhonemeActivities]]) {
   const cards = JSON.parse(fs.readFileSync(`public/decks/${file}.json`)).cards
   for (let i = 0; i < cards.length; i++) {
     const pocket = helpers.earlyReadingPocket(cards, i)
     assert.equal(pocket[0].id, cards[i].id, 'Keep existing resume indices')
-    assert(pocket.length <= 5)
+    assert(pocket.length <= 2)
     assert(pocket.every(c => cards.indexOf(c) <= Math.max(i, 1)), 'No untaught future distractors')
     const seen = new Set()
     const activities = build(pocket)
-    assert(activities.length <= 13, 'Keep sessions brief')
+    assert(activities.length <= 6, 'A toddler visit has at most six tiny steps')
+    assert(activities.filter(a => a.options).length <= 2, 'Only two supported matching turns')
+    assert(!activities.some(a => ['upperLowerMatch', 'beginningSound'].includes(a.kind)), 'No case conversion or sound-position test for a two-year-old')
     for (const activity of activities) {
       if (activity.kind === 'intro') seen.add(activity.card.id)
       if (activity.options) {
@@ -48,14 +50,16 @@ for (const [file, build] of [['sarah-letters-level-1', builders.buildSarahActivi
     assert(activities.filter(a => a.options).some(a => a.card.id !== cards[i].id), 'Review targets vary')
   }
 }
-assert(blends > 5, 'Reading transfer is present across the curriculum')
+assert(blends > 0, 'Keep some optional two-sound word play')
+assert(app.includes('if (!playing) return'), 'Word blending requires an explicit invitation')
+assert(app.includes('Listen together</button>') && app.includes('All done</button>'), 'Word play has a direct skip')
 assert.equal(helpers.soundPosition({ grapheme: 'ng', exampleWord: 'ring' }), 'end')
 assert.equal(helpers.soundPosition({ grapheme: 'er', exampleWord: 'bird' }), 'middle')
 assert.equal(helpers.soundPosition({ lowercase: 'x', exampleWord: 'fox' }), 'end')
 const letters = JSON.parse(fs.readFileSync('public/decks/sarah-letters-level-1.json')).cards
 assert.equal(letters.find(c => c.lowercase === 'e').exampleWord, 'egg')
 assert.equal(letters.find(c => c.lowercase === 'x').exampleWord, 'fox')
-console.log(`Verified all 64 Letters/Sounds lessons, including ${blends} decodable blending activities.`)
+console.log(`Verified all 64 Letters/Sounds lessons, including ${blends} optional word-play invitations.`)
 
 const sounds = JSON.parse(fs.readFileSync('public/decks/sarah-phonemes-level-2.json')).cards
 for (let i = 0; i < helpers.LEGACY_SOUND_ORDER.length; i++) {
