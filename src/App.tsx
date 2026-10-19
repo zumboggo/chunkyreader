@@ -1,6 +1,6 @@
 import guidedAudio from './content/guided-audio.json'
 import soundModels from './content/guided-sounds.json'
-import { earlyReadingProgressKey, migrateSoundResume, earlyReadingPocket, earlyReadingContrast, earlyReadingWord, soundPosition } from './earlyReading'
+import { letterFace, letterPocket, migrateLetterResume, earlyReadingProgressKey, migrateSoundResume, earlyReadingPocket, earlyReadingContrast, earlyReadingWord, soundPosition } from './earlyReading'
 import { playGuidedSounds, playReadingSounds, stopGuidedSounds } from './guidedWordAudio'
 import { playRecordedClip } from './audioClipPack'
 import { assetUrl } from './mediaAssets'
@@ -846,9 +846,14 @@ function App() {
     }
   }
 
+  const rewardAttempt = useRef(crypto.randomUUID())
+  useEffect(() => {
+    if (sarahActivityIndex === 0) rewardAttempt.current = crypto.randomUUID()
+  }, [activeDeckId, cardIndex, sarahActivityIndex])
+
   function completeActiveLesson() {
     if (!activeSection || !activeDeckId) return
-    handleCompletionReward(markLessonComplete(activeSection, activeDeckId))
+    handleCompletionReward(markLessonComplete(activeSection, activeDeckId, rewardAttempt.current))
     updateStreakOnLesson(5)
   }
 
@@ -880,7 +885,7 @@ function App() {
     }
     // For words, chooseSection already restored the saved monotonic index —
     // the continue snapshot must not override it with a stale position.
-    if (typeof state.cardIndex === 'number' && state.section !== 'words' && state.section !== 'sounds') setCardIndex(state.cardIndex)
+    if (typeof state.cardIndex === 'number' && state.section !== 'words' && state.section !== 'sounds' && state.section !== 'letters') setCardIndex(state.cardIndex)
   }
 
   function goHome() {
@@ -909,7 +914,8 @@ function App() {
       targetMode = 'listeningMode'
       if (targetDeckId) {
         const saved = progressStorage.getItem(earlyReadingProgressKey(targetDeckId))
-        resumeIndex = saved ? parseInt(saved, 10) : 0
+        const oldIndex = Number(progressStorage.getItem(`sarah-progress-${targetDeckId}`) ?? 0)
+        resumeIndex = saved ? parseInt(saved, 10) : migrateLetterResume(currentDecks.find(d => d.id === targetDeckId)!.cards, oldIndex)
       }
     } else if (section === 'sounds') {
       targetDeckId = currentDecks.find(d => d.type === 'phonemes' && d.profile === 'sarah')?.id ?? ''
@@ -1935,7 +1941,7 @@ function LearningScreen({
   const lessonCards = isOlderReaderWords
     ? selectedWordLessonCards
     : isSarahFocusLesson
-    ? sarahLetterPocket(lessonDeckCards, lessonStart)
+    ? (isSarahLetters ? letterPocket(lessonDeckCards, lessonStart) : sarahLetterPocket(lessonDeckCards, lessonStart))
     : lessonDeckCards.slice(lessonStart, lessonStart + lessonLength)
   const lessonIndex = isOlderReaderWords ? 0 : cardIndex - lessonStart
   const sarahActivities = useMemo(
@@ -1986,7 +1992,7 @@ function LearningScreen({
   const lessonSectionLabel = isOlderReaderWords
     ? 'Words'
     : activeDeck.type === 'letters'
-      ? 'Letters'
+      ? (activeCard.letterCase === 'lower' ? 'Letters · Lowercase' : 'Letters · Capitals')
       : activeDeck.type === 'phonemes'
         ? 'Sounds'
         : activeDeck.type === 'math'
@@ -2492,7 +2498,7 @@ function SarahLetterLesson({
           <span className="prompt-topline">Lesson {lessonNumber} complete</span>
           <h2>We played with sounds!</h2>
           <div className="letter-review-row" aria-label="Letters practiced">
-            <strong>{lessonCards[0]?.lowercase ?? lessonCards[0]?.displayText}</strong>
+            <strong>{lessonCards[0] ? letterFace(lessonCards[0]) : ''}</strong>
           </div>
         </div>
         <div className="completion-actions">
@@ -2567,7 +2573,7 @@ function SarahIntroView({
       </div>
       <div className="focus-visual">
         <div className="letter-display">
-          <strong><span className="primary-letter">{activity.card.uppercase}</span><span className="secondary-letter">{activity.card.lowercase}</span></strong>
+          <strong><span className="primary-letter">{letterFace(activity.card)}</span></strong>
           {showAdultDetails && <span className="phonetic-detail">{activity.card.sound}</span>}
         </div>
         <Picture deck={deck} card={activity.card} />
@@ -2605,7 +2611,7 @@ function SarahExploreView({
         onClick={() => playCardAudio(deck, activity.card)}
         aria-label={`Hear ${activity.card.sound}`}
       >
-        <strong>{activity.card.uppercase}</strong>
+        <strong>{letterFace(activity.card)}</strong>
         <Picture deck={deck} card={activity.card} />
       </button>
       <div className="focus-actions">
@@ -2664,6 +2670,10 @@ function SarahQuestionView({
       if (isChoiceKey(event, 'B')) {
         event.preventDefault()
         chooseByIndex(1)
+      }
+      if (isChoiceKey(event, 'C')) {
+        event.preventDefault()
+        chooseByIndex(2)
       }
     }
 
@@ -2731,7 +2741,7 @@ function SarahQuestionView({
         )}
       </div>
 
-      <div className="focus-options" aria-label="Answer choices">
+      <div className={`focus-options ${(activity.options?.length ?? 0) === 3 ? 'letter-options-three' : ''}`} aria-label="Answer choices">
         {activity.textOptions ? (
           activity.textOptions.map((option, index) => (
             <button
@@ -2755,14 +2765,14 @@ function SarahQuestionView({
               <button
                 key={option.id}
                 type="button"
-                aria-label={`Choice ${choiceKeyLabel(index)}: ${questionKind === 'soundToLetter' ? option.uppercase : option.displayText}`}
+                aria-label={`Choice ${choiceKeyLabel(index)}: ${questionKind === 'soundToLetter' ? letterFace(option) : option.displayText}`}
                 className={`focus-option squish ${showPictureOption ? 'picture-choice' : ''} ${choiceState(answer, correctAnswer, wrongChoice, status)}`}
                 disabled={disabled}
                 onClick={() => onChoose(answer, option)}
               >
                 <span className="choice-key" aria-hidden="true">{choiceKeyLabel(index)}</span>
                 {showPictureOption && <Picture deck={deck} card={option} />}
-                <strong>{questionKind === 'soundToLetter' ? option.uppercase : option.displayText}</strong>
+                <strong>{questionKind === 'soundToLetter' ? letterFace(option) : option.displayText}</strong>
                 {!isSoundQuestion && questionKind !== 'soundToLetter' && questionKind !== 'beginningSound' && questionKind !== 'wordToBeginningSound' && !showAdultDetails && option.exampleWord && !showPictureOption && (
                   <small className="friendly-hint">{option.exampleWord}</small>
                 )}
@@ -5790,19 +5800,17 @@ function buildSarahActivities(lessonCards: LearningCard[]): SarahActivity[] {
   if (!card) return []
   const activities: SarahActivity[] = lessonCards.map(card => ({ kind: 'intro', card }))
   activities.push({ kind: 'explore', card })
-  for (const [repetition, target] of lessonCards.entries()) {
-    if (!earlyReadingContrast(lessonCards, target, repetition)) continue
+  for (const [repetition, target] of lessonCards.slice(0, 2).entries()) {
+    if (lessonCards.length < 2) continue
     activities.push({ kind: 'soundToLetter', card: target, options: buildSarahOptions(lessonCards, target, repetition) })
   }
-  if (earlyReadingWord(lessonCards)) activities.push({ kind: 'blend', card })
   return activities
 }
 
 function buildSarahOptions(lessonCards: LearningCard[], card: LearningCard, repetition = 0): LearningCard[] {
-  const distractor = earlyReadingContrast(lessonCards, card, repetition) ?? card
-  return [card, distractor].sort(
+  return [...lessonCards].sort(
     (a, b) => stableSort(`sarah:${card.id}:${repetition}:${a.id}`) - stableSort(`sarah:${card.id}:${repetition}:${b.id}`),
-  )
+  ).slice(0, 3)
 }
 
 function getSarahQuestionKind(activity: SarahActivity): SarahQuestionKind | 'intro' {

@@ -79,6 +79,7 @@ export interface LearningDeck {
 }
 
 export interface LearningCard {
+  letterCase?: 'upper' | 'lower'
   id: string
   deckId: string
   type: 'word' | 'letter' | 'phoneme' | 'sentence' | 'math' | 'chinese'
@@ -192,6 +193,9 @@ export interface LearnerProgress {
   selectedRewardId?: string
   storyCompletions: Record<string, number>
   rewardSystemVersion?: number
+  boxesEarned?: number
+  boxesOpened?: number
+  completedAttemptIds?: string[]
   unopenedBoxes?: number
   rewardedCompletionCount?: number
   sparklePoints?: number

@@ -31,6 +31,7 @@ function assert(condition, message) {
 function baseProgress(overrides = {}) {
   return normalizeRewardProgress({
     totalLessonsCompleted: 0,
+    rewardedCompletionCount: 0,
     completedLessonsBySection: {
       letters: 0,
       sounds: 0,
@@ -119,3 +120,43 @@ const manual = equipReward(furnished, REWARD_CATALOG[0].id)
 assert(manual.roomPlacements[REWARD_CATALOG[0].id] === REWARD_CATALOG[0].slot, 'Manual placement overrides automatic placement.')
 assert(JSON.stringify(normalizeRewardProgress(manual).roomPlacements) === JSON.stringify(manual.roomPlacements), 'Saved placement survives reload.')
 console.log('Room placement: balanced areas, full rooms, duplicates, manual placement, and reload passed.')
+
+// Reproduce the old cloud-merge bug against the actual merge implementation.
+const vm = await import('node:vm')
+const cloudSource = await fs.readFile(path.join(root, 'src/cloudProgressSync.ts'), 'utf8')
+function extractFunction(source, name) {
+  const start = source.indexOf(`function ${name}`)
+  if (start < 0) throw new Error(`Missing ${name}`)
+  return source.slice(start, source.indexOf('\n}', start) + 2)
+}
+const cloudExports = {}
+const cloudCode = ['mergeLearnerProgress', 'mergeSectionCounts', 'mergeNumberRecords', 'mergeRewardHistory', 'unionStrings', 'timeValue'].map(name => extractFunction(cloudSource, name)).join('\n') + '\nexports.merge = mergeLearnerProgress'
+vm.runInNewContext(ts.transpileModule(cloudCode, { compilerOptions: { target: ts.ScriptTarget.ES2022 } }).outputText,
+  { exports: cloudExports, normalizeRewardProgress, mergeBoxBalances: rewards.mergeBoxBalances, Map, Set, Date, Math, Object })
+const stale = baseProgress({ totalLessonsCompleted: 36, rewardedCompletionCount: 36, unopenedBoxes: 12 })
+let spent = stale
+for (let i = 0; i < 12; i++) spent = openPandaBox(spent, () => 0).progress
+assert(spent.unopenedBoxes === 0, 'All twelve boxes were spent')
+for (let i = 0; i < 5; i++) {
+  spent = cloudExports.merge(spent, stale)
+  assert(spent.unopenedBoxes === 0, 'Stale sync must never resurrect the twelve boxes')
+}
+const earnedAgain = awardBoxesForCompletedLessons({ ...spent, totalLessonsCompleted: 39 })
+assert(earnedAgain.boxesAwarded === 1 && earnedAgain.progress.unopenedBoxes === 1, 'Three new lessons still earn one real box')
+assert(cloudExports.merge(stale, spent).unopenedBoxes === 0, 'Merge order does not change spent balance')
+const legacySpent = { ...spent }
+delete legacySpent.boxesEarned; delete legacySpent.boxesOpened
+assert(cloudExports.merge(legacySpent, stale).unopenedBoxes === 0, 'Old opening history repairs legacy resurrection')
+assert(Object.keys(spent.rewardInventory).length > 0, 'Repair preserves owned prizes')
+
+// Exercise persistent reward idempotence, without any network or account access.
+const progressSource = await fs.readFile(path.join(root, 'src/progress.ts'), 'utf8')
+const progressExports = {}, saved = new Map()
+vm.runInNewContext(ts.transpileModule(progressSource, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.CommonJS } }).outputText,
+  { exports: progressExports, require: key => key === './rewards' ? rewards : key === './progressStorage' ? { progressStorage: { getItem: k => saved.get(k) ?? null, setItem: (k,v) => saved.set(k,v) } } : { recordLocalProgressChange() {} }, console, Date })
+for (let i = 0; i < 12; i++) progressExports.markLessonComplete('letters', 'letters', 'same-attempt')
+assert(progressExports.loadProgress().totalLessonsCompleted === 1, 'Repeated completion callbacks count once')
+progressExports.markLessonComplete('letters', 'letters', 'second-attempt')
+progressExports.markLessonComplete('letters', 'letters', 'third-attempt')
+assert(progressExports.loadProgress().unopenedBoxes === 1, 'Three genuine attempts earn one box')
+console.log('Stale-cloud twelve-box reproduction, legacy repair, and persistent completion idempotence passed.')

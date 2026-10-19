@@ -54,5 +54,37 @@ export function migrateSoundResume(cards: LearningCard[], legacyIndex: number): 
   return Math.max(0, next)
 }
 export function earlyReadingProgressKey(deckId: string): string {
-  return `sarah-progress-${deckId}${deckId === 'sarah-phonemes-level-2' ? ':phonics-v2' : ''}`
+  return `sarah-progress-${deckId}${deckId === 'sarah-phonemes-level-2' ? ':phonics-v2' : deckId === 'sarah-letters-level-1' ? ':capitals-v3' : ''}`
+}
+
+// Common, relatively stable consonants first; ambiguous vowels/C/G and rare
+// spellings later. This is an explicit teaching choice, not a universal ranking.
+export const CAPITAL_LETTER_ORDER = 't n r h d l m s f w p b e a o i u c g y v k x q j z'.split(' ')
+const LEGACY_LETTER_ORDER = 'm s a t p c r n d i f b h g o l k e u w j y v z q x'.split(' ')
+export function capitalFirstCards(cards: LearningCard[]): LearningCard[] {
+  const ordered = CAPITAL_LETTER_ORDER.map(letter => cards.find(card => card.lowercase === letter)).filter((card): card is LearningCard => Boolean(card))
+  return (['upper', 'lower'] as const).flatMap(letterCase => ordered.map(card => ({
+    ...card, id: `${card.id}:${letterCase}`, letterCase,
+    displayText: letterCase === 'upper' ? card.uppercase! : card.lowercase!,
+  })))
+}
+export function letterFace(card: LearningCard): string {
+  return card.letterCase === 'lower' ? card.lowercase! : card.uppercase!
+}
+export function letterPocket(cards: LearningCard[], start: number): LearningCard[] {
+  const target = cards[start]
+  if (!target) return []
+  const stage = cards.filter(card => card.letterCase === target.letterCase)
+  const index = stage.findIndex(card => card.id === target.id)
+  const earlier = index === 0 ? stage.slice(1,2) : stage.slice(0,index).reverse()
+  const options = [target]
+  for (const candidate of earlier) {
+    if (options.length === 3) break
+    if (options.every(card => card.ipa !== candidate.ipa)) options.push(candidate)
+  }
+  return options
+}
+export function migrateLetterResume(cards: LearningCard[], oldIndex: number): number {
+  const visited = new Set(LEGACY_LETTER_ORDER.slice(0, Math.max(0, oldIndex)))
+  return Math.max(0, cards.findIndex(card => card.letterCase === 'upper' && !visited.has(card.lowercase!)))
 }

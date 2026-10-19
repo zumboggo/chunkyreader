@@ -1,3 +1,4 @@
+import { capitalFirstCards } from './earlyReading'
 import { parseCsv, parseList, parseNumber, readColumn, stableId } from './csv'
 import { assetUrl, joinAssetPath } from './mediaAssets'
 import type {
@@ -46,7 +47,7 @@ export async function loadDeckLibrary(): Promise<LearningDeck[]> {
     }
   }
 
-  return decks.sort((a, b) => (a.level ?? 0) - (b.level ?? 0) || a.title.localeCompare(b.title))
+  return decks.map(deck => deck.id === 'sarah-letters-level-1' ? { ...deck, cards: capitalFirstCards(deck.cards) } : deck).sort((a, b) => (a.level ?? 0) - (b.level ?? 0) || a.title.localeCompare(b.title))
 }
 
 export function resolveAssetUrl(deck: LearningDeck, path?: string): string | undefined {

@@ -46,6 +46,7 @@ export function loadProgress(): LearnerProgress {
     return normalizeRewardProgress({
       ...getEmptyProgress(),
       ...parsed,
+      rewardedCompletionCount: parsed.rewardedCompletionCount ?? parsed.totalLessonsCompleted ?? 0,
       completedLessonsBySection: {
         ...getEmptyProgress().completedLessonsBySection,
         ...(parsed.completedLessonsBySection || {})
@@ -95,8 +96,10 @@ export function resetProgress() {
   }
 }
 
-export function markLessonComplete(sectionId: SectionId, deckId: string): CompletionRewardResult {
+export function markLessonComplete(sectionId: SectionId, deckId: string, attemptId?: string): CompletionRewardResult {
   const progress = loadProgress()
+  if (attemptId && progress.completedAttemptIds?.includes(attemptId)) return { progress, boxesAwarded: 0 }
+  if (attemptId) progress.completedAttemptIds = [...(progress.completedAttemptIds || []), attemptId].slice(-128)
   progress.totalLessonsCompleted += 1
   progress.completedLessonsBySection[sectionId] = (progress.completedLessonsBySection[sectionId] || 0) + 1
   progress.completedLessonsByDeck[deckId] = (progress.completedLessonsByDeck[deckId] || 0) + 1

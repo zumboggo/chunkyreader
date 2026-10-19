@@ -105,7 +105,11 @@ export function normalizeRewardProgress(progress: LearnerProgress): LearnerProgr
   normalized.equippedRewards ||= {}
   normalized.rewardHistory ||= []
   normalized.unopenedBoxes = normalized.unopenedBoxes || 0
-  normalized.rewardedCompletionCount = normalized.rewardedCompletionCount || 0
+  normalized.rewardedCompletionCount = normalized.rewardedCompletionCount ?? normalized.totalLessonsCompleted ?? 0
+  // Upgrade old balances using durable opening evidence; never resurrect spent boxes.
+  normalized.boxesEarned ??= Math.max(Math.floor(normalized.rewardedCompletionCount / BOX_CADENCE), normalized.unopenedBoxes)
+  normalized.boxesOpened ??= Math.max(normalized.rewardHistory.length, normalized.boxesEarned - normalized.unopenedBoxes)
+  normalized.unopenedBoxes = Math.max(0, normalized.boxesEarned - normalized.boxesOpened)
   normalized.sparklePoints = normalized.sparklePoints || 0
   normalized.rarePityCount = normalized.rarePityCount || 0
   normalized.epicPityCount = normalized.epicPityCount || 0
@@ -135,7 +139,8 @@ export function awardBoxesForCompletedLessons(progress: LearnerProgress): { prog
   const currentBucket = Math.floor(next.totalLessonsCompleted / BOX_CADENCE)
   const boxesAwarded = Math.max(0, currentBucket - previousBucket)
   if (boxesAwarded > 0) {
-    next.unopenedBoxes = (next.unopenedBoxes || 0) + boxesAwarded
+    next.boxesEarned = (next.boxesEarned || 0) + boxesAwarded
+    next.unopenedBoxes = Math.max(0, next.boxesEarned - (next.boxesOpened || 0))
   }
   next.rewardedCompletionCount = next.totalLessonsCompleted
   return { progress: next, boxesAwarded }
@@ -206,7 +211,7 @@ export function openPandaBox(progress: LearnerProgress, random = Math.random): {
   const duplicate = currentCount > 0
   const sparklePointsGained = duplicate ? DUPLICATE_SPARKLES[item.rarity] : 0
   const drop: RewardDrop = {
-    id: `${Date.now()}-${item.id}`,
+    id: `${Date.now()}-${Math.random().toString(36).slice(2)}-${item.id}`,
     itemId: item.id,
     openedAt: new Date().toISOString(),
     rarity: item.rarity,
@@ -214,7 +219,8 @@ export function openPandaBox(progress: LearnerProgress, random = Math.random): {
     sparklePointsGained,
   }
 
-  next.unopenedBoxes = Math.max(0, (next.unopenedBoxes || 0) - 1)
+  next.boxesOpened = (next.boxesOpened || 0) + 1
+  next.unopenedBoxes = Math.max(0, (next.boxesEarned || 0) - next.boxesOpened)
   next.rewardInventory = {
     ...(next.rewardInventory || {}),
     [item.id]: currentCount + 1,
@@ -257,4 +263,13 @@ export function autoPlaceReward(progress: LearnerProgress, rewardId: string): Le
   const slot = slots.reduce((least, candidate) => counts(candidate) < counts(least) ? candidate : least)
   next.roomPlacements = { ...next.roomPlacements, [rewardId]: slot }
   return next
+}
+
+/** Monotonic earned/spent counters survive sync with an older device. */
+export function mergeBoxBalances(local: LearnerProgress, remote: LearnerProgress) {
+  const a = normalizeRewardProgress(local), b = normalizeRewardProgress(remote)
+  const boxesEarned = Math.max(a.boxesEarned || 0, b.boxesEarned || 0)
+  const openingIds = new Set([...(a.rewardHistory || []), ...(b.rewardHistory || [])].map(drop => drop.id))
+  const boxesOpened = Math.max(a.boxesOpened || 0, b.boxesOpened || 0, openingIds.size)
+  return { boxesEarned, boxesOpened, unopenedBoxes: Math.max(0, boxesEarned - boxesOpened) }
 }

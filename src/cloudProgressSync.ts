@@ -1,7 +1,7 @@
 import { progressStorage, ACCOUNT_CHANGED_EVENT, EXACT_PROGRESS_KEYS, PROGRESS_PREFIXES, LEARNER_SCOPES, learnerScope, isProgressKey, compactProgressKeys } from './progressStorage'
 import { createClient, type Session, type User } from '@supabase/supabase-js'
 import { defaultAppSettings, type AppSettings } from './appSettings'
-import { normalizeRewardProgress } from './rewards'
+import { mergeBoxBalances, normalizeRewardProgress } from './rewards'
 import type { LearnerProgress, SectionId } from './types'
 
 const FALLBACK_SUPABASE_URL = 'https://nvrofeaaewwdeefxtmqu.supabase.co'
@@ -436,7 +436,8 @@ function mergeLearnerProgress(localRaw: unknown, remoteRaw: unknown): LearnerPro
     selectedRewardId: remote.selectedRewardId ?? local.selectedRewardId,
     storyCompletions: mergeNumberRecords(local.storyCompletions, remote.storyCompletions),
     rewardSystemVersion: Math.max(local.rewardSystemVersion || 0, remote.rewardSystemVersion || 0),
-    unopenedBoxes: Math.max(local.unopenedBoxes || 0, remote.unopenedBoxes || 0),
+    ...mergeBoxBalances(local, remote),
+    completedAttemptIds: unionStrings(local.completedAttemptIds, remote.completedAttemptIds).slice(-128),
     rewardedCompletionCount: Math.max(local.rewardedCompletionCount || 0, remote.rewardedCompletionCount || 0),
     sparklePoints: Math.max(local.sparklePoints || 0, remote.sparklePoints || 0),
     rewardInventory: mergeNumberRecords(local.rewardInventory, remote.rewardInventory),

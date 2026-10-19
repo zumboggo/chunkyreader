@@ -9110,3 +9110,6 @@ body { padding-bottom: 0; }
 .early-sound-boxes { display: flex; justify-content: center; gap: .65rem; margin: 1.2rem 0; }
 .early-sound-boxes span { display: grid; place-items: center; min-width: 3.7rem; min-height: 4.5rem; border: 3px solid #b8d8cc; border-radius: 1rem; background: #fffaf0; font-size: 2.6rem; font-weight: 800; }
 .early-sound-boxes .active { background: #d2f5df; border-color: #3d856a; transform: translateY(-4px); }
+
+/* Three large letter targets stay on one row on small phones too. */
+.focus-options.letter-options-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }

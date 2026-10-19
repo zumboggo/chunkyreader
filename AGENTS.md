@@ -5,12 +5,12 @@ Chunky Reader is a small, joyful reading app for young children. Keep it close t
 ## Learning Flow Rules
 
 - Keep lessons to 4 minutes or less.
-- Show only 5 words, letters, or sounds in a lesson pocket; Sarah’s toddler Letters/Sounds visits use just two sounds.
-- Keep a maximum of two choices visible at any time.
+- Show only 5 words, letters, or sounds in a lesson pocket; Sarah’s Sounds visits use two sounds; Letters visits use up to three letters in the same case.
+- Keep a maximum of two choices visible, except Letters questions may show up to three.
 - Always let the child hear and see the answer before any question.
 - Autoplay audio every time a new word, letter, or sound is introduced.
-- Sarah is two years old. Letters/Sounds visits model two sounds, invite copying/tapping, and offer only two supported matching turns (about 30–60 seconds of shared play). No required case conversion, sound-position quizzes, writing, or blending. Optional word play needs an adult’s explicit Listen together tap and an equally rewarded All done exit. Keep familiar M/S/A/P anchors and simple opening pictures (moon, sun, apple, tree, pig). Sarah also knows long E (/ee/ as in see), confirmed by David; do not treat short E (/ĕ/ as in egg) as already known. Preserve the distinction between the letter name/long-E sound and its short-vowel sound.
-- Sarah Level 1 uses phonics-first ordering: `m s a t p`, `c r n d i`, `f b h g o`, `l k e u w`, then final tricky-sounds review `j y v z q x`.
+- Sarah is two years old. Letters/Sounds visits model the small pocket, invite copying/tapping, and offer only two supported matching turns (about 30–60 seconds of shared play). No required case conversion, sound-position quizzes, writing, or blending. Optional word play needs an adult’s explicit Listen together tap and an equally rewarded All done exit. Keep familiar M/S/A/P anchors and simple opening pictures (moon, sun, apple, tree, pig). Sarah also knows long E (/ee/ as in see), confirmed by David; do not treat short E (/ĕ/ as in egg) as already known. Preserve the distinction between the letter name/long-E sound and its short-vowel sound.
+- Sarah Letters teaches all 26 capitals first, then all 26 lowercase letters. The frequency/consistency-balanced order lives in `CAPITAL_LETTER_ORDER` in `src/earlyReading.ts`. Keep the legacy source cards/audio stable; derive two case-specific stages at load time and preserve legacy progress during migration.
 - Sarah Level 1 teaches phonetic sounds before letter names. Do not send bare letters to TTS; use SSML phoneme tags from `scripts/phonics-level-1.mjs`.
 - Questions should reinforce what was just shown, not ask the child to hold a lot in memory.
 - Growing Reader Words now uses `guidedWords.ts` and `GuidedWordsLesson.tsx` for the built-in Anna deck: about 3–4 minutes, four practice words, blends through longer words, and a final read-aloud sentence with a parent check.

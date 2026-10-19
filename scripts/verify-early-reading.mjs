@@ -20,12 +20,21 @@ function extract(name) {
 const builders = load(`const { earlyReadingContrast, earlyReadingWord } = require('helpers');\n${['buildSarahActivities', 'buildSarahOptions', 'buildSarahPhonemeActivities', 'stableSort'].map(extract).join('\n')}\nexport { buildSarahActivities, buildSarahPhonemeActivities };`, { helpers })
 let blends = 0
 for (const [file, build] of [['sarah-letters-level-1', builders.buildSarahActivities], ['sarah-phonemes-level-2', builders.buildSarahPhonemeActivities]]) {
-  const cards = JSON.parse(fs.readFileSync(`public/decks/${file}.json`)).cards
+  const sourceCards = JSON.parse(fs.readFileSync(`public/decks/${file}.json`)).cards
+  const lettersSection = file === 'sarah-letters-level-1'
+  const cards = lettersSection ? helpers.capitalFirstCards(sourceCards) : sourceCards
+  if (lettersSection) {
+    assert.equal(cards.length, 52)
+    assert.equal(new Set(cards.map(c => c.id)).size, 52)
+    assert(cards.slice(0,26).every(c => c.letterCase === 'upper'))
+    assert(cards.slice(26).every(c => c.letterCase === 'lower'))
+  }
   for (let i = 0; i < cards.length; i++) {
-    const pocket = helpers.earlyReadingPocket(cards, i)
+    const pocket = lettersSection ? helpers.letterPocket(cards, i) : helpers.earlyReadingPocket(cards, i)
     assert.equal(pocket[0].id, cards[i].id, 'Keep existing resume indices')
-    assert(pocket.length <= 2)
-    assert(pocket.every(c => cards.indexOf(c) <= Math.max(i, 1)), 'No untaught future distractors')
+    assert(pocket.length <= (lettersSection ? 3 : 2))
+    if (lettersSection) assert(pocket.every(c => c.letterCase === cards[i].letterCase))
+    assert(pocket.every(c => cards.indexOf(c) <= Math.max(i, lettersSection && i === 26 ? 27 : 1)), 'No untaught future distractors')
     const seen = new Set()
     const activities = build(pocket)
     assert(activities.length <= 6, 'A toddler visit has at most six tiny steps')
@@ -34,9 +43,9 @@ for (const [file, build] of [['sarah-letters-level-1', builders.buildSarahActivi
     for (const activity of activities) {
       if (activity.kind === 'intro') seen.add(activity.card.id)
       if (activity.options) {
-        assert.equal(activity.options.length, 2)
-        assert.equal(new Set(activity.options.map(c => c.lowercase ?? c.grapheme)).size, 2, 'Distinct printed choices')
-        assert.equal(new Set(activity.options.map(c => c.ipa ?? c.phoneme)).size, 2, 'Distinct sounds')
+        assert(activity.options.length >= 2 && activity.options.length <= (lettersSection ? 3 : 2))
+        assert.equal(new Set(activity.options.map(c => c.lowercase ?? c.grapheme)).size, activity.options.length, 'Distinct printed choices')
+        assert.equal(new Set(activity.options.map(c => c.ipa ?? c.phoneme)).size, activity.options.length, 'Distinct sounds')
         assert(activity.options.every(c => seen.has(c.id)), 'Model every option before asking')
       }
       if (activity.textOptions) assert.equal(new Set(activity.textOptions).size, 2)
@@ -59,7 +68,7 @@ assert.equal(helpers.soundPosition({ lowercase: 'x', exampleWord: 'fox' }), 'end
 const letters = JSON.parse(fs.readFileSync('public/decks/sarah-letters-level-1.json')).cards
 assert.equal(letters.find(c => c.lowercase === 'e').exampleWord, 'egg')
 assert.equal(letters.find(c => c.lowercase === 'x').exampleWord, 'fox')
-console.log(`Verified all 64 Letters/Sounds lessons, including ${blends} optional word-play invitations.`)
+console.log(`Verified all 90 capital/lowercase/Sounds lessons, including ${blends} optional word-play invitations.`)
 
 const sounds = JSON.parse(fs.readFileSync('public/decks/sarah-phonemes-level-2.json')).cards
 for (let i = 0; i < helpers.LEGACY_SOUND_ORDER.length; i++) {
@@ -72,3 +81,12 @@ assert.notEqual(helpers.earlyReadingProgressKey('sarah-phonemes-level-2'), 'sara
 assert.equal(helpers.earlyReadingWord(sounds.slice(0,4)).text, 'at', 'Blend in the first four Sounds visits')
 assert(!helpers.earlyReadingWord([sounds.find(c => c.grapheme === 'oo'), ...sounds.slice(0,2)]), 'Do not guess an ambiguous pronunciation')
 console.log('Sound-sequence migration and pronunciation-specific transfer checks passed.')
+
+const capitalPlan = helpers.capitalFirstCards(letters)
+assert(helpers.letterPocket(capitalPlan, 2).length === 3, 'Third answer appears only after enough letters have been modeled')
+assert.equal(helpers.letterFace(capitalPlan[0]), 'T')
+assert.equal(helpers.letterFace(capitalPlan[26]), 't')
+assert(capitalPlan.findIndex(c => c.lowercase === 'c') > capitalPlan.findIndex(c => c.lowercase === 't'), 'Ambiguous C follows stable common T')
+assert.equal(helpers.migrateLetterResume(capitalPlan, 0), 0)
+assert.equal(helpers.migrateLetterResume(capitalPlan, 26), 0, 'Legacy progress never silently completes the new capital stage')
+console.log('Capital-first stages, third choice, separate forms, and conservative migration passed.')
