@@ -10,7 +10,7 @@ Artwork: original pastel SVG animal/scenery assets and shared polished character
 
 Teaser pricing checked 2026-10-25 from Replicate's live prunaai/p-video-2-pro billingConfig and input schema: cost mode, 480p, six seconds, prompt_upsampler off, native audio; $0.01/output second, maximum $0.06 each ($0.12 total). One submission each, no paid retries. Finishing used ChunkyChinese/app/scripts/finish-cutscene.py. Checks confirm nine seconds, 854×480, 24 fps, still continuity and audio beginning after the hold. Review frames show the selected actions; there is no spoken script. No speech-recognition check was run.
 
-Azure credentials were unavailable in this environment. Narration is cached macOS Samantha at 145 words/minute, converted to 24 kHz mono MP3, with Azure Jenny SSML retained for future regeneration. No live browser TTS, voice service or payment is required to play the stories.
+Azure credentials were unavailable in this environment. Narration is cached macOS Samantha at 145 words/minute, converted to 24 kHz mono MP3, with Azure Jenny SSML retained for future regeneration. No live browser TTS, voice service or payment is required to play the stories. Like the existing bundled guided-word clips, these small versioned recordings and teaser posters ship with the app; scoped gitignore exceptions keep them in the release.
 
 Authoring: scripts/adventures/build.mjs regenerates source packages and SVGs, retaining the existing audio map. scripts/adventures/audio.mjs generates missing local-voice clips when FFMPEG_PATH is supplied. Never overwrite released v1 packages when revising the narrative; copy to a new version first.
 

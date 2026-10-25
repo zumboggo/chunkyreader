@@ -13,3 +13,6 @@ public/**/*.jpg
 !public/assets/mascots/mascot-reading.png
 # Lossless speech generation intermediates; reviewed compact AAC clips are bundled.
 public/guided-words/**/*.wav
+# Small, versioned adventure packs ship their narration and exact teaser posters.
+!public/stories/adventures/v1/audio/*.mp3
+!public/stories/adventures/v1/*-intro.poster.jpg

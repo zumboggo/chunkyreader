@@ -16,6 +16,7 @@ for(const id of ['pigs-hat-v1','elsas-pet-v1']){
  }
  visit();assert.equal(endings,8);for(const word of p.focusWords)assert(p.audio[word]);assert.equal(p.focusWords.length,5)
  let bytes=Buffer.byteLength(JSON.stringify(p));for(const path of new Set([...Object.values(p.audio),...Object.values(p.assets.backgrounds).map(a=>a.src),...Object.values(p.assets.characters).flatMap(c=>Object.values(c.expressions).map(a=>a.src))])){assert(fs.existsSync(`public/${path}`),path);bytes+=fs.statSync(`public/${path}`).size}assert(bytes<5_000_000)
+ assert(fs.existsSync(`public/stories/adventures/v1/${id}-intro.poster.jpg`))
  const check=JSON.parse(fs.readFileSync(`public/stories/adventures/v1/${id}-intro.checks.json`));assert.equal(check.hold_seconds,3);assert.equal(check.total_seconds,9);assert(check.audio_starts_after_hold);assert(check.audio_non_silent)
  console.log(`${id}: 8 routes, three binary choices each, every beat replay/resume, callbacks, audio and ${bytes} byte media budget verified.`)
 }
