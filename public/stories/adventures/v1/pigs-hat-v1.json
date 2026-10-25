@@ -1,0 +1,141 @@
+{
+  "format": 2,
+  "title": "The Pig’s Hat",
+  "description": "A hat, a pot, and a very muddy pig.",
+  "profile": "growing-reader",
+  "notice": "A make-believe adventure with Anna and Sarah. Read and choose, or listen together.",
+  "script": "story 2\nvariable pot = false hidden\nscene pig-mud\nshow Anna happy left\nshow Sarah curious right\nshow Pig neutral center\ncamera wide cut\ncamera wide cut\nI: A pig is in the mud.\nAnna [curious]: A hat for a pig?\nchoice hat\noption hat \"Get a hat.\" -> hat\noption pot \"Get a pot.\" -> pot ; pot = true\nlabel hat\nscene pig-hat\nshow Anna happy left\nshow Sarah curious right\nshow Pig happy center\ncamera wide cut\nreact Sarah laugh\nSarah [laughing]: The hat fits!\ngoto play\nlabel pot\nscene pig-pot\nshow Anna happy left\nshow Sarah curious right\nshow Pig curious center\ncamera wide cut\nreact Anna laugh\nAnna [laughing]: The pot fits!\ngoto play\nlabel play\nI: The pig can play.\nchoice play\noption hop \"Hop, pig!\" -> hop\noption sit \"Sit, pig!\" -> sit\nlabel hop\nmove Pig bounce\nSarah [happy]: Hop! Hop! Mud on us!\ngoto rest\nlabel sit\nreact Sarah laugh\nSarah [laughing]: Plop! A bum in the mud!\ngoto rest\nlabel rest\nAnna [happy]: A fun day! Time to rest.\nchoice rest\noption hug \"A hug.\" -> hug\noption nap \"A nap.\" -> nap\nlabel hug\nreact Anna excited\nAnna [happy]: A big hug. Mud on me!\ngoto endcheck\nlabel nap\nrest Sarah downcast\nSarah [happy]: Shh! The pig can nap.\ngoto endcheck\nlabel endcheck\nif pot == true -> potend else hatend\nlabel potend\nscene pig-pot\nshow Anna happy left\nshow Sarah curious right\nshow Pig curious center\ncamera wide cut\nI: A pot for a hat. It fits just right!\ngoto finish\nlabel hatend\nscene pig-hat\nshow Anna happy left\nshow Sarah curious right\nshow Pig happy center\ncamera wide cut\nI: A hat for a pig. It fits just right!\ngoto finish\nlabel finish\nAnna [happy]: I love this pig!\nend",
+  "assets": {
+    "backgrounds": {
+      "pig-mud": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "pig-hat": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "pig-pot": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "cat-big": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "hen-big": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "cat-box": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "cat-tub": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "hen-box": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "hen-tub": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "meadow": {
+        "src": "stories/adventures/v1/meadow.svg"
+      }
+    },
+    "characters": {
+      "Anna": {
+        "name": "Anna",
+        "version": 1,
+        "provenance": "Storybook adaptation for Chunky Reader; shared polished SVG builder, not a likeness.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#70503f",
+            "shirt": "#c491d8"
+          },
+          "appearance": {
+            "age": "teen",
+            "hair": "ponytail",
+            "outfit": "tunic",
+            "face": "round",
+            "eyes": "gentle"
+          }
+        }
+      },
+      "Sarah": {
+        "name": "Sarah",
+        "version": 1,
+        "provenance": "Storybook adaptation for Chunky Reader; shared polished SVG builder, not a likeness.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#916340",
+            "shirt": "#edaaa9"
+          },
+          "appearance": {
+            "age": "teen",
+            "hair": "bob",
+            "outfit": "tunic",
+            "face": "round",
+            "eyes": "gentle"
+          }
+        }
+      },
+      "Pig": {
+        "name": "Pig",
+        "expressions": {
+          "neutral": {
+            "src": "stories/adventures/v1/actor-pig-mud.svg"
+          },
+          "happy": {
+            "src": "stories/adventures/v1/actor-pig-hat.svg"
+          },
+          "curious": {
+            "src": "stories/adventures/v1/actor-pig-pot.svg"
+          }
+        }
+      }
+    }
+  },
+  "quiz": [],
+  "audio": {
+    "pig": "stories/adventures/v1/audio/c304d5a79a83f3ee.mp3",
+    "hat": "stories/adventures/v1/audio/dbda50361efd35a1.mp3",
+    "pot": "stories/adventures/v1/audio/958fece77178a336.mp3",
+    "mud": "stories/adventures/v1/audio/e6d2542737041aa3.mp3",
+    "hop": "stories/adventures/v1/audio/0327c7fe3d144cfa.mp3",
+    "What next?": "stories/adventures/v1/audio/9158a8e2d0d1ecb9.mp3",
+    "A pig is in the mud.": "stories/adventures/v1/audio/bb3d2c9e0eb8a333.mp3",
+    "A hat for a pig?": "stories/adventures/v1/audio/729afd8ac129a070.mp3",
+    "The hat fits!": "stories/adventures/v1/audio/d32c86149b83a1ec.mp3",
+    "The pot fits!": "stories/adventures/v1/audio/f1e525988d6805df.mp3",
+    "The pig can play.": "stories/adventures/v1/audio/7a238aa015286e1a.mp3",
+    "Hop! Hop! Mud on us!": "stories/adventures/v1/audio/6b7276771405a072.mp3",
+    "Plop! A bum in the mud!": "stories/adventures/v1/audio/277edd8222e7b1f9.mp3",
+    "A fun day! Time to rest.": "stories/adventures/v1/audio/33fe284d36f4306f.mp3",
+    "A big hug. Mud on me!": "stories/adventures/v1/audio/70fe431e5bc2edbb.mp3",
+    "Shh! The pig can nap.": "stories/adventures/v1/audio/6f0cb96e19c18062.mp3",
+    "A pot for a hat. It fits just right!": "stories/adventures/v1/audio/6ece67d60a92f478.mp3",
+    "A hat for a pig. It fits just right!": "stories/adventures/v1/audio/30aa6c8aaf41aac6.mp3",
+    "I love this pig!": "stories/adventures/v1/audio/d12575ebe75b0044.mp3",
+    "Get a hat. Get a pot.": "stories/adventures/v1/audio/f4e05b56d841ea11.mp3",
+    "Hop, pig! Sit, pig!": "stories/adventures/v1/audio/73a6e94610057bab.mp3",
+    "A hug. A nap.": "stories/adventures/v1/audio/194fcbe2803d6403.mp3"
+  },
+  "id": "pigs-hat-v1",
+  "version": 1,
+  "focusWords": [
+    "pig",
+    "hat",
+    "pot",
+    "mud",
+    "hop"
+  ],
+  "cover": "stories/adventures/v1/pig-pot.svg"
+}

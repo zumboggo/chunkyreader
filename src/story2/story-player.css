@@ -1,0 +1,188 @@
+.adventure-player .animated-story{max-width:1000px;margin:auto;background:#f9f4e9;color:#172d32;border-radius:16px;overflow:hidden;font-size:18px;font-family:system-ui,sans-serif}.adventure-player .animated-story button,.adventure-player .story-disclaimer button{min-height:44px;padding:10px 18px;border:1px solid #34706e;border-radius:10px;background:#fff;margin:5px}.adventure-player .animated-story button:disabled{opacity:.5}.adventure-player .animated-story button:focus-visible{outline:3px solid #d48a27;outline-offset:2px}.adventure-player .story-stage{height:clamp(220px,40vh,460px);position:relative;background-color:#344952;background-size:cover;background-position:center;overflow:hidden}.adventure-player .story-actor{position:absolute;bottom:0;height:96%;width:32%;text-align:center;transition:left .4s}.adventure-player .story-actor img{height:92%;width:100%;object-fit:contain;object-position:center bottom}.adventure-player .story-actor span{display:block;background:#172d32dd;color:white;font-size:14px;border-radius:8px}.adventure-player .position-left{left:5%}.adventure-player .position-center{left:34%}.adventure-player .position-right{left:63%}.adventure-player .story-meters{display:flex;gap:16px;flex-wrap:wrap;padding:10px 24px;font-size:14px}.adventure-player .story-dialogue{padding:20px 28px;min-height:180px}.adventure-player .story-dialogue p{margin:12px 0;line-height:1.6}.adventure-player .story-dialogue h2{font-size:22px;font-weight:700}.adventure-player .story-dialogue button{display:block;width:100%;text-align:left}.adventure-player .story-dialogue fieldset{margin:24px 0;padding:16px;border:1px solid #b7c8c4;border-radius:10px}.adventure-player .story-dialogue legend{font-weight:600}.adventure-player .story-dialogue label{display:block;padding:8px}.adventure-player .story-dialogue input{margin-right:10px}.adventure-player .animated-story footer,.adventure-player .animated-story aside,.adventure-player .animated-story details{padding:12px 24px}.adventure-player .story-disclaimer{padding:32px;max-width:700px;margin:auto;line-height:1.8}.adventure-player .story-disclaimer h2{font-size:26px;font-weight:bold}@media(prefers-reduced-motion:reduce){.adventure-player .story-actor{transition:none}}@media(max-width:600px){.adventure-player .story-dialogue{padding:16px;font-size:17px}.adventure-player .story-stage{height:260px}}
+
+@media(max-width:600px){.adventure-player .story-actor{width:44%}.adventure-player .position-left{left:0}.adventure-player .position-center{left:28%}.adventure-player .position-right{left:56%}}
+.adventure-player .story-camera,.adventure-player .story-world{width:100%;height:100%;position:relative}.adventure-player .story-camera{transform-origin:50% 12%;transition:transform .65s cubic-bezier(.2,.7,.2,1)}.adventure-player .story-world{background-size:cover;background-position:center}.adventure-player .story-facing{height:100%;width:100%}.adventure-player .story-facing img{height:92%}.adventure-player .story-stage-living{height:clamp(340px,57vh,620px)}.adventure-player .story-stage-living .story-actor{height:96%;width:40%;bottom:-1%;left:30%}.adventure-player .story-stage-living .position-left{left:4%}.adventure-player .story-stage-living .position-right{left:56%}.adventure-player .puppet-actor{height:100%;width:100%;overflow:visible}.adventure-player .puppet-joint{transition:transform .45s ease-in-out;transform-box:view-box;transform-origin:0 0}.adventure-player .puppet-breath{animation:puppet-breathe 4.8s ease-in-out infinite;animation-delay:var(--idle-delay)}.adventure-player .puppet-speaking .puppet-breath{animation-duration:2.8s}.adventure-player .puppet-still .puppet-breath{animation:none}.adventure-player .puppet-still .puppet-joint{transition:none}.adventure-player .story-modern .story-dialogue{position:relative;border-top:4px solid #bb8d47;background:#fffbf3;min-height:145px;padding:16px 24px}.adventure-player .story-modern .story-dialogue strong{display:inline-block;color:#204d50;font-size:15px;text-transform:uppercase;letter-spacing:.08em}.adventure-player .story-modern .story-dialogue p{line-height:1.5;margin:9px 0}.adventure-player .story-modern .story-meters:empty{display:none}.adventure-player .story-modern .story-dialogue button{background:#f0f6f2}.adventure-player .response-nod [data-joint=head]>.puppet-joint{animation:puppet-nod .65s ease}.adventure-player .response-shake-head [data-joint=head]>.puppet-joint{animation:puppet-no .65s ease}.adventure-player .response-laugh .puppet-breath{animation:puppet-breathe .2s 3}.adventure-player .response-wave [data-joint=rightForearm]>.puppet-joint{animation:puppet-wave .65s ease}@keyframes puppet-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}@keyframes puppet-nod{0%,100%{transform:rotate(0)}45%{transform:rotate(8deg)}}@keyframes puppet-no{0%,100%{transform:rotate(0)}30%{transform:rotate(-7deg)}70%{transform:rotate(7deg)}}@keyframes puppet-wave{0%,100%{transform:rotate(-110deg)}50%{transform:rotate(-140deg)}}@media(prefers-reduced-motion:reduce){.adventure-player .puppet-breath,.adventure-player .puppet-joint{animation:none!important;transition:none!important}.adventure-player .story-camera{transition:none}}@media(max-width:600px){.adventure-player .story-stage-living{height:46vh;min-height:310px}.adventure-player .story-modern .story-dialogue{padding:13px 16px}}
+.adventure-player .puppet-talk-pulse{animation:puppet-emphasis 2.3s ease-in-out infinite;transform-origin:0 0;animation-delay:var(--idle-delay)}@keyframes puppet-emphasis{0%,100%{transform:rotate(0)}40%{transform:rotate(5deg)}65%{transform:rotate(-2deg)}}@media(prefers-reduced-motion:reduce){.adventure-player .puppet-talk-pulse{animation:none!important}}
+.adventure-player .cartoon-chest{transform-origin:120px 348px;animation:cartoon-breathe 5.8s ease-in-out infinite}.adventure-player .cartoon-actor .puppet-face{transition:none}@keyframes cartoon-breathe{0%,100%{transform:scale(1,1)}50%{transform:scale(1.003,1.004)}}@media(prefers-reduced-motion:reduce){.adventure-player .cartoon-chest{animation:none!important}}
+
+/* Bring a pair within a short lunge while keeping full silhouettes on phones. */
+.adventure-player .story-stage-living[data-paired=true][data-shot=wide] .position-left{left:14%}
+.adventure-player .story-stage-living[data-paired=true][data-shot=wide] .position-right{left:46%}
+.adventure-player .story-stage[data-actions=true] .story-actor{transform-origin:50% 98%}
+@media(max-width:600px){.adventure-player .story-stage-living[data-paired=true][data-shot=wide] .position-left{left:0}.adventure-player .story-stage-living[data-paired=true][data-shot=wide] .position-right{left:60%}}
+
+/* Finite projectiles share the action duration; reduced motion keeps one static cue. */
+.adventure-player .story-projectile{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.adventure-player .story-projectile.active .story-arrow{animation:story-arrow-flight 2200ms linear both}
+.adventure-player .story-projectile.active .story-beam{animation:story-beam-cast 2200ms ease-in-out both;transform-origin:0 0}
+@keyframes story-arrow-flight{0%,32%{opacity:0;transform:translateX(0)}35%{opacity:1;transform:translateX(0)}65%{opacity:1;transform:translateX(var(--flight))}72%,100%{opacity:0;transform:translateX(var(--flight))}}
+@keyframes story-beam-cast{0%,30%{opacity:0;transform:scaleX(0)}42%,62%{opacity:1;transform:scaleX(1)}80%,100%{opacity:0;transform:scaleX(1)}}
+.adventure-player .story-projectile.still .story-arrow,.adventure-player .story-projectile.still .story-beam{animation:none;opacity:1}
+
+.adventure-player .story-nocked-arrow{animation:story-nock 2200ms linear both}@keyframes story-nock{0%,34%{opacity:1}35%,100%{opacity:0}}
+
+.adventure-player .story-projectile.settled{visibility:hidden}
+
+/* Mounted actions use one contained silhouette, with finite gallop motion only. */
+.adventure-player .story-stage-living .story-actor.is-mounted{width:70%;left:15%;height:96%}
+.adventure-player .story-stage-living .story-actor.is-mounted.position-left{left:0}
+.adventure-player .story-stage-living .story-actor.is-mounted.position-right{left:30%}
+.adventure-player .mounted-actor{width:100%;height:100%;overflow:visible}
+.adventure-player .galloping .horse-leg{transform-box:view-box;transform-origin:300px 400px;animation:horse-stride 480ms ease-in-out 4}
+.adventure-player .galloping .horse-far{animation-direction:reverse}
+.adventure-player .galloping .mounted-rider{animation:rider-bob 480ms ease-in-out 4}
+@keyframes horse-stride{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(8deg)}}
+@keyframes rider-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@media(prefers-reduced-motion:reduce){.adventure-player .galloping .horse-leg,.adventure-player .galloping .mounted-rider{animation:none!important}}
+
+/* Quiet, authored environmental motion stays behind the cast. */
+.adventure-player .story-environment{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.adventure-player .story-environment i{position:absolute;display:block;opacity:0}
+.adventure-player .environment-dust i{width:3px;height:3px;border-radius:50%;background:#f8e7b9;animation:story-dust 16s linear infinite}
+.adventure-player .environment-rain i{width:1px;height:30px;background:linear-gradient(transparent,#c6dce9);animation:story-rain 1.8s linear infinite}
+@keyframes story-dust{0%{opacity:0;transform:translate(0,12px)}20%,75%{opacity:.28}100%{opacity:0;transform:translate(24px,-34px)}}
+@keyframes story-rain{0%{opacity:0;transform:translate(0,-60px)}15%,80%{opacity:.22}100%{opacity:0;transform:translate(-15px,150px)}}
+@media(prefers-reduced-motion:reduce){.adventure-player .story-environment{display:none}}
+.adventure-player .story-atmosphere{font-size:14px;background:#f3f4eb}
+.adventure-player .story-atmosphere details{padding:8px 16px}.adventure-player .story-atmosphere summary{cursor:pointer;padding:8px}
+.adventure-player .story-atmosphere label{display:inline-flex;align-items:center;gap:8px;margin:6px 12px 6px 0;min-height:44px;flex-wrap:wrap}
+.adventure-player .story-atmosphere input[type=range]{width:100px;min-height:32px}
+.adventure-player .story-sound-caption{margin:0;padding:4px 16px;min-height:1.5em;color:#536763;font-size:13px}
+
+.adventure-player .ethics-decision-note{padding:24px;border-top:2px solid #bb8d47;background:#f0f6f2;line-height:1.6}.adventure-player .ethics-decision-note h2{font-size:22px;font-weight:700;line-height:1.3}.adventure-player .ethics-decision-note p{margin:12px 0}.adventure-player .ethics-decision-note ol{list-style:decimal;padding-left:24px}.adventure-player .ethics-decision-note li{margin:14px 0;padding-left:4px}.adventure-player .ethics-decision-note details{padding:12px 0}.adventure-player .ethics-decision-note summary{cursor:pointer;min-height:44px;font-weight:600}@media(max-width:600px){.adventure-player .ethics-decision-note{padding:16px;font-size:17px}}
+
+/* Mirrored scenery panels share their boundary pixels; actors remain in a separate layer. */
+.adventure-player .story-travel-backdrop{position:absolute;inset:0;pointer-events:none;animation:story-travel 34s linear infinite;will-change:transform}
+.adventure-player .story-travel-backdrop>div{position:absolute;top:0;width:calc(100% + 1px);height:100%;background-size:cover;background-position:center}
+@keyframes story-travel{from{transform:translateX(0)}to{transform:translateX(-200%)}}
+.adventure-player .story-motion-toggle{position:static;display:block;margin:6px 0 6px auto;font-size:12px;min-height:44px!important;padding:5px 9px!important;background:#fffbf3ed!important}
+@media(prefers-reduced-motion:reduce){.adventure-player .story-travel-backdrop{animation:none!important}}
+
+.adventure-player .simulation-scorecard{margin:1rem 0;padding:1.15rem;background:#eef5f2;border:1px solid #a5bfb6;border-radius:16px;color:#203e3c}.adventure-player .simulation-score-heading{display:flex;justify-content:space-between;gap:1rem;align-items:center}.adventure-player .simulation-score-heading h2{font-size:1.15rem;font-weight:700}.adventure-player .simulation-score-heading strong{font-size:1.5rem;white-space:nowrap}.adventure-player .simulation-scorecard p{margin:.7rem 0;line-height:1.5}.adventure-player .simulation-score-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}.adventure-player .simulation-score-grid>div{display:grid;grid-template-columns:1fr auto;gap:.35rem;padding:.7rem;background:white;border-radius:9px}.adventure-player .simulation-score-grid meter,.adventure-player .simulation-score-grid small{grid-column:1/-1;width:100%}.adventure-player .simulation-score-message{border-left:4px solid #367567;padding-left:.7rem}.adventure-player .simulation-scorecard button{padding:.8rem 1rem;border-radius:9px;background:#285e59;color:white}.adventure-player .simulation-scorecard ul{padding-left:1.3rem;list-style:disc}@media(max-width:480px){.adventure-player .simulation-score-grid{grid-template-columns:1fr}.adventure-player .simulation-score-heading{align-items:start}}
+
+.adventure-player .story-memory-haze{position:absolute;inset:0;z-index:4;pointer-events:none;box-shadow:inset 0 0 55px 22px #fff;background:radial-gradient(ellipse at center,transparent 35%,#ffffff66 68%,#fff 100%);border-radius:inherit}.adventure-player .story-keepsake{margin:1rem 0;padding:1.1rem;border:2px solid #8e6fb2;border-radius:16px;background:#f6f1fc;color:#302844}.adventure-player .story-keepsake h2{font-weight:800;font-size:1.2rem}.adventure-player .story-keepsake ol{list-style:decimal;padding-left:1.5rem}.adventure-player .story-keepsake li{margin:.8rem 0;line-height:1.5}.adventure-player .story-keepsake small{display:block;color:#65547a}.adventure-player .story-keepsake p{margin:.6rem 0}@media(prefers-reduced-motion:reduce){.adventure-player .story-memory-haze{animation:none}}
+
+/* Small articulated idle motion, independent of face-turn and action transforms. */
+.adventure-player .conversation-breath{transform-origin:120px 348px;animation:conversation-breathe 6s ease-in-out infinite}
+@keyframes conversation-breathe{0%,100%{transform:translateY(0) scale(1,1)}50%{transform:translateY(-.8px) scale(1.002,1.004)}}
+.adventure-player .conversation-breath .cartoon-chest{animation:none}
+.adventure-player .cartoon-actor[data-idle-paused] .conversation-breath,.adventure-player .story-stage[data-idle-paused] .puppet-breath{animation-play-state:paused}
+.adventure-player .cartoon-actor[data-activity] .conversation-breath,.adventure-player .cartoon-actor[data-response] .conversation-breath{animation:none}
+@media(prefers-reduced-motion:reduce){.adventure-player .conversation-breath{animation:none}.adventure-player .conversation-torso,.adventure-player .conversation-head{transition:none!important}}
+.adventure-player .puppet-still .conversation-breath{animation:none}
+
+/* Cinema Stage: one browser viewport for the scene and the complete decision. */
+.adventure-player .game-display-cinema{position:fixed;inset:0;z-index:60;width:100%;height:100dvh;background:#132d35;color:#f5f5e9;isolation:isolate}
+.adventure-player .cinema-display-content{width:100%;height:100%;min-height:0}
+.adventure-player .animated-story.story-cinema{width:100%;height:100dvh;max-width:none;margin:0;border-radius:0;display:flex;flex-direction:column;background:#132d35;color:#f6f6ef;font-size:18px}
+.adventure-player .story-cinema .story-content{display:flex;flex:1;min-height:0;flex-direction:column;overflow:auto;overscroll-behavior:contain}
+.adventure-player .story-cinema button{margin:0;min-height:44px;cursor:pointer;font:inherit}
+.adventure-player .cinema-toolbar{display:flex;align-items:center;gap:18px;flex:none;min-height:56px;padding:6px 20px;background:linear-gradient(110deg,#173842,#102b33);border-bottom:1px solid #527071;color:#f3f4ed;z-index:10}
+.adventure-player .cinema-back{display:flex;align-items:center;gap:7px;flex-shrink:0;min-height:44px;padding-right:18px;border-right:1px solid #547176;font-size:16px;font-weight:600}
+.adventure-player .cinema-title{flex:1;min-width:0}
+.adventure-player .cinema-title h1{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:19px;font-weight:650;line-height:1.3}
+.adventure-player .cinema-title [role=status]{display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:11px;color:#bdcfcd;line-height:1.35}
+.adventure-player .cinema-toolbar nav{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.adventure-player .story-cinema .cinema-toolbar button,.adventure-player .cinema-toolbar summary{display:flex;align-items:center;justify-content:center;gap:7px;padding:8px 11px;margin:0;border:1px solid transparent;border-radius:6px;background:transparent;color:#f5f6ef;font-size:14px;white-space:nowrap;min-height:44px}
+.adventure-player .cinema-toolbar small{font-size:10px;color:#bdcfcd;text-transform:uppercase;letter-spacing:.04em}
+.adventure-player .story-cinema .cinema-toolbar button:hover,.adventure-player .cinema-toolbar summary:hover{background:#ffffff10;border-color:#6b8585}
+.adventure-player .story-cinema button:focus-visible,.adventure-player .cinema-toolbar a:focus-visible,.adventure-player .cinema-toolbar summary:focus-visible,.adventure-player .cinema-panel :is(button,a,input,textarea,select):focus-visible{outline:3px solid #f1c76b;outline-offset:3px}
+.adventure-player .cinema-fullscreen{border-left:1px solid #547176!important;border-radius:0!important;margin-left:5px!important}
+.adventure-player .cinema-loading{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;font-size:18px}
+.adventure-player .cinema-loading a{padding:12px;text-decoration:underline}
+.adventure-player .cinema-display-notice{position:absolute;top:62px;right:12px;z-index:20;max-width:360px;padding:12px;background:#193d45;border:1px solid #d4b463;border-radius:8px;font-size:14px}
+.adventure-player .story-cinema .story-stage-shell{position:relative;flex:1 1 0;min-height:160px;isolation:isolate}
+.adventure-player .story-cinema .story-stage-shell::after{content:"";position:absolute;inset:0;z-index:5;pointer-events:none;box-shadow:inset 0 -18px 30px -22px #071d29, inset 45px 0 70px -60px #071d2966, inset -45px 0 70px -60px #071d2966}
+.adventure-player .story-cinema .story-stage{height:100%;min-height:0;position:absolute;inset:0}
+.adventure-player .story-cinema .story-stage-living .story-actor{height:98%;bottom:0}
+.adventure-player .story-cinema .story-dialogue{flex:none;border-top:2px solid #d7b76b;background:linear-gradient(115deg,#18363e,#102b33);color:#f6f6ed;min-height:0;padding:16px 28px 20px;position:relative}
+.adventure-player .story-cinema .story-dialogue>strong{color:#f0cd7c;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.adventure-player .story-cinema .story-dialogue>p{font-size:20px;line-height:1.5;margin:8px 140px 0 0;max-width:1100px}
+.adventure-player .story-cinema .story-dialogue>[data-next]{position:absolute;right:28px;bottom:20px;width:112px;margin:0;padding:12px 16px;text-align:center;border:1px solid #d7b76b;background:#21464e;color:#fff8e8;border-radius:8px;font-size:17px}
+.adventure-player .story-cinema .story-dialogue>[data-next]:hover{background:#2c5660}
+.adventure-player .story-cinema .story-choice-dialogue h2{font-size:24px;line-height:1.3;margin:0 0 12px;font-weight:650}
+.adventure-player .story-cinema .story-dialogue>.cinema-choice-context{display:flex;gap:18px;align-items:baseline;max-width:none;margin:0 0 12px;padding:0 0 12px;border-bottom:1px solid #57737680;font-size:16px;line-height:1.4;color:#dde8e6}
+.adventure-player .story-cinema .story-dialogue .cinema-choice-context strong{flex:none;font-size:12px;color:#f0cd7c;text-transform:uppercase;letter-spacing:.08em}
+.adventure-player .story-cinema .story-options{display:grid;gap:14px;align-items:stretch}
+.adventure-player .story-cinema .story-options button{display:flex;align-items:flex-start;gap:14px;width:100%;min-height:90px;padding:16px 18px;background:#15313a;color:#fbfcf6;border:1px solid #ddbd72;border-radius:10px;text-align:left;line-height:1.45;font-size:18px;overflow-wrap:anywhere}
+.adventure-player .story-cinema .story-options button:hover{background:#254b53;border-color:#ffe3a0}
+.adventure-player .story-options kbd{display:inline-grid;place-items:center;flex:none;min-width:30px;height:34px;border:1px solid #87a5a5;border-radius:6px;color:#eff7ee;background:#294951;font:600 17px system-ui,sans-serif}
+.adventure-player .story-cinema .story-meters:not(:empty){flex:none;padding:6px 28px;margin:0;background:#17343c;color:#d7e6e2;font-size:12px}
+.adventure-player .story-cinema .story-keepsake{flex:none;max-height:22vh;overflow:auto;margin:0;border-radius:0;font-size:15px;padding:10px 28px}
+.adventure-player .story-cinema.story-ended .story-stage-shell{flex:none;height:min(28vh,230px);min-height:120px}
+.adventure-player .story-cinema.story-ended .story-dialogue{padding:24px clamp(20px,10vw,180px);flex:none}
+.adventure-player .story-cinema.story-ended .story-dialogue h2{font-size:26px;font-weight:650}
+.adventure-player .story-cinema.story-ended .story-dialogue fieldset{border-color:#779994;background:#183941}
+.adventure-player .story-cinema.story-ended .story-dialogue legend{padding:0 8px;font-size:18px}
+.adventure-player .story-cinema.story-ended .story-dialogue label{display:flex;align-items:baseline;gap:10px;min-height:44px;font-size:17px}
+.adventure-player .story-cinema.story-ended .story-dialogue input{flex:none;accent-color:#f1c76b}
+.adventure-player .story-cinema.story-ended .story-dialogue button{max-width:320px;background:#e7cd89;color:#17343a;font-weight:650;text-align:center}
+.adventure-player .story-cinema.story-ended .story-dialogue>p{margin-right:0}
+.adventure-player .story-cinema.story-ended .simulation-scorecard{margin:0;border-radius:0;padding:20px max(24px,8vw)}
+.adventure-player .story-cinema.story-ended .story-keepsake{max-height:none}
+.adventure-player .story-cinema.cinema-intro .story-disclaimer{max-width:660px;width:100%;padding:32px;color:#e9f1e9;line-height:1.7}
+.adventure-player .cinema-intro-kicker{display:none}
+.adventure-player .cinema-intro .cinema-intro-kicker{display:block;color:#e6c77a;text-transform:uppercase;letter-spacing:.12em;font-size:12px}
+.adventure-player .story-cinema.cinema-intro .story-disclaimer h2{font-size:36px;line-height:1.2;margin:12px 0 22px}
+.adventure-player .story-cinema.cinema-intro .story-disclaimer button{margin:24px 0 0;min-width:140px;background:#e6c77a;color:#132d35;border:0;font-weight:650}
+
+/* Utility panels sit outside the scene; opening one never changes its cursor. */
+.adventure-player .cinema-panel{position:fixed;inset:16px 16px 16px auto;margin:0;width:min(600px,calc(100vw - 32px));height:calc(100dvh - 32px);max-height:calc(100dvh - 32px);max-width:none;padding:0;border:1px solid #78948d;border-radius:14px;background:#f8f6ec;color:#1d373c;box-shadow:0 18px 70px #00151a55;font:17px/1.6 system-ui,sans-serif;overflow:hidden}
+.adventure-player .cinema-panel::backdrop{background:#061e29aa}
+.adventure-player .cinema-panel[open]{display:flex;flex-direction:column}
+.adventure-player .cinema-panel header{display:flex;align-items:center;justify-content:space-between;gap:20px;flex:none;padding:12px 20px;border-bottom:1px solid #c6d2c8;background:#eef0e6}
+.adventure-player .cinema-panel h2{font-size:21px;font-weight:700}
+.adventure-player .cinema-panel button,.adventure-player .cinema-panel a{min-height:44px;padding:9px 13px;border:1px solid #6d8d86;border-radius:7px;cursor:pointer;display:inline-block}
+.adventure-player .cinema-panel button{background:#fffdf4;color:#1d373c;font:inherit;margin:4px}
+.adventure-player .cinema-panel header button{margin:0;white-space:nowrap}
+.adventure-player .cinema-panel-content{padding:20px 24px;min-height:0;overflow:auto;flex:1;overscroll-behavior:contain}
+.adventure-player .cinema-panel-content p{margin:12px 0}
+.adventure-player .cinema-panel-content details{padding:14px 0;border-bottom:1px solid #ccd6cc}
+.adventure-player .cinema-panel-content summary{min-height:44px;cursor:pointer;font-weight:600}
+.adventure-player .cinema-panel-content select,.adventure-player .cinema-panel-content input{border:1px solid #78948d;border-radius:4px;margin:6px;padding:5px}
+.adventure-player .cinema-panel-content details label{display:inline-flex;align-items:center;flex-wrap:wrap}
+.adventure-player .cinema-panel-content details input[type=number]{max-width:65px}
+.adventure-player .cinema-panel-hint{font-size:14px;color:#54716b}
+.adventure-player .cinema-history-line{padding:10px 0;border-bottom:1px solid #ccd6cc}
+.adventure-player .cinema-history-line strong{display:block;font-size:13px;color:#456b64;text-transform:uppercase;letter-spacing:.04em}
+.adventure-player .cinema-sound{position:relative;flex:none;background:transparent;font-size:14px}
+.adventure-player .story-cinema .cinema-sound details{padding:0}
+.adventure-player .cinema-sound summary{cursor:pointer;list-style:none}
+.adventure-player .cinema-sound summary::-webkit-details-marker{display:none}
+.adventure-player .cinema-sound .story-sound-settings{position:absolute;right:0;top:calc(100% + 8px);width:300px;max-height:calc(100dvh - 90px);overflow:auto;padding:16px;border:1px solid #6c8e88;border-radius:9px;background:#f8f6ec;box-shadow:0 16px 40px #00131b55;color:#203f41}
+.adventure-player .cinema-sound .story-sound-settings label{display:flex;justify-content:space-between;gap:12px;min-height:44px;margin:0;font-size:15px}
+.adventure-player .cinema-sound .story-sound-settings input{accent-color:#28645e}
+.adventure-player .story-cinema .cinema-sound .story-sound-settings button{color:#203f41;border-color:#6c8e88}
+.adventure-player .cinema-sound .story-sound-caption{position:fixed;left:24px;top:64px;background:#112f3eea;color:#f2f4e9;border-radius:5px;z-index:15}
+@media(min-width:900px) and (max-height:680px){
+ .adventure-player .cinema-toolbar{min-height:50px;padding:3px 16px}
+ .adventure-player .story-cinema .story-dialogue{padding:12px 22px 14px}
+ .adventure-player .story-cinema .story-options button{padding:12px 14px;min-height:78px;font-size:17px}
+ .adventure-player .story-cinema .story-choice-dialogue h2{font-size:21px;margin-bottom:9px}
+ .adventure-player .story-cinema .story-dialogue>.cinema-choice-context{font-size:15px;margin-bottom:9px;padding-bottom:9px}
+ .adventure-player .story-cinema .story-stage-shell{min-height:130px}
+}
+@media(max-width:1000px){.adventure-player .cinema-toolbar{gap:10px;padding-inline:12px}.adventure-player .cinema-back{padding-right:10px}.adventure-player .cinema-toolbar nav{gap:0}.adventure-player .story-cinema .cinema-toolbar button,.adventure-player .cinema-toolbar summary{padding-inline:8px;font-size:13px}.adventure-player .cinema-toolbar small{display:none}.adventure-player .cinema-title h1{font-size:16px}}
+@media(max-width:899px){.adventure-player .story-cinema .story-options{grid-template-columns:repeat(2,minmax(0,1fr))!important}.adventure-player .story-cinema .story-options button{font-size:17px;min-height:72px}.adventure-player .story-cinema .story-dialogue>.cinema-choice-context{font-size:15px;gap:12px}.adventure-player .cinema-title [role=status]{display:none}}
+@media(max-width:700px){
+ .adventure-player .cinema-toolbar{flex-wrap:wrap;gap:4px 10px;padding:4px 10px;min-height:88px}
+ .adventure-player .cinema-back{font-size:14px;min-height:36px;padding-right:8px}.adventure-player .cinema-title h1{font-size:16px}
+ .adventure-player .cinema-toolbar nav{width:100%;justify-content:flex-end;border-top:1px solid #ffffff15}
+ .adventure-player .story-cinema .cinema-toolbar button,.adventure-player .cinema-toolbar summary{min-height:40px;padding-block:6px}
+ .adventure-player .story-cinema .story-stage-shell{flex:none;height:36svh;min-height:190px}
+ .adventure-player .story-cinema .story-dialogue{padding:14px 16px 18px}
+ .adventure-player .story-cinema .story-dialogue>p{font-size:17px;line-height:1.5;margin:8px 0 0}
+ .adventure-player .story-cinema .story-dialogue>[data-next]{position:static;display:block;width:100%;margin-top:14px;font-size:16px}
+ .adventure-player .story-cinema .story-options{grid-template-columns:1fr!important;gap:10px}
+ .adventure-player .story-cinema .story-options button{min-height:62px;padding:13px;gap:12px;font-size:17px}
+ .adventure-player .story-cinema .story-choice-dialogue h2{font-size:21px;margin-bottom:10px}
+ .adventure-player .story-cinema .story-dialogue>.cinema-choice-context{display:block;margin:0 0 12px;font-size:15px}
+ .adventure-player .cinema-choice-context strong{display:block;margin-bottom:4px}
+ .adventure-player .cinema-sound .story-sound-settings{position:fixed;top:94px;right:12px;width:min(300px,calc(100vw - 24px))}
+ .adventure-player .cinema-sound .story-sound-caption{top:100px;left:12px;max-width:calc(100vw - 24px)}
+ .adventure-player .cinema-panel{inset:8px;width:calc(100vw - 16px);height:calc(100dvh - 16px);max-height:calc(100dvh - 16px)}
+ .adventure-player .cinema-panel-content{padding:16px}.adventure-player .cinema-panel header{padding:10px 16px}
+ .adventure-player .story-cinema.cinema-intro .story-disclaimer{overflow:auto;padding:24px}.adventure-player .story-cinema.cinema-intro .story-disclaimer h2{font-size:29px}
+}
+
+.adventure-player .story-history-choice{margin:16px 0;padding:16px;border:2px solid #56766b;border-radius:12px;background:#f4f7f1;color:#183d35}.adventure-player .story-history-choice ol{list-style:decimal;padding-left:24px}.adventure-player .story-history-choice li{padding:10px;margin:6px 0;border:1px solid #c2cec6;border-radius:8px}.adventure-player .story-history-choice .story-history-picked{background:#d6eddf;border:2px solid #276346;color:#153e2c}.adventure-player .story-history-badge{display:inline;font-weight:800}

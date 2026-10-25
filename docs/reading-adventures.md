@@ -1,0 +1,17 @@
+# Anna and Sarah reading adventures, version 1
+
+The Stories shelf features The Pig’s Hat and Elsa’s Pet above the existing books. Each has five audio models, three binary decisions, eight routes and a quiet read mode. Listen together is an explicit adult choice. Help and early All done earn normal story rewards without recording independent reading. Choice history uses the existing account-scoped story storage and cloud-change notification. Legacy book data and progress remain separate.
+
+The host lazily imports the shared Story 2 parser, character renderer, stage and motion runner. See src/story2/PROVENANCE.md for the source revision. Host-specific controls and styles are separate. Packages use format 2 and compileStory plus validateRig, without classroom quizzes. New published script changes must use new versioned IDs and keep old attempts intact.
+
+Narrative plan: Anna proposes solutions, Sarah supplies short playful reactions, and Elsa begins confident and ends relieved. The pig gets a hat or pot, tries hopping or sitting, then receives a hug or nap; the chosen headwear persists. Elsa makes a cat or hen, finds a box or tub bed, and settles the pet with pats or a song. Both close with a concrete happy resolution; these very short bedtime-friendly adventures intentionally omit a sequel cliffhanger. Three stage positions mean Anna stays left, the pet center, and Sarah/Elsa take turns on the right when speaking.
+
+Artwork: original pastel SVG animal/scenery assets and shared polished character-builder recipes. Elsa is a stylized adaptation. No franchise logos, recordings or music are used. Teasers preview the pig wearing a pot and the cat yawning in its tub. They are six generated seconds preceded by the exact first-frame three-second hold, with skip, explicit play, failure and reduced-motion paths.
+
+Teaser pricing checked 2026-10-25 from Replicate's live prunaai/p-video-2-pro billingConfig and input schema: cost mode, 480p, six seconds, prompt_upsampler off, native audio; $0.01/output second, maximum $0.06 each ($0.12 total). One submission each, no paid retries. Finishing used ChunkyChinese/app/scripts/finish-cutscene.py. Checks confirm nine seconds, 854×480, 24 fps, still continuity and audio beginning after the hold. Review frames show the selected actions; there is no spoken script. No speech-recognition check was run.
+
+Azure credentials were unavailable in this environment. Narration is cached macOS Samantha at 145 words/minute, converted to 24 kHz mono MP3, with Azure Jenny SSML retained for future regeneration. No live browser TTS, voice service or payment is required to play the stories.
+
+Authoring: scripts/adventures/build.mjs regenerates source packages and SVGs, retaining the existing audio map. scripts/adventures/audio.mjs generates missing local-voice clips when FFMPEG_PATH is supplied. Never overwrite released v1 packages when revising the narrative; copy to a new version first.
+
+Validation: npm run verify:adventures traverses all 16 routes, verifies three two-option choices per route, callbacks and rendered speakers, replays every saved beat, and checks all referenced assets/audio, package budgets and teaser timing. It runs in verify:decks for deployment. UI checks covered both stories through the ending, read/listen modes, word models, resume, visible branch changes and a narrow 390px story container. Full physical-device testing and speech recognition were not performed.

@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "verify:decks": "node scripts/verify-decks.mjs && npm run verify:accounts && npm run verify:media && npm run verify:offline && npm run verify:math-levels && npm run verify:word-completion && npm run verify:early-reading && npm run verify:rewards",
+    "verify:decks": "node scripts/verify-decks.mjs && npm run verify:accounts && npm run verify:media && npm run verify:offline && npm run verify:math-levels && npm run verify:word-completion && npm run verify:early-reading && npm run verify:rewards && npm run verify:adventures",
     "verify:word-completion": "node scripts/verify-word-completion.mjs && node scripts/verify-guided-words.mjs",
     "verify:accounts": "node --experimental-strip-types scripts/verify-account-storage.mts",
     "verify:media": "node scripts/verify-media.mjs",
@@ -61,7 +61,8 @@
     "generate:math-images:dry": "node --env-file=.env scripts/generate-math-object-images.mjs --dry-run",
     "generate:math-images:force": "node --env-file=.env scripts/generate-math-object-images.mjs --force",
     "verify:guided-audio": "node scripts/verify-guided-audio.mjs",
-    "verify:early-reading": "node scripts/verify-early-reading.mjs"
+    "verify:early-reading": "node scripts/verify-early-reading.mjs",
+    "verify:adventures": "node scripts/adventures/verify.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.106.2",

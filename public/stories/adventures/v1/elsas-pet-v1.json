@@ -1,0 +1,182 @@
+{
+  "format": 2,
+  "title": "Elsa’s Pet",
+  "description": "A tiny wish. A very big pet.",
+  "profile": "growing-reader",
+  "notice": "A make-believe adventure with Anna and Sarah. Read and choose, or listen together.",
+  "script": "story 2\nvariable hen = false hidden\nvariable tub = false hidden\nscene meadow\nshow Anna happy left\nshow Sarah curious right\nshow Elsa happy right\ncamera wide cut\ncamera wide cut\nshow Elsa happy right\nElsa [happy]: I can make a pet!\nchoice pet\noption cat \"A cat!\" -> cat\noption hen \"A hen!\" -> hen ; hen = true\nlabel cat\nscene cat-big\nshow Anna happy left\nshow Sarah curious right\nshow Elsa happy right\nshow Cat neutral center\ncamera wide cut\nmove Cat bounce\nreact Elsa excited\nI: Pop! A big cat!\ngoto big\nlabel hen\nscene hen-big\nshow Anna happy left\nshow Sarah curious right\nshow Elsa happy right\nshow Hen neutral center\ncamera wide cut\nmove Hen bounce\nreact Elsa excited\nI: Pop! A big hen!\ngoto big\nlabel big\nshow Sarah surprised right\nSarah [surprised]: So big! No bed will fit!\nAnna [curious]: A box? A tub?\nchoice bed\noption box \"Get a box.\" -> box\noption tub \"Get a tub.\" -> tub ; tub = true\nlabel box\nif hen == true -> henbox else catbox\nlabel henbox\nscene hen-box\nshow Anna happy left\nshow Sarah curious right\nshow Elsa happy right\nshow Hen happy center\ncamera wide cut\nI: The hen fits in the box!\ngoto settle\nlabel catbox\nscene cat-box\nshow Anna happy left\nshow Sarah curious right\nshow Elsa happy right\nshow Cat happy center\ncamera wide cut\nI: The cat fits in the box!\ngoto settle\nlabel tub\nif hen == true -> hentub else cattub\nlabel hentub\nscene hen-tub\nshow Anna happy left\nshow Sarah curious right\nshow Elsa happy right\nshow Hen curious center\ncamera wide cut\nI: The hen fits in the tub!\ngoto settle\nlabel cattub\nscene cat-tub\nshow Anna happy left\nshow Sarah curious right\nshow Elsa happy right\nshow Cat curious center\ncamera wide cut\nI: The cat fits in the tub!\ngoto settle\nlabel settle\nshow Elsa worried right\nElsa [worried]: My pet will not nap.\nchoice nap\noption pat \"Pat the pet.\" -> pat\noption sing \"Sing a song.\" -> sing\nlabel pat\nreact Anna nod\nAnna [happy]: Pat, pat. A soft pat.\ngoto sleepy\nlabel sing\nreact Sarah laugh\nshow Sarah happy right\nSarah [happy]: La, la, la! A song for a pet.\ngoto sleepy\nlabel sleepy\nshow Elsa relieved right\nElsa [relieved]: A big yawn. It can nap!\nif tub == true -> tubend else boxend\nlabel tubend\nI: A tub is a bed. What a snug pet!\ngoto finish\nlabel boxend\nI: A box is a bed. What a snug pet!\ngoto finish\nlabel finish\nshow Sarah happy right\nSarah [happy]: Shh! We can rest too.\nend",
+  "assets": {
+    "backgrounds": {
+      "pig-mud": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "pig-hat": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "pig-pot": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "cat-big": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "hen-big": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "cat-box": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "cat-tub": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "hen-box": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "hen-tub": {
+        "src": "stories/adventures/v1/meadow.svg"
+      },
+      "meadow": {
+        "src": "stories/adventures/v1/meadow.svg"
+      }
+    },
+    "characters": {
+      "Anna": {
+        "name": "Anna",
+        "version": 1,
+        "provenance": "Storybook adaptation for Chunky Reader; shared polished SVG builder, not a likeness.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#70503f",
+            "shirt": "#c491d8"
+          },
+          "appearance": {
+            "age": "teen",
+            "hair": "ponytail",
+            "outfit": "tunic",
+            "face": "round",
+            "eyes": "gentle"
+          }
+        }
+      },
+      "Sarah": {
+        "name": "Sarah",
+        "version": 1,
+        "provenance": "Storybook adaptation for Chunky Reader; shared polished SVG builder, not a likeness.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#916340",
+            "shirt": "#edaaa9"
+          },
+          "appearance": {
+            "age": "teen",
+            "hair": "bob",
+            "outfit": "tunic",
+            "face": "round",
+            "eyes": "gentle"
+          }
+        }
+      },
+      "Elsa": {
+        "name": "Elsa",
+        "version": 1,
+        "provenance": "Storybook adaptation for Chunky Reader; shared polished SVG builder, not a likeness.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#eedcb2",
+            "shirt": "#89cddd"
+          },
+          "appearance": {
+            "age": "teen",
+            "hair": "long",
+            "outfit": "robe",
+            "face": "round",
+            "eyes": "gentle"
+          }
+        }
+      },
+      "Cat": {
+        "name": "Cat",
+        "expressions": {
+          "neutral": {
+            "src": "stories/adventures/v1/actor-cat-big.svg"
+          },
+          "happy": {
+            "src": "stories/adventures/v1/actor-cat-box.svg"
+          },
+          "curious": {
+            "src": "stories/adventures/v1/actor-cat-tub.svg"
+          }
+        }
+      },
+      "Hen": {
+        "name": "Hen",
+        "expressions": {
+          "neutral": {
+            "src": "stories/adventures/v1/actor-hen-big.svg"
+          },
+          "happy": {
+            "src": "stories/adventures/v1/actor-hen-box.svg"
+          },
+          "curious": {
+            "src": "stories/adventures/v1/actor-hen-tub.svg"
+          }
+        }
+      }
+    }
+  },
+  "quiz": [],
+  "audio": {
+    "pet": "stories/adventures/v1/audio/30232937df1e39f2.mp3",
+    "cat": "stories/adventures/v1/audio/15e23447b45419e8.mp3",
+    "hen": "stories/adventures/v1/audio/958673cee690692f.mp3",
+    "big": "stories/adventures/v1/audio/e5cd15b9640097f5.mp3",
+    "bed": "stories/adventures/v1/audio/d697fbc618242790.mp3",
+    "What next?": "stories/adventures/v1/audio/9158a8e2d0d1ecb9.mp3",
+    "I can make a pet!": "stories/adventures/v1/audio/3a7782580983416d.mp3",
+    "Pop! A big cat!": "stories/adventures/v1/audio/433e78caccaf0142.mp3",
+    "Pop! A big hen!": "stories/adventures/v1/audio/dd466df12c3e2556.mp3",
+    "So big! No bed will fit!": "stories/adventures/v1/audio/26c1e34f656a4580.mp3",
+    "A box? A tub?": "stories/adventures/v1/audio/d37b8aafd7e6c905.mp3",
+    "The hen fits in the box!": "stories/adventures/v1/audio/28cebe9925599a02.mp3",
+    "The cat fits in the box!": "stories/adventures/v1/audio/e198a9899e0e5fed.mp3",
+    "The hen fits in the tub!": "stories/adventures/v1/audio/1a9b49a38ba17e01.mp3",
+    "The cat fits in the tub!": "stories/adventures/v1/audio/4da70c80e1b6a563.mp3",
+    "My pet will not nap.": "stories/adventures/v1/audio/fc0ecaed7cf28c90.mp3",
+    "Pat, pat. A soft pat.": "stories/adventures/v1/audio/8245ce354ef9d23c.mp3",
+    "La, la, la! A song for a pet.": "stories/adventures/v1/audio/87dcaada6c07f479.mp3",
+    "A big yawn. It can nap!": "stories/adventures/v1/audio/ce734b5df2fecef9.mp3",
+    "A tub is a bed. What a snug pet!": "stories/adventures/v1/audio/d955eeeb814ed74f.mp3",
+    "A box is a bed. What a snug pet!": "stories/adventures/v1/audio/0e25593eaf8705b2.mp3",
+    "Shh! We can rest too.": "stories/adventures/v1/audio/1812cec6cbc97499.mp3",
+    "A cat! A hen!": "stories/adventures/v1/audio/3396539b1ef92882.mp3",
+    "Get a box. Get a tub.": "stories/adventures/v1/audio/e5144fdee341581b.mp3",
+    "Pat the pet. Sing a song.": "stories/adventures/v1/audio/4455c4831bf27b77.mp3"
+  },
+  "id": "elsas-pet-v1",
+  "version": 1,
+  "focusWords": [
+    "pet",
+    "cat",
+    "hen",
+    "big",
+    "bed"
+  ],
+  "cover": "stories/adventures/v1/cat-tub.svg"
+}

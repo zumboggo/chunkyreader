@@ -1,3 +1,5 @@
+import { AdventureShelf } from './AdventureShelf'
+import { ADVENTURES } from './adventures'
 import guidedAudio from './content/guided-audio.json'
 import soundModels from './content/guided-sounds.json'
 import { letterFace, letterPocket, migrateLetterResume, earlyReadingProgressKey, migrateSoundResume, earlyReadingPocket, earlyReadingContrast, earlyReadingWord, soundPosition } from './earlyReading'
@@ -9,7 +11,7 @@ import { progressStorage } from './progressStorage'
 import { GuidedWordsLesson } from './GuidedWordsLesson'
 import { guidedCompletedLessonNumber, guidedResumeLessonNumber, loadGuidedReadingPlan } from './guidedWordsStorage'
 import { READING_POCKETS, readingSteps } from './guidedWords'
-import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent, type ReactNode } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent, type ReactNode } from 'react'
 import {
   getInstalledAudioPackSummary,
   installAudioClipPack,
@@ -115,6 +117,8 @@ type SarahPhonemeActivityKind =
   | 'blend' // Combine every sound in a word using taught spellings.
   | SarahPhonemeQuestionKind
 type SarahActivityStatus = 'idle' | 'try-again' | 'correct' | 'revealed'
+const AdventureReader = lazy(() => import('./AdventureReader').then(module => ({default: module.AdventureReader})))
+
 type StoryDifficultyFilter = 'easy' | 'growing' | 'longer'
 type OlderReaderQuestionKind =
   | 'peek'
@@ -1500,6 +1504,7 @@ function StorySection({
   onReward: (result: CompletionRewardResult) => void
 }) {
   const [selectedStoryId, setSelectedStoryId] = useState('')
+  const [adventureId, setAdventureId] = useState('')
   const [pageIndex, setPageIndex] = useState(0)
   const [complete, setComplete] = useState(false)
   const [difficultyFilter, setDifficultyFilter] = useState<StoryDifficultyFilter>('easy')
@@ -1510,7 +1515,7 @@ function StorySection({
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [difficultyFilter, selectedStoryId])
+  }, [difficultyFilter, selectedStoryId, adventureId])
 
   function openStory(story: Story) {
     setSelectedStoryId(story.id)
@@ -1545,6 +1550,7 @@ function StorySection({
 
   useEffect(() => {
     if (!startRequest) return
+    if (ADVENTURES.some(a => a.id === startRequest.storyId)) { setAdventureId(startRequest.storyId); onStartConsumed(); return }
     const story = stories.find((candidate) => candidate.id === startRequest.storyId)
     if (!story) {
       onStartConsumed()
@@ -1556,6 +1562,8 @@ function StorySection({
     setComplete(false)
     onStartConsumed()
   }, [onStartConsumed, startRequest, stories])
+
+  if (adventureId) return <Suspense fallback={<p>Opening your adventure…</p>}><AdventureReader key={adventureId} id={adventureId} onBack={() => setAdventureId('')} onComplete={() => { onReward(markStoryComplete(adventureId)); updateStreakOnLesson(1) }} /></Suspense>
 
   if (selectedStory) {
     return (
@@ -1611,6 +1619,8 @@ function StorySection({
         <Mascot mood="happy" />
       </div>
 
+      <AdventureShelf onOpen={(id) => { setAdventureId(id); onRememberContinue({section: 'stories', storyId: id, pageIndex: 0, label: ADVENTURES.find(a => a.id === id)!.title}) }} />
+      <h2>More storybooks</h2>
       <div className="story-level-tabs" aria-label="Choose story level">
         {storyDifficultyFilters.map((filter) => (
           <button

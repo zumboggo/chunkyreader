@@ -1,0 +1,21 @@
+{
+  "source": "/private/tmp/pigs-hat-v1-raw.mp4",
+  "output": "/Users/david.hepting/Documents/ChatGPT/Chunky Learner/public/stories/adventures/v1/pigs-hat-v1-intro.mp4",
+  "dimensions": [
+    854,
+    480
+  ],
+  "fps": 24,
+  "hold_seconds": 3.0,
+  "motion_seconds": 6.0,
+  "reaction_hold_seconds": 0.0,
+  "total_seconds": 9.0,
+  "decoded_audio_seconds": 9.00275,
+  "audio_non_silent": true,
+  "audio_starts_after_hold": true,
+  "hold_mean_pixel_difference": 0.0012709797033567526,
+  "sha256": "f0774752113c7bbab95dc845e790a6a63ff88ae5d5d672d53ea987e62f652cac",
+  "expected_dialogue": "",
+  "speech_check": "not run",
+  "review": "One visual/listening review remains; automated checks do not prove natural acting or lip sync."
+}

@@ -1,0 +1,10 @@
+export interface StoryActivity {kind:'walk'|'train'|'eat';pace:'slow'|'steady'|'brisk'|'tiring'|'eager';direction?:'left'|'right';targetActor?:string;paused:boolean}
+export interface StoryPackage {format:1|2;title:string;description:string;profile:string;script:string;assets:{backgrounds:Record<string,any>;characters:Record<string,any>;music?:any};quiz:{prompt:string;options:string[];answer:number;explanation:string}[];sources?:string[];notice?:string;keepsake?:{title:string;description?:string;downloadLabel?:string;filename?:string;revealAt:string;choices:{id:string;label:string}[]};simulationScore?:{title?:string;endOnly?:boolean;scoringNote?:string;separateVariables?:{variable:string;label:string}[];outcomes?:{choice:{id:string;option:string};minimums?:Record<string,number>;label:string;points:number[]}[];categories:{variable:string;label:string;description:string;maximum?:number}[]}}
+export interface StoryState {cues?:any[];cursor:number;variables:Record<string,number|boolean>;stage:{background:string|null;ambience?:string;environment?:string;scroll?:string;camera?:{shot:string;actor?:string;otherActor?:string;duration?:number};actors:Record<string,{expression:string;position:string;facing:number;rest?:string;prop?:string;gaze?:string;activity?:StoryActivity}>};history:{actor:string;text:string;choice?:{id:string;prompt:string;options:{id:string;text:string}[];selected:string}}[];events:any[];seed:number;ended:boolean}
+export function compileStory(source:string,assets?:any):{errors:{line:number;message:string}[];story?:any};
+export function validatePackage(pack:StoryPackage):ReturnType<typeof compileStory>;
+export function initialStoryState(story:any,seed?:number):StoryState;
+export function settleStory(story:any,state:StoryState):StoryState;
+export function advanceStory(story:any,state:StoryState,option:string|null):StoryState;
+export function replayStory(story:any,steps:(string|null)[],seed:number):StoryState;
+export function quizScore(quiz:StoryPackage['quiz'],answers:number[]):number;

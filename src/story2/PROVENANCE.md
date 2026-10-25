@@ -1,0 +1,1 @@
+Shared Story 2 renderer and engine vendored from Learning is Fun/implementation at 8e50d48dbc380bcf33ca2b57949221d324e813a8. Relative import paths changed; shared stylesheet selectors are scoped under .adventure-player to avoid host collisions. Child-facing host lives in AdventureReader.tsx. Uses compileStory + validateRig without classroom quiz requirements.
