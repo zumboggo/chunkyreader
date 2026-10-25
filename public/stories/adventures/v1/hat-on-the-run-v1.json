@@ -1,0 +1,160 @@
+{
+  "format": 2,
+  "id": "hat-on-the-run-v1",
+  "title": "The Hat on the Run",
+  "description": "Three pals, one hat, and a nosy duck.",
+  "cover": "stories/adventures/v1/anne-hat-bush.svg",
+  "focusWords": [
+    "hat",
+    "net",
+    "duck",
+    "mud",
+    "help"
+  ],
+  "script": "story 2\nvariable net = false hidden\nscene anne-garden\nshow Anna curious left\nshow Anne happy center\nshow Diana happy right\ncamera wide cut\nI: Anna is back. Her pals wave.\nreact Anne wave\nAnne [happy]: Come on! A picnic for us!\nscene anne-windy-path\nshow Anna curious left\nshow Anne happy center\nshow Diana happy right\ncamera wide cut\nDiana [surprised]: The wind has your hat!\nAnne [surprised]: My hat can fly!\nchoice chase\noption hop \"Hop, hop!\" -> hop\noption flap \"Flap your arms!\" -> flap\nlabel hop\nmove Anna bounce\nAnna [happy]: Hop! I am a frog!\nAnne [laughing]: A frog can help!\ngoto bush\nlabel flap\nreact Anna excited\nAnna [happy]: Flap! I am a duck!\nAnne [laughing]: A duck can help!\ngoto bush\nlabel bush\nscene anne-hat-bush\nshow Anna curious left\nshow Anne happy center\nshow Diana happy right\ncamera wide cut\nDiana [curious]: It is stuck in a bush.\nAnne [laughing]: A duck wants it for a nest!\nchoice tool\noption net \"Get a net.\" -> net ; net = true\noption stick \"Get a stick.\" -> stick\nlabel net\nreact Anna reach\nAnna [happy]: Up goes the net. Got it!\nDiana [relieved]: Good catch! No mud on it.\ngoto safe\nlabel stick\nreact Anna reach\nAnna [happy]: Tap, tap. Down it drops!\nDiana [laughing]: Plop! A spot of mud!\ngoto safe\nlabel safe\nscene anne-hat-safe\nshow Anna curious left\nshow Anne happy center\nshow Diana happy right\ncamera wide cut\nAnne [relieved]: My hat is safe. Thank you!\nDiana [happy]: Now we can sit and eat.\nAnne [excited]: Our pals need a club name!\nchoice club\noption hat \"The Hat Club!\" -> hatclub\noption duck \"The Duck Club!\" -> duckclub\nlabel hatclub\nreact Anne bow\nAnne [proud]: Hats off to our club!\nDiana [laughing]: Hold on to that hat!\ngoto toolcheck\nlabel duckclub\nreact Anna laugh\nAnna [laughing]: Quack! A club of ducks!\nDiana [laughing]: We can quack and eat buns!\ngoto toolcheck\nlabel toolcheck\nif net == true -> netend else stickend\nlabel netend\nAnna [happy]: A net, a hat, and my pals.\ngoto end\nlabel stickend\nAnna [happy]: A stick, a hat, and my pals.\ngoto end\nlabel end\nAnne [happy]: A grand day with you, Anna!\nend",
+  "version": 1,
+  "castLabel": "Anna, Anne & Diana",
+  "profile": "growing-reader",
+  "notice": "A new make-believe visit to the world of Anne of Green Gables by L. M. Montgomery. These visits and words are newly written, not scenes or quotations from the book.",
+  "assets": {
+    "characters": {
+      "Anna": {
+        "name": "Anna",
+        "version": 1,
+        "provenance": "Storybook adaptation for Chunky Reader; shared polished SVG builder, not a likeness.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#70503f",
+            "shirt": "#c491d8"
+          },
+          "appearance": {
+            "age": "teen",
+            "hair": "ponytail",
+            "outfit": "tunic",
+            "face": "round",
+            "eyes": "gentle"
+          }
+        }
+      },
+      "Anne": {
+        "name": "Anne",
+        "version": 1,
+        "provenance": "Original stylized book adaptation of Anne Shirley: red hair, imaginative and eager for friendship. Not based on an actor or screen adaptation.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#ba633b",
+            "shirt": "#a6bd92"
+          },
+          "appearance": {
+            "age": "teen",
+            "hair": "long",
+            "outfit": "robe",
+            "face": "round",
+            "eyes": "keen"
+          }
+        }
+      },
+      "Diana": {
+        "name": "Diana",
+        "version": 1,
+        "provenance": "Original stylized book adaptation of Diana Barry: dark hair, warm and practical. Not based on an actor or screen adaptation.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#302b32",
+            "shirt": "#99bcd4"
+          },
+          "appearance": {
+            "age": "teen",
+            "hair": "long",
+            "outfit": "robe",
+            "face": "round",
+            "eyes": "gentle"
+          }
+        }
+      }
+    },
+    "backgrounds": {
+      "anne-garden": {
+        "src": "stories/adventures/v1/anne-garden.svg"
+      },
+      "anne-leaf-tea": {
+        "src": "stories/adventures/v1/anne-leaf-tea.svg"
+      },
+      "anne-shell-tea": {
+        "src": "stories/adventures/v1/anne-shell-tea.svg"
+      },
+      "anne-leaf-bug": {
+        "src": "stories/adventures/v1/anne-leaf-bug.svg"
+      },
+      "anne-shell-bug": {
+        "src": "stories/adventures/v1/anne-shell-bug.svg"
+      },
+      "anne-windy-path": {
+        "src": "stories/adventures/v1/anne-windy-path.svg"
+      },
+      "anne-hat-bush": {
+        "src": "stories/adventures/v1/anne-hat-bush.svg"
+      },
+      "anne-hat-safe": {
+        "src": "stories/adventures/v1/anne-hat-safe.svg"
+      }
+    }
+  },
+  "quiz": [],
+  "sources": [
+    "https://www.gutenberg.org/files/45/45-h/45-h.htm"
+  ],
+  "audio": {
+    "hat": "stories/adventures/v1/audio/dbda50361efd35a1.mp3",
+    "net": "stories/adventures/v1/audio/c340df2ceeb91829.mp3",
+    "duck": "stories/adventures/v1/audio/c02f80c7debc0872.mp3",
+    "mud": "stories/adventures/v1/audio/e6d2542737041aa3.mp3",
+    "help": "stories/adventures/v1/audio/34ffa04bcbcc9b49.mp3",
+    "What next?": "stories/adventures/v1/audio/9158a8e2d0d1ecb9.mp3",
+    "Anna is back. Her pals wave.": "stories/adventures/v1/audio/7f97fd7caf58c534.mp3",
+    "Come on! A picnic for us!": "stories/adventures/v1/audio/8972264153527970.mp3",
+    "The wind has your hat!": "stories/adventures/v1/audio/db07aa63ca699a04.mp3",
+    "My hat can fly!": "stories/adventures/v1/audio/a01c005f06f0bbd8.mp3",
+    "Hop! I am a frog!": "stories/adventures/v1/audio/927cf6b67af49096.mp3",
+    "A frog can help!": "stories/adventures/v1/audio/e0d1caec989146ed.mp3",
+    "Flap! I am a duck!": "stories/adventures/v1/audio/bb8477a4b5914e84.mp3",
+    "A duck can help!": "stories/adventures/v1/audio/9d17ec6ce3f5c592.mp3",
+    "It is stuck in a bush.": "stories/adventures/v1/audio/c51e3f2e63b61109.mp3",
+    "A duck wants it for a nest!": "stories/adventures/v1/audio/b24916eb82ac5dc7.mp3",
+    "Up goes the net. Got it!": "stories/adventures/v1/audio/520eb5ecc22e366e.mp3",
+    "Good catch! No mud on it.": "stories/adventures/v1/audio/d135b1868ae7d701.mp3",
+    "Tap, tap. Down it drops!": "stories/adventures/v1/audio/491204895f859614.mp3",
+    "Plop! A spot of mud!": "stories/adventures/v1/audio/fb95be10ce8b1e7b.mp3",
+    "My hat is safe. Thank you!": "stories/adventures/v1/audio/5e35fa00209950ae.mp3",
+    "Now we can sit and eat.": "stories/adventures/v1/audio/e46333aea81e73e9.mp3",
+    "Our pals need a club name!": "stories/adventures/v1/audio/892475dfd019bb74.mp3",
+    "Hats off to our club!": "stories/adventures/v1/audio/ff77996b0d64798a.mp3",
+    "Hold on to that hat!": "stories/adventures/v1/audio/ea5d1519d92e7de0.mp3",
+    "Quack! A club of ducks!": "stories/adventures/v1/audio/0d9dda5a5ed76337.mp3",
+    "We can quack and eat buns!": "stories/adventures/v1/audio/313349d5ecd2e15e.mp3",
+    "A net, a hat, and my pals.": "stories/adventures/v1/audio/c96bd277b708dda6.mp3",
+    "A stick, a hat, and my pals.": "stories/adventures/v1/audio/9767dea0fa954a14.mp3",
+    "A grand day with you, Anna!": "stories/adventures/v1/audio/e29e088491c4cc23.mp3",
+    "Hop, hop! Flap your arms!": "stories/adventures/v1/audio/c75501d74fa364a0.mp3",
+    "Get a net. Get a stick.": "stories/adventures/v1/audio/52995531fc5db914.mp3",
+    "The Hat Club! The Duck Club!": "stories/adventures/v1/audio/2780a9dbddb2d9fa.mp3"
+  }
+}

@@ -2,3 +2,5 @@
 .app-shell:has(.story-library),.app-shell:has(.adventure-player.adventure-player),.app-shell:has(.adventure-gate){width:100%;max-width:1080px;margin-inline:auto;padding:12px}.adventure-covers{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
 .adventure-player.adventure-player{width:100%}.adventure-player.adventure-player .story-stage{display:block;grid-template-columns:none;gap:0}.adventure-player.adventure-player .story-camera,.adventure-player.adventure-player .story-world{width:100%;height:100%}
 .adventure-player.adventure-player .story-stage [data-actor="Pig"],.adventure-player.adventure-player .story-stage [data-actor="Cat"],.adventure-player.adventure-player .story-stage [data-actor="Hen"]{left:34%;width:34%;height:56%;bottom:0}.adventure-player.adventure-player .story-stage [data-actor="Sarah"]{height:67%}
+
+.adventure-player.adventure-player .story-stage [data-actor="Anne"]{height:78%;width:25%;left:37.5%}

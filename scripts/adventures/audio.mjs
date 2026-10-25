@@ -9,7 +9,9 @@ const ffmpeg=process.env.FFMPEG_PATH
 if(!ffmpeg)throw Error('Set FFMPEG_PATH before generating clips')
 fs.mkdirSync(`${dir}/audio`,{recursive:true});fs.mkdirSync(`${dir}/ssml`,{recursive:true})
 let total=0
-for(const id of ['pigs-hat-v1','elsas-pet-v1']){
+const ids=process.argv.slice(2)
+if(!ids.length)throw Error('Pass explicit unreleased adventure IDs; published packages must remain unchanged')
+for(const id of ids){
  const file=`${dir}/${id}.json`,pack=JSON.parse(fs.readFileSync(file));const {story}=compileStory(pack.script,pack.assets)
  const texts=new Set([...pack.focusWords,'What next?',...story.nodes.filter(n=>n.text).map(n=>n.text),...story.nodes.filter(n=>n.type==='choice').map(n=>n.options.map(o=>o.text).join(' '))])
  pack.audio={}

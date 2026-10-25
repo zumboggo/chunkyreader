@@ -1,0 +1,158 @@
+{
+  "format": 2,
+  "id": "annas-new-pals-v1",
+  "title": "Anna’s New Pals",
+  "description": "A pretend tea with Anne and Diana.",
+  "cover": "stories/adventures/v1/anne-leaf-bug.svg",
+  "focusWords": [
+    "pal",
+    "cup",
+    "leaf",
+    "bug",
+    "bun"
+  ],
+  "script": "story 2\nvariable leaf = false hidden\nscene anne-garden\nshow Anna curious left\nshow Anne happy center\nshow Diana happy right\ncamera wide cut\nI: Anna is at Green Gables.\nAnne [happy]: I am Anne. This is Diana.\nDiana [happy]: Come and play!\nchoice hello\noption wave \"Wave hello.\" -> wave\noption bow \"Take a bow.\" -> bow\nlabel wave\nreact Anna wave\nAnna [happy]: Hi! I am Anna.\nreact Anne wave\nAnne [happy]: A new pal! Come in!\ngoto tea\nlabel bow\nreact Anna bow\nAnna [happy]: Hi! I am Anna.\nreact Anne bow\nAnne [laughing]: A grand guest! Come in!\ngoto tea\nlabel tea\nAnne [excited]: Let us have a grand tea!\nDiana [curious]: No cups! What can we use?\nchoice cup\noption leaf \"A leaf cup.\" -> leaf ; leaf = true\noption shell \"A shell cup.\" -> shell\nlabel leaf\nscene anne-leaf-tea\nshow Anna curious left\nshow Anne happy center\nshow Diana happy right\ncamera wide cut\nAnna [happy]: A leaf can be a cup!\nDiana [happy]: It has a drip. Sip fast!\ngoto bugcheck\nlabel shell\nscene anne-shell-tea\nshow Anna curious left\nshow Anne happy center\nshow Diana happy right\ncamera wide cut\nAnna [happy]: A shell can be a cup!\nDiana [laughing]: Tea by the sea! In a yard!\ngoto bugcheck\nlabel bugcheck\nif leaf == true -> leafbug else shellbug\nlabel leafbug\nscene anne-leaf-bug\nshow Anna curious left\nshow Anne happy center\nshow Diana happy right\ncamera wide cut\ngoto bug\nlabel shellbug\nscene anne-shell-bug\nshow Anna curious left\nshow Anne happy center\nshow Diana happy right\ncamera wide cut\ngoto bug\nlabel bug\nAnne [surprised]: A bug! A guest for tea!\nchoice bug\noption tip \"Tip it out.\" -> tip\noption sip \"Let it sip.\" -> sip\nlabel tip\nreact Anna reach\nAnna [happy]: Off you go, bug!\nDiana [happy]: A soft leaf for you.\ngoto endcup\nlabel sip\nreact Anne bow\nAnne [laughing]: A sip for Sir Bug!\nDiana [laughing]: He has six feet. No boots!\ngoto endcup\nlabel endcup\nif leaf == true -> leafend else shellend\nlabel leafend\nscene anne-leaf-tea\nshow Anna curious left\nshow Anne happy center\nshow Diana happy right\ncamera wide cut\nI: A leaf cup. A bun to split.\ngoto pals\nlabel shellend\nscene anne-shell-tea\nshow Anna curious left\nshow Anne happy center\nshow Diana happy right\ncamera wide cut\nI: A shell cup. A bun to split.\ngoto pals\nlabel pals\nAnna [happy]: Can we be pals?\nAnne [happy]: Yes! You, Diana, and me!\nDiana [happy]: Come back! We can have a picnic.\nend",
+  "version": 1,
+  "castLabel": "Anna, Anne & Diana",
+  "profile": "growing-reader",
+  "notice": "A new make-believe visit to the world of Anne of Green Gables by L. M. Montgomery. These visits and words are newly written, not scenes or quotations from the book.",
+  "assets": {
+    "characters": {
+      "Anna": {
+        "name": "Anna",
+        "version": 1,
+        "provenance": "Storybook adaptation for Chunky Reader; shared polished SVG builder, not a likeness.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#70503f",
+            "shirt": "#c491d8"
+          },
+          "appearance": {
+            "age": "teen",
+            "hair": "ponytail",
+            "outfit": "tunic",
+            "face": "round",
+            "eyes": "gentle"
+          }
+        }
+      },
+      "Anne": {
+        "name": "Anne",
+        "version": 1,
+        "provenance": "Original stylized book adaptation of Anne Shirley: red hair, imaginative and eager for friendship. Not based on an actor or screen adaptation.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#ba633b",
+            "shirt": "#a6bd92"
+          },
+          "appearance": {
+            "age": "teen",
+            "hair": "long",
+            "outfit": "robe",
+            "face": "round",
+            "eyes": "keen"
+          }
+        }
+      },
+      "Diana": {
+        "name": "Diana",
+        "version": 1,
+        "provenance": "Original stylized book adaptation of Diana Barry: dark hair, warm and practical. Not based on an actor or screen adaptation.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#302b32",
+            "shirt": "#99bcd4"
+          },
+          "appearance": {
+            "age": "teen",
+            "hair": "long",
+            "outfit": "robe",
+            "face": "round",
+            "eyes": "gentle"
+          }
+        }
+      }
+    },
+    "backgrounds": {
+      "anne-garden": {
+        "src": "stories/adventures/v1/anne-garden.svg"
+      },
+      "anne-leaf-tea": {
+        "src": "stories/adventures/v1/anne-leaf-tea.svg"
+      },
+      "anne-shell-tea": {
+        "src": "stories/adventures/v1/anne-shell-tea.svg"
+      },
+      "anne-leaf-bug": {
+        "src": "stories/adventures/v1/anne-leaf-bug.svg"
+      },
+      "anne-shell-bug": {
+        "src": "stories/adventures/v1/anne-shell-bug.svg"
+      },
+      "anne-windy-path": {
+        "src": "stories/adventures/v1/anne-windy-path.svg"
+      },
+      "anne-hat-bush": {
+        "src": "stories/adventures/v1/anne-hat-bush.svg"
+      },
+      "anne-hat-safe": {
+        "src": "stories/adventures/v1/anne-hat-safe.svg"
+      }
+    }
+  },
+  "quiz": [],
+  "sources": [
+    "https://www.gutenberg.org/files/45/45-h/45-h.htm"
+  ],
+  "audio": {
+    "pal": "stories/adventures/v1/audio/b7ea052e1ffd6f31.mp3",
+    "cup": "stories/adventures/v1/audio/aba6e13ba88aa293.mp3",
+    "leaf": "stories/adventures/v1/audio/462887871d40c413.mp3",
+    "bug": "stories/adventures/v1/audio/3eda47c20b56671b.mp3",
+    "bun": "stories/adventures/v1/audio/1ddb1daee112c2e7.mp3",
+    "What next?": "stories/adventures/v1/audio/9158a8e2d0d1ecb9.mp3",
+    "Anna is at Green Gables.": "stories/adventures/v1/audio/d68ae76e3f5851a9.mp3",
+    "I am Anne. This is Diana.": "stories/adventures/v1/audio/73d3e32bf24c6c02.mp3",
+    "Come and play!": "stories/adventures/v1/audio/1ccd6cc7dd3cd5d0.mp3",
+    "Hi! I am Anna.": "stories/adventures/v1/audio/7a1218408f0b71c3.mp3",
+    "A new pal! Come in!": "stories/adventures/v1/audio/f2206bcdf23c3afc.mp3",
+    "A grand guest! Come in!": "stories/adventures/v1/audio/4c8e81d2dda0e037.mp3",
+    "Let us have a grand tea!": "stories/adventures/v1/audio/c66dc802ec480cde.mp3",
+    "No cups! What can we use?": "stories/adventures/v1/audio/db508b48c260ea6d.mp3",
+    "A leaf can be a cup!": "stories/adventures/v1/audio/2cdc1b2010db49ef.mp3",
+    "It has a drip. Sip fast!": "stories/adventures/v1/audio/05cac1b76b1b4143.mp3",
+    "A shell can be a cup!": "stories/adventures/v1/audio/d7a73f0d434c1822.mp3",
+    "Tea by the sea! In a yard!": "stories/adventures/v1/audio/54bd97affc786a5c.mp3",
+    "A bug! A guest for tea!": "stories/adventures/v1/audio/b1132d8978895980.mp3",
+    "Off you go, bug!": "stories/adventures/v1/audio/e8cdb3823a6194f3.mp3",
+    "A soft leaf for you.": "stories/adventures/v1/audio/1f4c75632fdb9985.mp3",
+    "A sip for Sir Bug!": "stories/adventures/v1/audio/e3ef86affc18d94e.mp3",
+    "He has six feet. No boots!": "stories/adventures/v1/audio/05be9831e12377d8.mp3",
+    "A leaf cup. A bun to split.": "stories/adventures/v1/audio/11e4dc4da9a150b1.mp3",
+    "A shell cup. A bun to split.": "stories/adventures/v1/audio/bec4ea95a9fd8a05.mp3",
+    "Can we be pals?": "stories/adventures/v1/audio/9a931f0f1a1a67b6.mp3",
+    "Yes! You, Diana, and me!": "stories/adventures/v1/audio/a0fd5db2f87f5067.mp3",
+    "Come back! We can have a picnic.": "stories/adventures/v1/audio/c62d10d0b4ab2a8d.mp3",
+    "Wave hello. Take a bow.": "stories/adventures/v1/audio/3e101ce622b035fc.mp3",
+    "A leaf cup. A shell cup.": "stories/adventures/v1/audio/2a7a0eb14fdbd3eb.mp3",
+    "Tip it out. Let it sip.": "stories/adventures/v1/audio/e68ac360d153102c.mp3"
+  }
+}
