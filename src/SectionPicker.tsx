@@ -46,6 +46,7 @@ export function SectionPicker({
   continueState?: ContinueLearningState
   greenEggs: GreenEggsProgress
 }) {
+  const [showEarlyReading, setShowEarlyReading] = useState(false)
   const progress = loadProgress()
   const ownedCount = getOwnedRewards(progress).length
   const boxCount = progress.unopenedBoxes || 0
@@ -54,6 +55,32 @@ export function SectionPicker({
   const phonemesLearned = getPhonemeLearnedCount()
   const readingState = loadGuidedReadingState('annas-reading-deck')
   const practisedWords = Object.keys(readingState.words).length
+
+  if (showEarlyReading) {
+    return (
+      <section className="home-screen">
+        <button type="button" className="choice-action" onClick={() => setShowEarlyReading(false)}>← All categories</button>
+        <div className="home-copy"><div>
+          <h1>Letters &amp; Sounds</h1>
+          <p>Listen, look, and play together. Choose either little game.</p>
+        </div></div>
+        <div className="path-grid section-grid" aria-label="Choose a little game">
+          {LEARNING_SECTIONS.filter(section => section.id === 'letters' || section.id === 'sounds').map(section => (
+            <button key={section.id} type="button" className="path-card"
+              style={{ backgroundColor: section.color }} onClick={() => onChooseSection(section.id)}>
+              <div className="section-image-container"><img className="section-image" src={assetUrl(section.image)} alt="" /></div>
+              <span className="section-audience-pill">Earliest Reader</span>
+              <strong>{section.id === 'letters' ? 'Play with letters' : 'Play with sounds'}</strong>
+              <p>{section.id === 'letters' ? 'See a letter, hear its sound, and copy or tap.' : 'Hear two sounds and play with familiar pictures.'}</p>
+              <div className="section-card-footer"><span>30–60 seconds together</span><span>Let’s play</span></div>
+              <SectionProgressBadge count={getSectionProgress(section.id)} />
+            </button>
+          ))}
+        </div>
+        <p>Both games are always open. Listen and explore at your own pace.</p>
+      </section>
+    )
+  }
 
   return (
     <section className="home-screen">
@@ -73,7 +100,7 @@ export function SectionPicker({
         )}
       </div>
 
-      <button type="button" className="continue-hero squish" onClick={continueState ? onContinue : () => onChooseSection(LEARNING_SECTIONS[0]?.id ?? 'letters')}>
+      <button type="button" className="continue-hero squish" onClick={continueState ? onContinue : () => setShowEarlyReading(true)}>
         {continueState?.section === 'words' ? (
           <img
             className="continue-hero-art"
@@ -99,13 +126,13 @@ export function SectionPicker({
       />
 
       <div className="path-grid section-grid" aria-label="Choose a learning section">
-        {LEARNING_SECTIONS.map((section) => (
+        {LEARNING_SECTIONS.filter(section => section.id !== 'sounds').map((section) => (
           <button
             key={section.id}
             type="button"
             className="path-card"
             style={{ backgroundColor: section.color }}
-            onClick={() => onChooseSection(section.id)}
+            onClick={() => section.id === 'letters' ? setShowEarlyReading(true) : onChooseSection(section.id)}
           >
             <div className="section-image-container">
               <img className="section-image" src={assetUrl(`${section.image}`)} alt="" />
@@ -114,12 +141,12 @@ export function SectionPicker({
               </span>
             </div>
             <span className="section-audience-pill">{section.eyebrow}</span>
-            <strong>{section.title}</strong>
-            <small>{section.subtitle}</small>
-            <p className="section-helper">{section.helper}</p>
+            <strong>{section.id === 'letters' ? 'Letters & Sounds' : section.title}</strong>
+            <small>{section.id === 'letters' ? 'Look, listen, and play together.' : section.subtitle}</small>
+            <p className="section-helper">{section.id === 'letters' ? 'Explore letters and their sounds through two tiny games.' : section.helper}</p>
             <div className="section-card-footer">
-              <span>{section.pocket}</span>
-              <span>{section.cta}</span>
+              <span>{section.id === 'letters' ? '30–60 seconds together' : section.pocket}</span>
+              <span>{section.id === 'letters' ? 'Let’s play' : section.cta}</span>
             </div>
             {section.id === 'words' ? (
               <>
@@ -128,7 +155,7 @@ export function SectionPicker({
                 </span>
               </>
             ) : (
-              <SectionProgressBadge count={getSectionProgress(section.id)} />
+              <SectionProgressBadge count={getSectionProgress(section.id) + (section.id === 'letters' ? getSectionProgress('sounds') : 0)} />
             )}
           </button>
         ))}
@@ -142,9 +169,9 @@ export function SectionPicker({
             <span className="section-visual-badge badge-sounds" aria-hidden="true">th</span>
           </div>
           <span className="section-audience-pill">Older reader</span>
-          <strong>Phonics</strong>
-          <small>Sounds and spellings</small>
-          <p className="section-helper">Practice the sounds inside words.</p>
+          <strong>Phonics Patterns</strong>
+          <small>Sound patterns: sh, ch, ai…</small>
+          <p className="section-helper">Explore how letters work together to spell sounds in words.</p>
           <div className="section-card-footer">
             <span>Sound pocket</span>
             <span>Practice</span>
