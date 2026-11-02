@@ -1,0 +1,150 @@
+{
+  "format": 2,
+  "id": "chengdu-boat-v1",
+  "title": "The Chengdu Boat",
+  "description": "A tiny boat gets a very tiny guest.",
+  "cover": "stories/adventures/v1/chengdu-ant.svg",
+  "focusWords": [
+    "boat",
+    "rain",
+    "rock",
+    "ant",
+    "leaf"
+  ],
+  "script": "story 2\nvariable leaf = false hidden\nscene chengdu-boat\nshow Anna happy left\nshow Sarah curious right\ncamera wide cut\nI: We are in a park in Chengdu.\nSarah [happy]: Rain is done. A pool for my boat!\nAnna [curious]: What can sail in it?\nchoice load\noption leaf \"A leaf.\" -> leaf\noption petal \"A pink petal.\" -> petal\nlabel leaf\nSarah [laughing]: A leaf ship! All on board!\ngoto stuck\nlabel petal\nSarah [happy]: A pink ship! Just like your dress!\ngoto stuck\nlabel stuck\nscene chengdu-boat-stuck\nshow Anna happy left\nshow Sarah curious right\ncamera wide cut\nSarah [worried]: Oh no. It is stuck on a rock.\nchoice free\noption stick \"Push with a twig.\" -> stick\noption cup \"Pour in a cup.\" -> cup\nlabel stick\nAnna [happy]: One soft push. Off it goes!\ngoto ant\nlabel cup\nAnna [happy]: More water! Up it floats!\ngoto ant\nlabel ant\nscene chengdu-ant\nshow Anna happy left\nshow Sarah curious right\ncamera wide cut\nSarah [curious]: An ant! It is on the boat.\nexpress Sarah worried\ncamera listener Sarah cut\nAnna [happy]: It needs a way back to land.\nSarah [happy]: Then my boat can help!\ncamera wide cut\nchoice land\noption leaf \"Stop at a leaf.\" -> leafland ; leaf = true\noption stone \"Stop at a stone.\" -> stoneland\nlabel leafland\nscene chengdu-ant-leaf\nshow Anna happy left\nshow Sarah curious right\ncamera wide cut\nAnna [happy]: A leaf ramp. Off you go, ant!\ngoto check\nlabel stoneland\nscene chengdu-ant-stone\nshow Anna happy left\nshow Sarah curious right\ncamera wide cut\nAnna [happy]: A dry stone. Off you go, ant!\ngoto check\nlabel check\nif leaf == true -> leafend else stoneend\nlabel leafend\nSarah [proud]: My boat has a leaf stop!\ngoto end\nlabel stoneend\nSarah [proud]: My boat has a stone stop!\ngoto end\nlabel end\nAnna [happy]: The ant is home. Time for a bun?\nreact Sarah laugh\nSarah [laughing]: Yes! No ants in my bun!\nend",
+  "version": 1,
+  "castLabel": "Anna & Sarah",
+  "profile": "growing-reader",
+  "notice": "A make-believe park adventure in Chengdu with Anna and Sarah. Read and choose, or listen together.",
+  "assets": {
+    "characters": {
+      "Anna": {
+        "name": "Anna",
+        "version": 1,
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#604332",
+            "shirt": "#efa8bd",
+            "trim": "#fff0dd"
+          },
+          "appearance": {
+            "age": "child",
+            "hair": "long",
+            "outfit": "tunic",
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#b976a8"
+          }
+        }
+      },
+      "Sarah": {
+        "name": "Sarah",
+        "version": 1,
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#73503a",
+            "shirt": "#b69cdb",
+            "trim": "#fff0dd"
+          },
+          "appearance": {
+            "age": "child",
+            "hair": "bob",
+            "outfit": "tunic",
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#d95855"
+          }
+        }
+      }
+    },
+    "backgrounds": {
+      "chengdu-boat": {
+        "src": "stories/adventures/v1/chengdu-boat.svg"
+      },
+      "chengdu-boat-stuck": {
+        "src": "stories/adventures/v1/chengdu-boat-stuck.svg"
+      },
+      "chengdu-ant": {
+        "src": "stories/adventures/v1/chengdu-ant.svg"
+      },
+      "chengdu-ant-leaf": {
+        "src": "stories/adventures/v1/chengdu-ant-leaf.svg"
+      },
+      "chengdu-ant-stone": {
+        "src": "stories/adventures/v1/chengdu-ant-stone.svg"
+      }
+    }
+  },
+  "quiz": [],
+  "sources": [],
+  "audio": {
+    "boat": "stories/adventures/v1/audio/new-pals-v1/a8959b33e34cf3b6b383.mp3",
+    "rain": "stories/adventures/v1/audio/new-pals-v1/e7a8ef7bbd1d37269292.mp3",
+    "rock": "stories/adventures/v1/audio/new-pals-v1/600c4182429dde714800.mp3",
+    "ant": "stories/adventures/v1/audio/new-pals-v1/06a41b588be8af622587.mp3",
+    "leaf": "stories/adventures/v1/audio/new-pals-v1/f907246f669af14b7ed8.mp3",
+    "What next?": "stories/adventures/v1/audio/new-pals-v1/ba677f54dfb2b110739a.mp3",
+    "We are in a park in Chengdu.": "stories/adventures/v1/audio/new-pals-v1/645970cace2600ccd863.mp3",
+    "Rain is done. A pool for my boat!": "stories/adventures/v1/audio/new-pals-v1/65d239abb14915dca23d.mp3",
+    "What can sail in it?": "stories/adventures/v1/audio/new-pals-v1/0bb45f612171e6e54584.mp3",
+    "A leaf ship! All on board!": "stories/adventures/v1/audio/new-pals-v1/d980b2fae46076ed1f6e.mp3",
+    "A pink ship! Just like your dress!": "stories/adventures/v1/audio/new-pals-v1/0beb2463584ef45f8fa2.mp3",
+    "Oh no. It is stuck on a rock.": "stories/adventures/v1/audio/new-pals-v1/65b35250d44421791465.mp3",
+    "One soft push. Off it goes!": "stories/adventures/v1/audio/new-pals-v1/f348987111ad907cefa2.mp3",
+    "More water! Up it floats!": "stories/adventures/v1/audio/new-pals-v1/cba25c79014939e7d69a.mp3",
+    "An ant! It is on the boat.": "stories/adventures/v1/audio/new-pals-v1/5adb8d7c4ddcd3ae3399.mp3",
+    "It needs a way back to land.": "stories/adventures/v1/audio/new-pals-v1/5ca1009b43b6733cfd36.mp3",
+    "Then my boat can help!": "stories/adventures/v1/audio/new-pals-v1/a3457a78e1d7f9d62c31.mp3",
+    "A leaf ramp. Off you go, ant!": "stories/adventures/v1/audio/new-pals-v1/1ba4542865e08a7124a7.mp3",
+    "A dry stone. Off you go, ant!": "stories/adventures/v1/audio/new-pals-v1/7fd491731530e9c112b9.mp3",
+    "My boat has a leaf stop!": "stories/adventures/v1/audio/new-pals-v1/5f59fa21acbdddcaa17f.mp3",
+    "My boat has a stone stop!": "stories/adventures/v1/audio/new-pals-v1/369d0c842bfa53d587d5.mp3",
+    "The ant is home. Time for a bun?": "stories/adventures/v1/audio/new-pals-v1/b17cc4a2941804686177.mp3",
+    "Yes! No ants in my bun!": "stories/adventures/v1/audio/new-pals-v1/27fa75985c86aa9b2758.mp3",
+    "A leaf. A pink petal.": "stories/adventures/v1/audio/new-pals-v1/3d57da84397df1ebe401.mp3",
+    "Push with a twig. Pour in a cup.": "stories/adventures/v1/audio/new-pals-v1/a697707bb2292a5b0f40.mp3",
+    "Stop at a leaf. Stop at a stone.": "stories/adventures/v1/audio/new-pals-v1/a8392196e805dc33ebfa.mp3"
+  },
+  "dialogueAudio": {
+    "Sarah": {
+      "Rain is done. A pool for my boat!": "stories/adventures/v1/audio/new-pals-v1/65d239abb14915dca23d.mp3",
+      "A leaf ship! All on board!": "stories/adventures/v1/audio/new-pals-v1/d980b2fae46076ed1f6e.mp3",
+      "A pink ship! Just like your dress!": "stories/adventures/v1/audio/new-pals-v1/0beb2463584ef45f8fa2.mp3",
+      "Oh no. It is stuck on a rock.": "stories/adventures/v1/audio/new-pals-v1/65b35250d44421791465.mp3",
+      "An ant! It is on the boat.": "stories/adventures/v1/audio/new-pals-v1/5adb8d7c4ddcd3ae3399.mp3",
+      "Then my boat can help!": "stories/adventures/v1/audio/new-pals-v1/a3457a78e1d7f9d62c31.mp3",
+      "My boat has a leaf stop!": "stories/adventures/v1/audio/new-pals-v1/5f59fa21acbdddcaa17f.mp3",
+      "My boat has a stone stop!": "stories/adventures/v1/audio/new-pals-v1/369d0c842bfa53d587d5.mp3",
+      "Yes! No ants in my bun!": "stories/adventures/v1/audio/new-pals-v1/27fa75985c86aa9b2758.mp3"
+    },
+    "Anna": {
+      "What can sail in it?": "stories/adventures/v1/audio/new-pals-v1/0bb45f612171e6e54584.mp3",
+      "One soft push. Off it goes!": "stories/adventures/v1/audio/new-pals-v1/f348987111ad907cefa2.mp3",
+      "More water! Up it floats!": "stories/adventures/v1/audio/new-pals-v1/cba25c79014939e7d69a.mp3",
+      "It needs a way back to land.": "stories/adventures/v1/audio/new-pals-v1/5ca1009b43b6733cfd36.mp3",
+      "A leaf ramp. Off you go, ant!": "stories/adventures/v1/audio/new-pals-v1/1ba4542865e08a7124a7.mp3",
+      "A dry stone. Off you go, ant!": "stories/adventures/v1/audio/new-pals-v1/7fd491731530e9c112b9.mp3",
+      "The ant is home. Time for a bun?": "stories/adventures/v1/audio/new-pals-v1/b17cc4a2941804686177.mp3"
+    }
+  },
+  "intro": {
+    "kind": "still",
+    "src": "stories/adventures/v1/chengdu-boat-v1-intro.poster.jpg",
+    "alt": "Anna and Sarah watch a paper boat in a Chengdu park puddle."
+  },
+  "sceneLayout": "full"
+}

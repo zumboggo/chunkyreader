@@ -1,4 +1,7 @@
 export const ADVENTURES = [
+  {id:'marians-bun-run-v1',title:'Marian’s Bun Run',description:'Keep the buns dry. Save a bit for a pal.',cover:'marian-buns'},
+  {id:'marians-red-kite-v1',title:'Marian’s Red Kite',description:'A stuck kite, a lost tail, and three good pals.',cover:'marian-kite-stuck'},
+  {id:'chengdu-boat-v1',title:'The Chengdu Boat',description:'A tiny boat gets a very tiny guest.',cover:'chengdu-ant'},
   {id:'annas-new-pals-v1',title:'Anna’s New Pals',description:'A pretend tea with Anne and Diana.',cover:'anne-leaf-bug'},
   {id:'hat-on-the-run-v1',title:'The Hat on the Run',description:'Three pals, one hat, and a nosy duck.',cover:'anne-hat-bush'},
   {id:'pigs-hat-v1',title:'The Pig’s Hat',description:'A hat, a pot, and a very muddy pig.',cover:'pig-pot'},

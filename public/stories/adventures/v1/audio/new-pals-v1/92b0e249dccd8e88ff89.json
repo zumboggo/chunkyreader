@@ -1,0 +1,9 @@
+{
+  "model": "google/gemini-3.1-flash-tts",
+  "input": {
+    "text": "A red kite with a green tail!",
+    "voice": "Achernar",
+    "language_code": "en-US",
+    "prompt": "Read as Maid Marian, a kind, playful fox in a gentle storybook. Light, soft female voice, clear English, warm and expressive. Easy pace for a beginning reader. Say only the supplied text. No music, extra words, or sound effects."
+  }
+}

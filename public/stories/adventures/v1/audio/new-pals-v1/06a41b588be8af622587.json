@@ -1,0 +1,9 @@
+{
+  "model": "google/gemini-3.1-flash-tts",
+  "input": {
+    "text": "ant",
+    "voice": "Leda",
+    "language_code": "en-US",
+    "prompt": "Read the supplied text only in a bright, gentle female voice, clear American English, at an easy pace for a beginning reader. No introduction, extra words, music or sound effects."
+  }
+}

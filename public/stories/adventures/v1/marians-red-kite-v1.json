@@ -1,0 +1,177 @@
+{
+  "format": 2,
+  "id": "marians-red-kite-v1",
+  "title": "Marian’s Red Kite",
+  "description": "A stuck kite, a lost tail, and three good pals.",
+  "cover": "stories/adventures/v1/marian-kite-stuck.svg",
+  "focusWords": [
+    "kite",
+    "fox",
+    "stick",
+    "tail",
+    "wind"
+  ],
+  "script": "story 2\nvariable leaf = false hidden\nscene marian-kite-stuck\nshow Anna happy left\nshow Sarah curious right\nshow Marian happy center\ncamera wide cut\nI: Maid Marian has a red kite.\nMarian [worried]: It is stuck! I tug. It will rip.\nAnna [curious]: Let us lift it up.\nchoice lift\noption stick \"Use a stick.\" -> stick\noption hands \"Use our hands.\" -> hands\nlabel stick\nAnna [happy]: Up, stick! Lift, do not tug.\nMarian [relieved]: It is free! No rip!\ngoto tail\nlabel hands\nSarah [happy]: I hold this twig. You lift.\nMarian [relieved]: We did it! No rip!\ngoto tail\nlabel tail\nscene marian-kite-bow\nshow Anna happy left\nshow Sarah curious right\nshow Marian happy center\ncamera wide cut\nMarian [worried]: But the tail is lost.\nchoice tail\noption bow \"Tie on a bow.\" -> bow\noption leaf \"Tie on a leaf.\" -> leaf ; leaf = true\nlabel bow\nSarah [happy]: A bow! Our kite can dress up.\ngoto wind\nlabel leaf\nscene marian-kite-leaf\nshow Anna happy left\nshow Sarah curious right\nshow Marian happy center\ncamera wide cut\nSarah [laughing]: A leaf! Our kite is a tree.\ngoto wind\nlabel wind\nMarian [worried]: What if it gets stuck again?\nexpress Marian worried\ncamera listener Marian cut\nAnna [happy]: We can help again.\nMarian [relieved]: Then let us try.\ncamera wide cut\nchoice launch\noption run \"Run with it.\" -> run\noption wind \"Wait for wind.\" -> windwait\nlabel run\nmove Anna bounce\nAnna [excited]: Run, run! Up it goes!\ngoto check\nlabel windwait\nSarah [curious]: Wait... Now! Up it goes!\ngoto check\nlabel check\nif leaf == true -> leafend else bowend\nlabel leafend\nscene marian-kite-leaf\nshow Anna happy left\nshow Sarah curious right\nshow Marian happy center\ncamera wide cut\nMarian [laughing]: A red kite with a green tail!\ngoto end\nlabel bowend\nscene marian-kite-bow\nshow Anna happy left\nshow Sarah curious right\nshow Marian happy center\ncamera wide cut\nMarian [laughing]: A red kite with a bow tail!\ngoto end\nlabel end\nSarah [happy]: Fly, kite! We will catch you.\nend",
+  "version": 1,
+  "castLabel": "Anna, Sarah & Maid Marian",
+  "profile": "growing-reader",
+  "notice": "A new make-believe visit to the animal world of Robin Hood, with Maid Marian the fox. This is a new side adventure, not a scene or quotation from the film.",
+  "assets": {
+    "characters": {
+      "Anna": {
+        "name": "Anna",
+        "version": 1,
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#604332",
+            "shirt": "#efa8bd",
+            "trim": "#fff0dd"
+          },
+          "appearance": {
+            "age": "child",
+            "hair": "long",
+            "outfit": "tunic",
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#b976a8"
+          }
+        }
+      },
+      "Sarah": {
+        "name": "Sarah",
+        "version": 1,
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#73503a",
+            "shirt": "#b69cdb",
+            "trim": "#fff0dd"
+          },
+          "appearance": {
+            "age": "child",
+            "hair": "bob",
+            "outfit": "tunic",
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#d95855"
+          }
+        }
+      },
+      "Marian": {
+        "name": "Maid Marian",
+        "provenance": "Original SVG interpretation of the fox Maid Marian in Disney’s animal Robin Hood (1973); new side adventures, no film dialogue.",
+        "expressions": {
+          "neutral": {
+            "src": "stories/adventures/v1/maid-marian-neutral.svg"
+          },
+          "happy": {
+            "src": "stories/adventures/v1/maid-marian-happy.svg"
+          },
+          "curious": {
+            "src": "stories/adventures/v1/maid-marian-curious.svg"
+          },
+          "worried": {
+            "src": "stories/adventures/v1/maid-marian-worried.svg"
+          },
+          "laughing": {
+            "src": "stories/adventures/v1/maid-marian-laughing.svg"
+          },
+          "relieved": {
+            "src": "stories/adventures/v1/maid-marian-relieved.svg"
+          },
+          "proud": {
+            "src": "stories/adventures/v1/maid-marian-proud.svg"
+          }
+        }
+      }
+    },
+    "backgrounds": {
+      "marian-kite-stuck": {
+        "src": "stories/adventures/v1/marian-kite-stuck.svg"
+      },
+      "marian-kite-bow": {
+        "src": "stories/adventures/v1/marian-kite-bow.svg"
+      },
+      "marian-kite-leaf": {
+        "src": "stories/adventures/v1/marian-kite-leaf.svg"
+      }
+    }
+  },
+  "quiz": [],
+  "sources": [
+    "https://movies.disney.com/robin-hood"
+  ],
+  "audio": {
+    "kite": "stories/adventures/v1/audio/new-pals-v1/f836f962aa67866abe0d.mp3",
+    "fox": "stories/adventures/v1/audio/new-pals-v1/4489e14bf5903e53ee3b.mp3",
+    "stick": "stories/adventures/v1/audio/new-pals-v1/7715dc742204bd4db308.mp3",
+    "tail": "stories/adventures/v1/audio/new-pals-v1/8feb3eaecd1a4c7f117c.mp3",
+    "wind": "stories/adventures/v1/audio/new-pals-v1/234cba03652bbbfb3fdc.mp3",
+    "What next?": "stories/adventures/v1/audio/new-pals-v1/ba677f54dfb2b110739a.mp3",
+    "Maid Marian has a red kite.": "stories/adventures/v1/audio/new-pals-v1/7d17139e72b20b3e2960.mp3",
+    "It is stuck! I tug. It will rip.": "stories/adventures/v1/audio/new-pals-v1/abea550d35c6d23b1a0b.mp3",
+    "Let us lift it up.": "stories/adventures/v1/audio/new-pals-v1/2155e9f91029717960d2.mp3",
+    "Up, stick! Lift, do not tug.": "stories/adventures/v1/audio/new-pals-v1/c711f7a4a0f911e87841.mp3",
+    "It is free! No rip!": "stories/adventures/v1/audio/new-pals-v1/2d5b36ab2f1acaf193ae.mp3",
+    "I hold this twig. You lift.": "stories/adventures/v1/audio/new-pals-v1/548b361782e4be08f3de.mp3",
+    "We did it! No rip!": "stories/adventures/v1/audio/new-pals-v1/5912004ca91e568caa9a.mp3",
+    "But the tail is lost.": "stories/adventures/v1/audio/new-pals-v1/668a7607ddfcbbdd759f.mp3",
+    "A bow! Our kite can dress up.": "stories/adventures/v1/audio/new-pals-v1/72a73c4b3210fdcc717c.mp3",
+    "A leaf! Our kite is a tree.": "stories/adventures/v1/audio/new-pals-v1/61fd072c01ce8dccb777.mp3",
+    "What if it gets stuck again?": "stories/adventures/v1/audio/new-pals-v1/4d46d63294ac8f65c95d.mp3",
+    "We can help again.": "stories/adventures/v1/audio/new-pals-v1/23ed4176d8df47bcfbce.mp3",
+    "Then let us try.": "stories/adventures/v1/audio/new-pals-v1/f51c19c83782bba9433a.mp3",
+    "Run, run! Up it goes!": "stories/adventures/v1/audio/new-pals-v1/09e281b4ed8178766d0b.mp3",
+    "Wait... Now! Up it goes!": "stories/adventures/v1/audio/new-pals-v1/7a903d6e95b8032fadd9.mp3",
+    "A red kite with a green tail!": "stories/adventures/v1/audio/new-pals-v1/92b0e249dccd8e88ff89.mp3",
+    "A red kite with a bow tail!": "stories/adventures/v1/audio/new-pals-v1/8b8e002b7e8e3790479e.mp3",
+    "Fly, kite! We will catch you.": "stories/adventures/v1/audio/new-pals-v1/2c31f56d092c8a5c2b3e.mp3",
+    "Use a stick. Use our hands.": "stories/adventures/v1/audio/new-pals-v1/236d925be55406381d74.mp3",
+    "Tie on a bow. Tie on a leaf.": "stories/adventures/v1/audio/new-pals-v1/df029e81eb1953d5b127.mp3",
+    "Run with it. Wait for wind.": "stories/adventures/v1/audio/new-pals-v1/76cf4f24300dc69d4dec.mp3"
+  },
+  "dialogueAudio": {
+    "Marian": {
+      "It is stuck! I tug. It will rip.": "stories/adventures/v1/audio/new-pals-v1/abea550d35c6d23b1a0b.mp3",
+      "It is free! No rip!": "stories/adventures/v1/audio/new-pals-v1/2d5b36ab2f1acaf193ae.mp3",
+      "We did it! No rip!": "stories/adventures/v1/audio/new-pals-v1/5912004ca91e568caa9a.mp3",
+      "But the tail is lost.": "stories/adventures/v1/audio/new-pals-v1/668a7607ddfcbbdd759f.mp3",
+      "What if it gets stuck again?": "stories/adventures/v1/audio/new-pals-v1/4d46d63294ac8f65c95d.mp3",
+      "Then let us try.": "stories/adventures/v1/audio/new-pals-v1/f51c19c83782bba9433a.mp3",
+      "A red kite with a green tail!": "stories/adventures/v1/audio/new-pals-v1/92b0e249dccd8e88ff89.mp3",
+      "A red kite with a bow tail!": "stories/adventures/v1/audio/new-pals-v1/8b8e002b7e8e3790479e.mp3"
+    },
+    "Anna": {
+      "Let us lift it up.": "stories/adventures/v1/audio/new-pals-v1/2155e9f91029717960d2.mp3",
+      "Up, stick! Lift, do not tug.": "stories/adventures/v1/audio/new-pals-v1/c711f7a4a0f911e87841.mp3",
+      "We can help again.": "stories/adventures/v1/audio/new-pals-v1/23ed4176d8df47bcfbce.mp3",
+      "Run, run! Up it goes!": "stories/adventures/v1/audio/new-pals-v1/09e281b4ed8178766d0b.mp3"
+    },
+    "Sarah": {
+      "I hold this twig. You lift.": "stories/adventures/v1/audio/new-pals-v1/548b361782e4be08f3de.mp3",
+      "A bow! Our kite can dress up.": "stories/adventures/v1/audio/new-pals-v1/72a73c4b3210fdcc717c.mp3",
+      "A leaf! Our kite is a tree.": "stories/adventures/v1/audio/new-pals-v1/61fd072c01ce8dccb777.mp3",
+      "Wait... Now! Up it goes!": "stories/adventures/v1/audio/new-pals-v1/7a903d6e95b8032fadd9.mp3",
+      "Fly, kite! We will catch you.": "stories/adventures/v1/audio/new-pals-v1/2c31f56d092c8a5c2b3e.mp3"
+    }
+  },
+  "intro": {
+    "kind": "still",
+    "src": "stories/adventures/v1/marians-red-kite-v1-intro.poster.jpg",
+    "alt": "Anna and Sarah find Maid Marian’s red kite caught in a bush."
+  },
+  "sceneLayout": "full"
+}

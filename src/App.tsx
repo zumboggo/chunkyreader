@@ -1504,7 +1504,10 @@ function StorySection({
   onReward: (result: CompletionRewardResult) => void
 }) {
   const [selectedStoryId, setSelectedStoryId] = useState('')
-  const [adventureId, setAdventureId] = useState('')
+  const [adventureId, setAdventureId] = useState(() => {
+    const requested = new URLSearchParams(window.location.search).get('adventure')
+    return ADVENTURES.some(adventure => adventure.id === requested) ? requested! : ''
+  })
   const [pageIndex, setPageIndex] = useState(0)
   const [complete, setComplete] = useState(false)
   const [difficultyFilter, setDifficultyFilter] = useState<StoryDifficultyFilter>('easy')

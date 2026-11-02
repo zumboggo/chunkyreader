@@ -1,0 +1,183 @@
+{
+  "format": 2,
+  "id": "marians-bun-run-v1",
+  "title": "Marian’s Bun Run",
+  "description": "Keep the buns dry. Save a bit for a pal.",
+  "cover": "stories/adventures/v1/marian-buns.svg",
+  "focusWords": [
+    "bun",
+    "fox",
+    "leaf",
+    "mud",
+    "share"
+  ],
+  "script": "story 2\nvariable leaf = false hidden\nscene marian-buns\nshow Anna happy left\nshow Sarah curious right\nshow Marian happy center\ncamera wide cut\nI: We meet Maid Marian, a kind fox.\nMarian [worried]: Buns for our pals! But rain is here.\nAnna [curious]: We can keep them dry.\nchoice cover\noption leaf \"Use a leaf.\" -> leaf ; leaf = true\noption hat \"Use a hat.\" -> hat\nlabel leaf\nscene marian-leaf\nshow Anna happy left\nshow Sarah curious right\nshow Marian happy center\ncamera wide cut\nSarah [laughing]: A big leaf lid!\ngoto mud\nlabel hat\nscene marian-hat\nshow Anna happy left\nshow Sarah curious right\nshow Marian happy center\ncamera wide cut\nSarah [laughing]: A hat for buns! So grand!\ngoto mud\nlabel mud\nscene marian-mud\nshow Anna happy left\nshow Sarah curious right\nshow Marian happy center\ncamera wide cut\nMarian [worried]: Mud! I must not drop the buns.\nchoice cross\noption log \"Go on the log.\" -> log\noption round \"Go round the mud.\" -> round\nlabel log\nmove Anna bounce\nAnna [happy]: Step, step. We help you.\nMarian [relieved]: Thank you. Slow steps work!\ngoto picnic\nlabel round\nreact Sarah point\nSarah [happy]: This way! No mud here.\nMarian [relieved]: A long way. But dry feet!\ngoto picnic\nlabel picnic\nscene marian-picnic\nshow Anna happy left\nshow Sarah curious right\nshow Marian happy center\ncamera wide cut\nMarian [worried]: Oh! One bun is left for us.\nexpress Sarah worried\ncamera listener Sarah cut\nAnna [happy]: We can share it.\nSarah [relieved]: You and me?\ncamera wide cut\nchoice share\noption two \"Split it in two.\" -> two\noption bits \"Make small bits.\" -> bits\nlabel two\nMarian [happy]: Half for each. Two big grins!\ngoto check\nlabel bits\nSarah [laughing]: Bits for us. Crumbs for the birds!\ngoto check\nlabel check\nif leaf == true -> leafend else hatend\nlabel leafend\nAnna [happy]: A leaf lid and a shared bun!\ngoto end\nlabel hatend\nAnna [happy]: A bun hat and a shared bun!\ngoto end\nlabel end\nMarian [happy]: You made room for a pal. Come back!\nend",
+  "version": 1,
+  "castLabel": "Anna, Sarah & Maid Marian",
+  "profile": "growing-reader",
+  "notice": "A new make-believe visit to the animal world of Robin Hood, with Maid Marian the fox. This is a new side adventure, not a scene or quotation from the film.",
+  "assets": {
+    "characters": {
+      "Anna": {
+        "name": "Anna",
+        "version": 1,
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#604332",
+            "shirt": "#efa8bd",
+            "trim": "#fff0dd"
+          },
+          "appearance": {
+            "age": "child",
+            "hair": "long",
+            "outfit": "tunic",
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#b976a8"
+          }
+        }
+      },
+      "Sarah": {
+        "name": "Sarah",
+        "version": 1,
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#73503a",
+            "shirt": "#b69cdb",
+            "trim": "#fff0dd"
+          },
+          "appearance": {
+            "age": "child",
+            "hair": "bob",
+            "outfit": "tunic",
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#d95855"
+          }
+        }
+      },
+      "Marian": {
+        "name": "Maid Marian",
+        "provenance": "Original SVG interpretation of the fox Maid Marian in Disney’s animal Robin Hood (1973); new side adventures, no film dialogue.",
+        "expressions": {
+          "neutral": {
+            "src": "stories/adventures/v1/maid-marian-neutral.svg"
+          },
+          "happy": {
+            "src": "stories/adventures/v1/maid-marian-happy.svg"
+          },
+          "curious": {
+            "src": "stories/adventures/v1/maid-marian-curious.svg"
+          },
+          "worried": {
+            "src": "stories/adventures/v1/maid-marian-worried.svg"
+          },
+          "laughing": {
+            "src": "stories/adventures/v1/maid-marian-laughing.svg"
+          },
+          "relieved": {
+            "src": "stories/adventures/v1/maid-marian-relieved.svg"
+          },
+          "proud": {
+            "src": "stories/adventures/v1/maid-marian-proud.svg"
+          }
+        }
+      }
+    },
+    "backgrounds": {
+      "marian-buns": {
+        "src": "stories/adventures/v1/marian-buns.svg"
+      },
+      "marian-leaf": {
+        "src": "stories/adventures/v1/marian-leaf.svg"
+      },
+      "marian-hat": {
+        "src": "stories/adventures/v1/marian-hat.svg"
+      },
+      "marian-mud": {
+        "src": "stories/adventures/v1/marian-mud.svg"
+      },
+      "marian-picnic": {
+        "src": "stories/adventures/v1/marian-picnic.svg"
+      }
+    }
+  },
+  "quiz": [],
+  "sources": [
+    "https://movies.disney.com/robin-hood"
+  ],
+  "audio": {
+    "bun": "stories/adventures/v1/audio/new-pals-v1/371f7f8fd9ec3d7e4d41.mp3",
+    "fox": "stories/adventures/v1/audio/new-pals-v1/4489e14bf5903e53ee3b.mp3",
+    "leaf": "stories/adventures/v1/audio/new-pals-v1/f907246f669af14b7ed8.mp3",
+    "mud": "stories/adventures/v1/audio/new-pals-v1/d0130c00c25fbc9cd94c.mp3",
+    "share": "stories/adventures/v1/audio/new-pals-v1/769e29d536e46ab88e82.mp3",
+    "What next?": "stories/adventures/v1/audio/new-pals-v1/ba677f54dfb2b110739a.mp3",
+    "We meet Maid Marian, a kind fox.": "stories/adventures/v1/audio/new-pals-v1/61aa10f4810254cc31c2.mp3",
+    "Buns for our pals! But rain is here.": "stories/adventures/v1/audio/new-pals-v1/d2df58f88d88b4e06836.mp3",
+    "We can keep them dry.": "stories/adventures/v1/audio/new-pals-v1/6547622439d31eea81a8.mp3",
+    "A big leaf lid!": "stories/adventures/v1/audio/new-pals-v1/0c0fcb3c50ed04e5c1c2.mp3",
+    "A hat for buns! So grand!": "stories/adventures/v1/audio/new-pals-v1/bfcfc16a5185cbbbcacb.mp3",
+    "Mud! I must not drop the buns.": "stories/adventures/v1/audio/new-pals-v1/5b3af112bc30d3b03471.mp3",
+    "Step, step. We help you.": "stories/adventures/v1/audio/new-pals-v1/1142c35b5e025a759f34.mp3",
+    "Thank you. Slow steps work!": "stories/adventures/v1/audio/new-pals-v1/1a0a489e3852c35fc853.mp3",
+    "This way! No mud here.": "stories/adventures/v1/audio/new-pals-v1/a581aa9e56126b17f2b7.mp3",
+    "A long way. But dry feet!": "stories/adventures/v1/audio/new-pals-v1/e39bda13e3812f563339.mp3",
+    "Oh! One bun is left for us.": "stories/adventures/v1/audio/new-pals-v1/56d31954a6ee91b93489.mp3",
+    "We can share it.": "stories/adventures/v1/audio/new-pals-v1/b22dc0de54ea1b1e1f04.mp3",
+    "You and me?": "stories/adventures/v1/audio/new-pals-v1/4e3251e08fe97325c537.mp3",
+    "Half for each. Two big grins!": "stories/adventures/v1/audio/new-pals-v1/315437fe98d521b4a2c6.mp3",
+    "Bits for us. Crumbs for the birds!": "stories/adventures/v1/audio/new-pals-v1/64616bcb635ec5a88e9e.mp3",
+    "A leaf lid and a shared bun!": "stories/adventures/v1/audio/new-pals-v1/542a39a89ba12e63c48a.mp3",
+    "A bun hat and a shared bun!": "stories/adventures/v1/audio/new-pals-v1/504c8089649385845119.mp3",
+    "You made room for a pal. Come back!": "stories/adventures/v1/audio/new-pals-v1/e14d1ce23cc4328d47e5.mp3",
+    "Use a leaf. Use a hat.": "stories/adventures/v1/audio/new-pals-v1/80a29ff1373d8b672f24.mp3",
+    "Go on the log. Go round the mud.": "stories/adventures/v1/audio/new-pals-v1/c857f486d92e85409115.mp3",
+    "Split it in two. Make small bits.": "stories/adventures/v1/audio/new-pals-v1/84b460d8e25937148965.mp3"
+  },
+  "dialogueAudio": {
+    "Marian": {
+      "Buns for our pals! But rain is here.": "stories/adventures/v1/audio/new-pals-v1/d2df58f88d88b4e06836.mp3",
+      "Mud! I must not drop the buns.": "stories/adventures/v1/audio/new-pals-v1/5b3af112bc30d3b03471.mp3",
+      "Thank you. Slow steps work!": "stories/adventures/v1/audio/new-pals-v1/1a0a489e3852c35fc853.mp3",
+      "A long way. But dry feet!": "stories/adventures/v1/audio/new-pals-v1/e39bda13e3812f563339.mp3",
+      "Oh! One bun is left for us.": "stories/adventures/v1/audio/new-pals-v1/56d31954a6ee91b93489.mp3",
+      "Half for each. Two big grins!": "stories/adventures/v1/audio/new-pals-v1/315437fe98d521b4a2c6.mp3",
+      "You made room for a pal. Come back!": "stories/adventures/v1/audio/new-pals-v1/e14d1ce23cc4328d47e5.mp3"
+    },
+    "Anna": {
+      "We can keep them dry.": "stories/adventures/v1/audio/new-pals-v1/6547622439d31eea81a8.mp3",
+      "Step, step. We help you.": "stories/adventures/v1/audio/new-pals-v1/1142c35b5e025a759f34.mp3",
+      "We can share it.": "stories/adventures/v1/audio/new-pals-v1/b22dc0de54ea1b1e1f04.mp3",
+      "A leaf lid and a shared bun!": "stories/adventures/v1/audio/new-pals-v1/542a39a89ba12e63c48a.mp3",
+      "A bun hat and a shared bun!": "stories/adventures/v1/audio/new-pals-v1/504c8089649385845119.mp3"
+    },
+    "Sarah": {
+      "A big leaf lid!": "stories/adventures/v1/audio/new-pals-v1/0c0fcb3c50ed04e5c1c2.mp3",
+      "A hat for buns! So grand!": "stories/adventures/v1/audio/new-pals-v1/bfcfc16a5185cbbbcacb.mp3",
+      "This way! No mud here.": "stories/adventures/v1/audio/new-pals-v1/a581aa9e56126b17f2b7.mp3",
+      "You and me?": "stories/adventures/v1/audio/new-pals-v1/4e3251e08fe97325c537.mp3",
+      "Bits for us. Crumbs for the birds!": "stories/adventures/v1/audio/new-pals-v1/64616bcb635ec5a88e9e.mp3"
+    }
+  },
+  "intro": {
+    "kind": "still",
+    "src": "stories/adventures/v1/marians-bun-run-v1-intro.poster.jpg",
+    "alt": "Anna and Sarah meet Maid Marian beside a basket of buns."
+  },
+  "sceneLayout": "full"
+}
