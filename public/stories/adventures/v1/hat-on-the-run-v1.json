@@ -21,7 +21,7 @@
       "Anna": {
         "name": "Anna",
         "version": 1,
-        "provenance": "Storybook adaptation for Chunky Reader; shared polished SVG builder, not a likeness.",
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
         "expressions": {},
         "rig": {
           "version": 2,
@@ -30,15 +30,17 @@
           "finish": "polished",
           "palette": {
             "skin": "#f0c9ad",
-            "hair": "#70503f",
-            "shirt": "#c491d8"
+            "hair": "#604332",
+            "shirt": "#efa8bd",
+            "trim": "#fff0dd"
           },
           "appearance": {
-            "age": "teen",
-            "hair": "ponytail",
+            "age": "child",
+            "hair": "long",
             "outfit": "tunic",
-            "face": "round",
-            "eyes": "gentle"
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#b976a8"
           }
         }
       },
@@ -156,5 +158,16 @@
     "Hop, hop! Flap your arms!": "stories/adventures/v1/audio/c75501d74fa364a0.mp3",
     "Get a net. Get a stick.": "stories/adventures/v1/audio/52995531fc5db914.mp3",
     "The Hat Club! The Duck Club!": "stories/adventures/v1/audio/2780a9dbddb2d9fa.mp3"
+  },
+  "dialogueAudio": {
+    "Anna": {
+      "Hop! I am a frog!": "stories/adventures/v1/audio/family-v2/7da0d5c97b7c90b3ac8d.wav",
+      "Flap! I am a duck!": "stories/adventures/v1/audio/family-v2/606242bb2131562817c9.wav",
+      "Up goes the net. Got it!": "stories/adventures/v1/audio/family-v2/274aeac97df5d48c9ab8.wav",
+      "Tap, tap. Down it drops!": "stories/adventures/v1/audio/family-v2/770f61be0f07cf76f706.wav",
+      "Quack! A club of ducks!": "stories/adventures/v1/audio/family-v2/469060bbb674df075718.wav",
+      "A net, a hat, and my pals.": "stories/adventures/v1/audio/family-v2/305f21b570a8a62e4cee.wav",
+      "A stick, a hat, and my pals.": "stories/adventures/v1/audio/family-v2/0ad057a2f332664200e0.wav"
+    }
   }
 }

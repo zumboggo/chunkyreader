@@ -1,6 +1,6 @@
 /** Closed, versioned vocabulary shared by parser, renderer, studio and authoring tools. */
 export const ACTING_VERSION=7;
-export const CHARACTER_OPTIONS={age:['teen','adult','elder'],hair:['layered','side-part','long','bob','cropped','tousled','bun','swept','ponytail'],glasses:['none','round'],outfit:['uniform','teacher','tunic','robe','workshirt','cardigan','suit'],face:['default','oval','round','angular','lean','broad','scrappy','spirited'],eyes:['default','keen','gentle','narrow'],facialHair:['none','full']};
+export const CHARACTER_OPTIONS={age:['child','teen','adult','elder'],hair:['layered','side-part','long','bob','cropped','tousled','bun','swept','ponytail'],glasses:['none','round'],outfit:['uniform','teacher','tunic','robe','workshirt','cardigan','suit'],hairBow:['#b976a8','#d95855'],face:['child','default','oval','round','angular','lean','broad','scrappy','spirited'],eyes:['default','keen','gentle','narrow'],facialHair:['none','full']};
 export const EMOTIONS=['neutral','happy','worried','sad','angry','surprised','curious','confused','skeptical','embarrassed','relieved','determined','shocked','laughing','excited','scared','frustrated','proud','pleading','disappointed'];
 export const PROPS=['none','phone','sword','bow','lance','rubber-duck','pool-noodle'];
 export const RESTS=['arms-crossed','kneeling','crouched','sheltered','relaxed','attentive','guarded','downcast'];

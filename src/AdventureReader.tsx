@@ -10,7 +10,7 @@ import './story2/story-player.css'
 import './adventures.css'
 
 
-type Adventure = StoryPackage & {id:string;version:number;castLabel?:string;focusWords:string[];audio:Record<string,string>}
+type Adventure = StoryPackage & {id:string;version:number;castLabel?:string;focusWords:string[];audio:Record<string,string>;dialogueAudio?:Record<string,Record<string,string>>}
 type Save = {steps:(string|null)[];mode:'read'|'listen';phase:'words'|'story';word:number}
 const saveKey=(id:string)=>`chunky-reader:story:${id}:adventure`
 function loadSave(id:string):Save|undefined {
@@ -35,7 +35,7 @@ function AdventurePlayer({pack,onBack,onComplete}:{pack:Adventure;onBack:()=>voi
  const root=useRef<HTMLDivElement>(null);const advancing=useRef(false);const skipResumeMotion=useRef(!!saved?.steps.length);const video=useRef<HTMLVideoElement>(null);const heading=useRef<HTMLHeadingElement>(null);const reward=useRef(false);const audioGeneration=useRef(0);const motion=useRef<AbortController|null>(null)
  const state=useMemo(()=>story?replayStory(story,steps,1):null,[story,steps]);const current=state?story.nodes[state.cursor]:null
  const text=phase==='words'?pack.focusWords[word]:current?.type==='choice'?'What next?':current?.text||''
- const play=async(value:string)=>{const token=++audioGeneration.current;setAudioError(false);setSpeaking(true);try{const path=pack.audio?.[value];if(!path)throw Error();await playAudioUrl(assetUrl(path))}catch{if(token===audioGeneration.current)setAudioError(true)}finally{if(token===audioGeneration.current)setSpeaking(false)}}
+ const play=async(value:string)=>{const token=++audioGeneration.current;setAudioError(false);setSpeaking(true);try{const actor=phase==='story'&&current?.type==='say'&&value===current.text?current.actor:undefined;const path=(actor?pack.dialogueAudio?.[actor]?.[value]:undefined)||pack.audio?.[value];if(!path)throw Error();await playAudioUrl(assetUrl(path))}catch{if(token===audioGeneration.current)setAudioError(true)}finally{if(token===audioGeneration.current)setSpeaking(false)}}
  const stop=()=>{audioGeneration.current++;stopAudioPlayback();setSpeaking(false)}
  const save=(next:Save)=>{try{progressStorage.setItem(saveKey(pack.id),JSON.stringify(next));recordLocalProgressChange()}catch{/* Play works without storage. */}}
  useEffect(()=>{const m=matchMedia('(prefers-reduced-motion: reduce)');const update=()=>setReduced(m.matches);m.addEventListener('change',update);return()=>m.removeEventListener('change',update)},[])

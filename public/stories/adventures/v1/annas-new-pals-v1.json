@@ -21,7 +21,7 @@
       "Anna": {
         "name": "Anna",
         "version": 1,
-        "provenance": "Storybook adaptation for Chunky Reader; shared polished SVG builder, not a likeness.",
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
         "expressions": {},
         "rig": {
           "version": 2,
@@ -30,15 +30,17 @@
           "finish": "polished",
           "palette": {
             "skin": "#f0c9ad",
-            "hair": "#70503f",
-            "shirt": "#c491d8"
+            "hair": "#604332",
+            "shirt": "#efa8bd",
+            "trim": "#fff0dd"
           },
           "appearance": {
-            "age": "teen",
-            "hair": "ponytail",
+            "age": "child",
+            "hair": "long",
             "outfit": "tunic",
-            "face": "round",
-            "eyes": "gentle"
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#b976a8"
           }
         }
       },
@@ -154,5 +156,14 @@
     "Wave hello. Take a bow.": "stories/adventures/v1/audio/3e101ce622b035fc.mp3",
     "A leaf cup. A shell cup.": "stories/adventures/v1/audio/2a7a0eb14fdbd3eb.mp3",
     "Tip it out. Let it sip.": "stories/adventures/v1/audio/e68ac360d153102c.mp3"
+  },
+  "dialogueAudio": {
+    "Anna": {
+      "Hi! I am Anna.": "stories/adventures/v1/audio/family-v2/6053badcc5d2bb1d4983.wav",
+      "A leaf can be a cup!": "stories/adventures/v1/audio/family-v2/951837b135b56a04d1f0.wav",
+      "A shell can be a cup!": "stories/adventures/v1/audio/family-v2/aa2b21be2038c2820088.wav",
+      "Off you go, bug!": "stories/adventures/v1/audio/family-v2/1528b9eeb52acbced220.wav",
+      "Can we be pals?": "stories/adventures/v1/audio/family-v2/00cfa463686d9d1e3435.wav"
+    }
   }
 }

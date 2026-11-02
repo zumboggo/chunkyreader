@@ -6,6 +6,7 @@ export function armGeometry(side:'left'|'right',upperDegrees:number,forearmDegre
  return {x,y,ex,ey,wx,wy,a,b,path:`M ${x} ${y} L ${before.x} ${before.y} Q ${ex} ${ey} ${after.x} ${after.y} L ${wx} ${wy}`};
 }
 export const FACE_PATHS:Record<string,string>={
+ child:'M 81 88 Q 120 62 159 88 L 159 130 Q 163 151 143 163 Q 120 177 97 163 Q 77 151 81 130 Z',
  lean:'M 83 88 Q 120 65 157 88 L 153 127 Q 149 138 144 145 L 129 166 Q 120 173 111 166 L 96 145 Q 91 136 87 124 Z',
  broad:'M 80 88 Q 120 61 160 88 L 158 137 L 149 162 Q 120 180 91 162 L 82 137 Z',
  oval:'M 82 88 Q 120 62 158 88 L 156 132 Q 153 157 130 172 Q 120 178 110 172 Q 87 157 84 132 Z',

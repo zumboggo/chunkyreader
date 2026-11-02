@@ -42,7 +42,7 @@
       "Anna": {
         "name": "Anna",
         "version": 1,
-        "provenance": "Storybook adaptation for Chunky Reader; shared polished SVG builder, not a likeness.",
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
         "expressions": {},
         "rig": {
           "version": 2,
@@ -51,22 +51,24 @@
           "finish": "polished",
           "palette": {
             "skin": "#f0c9ad",
-            "hair": "#70503f",
-            "shirt": "#c491d8"
+            "hair": "#604332",
+            "shirt": "#efa8bd",
+            "trim": "#fff0dd"
           },
           "appearance": {
-            "age": "teen",
-            "hair": "ponytail",
+            "age": "child",
+            "hair": "long",
             "outfit": "tunic",
-            "face": "round",
-            "eyes": "gentle"
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#b976a8"
           }
         }
       },
       "Sarah": {
         "name": "Sarah",
         "version": 1,
-        "provenance": "Storybook adaptation for Chunky Reader; shared polished SVG builder, not a likeness.",
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
         "expressions": {},
         "rig": {
           "version": 2,
@@ -75,15 +77,17 @@
           "finish": "polished",
           "palette": {
             "skin": "#f0c9ad",
-            "hair": "#916340",
-            "shirt": "#edaaa9"
+            "hair": "#73503a",
+            "shirt": "#b69cdb",
+            "trim": "#fff0dd"
           },
           "appearance": {
-            "age": "teen",
+            "age": "child",
             "hair": "bob",
             "outfit": "tunic",
-            "face": "round",
-            "eyes": "gentle"
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#d95855"
           }
         }
       },
@@ -137,5 +141,20 @@
     "mud",
     "hop"
   ],
-  "cover": "stories/adventures/v1/pig-pot.svg"
+  "cover": "stories/adventures/v1/pig-pot.svg",
+  "dialogueAudio": {
+    "Anna": {
+      "A hat for a pig?": "stories/adventures/v1/audio/family-v2/83c65be1a9c9bccc8aaa.wav",
+      "The pot fits!": "stories/adventures/v1/audio/family-v2/3b39ce74b6cd45c35dcf.wav",
+      "A fun day! Time to rest.": "stories/adventures/v1/audio/family-v2/c30793fd7243dfbb0376.wav",
+      "A big hug. Mud on me!": "stories/adventures/v1/audio/family-v2/a54530e4f40ead4e44f1.wav",
+      "I love this pig!": "stories/adventures/v1/audio/family-v2/736f3b3a79d6ccadf6dd.wav"
+    },
+    "Sarah": {
+      "The hat fits!": "stories/adventures/v1/audio/family-v2/64303bcfa7d35d69272d.wav",
+      "Hop! Hop! Mud on us!": "stories/adventures/v1/audio/family-v2/de6af3432af27f1e4bb2.wav",
+      "Plop! A bum in the mud!": "stories/adventures/v1/audio/family-v2/78c415bd4d3237437296.wav",
+      "Shh! The pig can nap.": "stories/adventures/v1/audio/family-v2/b982a694225a46f6f2b4.wav"
+    }
+  }
 }

@@ -1,3 +1,4 @@
+import {styleFamilyCharacter} from './family-characters.mjs'
 import fs from 'node:fs/promises'
 import {createCharacter} from '../../src/story2/engine/character-builder.js'
 import {compileStory} from '../../src/story2/engine/story-engine.js'
@@ -9,6 +10,7 @@ for(const wear of ['','hat','pot'])await fs.writeFile(`${root}/pig-${wear||'mud'
 for(const kind of ['cat','hen'])for(const bed of ['','box','tub'])await fs.writeFile(`${root}/${kind}-${bed||'big'}.svg`,svg(pet(kind,bed)))
 const make=(id,name,hair,shirt,style,outfit='tunic')=>createCharacter({id,name,palette:{skin:'#f0c9ad',hair,shirt},appearance:{age:'teen',hair:style,outfit,face:'round',eyes:'gentle'},provenance:'Storybook adaptation for Chunky Reader; shared polished SVG builder, not a likeness.'})
 const characters={Anna:make('Anna','Anna','#70503f','#c491d8','ponytail'),Sarah:make('Sarah','Sarah','#916340','#edaaa9','bob'),Elsa:make('Elsa','Elsa','#eedcb2','#89cddd','long','robe')}
+for(const [id,character] of Object.entries(characters))styleFamilyCharacter(character,id)
 const backgrounds=Object.fromEntries(['pig-mud','pig-hat','pig-pot','cat-big','hen-big','cat-box','cat-tub','hen-box','hen-tub'].map(id=>[id,{src:`stories/adventures/v1/${id}.svg`}]));
 const pigScript=`story 2
 variable pot = false hidden

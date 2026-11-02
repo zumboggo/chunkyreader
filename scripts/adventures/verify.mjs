@@ -12,11 +12,12 @@ for(const id of ['pigs-hat-v1','elsas-pet-v1','annas-new-pals-v1','hat-on-the-ru
   if(id==='annas-new-pals-v1'||id==='hat-on-the-run-v1')assert.deepEqual(Object.keys(s.stage.actors).sort(),['Anna','Anne','Diana'])
   if(n.type==='say'&&n.actor!=='I')assert(s.stage.actors[n.actor],`Absent speaker ${n.actor}`)
   if(n.text)assert(p.audio[n.text],`Missing audio ${n.text}`)
+  if(n.type==='say'&&['Anna','Sarah'].includes(n.actor)&&p.dialogueAudio)assert(p.dialogueAudio[n.actor]?.[n.text],`Missing character audio ${n.actor}: ${n.text}`)
   if(n.type==='choice'){assert.equal(n.options.length,2);assert(p.audio[n.options.map(o=>o.text).join(' ')]);for(const o of n.options){const next=advanceStory(story,s,o.id);assert.deepEqual(replayStory(story,[...steps,o.id],1),next);visit([...steps,o.id],[...choices,o.id])}}
   else {assert.deepEqual(replayStory(story,[...steps,null],1),advanceStory(story,s,null));visit([...steps,null],choices)}
  }
  visit();assert.equal(endings,8);for(const word of p.focusWords)assert(p.audio[word]);assert.equal(p.focusWords.length,5)
- let bytes=Buffer.byteLength(JSON.stringify(p));for(const path of new Set([...Object.values(p.audio),...Object.values(p.assets.backgrounds).map(a=>a.src),...Object.values(p.assets.characters).flatMap(c=>Object.values(c.expressions).map(a=>a.src))])){assert(fs.existsSync(`public/${path}`),path);bytes+=fs.statSync(`public/${path}`).size}assert(bytes<5_000_000)
+ let bytes=Buffer.byteLength(JSON.stringify(p));for(const path of new Set([...Object.values(p.audio),...Object.values(p.dialogueAudio||{}).flatMap(a=>Object.values(a)),...Object.values(p.assets.backgrounds).map(a=>a.src),...Object.values(p.assets.characters).flatMap(c=>Object.values(c.expressions).map(a=>a.src))])){assert(fs.existsSync(`public/${path}`),path);bytes+=fs.statSync(`public/${path}`).size}assert(bytes<5_000_000)
  assert(fs.existsSync(`public/stories/adventures/v1/${id}-intro.poster.jpg`))
  const check=JSON.parse(fs.readFileSync(`public/stories/adventures/v1/${id}-intro.checks.json`));assert.equal(check.hold_seconds,3);assert.equal(check.total_seconds,9);assert(check.audio_starts_after_hold);assert(check.audio_non_silent)
  console.log(`${id}: 8 routes, three binary choices each, every beat replay/resume, callbacks, audio and ${bytes} byte media budget verified.`)

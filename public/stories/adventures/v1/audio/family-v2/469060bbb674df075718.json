@@ -1,0 +1,9 @@
+{
+  "model": "google/gemini-3.1-flash-tts",
+  "input": {
+    "text": "Quack! A club of ducks!",
+    "voice": "Leda",
+    "language_code": "en-US",
+    "prompt": "Perform Anna, a little girl in a gentle children's story. Use a light, youthful, higher-register voice with a smiling, playful quality and clear American English. She is the older sister: sweet, curious and lively. Speak at an easy pace for a beginning reader. Natural expressive speech, never squeaky or shrill. Say only the supplied words. No introduction, music or sound effects."
+  }
+}
