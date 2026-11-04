@@ -9115,5 +9115,5 @@ body { padding-bottom: 0; }
 .focus-options.letter-options-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
 .sound-picture { display: grid; justify-items: center; gap: .3rem; }
-.phoneme-lesson .sound-lit { outline: 4px solid #e8ad3e; background: #fff4cb; }
+.focus-lesson .sound-lit { outline: 4px solid #e8ad3e; background: #fff4cb; }
 .panda-points { display: block; font-size: 1.6rem; }

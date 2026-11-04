@@ -37,20 +37,16 @@ for (const [file, build] of [['sarah-letters-level-1', builders.buildSarahActivi
     assert(pocket.every(c => cards.indexOf(c) <= Math.max(i, lettersSection && i === 26 ? 27 : 1)), 'No untaught future distractors')
     const seen = new Set()
     const activities = build(pocket)
-    if (lettersSection) assert(activities.length <= 6, 'A toddler visit has at most six tiny steps')
-    assert.equal(activities.filter(a => a.options).length, lettersSection ? 2 : 8, 'Two matches per round')
-    if (!lettersSection) {
-      const rounds = [[]]
-      for (const activity of activities) {
-        if (activity.kind === 'more') rounds.push([])
-        else rounds.at(-1).push(activity)
-      }
-      assert.equal(rounds.length, 4)
-      for (const [index, round] of rounds.entries()) {
-        assert.equal(round.filter(a => a.kind === 'soundToGrapheme').length, 2)
-        assert.equal(round.filter(a => a.kind === 'conversation').length, index === 0 ? 0 : 1)
-        assert(round.every(a => a.kind !== 'conversation' || !a.options))
-      }
+    const rounds = [[]]
+    for (const activity of activities) {
+      if (activity.kind === 'more') rounds.push([])
+      else rounds.at(-1).push(activity)
+    }
+    assert.equal(rounds.length, 4)
+    for (const [index, round] of rounds.entries()) {
+      assert.equal(round.filter(a => a.kind === (lettersSection ? 'soundToLetter' : 'soundToGrapheme')).length, 2)
+      assert.equal(round.filter(a => a.kind === 'conversation').length, index === 0 ? 0 : 1)
+      assert(round.every(a => a.kind !== 'conversation' || !a.options))
     }
     assert(!activities.some(a => ['upperLowerMatch', 'beginningSound'].includes(a.kind)), 'No case conversion or sound-position test for a two-year-old')
     for (const activity of activities) {

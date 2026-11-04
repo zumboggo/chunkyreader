@@ -102,7 +102,7 @@ type SarahQuestionKind =
   | 'beginningSound'
   | 'wordToBeginningSound'
   | 'soundToWord'
-type SarahActivityKind = 'intro' | 'explore' | 'blend' | SarahQuestionKind | 'review'
+type SarahActivityKind = 'more' | 'conversation' | 'intro' | 'explore' | 'blend' | SarahQuestionKind | 'review'
 // Explicit sound-spelling models, cumulative practice, and decodable blending.
 // Design rationale and evidence: docs/early-reading.md.
 type SarahPhonemeQuestionKind =
@@ -2444,7 +2444,6 @@ function SarahLetterLesson({
   const completed = activityIndex >= activities.length
   const [status, setStatus] = useState<SarahActivityStatus>('idle')
   const [wrongChoice, setWrongChoice] = useState('')
-  const [tries, setTries] = useState(0)
   const [hadHelp, setHadHelp] = useState(false)
   const completionRecordedRef = useRef(false)
 
@@ -2457,7 +2456,6 @@ function SarahLetterLesson({
   useEffect(() => {
     setStatus('idle')
     setWrongChoice('')
-    setTries(0)
   }, [activityIndex])
 
   function restartLesson() {
@@ -2470,6 +2468,7 @@ function SarahLetterLesson({
     if (!activity || status === 'correct' || status === 'revealed') return
     if (option && getSarahQuestionKind(activity) === 'letterToSound') void playCardAudio(deck, option)
     const correctAnswer = getSarahCorrectAnswer(activity)
+    if (status === 'try-again' && answer !== correctAnswer) return
     if (answer === correctAnswer) {
       setStatus('correct')
       playSfx('correct')
@@ -2479,15 +2478,7 @@ function SarahLetterLesson({
     }
     setWrongChoice(answer)
     setHadHelp(true)
-    if (tries === 0) {
-      setTries(1)
-      setStatus('try-again')
-      void playNarrationClip('feedback:try-again')
-      void playSarahActivityAudio(deck, activity)
-      return
-    }
-    setStatus('revealed')
-    setHadHelp(true)
+    setStatus('try-again')
     void playSarahActivityAudio(deck, activity)
   }
 
@@ -2510,14 +2501,14 @@ function SarahLetterLesson({
         <Mascot mood="happy" />
         <div>
           <span className="prompt-topline">Lesson {lessonNumber} complete</span>
-          <h2>We played with sounds!</h2>
+          <h2>We played with letters!</h2>
           <div className="letter-review-row" aria-label="Letters practiced">
             <strong>{lessonCards[0] ? letterFace(lessonCards[0]) : ''}</strong>
           </div>
         </div>
         <div className="completion-actions">
           <button type="button" className={hadHelp ? 'primary' : ''} onClick={restartLesson}>Play again</button>
-          <button type="button" className={hadHelp ? '' : 'primary'} onClick={() => onLessonChange(1)}>Another sound</button>
+          <button type="button" className={hadHelp ? '' : 'primary'} onClick={() => onLessonChange(1)}>Another letter</button>
         </div>
       </section>
     )
@@ -2531,17 +2522,16 @@ function SarahLetterLesson({
   return (
     <section className={`focus-lesson ${isIntro ? 'intro' : 'question'} ${status}`}>
       <div className="focus-main">
-        {activity.kind === 'blend' ? (
+        {activity.kind === 'more' ? (
+          <MoreSarahPlay title="More letter play?" onMore={nextActivity} onDone={() => onActivityChange(activities.length)} />
+        ) : activity.kind === 'conversation' ? (
+          <SarahPictureTalk deck={deck} card={activity.card} onNext={nextActivity} />
+        ) : activity.kind === 'blend' ? (
           <EarlyReadingBlend key={activityIndex} cards={lessonCards} onNext={nextActivity} />
         ) : activity.kind === 'explore' ? (
           <SarahExploreView deck={deck} activity={activity} onNext={nextActivity} />
         ) : isIntro ? (
-          <SarahIntroView
-            deck={deck}
-            activity={activity}
-            onNext={nextActivity}
-            showAdultDetails={showAdultDetails}
-          />
+          <SarahSoundIntro key={activityIndex} deck={deck} card={activity.card} onNext={nextActivity} showAdultDetails={showAdultDetails} />
         ) : (
           <SarahQuestionView
             deck={deck}
@@ -2565,42 +2555,6 @@ function SarahLetterLesson({
         )}
       </div>
     </section>
-  )
-}
-
-function SarahIntroView({
-  deck,
-  activity,
-  onNext,
-  showAdultDetails,
-}: {
-  deck: LearningDeck
-  activity: SarahActivity
-  onNext: () => void
-  showAdultDetails: boolean
-}) {
-  return (
-    <div className="focus-intro">
-      <div className="focus-prompt">
-        <span className="stage-label">Listen and look</span>
-        <h2>This is {activity.card.sound}.</h2>
-      </div>
-      <div className="focus-visual">
-        <div className="letter-display">
-          <strong><span className="primary-letter">{letterFace(activity.card)}</span></strong>
-          {showAdultDetails && <span className="phonetic-detail">{activity.card.sound}</span>}
-        </div>
-        <Picture deck={deck} card={activity.card} />
-        <span className="example-word">{activity.card.exampleWord}</span>
-      </div>
-      <div className="focus-actions">
-        <AudioPromptButton
-          onClick={() => playSarahActivityAudio(deck, activity)}
-          label="Listen"
-        />
-        <button type="button" className="primary" onClick={onNext}>Next</button>
-      </div>
-    </div>
   )
 }
 
@@ -2781,9 +2735,10 @@ function SarahQuestionView({
                 type="button"
                 aria-label={`Choice ${choiceKeyLabel(index)}: ${questionKind === 'soundToLetter' ? letterFace(option) : option.displayText}`}
                 className={`focus-option squish ${showPictureOption ? 'picture-choice' : ''} ${choiceState(answer, correctAnswer, wrongChoice, status)}`}
-                disabled={disabled}
+                disabled={disabled || (status === 'try-again' && answer !== correctAnswer)}
                 onClick={() => onChoose(answer, option)}
               >
+                {status === 'try-again' && answer === correctAnswer && <span className="panda-points" aria-label="Panda points here">🐼👇</span>}
                 <span className="choice-key" aria-hidden="true">{choiceKeyLabel(index)}</span>
                 {showPictureOption && <Picture deck={deck} card={option} />}
                 <strong>{questionKind === 'soundToLetter' ? letterFace(option) : option.displayText}</strong>
@@ -2914,21 +2869,11 @@ function SarahPhonemeLesson({
     <section className={`focus-lesson phoneme-lesson ${isPlay ? 'intro' : 'question'} ${status}`}>
       <div className="focus-main">
         {activity.kind === 'more' ? (
-          <div className="focus-intro">
-            <Mascot mood="happy" />
-            <h2>More sound play?</h2>
-            <div className="focus-actions"><button onClick={nextActivity}>Play more</button><button onClick={() => onActivityChange(activities.length)}>All done</button></div>
-          </div>
+          <MoreSarahPlay title="More sound play?" onMore={nextActivity} onDone={() => onActivityChange(activities.length)} />
         ) : activity.kind === 'conversation' ? (
-          <div className="focus-intro">
-            <span className="stage-label">Talk with a grown-up</span>
-            <button className="sound-picture" onClick={() => void playPhonemeWord(deck, activity.card)}><Picture deck={deck} card={activity.card} /><strong>{activity.card.exampleWord}</strong></button>
-            <Mascot mood="curious" size="small" />
-            <h2>{pictureTalk[activity.card.exampleWord ?? ''] ?? 'What does Panda see? Show me!'}</h2>
-            <button className="primary" onClick={nextActivity}>Next</button>
-          </div>
+          <SarahPictureTalk deck={deck} card={activity.card} onNext={nextActivity} />
         ) : activity.kind === 'intro' ? (
-          <SarahPhonemeIntroView key={activityIndex} deck={deck} activity={activity} onNext={nextActivity} showAdultDetails={showAdultDetails} />
+          <SarahSoundIntro key={activityIndex} deck={deck} card={activity.card} onNext={nextActivity} showAdultDetails={showAdultDetails} />
         ) : activity.kind === 'echo' ? (
           <SarahPhonemeEchoView deck={deck} activity={activity} onNext={nextActivity} />
         ) : activity.kind === 'explore' ? (
@@ -2961,17 +2906,36 @@ function SarahPhonemeLesson({
   )
 }
 
-function SarahPhonemeIntroView({
+function MoreSarahPlay({ title, onMore, onDone }: { title: string; onMore: () => void; onDone: () => void }) {
+  return <div className="focus-intro">
+    <Mascot mood="happy" /><h2>{title}</h2>
+    <div className="focus-actions"><button onClick={onMore}>Play more</button><button onClick={onDone}>All done</button></div>
+  </div>
+}
+
+function SarahPictureTalk({ deck, card, onNext }: { deck: LearningDeck; card: LearningCard; onNext: () => void }) {
+  return <div className="focus-intro">
+    <span className="stage-label">Talk with a grown-up</span>
+    <button className="sound-picture" onClick={() => void playPhonemeWord(deck, card)}><Picture deck={deck} card={card} /><strong>{card.exampleWord}</strong></button>
+    <Mascot mood="curious" size="small" />
+    <h2>{pictureTalk[card.exampleWord ?? ''] ?? 'What does Panda see? Show me!'}</h2>
+    <button className="primary" onClick={onNext}>Next</button>
+  </div>
+}
+
+function SarahSoundIntro({
   deck,
-  activity,
+  card,
   onNext,
   showAdultDetails,
 }: {
   deck: LearningDeck
-  activity: SarahPhonemeActivity
+  card: LearningCard
   onNext: () => void
   showAdultDetails: boolean
 }) {
+  const letters = deck.type === 'letters'
+  const label = letters ? card.sound : phonemeSoundLabel(card)
   const [phase, setPhase] = useState<'sound' | 'word' | null>(null)
   const request = useRef(0)
   const play = useCallback(async (part: 'both' | 'sound' | 'word') => {
@@ -2980,30 +2944,30 @@ function SarahPhonemeIntroView({
     stopAudioPlayback()
     if (part !== 'word') {
       setPhase('sound')
-      const result = await playPhonemeSound(deck, activity.card)
+      const result = await (letters ? playCardAudio(deck, card) : playPhonemeSound(deck, card))
       if (id !== request.current) return
       if (result === 'cancelled' || result === 'unavailable') { setPhase(null); return }
     }
     if (part !== 'sound') {
       setPhase('word')
-      await playPhonemeWord(deck, activity.card)
+      await playPhonemeWord(deck, card)
     }
     if (id === request.current) setPhase(null)
-  }, [deck, activity.card])
+  }, [deck, card, letters])
   useEffect(() => {
     const timer = window.setTimeout(() => void play('both'), 250)
     return () => { window.clearTimeout(timer); request.current++; stopGuidedSounds(); stopAudioPlayback() }
   }, [play])
   return (
     <div className="focus-intro">
-      <div className="focus-prompt"><span className="stage-label">Listen and look</span><h2>This is {phonemeSoundLabel(activity.card)}.</h2></div>
+      <div className="focus-prompt"><span className="stage-label">Listen and look</span><h2>This is {label}.</h2></div>
       <div className="focus-visual">
-        <button className={`letter-display phoneme-display ${phase === 'sound' ? 'sound-lit' : ''}`} aria-label={`Hear ${phonemeSoundLabel(activity.card)}`} onClick={() => void play('sound')}>
-          <strong>{soundSpelling(activity.card)}</strong>
-          {showAdultDetails && <span className="phonetic-detail">{activity.card.phoneme}</span>}
+        <button className={`letter-display phoneme-display ${phase === 'sound' ? 'sound-lit' : ''}`} aria-label={`Hear ${label}`} onClick={() => void play('sound')}>
+          <strong>{letters ? letterFace(card) : soundSpelling(card)}</strong>
+          {showAdultDetails && <span className="phonetic-detail">{letters ? card.sound : card.phoneme}</span>}
         </button>
         <button className={`sound-picture ${phase === 'word' ? 'sound-lit' : ''}`} onClick={() => void play('word')}>
-          <Picture deck={deck} card={activity.card} /><strong>{activity.card.exampleWord}</strong>
+          <Picture deck={deck} card={card} /><strong>{card.exampleWord}</strong>
         </button>
       </div>
       <div className="focus-actions">
@@ -5838,10 +5802,18 @@ function buildSarahActivities(lessonCards: LearningCard[]): SarahActivity[] {
   const card = lessonCards[0]
   if (!card) return []
   const activities: SarahActivity[] = lessonCards.map(card => ({ kind: 'intro', card }))
-  activities.push({ kind: 'explore', card })
-  for (const [repetition, target] of lessonCards.slice(0, 2).entries()) {
-    if (lessonCards.length < 2) continue
-    activities.push({ kind: 'soundToLetter', card: target, options: buildSarahOptions(lessonCards, target, repetition) })
+  if (lessonCards.length < 2) return activities
+  for (let round = 0; round < 4; round++) {
+    if (round > 0) {
+      const topic = lessonCards[(round - 1) % lessonCards.length]
+      activities.push({ kind: 'more', card: topic }, { kind: 'conversation', card: topic })
+    }
+    for (let turn = 0; turn < 2; turn++) {
+      const repetition = round * 2 + turn
+      const target = lessonCards[repetition % lessonCards.length]
+      activities.push({ kind: 'explore', card: target })
+      activities.push({ kind: 'soundToLetter', card: target, options: buildSarahOptions(lessonCards, target, repetition) })
+    }
   }
   return activities
 }
@@ -5853,7 +5825,7 @@ function buildSarahOptions(lessonCards: LearningCard[], card: LearningCard, repe
 }
 
 function getSarahQuestionKind(activity: SarahActivity): SarahQuestionKind | 'intro' {
-  if (activity.kind === 'explore' || activity.kind === 'blend') return 'intro'
+  if (activity.kind === 'more' || activity.kind === 'conversation' || activity.kind === 'explore' || activity.kind === 'blend') return 'intro'
   return activity.kind === 'review' ? activity.reviewVariant ?? 'soundToLetter' : activity.kind
 }
 
@@ -5863,12 +5835,14 @@ function getSarahCorrectAnswer(activity: SarahActivity): string {
 }
 
 function getSarahFeedback(status: SarahActivityStatus, activity: SarahActivity): { title: string; detail: string } {
+  if (activity.kind === 'more') return { title: 'You played with letters!', detail: 'Finish now or play another round.' }
+  if (activity.kind === 'conversation') return { title: 'Your turn together', detail: 'Point, say a word, or just listen.' }
   if (activity.kind === 'intro' || activity.kind === 'explore') {
     return { title: 'Listen with Chunky!', detail: `${activity.card.sound} like ${activity.card.exampleWord}.` }
   }
   if (activity.kind === 'blend') return { title: 'Join in!', detail: 'Listen together if you like.' }
   if (status === 'correct') return { title: 'Yay!', detail: 'Great job!' }
-  if (status === 'try-again') return { title: 'Let’s listen again.', detail: 'Hear the sound, then try again.' }
+  if (status === 'try-again') return { title: 'Tap with Panda!', detail: `Here’s ${letterFace(activity.card)}. Tap it with me.` }
   if (status === 'revealed') return { title: 'Here it is!', detail: `It was ${sarahAnswerText(activity)}.` }
   return { title: 'Hmm...', detail: 'Tap one choice.' }
 }
@@ -5890,7 +5864,7 @@ function useAutoplaySarahActivity(deck: LearningDeck, activity: SarahActivity | 
   const lastKey = useRef('')
 
   useEffect(() => {
-    if (!activity || activity.kind === 'blend' || lastKey.current === key) return
+    if (!activity || activity.kind === 'intro' || activity.kind === 'more' || activity.kind === 'blend' || lastKey.current === key) return
     const timer = window.setTimeout(() => {
       lastKey.current = key
       void playSarahActivityAudio(deck, activity)
@@ -5900,6 +5874,7 @@ function useAutoplaySarahActivity(deck: LearningDeck, activity: SarahActivity | 
 }
 
 async function playSarahActivityAudio(deck: LearningDeck, activity: SarahActivity) {
+  if (activity.kind === 'conversation') return playPhonemeWord(deck, activity.card)
   const result = await playCardAudio(deck, activity.card)
   if (result === 'cancelled' || result === 'unavailable') return result
   if (activity.kind === 'intro' || activity.kind === 'explore') await playPhonemeWord(deck, activity.card)
@@ -5921,6 +5896,25 @@ function soundSpelling(card: LearningCard): string {
 }
 
 const pictureTalk: Record<string, string> = {
+  tree: 'Stretch your arms like branches. Can Panda sit in your shade?',
+  caterpillar: 'Can one finger crawl like a caterpillar?',
+  ribbon: 'Trace the ribbon in the air with Panda.',
+  necklace: 'Where would Panda wear a necklace?',
+  dinosaur: 'Can you make two dinosaur stomps?',
+  inchworm: 'Curl and stretch your finger like an inchworm.',
+  flamingo: 'Can you show Panda the flamingo’s long legs?',
+  butterfly: 'Make butterfly wings with your hands.',
+  horse: 'Can you make a clip-clop sound for Panda?',
+  goose: 'How might a goose say hello?',
+  lizard: 'Can you point to the lizard’s tail?',
+  kangaroo: 'Make your fingers hop like a kangaroo.',
+  umbrella: 'Hold a pretend umbrella over Panda.',
+  worm: 'Can you wiggle like a worm?',
+  jellyfish: 'Let your fingers float like jellyfish arms.',
+  yak: 'Can you find the yak’s horns?',
+  valley: 'Make a little valley between your hands.',
+  quail: 'Can you peck for seeds like a little quail?',
+  fox: 'Where is the fox’s fluffy tail?',
   moon: 'Panda sees the moon! Can you point up to the sky?',
   sun: 'The sun is shining. Can you and Panda make a big circle?',
   apple: 'Panda has an apple. Shall we pretend to take a crunchy bite?',
