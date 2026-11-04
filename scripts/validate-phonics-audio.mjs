@@ -12,6 +12,12 @@ const errors = []
 if (deck.cards.length !== 26) errors.push(`Expected 26 Level 1 letter-sound cards, found ${deck.cards.length}.`)
 
 for (const card of deck.cards) {
+  const imageName = path.parse(card.image).name
+  const word = card.exampleWord
+  if (![word, `${card.lowercase}-${word}-card`].includes(imageName) ||
+      !card.speechCue.endsWith(`like ${word}`) || !card.ttsText.endsWith(`as in ${word}.`)) {
+    errors.push(`${card.id}: image, example word and spoken cues must agree.`)
+  }
   if (!card.avoidTtsLetterName) errors.push(`${card.id}: avoidTtsLetterName should be true.`)
   if (card.letterNameAudio) errors.push(`${card.id}: should not point at letter-name audio in phonics-first Level 1.`)
   if (!card.ipa || !card.ssmlSound?.includes('phoneme')) errors.push(`${card.id}: missing IPA/SSML phoneme data.`)

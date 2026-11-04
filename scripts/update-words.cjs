@@ -1,24 +1,15 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs')
+const path = require('node:path')
 
-const wordMap = {
-  M: "mountain", S: "snake", A: "arrow", T: "tree", P: "pelican",
-  C: "caterpillar", R: "ribbon", N: "necklace", D: "dinosaur", I: "inchworm",
-  F: "flamingo", B: "butterfly", H: "horse", G: "goose", O: "orange",
-  L: "lizard", K: "kangaroo", E: "eel", U: "umbrella", W: "worm",
-  J: "jellyfish", Y: "yak", V: "valley", Z: "zebra", Q: "quail", X: "xylophone"
-};
+const deckPath = path.join(__dirname, '../public/decks/sarah-letters-level-1.json')
+const deck = JSON.parse(fs.readFileSync(deckPath, 'utf8'))
 
-const p = path.join(__dirname, '../public/decks/sarah-letters-level-1.json');
-const data = JSON.parse(fs.readFileSync(p, 'utf8'));
+for (const card of deck.cards) {
+  const filename = path.parse(card.image).name
+  const word = filename.replace(new RegExp('^' + card.lowercase + '-(.+)-card$'), '$1')
+  card.exampleWord = word
+  card.speechCue = card.speechCue.replace(/like \w+$/, 'like ' + word)
+  card.ttsText = card.ttsText.replace(/as in \w+\.$/, 'as in ' + word + '.')
+}
 
-data.cards.forEach(c => {
-  const w = wordMap[c.uppercase];
-  c.exampleWord = w;
-  c.image = `images/${w}.png`;
-  c.speechCue = c.speechCue.replace(/like \w+$/, `like ${w}`);
-  c.ttsText = c.ttsText.replace(/as in \w+\./, `as in ${w}.`);
-});
-
-fs.writeFileSync(p, JSON.stringify(data, null, 2) + '\n');
-console.log("Updated sarah-letters-level-1.json successfully.");
+fs.writeFileSync(deckPath, JSON.stringify(deck, null, 2) + '\n')
