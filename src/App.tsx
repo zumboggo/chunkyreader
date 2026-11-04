@@ -2748,7 +2748,7 @@ function SarahQuestionView({
           <>
             <span className="stage-label">Find the word</span>
             <h2>Tap {activity.card.exampleWord}.</h2>
-            <AudioPromptButton onClick={handleAudioClick} label="Hear the sound" />
+            <AudioPromptButton onClick={handleAudioClick} label="Hear the word" />
             {showAdultDetails && <span className="phonetic-detail">{activity.card.sound}</span>}
           </>
         )}
@@ -3117,7 +3117,7 @@ function SarahPhonemeQuestionView({
   const disabled = status === 'correct' || status === 'revealed'
 
   function handleAudioClick() {
-    if (kind === 'beginningSound') {
+    if (kind === 'beginningSound' || kind === 'soundToWord') {
       void playPhonemeWord(deck, activity.card)
       return
     }
@@ -3179,8 +3179,8 @@ function SarahPhonemeQuestionView({
         {kind === 'soundToWord' && (
           <>
             <span className="stage-label">Find the word</span>
-            <h2>Which starts with {phonemeSoundLabel(activity.card)}?</h2>
-            <AudioPromptButton onClick={handleAudioClick} label="Hear the sound" />
+            <h2>Can you find {activity.card.exampleWord}?</h2>
+            <AudioPromptButton onClick={handleAudioClick} label="Hear the word" />
             {showAdultDetails && <span className="phonetic-detail">{activity.card.phoneme}</span>}
           </>
         )}
@@ -5893,12 +5893,17 @@ function buildSarahPhonemeActivities(lessonCards: LearningCard[]): SarahPhonemeA
   const card = lessonCards[0]
   if (!card) return []
   const activities: SarahPhonemeActivity[] = lessonCards.map(card => ({ kind: 'intro', card }))
-  activities.push({ kind: 'echo', card })
-  for (const [repetition, target] of lessonCards.entries()) {
-    const contrast = earlyReadingContrast(lessonCards, target, repetition)
-    if (!contrast) continue
-    const options = [target, contrast].sort((a, b) => stableSort(`sound:${repetition}:${a.id}`) - stableSort(`sound:${repetition}:${b.id}`))
-    activities.push({ kind: 'soundToGrapheme', card: target, options })
+  // Four short rounds revisit the same pair with a fresh model before each match.
+  for (let round = 0; round < 4; round++) {
+    const pictureRound = round % 2 === 1
+    for (let turn = 0; turn < lessonCards.length; turn++) {
+      const target = lessonCards[(turn + round) % lessonCards.length]
+      const contrast = earlyReadingContrast(lessonCards, target, turn)
+      if (!contrast) continue
+      activities.push({ kind: pictureRound ? 'intro' : round === 0 ? 'echo' : 'explore', card: target })
+      const options = (round + turn) % 3 === 0 ? [contrast, target] : [target, contrast]
+      activities.push({ kind: pictureRound ? 'soundToWord' : 'soundToGrapheme', card: target, options })
+    }
   }
   if (earlyReadingWord(lessonCards)) activities.push({ kind: 'blend', card })
   return activities
@@ -5944,7 +5949,7 @@ async function playSarahPhonemeActivityAudio(deck: LearningDeck, activity: Sarah
   if (activity.kind === 'intro' || activity.kind === 'blend') {
     return playPhonemeSoundThenWord(deck, activity.card)
   }
-  if (activity.kind === 'beginningSound') {
+  if (activity.kind === 'beginningSound' || activity.kind === 'soundToWord') {
     return playPhonemeWord(deck, activity.card)
   }
   return playPhonemeSound(deck, activity.card)

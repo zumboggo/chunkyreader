@@ -37,8 +37,8 @@ for (const [file, build] of [['sarah-letters-level-1', builders.buildSarahActivi
     assert(pocket.every(c => cards.indexOf(c) <= Math.max(i, lettersSection && i === 26 ? 27 : 1)), 'No untaught future distractors')
     const seen = new Set()
     const activities = build(pocket)
-    assert(activities.length <= 6, 'A toddler visit has at most six tiny steps')
-    assert(activities.filter(a => a.options).length <= 2, 'Only two supported matching turns')
+    if (lettersSection) assert(activities.length <= 6, 'A toddler visit has at most six tiny steps')
+    assert.equal(activities.filter(a => a.options).length, lettersSection ? 2 : 8, 'Two matches per round')
     assert(!activities.some(a => ['upperLowerMatch', 'beginningSound'].includes(a.kind)), 'No case conversion or sound-position test for a two-year-old')
     for (const activity of activities) {
       if (activity.kind === 'intro') seen.add(activity.card.id)
