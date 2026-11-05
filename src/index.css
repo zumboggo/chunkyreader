@@ -9117,3 +9117,11 @@ body { padding-bottom: 0; }
 .sound-picture { display: grid; justify-items: center; gap: .3rem; }
 .focus-lesson .sound-lit { outline: 4px solid #e8ad3e; background: #fff4cb; }
 .panda-points { display: block; font-size: 1.6rem; }
+
+/* Keep controller focus unmistakable on both pastel cards and dark scenes. */
+.controller-navigation :focus {
+  outline: 4px solid #6847d7 !important;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 7px #fff !important;
+  scroll-margin: 20px;
+}

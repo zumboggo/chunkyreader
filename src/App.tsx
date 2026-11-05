@@ -1347,7 +1347,7 @@ function ParentSettingsModal({
           <section className="controller-key-settings" aria-label="Controller choice keys">
             <div>
               <strong>Controller keys</strong>
-              <small>Buttons select answers and continue within a lesson. They never open Home or menus.</small>
+              <small>D-pad or left stick moves the highlight. A selects; B goes back. L/R cycles through every control (including leaving a slider or list). Arrow keys, Enter and Escape work too. Text entry uses the on-screen keyboard. The choice keys below are extra lesson shortcuts.</small>
             </div>
             <div className="controller-key-grid">
               {controllerChoices.map((choice) => (

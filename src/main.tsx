@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { flushSync } from 'react-dom'
 import './index.css'
 import App from './App'
+import { installControllerNavigation } from './controllerNavigation'
 import { installFourButtonController } from './fourButtonController'
 import { registerServiceWorker } from './registerServiceWorker'
 import { getCloudAuthState } from './cloudProgressSync'
@@ -11,6 +12,8 @@ import { initializeMediaAssets } from './mediaAssets'
 import { stopAudioPlayback } from './audioClipPack'
 
 const root = createRoot(document.getElementById('root')!)
+installControllerNavigation()
+
 async function start() {
   // Resolve account ownership before any component reads or writes progress.
   // An offline persisted Supabase session is enough; no network auth call is needed.
