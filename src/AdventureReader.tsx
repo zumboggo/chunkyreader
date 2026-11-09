@@ -1,3 +1,4 @@
+import { rememberStoryVisit } from './storyResume'
 import {useEffect, useMemo, useRef, useState} from 'react'
 import {compileStory, replayStory, advanceStory, type StoryPackage} from './story2/engine/story-engine.js'
 import StoryStage from './story2/StoryStage'
@@ -18,17 +19,17 @@ function loadSave(id:string):Save|undefined {
     if(s && Array.isArray(s.steps) && s.steps.length<100 && s.steps.every((v:unknown)=>v===null||typeof v==='string') && ['read','listen'].includes(s.mode) && ['words','story'].includes(s.phase) && Number.isInteger(s.word) && s.word>=0 && s.word<5)return s
   } catch { /* Unavailable or stale storage starts a fresh adventure. */ }
 }
-export function AdventureReader({id,onBack,onComplete}:{id:string;onBack:()=>void;onComplete:()=>void}) {
+export function AdventureReader({id,onBack,onComplete,resume=false}:{id:string;resume?:boolean;onBack:()=>void;onComplete:()=>void}) {
  const [pack,setPack]=useState<Adventure>();const [error,setError]=useState(false)
  useEffect(()=>{const c=new AbortController();fetch(assetUrl(`stories/adventures/v1/${id}.json`),{signal:c.signal}).then(r=>{if(!r.ok)throw Error();return r.json()}).then(p=>{for(const bg of Object.values(p.assets.backgrounds) as {src:string}[])bg.src=assetUrl(bg.src);for(const c of Object.values(p.assets.characters) as {expressions:Record<string,{src:string}>}[])for(const a of Object.values(c.expressions))a.src=assetUrl(a.src);setPack(p)}).catch(()=>{if(!c.signal.aborted)setError(true)});return()=>c.abort()},[id])
  if(error)return <section className="adventure-gate"><h1>Let’s try again</h1><p>The story could not load. Please reconnect and open it again.</p><button onClick={onBack}>Back to Stories</button></section>
  if(!pack)return <section className="adventure-gate"><p>Opening your adventure…</p><button onClick={onBack}>Back to Stories</button></section>
- return <AdventurePlayer key={id} pack={pack} onBack={onBack} onComplete={onComplete}/>
+ return <AdventurePlayer key={id} pack={pack} resume={resume} onBack={onBack} onComplete={onComplete}/>
 }
-function AdventurePlayer({pack,onBack,onComplete}:{pack:Adventure;onBack:()=>void;onComplete:()=>void}) {
+function AdventurePlayer({pack,onBack,onComplete,resume}:{pack:Adventure;resume:boolean;onBack:()=>void;onComplete:()=>void}) {
  const compiled=useMemo(()=>compileStory(pack.script,pack.assets),[pack]); const story=compiled.story
  const [saved]=useState(()=>{const candidate=loadSave(pack.id);if(candidate&&story){try{replayStory(story,candidate.steps,1);return candidate}catch{/* Ignore incompatible saves. */}}return undefined});const [steps,setSteps]=useState<(string|null)[]>(saved?.steps||[])
- const [phase,setPhase]=useState<'gate'|'intro'|'words'|'story'>('gate');const [mode,setMode]=useState<'read'|'listen'>(saved?.mode||'read')
+ const [phase,setPhase]=useState<'gate'|'intro'|'words'|'story'>(resume && saved ? saved.phase : 'gate');const [mode,setMode]=useState<'read'|'listen'>(saved?.mode||'read')
  const [word,setWord]=useState(saved?.word||0);const [audioError,setAudioError]=useState(false);const [speaking,setSpeaking]=useState(false)
  const [reduced,setReduced]=useState(()=>matchMedia('(prefers-reduced-motion: reduce)').matches);const [paused,setPaused]=useState(false)
  const [responses,setResponses]=useState<Record<string,string>>({});const [introError,setIntroError]=useState(false)
@@ -37,7 +38,7 @@ function AdventurePlayer({pack,onBack,onComplete}:{pack:Adventure;onBack:()=>voi
  const text=phase==='words'?pack.focusWords[word]:current?.type==='choice'?'What next?':current?.text||''
  const play=async(value:string)=>{const token=++audioGeneration.current;setAudioError(false);setSpeaking(true);try{const actor=phase==='story'&&current?.type==='say'&&value===current.text?current.actor:undefined;const path=(actor?pack.dialogueAudio?.[actor]?.[value]:undefined)||pack.audio?.[value];if(!path)throw Error();await playAudioUrl(assetUrl(path))}catch{if(token===audioGeneration.current)setAudioError(true)}finally{if(token===audioGeneration.current)setSpeaking(false)}}
  const stop=()=>{audioGeneration.current++;stopAudioPlayback();setSpeaking(false)}
- const save=(next:Save)=>{try{progressStorage.setItem(saveKey(pack.id),JSON.stringify(next));recordLocalProgressChange()}catch{/* Play works without storage. */}}
+ const save=(next:Save)=>{try{progressStorage.setItem(saveKey(pack.id),JSON.stringify(next));rememberStoryVisit(pack.id,'adventure',next.phase==='story'&&!!state?.ended);recordLocalProgressChange()}catch{/* Play works without storage. */}}
  useEffect(()=>{const m=matchMedia('(prefers-reduced-motion: reduce)');const update=()=>setReduced(m.matches);m.addEventListener('change',update);return()=>m.removeEventListener('change',update)},[])
  useEffect(()=>{const hidden=()=>{if(document.hidden){video.current?.pause();stopAudioPlayback();audioGeneration.current++;setSpeaking(false);motion.current?.abort()}};document.addEventListener('visibilitychange',hidden);return()=>{document.removeEventListener('visibilitychange',hidden);stopAudioPlayback();motion.current?.abort()}},[])
  useEffect(()=>{advancing.current=false;if(phase!=='words'&&phase!=='story')return;save({steps,mode,phase,word});heading.current?.focus();if(phase==='words'||mode==='listen'&&!state?.ended)void play(current?.type==='choice'&&phase==='story'?current.options.map((o:{text:string})=>o.text).join(' '):text);return()=>{stopAudioPlayback()}

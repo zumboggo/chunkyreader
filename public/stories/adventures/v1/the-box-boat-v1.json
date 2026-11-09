@@ -1,0 +1,136 @@
+{
+  "format": 2,
+  "id": "the-box-boat-v1",
+  "title": "The Box Boat",
+  "description": "A box, a toy, and room for us all.",
+  "version": 1,
+  "cover": "stories/adventures/v1/family-box-boat.webp",
+  "castLabel": "Anna, Sarah & Leah",
+  "profile": "growing-reader",
+  "sceneLayout": "full",
+  "intro": {
+    "kind": "still",
+    "src": "stories/adventures/v1/family-box-boat.webp",
+    "alt": "A box, a toy, and room for us all."
+  },
+  "notice": "A make-believe family adventure with Anna, Sarah and one-year-old Leah. Read and choose, or listen together.",
+  "focusWords": [
+    "box",
+    "boat",
+    "rug",
+    "toy",
+    "sit"
+  ],
+  "script": "story 2\nvariable bear = false hidden\nscene family-box-boat\nshow Anna happy left\nshow Sarah curious right\nshow Leah curious center\ncamera wide cut\nI: Mum made a box boat. Leah sits by Mum.\nAnna [happy]: Let us sail on the rug!\nSarah [curious]: A toy can come, too.\nchoice toy\noption bear \"Take the bear.\" -> bear ; bear = true\noption pup \"Take the pup.\" -> pup\nlabel bear\nSarah [happy]: A bear on a boat!\ngoto room\nlabel pup\nSarah [happy]: A pup on a boat!\ngoto room\nlabel room\nAnna [worried]: Oh! No room for us all.\nexpress Leah sad\nI: Leah pats the box.\nchoice space\noption rug \"Sit on the rug.\" -> rug\noption toy \"Move the toy.\" -> move\nlabel rug\nreact Anna crouch\nAnna [happy]: The rug is our boat, too!\ngoto join\nlabel move\nreact Sarah point\nSarah [happy]: The toy can sit by the box.\ngoto join\nlabel join\ncamera listener Leah cut\nI: Mum helps Leah join us. She pats our boat.\nAnna [happy]: Room for you, Leah!\ncamera wide cut\nchoice trip\noption sea \"Go to sea.\" -> sea\noption home \"Go back home.\" -> home\nlabel sea\nSarah [happy]: A big fish! Wave to it!\ngoto endtoy\nlabel home\nSarah [happy]: Home! Time for a cup of tea!\ngoto endtoy\nlabel endtoy\nif bear == true -> bearend else pupend\nlabel bearend\nAnna [happy]: Our bear had a big day.\ngoto done\nlabel pupend\nAnna [happy]: Our pup had a big day.\ngoto done\nlabel done\nI: Leah pats the rug. One more trip?\nend",
+  "assets": {
+    "characters": {
+      "Anna": {
+        "name": "Anna",
+        "version": 1,
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#604332",
+            "shirt": "#efa8bd",
+            "trim": "#fff0dd"
+          },
+          "appearance": {
+            "age": "child",
+            "hair": "long",
+            "outfit": "tunic",
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#b976a8"
+          }
+        }
+      },
+      "Sarah": {
+        "name": "Sarah",
+        "version": 1,
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#73503a",
+            "shirt": "#b69cdb",
+            "trim": "#fff0dd"
+          },
+          "appearance": {
+            "age": "child",
+            "hair": "bob",
+            "outfit": "tunic",
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#d95855"
+          }
+        }
+      },
+      "Leah": {
+        "name": "Leah",
+        "expressions": {
+          "neutral": {
+            "src": "stories/adventures/v1/leah-baby-neutral.svg"
+          },
+          "happy": {
+            "src": "stories/adventures/v1/leah-baby-happy.svg"
+          },
+          "curious": {
+            "src": "stories/adventures/v1/leah-baby-curious.svg"
+          },
+          "sad": {
+            "src": "stories/adventures/v1/leah-baby-sad.svg"
+          },
+          "proud": {
+            "src": "stories/adventures/v1/leah-baby-proud.svg"
+          }
+        },
+        "provenance": "Original storybook illustration of a seated one-year-old; no photograph used."
+      }
+    },
+    "backgrounds": {
+      "family-box-boat": {
+        "src": "stories/adventures/v1/family-box-boat.webp"
+      }
+    }
+  },
+  "quiz": [],
+  "sources": [],
+  "audio": {
+    "box": "stories/adventures/v1/audio/cb81feae300f859e.m4a",
+    "boat": "stories/adventures/v1/audio/f6a72515e3d014fa.m4a",
+    "rug": "stories/adventures/v1/audio/707f6a0fe4354ee8.m4a",
+    "toy": "stories/adventures/v1/audio/c335a0f14de39b32.m4a",
+    "sit": "stories/adventures/v1/audio/0d4ac12c56d47ac3.m4a",
+    "What next?": "stories/adventures/v1/audio/367ac096f6737c6c.m4a",
+    "Mum made a box boat. Leah sits by Mum.": "stories/adventures/v1/audio/0e07a2330cec7340.m4a",
+    "Let us sail on the rug!": "stories/adventures/v1/audio/bb6be4c38cc058fa.m4a",
+    "A toy can come, too.": "stories/adventures/v1/audio/16f280c0bec5ca1e.m4a",
+    "A bear on a boat!": "stories/adventures/v1/audio/9b53f9edef859705.m4a",
+    "A pup on a boat!": "stories/adventures/v1/audio/1b9ed8ed689ee60d.m4a",
+    "Oh! No room for us all.": "stories/adventures/v1/audio/4e9cee5cbd5e7700.m4a",
+    "Leah pats the box.": "stories/adventures/v1/audio/8d4134de83bc8ce8.m4a",
+    "The rug is our boat, too!": "stories/adventures/v1/audio/6877f452f0ce83d7.m4a",
+    "The toy can sit by the box.": "stories/adventures/v1/audio/d5b18093b423c89d.m4a",
+    "Mum helps Leah join us. She pats our boat.": "stories/adventures/v1/audio/e03212edfe1f922e.m4a",
+    "Room for you, Leah!": "stories/adventures/v1/audio/ce21ec129b7d435d.m4a",
+    "A big fish! Wave to it!": "stories/adventures/v1/audio/1773d7bcbc8888f6.m4a",
+    "Home! Time for a cup of tea!": "stories/adventures/v1/audio/41ddc0893da1f687.m4a",
+    "Our bear had a big day.": "stories/adventures/v1/audio/fd519b1859d5b646.m4a",
+    "Our pup had a big day.": "stories/adventures/v1/audio/a2cfee4e0f099ad0.m4a",
+    "Leah pats the rug. One more trip?": "stories/adventures/v1/audio/639c54600edd612a.m4a",
+    "Take the bear. Take the pup.": "stories/adventures/v1/audio/fac571ab3279e13d.m4a",
+    "Sit on the rug. Move the toy.": "stories/adventures/v1/audio/65d148a2b19df409.m4a",
+    "Go to sea. Go back home.": "stories/adventures/v1/audio/8d19e61c8b5dde58.m4a"
+  }
+}

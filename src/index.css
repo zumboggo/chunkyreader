@@ -9125,3 +9125,55 @@ body { padding-bottom: 0; }
   box-shadow: 0 0 0 7px #fff !important;
   scroll-margin: 20px;
 }
+
+/* Compact, easy-to-scan story shelf. Keep the whole card a generous tap target. */
+.story-library .story-resume-primary {
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+  gap:8px 20px; width:100%; min-height:84px; margin:0 0 18px; padding:18px 24px;
+  border:2px solid #a51c2b; border-radius:22px; background:#d52b3e; color:#fff;
+  box-shadow:0 5px 0 #9c1c2b; text-align:left;
+}
+.story-library .story-resume-primary strong {font-size:32px;line-height:1.2}
+.story-library .story-resume-primary span {font-size:18px}
+.story-library .story-resume-primary:hover {background:#bb2133}
+.story-library .story-resume-primary:focus-visible {outline:4px solid #6742a1;outline-offset:5px}
+.story-library .story-library-header {min-height:0;padding:16px 20px;gap:12px; margin-bottom:16px}
+.story-library .story-library-header h1 {font-size:30px;margin:4px 0}
+.story-library .story-library-header p {margin:4px 0}
+.story-library .story-library-header .mascot-sprite,.story-library .story-library-header .panda-fallback {display:none}
+.story-library .story-bookshelf {display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:14px;padding:18px;background:#f4ece3;border-radius:20px;box-shadow:none}
+.story-library .story-bookshelf::after {display:none}
+.story-library .story-card {border:1px solid #e2d4c8;border-radius:14px;background:#fffdf9;box-shadow:0 3px 0 #e5d8cb;overflow:hidden;transform:none}
+.story-library .story-card:hover {transform:translateY(-2px)}
+.story-library .story-book-cover {aspect-ratio:auto;border:0;border-radius:0;background:#fffdf9;display:flex;flex-direction:column}
+.story-library .story-book-cover .story-cover {height:100px;min-height:100px;width:100%;object-fit:cover}
+.story-library .story-cover-shade {display:none}
+.story-library .story-cover-copy {position:static;display:grid;gap:4px;padding:10px 10px 4px;color:#493c52;text-shadow:none}
+.story-library .story-cover-copy small {display:none}
+.story-library .story-cover-copy strong {font-size:16px;line-height:1.25;text-align:left;text-wrap:initial}
+.story-library .story-book-meta {border:0;border-radius:0;padding:8px 10px;font-size:12px;color:#67586b}
+.story-library .story-book-cover .story-resume-pill {font-size:11px;top:6px;right:6px}
+@media(max-width:600px){
+ .story-library .story-bookshelf {grid-template-columns:repeat(2,minmax(0,1fr));padding:10px;gap:10px}
+ .story-library .story-resume-primary {min-height:88px;padding:16px 20px}
+ .story-library .story-resume-primary span {width:100%;font-size:16px}
+ .story-library .story-library-header {padding:12px}
+}
+.story-library {background:#fff9f1;border:1px solid #e7d9dd;border-radius:24px;box-shadow:none;padding:clamp(12px,2vw,24px)}
+.story-library .story-library-header {grid-template-columns:auto minmax(0,1fr) auto;background:transparent;border:0;box-shadow:none;overflow:visible;align-items:start}
+.story-library .story-library-header::after {display:none}
+.story-library .story-download-tools {max-width:260px;align-self:center;font-size:14px}
+.story-library .story-download-tools summary {cursor:pointer;padding:12px;border-radius:14px;background:#f0e8f6;color:#674980;min-height:44px}
+.story-library .story-download-tools p {font-size:13px;line-height:1.5}
+.story-library .story-bookshelf {border:1px solid #e2d4c8;align-items:stretch}
+@media(max-width:600px){.story-library .story-library-header{grid-template-columns:auto minmax(0,1fr)}.story-library .story-download-tools{grid-column:1/-1;max-width:none}.story-library .story-library-header h1{font-size:26px}.story-library .story-shelf-summary{display:none}}
+.story-library {gap:12px}
+.story-library .story-library-header {margin:0;padding:8px 12px}
+.story-library .story-library-header p {font-size:15px;line-height:1.4}
+.story-library .story-shelf-summary {margin-top:8px;font-size:12px}
+.story-library .story-resume-primary {margin-bottom:4px}
+@media(max-width:600px){
+ .story-library .story-library-header>.soft-back{grid-row:1;grid-column:1;order:0;align-self:start}
+ .story-library .story-library-header>div{grid-row:1;grid-column:2}
+ .story-library .story-download-tools{grid-row:2;grid-column:1/-1}
+}

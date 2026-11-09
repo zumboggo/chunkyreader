@@ -1,0 +1,138 @@
+{
+  "format": 2,
+  "id": "the-red-hen-v1",
+  "title": "The Red Hen",
+  "description": "A shy hen needs a calm hello.",
+  "version": 1,
+  "cover": "stories/adventures/v1/family-red-hen.webp",
+  "castLabel": "Anna, Sarah & Leah",
+  "profile": "growing-reader",
+  "sceneLayout": "full",
+  "intro": {
+    "kind": "still",
+    "src": "stories/adventures/v1/family-red-hen.webp",
+    "alt": "A shy hen needs a calm hello."
+  },
+  "notice": "A make-believe family adventure with Anna, Sarah and one-year-old Leah. Read and choose, or listen together.",
+  "focusWords": [
+    "hen",
+    "red",
+    "sit",
+    "seed",
+    "wave"
+  ],
+  "script": "story 2\nvariable seed = false hidden\nscene family-red-hen\nshow Anna happy left\nshow Sarah curious right\nshow Leah curious center\ncamera wide cut\nI: Mum holds Leah. We see a red hen.\nSarah [happy]: Come here, hen!\nI: The hen hops away.\nAnna [curious]: Let us be calm.\nchoice calm\noption sit \"Sit here.\" -> sit\noption back \"Step back.\" -> back\nlabel sit\nreact Sarah crouch\nSarah [curious]: I sit. I can wait.\ngoto near\nlabel back\nAnna [happy]: More room for you, hen.\ngoto near\nlabel near\nI: The hen peeks at us.\nchoice kind\noption seed \"Ask Mum for seed.\" -> seed ; seed = true\noption hum \"Hum a soft tune.\" -> hum\nlabel seed\nI: Mum puts seed by the hen.\nSarah [happy]: Peck, peck! A nice meal!\ngoto wave\nlabel hum\nAnna [happy]: A soft tune for you.\nI: The hen takes a little hop.\ngoto wave\nlabel wave\nexpress Leah happy\ncamera listener Leah cut\nI: Leah waves. The hen tilts her head.\nSarah [happy]: She sees you, Leah!\ncamera wide cut\nchoice bye\noption wave \"Wave bye.\" -> bye\noption nod \"Give a nod.\" -> nod\nlabel bye\nreact Sarah wave\nSarah [happy]: Bye, hen! See you soon!\ngoto finish\nlabel nod\nreact Anna nod\nAnna [happy]: A little nod. Off you go!\ngoto finish\nlabel finish\nif seed == true -> seedend else tuneend\nlabel seedend\nSarah [happy]: A meal and a new pal!\ngoto done\nlabel tuneend\nSarah [happy]: A tune and a new pal!\ngoto done\nlabel done\nAnna [happy]: We let the hen come to us.\nend",
+  "assets": {
+    "characters": {
+      "Anna": {
+        "name": "Anna",
+        "version": 1,
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#604332",
+            "shirt": "#efa8bd",
+            "trim": "#fff0dd"
+          },
+          "appearance": {
+            "age": "child",
+            "hair": "long",
+            "outfit": "tunic",
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#b976a8"
+          }
+        }
+      },
+      "Sarah": {
+        "name": "Sarah",
+        "version": 1,
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#73503a",
+            "shirt": "#b69cdb",
+            "trim": "#fff0dd"
+          },
+          "appearance": {
+            "age": "child",
+            "hair": "bob",
+            "outfit": "tunic",
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#d95855"
+          }
+        }
+      },
+      "Leah": {
+        "name": "Leah",
+        "expressions": {
+          "neutral": {
+            "src": "stories/adventures/v1/leah-baby-neutral.svg"
+          },
+          "happy": {
+            "src": "stories/adventures/v1/leah-baby-happy.svg"
+          },
+          "curious": {
+            "src": "stories/adventures/v1/leah-baby-curious.svg"
+          },
+          "sad": {
+            "src": "stories/adventures/v1/leah-baby-sad.svg"
+          },
+          "proud": {
+            "src": "stories/adventures/v1/leah-baby-proud.svg"
+          }
+        },
+        "provenance": "Original storybook illustration of a seated one-year-old; no photograph used."
+      }
+    },
+    "backgrounds": {
+      "family-red-hen": {
+        "src": "stories/adventures/v1/family-red-hen.webp"
+      }
+    }
+  },
+  "quiz": [],
+  "sources": [],
+  "audio": {
+    "hen": "stories/adventures/v1/audio/dfae3dc915ce959b.m4a",
+    "red": "stories/adventures/v1/audio/9ccb60492f99cd94.m4a",
+    "sit": "stories/adventures/v1/audio/0d4ac12c56d47ac3.m4a",
+    "seed": "stories/adventures/v1/audio/f64ef4464c4812a1.m4a",
+    "wave": "stories/adventures/v1/audio/2b3e26674553717d.m4a",
+    "What next?": "stories/adventures/v1/audio/367ac096f6737c6c.m4a",
+    "Mum holds Leah. We see a red hen.": "stories/adventures/v1/audio/32fe6efda643a017.m4a",
+    "Come here, hen!": "stories/adventures/v1/audio/e4936ae84d6e4782.m4a",
+    "The hen hops away.": "stories/adventures/v1/audio/c3504a311d0dc59f.m4a",
+    "Let us be calm.": "stories/adventures/v1/audio/ed33b3b842d54aed.m4a",
+    "I sit. I can wait.": "stories/adventures/v1/audio/c20b4f6ff88d2605.m4a",
+    "More room for you, hen.": "stories/adventures/v1/audio/c71477f84a5481ba.m4a",
+    "The hen peeks at us.": "stories/adventures/v1/audio/ba4c7d3c1c942d0f.m4a",
+    "Mum puts seed by the hen.": "stories/adventures/v1/audio/771a873bae46748a.m4a",
+    "Peck, peck! A nice meal!": "stories/adventures/v1/audio/c402e48f62e3ddac.m4a",
+    "A soft tune for you.": "stories/adventures/v1/audio/99117aa385c0309e.m4a",
+    "The hen takes a little hop.": "stories/adventures/v1/audio/55b0c66a8b016e52.m4a",
+    "Leah waves. The hen tilts her head.": "stories/adventures/v1/audio/60fc86f4ab0557dc.m4a",
+    "She sees you, Leah!": "stories/adventures/v1/audio/f9e54fb91cd7a502.m4a",
+    "Bye, hen! See you soon!": "stories/adventures/v1/audio/780f46059b593e23.m4a",
+    "A little nod. Off you go!": "stories/adventures/v1/audio/82e411db623534ad.m4a",
+    "A meal and a new pal!": "stories/adventures/v1/audio/bba61d3a93b44573.m4a",
+    "A tune and a new pal!": "stories/adventures/v1/audio/d3df2436f86b3260.m4a",
+    "We let the hen come to us.": "stories/adventures/v1/audio/fb5476204052ffc0.m4a",
+    "Sit here. Step back.": "stories/adventures/v1/audio/e70223c6b536853e.m4a",
+    "Ask Mum for seed. Hum a soft tune.": "stories/adventures/v1/audio/9a49524254bee449.m4a",
+    "Wave bye. Give a nod.": "stories/adventures/v1/audio/ae7f853b4e2a2213.m4a"
+  }
+}

@@ -11,3 +11,17 @@
 .adventure-player.adventure-full-scene .story-stage .position-left{left:12%}
 .adventure-player.adventure-full-scene .story-stage .position-center{left:37.5%;height:78%;width:25%}
 .adventure-player.adventure-full-scene .story-stage .position-right{left:63%}
+
+/* Smaller covers make every adventure easy to find. */
+.adventure-shelf{padding:16px;margin:12px 0 24px;border-radius:22px}
+.adventure-heading h2{font-size:26px;margin:4px 0}
+.adventure-heading p{margin:6px 0 14px;font-size:14px}
+.adventure-covers{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.adventure-cover{border-radius:16px!important;box-shadow:0 3px 0 #e5d8e9}
+.adventure-cover img{height:100px;aspect-ratio:auto;object-fit:cover}
+.adventure-cover>span{gap:6px;padding:10px}
+.adventure-cover strong{font-size:18px;line-height:1.25}
+.adventure-cover small{font-size:11px}
+.adventure-cover>span>span{display:none}
+.adventure-cover b{font-size:12px}
+@media(max-width:600px){.adventure-covers{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.adventure-shelf{padding:10px}.adventure-cover>span{padding:10px}.adventure-cover strong{font-size:16px}.adventure-cover img{height:85px}.adventure-cover small{font-size:10px}}

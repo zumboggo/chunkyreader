@@ -62,7 +62,7 @@
     "generate:math-images:force": "node --env-file=.env scripts/generate-math-object-images.mjs --force",
     "verify:guided-audio": "node scripts/verify-guided-audio.mjs",
     "verify:early-reading": "node scripts/verify-early-reading.mjs",
-    "verify:adventures": "node scripts/adventures/verify.mjs && node scripts/adventures/verify-new-adventures.mjs && node scripts/adventures/verify-leah.mjs"
+    "verify:adventures": "node scripts/adventures/verify.mjs && node scripts/adventures/verify-new-adventures.mjs && node scripts/adventures/verify-leah.mjs && node scripts/adventures/verify-family-three.mjs && node --experimental-strip-types scripts/verify-story-resume.mts"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.106.2",

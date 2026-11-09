@@ -1,3 +1,4 @@
+import { latestUnfinishedStory, rememberStoryVisit } from './storyResume'
 import { OfflineDownloadButton } from './OfflineDownloadButton'
 import { AdventureShelf } from './AdventureShelf'
 import { ADVENTURES } from './adventures'
@@ -1511,11 +1512,12 @@ function StorySection({
     const requested = new URLSearchParams(window.location.search).get('adventure')
     return ADVENTURES.some(adventure => adventure.id === requested) ? requested! : ''
   })
+  const [resumeAdventure, setResumeAdventure] = useState(false)
   const [pageIndex, setPageIndex] = useState(0)
   const [complete, setComplete] = useState(false)
   const [difficultyFilter, setDifficultyFilter] = useState<StoryDifficultyFilter>('easy')
   const selectedStory = stories.find((story) => story.id === selectedStoryId)
-  const resumeStory = stories.find(s => readStoryProgress(s.id, s.pages.length) > 0)
+  const resumeStory = latestUnfinishedStory([...ADVENTURES.map(a => ({id:a.id,title:a.title,kind:'adventure' as const})), ...stories.map(s => ({id:s.id,title:s.title,kind:'book' as const}))])
   const filteredStories = stories.filter((story) => storyDifficulty(story) === difficultyFilter)
   const totalPages = stories.reduce((sum, story) => sum + story.pages.length, 0)
 
@@ -1524,6 +1526,8 @@ function StorySection({
   }, [difficultyFilter, selectedStoryId, adventureId])
 
   function openStory(story: Story) {
+    saveStoryProgress(story.id, 0)
+    rememberStoryVisit(story.id, 'book')
     setSelectedStoryId(story.id)
     setPageIndex(0)
     setComplete(false)
@@ -1537,6 +1541,8 @@ function StorySection({
 
   function resume(story: Story) {
     const nextPage = readStoryProgress(story.id, story.pages.length)
+    rememberStoryVisit(story.id, 'book')
+    saveStoryProgress(story.id, nextPage)
     setSelectedStoryId(story.id)
     setPageIndex(nextPage)
     setComplete(false)
@@ -1550,26 +1556,29 @@ function StorySection({
 
   function restartStory(story: Story) {
     saveStoryProgress(story.id, 0)
+    rememberStoryVisit(story.id, 'book')
     setPageIndex(0)
     setComplete(false)
   }
 
   useEffect(() => {
     if (!startRequest) return
-    if (ADVENTURES.some(a => a.id === startRequest.storyId)) { setAdventureId(startRequest.storyId); onStartConsumed(); return }
+    if (ADVENTURES.some(a => a.id === startRequest.storyId)) { setResumeAdventure(true); setAdventureId(startRequest.storyId); onStartConsumed(); return }
     const story = stories.find((candidate) => candidate.id === startRequest.storyId)
     if (!story) {
       onStartConsumed()
       return
     }
     const nextPage = Math.max(0, Math.min(story.pages.length - 1, startRequest.pageIndex))
+    rememberStoryVisit(story.id, 'book')
+    saveStoryProgress(story.id, nextPage)
     setSelectedStoryId(story.id)
     setPageIndex(nextPage)
     setComplete(false)
     onStartConsumed()
   }, [onStartConsumed, startRequest, stories])
 
-  if (adventureId) return <Suspense fallback={<p>Opening your adventure…</p>}><AdventureReader key={adventureId} id={adventureId} onBack={() => setAdventureId('')} onComplete={() => { onReward(markStoryComplete(adventureId)); updateStreakOnLesson(1) }} /></Suspense>
+  if (adventureId) return <Suspense fallback={<p>Opening your adventure…</p>}><AdventureReader key={adventureId} id={adventureId} resume={resumeAdventure} onBack={() => { setAdventureId(''); setResumeAdventure(false) }} onComplete={() => { onReward(markStoryComplete(adventureId)); updateStreakOnLesson(1) }} /></Suspense>
 
   if (selectedStory) {
     return (
@@ -1585,6 +1594,7 @@ function StorySection({
         onPageIndexChange={(index) => {
           setPageIndex(index)
           saveStoryProgress(selectedStory.id, index)
+          rememberStoryVisit(selectedStory.id, 'book')
           onRememberContinue({
             section: 'stories',
             storyId: selectedStory.id,
@@ -1595,6 +1605,7 @@ function StorySection({
         onComplete={() => {
           setComplete(true)
           saveStoryProgress(selectedStory.id, selectedStory.pages.length - 1)
+          rememberStoryVisit(selectedStory.id, 'book', true)
           onReward(markStoryComplete(selectedStory.id))
           updateStreakOnLesson(1)
           onRememberContinue({
@@ -1610,6 +1621,10 @@ function StorySection({
 
   return (
     <section className="story-library">
+      {resumeStory && <button type="button" className="story-resume-primary" onClick={() => {
+        if (resumeStory.kind === 'adventure') { setResumeAdventure(true); setAdventureId(resumeStory.id) }
+        else { const book = stories.find(s => s.id === resumeStory.id); if (book) resume(book) }
+      }}><strong>▶ Resume</strong><span>{resumeStory.title}</span></button>}
       <div className="story-library-header">
         <button type="button" className="soft-back" onClick={onBack}>Back</button>
         <div>
@@ -1621,12 +1636,14 @@ function StorySection({
             <span>{totalPages} pages</span>
           </div>
         </div>
-        <AudioPackButton />
-        <OfflineDownloadButton />
-        <Mascot mood="happy" />
+        <details className="story-download-tools">
+          <summary>Save for offline</summary>
+          <AudioPackButton />
+          <OfflineDownloadButton />
+        </details>
       </div>
 
-      <AdventureShelf onOpen={(id) => { setAdventureId(id); onRememberContinue({section: 'stories', storyId: id, pageIndex: 0, label: ADVENTURES.find(a => a.id === id)!.title}) }} />
+      <AdventureShelf onOpen={(id) => { setResumeAdventure(false); setAdventureId(id); onRememberContinue({section: 'stories', storyId: id, pageIndex: 0, label: ADVENTURES.find(a => a.id === id)!.title}) }} />
       <h2>More storybooks</h2>
       <div className="story-level-tabs" aria-label="Choose story level">
         {storyDifficultyFilters.map((filter) => (
@@ -1650,12 +1667,6 @@ function StorySection({
         </section>
       ) : (
         <div className="story-bookshelf" aria-label="Story library">
-          {resumeStory && !selectedStoryId && (
-            <button type="button" className="story-resume-book" onClick={() => resume(resumeStory)}>
-              <span>Continue reading</span>
-              <strong>{resumeStory.title}</strong>
-            </button>
-          )}
           {filteredStories.length === 0 && (
             <section className="empty-screen story-empty">
               <Mascot mood="curious" />

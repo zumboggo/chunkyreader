@@ -1,4 +1,7 @@
 export const ADVENTURES = [
+  {id:'the-box-boat-v1',title:'The Box Boat',description:'A box, a toy, and room for us all.',cover:'family-box-boat.webp'},
+  {id:'the-red-hen-v1',title:'The Red Hen',description:'A shy hen needs a calm hello.',cover:'family-red-hen.webp'},
+  {id:'a-tent-for-us-v1',title:'A Tent for Us',description:'A little tent. A big welcome for Leah.',cover:'family-tent.webp'},
   {id:'leahs-big-day-v1',title:'Leah’s Big Day',description:'Leah is one! Can she roll a ball back?',cover:'leah-birthday-room.webp'},
   {id:'the-toy-pup-v1',title:'The Toy Pup',description:'A lost toy. A little sister who can help.',cover:'leah-toy-garden.webp'},
   {id:'marians-bun-run-v1',title:'Marian’s Bun Run',description:'Keep the buns dry. Save a bit for a pal.',cover:'marian-buns'},
