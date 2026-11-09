@@ -1,0 +1,138 @@
+{
+  "format": 2,
+  "id": "leahs-big-day-v1",
+  "title": "Leah’s Big Day",
+  "description": "Leah is one! Can she roll a ball back?",
+  "version": 1,
+  "cover": "stories/adventures/v1/leah-birthday-room.webp",
+  "castLabel": "Anna, Sarah & Leah",
+  "profile": "growing-reader",
+  "sceneLayout": "full",
+  "intro": {
+    "kind": "still",
+    "src": "stories/adventures/v1/leah-birthday-room.webp",
+    "alt": "A cozy room ready for Leah’s first birthday."
+  },
+  "notice": "A make-believe family adventure with Anna, Sarah and one-year-old Leah. Read and choose, or listen together.",
+  "focusWords": [
+    "ball",
+    "roll",
+    "rug",
+    "pat",
+    "hug"
+  ],
+  "script": "story 2\nvariable red = false hidden\nscene leah-birthday-room\nshow Anna happy left\nshow Sarah curious right\nshow Leah curious center\ncamera wide cut\nI: Leah is one! Mum is here, too.\nAnna [happy]: A ball for you, Leah!\nSarah [curious]: Red or blue?\nchoice ball\noption red \"A red ball.\" -> red ; red = true\noption blue \"A blue ball.\" -> blue\nlabel red\nSarah [happy]: Red! Like my hat!\ngoto try\nlabel blue\nSarah [happy]: Blue! Like the sea!\ngoto try\nlabel try\nI: Leah sits on the rug. Anna rolls the ball.\nexpress Leah sad\nI: Leah pats it. It does not roll back.\nAnna [curious]: Let us help.\nchoice help\noption near \"Sit near.\" -> near\noption show \"Show her.\" -> show\nlabel near\nreact Anna crouch\nAnna [happy]: I sit near you. Roll it to me.\ngoto roll\nlabel show\nreact Sarah point\nSarah [happy]: See? I roll it. Now you!\ngoto roll\nlabel roll\nexpress Leah happy\ncamera listener Leah cut\nI: Leah rolls it back! She did it!\nAnna [happy]: You can do it now!\ncamera wide cut\nSarah [happy]: Again?\nchoice endgame\noption more \"One more go!\" -> more\noption hug \"Time for a hug.\" -> hug\nlabel more\nI: Anna rolls. Leah rolls. Sarah has a go.\ngoto colour\nlabel hug\nI: Mum sits by Leah. We all hug.\ngoto colour\nlabel colour\nif red == true -> redend else blueend\nlabel redend\nAnna [happy]: A red ball. A new game!\ngoto done\nlabel blueend\nAnna [happy]: A blue ball. A new game!\ngoto done\nlabel done\nexpress Leah proud\nSarah [happy]: One big day for you!\nend",
+  "assets": {
+    "characters": {
+      "Anna": {
+        "name": "Anna",
+        "version": 1,
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#604332",
+            "shirt": "#efa8bd",
+            "trim": "#fff0dd"
+          },
+          "appearance": {
+            "age": "child",
+            "hair": "long",
+            "outfit": "tunic",
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#b976a8"
+          }
+        }
+      },
+      "Sarah": {
+        "name": "Sarah",
+        "version": 1,
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#73503a",
+            "shirt": "#b69cdb",
+            "trim": "#fff0dd"
+          },
+          "appearance": {
+            "age": "child",
+            "hair": "bob",
+            "outfit": "tunic",
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#d95855"
+          }
+        }
+      },
+      "Leah": {
+        "name": "Leah",
+        "expressions": {
+          "neutral": {
+            "src": "stories/adventures/v1/leah-baby-neutral.svg"
+          },
+          "happy": {
+            "src": "stories/adventures/v1/leah-baby-happy.svg"
+          },
+          "curious": {
+            "src": "stories/adventures/v1/leah-baby-curious.svg"
+          },
+          "sad": {
+            "src": "stories/adventures/v1/leah-baby-sad.svg"
+          },
+          "proud": {
+            "src": "stories/adventures/v1/leah-baby-proud.svg"
+          }
+        },
+        "provenance": "Original storybook illustration of a seated one-year-old; no photograph used."
+      }
+    },
+    "backgrounds": {
+      "leah-birthday-room": {
+        "src": "stories/adventures/v1/leah-birthday-room.webp"
+      }
+    }
+  },
+  "quiz": [],
+  "sources": [],
+  "audio": {
+    "ball": "stories/adventures/v1/audio/c5a4388a1c180d02.m4a",
+    "roll": "stories/adventures/v1/audio/904e5470fc45f39f.m4a",
+    "rug": "stories/adventures/v1/audio/707f6a0fe4354ee8.m4a",
+    "pat": "stories/adventures/v1/audio/fd2cb6a50bad6525.m4a",
+    "hug": "stories/adventures/v1/audio/8dc2148f3026ab5c.m4a",
+    "What next?": "stories/adventures/v1/audio/367ac096f6737c6c.m4a",
+    "Leah is one! Mum is here, too.": "stories/adventures/v1/audio/e2257d75ca119089.m4a",
+    "A ball for you, Leah!": "stories/adventures/v1/audio/9ae99665d1297a97.m4a",
+    "Red or blue?": "stories/adventures/v1/audio/31ddef7e8729fd3b.m4a",
+    "Red! Like my hat!": "stories/adventures/v1/audio/cff268f44193c665.m4a",
+    "Blue! Like the sea!": "stories/adventures/v1/audio/0d195158140a8c08.m4a",
+    "Leah sits on the rug. Anna rolls the ball.": "stories/adventures/v1/audio/80adb026514380b7.m4a",
+    "Leah pats it. It does not roll back.": "stories/adventures/v1/audio/d8796548ddf38435.m4a",
+    "Let us help.": "stories/adventures/v1/audio/4011fc38ed7cf241.m4a",
+    "I sit near you. Roll it to me.": "stories/adventures/v1/audio/db86a2cfeca99c21.m4a",
+    "See? I roll it. Now you!": "stories/adventures/v1/audio/57cf85fb95093b3a.m4a",
+    "Leah rolls it back! She did it!": "stories/adventures/v1/audio/427cbeb37f12f403.m4a",
+    "You can do it now!": "stories/adventures/v1/audio/421f9030de2dd08a.m4a",
+    "Again?": "stories/adventures/v1/audio/d02475ec56d128ef.m4a",
+    "Anna rolls. Leah rolls. Sarah has a go.": "stories/adventures/v1/audio/b650acfcd3c77efb.m4a",
+    "Mum sits by Leah. We all hug.": "stories/adventures/v1/audio/01f00d7ce2083e6f.m4a",
+    "A red ball. A new game!": "stories/adventures/v1/audio/5480e07cb92142fb.m4a",
+    "A blue ball. A new game!": "stories/adventures/v1/audio/59c2b9509b7b641c.m4a",
+    "One big day for you!": "stories/adventures/v1/audio/cd01b412aece4fa1.m4a",
+    "A red ball. A blue ball.": "stories/adventures/v1/audio/beb90a3946a4ab5b.m4a",
+    "Sit near. Show her.": "stories/adventures/v1/audio/7ebb5a4bb4503540.m4a",
+    "One more go! Time for a hug.": "stories/adventures/v1/audio/a170f9b6f8adf810.m4a"
+  }
+}

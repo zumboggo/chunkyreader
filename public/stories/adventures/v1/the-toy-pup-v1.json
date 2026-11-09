@@ -1,0 +1,137 @@
+{
+  "format": 2,
+  "id": "the-toy-pup-v1",
+  "title": "The Toy Pup",
+  "description": "A lost toy. A little sister who can help.",
+  "version": 1,
+  "cover": "stories/adventures/v1/leah-toy-garden.webp",
+  "castLabel": "Anna, Sarah & Leah",
+  "profile": "growing-reader",
+  "sceneLayout": "full",
+  "intro": {
+    "kind": "still",
+    "src": "stories/adventures/v1/leah-toy-garden.webp",
+    "alt": "A sunny garden with a mat and a toy box."
+  },
+  "notice": "A make-believe family adventure with Anna, Sarah and one-year-old Leah. Read and choose, or listen together.",
+  "focusWords": [
+    "pup",
+    "mat",
+    "box",
+    "sock",
+    "cup"
+  ],
+  "script": "story 2\nvariable box = false hidden\nscene leah-toy-garden\nshow Anna happy left\nshow Sarah curious right\nshow Leah curious center\ncamera wide cut\nI: Mum sits by Leah on the mat.\nSarah [sad]: My toy pup! It is not here.\nAnna [curious]: We can look. A box! A mat!\nchoice look\noption box \"Look in the box.\" -> box ; box = true\noption mat \"Look by the mat.\" -> mat\nlabel box\nreact Anna point\nAnna [curious]: A sock! No pup in here.\ngoto clue\nlabel mat\nreact Sarah point\nSarah [curious]: A cup! No pup by the mat.\ngoto clue\nlabel clue\nexpress Leah happy\nI: Leah pats the mat. A bit of fur!\nSarah [curious]: Is it my pup?\nchoice find\noption lift \"Lift the mat.\" -> lift\noption peek \"Have a peek.\" -> peek\nlabel lift\nreact Anna reach\nAnna [happy]: Up, mat! Here is the pup!\ngoto found\nlabel peek\nreact Sarah crouch\nSarah [happy]: I see a nose! Here is my pup!\ngoto found\nlabel found\nexpress Sarah happy\ncamera listener Leah cut\nSarah [happy]: You saw it, Leah! You can help!\nI: Leah hugs the pup.\ncamera wide cut\nAnna [curious]: A home for the pup?\nchoice home\noption boxbed \"A box bed.\" -> boxbed\noption matbed \"A mat bed.\" -> matbed\nlabel boxbed\nSarah [happy]: In the box, pup. Have a nap.\ngoto callback\nlabel matbed\nSarah [happy]: On the mat, pup. Have a nap.\ngoto callback\nlabel callback\nif box == true -> sock else cup\nlabel sock\nAnna [happy]: The sock can be a hat!\ngoto done\nlabel cup\nAnna [happy]: The cup can be a bath!\ngoto done\nlabel done\nexpress Leah happy\nSarah [happy]: A pup and us. All here!\nend",
+  "assets": {
+    "characters": {
+      "Anna": {
+        "name": "Anna",
+        "version": 1,
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#604332",
+            "shirt": "#efa8bd",
+            "trim": "#fff0dd"
+          },
+          "appearance": {
+            "age": "child",
+            "hair": "long",
+            "outfit": "tunic",
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#b976a8"
+          }
+        }
+      },
+      "Sarah": {
+        "name": "Sarah",
+        "version": 1,
+        "provenance": "Family-inspired storybook character styling, guided by David’s supplied family watercolor; original animated illustration.",
+        "expressions": {},
+        "rig": {
+          "version": 2,
+          "preset": "cartoon-v1",
+          "style": "manga",
+          "finish": "polished",
+          "palette": {
+            "skin": "#f0c9ad",
+            "hair": "#73503a",
+            "shirt": "#b69cdb",
+            "trim": "#fff0dd"
+          },
+          "appearance": {
+            "age": "child",
+            "hair": "bob",
+            "outfit": "tunic",
+            "face": "child",
+            "eyes": "default",
+            "hairBow": "#d95855"
+          }
+        }
+      },
+      "Leah": {
+        "name": "Leah",
+        "expressions": {
+          "neutral": {
+            "src": "stories/adventures/v1/leah-baby-neutral.svg"
+          },
+          "happy": {
+            "src": "stories/adventures/v1/leah-baby-happy.svg"
+          },
+          "curious": {
+            "src": "stories/adventures/v1/leah-baby-curious.svg"
+          },
+          "sad": {
+            "src": "stories/adventures/v1/leah-baby-sad.svg"
+          },
+          "proud": {
+            "src": "stories/adventures/v1/leah-baby-proud.svg"
+          }
+        },
+        "provenance": "Original storybook illustration of a seated one-year-old; no photograph used."
+      }
+    },
+    "backgrounds": {
+      "leah-toy-garden": {
+        "src": "stories/adventures/v1/leah-toy-garden.webp"
+      }
+    }
+  },
+  "quiz": [],
+  "sources": [],
+  "audio": {
+    "pup": "stories/adventures/v1/audio/dcc6667386569b67.m4a",
+    "mat": "stories/adventures/v1/audio/9af94fb629002f26.m4a",
+    "box": "stories/adventures/v1/audio/cb81feae300f859e.m4a",
+    "sock": "stories/adventures/v1/audio/b9572e03d94095d0.m4a",
+    "cup": "stories/adventures/v1/audio/b2963e0b882398c0.m4a",
+    "What next?": "stories/adventures/v1/audio/367ac096f6737c6c.m4a",
+    "Mum sits by Leah on the mat.": "stories/adventures/v1/audio/254cb8643bac8e3b.m4a",
+    "My toy pup! It is not here.": "stories/adventures/v1/audio/21daa740b89c378d.m4a",
+    "We can look. A box! A mat!": "stories/adventures/v1/audio/c842f54feb8f515d.m4a",
+    "A sock! No pup in here.": "stories/adventures/v1/audio/8b58b1545dd249b7.m4a",
+    "A cup! No pup by the mat.": "stories/adventures/v1/audio/f94e9ff9ffc754a0.m4a",
+    "Leah pats the mat. A bit of fur!": "stories/adventures/v1/audio/78da50cf0d2d794e.m4a",
+    "Is it my pup?": "stories/adventures/v1/audio/f8d8d831646c7751.m4a",
+    "Up, mat! Here is the pup!": "stories/adventures/v1/audio/654973f7fd744e92.m4a",
+    "I see a nose! Here is my pup!": "stories/adventures/v1/audio/02e5fa61880c8370.m4a",
+    "You saw it, Leah! You can help!": "stories/adventures/v1/audio/9a16f8e7eddb1656.m4a",
+    "Leah hugs the pup.": "stories/adventures/v1/audio/eb79b56f81c404a6.m4a",
+    "A home for the pup?": "stories/adventures/v1/audio/160949cae55c56b5.m4a",
+    "In the box, pup. Have a nap.": "stories/adventures/v1/audio/5ca57eaff753cb04.m4a",
+    "On the mat, pup. Have a nap.": "stories/adventures/v1/audio/fbff6f2fb009ea68.m4a",
+    "The sock can be a hat!": "stories/adventures/v1/audio/70109faafb4a9c80.m4a",
+    "The cup can be a bath!": "stories/adventures/v1/audio/c5011a3de8c6dba4.m4a",
+    "A pup and us. All here!": "stories/adventures/v1/audio/de18ef9f1320e9e3.m4a",
+    "Look in the box. Look by the mat.": "stories/adventures/v1/audio/12dca53dd1c6a0b9.m4a",
+    "Lift the mat. Have a peek.": "stories/adventures/v1/audio/989da1474ee39a69.m4a",
+    "A box bed. A mat bed.": "stories/adventures/v1/audio/9901c9b8fe158698.m4a"
+  }
+}

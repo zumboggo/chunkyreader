@@ -15,3 +15,13 @@ Maid Marian: fox in lavender gown and pale head covering, an original SVG interp
 Teaser billing verified from Replicate live billingConfig and model schema on 2026-11-02: prunaai/p-video-2-pro, mode=cost, 480p, duration=6, prompt_upsampler=off, native sound. $0.01 per output second, requested maximum $0.06 each, one generation per clip, no automatic retries. Even the schema's 15-second duration ceiling is $0.15. Three-second first-frame hold added offline. No source photo uploaded.
 
 Execution note: automatic approval review rejected the paid teaser submission because the rendered-scene upload and generation step were not explicitly requested by the user. No video predictions were submitted. These three releases use local illustrated openings with an explicit Continue button, reduced-motion support, and no missing video requests.
+
+## Leah’s Big Day / The Toy Pup — 2026-11-09
+
+Voice: intimate family drama in very short early-reader lines. Anna offers help; Sarah notices and tries things; Leah participates through pats, looks and a roll, without implausible spoken sentences. Leah is one and seated; Mum remains nearby in the narration. The birthday milestone is rolling a ball back, not walking or a claim about Leah’s real development. Sarah learns to notice her little sister’s contribution.
+
+Three binary choices per story, eight routes each, five modeled words, about 85–93 narrative words per route. More than 85% of non-name tokens are at most four letters. Short function words remain natural; proper names are retained. Minimize consonant blends; support the few harder words with narration. Listener turn: shared wide framing → Leah rolls/finds the toy → camera on Leah → reader-controlled praise → wide shared choice.
+
+Imagegen created the birthday-room gouache and garden cut-paper scenery on 2026-11-09. Optimized WebP files live beside the immutable v1 packages. Anna/Sarah reuse their family rigs; Leah has aligned seated-baby SVG expressions because the shared articulated builder has no infant proportions. Openings follow this app’s latest still-image/Continue pattern. No video generation was submitted or charged; a current exact maximum video price was not established. Narration uses locally installed Samantha at 145 wpm, with cached AAC files and Azure SSML retained. No credentials or family photographs used.
+
+Verification: exhaustive routes, each incremental/replayed state, choice callbacks, three actors present, audio references, five focus words, short-word ratio and package budgets. Desktop and narrow viewport inspected in the local app. Existing releases untouched.

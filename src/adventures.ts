@@ -1,4 +1,6 @@
 export const ADVENTURES = [
+  {id:'leahs-big-day-v1',title:'Leah’s Big Day',description:'Leah is one! Can she roll a ball back?',cover:'leah-birthday-room.webp'},
+  {id:'the-toy-pup-v1',title:'The Toy Pup',description:'A lost toy. A little sister who can help.',cover:'leah-toy-garden.webp'},
   {id:'marians-bun-run-v1',title:'Marian’s Bun Run',description:'Keep the buns dry. Save a bit for a pal.',cover:'marian-buns'},
   {id:'marians-red-kite-v1',title:'Marian’s Red Kite',description:'A stuck kite, a lost tail, and three good pals.',cover:'marian-kite-stuck'},
   {id:'chengdu-boat-v1',title:'The Chengdu Boat',description:'A tiny boat gets a very tiny guest.',cover:'chengdu-ant'},
