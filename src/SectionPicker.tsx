@@ -1,3 +1,4 @@
+import './home.css'
 import { assetUrl } from './mediaAssets'
 import { progressStorage } from './progressStorage'
 import { useState } from 'react'
@@ -82,127 +83,63 @@ export function SectionPicker({
     )
   }
 
+  const tiles = [
+    {id:'letters', title:'Letters & Sounds', audience:'Earliest Reader', art:2, tint:'peach', hint:'Two tiny games to listen, look, and play together.', count:getSectionProgress('letters') + getSectionProgress('sounds')},
+    {id:'words', title:'Words', audience:'Growing Reader', art:3, tint:'butter', hint:'Four practice words and a final sentence with a parent.', count:practisedWords},
+    {id:'stories', title:'Stories', audience:'Growing Reader', art:4, tint:'sage', hint:'Little books and choose-your-own adventures.', count:getSectionProgress('stories')},
+    {id:'math', title:'Math', audience:'Number play', art:5, tint:'lilac', hint:'Count, add, and subtract.', count:getSectionProgress('math')},
+    {id:'chinese', title:'Chinese', audience:'Chunky Chinese', art:6, tint:'rose', hint:'Five characters. Hear, see, and review.', count:getSectionProgress('chinese')},
+    {id:'phonics', title:'Phonics Patterns', audience:'Older reader', art:7, tint:'sage', hint:'Explore letter patterns such as sh, ch, and ai.', count:phonemesLearned},
+  ]
+  const stepsDone = progress.totalLessonsCompleted % BOX_CADENCE
+  const stepsLeft = BOX_CADENCE - stepsDone
+  const today = new Date()
+  const weekStart = new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay())
+  const week = Array.from({length:7}, (_,index) => {
+    const day = new Date(weekStart); day.setDate(day.getDate()+index)
+    const date = `${day.getFullYear()}-${String(day.getMonth()+1).padStart(2,'0')}-${String(day.getDate()).padStart(2,'0')}`
+    return {date, count:heatmapData.find(d=>d.date===date)?.count || 0, isToday:index===today.getDay()}
+  })
   return (
-    <section className="home-screen">
-      <div className="home-copy">
-        <div>
-          <h1>Chunky Learner</h1>
-          <p>What would you like to learn today?</p>
+    <section className="warm-home" aria-label="Learning home">
+      <header className="warm-heading">
+        <HomeArt index={0} />
+        <div><h1>Chunky Learner</h1><p>A little learning, a lot of joy.</p></div>
+        <span className="warm-streak" aria-label={`${streakInfo.currentStreak} day streak`}><span aria-hidden="true">{streakInfo.currentStreak ? '🔥' : '⭐'}</span> {streakInfo.currentStreak} {streakInfo.currentStreak===1?'day':'days'}</span>
+      </header>
+      <button type="button" className="warm-resume" onClick={continueState ? onContinue : () => setShowEarlyReading(true)}>
+        <span className="warm-resume-copy"><span>{continueState ? 'Resume' : 'Let’s play'}</span><strong>{continueState ? (continueState.label || sectionTitle(continueState.section)) : 'A little adventure'}</strong><small>{continueState ? continueDetail(continueState,greenEggs) : 'Listen, look, and learn together'}</small></span>
+        <HomeArt index={1} /><span className="warm-play" aria-hidden="true">▶</span>
+      </button>
+      <button type="button" className="warm-reward" onClick={onShowCloset}>
+        <HomeArt index={8} /><span>{boxCount > 0 ? `${boxCount} Panda ${boxCount===1?'Box is':'Boxes are'} ready to open!` : `${stepsLeft} ${stepsLeft===1?'lesson':'lessons'} to your next Panda Box`}</span>
+        <span className="warm-dots" aria-hidden="true">{Array.from({length:BOX_CADENCE},(_,i)=><i key={i} className={i<stepsDone?'done':''}/>)}</span>
+      </button>
+      <div className="warm-activities"><h2>What shall we play?</h2>
+        <div className="warm-grid" aria-label="Choose a learning section">
+          {tiles.map(tile=><button type="button" key={tile.id} className={`warm-tile tint-${tile.tint}`} onClick={()=>tile.id==='letters'?setShowEarlyReading(true):tile.id==='phonics'?onChoosePhonemes():onChooseSection(tile.id as SectionId)} aria-describedby={`home-hint-${tile.id}`}>
+            <HomeArt index={tile.art}/><span className="warm-tile-copy"><strong>{tile.title}</strong><span>{tile.audience}</span></span>
+            <span id={`home-hint-${tile.id}`} className="home-sr-only">{tile.hint}{tile.count>0?` ${tile.count} ${tile.id==='words'?'words practised':'completed'}.`:''}</span>
+          </button>)}
         </div>
       </div>
-
-      <div className={`streak-badge ${streakInfo.currentStreak === 0 ? 'streak-empty' : ''}`}>
-        <span className="streak-flame" aria-hidden="true">{streakInfo.currentStreak > 0 ? '🔥' : '⭐'}</span>
-        <span className="streak-count">{streakInfo.currentStreak}</span>
-        <span className="streak-label">{streakInfo.currentStreak === 1 ? 'day streak' : streakInfo.currentStreak > 0 ? 'day streak' : 'Start your streak!'}</span>
-        {streakInfo.wordsReadToday > 0 && (
-          <span className="streak-words-today">{streakInfo.wordsReadToday} words today</span>
-        )}
-      </div>
-
-      <button type="button" className="continue-hero squish" onClick={continueState ? onContinue : () => setShowEarlyReading(true)}>
-        {continueState?.section === 'words' ? (
-          <img
-            className="continue-hero-art"
-            src={assetUrl(`assets/green-eggs-goal.png`)}
-            alt=""
-            aria-hidden="true"
-          />
-        ) : (
-          <span className="continue-hero-emoji" aria-hidden="true">{continueState ? '🚀' : '🌟'}</span>
-        )}
-        <span className="continue-hero-text">
-          <span className="continue-hero-label">{continueState ? 'Keep going!' : 'Start learning!'}</span>
-          <strong>{continueState ? (continueState.label || sectionTitle(continueState.section)) : 'Tap here to begin'}</strong>
-          {continueState && <small>{continueDetail(continueState, greenEggs)}</small>}
-        </span>
-        <span className="continue-hero-arrow" aria-hidden="true">▶</span>
-      </button>
-
-      <PandaBoxPath
-        totalLessons={progress.totalLessonsCompleted}
-        unopenedBoxes={boxCount}
-        onOpenBoxes={onShowCloset}
-      />
-
-      <div className="path-grid section-grid" aria-label="Choose a learning section">
-        {LEARNING_SECTIONS.filter(section => section.id !== 'sounds').map((section) => (
-          <button
-            key={section.id}
-            type="button"
-            className="path-card"
-            style={{ backgroundColor: section.color }}
-            onClick={() => section.id === 'letters' ? setShowEarlyReading(true) : onChooseSection(section.id)}
-          >
-            <div className="section-image-container">
-              <img className="section-image" src={assetUrl(`${section.image}`)} alt="" />
-              <span className={`section-visual-badge badge-${section.id}`} aria-hidden="true">
-                {sectionBadge(section.id)}
-              </span>
-            </div>
-            <span className="section-audience-pill">{section.eyebrow}</span>
-            <strong>{section.id === 'letters' ? 'Letters & Sounds' : section.title}</strong>
-            <small>{section.id === 'letters' ? 'Look, listen, and play together.' : section.subtitle}</small>
-            <p className="section-helper">{section.id === 'letters' ? 'Explore letters and their sounds through two tiny games.' : section.helper}</p>
-            <div className="section-card-footer">
-              <span>{section.id === 'letters' ? '30–60 seconds together' : section.pocket}</span>
-              <span>{section.id === 'letters' ? 'Let’s play' : section.cta}</span>
-            </div>
-            {section.id === 'words' ? (
-              <>
-                <span className="words-mastered-badge">
-                  {practisedWords > 0 ? `${practisedWords} words practised · parent check for the sentence` : 'Four words · one little sentence'}
-                </span>
-              </>
-            ) : (
-              <SectionProgressBadge count={getSectionProgress(section.id) + (section.id === 'letters' ? getSectionProgress('sounds') : 0)} />
-            )}
-          </button>
-        ))}
-        <button
-          type="button"
-          className="path-card phonics-card"
-          style={{ backgroundColor: '#e8f4e0' }}
-          onClick={onChoosePhonemes}
-        >
-          <div className="section-image-container">
-            <span className="section-visual-badge badge-sounds" aria-hidden="true">th</span>
-          </div>
-          <span className="section-audience-pill">Older reader</span>
-          <strong>Phonics Patterns</strong>
-          <small>Sound patterns: sh, ch, ai…</small>
-          <p className="section-helper">Explore how letters work together to spell sounds in words.</p>
-          <div className="section-card-footer">
-            <span>Sound pocket</span>
-            <span>Practice</span>
-          </div>
-          <SectionProgressBadge count={phonemesLearned} />
-        </button>
-      </div>
-
-      <StudyHeatmap data={heatmapData} />
-
-      <div className="flashcard-shortcut" aria-label="Spaced repetition flashcards">
-        <button type="button" className="flashcard-shortcut-button squish" onClick={onChooseFlashcards}>
-          <span className="flashcard-icon" aria-hidden="true">Cards</span>
-          <div>
-            <strong>Flashcards</strong>
-            <small>Spaced repetition review</small>
-          </div>
-        </button>
-      </div>
-
-      <div className="dashboard-parent-actions" aria-label="Parent tools">
-        <button type="button" className="sticker-nav-button squish" onClick={onShowCloset}>
-          Panda's Room ({boxCount > 0 ? `${boxCount} boxes` : `${ownedCount} items`})
-        </button>
-        <button type="button" className="settings-nav-button squish" onClick={onShowSettings}>
-          Parent Settings
-        </button>
-      </div>
+      <details className="warm-week">
+        <summary><strong>🗓 <span>This week</span></strong><span className="warm-week-days">{week.map((day,i)=><span key={day.date} aria-label={`${day.date}: ${day.count} activities${day.isToday?', today':''}`}><small>{['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][i]}</small><i className={`${day.count?'active':''} ${day.isToday?'today':''}`}/></span>)}</span></summary>
+        <p>Your activity over the past 12 weeks. {streakInfo.wordsReadToday > 0 ? `${streakInfo.wordsReadToday} words today.` : ''}</p><StudyHeatmap data={heatmapData}/>
+      </details>
+      <nav className="warm-utilities" aria-label="More ways to learn and parent tools">
+        <button type="button" className="warm-utility tint-lilac" onClick={onChooseFlashcards}><span aria-hidden="true">▤</span><strong>Flashcards</strong><b aria-hidden="true">›</b></button>
+        <button type="button" className="warm-utility tint-peach" onClick={onShowCloset}><HomeArt index={8}/><strong>Panda’s Room <small>({boxCount > 0 ? `${boxCount} boxes` : `${ownedCount} items`})</small></strong><b aria-hidden="true">›</b></button>
+        <button type="button" className="warm-utility tint-sage" onClick={onShowSettings}><span aria-hidden="true">⚙</span><strong>Parent Settings</strong><b aria-hidden="true">›</b></button>
+      </nav>
     </section>
   )
 }
+
+function HomeArt({index}:{index:number}) {
+  return <span className="warm-art" aria-hidden="true" style={{backgroundImage:`url("${assetUrl('assets/home/panda-grid.webp')}")`,backgroundPosition:`${index%3*50}% ${Math.floor(index/3)*50}%`}}/>
+}
+
 
 function getPhonemeLearnedCount(): number {
   let count = 0
@@ -230,39 +167,9 @@ function SectionProgressBadge({ count }: { count: number }) {
   )
 }
 
-function PandaBoxPath({
-  totalLessons,
-  unopenedBoxes,
-  onOpenBoxes,
-}: {
-  totalLessons: number
-  unopenedBoxes: number
-  onOpenBoxes: () => void
-}) {
-  const stepsDone = totalLessons % BOX_CADENCE
-  const stepsLeft = BOX_CADENCE - stepsDone
-  return (
-    <button type="button" className="box-path-strip squish" onClick={onOpenBoxes} aria-label={unopenedBoxes > 0 ? `${unopenedBoxes} Panda Boxes ready to open` : `${stepsLeft} more lessons until the next Panda Box`}>
-      <span className="box-path-steps" aria-hidden="true">
-        {Array.from({ length: BOX_CADENCE }, (_, index) => (
-          <span key={index} className={`box-path-paw ${index < stepsDone ? 'done' : ''}`}>
-            🐾
-          </span>
-        ))}
-        <span className={`box-path-box ${unopenedBoxes > 0 ? 'ready' : ''}`}>🎁</span>
-      </span>
-      <span className="box-path-text">
-        {unopenedBoxes > 0
-          ? `${unopenedBoxes > 1 ? `${unopenedBoxes} Panda Boxes are` : 'A Panda Box is'} waiting — tap to open!`
-          : `${stepsLeft} more ${stepsLeft === 1 ? 'lesson' : 'lessons'} to your next Panda Box`}
-      </span>
-    </button>
-  )
-}
-
 function StudyHeatmap({ data }: { data: Array<{ date: string; count: number; dayOfWeek: number }> }) {
   const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-  const todayStr = new Date().toISOString().slice(0, 10)
+  const todayStr = data.at(-1)?.date || ''
 
   const rows: Array<{ label: string; cells: Array<{ date: string; count: number; isToday: boolean }> }> = []
   for (let day = 0; day < 7; day++) {
@@ -298,16 +205,6 @@ function StudyHeatmap({ data }: { data: Array<{ date: string; count: number; day
       </div>
     </div>
   )
-}
-
-function sectionBadge(sectionId: SectionId) {
-  if (sectionId === 'letters') return 'Aa'
-  if (sectionId === 'sounds') return 'sh'
-  if (sectionId === 'words') return 'W'
-  if (sectionId === 'stories') return 'Book'
-  if (sectionId === 'math') return '1+2'
-  if (sectionId === 'chinese') return 'Ren'
-  return ''
 }
 
 function sectionTitle(sectionId: SectionId) {
