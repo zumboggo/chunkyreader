@@ -1,3 +1,4 @@
+import { OfflineDownloadButton } from './OfflineDownloadButton'
 import { AdventureShelf } from './AdventureShelf'
 import { ADVENTURES } from './adventures'
 import guidedAudio from './content/guided-audio.json'
@@ -31,7 +32,7 @@ import { playNarrationClip } from './audioClipPack'
 import { SectionPicker, PandaCloset, type ContinueLearningState } from './SectionPicker'
 import type { SectionId } from './types'
 import { LEARNING_SECTIONS } from './content/sections'
-import { markLessonComplete, markStoryComplete, resetProgress, updateStreakOnLesson, type CompletionRewardResult } from './progress'
+import { loadProgress, markLessonComplete, markStoryComplete, resetProgress, updateStreakOnLesson, type CompletionRewardResult } from './progress'
 import { applyAppSettings, controllerChoices, loadAppSettings, saveAppSettings, type AppSettings, type ControllerChoice } from './appSettings'
 import {
   loadMathIndex,
@@ -847,7 +848,7 @@ function App() {
   function handleCompletionReward(result: CompletionRewardResult) {
     setProgressVersion((version) => version + 1)
     if (result.boxesAwarded > 0 && activeSection !== 'words') {
-      setRewardNoticeBoxes((count) => count + result.boxesAwarded)
+      setRewardNoticeBoxes(result.progress.unopenedBoxes || 0)
     }
   }
 
@@ -1127,10 +1128,10 @@ function App() {
         <HomeButton onClick={goHome} />
       </header>
 
-      {showCloset && <PandaCloset onClose={() => setShowCloset(false)} />}
-      {rewardNoticeBoxes > 0 && activeSection !== 'words' && (
+      {showCloset && <PandaCloset onClose={() => { setShowCloset(false); setProgressVersion(version => version + 1) }} />}
+      {rewardNoticeBoxes > 0 && (loadProgress().unopenedBoxes || 0) > 0 && !showCloset && activeSection !== 'words' && (
         <RewardBoxNotice
-          boxes={rewardNoticeBoxes}
+          boxes={loadProgress().unopenedBoxes || 0}
           onOpen={() => {
             setRewardNoticeBoxes(0)
             setShowCloset(true)
@@ -1310,6 +1311,7 @@ function ParentSettingsModal({
         <button className="close-button" onClick={onClose}>Close</button>
         <span className="prompt-topline">Parent</span>
         <h2>Settings</h2>
+        <OfflineDownloadButton />
         <div className="settings-list">
           <label className="settings-toggle">
             <span>
@@ -1620,6 +1622,7 @@ function StorySection({
           </div>
         </div>
         <AudioPackButton />
+        <OfflineDownloadButton />
         <Mascot mood="happy" />
       </div>
 
@@ -2314,6 +2317,7 @@ function LessonMenu({
             <div className="menu-section">
               <strong>Options</strong>
               <AudioPackButton compact />
+              <OfflineDownloadButton />
               <button type="button" className="menu-item" onClick={onToggleAdultDetails}>
                 {showAdultDetails ? 'Showing ' : ''}Adult Details
               </button>

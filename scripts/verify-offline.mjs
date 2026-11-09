@@ -43,3 +43,21 @@ let intercepted=false
 handlers.fetch({request:new Request('https://nvrofeaaewwdeefxtmqu.supabase.co/storage/v1/object/sign/chunky-reader-private/file?token=secret'),respondWith:()=>intercepted=true})
 assert.equal(intercepted,false)
 console.log('Offline cache bound, audio byte ranges, private URL exclusion, and installed-audio preservation passed.')
+
+// Explicit downloads survive updates and serve episode media offline, including seeks.
+const library = await caches.open('chunky-offline-library-v1')
+const videoUrl = 'https://example.test/chunkyreader/stories/intro.mp4'
+await library.put(videoUrl, new Response('episode-video', {headers:{'content-type':'video/mp4'}}))
+handlers.activate({waitUntil: promise => pending = promise})
+await pending
+assert(stores.has('chunky-offline-library-v1'))
+let playback
+handlers.fetch({request:new Request(videoUrl, {headers:{range:'bytes=0-6'}}), respondWith: promise => playback = promise, waitUntil() {}})
+const video = await playback
+assert.equal(video.status, 206)
+assert.equal(await video.text(), 'episode')
+const scriptUrl = 'https://example.test/chunkyreader/stories/episode.json'
+await library.put(scriptUrl, new Response('{"title":"Saved episode"}'))
+handlers.fetch({request:new Request(scriptUrl), respondWith: promise => playback = promise, waitUntil() {}})
+assert.equal((await (await playback).json()).title, 'Saved episode')
+console.log('Downloaded episode scripts and seekable video survive updates and play offline.')

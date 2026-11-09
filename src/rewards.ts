@@ -109,6 +109,9 @@ export function normalizeRewardProgress(progress: LearnerProgress): LearnerProgr
   // Upgrade old balances using durable opening evidence; never resurrect spent boxes.
   normalized.boxesEarned ??= Math.max(Math.floor(normalized.rewardedCompletionCount / BOX_CADENCE), normalized.unopenedBoxes)
   normalized.boxesOpened ??= Math.max(normalized.rewardHistory.length, normalized.boxesEarned - normalized.unopenedBoxes)
+  // Legacy/merged opening evidence may exceed earnings. Clear that historical
+  // deficit so the next genuine award is available, without reviving spent boxes.
+  normalized.boxesEarned = Math.max(normalized.boxesEarned, normalized.boxesOpened)
   normalized.unopenedBoxes = Math.max(0, normalized.boxesEarned - normalized.boxesOpened)
   normalized.sparklePoints = normalized.sparklePoints || 0
   normalized.rarePityCount = normalized.rarePityCount || 0

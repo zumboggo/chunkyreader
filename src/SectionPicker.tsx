@@ -359,7 +359,7 @@ export function PandaCloset({ onClose }: { onClose: () => void }) {
   }
 
   function openBox() {
-    const opened = openPandaBox(progress)
+    const opened = openPandaBox(loadProgress())
     persist(opened.progress)
     if (opened.drop && opened.item) {
       setResult({ drop: opened.drop, item: opened.item })
@@ -374,13 +374,13 @@ export function PandaCloset({ onClose }: { onClose: () => void }) {
   }
 
   function placeItem(item: RewardItem) {
-    persist(equipReward(progress, item.id))
+    persist(equipReward(loadProgress(), item.id))
     setResult(null)
     setTab('room')
   }
 
   function equipItem(item: RewardItem) {
-    persist(equipReward(progress, item.id))
+    persist(equipReward(loadProgress(), item.id))
     setTab('room')
   }
 

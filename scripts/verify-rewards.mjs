@@ -160,3 +160,11 @@ progressExports.markLessonComplete('letters', 'letters', 'second-attempt')
 progressExports.markLessonComplete('letters', 'letters', 'third-attempt')
 assert(progressExports.loadProgress().unopenedBoxes === 1, 'Three genuine attempts earn one box')
 console.log('Stale-cloud twelve-box reproduction, legacy repair, and persistent completion idempotence passed.')
+
+// Historical merged openings must not consume future awards.
+const deficit = baseProgress({totalLessonsCompleted: 6, rewardedCompletionCount: 6, boxesEarned: 2, boxesOpened: 5})
+assert(deficit.unopenedBoxes === 0, 'Repair must not resurrect old boxes')
+const recovered = awardBoxesForCompletedLessons({...deficit, totalLessonsCompleted: 9})
+assert(recovered.boxesAwarded === 1 && recovered.progress.unopenedBoxes === 1, 'A notified new box must be available despite legacy opening debt')
+assert(normalizeRewardProgress(recovered.progress).unopenedBoxes === 1, 'New box survives persistence normalization')
+assert(openPandaBox(recovered.progress).item, 'The notified box can actually be opened')

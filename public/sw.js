@@ -1,6 +1,7 @@
-const CACHE_VERSION = 'chunky-learner-v19'
+const CACHE_VERSION = 'chunky-learner-v20'
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`
+const OFFLINE_CACHE = 'chunky-offline-library-v1'
 const AUDIO_CACHE = 'chunky-audio-pack-v2'
 const MAX_ENTRIES = 384
 const MAX_BYTES = 96 * 1024 * 1024
@@ -138,8 +139,9 @@ self.addEventListener('fetch', event => {
   if (!local && !shared) return
   event.respondWith((async () => {
     const key = request.mode === 'navigate' ? toScopeUrl('./') : request.url
-    const cached = await caches.match(key)
-    const freshFirst = request.mode === 'navigate' || /\.(json|csv)$/.test(url.pathname)
+    const downloaded = await (await caches.open(OFFLINE_CACHE)).match(key)
+    const cached = downloaded || await caches.match(key)
+    const freshFirst = request.cache === 'reload' || request.cache === 'no-store' || request.mode === 'navigate' || /\.(json|csv)$/.test(url.pathname)
     if (cached && !freshFirst) return mediaResponse(request, cached)
     try {
       const response = await fetch(shared ? request.url : request, shared ? {mode:'cors',credentials:'omit'} : undefined)
