@@ -32,6 +32,10 @@ Chunky Reader is a small, joyful reading app for young children. Keep it close t
 
 ## Audio Rules
 
+- **Default for all future Chunky Reader stories (David, 2026-11-11):** use Microsoft's free Edge speech service through `edge-tts`, with `en-US-JennyNeural` for narration, prompts and focus words, and `en-US-AnaNeural` for child dialogue (including Anna, Sarah and Leah). Save downloadable MP3 clips, exact SSML and generation metadata for offline playback. Use a gentle `-8%` rate.
+- Use `scripts/adventures/record-family-stories.mjs --stories=story-id-v1` (comma-separated IDs for multiple episodes); Edge is the default. Install `edge-tts==7.3.1` in an isolated Python environment and set `EDGE_TTS_PYTHON` to its Python executable. For additional child characters, extend the generator's child actor list before recording.
+- Do not silently substitute macOS Samantha, direct Azure billing, Replicate or another paid provider. If Edge is unavailable, preserve existing clips and report the issue; paid alternatives require David's approval. The Azure phonics rules below remain specific to lesson/sound generation, not story narration.
+
 - Prefer downloadable clip-pack style audio over relying on browser speech.
 - Generate Sarah audio with Azure TTS SSML using `npm run generate:audio`.
 - Azure voices and voice-version cache keys live in `scripts/tts-config.mjs`; Anne narration uses the `anne-soft-female-v2` path/version.

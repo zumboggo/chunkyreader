@@ -1,5 +1,6 @@
-// Remaster only these five released stories. Preserve scripts, IDs and progress.
-// Usage: node scripts/adventures/record-family-stories.mjs [--dry-run]
+// Generate story audio with free Edge Jenny/Ana by default. Preserve scripts, IDs and progress.
+// Usage: node scripts/adventures/record-family-stories.mjs [--stories=id-v1,other-v1] [--dry-run]
+// Without --stories, targets the original five family stories. --azure is an explicit paid opt-in.
 // Edge: EDGE_TTS_PYTHON=/path/to/python node scripts/adventures/record-family-stories.mjs --edge
 // Install edge-tts==7.3.1 in an isolated Python environment first. No paid fallback.
 // Azure credentials: AZURE_SPEECH_KEY + AZURE_SPEECH_REGION, or AZURE_TTS_CONFIG_PATH.
@@ -10,9 +11,12 @@ import crypto from 'node:crypto'
 import {execFileSync} from 'node:child_process'
 import {compileStory} from '../../src/story2/engine/story-engine.js'
 import {createAzureSsml, escapeXml, TTS_OUTPUT_FORMAT} from '../tts-config.mjs'
-const ids=['leahs-big-day-v1','the-toy-pup-v1','the-box-boat-v1','the-red-hen-v1','a-tent-for-us-v1']
+const selection=process.argv.find(arg=>arg.startsWith('--stories='))
+const ids=selection?selection.slice('--stories='.length).split(','):['leahs-big-day-v1','the-toy-pup-v1','the-box-boat-v1','the-red-hen-v1','a-tent-for-us-v1']
+if(ids.some(id=>! /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)))throw Error('Invalid story ID')
 const root='public/stories/adventures/v1'
-const edge=process.argv.includes('--edge')
+const edge=!process.argv.includes('--azure')
+if(!edge&&process.argv.includes('--edge'))throw Error('Choose only one speech provider')
 const folder=`stories/adventures/v1/audio/family-${edge?'edge':'azure'}-v1`
 const ledgerPath='.migration/family-azure-spend.json'
 const cap=0.15
