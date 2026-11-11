@@ -1,0 +1,51 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Look in the box. Look by the mat.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Look",
+      "offset": 1043330,
+      "duration": 2581660
+    },
+    {
+      "text": "in",
+      "offset": 3760830,
+      "duration": 951250
+    },
+    {
+      "text": "the",
+      "offset": 4847910,
+      "duration": 951250
+    },
+    {
+      "text": "box",
+      "offset": 5934580,
+      "duration": 6250000
+    },
+    {
+      "text": "Look",
+      "offset": 21603330,
+      "duration": 2853330
+    },
+    {
+      "text": "by",
+      "offset": 24592500,
+      "duration": 1358750
+    },
+    {
+      "text": "the",
+      "offset": 26087080,
+      "duration": 1087080
+    },
+    {
+      "text": "mat",
+      "offset": 27309580,
+      "duration": 5298750
+    }
+  ]
+}

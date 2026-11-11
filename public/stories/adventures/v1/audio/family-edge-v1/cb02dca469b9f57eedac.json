@@ -1,0 +1,46 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Leah is one! Mum is here, too.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Leah",
+      "offset": 1043330,
+      "duration": 3668330
+    },
+    {
+      "text": "is",
+      "offset": 4847910,
+      "duration": 1766250
+    },
+    {
+      "text": "one",
+      "offset": 6750000,
+      "duration": 4347910
+    },
+    {
+      "text": "Mum",
+      "offset": 20516250,
+      "duration": 2717500
+    },
+    {
+      "text": "is",
+      "offset": 23369580,
+      "duration": 1630410
+    },
+    {
+      "text": "here",
+      "offset": 25135830,
+      "duration": 3940410
+    },
+    {
+      "text": "too",
+      "offset": 30842500,
+      "duration": 4483750
+    }
+  ]
+}

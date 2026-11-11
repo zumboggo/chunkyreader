@@ -1,0 +1,51 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Anna rolls. Leah rolls. Sarah has a go.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Anna",
+      "offset": 1043330,
+      "duration": 2989160
+    },
+    {
+      "text": "rolls",
+      "offset": 4168330,
+      "duration": 6114160
+    },
+    {
+      "text": "Leah",
+      "offset": 19701250,
+      "duration": 3396660
+    },
+    {
+      "text": "rolls",
+      "offset": 23233750,
+      "duration": 6250000
+    },
+    {
+      "text": "Sarah",
+      "offset": 38858750,
+      "duration": 4076250
+    },
+    {
+      "text": "has",
+      "offset": 43070830,
+      "duration": 2037910
+    },
+    {
+      "text": "a",
+      "offset": 45244580,
+      "duration": 679160
+    },
+    {
+      "text": "go",
+      "offset": 46059580,
+      "duration": 4619580
+    }
+  ]
+}

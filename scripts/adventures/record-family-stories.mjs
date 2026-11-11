@@ -1,15 +1,19 @@
 // Remaster only these five released stories. Preserve scripts, IDs and progress.
 // Usage: node scripts/adventures/record-family-stories.mjs [--dry-run]
-// Credentials: AZURE_SPEECH_KEY + AZURE_SPEECH_REGION, or AZURE_TTS_CONFIG_PATH.
+// Edge: EDGE_TTS_PYTHON=/path/to/python node scripts/adventures/record-family-stories.mjs --edge
+// Install edge-tts==7.3.1 in an isolated Python environment first. No paid fallback.
+// Azure credentials: AZURE_SPEECH_KEY + AZURE_SPEECH_REGION, or AZURE_TTS_CONFIG_PATH.
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import crypto from 'node:crypto'
+import {execFileSync} from 'node:child_process'
 import {compileStory} from '../../src/story2/engine/story-engine.js'
 import {createAzureSsml, escapeXml, TTS_OUTPUT_FORMAT} from '../tts-config.mjs'
 const ids=['leahs-big-day-v1','the-toy-pup-v1','the-box-boat-v1','the-red-hen-v1','a-tent-for-us-v1']
 const root='public/stories/adventures/v1'
-const folder='stories/adventures/v1/audio/family-azure-v1'
+const edge=process.argv.includes('--edge')
+const folder=`stories/adventures/v1/audio/family-${edge?'edge':'azure'}-v1`
 const ledgerPath='.migration/family-azure-spend.json'
 const cap=0.15
 const dry=process.argv.includes('--dry-run')
@@ -22,7 +26,7 @@ for(const id of ids){
   pack.audio={};pack.dialogueAudio={}
   for(const n of requests){
     const voice=['Anna','Sarah','Leah'].includes(n.actor)?'en-US-AnaNeural':'en-US-JennyNeural'
-    const ssml=createAzureSsml({voice,rate:'-8%',pitch:'+2%',body:escapeXml(n.text)})
+    const ssml=createAzureSsml({voice,rate:'-8%',pitch:edge?'+0Hz':'+2%',body:escapeXml(n.text)})
     const hash=crypto.createHash('sha256').update(JSON.stringify({ssml,format:TTS_OUTPUT_FORMAT})).digest('hex').slice(0,20)
     const audio=`${folder}/${hash}.mp3`
     // Reserve text plus a generous allowance for optional prosody values.
@@ -40,6 +44,16 @@ const valid=j=>fs.existsSync(`public/${j.audio}`)&&fs.statSync(`public/${j.audio
 const pending=[...jobs.values()].filter(j=>!valid(j))
 console.log(JSON.stringify({clips:jobs.size,pending:pending.length,textCharacters:[...jobs.values()].reduce((s,j)=>s+j.text.length,0),reservedCharacters:pending.reduce((s,j)=>s+j.characters,0),capUSD:cap}))
 if(dry)process.exit(0)
+if(edge){
+  fs.mkdirSync('.migration',{recursive:true})
+  const manifest='.migration/family-edge-jobs.json'
+  fs.writeFileSync(manifest,JSON.stringify(pending))
+  execFileSync(process.env.EDGE_TTS_PYTHON||'python3',['scripts/adventures/record-family-edge.py',manifest],{stdio:'inherit'})
+  if(![...jobs.values()].every(valid))throw Error('Missing Edge audio; packages left unchanged')
+  for(const pack of packs)fs.writeFileSync(`${root}/${pack.id}.json`,JSON.stringify(pack,null,2)+'\n')
+  console.log('Updated all five stories with Edge Jenny/Ana. API cost: $0.00.')
+  process.exit(0)
+}
 let key=process.env.AZURE_SPEECH_KEY||process.env.SPEECH_KEY
 let region=process.env.AZURE_SPEECH_REGION||process.env.SPEECH_REGION
 if(!key||!region){

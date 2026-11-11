@@ -1,0 +1,41 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "The sock can be a hat!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "The",
+      "offset": 1043330,
+      "duration": 1766250
+    },
+    {
+      "text": "sock",
+      "offset": 2945830,
+      "duration": 4619580
+    },
+    {
+      "text": "can",
+      "offset": 7701250,
+      "duration": 2173750
+    },
+    {
+      "text": "be",
+      "offset": 10010830,
+      "duration": 1766250
+    },
+    {
+      "text": "a",
+      "offset": 11912910,
+      "duration": 679160
+    },
+    {
+      "text": "hat",
+      "offset": 12728330,
+      "duration": 4891250
+    }
+  ]
+}

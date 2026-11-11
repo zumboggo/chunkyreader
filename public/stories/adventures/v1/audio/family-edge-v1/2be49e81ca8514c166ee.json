@@ -1,0 +1,46 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "We sit by Mum. One big hug!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "We",
+      "offset": 1043330,
+      "duration": 1630410
+    },
+    {
+      "text": "sit",
+      "offset": 2809580,
+      "duration": 2445830
+    },
+    {
+      "text": "by",
+      "offset": 5391250,
+      "duration": 1358750
+    },
+    {
+      "text": "Mum",
+      "offset": 6885830,
+      "duration": 4891250
+    },
+    {
+      "text": "One",
+      "offset": 21195830,
+      "duration": 3125000
+    },
+    {
+      "text": "big",
+      "offset": 24456660,
+      "duration": 2037910
+    },
+    {
+      "text": "hug",
+      "offset": 26630410,
+      "duration": 4755410
+    }
+  ]
+}

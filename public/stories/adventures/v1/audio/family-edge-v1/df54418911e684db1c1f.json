@@ -1,0 +1,31 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "Room for you, Leah!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Room",
+      "offset": 1043330,
+      "duration": 3668330
+    },
+    {
+      "text": "for",
+      "offset": 4847910,
+      "duration": 2581660
+    },
+    {
+      "text": "you",
+      "offset": 7565410,
+      "duration": 2445830
+    },
+    {
+      "text": "Leah",
+      "offset": 12592500,
+      "duration": 4755410
+    }
+  ]
+}

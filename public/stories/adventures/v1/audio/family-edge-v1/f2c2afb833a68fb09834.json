@@ -1,0 +1,46 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "Home! Time for a cup of tea!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Home",
+      "offset": 1043330,
+      "duration": 5570830
+    },
+    {
+      "text": "Time",
+      "offset": 15896660,
+      "duration": 4212080
+    },
+    {
+      "text": "for",
+      "offset": 20244580,
+      "duration": 2445830
+    },
+    {
+      "text": "a",
+      "offset": 22826250,
+      "duration": 815410
+    },
+    {
+      "text": "cup",
+      "offset": 23777080,
+      "duration": 2717500
+    },
+    {
+      "text": "of",
+      "offset": 26630410,
+      "duration": 2037910
+    },
+    {
+      "text": "tea",
+      "offset": 28804160,
+      "duration": 4212080
+    }
+  ]
+}

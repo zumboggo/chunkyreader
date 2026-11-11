@@ -1,0 +1,61 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Leah pats the mat. Our den is for us all.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Leah",
+      "offset": 1043330,
+      "duration": 3125000
+    },
+    {
+      "text": "pats",
+      "offset": 4304160,
+      "duration": 3668330
+    },
+    {
+      "text": "the",
+      "offset": 8108750,
+      "duration": 951250
+    },
+    {
+      "text": "mat",
+      "offset": 9195830,
+      "duration": 5298750
+    },
+    {
+      "text": "Our",
+      "offset": 23912910,
+      "duration": 2037910
+    },
+    {
+      "text": "den",
+      "offset": 26087080,
+      "duration": 2989160
+    },
+    {
+      "text": "is",
+      "offset": 29212080,
+      "duration": 1630410
+    },
+    {
+      "text": "for",
+      "offset": 30978330,
+      "duration": 1766250
+    },
+    {
+      "text": "us",
+      "offset": 32880410,
+      "duration": 1766250
+    },
+    {
+      "text": "all",
+      "offset": 34782500,
+      "duration": 4483750
+    }
+  ]
+}

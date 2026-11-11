@@ -1,0 +1,51 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Leah pats the mat. A bit of fur!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Leah",
+      "offset": 1043330,
+      "duration": 3125000
+    },
+    {
+      "text": "pats",
+      "offset": 4304160,
+      "duration": 3668330
+    },
+    {
+      "text": "the",
+      "offset": 8108750,
+      "duration": 951250
+    },
+    {
+      "text": "mat",
+      "offset": 9195830,
+      "duration": 5298750
+    },
+    {
+      "text": "A",
+      "offset": 23912910,
+      "duration": 1222910
+    },
+    {
+      "text": "bit",
+      "offset": 25271660,
+      "duration": 1630410
+    },
+    {
+      "text": "of",
+      "offset": 27037910,
+      "duration": 951250
+    },
+    {
+      "text": "fur",
+      "offset": 28125000,
+      "duration": 4891250
+    }
+  ]
+}

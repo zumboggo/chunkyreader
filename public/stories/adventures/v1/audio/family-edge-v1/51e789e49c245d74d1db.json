@@ -1,0 +1,36 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "Our bear can come in!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Our",
+      "offset": 1032500,
+      "duration": 2581660
+    },
+    {
+      "text": "bear",
+      "offset": 3750000,
+      "duration": 3804160
+    },
+    {
+      "text": "can",
+      "offset": 7690410,
+      "duration": 2173750
+    },
+    {
+      "text": "come",
+      "offset": 10000000,
+      "duration": 2717500
+    },
+    {
+      "text": "in",
+      "offset": 12853330,
+      "duration": 3396660
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "A toy can come, too.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "A",
+      "offset": 1043330,
+      "duration": 1358750
+    },
+    {
+      "text": "toy",
+      "offset": 2537910,
+      "duration": 3668330
+    },
+    {
+      "text": "can",
+      "offset": 6342500,
+      "duration": 2717500
+    },
+    {
+      "text": "come",
+      "offset": 9195830,
+      "duration": 4212080
+    },
+    {
+      "text": "too",
+      "offset": 16125000,
+      "duration": 3940410
+    }
+  ]
+}

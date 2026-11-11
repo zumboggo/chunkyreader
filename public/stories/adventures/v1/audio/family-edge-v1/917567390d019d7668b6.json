@@ -1,0 +1,56 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Mum helps Leah join us. She pats our boat.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Mum",
+      "offset": 1043330,
+      "duration": 2717500
+    },
+    {
+      "text": "helps",
+      "offset": 3896660,
+      "duration": 2853330
+    },
+    {
+      "text": "Leah",
+      "offset": 6885830,
+      "duration": 2581660
+    },
+    {
+      "text": "join",
+      "offset": 9603330,
+      "duration": 2989160
+    },
+    {
+      "text": "us",
+      "offset": 12728330,
+      "duration": 4347910
+    },
+    {
+      "text": "She",
+      "offset": 26494580,
+      "duration": 2173750
+    },
+    {
+      "text": "pats",
+      "offset": 28804160,
+      "duration": 3396660
+    },
+    {
+      "text": "our",
+      "offset": 32337080,
+      "duration": 1087080
+    },
+    {
+      "text": "boat",
+      "offset": 33559580,
+      "duration": 4619580
+    }
+  ]
+}

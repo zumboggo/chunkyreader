@@ -1,0 +1,41 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "Up, mat! Here is the pup!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Up",
+      "offset": 1032500,
+      "duration": 2989160
+    },
+    {
+      "text": "mat",
+      "offset": 7146660,
+      "duration": 4755410
+    },
+    {
+      "text": "Here",
+      "offset": 21331660,
+      "duration": 3125000
+    },
+    {
+      "text": "is",
+      "offset": 24592500,
+      "duration": 1902080
+    },
+    {
+      "text": "the",
+      "offset": 26630410,
+      "duration": 1494580
+    },
+    {
+      "text": "pup",
+      "offset": 28260830,
+      "duration": 4347910
+    }
+  ]
+}

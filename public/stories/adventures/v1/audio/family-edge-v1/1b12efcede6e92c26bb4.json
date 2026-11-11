@@ -1,0 +1,36 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "Peck, peck! A nice meal!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Peck",
+      "offset": 1043330,
+      "duration": 4076250
+    },
+    {
+      "text": "peck",
+      "offset": 7701250,
+      "duration": 4755410
+    },
+    {
+      "text": "A",
+      "offset": 21875000,
+      "duration": 951250
+    },
+    {
+      "text": "nice",
+      "offset": 22962080,
+      "duration": 4347910
+    },
+    {
+      "text": "meal",
+      "offset": 27445830,
+      "duration": 4483750
+    }
+  ]
+}

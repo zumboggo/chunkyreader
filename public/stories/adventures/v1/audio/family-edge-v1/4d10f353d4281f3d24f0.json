@@ -1,0 +1,46 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "One more go! Time for a hug.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "One",
+      "offset": 1043330,
+      "duration": 2717500
+    },
+    {
+      "text": "more",
+      "offset": 3896660,
+      "duration": 2173750
+    },
+    {
+      "text": "go",
+      "offset": 6206660,
+      "duration": 4347910
+    },
+    {
+      "text": "Time",
+      "offset": 19972910,
+      "duration": 2717500
+    },
+    {
+      "text": "for",
+      "offset": 22826250,
+      "duration": 1766250
+    },
+    {
+      "text": "a",
+      "offset": 24728330,
+      "duration": 543330
+    },
+    {
+      "text": "hug",
+      "offset": 25407500,
+      "duration": 5027080
+    }
+  ]
+}

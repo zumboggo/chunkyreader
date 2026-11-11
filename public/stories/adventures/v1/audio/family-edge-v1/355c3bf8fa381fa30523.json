@@ -1,0 +1,46 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Leah waves. The hen tilts her head.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Leah",
+      "offset": 1043330,
+      "duration": 3125000
+    },
+    {
+      "text": "waves",
+      "offset": 4304160,
+      "duration": 6114160
+    },
+    {
+      "text": "The",
+      "offset": 19837080,
+      "duration": 1222910
+    },
+    {
+      "text": "hen",
+      "offset": 21195830,
+      "duration": 2853330
+    },
+    {
+      "text": "tilts",
+      "offset": 24184580,
+      "duration": 2853330
+    },
+    {
+      "text": "her",
+      "offset": 27173750,
+      "duration": 1358750
+    },
+    {
+      "text": "head",
+      "offset": 28668330,
+      "duration": 4347910
+    }
+  ]
+}

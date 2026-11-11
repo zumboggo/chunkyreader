@@ -1,0 +1,46 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "On the mat, pup. Have a nap.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "On",
+      "offset": 1032500,
+      "duration": 2309580
+    },
+    {
+      "text": "the",
+      "offset": 3478330,
+      "duration": 815410
+    },
+    {
+      "text": "mat",
+      "offset": 4429160,
+      "duration": 4076250
+    },
+    {
+      "text": "pup",
+      "offset": 11222910,
+      "duration": 4076250
+    },
+    {
+      "text": "Have",
+      "offset": 24717500,
+      "duration": 2853330
+    },
+    {
+      "text": "a",
+      "offset": 27706660,
+      "duration": 543330
+    },
+    {
+      "text": "nap",
+      "offset": 28385830,
+      "duration": 4891250
+    }
+  ]
+}

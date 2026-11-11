@@ -1,0 +1,56 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Leah sits on the rug. Anna rolls the ball.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Leah",
+      "offset": 1043330,
+      "duration": 3396660
+    },
+    {
+      "text": "sits",
+      "offset": 4576250,
+      "duration": 2989160
+    },
+    {
+      "text": "on",
+      "offset": 7701250,
+      "duration": 1222910
+    },
+    {
+      "text": "the",
+      "offset": 9059580,
+      "duration": 951250
+    },
+    {
+      "text": "rug",
+      "offset": 10146660,
+      "duration": 4891250
+    },
+    {
+      "text": "Anna",
+      "offset": 24456660,
+      "duration": 2853330
+    },
+    {
+      "text": "rolls",
+      "offset": 27445830,
+      "duration": 2989160
+    },
+    {
+      "text": "the",
+      "offset": 30570830,
+      "duration": 1087080
+    },
+    {
+      "text": "ball",
+      "offset": 31793330,
+      "duration": 4891250
+    }
+  ]
+}

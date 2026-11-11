@@ -1,0 +1,46 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Mum sits with Leah by the tent.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Mum",
+      "offset": 1043330,
+      "duration": 2989160
+    },
+    {
+      "text": "sits",
+      "offset": 4168330,
+      "duration": 2853330
+    },
+    {
+      "text": "with",
+      "offset": 7157500,
+      "duration": 1630410
+    },
+    {
+      "text": "Leah",
+      "offset": 8923750,
+      "duration": 2581660
+    },
+    {
+      "text": "by",
+      "offset": 11641250,
+      "duration": 1494580
+    },
+    {
+      "text": "the",
+      "offset": 13271660,
+      "duration": 1222910
+    },
+    {
+      "text": "tent",
+      "offset": 14630410,
+      "duration": 5570830
+    }
+  ]
+}

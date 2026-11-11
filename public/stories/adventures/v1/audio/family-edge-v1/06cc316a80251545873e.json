@@ -1,0 +1,41 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "A sock! No pup in here.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "A",
+      "offset": 1043330,
+      "duration": 1222910
+    },
+    {
+      "text": "sock",
+      "offset": 2402080,
+      "duration": 5434580
+    },
+    {
+      "text": "No",
+      "offset": 17255410,
+      "duration": 3125000
+    },
+    {
+      "text": "pup",
+      "offset": 20516250,
+      "duration": 3260830
+    },
+    {
+      "text": "in",
+      "offset": 23912910,
+      "duration": 1630410
+    },
+    {
+      "text": "here",
+      "offset": 25679160,
+      "duration": 4347910
+    }
+  ]
+}

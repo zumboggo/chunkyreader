@@ -1,0 +1,51 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "I sit near you. Roll it to me.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "I",
+      "offset": 1043330,
+      "duration": 1902080
+    },
+    {
+      "text": "sit",
+      "offset": 3081660,
+      "duration": 3532500
+    },
+    {
+      "text": "near",
+      "offset": 6750000,
+      "duration": 3396660
+    },
+    {
+      "text": "you",
+      "offset": 10282500,
+      "duration": 3260830
+    },
+    {
+      "text": "Roll",
+      "offset": 22962080,
+      "duration": 3804160
+    },
+    {
+      "text": "it",
+      "offset": 26902080,
+      "duration": 1494580
+    },
+    {
+      "text": "to",
+      "offset": 28532500,
+      "duration": 1494580
+    },
+    {
+      "text": "me",
+      "offset": 30162910,
+      "duration": 3396660
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "Let us be calm.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Let",
+      "offset": 1043330,
+      "duration": 2717500
+    },
+    {
+      "text": "us",
+      "offset": 3896660,
+      "duration": 2173750
+    },
+    {
+      "text": "be",
+      "offset": 6206660,
+      "duration": 1902080
+    },
+    {
+      "text": "calm",
+      "offset": 8244580,
+      "duration": 5027080
+    }
+  ]
+}

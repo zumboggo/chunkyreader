@@ -1,0 +1,41 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "A warm light. We can see!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "A",
+      "offset": 1043330,
+      "duration": 1222910
+    },
+    {
+      "text": "warm",
+      "offset": 2402080,
+      "duration": 4483750
+    },
+    {
+      "text": "light",
+      "offset": 7021660,
+      "duration": 4212080
+    },
+    {
+      "text": "We",
+      "offset": 20652080,
+      "duration": 2309580
+    },
+    {
+      "text": "can",
+      "offset": 23097910,
+      "duration": 2581660
+    },
+    {
+      "text": "see",
+      "offset": 25815410,
+      "duration": 4483750
+    }
+  ]
+}

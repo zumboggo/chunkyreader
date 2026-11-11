@@ -1,0 +1,36 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "A bear on a boat!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "A",
+      "offset": 1043330,
+      "duration": 1358750
+    },
+    {
+      "text": "bear",
+      "offset": 2537910,
+      "duration": 4619580
+    },
+    {
+      "text": "on",
+      "offset": 7293330,
+      "duration": 1630410
+    },
+    {
+      "text": "a",
+      "offset": 9059580,
+      "duration": 679160
+    },
+    {
+      "text": "boat",
+      "offset": 9875000,
+      "duration": 4212080
+    }
+  ]
+}

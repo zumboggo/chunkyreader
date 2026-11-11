@@ -1,0 +1,31 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Leah hugs the pup.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Leah",
+      "offset": 1043330,
+      "duration": 3125000
+    },
+    {
+      "text": "hugs",
+      "offset": 4304160,
+      "duration": 2853330
+    },
+    {
+      "text": "the",
+      "offset": 7293330,
+      "duration": 951250
+    },
+    {
+      "text": "pup",
+      "offset": 8380410,
+      "duration": 4891250
+    }
+  ]
+}

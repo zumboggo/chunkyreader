@@ -1,0 +1,36 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Play peek-a-boo. Have a hug.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Play",
+      "offset": 1043330,
+      "duration": 2309580
+    },
+    {
+      "text": "peek-a-boo",
+      "offset": 3489160,
+      "duration": 7880410
+    },
+    {
+      "text": "Have",
+      "offset": 20787910,
+      "duration": 2173750
+    },
+    {
+      "text": "a",
+      "offset": 23097910,
+      "duration": 679160
+    },
+    {
+      "text": "hug",
+      "offset": 23912910,
+      "duration": 4891250
+    }
+  ]
+}

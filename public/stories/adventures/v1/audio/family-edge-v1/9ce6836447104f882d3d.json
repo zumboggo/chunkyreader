@@ -1,0 +1,41 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "A little nod. Off you go!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "A",
+      "offset": 1021660,
+      "duration": 1087080
+    },
+    {
+      "text": "little",
+      "offset": 2244580,
+      "duration": 4076250
+    },
+    {
+      "text": "nod",
+      "offset": 6456660,
+      "duration": 4483750
+    },
+    {
+      "text": "Off",
+      "offset": 20380410,
+      "duration": 2989160
+    },
+    {
+      "text": "you",
+      "offset": 23505410,
+      "duration": 1766250
+    },
+    {
+      "text": "go",
+      "offset": 25407500,
+      "duration": 4076250
+    }
+  ]
+}

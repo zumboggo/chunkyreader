@@ -1,0 +1,36 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Wave bye. Give a nod.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Wave",
+      "offset": 1043330,
+      "duration": 2989160
+    },
+    {
+      "text": "bye",
+      "offset": 4168330,
+      "duration": 4619580
+    },
+    {
+      "text": "Give",
+      "offset": 18206660,
+      "duration": 1902080
+    },
+    {
+      "text": "a",
+      "offset": 20244580,
+      "duration": 543330
+    },
+    {
+      "text": "nod",
+      "offset": 20923750,
+      "duration": 5298750
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Mum made a box boat. Leah sits by Mum.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Mum",
+      "offset": 1043330,
+      "duration": 2853330
+    },
+    {
+      "text": "made",
+      "offset": 4032500,
+      "duration": 1766250
+    },
+    {
+      "text": "a",
+      "offset": 5934580,
+      "duration": 543330
+    },
+    {
+      "text": "box",
+      "offset": 6614160,
+      "duration": 3668330
+    },
+    {
+      "text": "boat",
+      "offset": 10418330,
+      "duration": 4755410
+    },
+    {
+      "text": "Leah",
+      "offset": 24592500,
+      "duration": 3396660
+    },
+    {
+      "text": "sits",
+      "offset": 28125000,
+      "duration": 2989160
+    },
+    {
+      "text": "by",
+      "offset": 31250000,
+      "duration": 1494580
+    },
+    {
+      "text": "Mum",
+      "offset": 32880410,
+      "duration": 4891250
+    }
+  ]
+}

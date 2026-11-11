@@ -1,0 +1,41 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "Our pup had a big day.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Our",
+      "offset": 1021660,
+      "duration": 2445830
+    },
+    {
+      "text": "pup",
+      "offset": 3603330,
+      "duration": 3532500
+    },
+    {
+      "text": "had",
+      "offset": 7271660,
+      "duration": 2173750
+    },
+    {
+      "text": "a",
+      "offset": 9581660,
+      "duration": 815410
+    },
+    {
+      "text": "big",
+      "offset": 10532500,
+      "duration": 2989160
+    },
+    {
+      "text": "day",
+      "offset": 13657500,
+      "duration": 3804160
+    }
+  ]
+}

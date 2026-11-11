@@ -1,0 +1,46 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "The toy can sit by the box.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "The",
+      "offset": 1043330,
+      "duration": 1902080
+    },
+    {
+      "text": "toy",
+      "offset": 3081660,
+      "duration": 3532500
+    },
+    {
+      "text": "can",
+      "offset": 6750000,
+      "duration": 2445830
+    },
+    {
+      "text": "sit",
+      "offset": 9331660,
+      "duration": 3260830
+    },
+    {
+      "text": "by",
+      "offset": 12728330,
+      "duration": 1766250
+    },
+    {
+      "text": "the",
+      "offset": 14630410,
+      "duration": 1222910
+    },
+    {
+      "text": "box",
+      "offset": 15989160,
+      "duration": 6114160
+    }
+  ]
+}

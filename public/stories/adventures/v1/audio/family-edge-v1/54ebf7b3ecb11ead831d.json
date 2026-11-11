@@ -1,0 +1,46 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Sit on the rug. Move the toy.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Sit",
+      "offset": 1043330,
+      "duration": 2853330
+    },
+    {
+      "text": "on",
+      "offset": 4032500,
+      "duration": 1222910
+    },
+    {
+      "text": "the",
+      "offset": 5391250,
+      "duration": 951250
+    },
+    {
+      "text": "rug",
+      "offset": 6478330,
+      "duration": 5027080
+    },
+    {
+      "text": "Move",
+      "offset": 20923750,
+      "duration": 2717500
+    },
+    {
+      "text": "the",
+      "offset": 23777080,
+      "duration": 1087080
+    },
+    {
+      "text": "toy",
+      "offset": 25000000,
+      "duration": 5706660
+    }
+  ]
+}

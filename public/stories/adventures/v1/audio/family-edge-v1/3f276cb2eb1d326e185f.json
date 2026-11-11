@@ -1,0 +1,41 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "Let us sail on the rug!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Let",
+      "offset": 1043330,
+      "duration": 2989160
+    },
+    {
+      "text": "us",
+      "offset": 4168330,
+      "duration": 2037910
+    },
+    {
+      "text": "sail",
+      "offset": 6342500,
+      "duration": 4212080
+    },
+    {
+      "text": "on",
+      "offset": 10690410,
+      "duration": 1494580
+    },
+    {
+      "text": "the",
+      "offset": 12320830,
+      "duration": 951250
+    },
+    {
+      "text": "rug",
+      "offset": 13407500,
+      "duration": 4483750
+    }
+  ]
+}

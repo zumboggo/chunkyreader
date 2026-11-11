@@ -1,0 +1,46 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "In the box, pup. Have a nap.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "In",
+      "offset": 1043330,
+      "duration": 2037910
+    },
+    {
+      "text": "the",
+      "offset": 3217500,
+      "duration": 1087080
+    },
+    {
+      "text": "box",
+      "offset": 4440410,
+      "duration": 5298750
+    },
+    {
+      "text": "pup",
+      "offset": 12184580,
+      "duration": 3940410
+    },
+    {
+      "text": "Have",
+      "offset": 25532500,
+      "duration": 2853330
+    },
+    {
+      "text": "a",
+      "offset": 28521660,
+      "duration": 543330
+    },
+    {
+      "text": "nap",
+      "offset": 29201250,
+      "duration": 4891250
+    }
+  ]
+}

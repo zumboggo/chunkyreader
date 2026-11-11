@@ -1,0 +1,36 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "More room for you, hen.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "More",
+      "offset": 1043330,
+      "duration": 3804160
+    },
+    {
+      "text": "room",
+      "offset": 4983750,
+      "duration": 3125000
+    },
+    {
+      "text": "for",
+      "offset": 8244580,
+      "duration": 2717500
+    },
+    {
+      "text": "you",
+      "offset": 11097910,
+      "duration": 2581660
+    },
+    {
+      "text": "hen",
+      "offset": 16668330,
+      "duration": 4076250
+    }
+  ]
+}

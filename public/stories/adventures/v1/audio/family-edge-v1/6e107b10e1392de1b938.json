@@ -1,0 +1,46 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Mum sits by Leah. We all hug.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Mum",
+      "offset": 1043330,
+      "duration": 2853330
+    },
+    {
+      "text": "sits",
+      "offset": 4032500,
+      "duration": 2853330
+    },
+    {
+      "text": "by",
+      "offset": 7021660,
+      "duration": 1630410
+    },
+    {
+      "text": "Leah",
+      "offset": 8787910,
+      "duration": 5027080
+    },
+    {
+      "text": "We",
+      "offset": 23233750,
+      "duration": 2173750
+    },
+    {
+      "text": "all",
+      "offset": 25543330,
+      "duration": 2309580
+    },
+    {
+      "text": "hug",
+      "offset": 27989160,
+      "duration": 4755410
+    }
+  ]
+}

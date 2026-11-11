@@ -1,0 +1,41 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "You can stay here with us.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "You",
+      "offset": 1043330,
+      "duration": 2173750
+    },
+    {
+      "text": "can",
+      "offset": 3353330,
+      "duration": 2173750
+    },
+    {
+      "text": "stay",
+      "offset": 5662910,
+      "duration": 3532500
+    },
+    {
+      "text": "here",
+      "offset": 9331660,
+      "duration": 3532500
+    },
+    {
+      "text": "with",
+      "offset": 13000000,
+      "duration": 2037910
+    },
+    {
+      "text": "us",
+      "offset": 15173750,
+      "duration": 4347910
+    }
+  ]
+}

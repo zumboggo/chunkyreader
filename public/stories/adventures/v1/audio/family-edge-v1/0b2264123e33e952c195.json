@@ -1,0 +1,41 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "A big fish! Wave to it!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "A",
+      "offset": 1043330,
+      "duration": 1358750
+    },
+    {
+      "text": "big",
+      "offset": 2537910,
+      "duration": 3532500
+    },
+    {
+      "text": "fish",
+      "offset": 6206660,
+      "duration": 5434580
+    },
+    {
+      "text": "Wave",
+      "offset": 21059580,
+      "duration": 4212080
+    },
+    {
+      "text": "to",
+      "offset": 25407500,
+      "duration": 2309580
+    },
+    {
+      "text": "it",
+      "offset": 27853330,
+      "duration": 2853330
+    }
+  ]
+}

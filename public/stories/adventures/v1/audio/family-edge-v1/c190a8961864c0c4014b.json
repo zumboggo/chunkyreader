@@ -1,0 +1,46 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Leah rolls it back! She did it!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Leah",
+      "offset": 1043330,
+      "duration": 3260830
+    },
+    {
+      "text": "rolls",
+      "offset": 4440410,
+      "duration": 2853330
+    },
+    {
+      "text": "it",
+      "offset": 7429160,
+      "duration": 951250
+    },
+    {
+      "text": "back",
+      "offset": 8516250,
+      "duration": 5162910
+    },
+    {
+      "text": "She",
+      "offset": 23097910,
+      "duration": 2309580
+    },
+    {
+      "text": "did",
+      "offset": 25543330,
+      "duration": 2173750
+    },
+    {
+      "text": "it",
+      "offset": 27853330,
+      "duration": 3125000
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "A den for us!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "A",
+      "offset": 1032500,
+      "duration": 1766250
+    },
+    {
+      "text": "den",
+      "offset": 2934580,
+      "duration": 3532500
+    },
+    {
+      "text": "for",
+      "offset": 6603330,
+      "duration": 2853330
+    },
+    {
+      "text": "us",
+      "offset": 9592500,
+      "duration": 4347910
+    }
+  ]
+}

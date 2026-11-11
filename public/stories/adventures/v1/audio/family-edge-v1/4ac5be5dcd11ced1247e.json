@@ -1,0 +1,46 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Mum is here. Our tent is up!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Mum",
+      "offset": 1043330,
+      "duration": 2853330
+    },
+    {
+      "text": "is",
+      "offset": 4032500,
+      "duration": 1766250
+    },
+    {
+      "text": "here",
+      "offset": 5934580,
+      "duration": 4076250
+    },
+    {
+      "text": "Our",
+      "offset": 19429160,
+      "duration": 1766250
+    },
+    {
+      "text": "tent",
+      "offset": 21331660,
+      "duration": 2853330
+    },
+    {
+      "text": "is",
+      "offset": 24320830,
+      "duration": 1358750
+    },
+    {
+      "text": "up",
+      "offset": 25815410,
+      "duration": 3668330
+    }
+  ]
+}

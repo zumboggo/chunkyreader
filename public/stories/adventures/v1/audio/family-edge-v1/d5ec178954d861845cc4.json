@@ -1,0 +1,41 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Mum puts seed by the hen.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Mum",
+      "offset": 1043330,
+      "duration": 2717500
+    },
+    {
+      "text": "puts",
+      "offset": 3896660,
+      "duration": 2581660
+    },
+    {
+      "text": "seed",
+      "offset": 6614160,
+      "duration": 2309580
+    },
+    {
+      "text": "by",
+      "offset": 9059580,
+      "duration": 1494580
+    },
+    {
+      "text": "the",
+      "offset": 10690410,
+      "duration": 1087080
+    },
+    {
+      "text": "hen",
+      "offset": 11912910,
+      "duration": 4483750
+    }
+  ]
+}

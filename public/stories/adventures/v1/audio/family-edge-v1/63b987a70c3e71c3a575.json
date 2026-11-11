@@ -1,0 +1,36 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "You can do it now!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "You",
+      "offset": 1043330,
+      "duration": 2309580
+    },
+    {
+      "text": "can",
+      "offset": 3489160,
+      "duration": 2173750
+    },
+    {
+      "text": "do",
+      "offset": 5798750,
+      "duration": 2173750
+    },
+    {
+      "text": "it",
+      "offset": 8108750,
+      "duration": 1358750
+    },
+    {
+      "text": "now",
+      "offset": 9603330,
+      "duration": 4076250
+    }
+  ]
+}

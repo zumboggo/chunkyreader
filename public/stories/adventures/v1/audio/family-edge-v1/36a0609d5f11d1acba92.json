@@ -1,0 +1,41 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-JennyNeural",
+  "text": "Go to sea. Go back home.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "Go",
+      "offset": 1043330,
+      "duration": 1902080
+    },
+    {
+      "text": "to",
+      "offset": 3081660,
+      "duration": 1087080
+    },
+    {
+      "text": "sea",
+      "offset": 4304160,
+      "duration": 5162910
+    },
+    {
+      "text": "Go",
+      "offset": 18885830,
+      "duration": 1902080
+    },
+    {
+      "text": "back",
+      "offset": 20923750,
+      "duration": 2717500
+    },
+    {
+      "text": "home",
+      "offset": 23777080,
+      "duration": 4347910
+    }
+  ]
+}

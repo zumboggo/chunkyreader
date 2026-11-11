@@ -1,0 +1,36 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "One big day for you!",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "One",
+      "offset": 1043330,
+      "duration": 3804160
+    },
+    {
+      "text": "big",
+      "offset": 4983750,
+      "duration": 2853330
+    },
+    {
+      "text": "day",
+      "offset": 7972910,
+      "duration": 2717500
+    },
+    {
+      "text": "for",
+      "offset": 10826250,
+      "duration": 2717500
+    },
+    {
+      "text": "you",
+      "offset": 13679160,
+      "duration": 3260830
+    }
+  ]
+}

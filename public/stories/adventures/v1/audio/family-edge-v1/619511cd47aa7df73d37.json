@@ -1,0 +1,46 @@
+{
+  "provider": "Microsoft Edge",
+  "client": "edge-tts 7.3.1",
+  "voice": "en-US-AnaNeural",
+  "text": "We let the hen come to us.",
+  "rate": "-8%",
+  "pitch": "+0Hz",
+  "costUSD": 0,
+  "words": [
+    {
+      "text": "We",
+      "offset": 1043330,
+      "duration": 2173750
+    },
+    {
+      "text": "let",
+      "offset": 3353330,
+      "duration": 2717500
+    },
+    {
+      "text": "the",
+      "offset": 6206660,
+      "duration": 1087080
+    },
+    {
+      "text": "hen",
+      "offset": 7429160,
+      "duration": 3804160
+    },
+    {
+      "text": "come",
+      "offset": 11369580,
+      "duration": 2989160
+    },
+    {
+      "text": "to",
+      "offset": 14494580,
+      "duration": 1902080
+    },
+    {
+      "text": "us",
+      "offset": 16532500,
+      "duration": 4212080
+    }
+  ]
+}
