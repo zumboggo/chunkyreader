@@ -7,7 +7,9 @@ export function installFourButtonController() {
     if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey
       || (target instanceof HTMLElement && (target.isContentEditable || target.matches('input, textarea, select')))) return
     const settings = loadAppSettings()
-    const index = controllerChoices.findIndex(choice => settings.controllerKeys[choice]?.toLowerCase() === event.key.toLowerCase())
+    const fixedIndex = ['x', 'y', 'a', 'b'].indexOf(event.key.toLowerCase())
+    const numberIndex = ['1', '2', '3', '4'].indexOf(event.key)
+    const index = fixedIndex >= 0 ? fixedIndex : numberIndex >= 0 ? numberIndex : controllerChoices.findIndex(choice => settings.controllerKeys[choice]?.toLowerCase() === event.key.toLowerCase())
     if (index < 0) return
     event.preventDefault()
     event.stopImmediatePropagation()

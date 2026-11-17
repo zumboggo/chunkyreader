@@ -1315,6 +1315,10 @@ function ParentSettingsModal({
         <OfflineDownloadButton />
         <div className="settings-list">
           <label className="settings-toggle">
+            <span><strong>Mangmi Air Y mode</strong><small>Use the full landscape screen with compact lessons. Choices: X = 1, Y = 2, A = 3, B = 4. Number keys work too.</small></span>
+            <input type="checkbox" checked={settings.mangmiAirY} onChange={event => onChange({ mangmiAirY: event.currentTarget.checked })} />
+          </label>
+          <label className="settings-toggle">
             <span>
               <strong>Autoplay audio</strong>
               <small>Play words and story pages when they open.</small>

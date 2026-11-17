@@ -3,6 +3,7 @@ import type { SectionId } from './types'
 
 export interface AppSettings {
   autoplayAudio: boolean
+  mangmiAirY: boolean
   darkMode: boolean
   showProgress: boolean
   controllerKeys: ControllerKeyMap
@@ -25,6 +26,7 @@ export const defaultControllerKeys: ControllerKeyMap = {
 
 export const defaultAppSettings: AppSettings = {
   autoplayAudio: true,
+  mangmiAirY: false,
   darkMode: false,
   showProgress: true,
   controllerKeys: defaultControllerKeys,
@@ -60,6 +62,7 @@ export function saveAppSettings(settings: AppSettings) {
 }
 
 export function applyAppSettings(settings: AppSettings) {
+  document.body.classList.toggle('mangmi-air-y', settings.mangmiAirY)
   document.body.classList.toggle('dark-mode', settings.darkMode)
   document.body.classList.toggle('hide-progress', !settings.showProgress)
 }

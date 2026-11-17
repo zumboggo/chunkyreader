@@ -127,7 +127,7 @@ export function installControllerNavigation() {
     if (!name) return
     event.preventDefault()
     event.stopImmediatePropagation()
-    if (!event.repeat || !['select', 'back'].includes(name)) action(name)
+    if (!event.repeat || !name.startsWith('choice') && !['select', 'back'].includes(name)) action(name)
   }
   function pointer() {
     active = false
@@ -141,21 +141,24 @@ export function installControllerNavigation() {
       for (const pad of pads) {
         if (!pad || pad.mapping !== 'standard') continue
         const pressed = (index: number) => pad.buttons[index]?.pressed
+        const answering = scope() === document && !!document.querySelector('.focus-lesson .focus-option, .focus-lesson .choice-button, .focus-lesson .choice-action, .focus-lesson .fsrs-btn')
         const names = [
           pressed(12) || pad.axes[1] < -0.55 ? 'up' : '',
           pressed(13) || pad.axes[1] > 0.55 ? 'down' : '',
           pressed(14) || pad.axes[0] < -0.55 ? 'left' : '',
           pressed(15) || pad.axes[0] > 0.55 ? 'right' : '',
-          pressed(0) ? 'select' : '', pressed(1) ? 'back' : '',
+          pressed(0) ? (answering ? 'choice3' : 'select') : '', pressed(1) ? (answering ? 'choice4' : 'back') : '',
+          pressed(2) ? 'choice1' : '', pressed(3) ? 'choice2' : '',
           pressed(4) ? 'previous' : '', pressed(5) ? 'next' : '',
         ]
         names.filter(Boolean).forEach(name => held.add(name))
       }
       for (const name of held) {
         if (!previous.has(name)) {
-          action(name)
+          if (name.startsWith('choice')) window.dispatchEvent(new KeyboardEvent('keydown', { key: name.slice(-1), bubbles: true, cancelable: true }))
+          else action(name)
           repeatAt.set(name, now + 400)
-        } else if (!['select', 'back'].includes(name) && now >= (repeatAt.get(name) ?? Infinity)) {
+        } else if (!name.startsWith('choice') && !['select', 'back'].includes(name) && now >= (repeatAt.get(name) ?? Infinity)) {
           action(name)
           repeatAt.set(name, now + 140)
         }
