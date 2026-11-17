@@ -141,7 +141,7 @@ export function installControllerNavigation() {
       for (const pad of pads) {
         if (!pad || pad.mapping !== 'standard') continue
         const pressed = (index: number) => pad.buttons[index]?.pressed
-        const answering = scope() === document && !!document.querySelector('.focus-lesson .focus-option, .focus-lesson .choice-button, .focus-lesson .choice-action, .focus-lesson .fsrs-btn')
+        const answering = scope() === document && !!document.querySelector('.focus-lesson .focus-option, .focus-lesson .choice-button, .focus-lesson .choice-action, .focus-lesson .fsrs-btn, .lesson-complete .choice-action, .focus-lesson .focus-actions button, .focus-complete button, .adventure-choices button')
         const names = [
           pressed(12) || pad.axes[1] < -0.55 ? 'up' : '',
           pressed(13) || pad.axes[1] > 0.55 ? 'down' : '',

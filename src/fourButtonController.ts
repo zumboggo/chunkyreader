@@ -1,6 +1,6 @@
 import { controllerChoices, loadAppSettings } from './appSettings'
 
-/** Physical buttons only operate the current activity, never app navigation. */
+/** Choice shortcuts operate the current activity; menus keep their normal navigation. */
 export function installFourButtonController() {
   window.addEventListener('keydown', event => {
     const target = event.target
@@ -14,15 +14,15 @@ export function installFourButtonController() {
     event.preventDefault()
     event.stopImmediatePropagation()
     if (event.repeat || document.querySelector('.modal-overlay, [role="dialog"]')) return
-    const activity = document.querySelector('.focus-lesson, .lesson-complete')
+    const activity = document.querySelector('.focus-lesson, .lesson-complete, .focus-complete, .adventure-player')
     if (!activity) return
     const buttons = [...activity.querySelectorAll<HTMLButtonElement>('button')]
       .filter(button => button.getClientRects().length > 0
         && !button.closest('[hidden], [inert], [aria-hidden="true"]')
         && getComputedStyle(button).visibility !== 'hidden'
-        && !/\b(home|done|back|menu|collection|flashcards)\b/i.test(button.textContent || '')
+        && !/\b(home|back|menu|collection|flashcards)\b/i.test(button.textContent || '')
         && !button.closest('.math-diff-bar'))
-    const choices = buttons.filter(button => button.matches('.focus-option, .choice-button, .choice-action, .fsrs-btn'))
+    const choices = buttons.filter(button => button.matches('.focus-option, .choice-button, .choice-action, .fsrs-btn, .focus-actions button, .focus-complete button, .adventure-choices button'))
     const audio = buttons.filter(button => !choices.includes(button) && button.matches('.audio-prompt-button'))
     // Keep disabled answers in their positions; never remap a held key to another action.
     const button = [...choices, ...audio][index]

@@ -60,7 +60,9 @@ modalOpen = true; key('2'); assert.equal(candidates[1].clicks, 1, 'Modal blocks 
 modalOpen = false
 const input = new Element(); input.tag = 'input'
 assert(!key('1', { target: input }).prevented, 'Dropdown and text input remain native')
-keys.B = 'x'; key('x'); assert.equal(candidates[1].clicks, 2)
+keys.B = 'q'; key('q'); assert.equal(candidates[1].clicks, 2)
+candidates = Array.from({ length: 4 }, (_, i) => new Element('Choice ' + i))
+for (const [i, letter] of ['x', 'y', 'a', 'b'].entries()) { key(letter); key(letter.toUpperCase()); key(String(i + 1)); assert.equal(candidates[i].clicks, 3) }
 candidates = [new Element('Next lesson: 2')]
 key('1'); assert.equal(candidates[0].clicks, 1, 'Completion advances within Words')
 console.log('Safe lesson buttons: no navigation, no remapping, repeat suppression, custom keys, and next lesson passed.')
